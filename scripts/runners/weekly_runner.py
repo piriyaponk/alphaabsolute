@@ -320,6 +320,28 @@ def run_weekly():
         except Exception as e:
             log(f"  [NotebookLM skip]: {e}")
 
+    # ── STEP 8b: Audit — verify ALL numbers before sending ───────────────────
+    log("\n[8b/9] Auditing all data before Telegram send...")
+    try:
+        from auditor import run_weekly_audit
+        from portfolio_engine import load_portfolio, get_performance
+        portfolio_fresh2 = load_portfolio()
+        perf_fresh2      = get_performance(portfolio_fresh2)
+        portfolio_fresh2, perf_fresh2, focus_result, audit_log = run_weekly_audit(
+            portfolio_fresh2, perf_fresh2, focus_result)
+        fixes = [l for l in audit_log if l.startswith("FIX") or l.startswith("REMOVE")]
+        log(f"  Audit complete: {len(fixes)} corrections | {len(audit_log)} checks")
+        for f in fixes:
+            log(f"    {f}")
+        # Use audited versions
+        portfolio = portfolio_fresh2
+        perf      = perf_fresh2
+        results["steps"]["audit"] = {"checks": len(audit_log), "fixes": len(fixes)}
+    except Exception as e:
+        log(f"  [Auditor skip]: {e}")
+        import traceback
+        log(f"  {traceback.format_exc()[:200]}")
+
     # ── STEP 9: Telegram weekly summary ──────────────────────────────────────
     log("\n[9/9] Sending Telegram weekly summary...")
     try:

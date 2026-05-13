@@ -90,8 +90,16 @@ def run_daily():
     except Exception as e:
         print(f"  [ERROR]: {e}")
 
-    # 3. Telegram notification
-    print("\n[3/3] Sending Telegram notification...")
+    # 3. Audit — verify all prices + calculations before sending
+    print("\n[3/4] Auditing data before Telegram send...")
+    try:
+        from auditor import run_daily_audit
+        portfolio, perf, audit_log = run_daily_audit(portfolio, perf)
+    except Exception as e:
+        print(f"  [Auditor skip]: {e}")
+
+    # 4. Telegram notification
+    print("\n[4/4] Sending Telegram notification...")
     try:
         from telegram_notifier import send_daily_summary
         ok = send_daily_summary(
