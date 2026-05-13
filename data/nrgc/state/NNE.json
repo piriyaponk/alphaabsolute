@@ -1,0 +1,315 @@
+{
+  "ticker": "NNE",
+  "phase": 1,
+  "confidence": 1.0,
+  "history": [
+    {
+      "ticker": "NNE",
+      "phase": null,
+      "confidence": 0,
+      "last_updated": null,
+      "created": "2026-05-13",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "NNE",
+      "phase": 1,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:37",
+      "created": "2026-05-13",
+      "theme": "Nuclear/SMR",
+      "phase_name": "Neglect",
+      "nrgc_composite_score": 35,
+      "action": "Watchlist only",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 27.06,
+        "stage2": false,
+        "pct_from_52w_hi": -52.2,
+        "pct_from_52w_lo": 42.4,
+        "rs_6m_pct": -25.1,
+        "ma150_gt_200": false,
+        "above_30wma": false,
+        "vol_trend": "normal",
+        "price_phase_implied": 1
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 1,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "No new reactor construction permits",
+        "Uranium price at decade lows"
+      ],
+      "phase_signals_missing": [
+        "Fukushima/Chernobyl hangover — political opposition dominant",
+        "Existing plants unprofitable, closing",
+        "Nuclear narrative = 'too expensive, too slow, too dangerous'"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:37",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "NNE",
+      "phase": 1,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:39",
+      "created": "2026-05-13",
+      "theme": "Nuclear/SMR",
+      "phase_name": "Neglect",
+      "nrgc_composite_score": 35,
+      "action": "Watchlist only",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 27.08,
+        "stage2": false,
+        "pct_from_52w_hi": -52.2,
+        "pct_from_52w_lo": 42.6,
+        "rs_6m_pct": -25.0,
+        "ma150_gt_200": false,
+        "above_30wma": false,
+        "vol_trend": "normal",
+        "price_phase_implied": 1
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 1,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "No new reactor construction permits",
+        "Uranium price at decade lows"
+      ],
+      "phase_signals_missing": [
+        "Fukushima/Chernobyl hangover — political opposition dominant",
+        "Existing plants unprofitable, closing",
+        "Nuclear narrative = 'too expensive, too slow, too dangerous'"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:39",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "NNE",
+      "phase": 1,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:52",
+      "created": "2026-05-13",
+      "theme": "Nuclear/SMR",
+      "phase_name": "Neglect",
+      "nrgc_composite_score": 35,
+      "action": "Watchlist only",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 27.28,
+        "stage2": false,
+        "pct_from_52w_hi": -51.8,
+        "pct_from_52w_lo": 43.6,
+        "rs_6m_pct": -24.5,
+        "ma150_gt_200": false,
+        "above_30wma": false,
+        "vol_trend": "normal",
+        "price_phase_implied": 1
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 1,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "No new reactor construction permits",
+        "Uranium price at decade lows"
+      ],
+      "phase_signals_missing": [
+        "Fukushima/Chernobyl hangover — political opposition dominant",
+        "Existing plants unprofitable, closing",
+        "Nuclear narrative = 'too expensive, too slow, too dangerous'"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:52",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "NNE",
+      "phase": 1,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:57",
+      "created": "2026-05-13",
+      "theme": "Nuclear/SMR",
+      "phase_name": "Neglect",
+      "nrgc_composite_score": 35,
+      "action": "Watchlist only",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 27.46,
+        "stage2": false,
+        "pct_from_52w_hi": -51.5,
+        "pct_from_52w_lo": 44.5,
+        "rs_6m_pct": -24.0,
+        "ma150_gt_200": false,
+        "above_30wma": false,
+        "vol_trend": "normal",
+        "price_phase_implied": 1
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 1,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "No new reactor construction permits",
+        "Uranium price at decade lows"
+      ],
+      "phase_signals_missing": [
+        "Fukushima/Chernobyl hangover — political opposition dominant",
+        "Existing plants unprofitable, closing",
+        "Nuclear narrative = 'too expensive, too slow, too dangerous'"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:57",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "NNE",
+      "phase": 1,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 22:17",
+      "created": "2026-05-13",
+      "theme": "Nuclear/SMR",
+      "phase_name": "Neglect",
+      "nrgc_composite_score": 35,
+      "action": "Watchlist only",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 27.65,
+        "stage2": false,
+        "pct_from_52w_hi": -51.2,
+        "pct_from_52w_lo": 45.5,
+        "rs_6m_pct": -23.5,
+        "ma150_gt_200": false,
+        "above_30wma": false,
+        "vol_trend": "normal",
+        "price_phase_implied": 1
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 1,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "No new reactor construction permits",
+        "Uranium price at decade lows"
+      ],
+      "phase_signals_missing": [
+        "Fukushima/Chernobyl hangover — political opposition dominant",
+        "Existing plants unprofitable, closing",
+        "Nuclear narrative = 'too expensive, too slow, too dangerous'"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 22:17",
+      "snapshot_date": "2026-05-13"
+    }
+  ],
+  "last_updated": "2026-05-13 22:29",
+  "created": "2026-05-13",
+  "theme": "Nuclear/SMR",
+  "phase_name": "Neglect",
+  "nrgc_composite_score": 35,
+  "action": "Watchlist only",
+  "narrative": "",
+  "narrative_traction": 0.0,
+  "revenue_signal": {
+    "qoq_trend": "no_data"
+  },
+  "price_signal": {
+    "valid": true,
+    "price": 27.41,
+    "stage2": false,
+    "pct_from_52w_hi": -51.6,
+    "pct_from_52w_lo": 44.3,
+    "rs_6m_pct": -24.1,
+    "ma150_gt_200": false,
+    "above_30wma": false,
+    "vol_trend": "normal",
+    "price_phase_implied": 1
+  },
+  "insider_signal": "neutral",
+  "narrative_signals": {
+    "signals": [],
+    "signal_count": 0,
+    "dominant_phase": null,
+    "positive_count": 0,
+    "negative_count": 0
+  },
+  "rule_phase": 1,
+  "rule_confidence": 1.0,
+  "phase_signals_confirmed": [
+    "No new reactor construction permits",
+    "Uranium price at decade lows"
+  ],
+  "phase_signals_missing": [
+    "Fukushima/Chernobyl hangover — political opposition dominant",
+    "Existing plants unprofitable, closing",
+    "Nuclear narrative = 'too expensive, too slow, too dangerous'"
+  ],
+  "kill_switches": [],
+  "primary_evidence": [],
+  "assessed_at": "2026-05-13 22:29"
+}

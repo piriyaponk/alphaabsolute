@@ -1,0 +1,39 @@
+{
+  "_comment": "AlphaAbsolute Trade Log — append every trade, never delete",
+  "trades": [
+    {
+      "_template": "Copy this block for each trade",
+      "trade_id": "001",
+      "ticker": "EXAMPLE",
+      "market": "US",
+      "action": "BUY",
+      "date": "YYYY-MM-DD",
+      "price": 0,
+      "size_pct": 0,
+      "setup_type": "Leader",
+      "theme": "AI-Related",
+      "pattern": "VCP Base 1",
+      "canslim_score": 0,
+      "gate_verdict": "GREEN",
+      "rs_rank_at_entry": 0,
+      "stage_at_entry": 2,
+      "wyckoff_signal": "LPS",
+      "stop_loss": 0,
+      "target": 0,
+      "recommending_agent": "07",
+      "cio_override": false,
+      "override_reason": null,
+      "earnings_proximity_days": null,
+      "exit_date": null,
+      "exit_price": null,
+      "exit_reason": null,
+      "realized_pnl_pct": null,
+      "r_multiple": null,
+      "outcome": "Open",
+      "post_mortem_done": false,
+      "data_sources": ["TradingView MCP", "SEC EDGAR"],
+      "audit_cleared": true,
+      "notes": ""
+    }
+  ]
+}

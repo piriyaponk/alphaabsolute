@@ -1,0 +1,435 @@
+{
+  "ticker": "RGTI",
+  "phase": 3,
+  "confidence": 0.9,
+  "history": [
+    {
+      "ticker": "RGTI",
+      "phase": null,
+      "confidence": 0,
+      "last_updated": null,
+      "created": "2026-05-13",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "RGTI",
+      "phase": 5,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:29",
+      "created": "2026-05-13",
+      "theme": "Quantum",
+      "phase_name": "Consensus",
+      "nrgc_composite_score": 35,
+      "action": "Hold, no add, tighten stops",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 18.22,
+        "stage2": false,
+        "pct_from_52w_hi": -67.7,
+        "pct_from_52w_lo": 84.6,
+        "rs_6m_pct": -42.0,
+        "ma150_gt_200": true,
+        "above_30wma": false,
+        "vol_trend": "normal",
+        "price_phase_implied": 5
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 5,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [],
+      "phase_signals_missing": [
+        "Classical computing catching up (better algorithms)",
+        "Quantum winter narrative — 'not as close as expected'",
+        "Most quantum companies unprofitable with no clear path"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:29",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "RGTI",
+      "phase": 3,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 21:39",
+      "created": "2026-05-13",
+      "theme": "Quantum",
+      "phase_name": "Inflection",
+      "nrgc_composite_score": 41,
+      "action": "Full position — highest conviction",
+      "narrative": "Quantum inflection — commercial use cases proven. Increase to 5%. Still speculative.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "accelerating_strongly",
+        "phase_signal": 3,
+        "acceleration_score": 1,
+        "latest_qoq_pct": 126.0,
+        "prior_qoq_pct": 8.1,
+        "positive_quarters": 3,
+        "margin_trend": "expanding",
+        "latest_margin": 31.3,
+        "history_summary": [
+          {
+            "q": "2025-03-31",
+            "qoq": -38.1
+          },
+          {
+            "q": "2025-06-30",
+            "qoq": 22.4
+          },
+          {
+            "q": "2025-09-30",
+            "qoq": 8.1
+          },
+          {
+            "q": "2026-03-31",
+            "qoq": 126.0
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 18.05,
+        "stage2": false,
+        "pct_from_52w_hi": -68.0,
+        "pct_from_52w_lo": 83.0,
+        "rs_6m_pct": -42.5,
+        "ma150_gt_200": true,
+        "above_30wma": false,
+        "vol_trend": "normal",
+        "price_phase_implied": 5
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 3,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [],
+      "phase_signals_missing": [
+        "Enterprise pilot with Fortune 500 (pharma, finance, logistics)",
+        "Quantum advantage demonstrated for specific use case",
+        "Government classified contract (DOD/NSA)",
+        "Hybrid quantum-classical algorithm showing commercial value"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:39",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "RGTI",
+      "phase": 3,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 21:52",
+      "created": "2026-05-13",
+      "theme": "Quantum",
+      "phase_name": "Inflection",
+      "nrgc_composite_score": 41,
+      "action": "Full position — highest conviction",
+      "narrative": "Quantum inflection — commercial use cases proven. Increase to 5%. Still speculative.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "accelerating_strongly",
+        "phase_signal": 3,
+        "acceleration_score": 1,
+        "latest_qoq_pct": 126.0,
+        "prior_qoq_pct": 8.1,
+        "positive_quarters": 3,
+        "margin_trend": "expanding",
+        "latest_margin": 31.3,
+        "history_summary": [
+          {
+            "q": "2025-03-31",
+            "qoq": -38.1
+          },
+          {
+            "q": "2025-06-30",
+            "qoq": 22.4
+          },
+          {
+            "q": "2025-09-30",
+            "qoq": 8.1
+          },
+          {
+            "q": "2026-03-31",
+            "qoq": 126.0
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 18.23,
+        "stage2": false,
+        "pct_from_52w_hi": -67.6,
+        "pct_from_52w_lo": 84.8,
+        "rs_6m_pct": -41.9,
+        "ma150_gt_200": true,
+        "above_30wma": false,
+        "vol_trend": "normal",
+        "price_phase_implied": 5
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 3,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [],
+      "phase_signals_missing": [
+        "Enterprise pilot with Fortune 500 (pharma, finance, logistics)",
+        "Quantum advantage demonstrated for specific use case",
+        "Government classified contract (DOD/NSA)",
+        "Hybrid quantum-classical algorithm showing commercial value"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:52",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "RGTI",
+      "phase": 3,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 21:57",
+      "created": "2026-05-13",
+      "theme": "Quantum",
+      "phase_name": "Inflection",
+      "nrgc_composite_score": 41,
+      "action": "Full position — highest conviction",
+      "narrative": "Quantum inflection — commercial use cases proven. Increase to 5%. Still speculative.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "accelerating_strongly",
+        "phase_signal": 3,
+        "acceleration_score": 1,
+        "latest_qoq_pct": 126.0,
+        "prior_qoq_pct": 8.1,
+        "positive_quarters": 3,
+        "margin_trend": "expanding",
+        "latest_margin": 31.3,
+        "history_summary": [
+          {
+            "q": "2025-03-31",
+            "qoq": -38.1
+          },
+          {
+            "q": "2025-06-30",
+            "qoq": 22.4
+          },
+          {
+            "q": "2025-09-30",
+            "qoq": 8.1
+          },
+          {
+            "q": "2026-03-31",
+            "qoq": 126.0
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 18.27,
+        "stage2": false,
+        "pct_from_52w_hi": -67.6,
+        "pct_from_52w_lo": 85.2,
+        "rs_6m_pct": -41.8,
+        "ma150_gt_200": true,
+        "above_30wma": false,
+        "vol_trend": "normal",
+        "price_phase_implied": 5
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 3,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [],
+      "phase_signals_missing": [
+        "Enterprise pilot with Fortune 500 (pharma, finance, logistics)",
+        "Quantum advantage demonstrated for specific use case",
+        "Government classified contract (DOD/NSA)",
+        "Hybrid quantum-classical algorithm showing commercial value"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:57",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "RGTI",
+      "phase": 3,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 22:16",
+      "created": "2026-05-13",
+      "theme": "Quantum",
+      "phase_name": "Inflection",
+      "nrgc_composite_score": 41,
+      "action": "Full position — highest conviction",
+      "narrative": "Quantum inflection — commercial use cases proven. Increase to 5%. Still speculative.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "accelerating_strongly",
+        "phase_signal": 3,
+        "acceleration_score": 1,
+        "latest_qoq_pct": 126.0,
+        "prior_qoq_pct": 8.1,
+        "positive_quarters": 3,
+        "margin_trend": "expanding",
+        "latest_margin": 31.3,
+        "history_summary": [
+          {
+            "q": "2025-03-31",
+            "qoq": -38.1
+          },
+          {
+            "q": "2025-06-30",
+            "qoq": 22.4
+          },
+          {
+            "q": "2025-09-30",
+            "qoq": 8.1
+          },
+          {
+            "q": "2026-03-31",
+            "qoq": 126.0
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 18.49,
+        "stage2": false,
+        "pct_from_52w_hi": -67.2,
+        "pct_from_52w_lo": 87.4,
+        "rs_6m_pct": -41.1,
+        "ma150_gt_200": true,
+        "above_30wma": false,
+        "vol_trend": "normal",
+        "price_phase_implied": 5
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 3,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [],
+      "phase_signals_missing": [
+        "Enterprise pilot with Fortune 500 (pharma, finance, logistics)",
+        "Quantum advantage demonstrated for specific use case",
+        "Government classified contract (DOD/NSA)",
+        "Hybrid quantum-classical algorithm showing commercial value"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 22:16",
+      "snapshot_date": "2026-05-13"
+    }
+  ],
+  "last_updated": "2026-05-13 22:29",
+  "created": "2026-05-13",
+  "theme": "Quantum",
+  "phase_name": "Inflection",
+  "nrgc_composite_score": 44,
+  "action": "Full position — highest conviction",
+  "narrative": "Quantum advantage demonstrated",
+  "narrative_traction": 0.0,
+  "revenue_signal": {
+    "qoq_trend": "accelerating_strongly",
+    "phase_signal": 3,
+    "acceleration_score": 1,
+    "latest_qoq_pct": 126.0,
+    "prior_qoq_pct": 8.1,
+    "positive_quarters": 3,
+    "margin_trend": "expanding",
+    "latest_margin": 31.3,
+    "history_summary": [
+      {
+        "q": "2025-03-31",
+        "qoq": -38.1
+      },
+      {
+        "q": "2025-06-30",
+        "qoq": 22.4
+      },
+      {
+        "q": "2025-09-30",
+        "qoq": 8.1
+      },
+      {
+        "q": "2026-03-31",
+        "qoq": 126.0
+      }
+    ]
+  },
+  "price_signal": {
+    "valid": true,
+    "price": 18.42,
+    "stage2": false,
+    "pct_from_52w_hi": -67.3,
+    "pct_from_52w_lo": 86.7,
+    "rs_6m_pct": -41.4,
+    "ma150_gt_200": true,
+    "above_30wma": false,
+    "vol_trend": "normal",
+    "price_phase_implied": 5
+  },
+  "insider_signal": "neutral",
+  "narrative_signals": {
+    "signals": [],
+    "signal_count": 0,
+    "dominant_phase": null,
+    "positive_count": 0,
+    "negative_count": 0
+  },
+  "rule_phase": 3,
+  "rule_confidence": 0.6,
+  "phase_signals_confirmed": [],
+  "phase_signals_missing": [
+    "Enterprise pilot with Fortune 500 (pharma, finance, logistics)",
+    "Quantum advantage demonstrated for specific use case",
+    "Government classified contract (DOD/NSA)",
+    "Hybrid quantum-classical algorithm showing commercial value"
+  ],
+  "kill_switches": [
+    "guidance cut",
+    "QoQ growth deceleration",
+    "loss of key customer or partnership"
+  ],
+  "primary_evidence": [
+    "qoq_trend: accelerating_strongly with 126.0% QoQ growth",
+    "latest_margin: 31.3 with expanding margin trend",
+    "industry-specific context: potential for enterprise pilot with Fortune 500"
+  ],
+  "assessed_at": "2026-05-13 22:29"
+}

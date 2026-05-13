@@ -1,0 +1,443 @@
+{
+  "ticker": "AMAT",
+  "phase": 2,
+  "confidence": 0.8,
+  "history": [
+    {
+      "ticker": "AMAT",
+      "phase": null,
+      "confidence": 0,
+      "last_updated": null,
+      "created": "2026-05-13",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "AMAT",
+      "phase": 3,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:29",
+      "created": "2026-05-13",
+      "theme": "Memory/HBM",
+      "phase_name": "Inflection",
+      "nrgc_composite_score": 35,
+      "action": "Full position — highest conviction",
+      "narrative": "Memory supercycle inflection. HBM demand from AI infrastructure (NVIDIA H100/H200/B200) exceeding supply. ASP recovering. Entry zone.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 425.65,
+        "stage2": true,
+        "pct_from_52w_hi": -4.1,
+        "pct_from_52w_lo": 173.3,
+        "rs_6m_pct": 86.7,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "normal",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 3,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "DRAM ASP positive QoQ for first time in cycle"
+      ],
+      "phase_signals_missing": [
+        "HBM revenue becoming material (10%+ of DRAM revenue)",
+        "Utilization rate rising above 85%",
+        "Gross margin recovering — still below peak but clearly inflecting",
+        "Management language: 'supply tighter than expected', 'strong pricing environment'"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:29",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "AMAT",
+      "phase": 2,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 21:39",
+      "created": "2026-05-13",
+      "theme": "Memory/HBM",
+      "phase_name": "Accumulation",
+      "nrgc_composite_score": 41,
+      "action": "Build 25-30% of target",
+      "narrative": "Memory downcycle bottom forming. HBM emerging as new demand vector for AI. Accumulation zone for patient investors.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "negative",
+        "phase_signal": 2,
+        "acceleration_score": 0,
+        "latest_qoq_pct": -4.0,
+        "prior_qoq_pct": 2.8,
+        "positive_quarters": 2,
+        "margin_trend": "expanding",
+        "latest_margin": 49.0,
+        "history_summary": [
+          {
+            "q": "2025-01-26",
+            "qoq": 5.7
+          },
+          {
+            "q": "2025-04-27",
+            "qoq": -0.9
+          },
+          {
+            "q": "2025-07-27",
+            "qoq": 2.8
+          },
+          {
+            "q": "2026-01-25",
+            "qoq": -4.0
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 427.14,
+        "stage2": true,
+        "pct_from_52w_hi": -3.7,
+        "pct_from_52w_lo": 174.2,
+        "rs_6m_pct": 87.4,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "normal",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 2,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [],
+      "phase_signals_missing": [
+        "ASP decline decelerating (still negative but less negative)",
+        "Inventory days starting to shrink from peak",
+        "Utilization stabilizing (not cutting further)",
+        "Management language: 'seeing early stabilization', 'demand improving in pockets'",
+        "Beat low expectations but still guide cautiously"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:39",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "AMAT",
+      "phase": 2,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 21:52",
+      "created": "2026-05-13",
+      "theme": "Memory/HBM",
+      "phase_name": "Accumulation",
+      "nrgc_composite_score": 41,
+      "action": "Build 25-30% of target",
+      "narrative": "Memory downcycle bottom forming. HBM emerging as new demand vector for AI. Accumulation zone for patient investors.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "negative",
+        "phase_signal": 2,
+        "acceleration_score": 0,
+        "latest_qoq_pct": -4.0,
+        "prior_qoq_pct": 2.8,
+        "positive_quarters": 2,
+        "margin_trend": "expanding",
+        "latest_margin": 49.0,
+        "history_summary": [
+          {
+            "q": "2025-01-26",
+            "qoq": 5.7
+          },
+          {
+            "q": "2025-04-27",
+            "qoq": -0.9
+          },
+          {
+            "q": "2025-07-27",
+            "qoq": 2.8
+          },
+          {
+            "q": "2026-01-25",
+            "qoq": -4.0
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 428.19,
+        "stage2": true,
+        "pct_from_52w_hi": -3.5,
+        "pct_from_52w_lo": 174.9,
+        "rs_6m_pct": 87.9,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "normal",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 2,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [],
+      "phase_signals_missing": [
+        "ASP decline decelerating (still negative but less negative)",
+        "Inventory days starting to shrink from peak",
+        "Utilization stabilizing (not cutting further)",
+        "Management language: 'seeing early stabilization', 'demand improving in pockets'",
+        "Beat low expectations but still guide cautiously"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:52",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "AMAT",
+      "phase": 2,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 21:57",
+      "created": "2026-05-13",
+      "theme": "Memory/HBM",
+      "phase_name": "Accumulation",
+      "nrgc_composite_score": 41,
+      "action": "Build 25-30% of target",
+      "narrative": "Memory downcycle bottom forming. HBM emerging as new demand vector for AI. Accumulation zone for patient investors.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "negative",
+        "phase_signal": 2,
+        "acceleration_score": 0,
+        "latest_qoq_pct": -4.0,
+        "prior_qoq_pct": 2.8,
+        "positive_quarters": 2,
+        "margin_trend": "expanding",
+        "latest_margin": 49.0,
+        "history_summary": [
+          {
+            "q": "2025-01-26",
+            "qoq": 5.7
+          },
+          {
+            "q": "2025-04-27",
+            "qoq": -0.9
+          },
+          {
+            "q": "2025-07-27",
+            "qoq": 2.8
+          },
+          {
+            "q": "2026-01-25",
+            "qoq": -4.0
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 429.63,
+        "stage2": true,
+        "pct_from_52w_hi": -3.2,
+        "pct_from_52w_lo": 175.8,
+        "rs_6m_pct": 88.5,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "normal",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 2,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [],
+      "phase_signals_missing": [
+        "ASP decline decelerating (still negative but less negative)",
+        "Inventory days starting to shrink from peak",
+        "Utilization stabilizing (not cutting further)",
+        "Management language: 'seeing early stabilization', 'demand improving in pockets'",
+        "Beat low expectations but still guide cautiously"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:57",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "AMAT",
+      "phase": 2,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 22:16",
+      "created": "2026-05-13",
+      "theme": "Memory/HBM",
+      "phase_name": "Accumulation",
+      "nrgc_composite_score": 41,
+      "action": "Build 25-30% of target",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "negative",
+        "phase_signal": 2,
+        "acceleration_score": 0,
+        "latest_qoq_pct": -4.0,
+        "prior_qoq_pct": 2.8,
+        "positive_quarters": 2,
+        "margin_trend": "expanding",
+        "latest_margin": 49.0,
+        "history_summary": [
+          {
+            "q": "2025-01-26",
+            "qoq": 5.7
+          },
+          {
+            "q": "2025-04-27",
+            "qoq": -0.9
+          },
+          {
+            "q": "2025-07-27",
+            "qoq": 2.8
+          },
+          {
+            "q": "2026-01-25",
+            "qoq": -4.0
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 428.3,
+        "stage2": true,
+        "pct_from_52w_hi": -3.5,
+        "pct_from_52w_lo": 175.0,
+        "rs_6m_pct": 87.9,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "normal",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 2,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [],
+      "phase_signals_missing": [
+        "ASP decline decelerating (still negative but less negative)",
+        "Inventory days starting to shrink from peak",
+        "Utilization stabilizing (not cutting further)",
+        "Management language: 'seeing early stabilization', 'demand improving in pockets'",
+        "Beat low expectations but still guide cautiously"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 22:16",
+      "snapshot_date": "2026-05-13"
+    }
+  ],
+  "last_updated": "2026-05-13 22:29",
+  "created": "2026-05-13",
+  "theme": "Memory/HBM",
+  "phase_name": "Accumulation",
+  "nrgc_composite_score": 43,
+  "action": "Build 25-30% of target",
+  "narrative": "AMAT stabilizing in Memory/HBM",
+  "narrative_traction": 0.0,
+  "revenue_signal": {
+    "qoq_trend": "negative",
+    "phase_signal": 2,
+    "acceleration_score": 0,
+    "latest_qoq_pct": -4.0,
+    "prior_qoq_pct": 2.8,
+    "positive_quarters": 2,
+    "margin_trend": "expanding",
+    "latest_margin": 49.0,
+    "history_summary": [
+      {
+        "q": "2025-01-26",
+        "qoq": 5.7
+      },
+      {
+        "q": "2025-04-27",
+        "qoq": -0.9
+      },
+      {
+        "q": "2025-07-27",
+        "qoq": 2.8
+      },
+      {
+        "q": "2026-01-25",
+        "qoq": -4.0
+      }
+    ]
+  },
+  "price_signal": {
+    "valid": true,
+    "price": 427.99,
+    "stage2": true,
+    "pct_from_52w_hi": -3.5,
+    "pct_from_52w_lo": 174.8,
+    "rs_6m_pct": 87.8,
+    "ma150_gt_200": true,
+    "above_30wma": true,
+    "vol_trend": "normal",
+    "price_phase_implied": 3
+  },
+  "insider_signal": "neutral",
+  "narrative_signals": {
+    "signals": [],
+    "signal_count": 0,
+    "dominant_phase": null,
+    "positive_count": 0,
+    "negative_count": 0
+  },
+  "rule_phase": 2,
+  "rule_confidence": 0.6,
+  "phase_signals_confirmed": [],
+  "phase_signals_missing": [
+    "ASP decline decelerating (still negative but less negative)",
+    "Inventory days starting to shrink from peak",
+    "Utilization stabilizing (not cutting further)",
+    "Management language: 'seeing early stabilization', 'demand improving in pockets'",
+    "Beat low expectations but still guide cautiously"
+  ],
+  "kill_switches": [
+    "qoq_trend turns positive with accelerating revenue growth",
+    "industry utilization rate exceeds 90%",
+    "DRAM ASP growth accelerates"
+  ],
+  "primary_evidence": [
+    "qoq_trend is negative, but latest margin is 49.0 with an expanding trend",
+    "price is 3.5% from 52w hi, with a 6m return of 87.8%",
+    "industry context: HBM revenue and utilization rate are improving"
+  ],
+  "assessed_at": "2026-05-13 22:29"
+}

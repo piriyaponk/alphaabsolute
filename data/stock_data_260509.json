@@ -1,0 +1,1007 @@
+{
+  "NVDA": {
+    "ticker": "NVDA",
+    "fetched": "2026-05-09T17:13:50.488598",
+    "source": "yfinance + SEC EDGAR (free)",
+    "market": "US",
+    "name": "NVIDIA Corporation",
+    "sector": "Technology",
+    "industry": "Semiconductors",
+    "price": 215.2,
+    "currency": "USD",
+    "market_cap_b": 5230.4,
+    "52w_high": 217.8,
+    "52w_low": 120.28,
+    "pct_from_52w_high": -1.2,
+    "pct_above_52w_low": 78.9,
+    "change_52w_pct": 75.0,
+    "pe_trailing": 43.828922,
+    "pe_forward": 19.068007,
+    "ev_ebitda": 38.867,
+    "ev_revenue": 23.98,
+    "ps_ratio": 24.221933,
+    "pb_ratio": 33.250927,
+    "eps_ttm": 4.91,
+    "eps_forward": 11.28592,
+    "revenue_growth_yoy": 73.2,
+    "earnings_growth_yoy": 95.6,
+    "gross_margin_pct": 71.1,
+    "operating_margin_pct": 65.0,
+    "net_margin_pct": 55.6,
+    "roe": 101.5,
+    "roa": 51.2,
+    "debt_to_equity": 7.255,
+    "analyst_target_mean": 269.16544,
+    "analyst_target_high": 380.0,
+    "analyst_recommendation": "strong_buy",
+    "analyst_count": 57,
+    "eps_estimates": {
+      "0q": {
+        "avg_eps": 1.77461,
+        "year_ago": 0.81,
+        "growth_pct": 119.1,
+        "analysts": 38
+      },
+      "+1q": {
+        "avg_eps": 1.95182,
+        "year_ago": 1.05,
+        "growth_pct": 85.9,
+        "analysts": 37
+      },
+      "0y": {
+        "avg_eps": 8.34076,
+        "year_ago": 4.77,
+        "growth_pct": 74.9,
+        "analysts": 46
+      },
+      "+1y": {
+        "avg_eps": 11.28592,
+        "year_ago": 8.34076,
+        "growth_pct": 35.3,
+        "analysts": 46
+      }
+    },
+    "eps_q_growth_pct": 119.1,
+    "upgrades_downgrades": [
+      {
+        "date": "2026-03-31",
+        "firm": "Benchmark",
+        "to": "Buy",
+        "action": "Maintains",
+        "target": 250.0
+      },
+      {
+        "date": "2026-03-23",
+        "firm": "Rosenblatt",
+        "to": "Buy",
+        "action": "Maintains",
+        "target": 325.0
+      },
+      {
+        "date": "2026-03-23",
+        "firm": "Cantor Fitzgerald",
+        "to": "Overweight",
+        "action": "Maintains",
+        "target": 300.0
+      },
+      {
+        "date": "2026-03-19",
+        "firm": "Raymond James",
+        "to": "Strong Buy",
+        "action": "Raises",
+        "target": 323.0
+      },
+      {
+        "date": "2026-03-18",
+        "firm": "Truist Securities",
+        "to": "Buy",
+        "action": "Raises",
+        "target": 287.0
+      }
+    ],
+    "institutional_top5": [
+      {
+        "holder": "Vanguard Group Inc",
+        "pct_held": 9.33,
+        "shares": 2266683275,
+        "pct_change": 1.94
+      },
+      {
+        "holder": "Blackrock Inc.",
+        "pct_held": 8.0,
+        "shares": 1943812884,
+        "pct_change": 0.75
+      },
+      {
+        "holder": "State Street Corporation",
+        "pct_held": 4.08,
+        "shares": 991480489,
+        "pct_change": 1.17
+      },
+      {
+        "holder": "FMR, LLC",
+        "pct_held": 4.0,
+        "shares": 971063283,
+        "pct_change": -1.18
+      },
+      {
+        "holder": "Geode Capital Management, LLC",
+        "pct_held": 2.42,
+        "shares": 588803093,
+        "pct_change": 0.58
+      }
+    ],
+    "insider_recent": [
+      {
+        "insider": "KRESS COLETTE M.",
+        "action": "Sale at price 171.97 - 177.51 per share.",
+        "shares": 62650,
+        "value": 10956706
+      },
+      {
+        "insider": "ROBERTSON DONALD F JR",
+        "action": "Sale at price 172.58 - 177.31 per share.",
+        "shares": 5396,
+        "value": 942944
+      },
+      {
+        "insider": "STEVENS MARK A",
+        "action": "Sale at price 172.61 - 174.57 per share.",
+        "shares": 221682,
+        "value": 38502524
+      },
+      {
+        "insider": "SHAH AARTI S",
+        "action": "Sale at price 176.27 - 177.73 per share.",
+        "shares": 19000,
+        "value": 3357549
+      },
+      {
+        "insider": "PURI AJAY K",
+        "action": "Sale at price 181.31 - 182.94 per share.",
+        "shares": 300000,
+        "value": 54676140
+      }
+    ],
+    "canslim": {
+      "C_current_eps": 2,
+      "A_annual_eps": 2,
+      "N_near_high": 2,
+      "S_supply": 1,
+      "L_leader": 2,
+      "I_institutional": 2,
+      "M_market": 1,
+      "total": 12,
+      "max": 14,
+      "pass": true,
+      "eps_q_growth_pct": 119.1
+    },
+    "sec_edgar": {
+      "available": true,
+      "source": "SEC EDGAR (free, official)",
+      "revenue_annual_usd": {
+        "2023-01-29": 26974000000,
+        "2024-01-28": 60922000000,
+        "2025-01-26": 130497000000,
+        "2026-01-25": 215938000000
+      },
+      "eps_diluted_quarterly": []
+    },
+    "finnhub": {
+      "available": true,
+      "source": "Finnhub (free tier)",
+      "eps_surprises": [
+        {
+          "period": "2026-03-31",
+          "actual": 1.62,
+          "estimate": 1.5634,
+          "surprise_pct": 3.6,
+          "beat": true
+        },
+        {
+          "period": "2025-12-31",
+          "actual": 1.3,
+          "estimate": 1.2746,
+          "surprise_pct": 2.0,
+          "beat": true
+        },
+        {
+          "period": "2025-09-30",
+          "actual": 1.05,
+          "estimate": 1.0281,
+          "surprise_pct": 2.1,
+          "beat": true
+        },
+        {
+          "period": "2025-06-30",
+          "actual": 0.96,
+          "estimate": 0.9521,
+          "surprise_pct": 0.8,
+          "beat": true
+        }
+      ],
+      "analyst_recs": {
+        "period": "2026-05-01",
+        "strong_buy": 24,
+        "buy": 42,
+        "hold": 4,
+        "sell": 1,
+        "strong_sell": 0,
+        "total_bullish": 66,
+        "total_bearish": 1
+      },
+      "recent_news": [
+        {
+          "headline": "Is It Too Late to Buy Super Micro Computer Stock After Shares Soar?",
+          "source": "Yahoo",
+          "url": "https://finnhub.io/api/news?id=237240362cd101f30a4085a5d7ac82e5dc16cf5239b0ae5a3544adb4b3d2f1a7",
+          "date": "2026-05-09",
+          "sentiment": ""
+        },
+        {
+          "headline": "Bangkok\u2019s SiamAI rejects allegations of U.S. chip export violations",
+          "source": "Yahoo",
+          "url": "https://finnhub.io/api/news?id=b614a3e0562c55720b5b19a88a067060f4abde73d858152f5554abcb62290993",
+          "date": "2026-05-09",
+          "sentiment": ""
+        },
+        {
+          "headline": "3 Monster Stocks to Hold for the Next 10 Years",
+          "source": "Yahoo",
+          "url": "https://finnhub.io/api/news?id=e4314efa80df56f65004fd5f42ced663e52076c319f2fd915a3d548d7375a46f",
+          "date": "2026-05-09",
+          "sentiment": ""
+        },
+        {
+          "headline": "Better EV Stock: Tesla vs. Rivian vs. Lucid",
+          "source": "Yahoo",
+          "url": "https://finnhub.io/api/news?id=e650d4819924f41c9e6d993f1925cbc4d5c564d423cbe85736bb433ef411f425",
+          "date": "2026-05-09",
+          "sentiment": ""
+        },
+        {
+          "headline": "President Donald Trump's Pick to Lead the Fed, Kevin Warsh, May Be the Trump Bull Market's Undoing",
+          "source": "Yahoo",
+          "url": "https://finnhub.io/api/news?id=c04491e4cc08a51790740bf750a8a0bf11420c2927cafc781cd5b26e5b6ffc7e",
+          "date": "2026-05-09",
+          "sentiment": ""
+        }
+      ]
+    }
+  },
+  "MU": {
+    "ticker": "MU",
+    "fetched": "2026-05-09T17:13:57.156743",
+    "source": "yfinance + SEC EDGAR (free)",
+    "market": "US",
+    "name": "Micron Technology, Inc.",
+    "sector": "Technology",
+    "industry": "Semiconductors",
+    "price": 746.81,
+    "currency": "USD",
+    "market_cap_b": 842.2,
+    "52w_high": 747.21,
+    "52w_low": 90.93,
+    "pct_from_52w_high": -0.1,
+    "pct_above_52w_low": 721.3,
+    "change_52w_pct": 709.2,
+    "pe_trailing": 35.21028,
+    "pe_forward": 7.3373413,
+    "ev_ebitda": 22.781,
+    "ev_revenue": 14.426,
+    "ps_ratio": 14.491011,
+    "pb_ratio": 11.6258545,
+    "eps_ttm": 21.21,
+    "eps_forward": 101.7821,
+    "revenue_growth_yoy": 196.3,
+    "earnings_growth_yoy": 756.0,
+    "gross_margin_pct": 58.4,
+    "operating_margin_pct": 67.6,
+    "net_margin_pct": 41.5,
+    "roe": 39.8,
+    "roa": 20.1,
+    "debt_to_equity": 14.902,
+    "analyst_target_mean": 556.0476,
+    "analyst_target_high": 1000.0,
+    "analyst_recommendation": "strong_buy",
+    "analyst_count": 42,
+    "eps_estimates": {
+      "0q": {
+        "avg_eps": 18.97141,
+        "year_ago": 1.91,
+        "growth_pct": 893.3,
+        "analysts": 30
+      },
+      "+1q": {
+        "avg_eps": 22.56895,
+        "year_ago": 3.03,
+        "growth_pct": 644.8,
+        "analysts": 29
+      },
+      "0y": {
+        "avg_eps": 58.10855,
+        "year_ago": 8.29,
+        "growth_pct": 601.0,
+        "analysts": 31
+      },
+      "+1y": {
+        "avg_eps": 101.7821,
+        "year_ago": 58.10855,
+        "growth_pct": 75.2,
+        "analysts": 31
+      }
+    },
+    "eps_q_growth_pct": 893.3,
+    "upgrades_downgrades": [
+      {
+        "date": "2026-04-28",
+        "firm": "TD Cowen",
+        "to": "Buy",
+        "action": "Raises",
+        "target": 660.0
+      },
+      {
+        "date": "2026-04-28",
+        "firm": "DA Davidson",
+        "to": "Buy",
+        "action": "Announces",
+        "target": 1000.0
+      },
+      {
+        "date": "2026-04-27",
+        "firm": "Melius Research",
+        "to": "Buy",
+        "action": "Announces",
+        "target": 700.0
+      },
+      {
+        "date": "2026-04-08",
+        "firm": "UBS",
+        "to": "Buy",
+        "action": "Raises",
+        "target": 535.0
+      },
+      {
+        "date": "2026-03-31",
+        "firm": "Citigroup",
+        "to": "Buy",
+        "action": "Lowers",
+        "target": 425.0
+      }
+    ],
+    "institutional_top5": [
+      {
+        "holder": "Vanguard Group Inc",
+        "pct_held": 9.45,
+        "shares": 106608094,
+        "pct_change": 1.87
+      },
+      {
+        "holder": "Blackrock Inc.",
+        "pct_held": 8.93,
+        "shares": 100701543,
+        "pct_change": 7.33
+      },
+      {
+        "holder": "Capital World Investors",
+        "pct_held": 5.17,
+        "shares": 58249125,
+        "pct_change": -9.25
+      },
+      {
+        "holder": "State Street Corporation",
+        "pct_held": 4.68,
+        "shares": 52749817,
+        "pct_change": 2.11
+      },
+      {
+        "holder": "FMR, LLC",
+        "pct_held": 3.51,
+        "shares": 39596338,
+        "pct_change": -1.17
+      }
+    ],
+    "insider_recent": [
+      {
+        "insider": "RAY MICHAEL CHARLES",
+        "action": "Sale at price 511.64 - 544.73 per share.",
+        "shares": 7601,
+        "value": 4061207
+      },
+      {
+        "insider": "MEHROTRA SANJAY",
+        "action": "Sale at price 511.91 - 545.39 per share.",
+        "shares": 40000,
+        "value": 21450555
+      },
+      {
+        "insider": "CORDANO MICHAEL D",
+        "action": "Sale at price 435.00 per share.",
+        "shares": 3407,
+        "value": 1482045
+      },
+      {
+        "insider": "SADANA SUMIT",
+        "action": "Sale at price 421.35 per share.",
+        "shares": 24000,
+        "value": 10112400
+      },
+      {
+        "insider": "CORDANO MICHAEL D",
+        "action": "Sale at price 420.81 per share.",
+        "shares": 3407,
+        "value": 1433700
+      }
+    ],
+    "canslim": {
+      "C_current_eps": 2,
+      "A_annual_eps": 2,
+      "N_near_high": 2,
+      "S_supply": 1,
+      "L_leader": 2,
+      "I_institutional": 2,
+      "M_market": 1,
+      "total": 12,
+      "max": 14,
+      "pass": true,
+      "eps_q_growth_pct": 893.3
+    },
+    "sec_edgar": {
+      "available": true,
+      "source": "SEC EDGAR (free, official)",
+      "revenue_annual_usd": {
+        "2017-11-30": 6803000000,
+        "2018-03-01": 7351000000,
+        "2018-05-31": 7797000000,
+        "2018-08-30": 8440000000
+      },
+      "eps_diluted_quarterly": []
+    },
+    "finnhub": {
+      "available": true,
+      "source": "Finnhub (free tier)",
+      "eps_surprises": [
+        {
+          "period": "2026-03-31",
+          "actual": 12.2,
+          "estimate": 9.5849,
+          "surprise_pct": 27.3,
+          "beat": true
+        },
+        {
+          "period": "2025-12-31",
+          "actual": 4.78,
+          "estimate": 4.072,
+          "surprise_pct": 17.4,
+          "beat": true
+        },
+        {
+          "period": "2025-09-30",
+          "actual": 3.03,
+          "estimate": 2.9461,
+          "surprise_pct": 2.8,
+          "beat": true
+        },
+        {
+          "period": "2025-06-30",
+          "actual": 1.91,
+          "estimate": 1.649,
+          "surprise_pct": 15.8,
+          "beat": true
+        }
+      ],
+      "analyst_recs": {
+        "period": "2026-05-01",
+        "strong_buy": 17,
+        "buy": 32,
+        "hold": 3,
+        "sell": 1,
+        "strong_sell": 0,
+        "total_bullish": 49,
+        "total_bearish": 1
+      },
+      "recent_news": [
+        {
+          "headline": "Palantir Tech (PLTR): 10 Best High Volume Stocks to Invest In According to Hedge Funds",
+          "source": "Yahoo",
+          "url": "https://finnhub.io/api/news?id=c491c9359e0bf6e5d8c2ffd1c34b4902697175fbe56a360d35975c4a8aa29141",
+          "date": "2026-05-09",
+          "sentiment": ""
+        },
+        {
+          "headline": "This Week's Market Wrap: Software Strikes Back, Economics, And 2 Tech Charts",
+          "source": "SeekingAlpha",
+          "url": "https://finnhub.io/api/news?id=1a5da78fdb665d08809dd3a3438287e2b31d869b255cfadedb550b16d7cbc21c",
+          "date": "2026-05-09",
+          "sentiment": ""
+        },
+        {
+          "headline": "Review & Preview: Still Going Strong",
+          "source": "Yahoo",
+          "url": "https://finnhub.io/api/news?id=8ae3f75ab8f14c20f98d952f7e69e157d1aabe25bf06f5f85bb300b720787aba",
+          "date": "2026-05-09",
+          "sentiment": ""
+        },
+        {
+          "headline": "Stock Market Today, May 8: Nasdaq Gains 1.7% on AI Demand and Strong Jobs Data",
+          "source": "Yahoo",
+          "url": "https://finnhub.io/api/news?id=5d3c5bddd4f5b9f567b5913d6bf5881ed0df75a1eea6c63fc066a044579b0e1c",
+          "date": "2026-05-09",
+          "sentiment": ""
+        },
+        {
+          "headline": "Nasdaq, S&P 500 Hit New Highs, Log Sixth Consecutive Weekly Gains",
+          "source": "Yahoo",
+          "url": "https://finnhub.io/api/news?id=6e315dd6b7b2502d20cba04325e3194d2a1d4c79a35fbb4c1a6ff5c0cd0b7833",
+          "date": "2026-05-09",
+          "sentiment": ""
+        }
+      ]
+    }
+  },
+  "PLTR": {
+    "ticker": "PLTR",
+    "fetched": "2026-05-09T17:14:01.944393",
+    "source": "yfinance + SEC EDGAR (free)",
+    "market": "US",
+    "name": "Palantir Technologies Inc.",
+    "sector": "Technology",
+    "industry": "Software - Infrastructure",
+    "price": 137.8,
+    "currency": "USD",
+    "market_cap_b": 330.3,
+    "52w_high": 207.52,
+    "52w_low": 115.01,
+    "pct_from_52w_high": -33.6,
+    "pct_above_52w_low": 19.8,
+    "change_52w_pct": 16.3,
+    "pe_trailing": 153.11111,
+    "pe_forward": 66.9322,
+    "ev_ebitda": 159.862,
+    "ev_revenue": 61.759,
+    "ps_ratio": 63.234802,
+    "pb_ratio": 44.60991,
+    "eps_ttm": 0.9,
+    "eps_forward": 2.0588,
+    "revenue_growth_yoy": 84.7,
+    "earnings_growth_yoy": 325.0,
+    "gross_margin_pct": 84.1,
+    "operating_margin_pct": 46.2,
+    "net_margin_pct": 43.7,
+    "roe": 32.6,
+    "roa": 14.7,
+    "debt_to_equity": 2.477,
+    "analyst_target_mean": 181.7289,
+    "analyst_target_high": 255.0,
+    "analyst_recommendation": "buy",
+    "analyst_count": 27,
+    "eps_estimates": {
+      "0q": {
+        "avg_eps": 0.34414,
+        "year_ago": 0.16,
+        "growth_pct": 115.1,
+        "analysts": 24
+      },
+      "+1q": {
+        "avg_eps": 0.36934,
+        "year_ago": 0.21,
+        "growth_pct": 75.9,
+        "analysts": 24
+      },
+      "0y": {
+        "avg_eps": 1.46118,
+        "year_ago": 0.75,
+        "growth_pct": 94.8,
+        "analysts": 29
+      },
+      "+1y": {
+        "avg_eps": 2.0588,
+        "year_ago": 1.46118,
+        "growth_pct": 40.9,
+        "analysts": 29
+      }
+    },
+    "eps_q_growth_pct": 115.1,
+    "upgrades_downgrades": [
+      {
+        "date": "2026-05-06",
+        "firm": "Citigroup",
+        "to": "Buy",
+        "action": "Raises",
+        "target": 225.0
+      },
+      {
+        "date": "2026-05-06",
+        "firm": "Argus Research",
+        "to": "Buy",
+        "action": "Announces",
+        "target": 190.0
+      },
+      {
+        "date": "2026-05-05",
+        "firm": "RBC Capital",
+        "to": "Underperform",
+        "action": "Maintains",
+        "target": 90.0
+      },
+      {
+        "date": "2026-05-05",
+        "firm": "Wedbush",
+        "to": "Outperform",
+        "action": "Maintains",
+        "target": 230.0
+      },
+      {
+        "date": "2026-05-05",
+        "firm": "DA Davidson",
+        "to": "Neutral",
+        "action": "Lowers",
+        "target": 165.0
+      }
+    ],
+    "institutional_top5": [
+      {
+        "holder": "Vanguard Group Inc",
+        "pct_held": 9.88,
+        "shares": 215444098,
+        "pct_change": 0.73
+      },
+      {
+        "holder": "Blackrock Inc.",
+        "pct_held": 8.87,
+        "shares": 193327487,
+        "pct_change": 2.56
+      },
+      {
+        "holder": "State Street Corporation",
+        "pct_held": 4.7,
+        "shares": 102385317,
+        "pct_change": 1.11
+      },
+      {
+        "holder": "Geode Capital Management, LLC",
+        "pct_held": 2.49,
+        "shares": 54200265,
+        "pct_change": 1.51
+      },
+      {
+        "holder": "JPMORGAN CHASE & CO",
+        "pct_held": 1.63,
+        "shares": 35575332,
+        "pct_change": -48.69
+      }
+    ],
+    "insider_recent": [
+      {
+        "insider": "BUCKLEY JEFFREY JOHANSING",
+        "action": "Stock Award(Grant) at price 0.00 per share.",
+        "shares": 21141,
+        "value": 0
+      },
+      {
+        "insider": "MOORE ALEXANDER D",
+        "action": "Sale at price 135.70 - 142.41 per share.",
+        "shares": 16000,
+        "value": 2230580
+      },
+      {
+        "insider": "MOORE ALEXANDER D",
+        "action": "Sale at price 151.99 - 153.51 per share.",
+        "shares": 16000,
+        "value": 2438623
+      },
+      {
+        "insider": "THIEL PETER A. J.D.",
+        "action": "Sale at price 140.97 - 146.80 per share.",
+        "shares": 2000000,
+        "value": 289707507
+      },
+      {
+        "insider": "STAT LAUREN ELAINA FRIEDMAN",
+        "action": "Stock Gift at price 0.00 per share.",
+        "shares": 7000,
+        "value": 0
+      }
+    ],
+    "canslim": {
+      "C_current_eps": 2,
+      "A_annual_eps": 2,
+      "N_near_high": 0,
+      "S_supply": 1,
+      "L_leader": 1,
+      "I_institutional": 2,
+      "M_market": 1,
+      "total": 9,
+      "max": 14,
+      "pass": true,
+      "eps_q_growth_pct": 115.1
+    },
+    "sec_edgar": {
+      "available": true,
+      "source": "SEC EDGAR (free, official)",
+      "revenue_annual_usd": {
+        "2022-12-31": 1905871000,
+        "2023-12-31": 2225012000,
+        "2024-12-31": 2865507000,
+        "2025-12-31": 4475446000
+      },
+      "eps_diluted_quarterly": []
+    },
+    "finnhub": {
+      "available": true,
+      "source": "Finnhub (free tier)",
+      "eps_surprises": [
+        {
+          "period": "2026-03-31",
+          "actual": 0.33,
+          "estimate": 0.2849,
+          "surprise_pct": 15.8,
+          "beat": true
+        },
+        {
+          "period": "2025-12-31",
+          "actual": 0.25,
+          "estimate": 0.2348,
+          "surprise_pct": 6.5,
+          "beat": true
+        },
+        {
+          "period": "2025-09-30",
+          "actual": 0.21,
+          "estimate": 0.1718,
+          "surprise_pct": 22.2,
+          "beat": true
+        },
+        {
+          "period": "2025-06-30",
+          "actual": 0.16,
+          "estimate": 0.1405,
+          "surprise_pct": 13.9,
+          "beat": true
+        }
+      ],
+      "analyst_recs": {
+        "period": "2026-05-01",
+        "strong_buy": 11,
+        "buy": 15,
+        "hold": 10,
+        "sell": 1,
+        "strong_sell": 1,
+        "total_bullish": 26,
+        "total_bearish": 2
+      },
+      "recent_news": [
+        {
+          "headline": "PLTR's Strong Growth and Technical Breakout Setup: A Dual-Lens Opportunity",
+          "source": "ChartMill",
+          "url": "https://finnhub.io/api/news?id=86413c377928de83dad664243b92031870a9ae240a580c4d767190af0e7f5f32",
+          "date": "2026-05-09",
+          "sentiment": ""
+        },
+        {
+          "headline": "Our Innodata Stock Pick Smashed Earnings Expectations. Stay Long.",
+          "source": "Yahoo",
+          "url": "https://finnhub.io/api/news?id=c733231052f728b069f00cdce67fbb437428e8a5b98b68d5068dd91e393a576c",
+          "date": "2026-05-09",
+          "sentiment": ""
+        },
+        {
+          "headline": "Palantir Tech (PLTR): 10 Best High Volume Stocks to Invest In According to Hedge Funds",
+          "source": "Yahoo",
+          "url": "https://finnhub.io/api/news?id=c491c9359e0bf6e5d8c2ffd1c34b4902697175fbe56a360d35975c4a8aa29141",
+          "date": "2026-05-09",
+          "sentiment": ""
+        },
+        {
+          "headline": "Rackspace Technology Q1 Earnings Call Highlights",
+          "source": "Yahoo",
+          "url": "https://finnhub.io/api/news?id=223fee16ed0ed944bf594b9cf5dd4748e78fd5930d6ee80b12c0f4d2fa23254b",
+          "date": "2026-05-09",
+          "sentiment": ""
+        },
+        {
+          "headline": "Palantir Just Crushed Earnings. So Why Is the Stock Down?",
+          "source": "Yahoo",
+          "url": "https://finnhub.io/api/news?id=19d6c786c61023e45d1dc36a3bdd702a41626a863aaae14b2044b943f203a3f6",
+          "date": "2026-05-09",
+          "sentiment": ""
+        }
+      ]
+    }
+  },
+  "AOT.BK": {
+    "ticker": "AOT.BK",
+    "fetched": "2026-05-09T17:14:02.647146",
+    "source": "yfinance + SEC EDGAR (free)",
+    "market": "TH",
+    "name": "Airports of Thailand Public Company Limited",
+    "sector": "Industrials",
+    "industry": "Airports & Air Services",
+    "price": 51.25,
+    "currency": "THB",
+    "market_cap_b": 732.1,
+    "52w_high": 59.0,
+    "52w_low": 26.75,
+    "pct_from_52w_high": -13.1,
+    "pct_above_52w_low": 91.6,
+    "change_52w_pct": 31.4,
+    "pe_trailing": 41.666664,
+    "pe_forward": 24.434315,
+    "ev_ebitda": 24.141,
+    "ev_revenue": 11.51,
+    "ps_ratio": 11.114664,
+    "pb_ratio": 5.4026985,
+    "eps_ttm": 1.23,
+    "eps_forward": 2.09746,
+    "revenue_growth_yoy": -4.6,
+    "earnings_growth_yoy": -10.8,
+    "gross_margin_pct": 67.4,
+    "operating_margin_pct": 36.8,
+    "net_margin_pct": 26.5,
+    "roe": 13.2,
+    "roa": 7.1,
+    "debt_to_equity": 32.854,
+    "analyst_target_mean": 59.25,
+    "analyst_target_high": 80.0,
+    "analyst_recommendation": "buy",
+    "analyst_count": 21,
+    "eps_estimates": {
+      "0q": {
+        "avg_eps": 0.36808,
+        "year_ago": 0.365,
+        "growth_pct": 0.8,
+        "analysts": 5
+      },
+      "+1q": {
+        "avg_eps": 0.26025,
+        "year_ago": 0.2736,
+        "growth_pct": -4.9,
+        "analysts": 1
+      },
+      "0y": {
+        "avg_eps": 1.44348,
+        "year_ago": 1.2911,
+        "growth_pct": 11.8,
+        "analysts": 18
+      },
+      "+1y": {
+        "avg_eps": 2.09746,
+        "year_ago": 1.44348,
+        "growth_pct": 45.3,
+        "analysts": 20
+      }
+    },
+    "eps_q_growth_pct": 0.8,
+    "upgrades_downgrades": [],
+    "institutional_top5": [],
+    "insider_recent": [],
+    "canslim": {
+      "C_current_eps": 1,
+      "A_annual_eps": 2,
+      "N_near_high": 2,
+      "S_supply": 1,
+      "L_leader": 2,
+      "I_institutional": 0,
+      "M_market": 1,
+      "total": 9,
+      "max": 14,
+      "pass": true,
+      "eps_q_growth_pct": 0.8
+    },
+    "sec_edgar": {},
+    "finnhub": {}
+  },
+  "KBANK.BK": {
+    "ticker": "KBANK.BK",
+    "fetched": "2026-05-09T17:14:03.361712",
+    "source": "yfinance + SEC EDGAR (free)",
+    "market": "TH",
+    "name": "Kasikornbank Public Company Limited",
+    "sector": "Financial Services",
+    "industry": "Banks - Regional",
+    "price": 195.0,
+    "currency": "THB",
+    "market_cap_b": 462.0,
+    "52w_high": 208.0,
+    "52w_low": 147.0,
+    "pct_from_52w_high": -6.2,
+    "pct_above_52w_low": 32.7,
+    "change_52w_pct": 18.5,
+    "pe_trailing": 9.452254,
+    "pe_forward": 9.337024,
+    "ev_ebitda": null,
+    "ev_revenue": 1.353,
+    "ps_ratio": 2.9826488,
+    "pb_ratio": 0.7814942,
+    "eps_ttm": 20.63,
+    "eps_forward": 20.8846,
+    "revenue_growth_yoy": 1.1,
+    "earnings_growth_yoy": 10.0,
+    "gross_margin_pct": 0,
+    "operating_margin_pct": 51.4,
+    "net_margin_pct": 32.6,
+    "roe": 8.5,
+    "roa": 1.3,
+    "debt_to_equity": null,
+    "analyst_target_mean": 209.21579,
+    "analyst_target_high": 243.0,
+    "analyst_recommendation": "buy",
+    "analyst_count": 19,
+    "eps_estimates": {
+      "0q": {
+        "avg_eps": 5.02,
+        "year_ago": 5.27,
+        "growth_pct": -4.7,
+        "analysts": 1
+      },
+      "+1q": {
+        "avg_eps": 5.08,
+        "year_ago": 5.35,
+        "growth_pct": -5.1,
+        "analysts": 1
+      },
+      "0y": {
+        "avg_eps": 20.20997,
+        "year_ago": 20.63,
+        "growth_pct": -2.0,
+        "analysts": 16
+      },
+      "+1y": {
+        "avg_eps": 20.8846,
+        "year_ago": 20.20997,
+        "growth_pct": 3.3,
+        "analysts": 17
+      }
+    },
+    "eps_q_growth_pct": -4.7,
+    "upgrades_downgrades": [],
+    "institutional_top5": [
+      {
+        "holder": "Victory Portfolios III-Victory International Fund",
+        "pct_held": 0.04,
+        "shares": 942408,
+        "pct_change": -4.38
+      },
+      {
+        "holder": "Victory PORT.s II-VictoryShares Emerging Markets Value Momentum ETF",
+        "pct_held": 0.02,
+        "shares": 456000,
+        "pct_change": -6.04
+      },
+      {
+        "holder": "ADVISORS' INNER CIRCLE FUND-LSV Emerging Markets Equity Fund",
+        "pct_held": 0.01,
+        "shares": 161500,
+        "pct_change": 33.91
+      },
+      {
+        "holder": "First TRT Exch-Trd Fd. III-First TRT RiverFront Dynamic Emerging Marke",
+        "pct_held": 0.01,
+        "shares": 158700,
+        "pct_change": 0.0
+      },
+      {
+        "holder": "EA Series Trust-Strive Emerging Markets Ex-China ETF",
+        "pct_held": 0.0,
+        "shares": 40408,
+        "pct_change": -13.88
+      }
+    ],
+    "insider_recent": [],
+    "canslim": {
+      "C_current_eps": 0,
+      "A_annual_eps": 2,
+      "N_near_high": 2,
+      "S_supply": 1,
+      "L_leader": 1,
+      "I_institutional": 0,
+      "M_market": 1,
+      "total": 7,
+      "max": 14,
+      "pass": false,
+      "eps_q_growth_pct": -4.7
+    },
+    "sec_edgar": {},
+    "finnhub": {}
+  }
+}

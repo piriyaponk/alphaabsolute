@@ -1,0 +1,317 @@
+{
+  "ticker": "CORZ",
+  "phase": 3,
+  "confidence": 0.8,
+  "history": [
+    {
+      "ticker": "CORZ",
+      "phase": null,
+      "confidence": 0,
+      "last_updated": null,
+      "created": "2026-05-13",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "CORZ",
+      "phase": 3,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:29",
+      "created": "2026-05-13",
+      "theme": "NeoCloud",
+      "phase_name": "Inflection",
+      "nrgc_composite_score": 35,
+      "action": "Full position — highest conviction",
+      "narrative": "NeoCloud supercycle. GPU constrained hyperscalers sending enterprises to neocloud. Entry.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 23.45,
+        "stage2": true,
+        "pct_from_52w_hi": -4.8,
+        "pct_from_52w_lo": 129.0,
+        "rs_6m_pct": 35.4,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "normal",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 3,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "Revenue surging as hyperscaler GPU allocation tightens"
+      ],
+      "phase_signals_missing": [
+        "Enterprise AI teams using neocloud for flexibility",
+        "Signed multi-year GPU reservation agreements",
+        "Management language: 'more demand than we can serve'"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:29",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "CORZ",
+      "phase": 3,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:39",
+      "created": "2026-05-13",
+      "theme": "NeoCloud",
+      "phase_name": "Inflection",
+      "nrgc_composite_score": 35,
+      "action": "Full position — highest conviction",
+      "narrative": "NeoCloud supercycle. GPU constrained hyperscalers sending enterprises to neocloud. Entry.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 23.24,
+        "stage2": true,
+        "pct_from_52w_hi": -5.6,
+        "pct_from_52w_lo": 127.0,
+        "rs_6m_pct": 34.2,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "normal",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 3,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "Revenue surging as hyperscaler GPU allocation tightens"
+      ],
+      "phase_signals_missing": [
+        "Enterprise AI teams using neocloud for flexibility",
+        "Signed multi-year GPU reservation agreements",
+        "Management language: 'more demand than we can serve'"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:39",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "CORZ",
+      "phase": 3,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:52",
+      "created": "2026-05-13",
+      "theme": "NeoCloud",
+      "phase_name": "Inflection",
+      "nrgc_composite_score": 35,
+      "action": "Full position — highest conviction",
+      "narrative": "NeoCloud supercycle. GPU constrained hyperscalers sending enterprises to neocloud. Entry.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 23.42,
+        "stage2": true,
+        "pct_from_52w_hi": -4.9,
+        "pct_from_52w_lo": 128.8,
+        "rs_6m_pct": 35.2,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "normal",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 3,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "Revenue surging as hyperscaler GPU allocation tightens"
+      ],
+      "phase_signals_missing": [
+        "Enterprise AI teams using neocloud for flexibility",
+        "Signed multi-year GPU reservation agreements",
+        "Management language: 'more demand than we can serve'"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:52",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "CORZ",
+      "phase": 3,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:57",
+      "created": "2026-05-13",
+      "theme": "NeoCloud",
+      "phase_name": "Inflection",
+      "nrgc_composite_score": 35,
+      "action": "Full position — highest conviction",
+      "narrative": "NeoCloud supercycle. GPU constrained hyperscalers sending enterprises to neocloud. Entry.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 23.38,
+        "stage2": true,
+        "pct_from_52w_hi": -5.1,
+        "pct_from_52w_lo": 128.3,
+        "rs_6m_pct": 35.0,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "normal",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 3,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "Revenue surging as hyperscaler GPU allocation tightens"
+      ],
+      "phase_signals_missing": [
+        "Enterprise AI teams using neocloud for flexibility",
+        "Signed multi-year GPU reservation agreements",
+        "Management language: 'more demand than we can serve'"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:57",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "CORZ",
+      "phase": 3,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 22:17",
+      "created": "2026-05-13",
+      "theme": "NeoCloud",
+      "phase_name": "Inflection",
+      "nrgc_composite_score": 35,
+      "action": "Full position — highest conviction",
+      "narrative": "NeoCloud supercycle. GPU constrained hyperscalers sending enterprises to neocloud. Entry.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 23.37,
+        "stage2": true,
+        "pct_from_52w_hi": -5.1,
+        "pct_from_52w_lo": 128.2,
+        "rs_6m_pct": 34.9,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "normal",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 3,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "Revenue surging as hyperscaler GPU allocation tightens"
+      ],
+      "phase_signals_missing": [
+        "Enterprise AI teams using neocloud for flexibility",
+        "Signed multi-year GPU reservation agreements",
+        "Management language: 'more demand than we can serve'"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 22:17",
+      "snapshot_date": "2026-05-13"
+    }
+  ],
+  "last_updated": "2026-05-13 22:29",
+  "created": "2026-05-13",
+  "theme": "NeoCloud",
+  "phase_name": "Inflection",
+  "nrgc_composite_score": 33,
+  "action": "Full position — highest conviction",
+  "narrative": "NeoCloud demand surges",
+  "narrative_traction": 0.0,
+  "revenue_signal": {
+    "qoq_trend": "no_data"
+  },
+  "price_signal": {
+    "valid": true,
+    "price": 23.38,
+    "stage2": true,
+    "pct_from_52w_hi": -5.1,
+    "pct_from_52w_lo": 128.3,
+    "rs_6m_pct": 35.0,
+    "ma150_gt_200": true,
+    "above_30wma": true,
+    "vol_trend": "normal",
+    "price_phase_implied": 3
+  },
+  "insider_signal": "neutral",
+  "narrative_signals": {
+    "signals": [],
+    "signal_count": 0,
+    "dominant_phase": null,
+    "positive_count": 0,
+    "negative_count": 0
+  },
+  "rule_phase": 3,
+  "rule_confidence": 1.0,
+  "phase_signals_confirmed": [
+    "Revenue surging as hyperscaler GPU allocation tightens"
+  ],
+  "phase_signals_missing": [
+    "Enterprise AI teams using neocloud for flexibility",
+    "Signed multi-year GPU reservation agreements",
+    "Management language: 'more demand than we can serve'"
+  ],
+  "kill_switches": [
+    "Revenue decline",
+    "Guidance cut",
+    "Loss of hyperscaler GPU allocation"
+  ],
+  "primary_evidence": [
+    "Industry-specific context: hyperscaler GPU allocation tightens, enterprise AI teams using neocloud",
+    "Price/technical signals: stage2, above 30wma, ma150_gt_200",
+    "Insider/institutional signals: neutral, but no negative signals"
+  ],
+  "assessed_at": "2026-05-13 22:29"
+}

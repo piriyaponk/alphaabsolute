@@ -1,0 +1,440 @@
+{
+  "ticker": "MRAM",
+  "phase": 4,
+  "confidence": 0.6,
+  "history": [
+    {
+      "ticker": "MRAM",
+      "phase": null,
+      "confidence": 0,
+      "last_updated": null,
+      "created": "2026-05-13",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "MRAM",
+      "phase": 3,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:29",
+      "created": "2026-05-13",
+      "theme": "Memory/HBM",
+      "phase_name": "Inflection",
+      "nrgc_composite_score": 35,
+      "action": "Full position — highest conviction",
+      "narrative": "Memory supercycle inflection. HBM demand from AI infrastructure (NVIDIA H100/H200/B200) exceeding supply. ASP recovering. Entry zone.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 45.96,
+        "stage2": true,
+        "pct_from_52w_hi": 0.0,
+        "pct_from_52w_lo": 732.6,
+        "rs_6m_pct": 400.1,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "expanding",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 3,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "DRAM ASP positive QoQ for first time in cycle"
+      ],
+      "phase_signals_missing": [
+        "HBM revenue becoming material (10%+ of DRAM revenue)",
+        "Utilization rate rising above 85%",
+        "Gross margin recovering — still below peak but clearly inflecting",
+        "Management language: 'supply tighter than expected', 'strong pricing environment'"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:29",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "MRAM",
+      "phase": 4,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 21:39",
+      "created": "2026-05-13",
+      "theme": "Memory/HBM",
+      "phase_name": "Recognition",
+      "nrgc_composite_score": 41,
+      "action": "Hold full position",
+      "narrative": "Memory supercycle in full swing. HBM supply constrained vs AI demand. Beat-and-raise pattern. Hold full position.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "positive",
+        "phase_signal": 4,
+        "acceleration_score": 0,
+        "latest_qoq_pct": 5.8,
+        "prior_qoq_pct": 6.5,
+        "positive_quarters": 4,
+        "margin_trend": "expanding",
+        "latest_margin": 52.7,
+        "history_summary": [
+          {
+            "q": "2025-03-31",
+            "qoq": 8.6
+          },
+          {
+            "q": "2025-06-30",
+            "qoq": 0.5
+          },
+          {
+            "q": "2025-09-30",
+            "qoq": 6.5
+          },
+          {
+            "q": "2026-03-31",
+            "qoq": 5.8
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 45.29,
+        "stage2": true,
+        "pct_from_52w_hi": 0.0,
+        "pct_from_52w_lo": 720.5,
+        "rs_6m_pct": 392.8,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "expanding",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 4,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [
+        "Gross margin approaching prior peak levels",
+        "Consecutive beat-and-raise quarters"
+      ],
+      "phase_signals_missing": [
+        "DRAM ASP accelerating (2nd/3rd QoQ increase)",
+        "HBM 30%+ of DRAM revenue",
+        "Management language: 'supply constrained', 'pricing power', 'record backlog'"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:39",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "MRAM",
+      "phase": 4,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 21:52",
+      "created": "2026-05-13",
+      "theme": "Memory/HBM",
+      "phase_name": "Recognition",
+      "nrgc_composite_score": 41,
+      "action": "Hold full position",
+      "narrative": "Memory supercycle in full swing. HBM supply constrained vs AI demand. Beat-and-raise pattern. Hold full position.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "positive",
+        "phase_signal": 4,
+        "acceleration_score": 0,
+        "latest_qoq_pct": 5.8,
+        "prior_qoq_pct": 6.5,
+        "positive_quarters": 4,
+        "margin_trend": "expanding",
+        "latest_margin": 52.7,
+        "history_summary": [
+          {
+            "q": "2025-03-31",
+            "qoq": 8.6
+          },
+          {
+            "q": "2025-06-30",
+            "qoq": 0.5
+          },
+          {
+            "q": "2025-09-30",
+            "qoq": 6.5
+          },
+          {
+            "q": "2026-03-31",
+            "qoq": 5.8
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 44.98,
+        "stage2": true,
+        "pct_from_52w_hi": 0.0,
+        "pct_from_52w_lo": 714.8,
+        "rs_6m_pct": 389.4,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "expanding",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 4,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [
+        "Gross margin approaching prior peak levels",
+        "Consecutive beat-and-raise quarters"
+      ],
+      "phase_signals_missing": [
+        "DRAM ASP accelerating (2nd/3rd QoQ increase)",
+        "HBM 30%+ of DRAM revenue",
+        "Management language: 'supply constrained', 'pricing power', 'record backlog'"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:52",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "MRAM",
+      "phase": 4,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 21:57",
+      "created": "2026-05-13",
+      "theme": "Memory/HBM",
+      "phase_name": "Recognition",
+      "nrgc_composite_score": 41,
+      "action": "Hold full position",
+      "narrative": "Memory supercycle in full swing. HBM supply constrained vs AI demand. Beat-and-raise pattern. Hold full position.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "positive",
+        "phase_signal": 4,
+        "acceleration_score": 0,
+        "latest_qoq_pct": 5.8,
+        "prior_qoq_pct": 6.5,
+        "positive_quarters": 4,
+        "margin_trend": "expanding",
+        "latest_margin": 52.7,
+        "history_summary": [
+          {
+            "q": "2025-03-31",
+            "qoq": 8.6
+          },
+          {
+            "q": "2025-06-30",
+            "qoq": 0.5
+          },
+          {
+            "q": "2025-09-30",
+            "qoq": 6.5
+          },
+          {
+            "q": "2026-03-31",
+            "qoq": 5.8
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 44.91,
+        "stage2": true,
+        "pct_from_52w_hi": 0.0,
+        "pct_from_52w_lo": 713.6,
+        "rs_6m_pct": 388.7,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "expanding",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 4,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [
+        "Gross margin approaching prior peak levels",
+        "Consecutive beat-and-raise quarters"
+      ],
+      "phase_signals_missing": [
+        "DRAM ASP accelerating (2nd/3rd QoQ increase)",
+        "HBM 30%+ of DRAM revenue",
+        "Management language: 'supply constrained', 'pricing power', 'record backlog'"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:57",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "MRAM",
+      "phase": 4,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 22:16",
+      "created": "2026-05-13",
+      "theme": "Memory/HBM",
+      "phase_name": "Recognition",
+      "nrgc_composite_score": 41,
+      "action": "Hold full position",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "positive",
+        "phase_signal": 4,
+        "acceleration_score": 0,
+        "latest_qoq_pct": 5.8,
+        "prior_qoq_pct": 6.5,
+        "positive_quarters": 4,
+        "margin_trend": "expanding",
+        "latest_margin": 52.7,
+        "history_summary": [
+          {
+            "q": "2025-03-31",
+            "qoq": 8.6
+          },
+          {
+            "q": "2025-06-30",
+            "qoq": 0.5
+          },
+          {
+            "q": "2025-09-30",
+            "qoq": 6.5
+          },
+          {
+            "q": "2026-03-31",
+            "qoq": 5.8
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 42.84,
+        "stage2": true,
+        "pct_from_52w_hi": -2.7,
+        "pct_from_52w_lo": 676.1,
+        "rs_6m_pct": 366.2,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "expanding",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 4,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [
+        "Gross margin approaching prior peak levels",
+        "Consecutive beat-and-raise quarters"
+      ],
+      "phase_signals_missing": [
+        "DRAM ASP accelerating (2nd/3rd QoQ increase)",
+        "HBM 30%+ of DRAM revenue",
+        "Management language: 'supply constrained', 'pricing power', 'record backlog'"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 22:16",
+      "snapshot_date": "2026-05-13"
+    }
+  ],
+  "last_updated": "2026-05-13 22:29",
+  "created": "2026-05-13",
+  "theme": "Memory/HBM",
+  "phase_name": "Recognition",
+  "nrgc_composite_score": 41,
+  "action": "Hold full position",
+  "narrative": "Memory supercycle in full swing. HBM supply constrained vs AI demand. Beat-and-raise pattern. Hold full position.",
+  "narrative_traction": 0.0,
+  "revenue_signal": {
+    "qoq_trend": "positive",
+    "phase_signal": 4,
+    "acceleration_score": 0,
+    "latest_qoq_pct": 5.8,
+    "prior_qoq_pct": 6.5,
+    "positive_quarters": 4,
+    "margin_trend": "expanding",
+    "latest_margin": 52.7,
+    "history_summary": [
+      {
+        "q": "2025-03-31",
+        "qoq": 8.6
+      },
+      {
+        "q": "2025-06-30",
+        "qoq": 0.5
+      },
+      {
+        "q": "2025-09-30",
+        "qoq": 6.5
+      },
+      {
+        "q": "2026-03-31",
+        "qoq": 5.8
+      }
+    ]
+  },
+  "price_signal": {
+    "valid": true,
+    "price": 42.6,
+    "stage2": true,
+    "pct_from_52w_hi": -3.2,
+    "pct_from_52w_lo": 671.6,
+    "rs_6m_pct": 363.5,
+    "ma150_gt_200": true,
+    "above_30wma": true,
+    "vol_trend": "expanding",
+    "price_phase_implied": 3
+  },
+  "insider_signal": "neutral",
+  "narrative_signals": {
+    "signals": [],
+    "signal_count": 0,
+    "dominant_phase": null,
+    "positive_count": 0,
+    "negative_count": 0
+  },
+  "rule_phase": 4,
+  "rule_confidence": 0.6,
+  "phase_signals_confirmed": [
+    "Gross margin approaching prior peak levels",
+    "Consecutive beat-and-raise quarters"
+  ],
+  "phase_signals_missing": [
+    "DRAM ASP accelerating (2nd/3rd QoQ increase)",
+    "HBM 30%+ of DRAM revenue",
+    "Management language: 'supply constrained', 'pricing power', 'record backlog'"
+  ],
+  "kill_switches": [],
+  "primary_evidence": [],
+  "assessed_at": "2026-05-13 22:29"
+}

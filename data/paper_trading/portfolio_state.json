@@ -1,0 +1,22 @@
+{
+  "capital": 100000,
+  "cash": 100000,
+  "positions": {},
+  "closed": [],
+  "realized_pnl_usd": 0.0,
+  "benchmark_start_price": 711.585,
+  "start_date": "2026-05-13",
+  "last_updated": "2026-05-13 23:30",
+  "rules": {
+    "max_position_pct": 0.15,
+    "hypergrowth_max_pct": 0.05,
+    "bottom_fish_max_pct": 0.04,
+    "stop_loss_pct": -0.08,
+    "trail_stop_pct": -0.2,
+    "earnings_max_pct": 0.03,
+    "max_positions": 10,
+    "min_cash_pct": 0.1,
+    "cash_raise_200dma_50": 0.3,
+    "cash_raise_200dma_30": 0.4
+  }
+}

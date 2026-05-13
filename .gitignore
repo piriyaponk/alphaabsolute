@@ -1,0 +1,29 @@
+# API keys — never commit
+.env
+
+# Raw scraped data — too large, regenerated each run
+data/raw/
+data/state/logs/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Output files — regenerated
+output/*.pptx
+output/*.pdf
+
+# Windows / OS
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Task scheduler XML (local only)
+data/state/task_*.xml
+setup_scheduler.bat
+
+# Large model files
+*.pkl
+*.h5

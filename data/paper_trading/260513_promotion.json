@@ -1,0 +1,44 @@
+[
+  {
+    "ticker": "MU",
+    "ready": false,
+    "passed": [
+      "Profitable in paper (+0.1%)",
+      "Drawdown OK (-2.3%)",
+      "EMLS score OK (82)",
+      "Above stop ($791.68 > $727.73)",
+      "No earnings risk (could not check)",
+      "Regime OK (neutral)"
+    ],
+    "failed": [
+      "Too early (0/14 days)"
+    ],
+    "days_held": 0,
+    "paper_pnl": 0.08,
+    "max_drawdown": -2.3,
+    "emls_score": 82,
+    "recommendation": "STAY PAPER (1 criteria missing)",
+    "suggested_real_pct": 0
+  },
+  {
+    "ticker": "NVDA",
+    "ready": false,
+    "passed": [
+      "Profitable in paper (+1.0%)",
+      "Drawdown OK (-0.4%)",
+      "EMLS score OK (90)",
+      "Above stop ($226.21 > $206.11)",
+      "No earnings risk (could not check)",
+      "Regime OK (neutral)"
+    ],
+    "failed": [
+      "Too early (0/14 days)"
+    ],
+    "days_held": 0,
+    "paper_pnl": 0.97,
+    "max_drawdown": -0.35,
+    "emls_score": 90,
+    "recommendation": "STAY PAPER (1 criteria missing)",
+    "suggested_real_pct": 0
+  }
+]

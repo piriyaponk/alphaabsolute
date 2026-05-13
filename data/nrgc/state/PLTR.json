@@ -1,0 +1,851 @@
+{
+  "ticker": "PLTR",
+  "phase": 4,
+  "confidence": 0.6,
+  "history": [
+    {
+      "ticker": "PLTR",
+      "phase": null,
+      "confidence": 0,
+      "last_updated": null,
+      "created": "2026-05-13",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "PLTR",
+      "phase": 1,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:29",
+      "created": "2026-05-13",
+      "theme": "AI",
+      "phase_name": "Neglect",
+      "nrgc_composite_score": 35,
+      "action": "Watchlist only",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 130.43,
+        "stage2": false,
+        "pct_from_52w_hi": -37.0,
+        "pct_from_52w_lo": 8.8,
+        "rs_6m_pct": -31.7,
+        "ma150_gt_200": false,
+        "above_30wma": false,
+        "vol_trend": "normal",
+        "price_phase_implied": 1
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 1,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "Negative guidance"
+      ],
+      "phase_signals_missing": [
+        "Revenue declining",
+        "Analyst downgrades"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:29",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "PLTR",
+      "phase": 1,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:29",
+      "created": "2026-05-13",
+      "theme": "DefenseTech",
+      "phase_name": "Neglect",
+      "nrgc_composite_score": 35,
+      "action": "Watchlist only",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 130.43,
+        "stage2": false,
+        "pct_from_52w_hi": -37.0,
+        "pct_from_52w_lo": 8.8,
+        "rs_6m_pct": -31.7,
+        "ma150_gt_200": false,
+        "above_30wma": false,
+        "vol_trend": "normal",
+        "price_phase_implied": 1
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 1,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [],
+      "phase_signals_missing": [
+        "Budget sequestration / continuing resolution uncertainty",
+        "Geopolitical stability reducing urgency",
+        "Commercial tech competition (FAANG) for same contracts"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:29",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "PLTR",
+      "phase": 4,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 21:39",
+      "created": "2026-05-13",
+      "theme": "AI",
+      "phase_name": "Recognition",
+      "nrgc_composite_score": 41,
+      "action": "Hold full position",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "accelerating_strongly",
+        "phase_signal": 4,
+        "acceleration_score": 0.27,
+        "latest_qoq_pct": 38.2,
+        "prior_qoq_pct": 17.7,
+        "positive_quarters": 4,
+        "margin_trend": "expanding",
+        "latest_margin": 86.8,
+        "history_summary": [
+          {
+            "q": "2025-03-31",
+            "qoq": 21.8
+          },
+          {
+            "q": "2025-06-30",
+            "qoq": 13.6
+          },
+          {
+            "q": "2025-09-30",
+            "qoq": 17.7
+          },
+          {
+            "q": "2026-03-31",
+            "qoq": 38.2
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 130.05,
+        "stage2": false,
+        "pct_from_52w_hi": -37.2,
+        "pct_from_52w_lo": 8.5,
+        "rs_6m_pct": -31.9,
+        "ma150_gt_200": false,
+        "above_30wma": false,
+        "vol_trend": "normal",
+        "price_phase_implied": 1
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 4,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [
+        "Margin expanding"
+      ],
+      "phase_signals_missing": [
+        "Consecutive beat-and-raise",
+        "Multiple analyst upgrades"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:39",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "PLTR",
+      "phase": 4,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 21:39",
+      "created": "2026-05-13",
+      "theme": "DefenseTech",
+      "phase_name": "Recognition",
+      "nrgc_composite_score": 41,
+      "action": "Hold full position",
+      "narrative": "Defense AI scaling. Multi-year backlog visibility. Full position.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "accelerating_strongly",
+        "phase_signal": 4,
+        "acceleration_score": 0.27,
+        "latest_qoq_pct": 38.2,
+        "prior_qoq_pct": 17.7,
+        "positive_quarters": 4,
+        "margin_trend": "expanding",
+        "latest_margin": 86.8,
+        "history_summary": [
+          {
+            "q": "2025-03-31",
+            "qoq": 21.8
+          },
+          {
+            "q": "2025-06-30",
+            "qoq": 13.6
+          },
+          {
+            "q": "2025-09-30",
+            "qoq": 17.7
+          },
+          {
+            "q": "2026-03-31",
+            "qoq": 38.2
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 130.05,
+        "stage2": false,
+        "pct_from_52w_hi": -37.2,
+        "pct_from_52w_lo": 8.5,
+        "rs_6m_pct": -31.9,
+        "ma150_gt_200": false,
+        "above_30wma": false,
+        "vol_trend": "normal",
+        "price_phase_implied": 1
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 4,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [
+        "M&A activity in sector (consolidation)"
+      ],
+      "phase_signals_missing": [
+        "Congressional earmarks increasing",
+        "Multi-year contracts locking in revenue visibility",
+        "Commercial cross-sell (PLTR commercial division)"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:39",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "PLTR",
+      "phase": 4,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 21:52",
+      "created": "2026-05-13",
+      "theme": "AI",
+      "phase_name": "Recognition",
+      "nrgc_composite_score": 41,
+      "action": "Hold full position",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "accelerating_strongly",
+        "phase_signal": 4,
+        "acceleration_score": 0.27,
+        "latest_qoq_pct": 38.2,
+        "prior_qoq_pct": 17.7,
+        "positive_quarters": 4,
+        "margin_trend": "expanding",
+        "latest_margin": 86.8,
+        "history_summary": [
+          {
+            "q": "2025-03-31",
+            "qoq": 21.8
+          },
+          {
+            "q": "2025-06-30",
+            "qoq": 13.6
+          },
+          {
+            "q": "2025-09-30",
+            "qoq": 17.7
+          },
+          {
+            "q": "2026-03-31",
+            "qoq": 38.2
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 130.38,
+        "stage2": false,
+        "pct_from_52w_hi": -37.1,
+        "pct_from_52w_lo": 8.7,
+        "rs_6m_pct": -31.7,
+        "ma150_gt_200": false,
+        "above_30wma": false,
+        "vol_trend": "normal",
+        "price_phase_implied": 1
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 4,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [
+        "Margin expanding"
+      ],
+      "phase_signals_missing": [
+        "Consecutive beat-and-raise",
+        "Multiple analyst upgrades"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:52",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "PLTR",
+      "phase": 4,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 21:52",
+      "created": "2026-05-13",
+      "theme": "DefenseTech",
+      "phase_name": "Recognition",
+      "nrgc_composite_score": 41,
+      "action": "Hold full position",
+      "narrative": "Defense AI scaling. Multi-year backlog visibility. Full position.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "accelerating_strongly",
+        "phase_signal": 4,
+        "acceleration_score": 0.27,
+        "latest_qoq_pct": 38.2,
+        "prior_qoq_pct": 17.7,
+        "positive_quarters": 4,
+        "margin_trend": "expanding",
+        "latest_margin": 86.8,
+        "history_summary": [
+          {
+            "q": "2025-03-31",
+            "qoq": 21.8
+          },
+          {
+            "q": "2025-06-30",
+            "qoq": 13.6
+          },
+          {
+            "q": "2025-09-30",
+            "qoq": 17.7
+          },
+          {
+            "q": "2026-03-31",
+            "qoq": 38.2
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 130.38,
+        "stage2": false,
+        "pct_from_52w_hi": -37.1,
+        "pct_from_52w_lo": 8.7,
+        "rs_6m_pct": -31.7,
+        "ma150_gt_200": false,
+        "above_30wma": false,
+        "vol_trend": "normal",
+        "price_phase_implied": 1
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 4,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [
+        "M&A activity in sector (consolidation)"
+      ],
+      "phase_signals_missing": [
+        "Congressional earmarks increasing",
+        "Multi-year contracts locking in revenue visibility",
+        "Commercial cross-sell (PLTR commercial division)"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:52",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "PLTR",
+      "phase": 4,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 21:57",
+      "created": "2026-05-13",
+      "theme": "AI",
+      "phase_name": "Recognition",
+      "nrgc_composite_score": 41,
+      "action": "Hold full position",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "accelerating_strongly",
+        "phase_signal": 4,
+        "acceleration_score": 0.27,
+        "latest_qoq_pct": 38.2,
+        "prior_qoq_pct": 17.7,
+        "positive_quarters": 4,
+        "margin_trend": "expanding",
+        "latest_margin": 86.8,
+        "history_summary": [
+          {
+            "q": "2025-03-31",
+            "qoq": 21.8
+          },
+          {
+            "q": "2025-06-30",
+            "qoq": 13.6
+          },
+          {
+            "q": "2025-09-30",
+            "qoq": 17.7
+          },
+          {
+            "q": "2026-03-31",
+            "qoq": 38.2
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 130.24,
+        "stage2": false,
+        "pct_from_52w_hi": -37.1,
+        "pct_from_52w_lo": 8.6,
+        "rs_6m_pct": -31.8,
+        "ma150_gt_200": false,
+        "above_30wma": false,
+        "vol_trend": "normal",
+        "price_phase_implied": 1
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 4,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [
+        "Margin expanding"
+      ],
+      "phase_signals_missing": [
+        "Consecutive beat-and-raise",
+        "Multiple analyst upgrades"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:57",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "PLTR",
+      "phase": 4,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 21:57",
+      "created": "2026-05-13",
+      "theme": "DefenseTech",
+      "phase_name": "Recognition",
+      "nrgc_composite_score": 41,
+      "action": "Hold full position",
+      "narrative": "Defense AI scaling. Multi-year backlog visibility. Full position.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "accelerating_strongly",
+        "phase_signal": 4,
+        "acceleration_score": 0.27,
+        "latest_qoq_pct": 38.2,
+        "prior_qoq_pct": 17.7,
+        "positive_quarters": 4,
+        "margin_trend": "expanding",
+        "latest_margin": 86.8,
+        "history_summary": [
+          {
+            "q": "2025-03-31",
+            "qoq": 21.8
+          },
+          {
+            "q": "2025-06-30",
+            "qoq": 13.6
+          },
+          {
+            "q": "2025-09-30",
+            "qoq": 17.7
+          },
+          {
+            "q": "2026-03-31",
+            "qoq": 38.2
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 130.24,
+        "stage2": false,
+        "pct_from_52w_hi": -37.1,
+        "pct_from_52w_lo": 8.6,
+        "rs_6m_pct": -31.8,
+        "ma150_gt_200": false,
+        "above_30wma": false,
+        "vol_trend": "normal",
+        "price_phase_implied": 1
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 4,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [
+        "M&A activity in sector (consolidation)"
+      ],
+      "phase_signals_missing": [
+        "Congressional earmarks increasing",
+        "Multi-year contracts locking in revenue visibility",
+        "Commercial cross-sell (PLTR commercial division)"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:57",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "PLTR",
+      "phase": 4,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 22:16",
+      "created": "2026-05-13",
+      "theme": "AI",
+      "phase_name": "Recognition",
+      "nrgc_composite_score": 41,
+      "action": "Hold full position",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "accelerating_strongly",
+        "phase_signal": 4,
+        "acceleration_score": 0.27,
+        "latest_qoq_pct": 38.2,
+        "prior_qoq_pct": 17.7,
+        "positive_quarters": 4,
+        "margin_trend": "expanding",
+        "latest_margin": 86.8,
+        "history_summary": [
+          {
+            "q": "2025-03-31",
+            "qoq": 21.8
+          },
+          {
+            "q": "2025-06-30",
+            "qoq": 13.6
+          },
+          {
+            "q": "2025-09-30",
+            "qoq": 17.7
+          },
+          {
+            "q": "2026-03-31",
+            "qoq": 38.2
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 130.56,
+        "stage2": false,
+        "pct_from_52w_hi": -37.0,
+        "pct_from_52w_lo": 8.9,
+        "rs_6m_pct": -31.6,
+        "ma150_gt_200": false,
+        "above_30wma": false,
+        "vol_trend": "normal",
+        "price_phase_implied": 1
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 4,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [
+        "Margin expanding"
+      ],
+      "phase_signals_missing": [
+        "Consecutive beat-and-raise",
+        "Multiple analyst upgrades"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 22:16",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "PLTR",
+      "phase": 4,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 22:17",
+      "created": "2026-05-13",
+      "theme": "DefenseTech",
+      "phase_name": "Recognition",
+      "nrgc_composite_score": 41,
+      "action": "Hold full position",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "accelerating_strongly",
+        "phase_signal": 4,
+        "acceleration_score": 0.27,
+        "latest_qoq_pct": 38.2,
+        "prior_qoq_pct": 17.7,
+        "positive_quarters": 4,
+        "margin_trend": "expanding",
+        "latest_margin": 86.8,
+        "history_summary": [
+          {
+            "q": "2025-03-31",
+            "qoq": 21.8
+          },
+          {
+            "q": "2025-06-30",
+            "qoq": 13.6
+          },
+          {
+            "q": "2025-09-30",
+            "qoq": 17.7
+          },
+          {
+            "q": "2026-03-31",
+            "qoq": 38.2
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 130.72,
+        "stage2": false,
+        "pct_from_52w_hi": -36.9,
+        "pct_from_52w_lo": 9.0,
+        "rs_6m_pct": -31.5,
+        "ma150_gt_200": false,
+        "above_30wma": false,
+        "vol_trend": "normal",
+        "price_phase_implied": 1
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 4,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [
+        "M&A activity in sector (consolidation)"
+      ],
+      "phase_signals_missing": [
+        "Congressional earmarks increasing",
+        "Multi-year contracts locking in revenue visibility",
+        "Commercial cross-sell (PLTR commercial division)"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 22:17",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "PLTR",
+      "phase": 4,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 22:29",
+      "created": "2026-05-13",
+      "theme": "AI",
+      "phase_name": "Recognition",
+      "nrgc_composite_score": 41,
+      "action": "Hold full position",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "accelerating_strongly",
+        "phase_signal": 4,
+        "acceleration_score": 0.27,
+        "latest_qoq_pct": 38.2,
+        "prior_qoq_pct": 17.7,
+        "positive_quarters": 4,
+        "margin_trend": "expanding",
+        "latest_margin": 86.8,
+        "history_summary": [
+          {
+            "q": "2025-03-31",
+            "qoq": 21.8
+          },
+          {
+            "q": "2025-06-30",
+            "qoq": 13.6
+          },
+          {
+            "q": "2025-09-30",
+            "qoq": 17.7
+          },
+          {
+            "q": "2026-03-31",
+            "qoq": 38.2
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 130.38,
+        "stage2": false,
+        "pct_from_52w_hi": -37.1,
+        "pct_from_52w_lo": 8.7,
+        "rs_6m_pct": -31.7,
+        "ma150_gt_200": false,
+        "above_30wma": false,
+        "vol_trend": "normal",
+        "price_phase_implied": 1
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 4,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [
+        "Margin expanding"
+      ],
+      "phase_signals_missing": [
+        "Consecutive beat-and-raise",
+        "Multiple analyst upgrades"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 22:29",
+      "snapshot_date": "2026-05-13"
+    }
+  ],
+  "last_updated": "2026-05-13 22:29",
+  "created": "2026-05-13",
+  "theme": "DefenseTech",
+  "phase_name": "Recognition",
+  "nrgc_composite_score": 41,
+  "action": "Hold full position",
+  "narrative": "Defense AI scaling. Multi-year backlog visibility. Full position.",
+  "narrative_traction": 0.0,
+  "revenue_signal": {
+    "qoq_trend": "accelerating_strongly",
+    "phase_signal": 4,
+    "acceleration_score": 0.27,
+    "latest_qoq_pct": 38.2,
+    "prior_qoq_pct": 17.7,
+    "positive_quarters": 4,
+    "margin_trend": "expanding",
+    "latest_margin": 86.8,
+    "history_summary": [
+      {
+        "q": "2025-03-31",
+        "qoq": 21.8
+      },
+      {
+        "q": "2025-06-30",
+        "qoq": 13.6
+      },
+      {
+        "q": "2025-09-30",
+        "qoq": 17.7
+      },
+      {
+        "q": "2026-03-31",
+        "qoq": 38.2
+      }
+    ]
+  },
+  "price_signal": {
+    "valid": true,
+    "price": 130.3,
+    "stage2": false,
+    "pct_from_52w_hi": -37.1,
+    "pct_from_52w_lo": 8.7,
+    "rs_6m_pct": -31.8,
+    "ma150_gt_200": false,
+    "above_30wma": false,
+    "vol_trend": "normal",
+    "price_phase_implied": 1
+  },
+  "insider_signal": "neutral",
+  "narrative_signals": {
+    "signals": [],
+    "signal_count": 0,
+    "dominant_phase": null,
+    "positive_count": 0,
+    "negative_count": 0
+  },
+  "rule_phase": 4,
+  "rule_confidence": 0.6,
+  "phase_signals_confirmed": [
+    "M&A activity in sector (consolidation)"
+  ],
+  "phase_signals_missing": [
+    "Congressional earmarks increasing",
+    "Multi-year contracts locking in revenue visibility",
+    "Commercial cross-sell (PLTR commercial division)"
+  ],
+  "kill_switches": [],
+  "primary_evidence": [],
+  "assessed_at": "2026-05-13 22:29"
+}

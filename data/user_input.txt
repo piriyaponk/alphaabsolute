@@ -1,0 +1,47 @@
+## AlphaAbsolute — Daily Context Input
+## วางข้อมูลที่ต้องการเพิ่มในรายงานประจำวัน แล้วรัน: python scripts/run_daily_brief.py
+## ลบ/แก้ไขส่วนที่ไม่มีข้อมูล ได้เลย
+
+[OVERNIGHT_NEWS]
+## Paste overnight US market recap, geopolitical events, key earnings here
+## Example: "US equities closed lower. Intel -3%, chip stocks retreating after rally."
+## Leave blank if nothing to add.
+
+
+[FOREIGN_FLOW]
+## SET daily net flow data (paste from Bloomberg/BLS internal)
+## Format: ต่างชาติ +/- XXX | กองทุน +/- XXX | โบรคเกอร์ +/- XXX | รายย่อย +/- XXX
+## Example: ต่างชาติ -1,674 | กองทุน +278 | โบรคเกอร์ -1,000 | รายย่อย +2,396
+
+
+[EARNINGS_RESULTS]
+## Thai / US earnings that came out — key beats/misses
+## Example: GULF Q1 กำไร 9,320 ลบ. +43% YoY สูงสุดเป็นประวัติการณ์
+## Example: ADVANC Q1 กำไร 13,496 ลบ. +28% YoY ดีกว่าคาด
+
+
+[MACRO_NEWS]
+## Key macro events, policy, government announcements
+## Example: BoT คงดอกเบี้ย 2.0% ตามคาด | PDP 2026 เพิ่มพลังงานสะอาด 70%
+
+
+[SET_OUTLOOK]
+## Your SET index outlook for today (resistance/support levels, themes)
+## Example: คาด SET แกว่ง 1,494-1,517 | ธีมเด่น: Energy Security, หุ้นกำไรดีกว่าคาด
+
+
+[WATCHLIST_NOTES]
+## Any specific stock notes you want added to watchlist section
+## Example: NVDA — earnings next week, reduce size pre-earnings
+## Example: AOT.BK — volume dry-up, watching for SOS above 52 THB
+
+
+[MARKET_WRAP]
+## Paste full market wrap text here from investing.com, Bloomberg, CNN, or any source
+## The brief will include this verbatim in the Overnight Recap section
+## Example (paste real article text):
+##   US stocks ended mixed Thursday as investors weighed strong jobless claims data
+##   against persistent inflation concerns. The S&P 500 rose 0.3% while Nasdaq fell 0.1%.
+##   Treasury yields climbed after Fed Chair Powell reiterated a data-dependent approach.
+##   Oil surged on Middle East supply concerns while gold held near record highs.
+## Can paste Thai or English — no auto-translation, keep source language or translate manually

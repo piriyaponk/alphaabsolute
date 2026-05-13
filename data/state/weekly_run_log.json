@@ -1,0 +1,255 @@
+[
+  {
+    "date": "2026-05-13",
+    "steps": {
+      "scrape": {
+        "items": 18,
+        "sources": 4
+      },
+      "distill": {
+        "insights": 0
+      },
+      "paper_trading": {
+        "total_value": 100027.7,
+        "total_return_pct": 0.03,
+        "benchmark_return": 0,
+        "alpha": 0.03,
+        "cash": 74139.54,
+        "cash_pct": 74.1,
+        "num_positions": 2,
+        "positions": 2,
+        "days_running": 0,
+        "closed_trades": 0,
+        "win_rate": 0,
+        "beating_nasdaq": true
+      },
+      "promotions": {
+        "ready": 0,
+        "total": 2
+      },
+      "learning": {
+        "postmortems": 0,
+        "patterns": 0
+      }
+    }
+  },
+  {
+    "date": "2026-05-13",
+    "steps": {
+      "scrape": {
+        "items": 1,
+        "sources": 1
+      },
+      "distill": {
+        "insights": 0
+      },
+      "nrgc": {
+        "tickers_assessed": 31,
+        "phase3_count": 10,
+        "phase2_count": 2,
+        "top_setups": [
+          "COHR",
+          "MU",
+          "WDC"
+        ]
+      },
+      "paper_trading": {
+        "total_value": 100285.94,
+        "total_return_pct": 0.29,
+        "benchmark_return": 0,
+        "alpha": 0.29,
+        "cash": 74139.54,
+        "cash_pct": 73.9,
+        "num_positions": 2,
+        "positions": 2,
+        "days_running": 0,
+        "closed_trades": 0,
+        "win_rate": 0,
+        "beating_nasdaq": true
+      },
+      "promotions": {
+        "ready": 0,
+        "total": 2
+      },
+      "learning": {
+        "postmortems": 0,
+        "patterns": 0,
+        "nrgc_case_studies": 0
+      }
+    }
+  },
+  {
+    "date": "2026-05-13",
+    "steps": {
+      "scrape": {
+        "items": 0,
+        "sources": 0
+      },
+      "nrgc": {
+        "tickers_assessed": 31,
+        "phase3_count": 10,
+        "phase2_count": 2,
+        "top_setups": [
+          "COHR",
+          "MU",
+          "WDC"
+        ]
+      },
+      "paper_trading": {
+        "total_value": 100301.81,
+        "total_return_pct": 0.3,
+        "benchmark_return": 0,
+        "alpha": 0.3,
+        "cash": 74139.54,
+        "cash_pct": 73.9,
+        "num_positions": 2,
+        "positions": 2,
+        "days_running": 0,
+        "closed_trades": 0,
+        "win_rate": 0,
+        "beating_nasdaq": true
+      },
+      "promotions": {
+        "ready": 0,
+        "total": 2
+      },
+      "learning": {
+        "postmortems": 0,
+        "patterns": 0,
+        "nrgc_case_studies": 0
+      }
+    }
+  },
+  {
+    "date": "2026-05-13",
+    "steps": {
+      "scrape": {
+        "items": 1,
+        "sources": 1
+      },
+      "distill": {
+        "insights": 0
+      },
+      "nrgc": {
+        "tickers_assessed": 32,
+        "phase3_count": 11,
+        "phase2_count": 3,
+        "top_setups": [
+          "MU",
+          "IONQ",
+          "IPGP"
+        ]
+      },
+      "paper_trading": {
+        "total_value": 100407.94,
+        "total_return_pct": 0.41,
+        "benchmark_return": 0,
+        "alpha": 0.41,
+        "cash": 74139.54,
+        "cash_pct": 73.8,
+        "num_positions": 2,
+        "positions": 2,
+        "days_running": 0,
+        "closed_trades": 0,
+        "win_rate": 0,
+        "beating_nasdaq": true
+      },
+      "promotions": {
+        "ready": 0,
+        "total": 2
+      },
+      "learning": {
+        "postmortems": 0,
+        "patterns": 0,
+        "nrgc_case_studies": 0
+      }
+    }
+  },
+  {
+    "date": "2026-05-13",
+    "steps": {
+      "scrape": {
+        "items": 1,
+        "sources": 1
+      },
+      "distill": {
+        "insights": 1
+      },
+      "nrgc": {
+        "tickers_assessed": 32,
+        "phase3_count": 11,
+        "phase2_count": 3,
+        "top_setups": [
+          "COHR",
+          "MU",
+          "WDC"
+        ]
+      },
+      "paper_trading": {
+        "total_value": 100316.53,
+        "total_return_pct": 0.32,
+        "benchmark_return": 0,
+        "alpha": 0.32,
+        "cash": 74139.54,
+        "cash_pct": 73.9,
+        "num_positions": 2,
+        "positions": 2,
+        "days_running": 0,
+        "closed_trades": 0,
+        "win_rate": 0,
+        "beating_nasdaq": true
+      },
+      "promotions": {
+        "ready": 0,
+        "total": 2
+      },
+      "learning": {
+        "postmortems": 0,
+        "patterns": 0,
+        "nrgc_case_studies": 0
+      }
+    }
+  },
+  {
+    "date": "2026-05-13",
+    "steps": {
+      "scrape": {
+        "items": 0,
+        "sources": 0
+      },
+      "nrgc": {
+        "tickers_assessed": 32,
+        "phase3_count": 11,
+        "phase2_count": 4,
+        "top_setups": [
+          "COHR",
+          "MU",
+          "WDC"
+        ]
+      },
+      "paper_trading": {
+        "total_value": 100152.92,
+        "total_return_pct": 0.15,
+        "benchmark_return": 0,
+        "alpha": 0.15,
+        "cash": 74139.54,
+        "cash_pct": 74.0,
+        "num_positions": 2,
+        "positions": 2,
+        "days_running": 0,
+        "closed_trades": 0,
+        "win_rate": 0,
+        "beating_nasdaq": true
+      },
+      "promotions": {
+        "ready": 0,
+        "total": 2
+      },
+      "learning": {
+        "postmortems": 0,
+        "patterns": 0,
+        "nrgc_case_studies": 0
+      }
+    }
+  }
+]

@@ -1,0 +1,321 @@
+{
+  "ticker": "LUNR",
+  "phase": 3,
+  "confidence": 0.8,
+  "history": [
+    {
+      "ticker": "LUNR",
+      "phase": null,
+      "confidence": 0,
+      "last_updated": null,
+      "created": "2026-05-13",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "LUNR",
+      "phase": 3,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:29",
+      "created": "2026-05-13",
+      "theme": "Space",
+      "phase_name": "Inflection",
+      "nrgc_composite_score": 35,
+      "action": "Full position — highest conviction",
+      "narrative": "Space commercialization inflection. Reusability economics proven. Government + commercial backlog building. Entry zone.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 34.98,
+        "stage2": true,
+        "pct_from_52w_hi": 0.0,
+        "pct_from_52w_lo": 334.5,
+        "rs_6m_pct": 270.6,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "normal",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 3,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [],
+      "phase_signals_missing": [
+        "Reusable rocket achieving cost targets",
+        "Commercial satellite constellation starting deployment",
+        "Government classified contract wins (large backlog)",
+        "First paying customers on new constellation service",
+        "Revenue guidance raised based on backlog conversion"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:29",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "LUNR",
+      "phase": 3,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:39",
+      "created": "2026-05-13",
+      "theme": "Space",
+      "phase_name": "Inflection",
+      "nrgc_composite_score": 35,
+      "action": "Full position — highest conviction",
+      "narrative": "Space commercialization inflection. Reusability economics proven. Government + commercial backlog building. Entry zone.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "insufficient_data",
+        "phase_signal": null
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 35.32,
+        "stage2": true,
+        "pct_from_52w_hi": 0.0,
+        "pct_from_52w_lo": 338.8,
+        "rs_6m_pct": 274.2,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "normal",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 3,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [],
+      "phase_signals_missing": [
+        "Reusable rocket achieving cost targets",
+        "Commercial satellite constellation starting deployment",
+        "Government classified contract wins (large backlog)",
+        "First paying customers on new constellation service",
+        "Revenue guidance raised based on backlog conversion"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:39",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "LUNR",
+      "phase": 3,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:52",
+      "created": "2026-05-13",
+      "theme": "Space",
+      "phase_name": "Inflection",
+      "nrgc_composite_score": 35,
+      "action": "Full position — highest conviction",
+      "narrative": "Space commercialization inflection. Reusability economics proven. Government + commercial backlog building. Entry zone.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 35.75,
+        "stage2": true,
+        "pct_from_52w_hi": 0.0,
+        "pct_from_52w_lo": 344.1,
+        "rs_6m_pct": 278.7,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "normal",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 3,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [],
+      "phase_signals_missing": [
+        "Reusable rocket achieving cost targets",
+        "Commercial satellite constellation starting deployment",
+        "Government classified contract wins (large backlog)",
+        "First paying customers on new constellation service",
+        "Revenue guidance raised based on backlog conversion"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:52",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "LUNR",
+      "phase": 3,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:57",
+      "created": "2026-05-13",
+      "theme": "Space",
+      "phase_name": "Inflection",
+      "nrgc_composite_score": 35,
+      "action": "Full position — highest conviction",
+      "narrative": "Space commercialization inflection. Reusability economics proven. Government + commercial backlog building. Entry zone.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "insufficient_data",
+        "phase_signal": null
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 36.16,
+        "stage2": true,
+        "pct_from_52w_hi": 0.0,
+        "pct_from_52w_lo": 349.2,
+        "rs_6m_pct": 283.1,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "normal",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 3,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [],
+      "phase_signals_missing": [
+        "Reusable rocket achieving cost targets",
+        "Commercial satellite constellation starting deployment",
+        "Government classified contract wins (large backlog)",
+        "First paying customers on new constellation service",
+        "Revenue guidance raised based on backlog conversion"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:57",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "LUNR",
+      "phase": 3,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 22:16",
+      "created": "2026-05-13",
+      "theme": "Space",
+      "phase_name": "Inflection",
+      "nrgc_composite_score": 35,
+      "action": "Full position — highest conviction",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "insufficient_data",
+        "phase_signal": null
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 36.38,
+        "stage2": true,
+        "pct_from_52w_hi": 0.0,
+        "pct_from_52w_lo": 351.9,
+        "rs_6m_pct": 285.3,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "normal",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 3,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [],
+      "phase_signals_missing": [
+        "Reusable rocket achieving cost targets",
+        "Commercial satellite constellation starting deployment",
+        "Government classified contract wins (large backlog)",
+        "First paying customers on new constellation service",
+        "Revenue guidance raised based on backlog conversion"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 22:16",
+      "snapshot_date": "2026-05-13"
+    }
+  ],
+  "last_updated": "2026-05-13 22:29",
+  "created": "2026-05-13",
+  "theme": "Space",
+  "phase_name": "Inflection",
+  "nrgc_composite_score": 33,
+  "action": "Full position — highest conviction",
+  "narrative": "LUNR gains traction",
+  "narrative_traction": 0.0,
+  "revenue_signal": {
+    "qoq_trend": "insufficient_data",
+    "phase_signal": null
+  },
+  "price_signal": {
+    "valid": true,
+    "price": 36.08,
+    "stage2": true,
+    "pct_from_52w_hi": 0.0,
+    "pct_from_52w_lo": 348.2,
+    "rs_6m_pct": 282.2,
+    "ma150_gt_200": true,
+    "above_30wma": true,
+    "vol_trend": "normal",
+    "price_phase_implied": 3
+  },
+  "insider_signal": "neutral",
+  "narrative_signals": {
+    "signals": [],
+    "signal_count": 0,
+    "dominant_phase": null,
+    "positive_count": 0,
+    "negative_count": 0
+  },
+  "rule_phase": 3,
+  "rule_confidence": 1.0,
+  "phase_signals_confirmed": [],
+  "phase_signals_missing": [
+    "Reusable rocket achieving cost targets",
+    "Commercial satellite constellation starting deployment",
+    "Government classified contract wins (large backlog)",
+    "First paying customers on new constellation service",
+    "Revenue guidance raised based on backlog conversion"
+  ],
+  "kill_switches": [
+    "qoq_trend: declining",
+    "guidance cut",
+    "industry downturn"
+  ],
+  "primary_evidence": [
+    "price_phase_implied: 3",
+    "rs_6m_pct: 282.2",
+    "above_30wma: true"
+  ],
+  "assessed_at": "2026-05-13 22:29"
+}

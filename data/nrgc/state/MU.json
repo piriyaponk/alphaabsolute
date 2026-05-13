@@ -1,0 +1,473 @@
+{
+  "ticker": "MU",
+  "phase": 3,
+  "confidence": 0.9,
+  "history": [
+    {
+      "ticker": "MU",
+      "phase": null,
+      "confidence": 0,
+      "last_updated": null,
+      "created": "2026-05-13",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "MU",
+      "phase": 3,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:36",
+      "created": "2026-05-13",
+      "theme": "Memory/HBM",
+      "phase_name": "Inflection",
+      "nrgc_composite_score": 70,
+      "action": "Full position — highest conviction",
+      "narrative": "Memory supercycle inflection. HBM demand from AI infrastructure (NVIDIA H100/H200/B200) exceeding supply. ASP recovering. Entry zone.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "accelerating_strongly",
+        "phase_signal": 3,
+        "acceleration_score": 1,
+        "latest_qoq_pct": 74.9,
+        "prior_qoq_pct": 46.7,
+        "positive_quarters": 3,
+        "margin_trend": "expanding",
+        "latest_margin": 74.4,
+        "history_summary": [
+          {
+            "q": "2025-02-27",
+            "qoq": -7.5
+          },
+          {
+            "q": "2025-05-29",
+            "qoq": 15.5
+          },
+          {
+            "q": "2025-11-27",
+            "qoq": 46.7
+          },
+          {
+            "q": "2026-02-26",
+            "qoq": 74.9
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 807.25,
+        "stage2": true,
+        "pct_from_52w_hi": 0.0,
+        "pct_from_52w_lo": 766.6,
+        "rs_6m_pct": 235.1,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "expanding",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 3,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "DRAM ASP positive QoQ for first time in cycle",
+        "Gross margin recovering — still below peak but clearly inflecting"
+      ],
+      "phase_signals_missing": [
+        "HBM revenue becoming material (10%+ of DRAM revenue)",
+        "Utilization rate rising above 85%",
+        "Management language: 'supply tighter than expected', 'strong pricing environment'"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:36",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "MU",
+      "phase": 3,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:39",
+      "created": "2026-05-13",
+      "theme": "Memory/HBM",
+      "phase_name": "Inflection",
+      "nrgc_composite_score": 70,
+      "action": "Full position — highest conviction",
+      "narrative": "Memory supercycle inflection. HBM demand from AI infrastructure (NVIDIA H100/H200/B200) exceeding supply. ASP recovering. Entry zone.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "accelerating_strongly",
+        "phase_signal": 3,
+        "acceleration_score": 1,
+        "latest_qoq_pct": 74.9,
+        "prior_qoq_pct": 46.7,
+        "positive_quarters": 3,
+        "margin_trend": "expanding",
+        "latest_margin": 74.4,
+        "history_summary": [
+          {
+            "q": "2025-02-27",
+            "qoq": -7.5
+          },
+          {
+            "q": "2025-05-29",
+            "qoq": 15.5
+          },
+          {
+            "q": "2025-11-27",
+            "qoq": 46.7
+          },
+          {
+            "q": "2026-02-26",
+            "qoq": 74.9
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 809.78,
+        "stage2": true,
+        "pct_from_52w_hi": 0.0,
+        "pct_from_52w_lo": 769.4,
+        "rs_6m_pct": 236.1,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "expanding",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 3,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "DRAM ASP positive QoQ for first time in cycle",
+        "Gross margin recovering — still below peak but clearly inflecting"
+      ],
+      "phase_signals_missing": [
+        "HBM revenue becoming material (10%+ of DRAM revenue)",
+        "Utilization rate rising above 85%",
+        "Management language: 'supply tighter than expected', 'strong pricing environment'"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:39",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "MU",
+      "phase": 3,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:52",
+      "created": "2026-05-13",
+      "theme": "Memory/HBM",
+      "phase_name": "Inflection",
+      "nrgc_composite_score": 70,
+      "action": "Full position — highest conviction",
+      "narrative": "Memory supercycle inflection. HBM demand from AI infrastructure (NVIDIA H100/H200/B200) exceeding supply. ASP recovering. Entry zone.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "accelerating_strongly",
+        "phase_signal": 3,
+        "acceleration_score": 1,
+        "latest_qoq_pct": 74.9,
+        "prior_qoq_pct": 46.7,
+        "positive_quarters": 3,
+        "margin_trend": "expanding",
+        "latest_margin": 74.4,
+        "history_summary": [
+          {
+            "q": "2025-02-27",
+            "qoq": -7.5
+          },
+          {
+            "q": "2025-05-29",
+            "qoq": 15.5
+          },
+          {
+            "q": "2025-11-27",
+            "qoq": 46.7
+          },
+          {
+            "q": "2026-02-26",
+            "qoq": 74.9
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 804.66,
+        "stage2": true,
+        "pct_from_52w_hi": 0.0,
+        "pct_from_52w_lo": 763.9,
+        "rs_6m_pct": 234.0,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "expanding",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 3,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "DRAM ASP positive QoQ for first time in cycle",
+        "Gross margin recovering — still below peak but clearly inflecting"
+      ],
+      "phase_signals_missing": [
+        "HBM revenue becoming material (10%+ of DRAM revenue)",
+        "Utilization rate rising above 85%",
+        "Management language: 'supply tighter than expected', 'strong pricing environment'"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:52",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "MU",
+      "phase": 3,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:57",
+      "created": "2026-05-13",
+      "theme": "Memory/HBM",
+      "phase_name": "Inflection",
+      "nrgc_composite_score": 70,
+      "action": "Full position — highest conviction",
+      "narrative": "Memory supercycle inflection. HBM demand from AI infrastructure (NVIDIA H100/H200/B200) exceeding supply. ASP recovering. Entry zone.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "accelerating_strongly",
+        "phase_signal": 3,
+        "acceleration_score": 1,
+        "latest_qoq_pct": 74.9,
+        "prior_qoq_pct": 46.7,
+        "positive_quarters": 3,
+        "margin_trend": "expanding",
+        "latest_margin": 74.4,
+        "history_summary": [
+          {
+            "q": "2025-02-27",
+            "qoq": -7.5
+          },
+          {
+            "q": "2025-05-29",
+            "qoq": 15.5
+          },
+          {
+            "q": "2025-11-27",
+            "qoq": 46.7
+          },
+          {
+            "q": "2026-02-26",
+            "qoq": 74.9
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 810.16,
+        "stage2": true,
+        "pct_from_52w_hi": 0.0,
+        "pct_from_52w_lo": 769.8,
+        "rs_6m_pct": 236.3,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "expanding",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 3,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "DRAM ASP positive QoQ for first time in cycle",
+        "Gross margin recovering — still below peak but clearly inflecting"
+      ],
+      "phase_signals_missing": [
+        "HBM revenue becoming material (10%+ of DRAM revenue)",
+        "Utilization rate rising above 85%",
+        "Management language: 'supply tighter than expected', 'strong pricing environment'"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:57",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "MU",
+      "phase": 3,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 22:16",
+      "created": "2026-05-13",
+      "theme": "Memory/HBM",
+      "phase_name": "Inflection",
+      "nrgc_composite_score": 70,
+      "action": "Full position — highest conviction",
+      "narrative": "Memory supercycle inflection. HBM demand from AI infrastructure (NVIDIA H100/H200/B200) exceeding supply. ASP recovering. Entry zone.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "accelerating_strongly",
+        "phase_signal": 3,
+        "acceleration_score": 1,
+        "latest_qoq_pct": 74.9,
+        "prior_qoq_pct": 46.7,
+        "positive_quarters": 3,
+        "margin_trend": "expanding",
+        "latest_margin": 74.4,
+        "history_summary": [
+          {
+            "q": "2025-02-27",
+            "qoq": -7.5
+          },
+          {
+            "q": "2025-05-29",
+            "qoq": 15.5
+          },
+          {
+            "q": "2025-11-27",
+            "qoq": 46.7
+          },
+          {
+            "q": "2026-02-26",
+            "qoq": 74.9
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 800.5,
+        "stage2": true,
+        "pct_from_52w_hi": 0.0,
+        "pct_from_52w_lo": 759.4,
+        "rs_6m_pct": 232.3,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "expanding",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 3,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "DRAM ASP positive QoQ for first time in cycle",
+        "Gross margin recovering — still below peak but clearly inflecting"
+      ],
+      "phase_signals_missing": [
+        "HBM revenue becoming material (10%+ of DRAM revenue)",
+        "Utilization rate rising above 85%",
+        "Management language: 'supply tighter than expected', 'strong pricing environment'"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 22:16",
+      "snapshot_date": "2026-05-13"
+    }
+  ],
+  "last_updated": "2026-05-13 22:29",
+  "created": "2026-05-13",
+  "theme": "Memory/HBM",
+  "phase_name": "Inflection",
+  "nrgc_composite_score": 69,
+  "action": "Full position — highest conviction",
+  "narrative": "MU's Memory/HBM business inflects",
+  "narrative_traction": 0.0,
+  "revenue_signal": {
+    "qoq_trend": "accelerating_strongly",
+    "phase_signal": 3,
+    "acceleration_score": 1,
+    "latest_qoq_pct": 74.9,
+    "prior_qoq_pct": 46.7,
+    "positive_quarters": 3,
+    "margin_trend": "expanding",
+    "latest_margin": 74.4,
+    "history_summary": [
+      {
+        "q": "2025-02-27",
+        "qoq": -7.5
+      },
+      {
+        "q": "2025-05-29",
+        "qoq": 15.5
+      },
+      {
+        "q": "2025-11-27",
+        "qoq": 46.7
+      },
+      {
+        "q": "2026-02-26",
+        "qoq": 74.9
+      }
+    ]
+  },
+  "price_signal": {
+    "valid": true,
+    "price": 791.65,
+    "stage2": true,
+    "pct_from_52w_hi": -0.5,
+    "pct_from_52w_lo": 749.9,
+    "rs_6m_pct": 228.6,
+    "ma150_gt_200": true,
+    "above_30wma": true,
+    "vol_trend": "expanding",
+    "price_phase_implied": 3
+  },
+  "insider_signal": "neutral",
+  "narrative_signals": {
+    "signals": [],
+    "signal_count": 0,
+    "dominant_phase": null,
+    "positive_count": 0,
+    "negative_count": 0
+  },
+  "rule_phase": 3,
+  "rule_confidence": 1.0,
+  "phase_signals_confirmed": [
+    "DRAM ASP positive QoQ for first time in cycle",
+    "Gross margin recovering — still below peak but clearly inflecting"
+  ],
+  "phase_signals_missing": [
+    "HBM revenue becoming material (10%+ of DRAM revenue)",
+    "Utilization rate rising above 85%",
+    "Management language: 'supply tighter than expected', 'strong pricing environment'"
+  ],
+  "kill_switches": [
+    "QoQ growth deceleration",
+    "gross margin decline",
+    "utilization rate drop below 85%"
+  ],
+  "primary_evidence": [
+    "qoq_trend: accelerating_strongly with 74.9% QoQ growth",
+    "margin_trend: expanding with latest margin at 74.4%",
+    "industry-specific context: DRAM ASP positive QoQ, HBM revenue becoming material"
+  ],
+  "assessed_at": "2026-05-13 22:29"
+}

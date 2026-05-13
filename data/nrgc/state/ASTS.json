@@ -1,0 +1,323 @@
+{
+  "ticker": "ASTS",
+  "phase": 2,
+  "confidence": 0.6,
+  "history": [
+    {
+      "ticker": "ASTS",
+      "phase": null,
+      "confidence": 0,
+      "last_updated": null,
+      "created": "2026-05-13",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "ASTS",
+      "phase": 5,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:29",
+      "created": "2026-05-13",
+      "theme": "Space",
+      "phase_name": "Consensus",
+      "nrgc_composite_score": 35,
+      "action": "Hold, no add, tighten stops",
+      "narrative": "Space sector mature. Competition intensifying. Hold selectively.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 74.53,
+        "stage2": false,
+        "pct_from_52w_hi": -39.0,
+        "pct_from_52w_lo": 223.1,
+        "rs_6m_pct": 9.8,
+        "ma150_gt_200": true,
+        "above_30wma": false,
+        "vol_trend": "expanding",
+        "price_phase_implied": 5
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 5,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "Management vision expanding faster than execution"
+      ],
+      "phase_signals_missing": [
+        "Competition increasing — Blue Origin, other new entrants",
+        "Government budget debates creating uncertainty",
+        "Valuation stretched — market cap > realistic near-term revenue"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:29",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "ASTS",
+      "phase": 5,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:39",
+      "created": "2026-05-13",
+      "theme": "Space",
+      "phase_name": "Consensus",
+      "nrgc_composite_score": 35,
+      "action": "Hold, no add, tighten stops",
+      "narrative": "Space sector mature. Competition intensifying. Hold selectively.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "insufficient_data",
+        "phase_signal": null
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 74.79,
+        "stage2": false,
+        "pct_from_52w_hi": -38.7,
+        "pct_from_52w_lo": 224.2,
+        "rs_6m_pct": 10.2,
+        "ma150_gt_200": true,
+        "above_30wma": false,
+        "vol_trend": "expanding",
+        "price_phase_implied": 5
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 5,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "Management vision expanding faster than execution"
+      ],
+      "phase_signals_missing": [
+        "Competition increasing — Blue Origin, other new entrants",
+        "Government budget debates creating uncertainty",
+        "Valuation stretched — market cap > realistic near-term revenue"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:39",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "ASTS",
+      "phase": 5,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:52",
+      "created": "2026-05-13",
+      "theme": "Space",
+      "phase_name": "Consensus",
+      "nrgc_composite_score": 35,
+      "action": "Hold, no add, tighten stops",
+      "narrative": "Space sector mature. Competition intensifying. Hold selectively.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "insufficient_data",
+        "phase_signal": null
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 74.56,
+        "stage2": false,
+        "pct_from_52w_hi": -38.9,
+        "pct_from_52w_lo": 223.2,
+        "rs_6m_pct": 9.8,
+        "ma150_gt_200": true,
+        "above_30wma": false,
+        "vol_trend": "expanding",
+        "price_phase_implied": 5
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 5,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "Management vision expanding faster than execution"
+      ],
+      "phase_signals_missing": [
+        "Competition increasing — Blue Origin, other new entrants",
+        "Government budget debates creating uncertainty",
+        "Valuation stretched — market cap > realistic near-term revenue"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:52",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "ASTS",
+      "phase": 5,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:57",
+      "created": "2026-05-13",
+      "theme": "Space",
+      "phase_name": "Consensus",
+      "nrgc_composite_score": 35,
+      "action": "Hold, no add, tighten stops",
+      "narrative": "Space sector mature. Competition intensifying. Hold selectively.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "insufficient_data",
+        "phase_signal": null
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 75.34,
+        "stage2": false,
+        "pct_from_52w_hi": -38.3,
+        "pct_from_52w_lo": 226.6,
+        "rs_6m_pct": 11.0,
+        "ma150_gt_200": true,
+        "above_30wma": false,
+        "vol_trend": "expanding",
+        "price_phase_implied": 5
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 5,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "Management vision expanding faster than execution"
+      ],
+      "phase_signals_missing": [
+        "Competition increasing — Blue Origin, other new entrants",
+        "Government budget debates creating uncertainty",
+        "Valuation stretched — market cap > realistic near-term revenue"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:57",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "ASTS",
+      "phase": 5,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 22:16",
+      "created": "2026-05-13",
+      "theme": "Space",
+      "phase_name": "Consensus",
+      "nrgc_composite_score": 35,
+      "action": "Hold, no add, tighten stops",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "insufficient_data",
+        "phase_signal": null
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 75.84,
+        "stage2": false,
+        "pct_from_52w_hi": -37.9,
+        "pct_from_52w_lo": 228.7,
+        "rs_6m_pct": 11.7,
+        "ma150_gt_200": true,
+        "above_30wma": false,
+        "vol_trend": "expanding",
+        "price_phase_implied": 5
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 5,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "Management vision expanding faster than execution"
+      ],
+      "phase_signals_missing": [
+        "Competition increasing — Blue Origin, other new entrants",
+        "Government budget debates creating uncertainty",
+        "Valuation stretched — market cap > realistic near-term revenue"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 22:16",
+      "snapshot_date": "2026-05-13"
+    }
+  ],
+  "last_updated": "2026-05-13 22:29",
+  "created": "2026-05-13",
+  "theme": "Space",
+  "phase_name": "Accumulation",
+  "nrgc_composite_score": 31,
+  "action": "Build 25-30% of target",
+  "narrative": "Space sector growth",
+  "narrative_traction": 0.0,
+  "revenue_signal": {
+    "qoq_trend": "insufficient_data",
+    "phase_signal": null
+  },
+  "price_signal": {
+    "valid": true,
+    "price": 76.36,
+    "stage2": false,
+    "pct_from_52w_hi": -37.5,
+    "pct_from_52w_lo": 231.0,
+    "rs_6m_pct": 12.5,
+    "ma150_gt_200": true,
+    "above_30wma": false,
+    "vol_trend": "expanding",
+    "price_phase_implied": 2
+  },
+  "insider_signal": "neutral",
+  "narrative_signals": {
+    "signals": [],
+    "signal_count": 0,
+    "dominant_phase": null,
+    "positive_count": 0,
+    "negative_count": 0
+  },
+  "rule_phase": 2,
+  "rule_confidence": 1.0,
+  "phase_signals_confirmed": [
+    "SpaceX dominant but ecosystem players getting work"
+  ],
+  "phase_signals_missing": [
+    "Launch success rate improving",
+    "First government contract won (anchor customer)",
+    "Management language: 'backlog growing', 'commercial demand pipeline'",
+    "Orbital debris/satellite insurance market forming"
+  ],
+  "kill_switches": [
+    "qoq_trend: declining",
+    "guidance cut",
+    "industry downturn"
+  ],
+  "primary_evidence": [
+    "price_phase_implied: 2",
+    "pct_from_52w_lo: 231.0",
+    "rs_6m_pct: 12.5"
+  ],
+  "assessed_at": "2026-05-13 22:29"
+}

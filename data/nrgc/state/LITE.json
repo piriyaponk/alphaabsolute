@@ -1,0 +1,411 @@
+{
+  "ticker": "LITE",
+  "phase": 4,
+  "confidence": 0.6,
+  "history": [
+    {
+      "ticker": "LITE",
+      "phase": null,
+      "confidence": 0,
+      "last_updated": null,
+      "created": "2026-05-13",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "LITE",
+      "phase": 4,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 21:37",
+      "created": "2026-05-13",
+      "theme": "Photonics",
+      "phase_name": "Recognition",
+      "nrgc_composite_score": 41,
+      "action": "Hold full position",
+      "narrative": "Photonics scaling with AI buildout. Full position.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "positive",
+        "phase_signal": 4,
+        "acceleration_score": 0.5,
+        "latest_qoq_pct": 5.7,
+        "prior_qoq_pct": 19.4,
+        "positive_quarters": 2,
+        "margin_trend": "expanding",
+        "latest_margin": 28.8,
+        "history_summary": [
+          {
+            "q": "2024-12-28",
+            "qoq": 19.4
+          },
+          {
+            "q": "2025-03-29",
+            "qoq": 5.7
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 1033.5,
+        "stage2": true,
+        "pct_from_52w_hi": -1.9,
+        "pct_from_52w_lo": 1329.9,
+        "rs_6m_pct": 309.4,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "normal",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 4,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [
+        "Gross margin at multi-year high"
+      ],
+      "phase_signals_missing": [
+        "1.6T transceiver qualification beginning",
+        "Multiple hyperscaler design wins converting to volume",
+        "Silicon photonics (co-packaged optics) entering roadmap"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:37",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "LITE",
+      "phase": 4,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 21:39",
+      "created": "2026-05-13",
+      "theme": "Photonics",
+      "phase_name": "Recognition",
+      "nrgc_composite_score": 41,
+      "action": "Hold full position",
+      "narrative": "Photonics scaling with AI buildout. Full position.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "positive",
+        "phase_signal": 4,
+        "acceleration_score": 0.5,
+        "latest_qoq_pct": 5.7,
+        "prior_qoq_pct": 19.4,
+        "positive_quarters": 2,
+        "margin_trend": "expanding",
+        "latest_margin": 28.8,
+        "history_summary": [
+          {
+            "q": "2024-12-28",
+            "qoq": 19.4
+          },
+          {
+            "q": "2025-03-29",
+            "qoq": 5.7
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 1029.34,
+        "stage2": true,
+        "pct_from_52w_hi": -2.3,
+        "pct_from_52w_lo": 1324.1,
+        "rs_6m_pct": 307.7,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "normal",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 4,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [
+        "Gross margin at multi-year high"
+      ],
+      "phase_signals_missing": [
+        "1.6T transceiver qualification beginning",
+        "Multiple hyperscaler design wins converting to volume",
+        "Silicon photonics (co-packaged optics) entering roadmap"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:39",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "LITE",
+      "phase": 4,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 21:52",
+      "created": "2026-05-13",
+      "theme": "Photonics",
+      "phase_name": "Recognition",
+      "nrgc_composite_score": 41,
+      "action": "Hold full position",
+      "narrative": "Photonics scaling with AI buildout. Full position.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "positive",
+        "phase_signal": 4,
+        "acceleration_score": 0.5,
+        "latest_qoq_pct": 5.7,
+        "prior_qoq_pct": 19.4,
+        "positive_quarters": 2,
+        "margin_trend": "expanding",
+        "latest_margin": 28.8,
+        "history_summary": [
+          {
+            "q": "2024-12-28",
+            "qoq": 19.4
+          },
+          {
+            "q": "2025-03-29",
+            "qoq": 5.7
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 1028.0,
+        "stage2": true,
+        "pct_from_52w_hi": -2.4,
+        "pct_from_52w_lo": 1322.2,
+        "rs_6m_pct": 307.2,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "normal",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 4,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [
+        "Gross margin at multi-year high"
+      ],
+      "phase_signals_missing": [
+        "1.6T transceiver qualification beginning",
+        "Multiple hyperscaler design wins converting to volume",
+        "Silicon photonics (co-packaged optics) entering roadmap"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:52",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "LITE",
+      "phase": 4,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 21:57",
+      "created": "2026-05-13",
+      "theme": "Photonics",
+      "phase_name": "Recognition",
+      "nrgc_composite_score": 41,
+      "action": "Hold full position",
+      "narrative": "Photonics scaling with AI buildout. Full position.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "positive",
+        "phase_signal": 4,
+        "acceleration_score": 0.5,
+        "latest_qoq_pct": 5.7,
+        "prior_qoq_pct": 19.4,
+        "positive_quarters": 2,
+        "margin_trend": "expanding",
+        "latest_margin": 28.8,
+        "history_summary": [
+          {
+            "q": "2024-12-28",
+            "qoq": 19.4
+          },
+          {
+            "q": "2025-03-29",
+            "qoq": 5.7
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 1036.32,
+        "stage2": true,
+        "pct_from_52w_hi": -1.6,
+        "pct_from_52w_lo": 1333.8,
+        "rs_6m_pct": 310.5,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "normal",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 4,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [
+        "Gross margin at multi-year high"
+      ],
+      "phase_signals_missing": [
+        "1.6T transceiver qualification beginning",
+        "Multiple hyperscaler design wins converting to volume",
+        "Silicon photonics (co-packaged optics) entering roadmap"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:57",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "LITE",
+      "phase": 4,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 22:17",
+      "created": "2026-05-13",
+      "theme": "Photonics",
+      "phase_name": "Recognition",
+      "nrgc_composite_score": 41,
+      "action": "Hold full position",
+      "narrative": "Photonics scaling with AI buildout. Full position.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "positive",
+        "phase_signal": 4,
+        "acceleration_score": 0.5,
+        "latest_qoq_pct": 5.7,
+        "prior_qoq_pct": 19.4,
+        "positive_quarters": 2,
+        "margin_trend": "expanding",
+        "latest_margin": 28.8,
+        "history_summary": [
+          {
+            "q": "2024-12-28",
+            "qoq": 19.4
+          },
+          {
+            "q": "2025-03-29",
+            "qoq": 5.7
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 1027.03,
+        "stage2": true,
+        "pct_from_52w_hi": -2.5,
+        "pct_from_52w_lo": 1320.9,
+        "rs_6m_pct": 306.8,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "normal",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 4,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [
+        "Gross margin at multi-year high"
+      ],
+      "phase_signals_missing": [
+        "1.6T transceiver qualification beginning",
+        "Multiple hyperscaler design wins converting to volume",
+        "Silicon photonics (co-packaged optics) entering roadmap"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 22:17",
+      "snapshot_date": "2026-05-13"
+    }
+  ],
+  "last_updated": "2026-05-13 22:29",
+  "created": "2026-05-13",
+  "theme": "Photonics",
+  "phase_name": "Recognition",
+  "nrgc_composite_score": 41,
+  "action": "Hold full position",
+  "narrative": "Photonics scaling with AI buildout. Full position.",
+  "narrative_traction": 0.0,
+  "revenue_signal": {
+    "qoq_trend": "positive",
+    "phase_signal": 4,
+    "acceleration_score": 0.5,
+    "latest_qoq_pct": 5.7,
+    "prior_qoq_pct": 19.4,
+    "positive_quarters": 2,
+    "margin_trend": "expanding",
+    "latest_margin": 28.8,
+    "history_summary": [
+      {
+        "q": "2024-12-28",
+        "qoq": 19.4
+      },
+      {
+        "q": "2025-03-29",
+        "qoq": 5.7
+      }
+    ]
+  },
+  "price_signal": {
+    "valid": true,
+    "price": 1022.84,
+    "stage2": true,
+    "pct_from_52w_hi": -2.9,
+    "pct_from_52w_lo": 1315.1,
+    "rs_6m_pct": 305.1,
+    "ma150_gt_200": true,
+    "above_30wma": true,
+    "vol_trend": "normal",
+    "price_phase_implied": 3
+  },
+  "insider_signal": "neutral",
+  "narrative_signals": {
+    "signals": [],
+    "signal_count": 0,
+    "dominant_phase": null,
+    "positive_count": 0,
+    "negative_count": 0
+  },
+  "rule_phase": 4,
+  "rule_confidence": 0.6,
+  "phase_signals_confirmed": [
+    "Gross margin at multi-year high"
+  ],
+  "phase_signals_missing": [
+    "1.6T transceiver qualification beginning",
+    "Multiple hyperscaler design wins converting to volume",
+    "Silicon photonics (co-packaged optics) entering roadmap"
+  ],
+  "kill_switches": [],
+  "primary_evidence": [],
+  "assessed_at": "2026-05-13 22:29"
+}

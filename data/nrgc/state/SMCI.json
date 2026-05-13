@@ -1,0 +1,303 @@
+{
+  "ticker": "SMCI",
+  "phase": 1,
+  "confidence": 1.0,
+  "history": [
+    {
+      "ticker": "SMCI",
+      "phase": null,
+      "confidence": 0,
+      "last_updated": null,
+      "created": "2026-05-13",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "SMCI",
+      "phase": 1,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:29",
+      "created": "2026-05-13",
+      "theme": "NeoCloud",
+      "phase_name": "Neglect",
+      "nrgc_composite_score": 35,
+      "action": "Watchlist only",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 32.66,
+        "stage2": false,
+        "pct_from_52w_hi": -46.2,
+        "pct_from_52w_lo": 59.1,
+        "rs_6m_pct": -15.9,
+        "ma150_gt_200": false,
+        "above_30wma": false,
+        "vol_trend": "normal",
+        "price_phase_implied": 1
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 1,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "No differentiation from AWS/Azure/GCP"
+      ],
+      "phase_signals_missing": [
+        "Traditional cloud commoditized — price war",
+        "AI workloads still small % of cloud"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:29",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "SMCI",
+      "phase": 1,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:39",
+      "created": "2026-05-13",
+      "theme": "NeoCloud",
+      "phase_name": "Neglect",
+      "nrgc_composite_score": 35,
+      "action": "Watchlist only",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 32.39,
+        "stage2": false,
+        "pct_from_52w_hi": -46.6,
+        "pct_from_52w_lo": 57.8,
+        "rs_6m_pct": -16.6,
+        "ma150_gt_200": false,
+        "above_30wma": false,
+        "vol_trend": "normal",
+        "price_phase_implied": 1
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 1,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "No differentiation from AWS/Azure/GCP"
+      ],
+      "phase_signals_missing": [
+        "Traditional cloud commoditized — price war",
+        "AI workloads still small % of cloud"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:39",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "SMCI",
+      "phase": 1,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:52",
+      "created": "2026-05-13",
+      "theme": "NeoCloud",
+      "phase_name": "Neglect",
+      "nrgc_composite_score": 35,
+      "action": "Watchlist only",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 32.33,
+        "stage2": false,
+        "pct_from_52w_hi": -46.7,
+        "pct_from_52w_lo": 57.5,
+        "rs_6m_pct": -16.7,
+        "ma150_gt_200": false,
+        "above_30wma": false,
+        "vol_trend": "normal",
+        "price_phase_implied": 1
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 1,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "No differentiation from AWS/Azure/GCP"
+      ],
+      "phase_signals_missing": [
+        "Traditional cloud commoditized — price war",
+        "AI workloads still small % of cloud"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:52",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "SMCI",
+      "phase": 1,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:57",
+      "created": "2026-05-13",
+      "theme": "NeoCloud",
+      "phase_name": "Neglect",
+      "nrgc_composite_score": 35,
+      "action": "Watchlist only",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 32.44,
+        "stage2": false,
+        "pct_from_52w_hi": -46.6,
+        "pct_from_52w_lo": 58.0,
+        "rs_6m_pct": -16.4,
+        "ma150_gt_200": false,
+        "above_30wma": false,
+        "vol_trend": "normal",
+        "price_phase_implied": 1
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 1,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "No differentiation from AWS/Azure/GCP"
+      ],
+      "phase_signals_missing": [
+        "Traditional cloud commoditized — price war",
+        "AI workloads still small % of cloud"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:57",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "SMCI",
+      "phase": 1,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 22:17",
+      "created": "2026-05-13",
+      "theme": "NeoCloud",
+      "phase_name": "Neglect",
+      "nrgc_composite_score": 35,
+      "action": "Watchlist only",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 32.31,
+        "stage2": false,
+        "pct_from_52w_hi": -46.8,
+        "pct_from_52w_lo": 57.4,
+        "rs_6m_pct": -16.8,
+        "ma150_gt_200": false,
+        "above_30wma": false,
+        "vol_trend": "normal",
+        "price_phase_implied": 1
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 1,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "No differentiation from AWS/Azure/GCP"
+      ],
+      "phase_signals_missing": [
+        "Traditional cloud commoditized — price war",
+        "AI workloads still small % of cloud"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 22:17",
+      "snapshot_date": "2026-05-13"
+    }
+  ],
+  "last_updated": "2026-05-13 22:29",
+  "created": "2026-05-13",
+  "theme": "NeoCloud",
+  "phase_name": "Neglect",
+  "nrgc_composite_score": 35,
+  "action": "Watchlist only",
+  "narrative": "",
+  "narrative_traction": 0.0,
+  "revenue_signal": {
+    "qoq_trend": "no_data"
+  },
+  "price_signal": {
+    "valid": true,
+    "price": 32.1,
+    "stage2": false,
+    "pct_from_52w_hi": -47.1,
+    "pct_from_52w_lo": 56.4,
+    "rs_6m_pct": -17.3,
+    "ma150_gt_200": false,
+    "above_30wma": false,
+    "vol_trend": "normal",
+    "price_phase_implied": 1
+  },
+  "insider_signal": "neutral",
+  "narrative_signals": {
+    "signals": [],
+    "signal_count": 0,
+    "dominant_phase": null,
+    "positive_count": 0,
+    "negative_count": 0
+  },
+  "rule_phase": 1,
+  "rule_confidence": 1.0,
+  "phase_signals_confirmed": [
+    "No differentiation from AWS/Azure/GCP"
+  ],
+  "phase_signals_missing": [
+    "Traditional cloud commoditized — price war",
+    "AI workloads still small % of cloud"
+  ],
+  "kill_switches": [],
+  "primary_evidence": [],
+  "assessed_at": "2026-05-13 22:29"
+}

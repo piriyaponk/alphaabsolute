@@ -1,0 +1,244 @@
+{
+  "ticker": "RDW",
+  "phase": 2,
+  "confidence": 0.8,
+  "history": [
+    {
+      "ticker": "RDW",
+      "phase": null,
+      "confidence": 0,
+      "last_updated": null,
+      "created": "2026-05-13",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "RDW",
+      "phase": 2,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 21:57",
+      "created": "2026-05-13",
+      "theme": "Space",
+      "phase_name": "Accumulation",
+      "nrgc_composite_score": 41,
+      "action": "Build 25-30% of target",
+      "narrative": "Space economy early innings. Government anchor contracts forming. Speculative position only.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "negative",
+        "phase_signal": 2,
+        "acceleration_score": 0.07,
+        "latest_qoq_pct": -6.2,
+        "prior_qoq_pct": 67.5,
+        "positive_quarters": 2,
+        "margin_trend": "expanding",
+        "latest_margin": 26.6,
+        "history_summary": [
+          {
+            "q": "2025-03-31",
+            "qoq": -10.6
+          },
+          {
+            "q": "2025-06-30",
+            "qoq": 0.6
+          },
+          {
+            "q": "2025-09-30",
+            "qoq": 67.5
+          },
+          {
+            "q": "2026-03-31",
+            "qoq": -6.2
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 11.36,
+        "stage2": false,
+        "pct_from_52w_hi": -44.7,
+        "pct_from_52w_lo": 124.6,
+        "rs_6m_pct": 85.4,
+        "ma150_gt_200": false,
+        "above_30wma": true,
+        "vol_trend": "expanding",
+        "price_phase_implied": 5
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 2,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [
+        "SpaceX dominant but ecosystem players getting work"
+      ],
+      "phase_signals_missing": [
+        "Launch success rate improving",
+        "First government contract won (anchor customer)",
+        "Management language: 'backlog growing', 'commercial demand pipeline'",
+        "Orbital debris/satellite insurance market forming"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:57",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "RDW",
+      "phase": 2,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 22:16",
+      "created": "2026-05-13",
+      "theme": "Space",
+      "phase_name": "Accumulation",
+      "nrgc_composite_score": 41,
+      "action": "Build 25-30% of target",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "negative",
+        "phase_signal": 2,
+        "acceleration_score": 0.07,
+        "latest_qoq_pct": -6.2,
+        "prior_qoq_pct": 67.5,
+        "positive_quarters": 2,
+        "margin_trend": "expanding",
+        "latest_margin": 26.6,
+        "history_summary": [
+          {
+            "q": "2025-03-31",
+            "qoq": -10.6
+          },
+          {
+            "q": "2025-06-30",
+            "qoq": 0.6
+          },
+          {
+            "q": "2025-09-30",
+            "qoq": 67.5
+          },
+          {
+            "q": "2026-03-31",
+            "qoq": -6.2
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 11.53,
+        "stage2": false,
+        "pct_from_52w_hi": -43.9,
+        "pct_from_52w_lo": 127.9,
+        "rs_6m_pct": 88.1,
+        "ma150_gt_200": false,
+        "above_30wma": true,
+        "vol_trend": "expanding",
+        "price_phase_implied": 5
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 2,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [
+        "SpaceX dominant but ecosystem players getting work"
+      ],
+      "phase_signals_missing": [
+        "Launch success rate improving",
+        "First government contract won (anchor customer)",
+        "Management language: 'backlog growing', 'commercial demand pipeline'",
+        "Orbital debris/satellite insurance market forming"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 22:16",
+      "snapshot_date": "2026-05-13"
+    }
+  ],
+  "last_updated": "2026-05-13 22:29",
+  "created": "2026-05-13",
+  "theme": "Space",
+  "phase_name": "Accumulation",
+  "nrgc_composite_score": 43,
+  "action": "Build 25-30% of target",
+  "narrative": "Space sector stabilization",
+  "narrative_traction": 0.0,
+  "revenue_signal": {
+    "qoq_trend": "negative",
+    "phase_signal": 2,
+    "acceleration_score": 0.07,
+    "latest_qoq_pct": -6.2,
+    "prior_qoq_pct": 67.5,
+    "positive_quarters": 2,
+    "margin_trend": "expanding",
+    "latest_margin": 26.6,
+    "history_summary": [
+      {
+        "q": "2025-03-31",
+        "qoq": -10.6
+      },
+      {
+        "q": "2025-06-30",
+        "qoq": 0.6
+      },
+      {
+        "q": "2025-09-30",
+        "qoq": 67.5
+      },
+      {
+        "q": "2026-03-31",
+        "qoq": -6.2
+      }
+    ]
+  },
+  "price_signal": {
+    "valid": true,
+    "price": 11.52,
+    "stage2": false,
+    "pct_from_52w_hi": -44.0,
+    "pct_from_52w_lo": 127.8,
+    "rs_6m_pct": 88.0,
+    "ma150_gt_200": false,
+    "above_30wma": true,
+    "vol_trend": "expanding",
+    "price_phase_implied": 5
+  },
+  "insider_signal": "neutral",
+  "narrative_signals": {
+    "signals": [],
+    "signal_count": 0,
+    "dominant_phase": null,
+    "positive_count": 0,
+    "negative_count": 0
+  },
+  "rule_phase": 2,
+  "rule_confidence": 0.6,
+  "phase_signals_confirmed": [
+    "SpaceX dominant but ecosystem players getting work"
+  ],
+  "phase_signals_missing": [
+    "Launch success rate improving",
+    "First government contract won (anchor customer)",
+    "Management language: 'backlog growing', 'commercial demand pipeline'",
+    "Orbital debris/satellite insurance market forming"
+  ],
+  "kill_switches": [
+    "revenue guidance cut",
+    "negative quarterly earnings surprise"
+  ],
+  "primary_evidence": [
+    "qoq_trend is negative but latest_qoq_pct is -6.2, indicating stabilization",
+    "margin_trend is expanding with latest_margin at 26.6",
+    "price is 44% off 52-week highs, indicating potential value"
+  ],
+  "assessed_at": "2026-05-13 22:29"
+}

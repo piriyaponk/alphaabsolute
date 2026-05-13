@@ -1,0 +1,237 @@
+{
+  "total_usd": 0.0,
+  "calls": [
+    {
+      "ts": "2026-05-13 22:13",
+      "type": "extraction",
+      "model": "gemini-flash",
+      "in": 0,
+      "out": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "ts": "2026-05-13 22:15",
+      "type": "nrgc_synthesis",
+      "model": "gemini-flash",
+      "in": 0,
+      "out": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "ts": "2026-05-13 22:16",
+      "type": "nrgc_synthesis",
+      "model": "gemini-flash",
+      "in": 0,
+      "out": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "ts": "2026-05-13 22:16",
+      "type": "nrgc_synthesis",
+      "model": "gemini-flash",
+      "in": 0,
+      "out": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "ts": "2026-05-13 22:16",
+      "type": "nrgc_synthesis",
+      "model": "gemini-flash",
+      "in": 0,
+      "out": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "ts": "2026-05-13 22:16",
+      "type": "nrgc_synthesis",
+      "model": "gemini-flash",
+      "in": 0,
+      "out": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "ts": "2026-05-13 22:16",
+      "type": "nrgc_synthesis",
+      "model": "gemini-flash",
+      "in": 0,
+      "out": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "ts": "2026-05-13 22:17",
+      "type": "nrgc_synthesis",
+      "model": "gemini-flash",
+      "in": 0,
+      "out": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "ts": "2026-05-13 22:17",
+      "type": "nrgc_synthesis",
+      "model": "gemini-flash",
+      "in": 0,
+      "out": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "ts": "2026-05-13 22:17",
+      "type": "nrgc_synthesis",
+      "model": "gemini-flash",
+      "in": 0,
+      "out": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "ts": "2026-05-13 22:17",
+      "type": "nrgc_synthesis",
+      "model": "gemini-flash",
+      "in": 0,
+      "out": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "ts": "2026-05-13 22:17",
+      "type": "nrgc_synthesis",
+      "model": "gemini-flash",
+      "in": 0,
+      "out": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "ts": "2026-05-13 22:18",
+      "type": "nrgc_synthesis",
+      "model": "gemini-flash",
+      "in": 0,
+      "out": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "ts": "2026-05-13 22:26",
+      "type": "test",
+      "model": "groq-llama",
+      "in": 0,
+      "out": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "ts": "2026-05-13 22:29",
+      "type": "nrgc_synthesis",
+      "model": "groq-llama",
+      "in": 0,
+      "out": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "ts": "2026-05-13 22:29",
+      "type": "nrgc_synthesis",
+      "model": "groq-llama",
+      "in": 0,
+      "out": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "ts": "2026-05-13 22:29",
+      "type": "nrgc_synthesis",
+      "model": "groq-llama",
+      "in": 0,
+      "out": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "ts": "2026-05-13 22:29",
+      "type": "nrgc_synthesis",
+      "model": "groq-llama",
+      "in": 0,
+      "out": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "ts": "2026-05-13 22:29",
+      "type": "nrgc_synthesis",
+      "model": "groq-llama",
+      "in": 0,
+      "out": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "ts": "2026-05-13 22:29",
+      "type": "nrgc_synthesis",
+      "model": "groq-llama",
+      "in": 0,
+      "out": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "ts": "2026-05-13 22:29",
+      "type": "nrgc_synthesis",
+      "model": "groq-llama",
+      "in": 0,
+      "out": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "ts": "2026-05-13 22:29",
+      "type": "nrgc_synthesis",
+      "model": "groq-llama",
+      "in": 0,
+      "out": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "ts": "2026-05-13 22:29",
+      "type": "nrgc_synthesis",
+      "model": "groq-llama",
+      "in": 0,
+      "out": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "ts": "2026-05-13 22:29",
+      "type": "nrgc_synthesis",
+      "model": "groq-llama",
+      "in": 0,
+      "out": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "ts": "2026-05-13 22:29",
+      "type": "nrgc_synthesis",
+      "model": "groq-llama",
+      "in": 0,
+      "out": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "ts": "2026-05-13 22:29",
+      "type": "nrgc_synthesis",
+      "model": "groq-llama",
+      "in": 0,
+      "out": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "ts": "2026-05-13 22:29",
+      "type": "nrgc_synthesis",
+      "model": "groq-llama",
+      "in": 0,
+      "out": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "ts": "2026-05-13 22:29",
+      "type": "nrgc_synthesis",
+      "model": "groq-llama",
+      "in": 0,
+      "out": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "ts": "2026-05-13 22:29",
+      "type": "nrgc_synthesis",
+      "model": "groq-llama",
+      "in": 0,
+      "out": 0,
+      "cost_usd": 0.0
+    }
+  ]
+}

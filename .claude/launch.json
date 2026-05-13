@@ -1,0 +1,60 @@
+{
+  "version": "0.0.1",
+  "note": "AlphaAbsolute runs one-shot scripts (not persistent HTTP servers). The dashboard and reports generate static HTML files opened in the browser. The NotebookLM MCP server uses stdio transport (not HTTP).",
+  "configurations": [
+    {
+      "name": "Daily Report Pipeline",
+      "description": "Full daily pipeline: FRED macro → yfinance → PULSE screener → Claude API report → PDF → Telegram",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["scripts/daily_report.py"],
+      "port": null,
+      "cwd": "C:\\Users\\Pizza\\OneDrive\\Desktop\\AlphaAbsolute",
+      "output": "output/AlphaAbsolute_DailyPulse_YYMMDD.pdf"
+    },
+    {
+      "name": "CIO Dashboard Generator",
+      "description": "Generates output/dashboard.html from portfolio.json + trade_log.json and opens in browser",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["scripts/generate_dashboard.py"],
+      "port": null,
+      "cwd": "C:\\Users\\Pizza\\OneDrive\\Desktop\\AlphaAbsolute",
+      "output": "output/dashboard.html"
+    },
+    {
+      "name": "PULSE Screener (Agent 3)",
+      "description": "Runs 3-screen PULSE scan on 22-stock universe: Leader / Bottom Fish / Hypergrowth",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["scripts/run_screener.py"],
+      "port": null,
+      "cwd": "C:\\Users\\Pizza\\OneDrive\\Desktop\\AlphaAbsolute",
+      "output": "data/screener_YYMMDD.json"
+    },
+    {
+      "name": "Macro Data Fetch",
+      "description": "Fetches FRED + yfinance macro data and saves to data/macro_YYMMDD.json",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["scripts/fetch_macro.py"],
+      "port": null,
+      "cwd": "C:\\Users\\Pizza\\OneDrive\\Desktop\\AlphaAbsolute",
+      "output": "data/macro_YYMMDD.json"
+    },
+    {
+      "name": "PDF from Markdown",
+      "description": "Converts a daily brief markdown to PDF. Usage: python scripts/report_to_pdf.py output/daily_brief_YYMMDD.md",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["scripts/report_to_pdf.py", "output/daily_brief_260510.md"],
+      "port": null,
+      "cwd": "C:\\Users\\Pizza\\OneDrive\\Desktop\\AlphaAbsolute",
+      "output": "output/AlphaAbsolute_DailyPulse_YYMMDD.pdf"
+    },
+    {
+      "name": "NotebookLM MCP Server",
+      "description": "Starts NotebookLM MCP server (stdio transport — add to .claude/settings.json mcpServers, not a HTTP server)",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["scripts/notebooklm_mcp.py"],
+      "port": null,
+      "cwd": "C:\\Users\\Pizza\\OneDrive\\Desktop\\AlphaAbsolute",
+      "transport": "stdio"
+    }
+  ]
+}

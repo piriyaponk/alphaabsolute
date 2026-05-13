@@ -1,0 +1,114 @@
+{
+  "ticker": "FNSR",
+  "phase": null,
+  "confidence": 0,
+  "history": [
+    {
+      "ticker": "FNSR",
+      "phase": null,
+      "confidence": 0,
+      "last_updated": null,
+      "created": "2026-05-13",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "FNSR",
+      "phase": null,
+      "confidence": 0,
+      "last_updated": "2026-05-13 21:29",
+      "created": "2026-05-13",
+      "theme": "Photonics",
+      "phase_name": "Unknown",
+      "nrgc_composite_score": 75,
+      "action": "Monitor",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": false
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": null,
+      "rule_confidence": 0,
+      "phase_signals_confirmed": [],
+      "phase_signals_missing": [],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:29",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "FNSR",
+      "phase": null,
+      "confidence": 0,
+      "last_updated": "2026-05-13 21:39",
+      "created": "2026-05-13",
+      "theme": "Photonics",
+      "phase_name": "Unknown",
+      "nrgc_composite_score": 75,
+      "action": "Monitor",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": false
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": null,
+      "rule_confidence": 0,
+      "phase_signals_confirmed": [],
+      "phase_signals_missing": [],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:39",
+      "snapshot_date": "2026-05-13"
+    }
+  ],
+  "last_updated": "2026-05-13 21:52",
+  "created": "2026-05-13",
+  "theme": "Photonics",
+  "phase_name": "Unknown",
+  "nrgc_composite_score": 75,
+  "action": "Monitor",
+  "narrative": "",
+  "narrative_traction": 0.0,
+  "revenue_signal": {
+    "qoq_trend": "no_data"
+  },
+  "price_signal": {
+    "valid": false
+  },
+  "insider_signal": "neutral",
+  "narrative_signals": {
+    "signals": [],
+    "signal_count": 0,
+    "dominant_phase": null,
+    "positive_count": 0,
+    "negative_count": 0
+  },
+  "rule_phase": null,
+  "rule_confidence": 0,
+  "phase_signals_confirmed": [],
+  "phase_signals_missing": [],
+  "kill_switches": [],
+  "primary_evidence": [],
+  "assessed_at": "2026-05-13 21:52"
+}

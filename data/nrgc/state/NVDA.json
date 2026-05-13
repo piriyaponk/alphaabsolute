@@ -1,0 +1,454 @@
+{
+  "ticker": "NVDA",
+  "phase": 4,
+  "confidence": 1.0,
+  "history": [
+    {
+      "ticker": "NVDA",
+      "phase": null,
+      "confidence": 0,
+      "last_updated": null,
+      "created": "2026-05-13",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "NVDA",
+      "phase": 4,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:36",
+      "created": "2026-05-13",
+      "theme": "AI Infrastructure",
+      "phase_name": "Recognition",
+      "nrgc_composite_score": 70,
+      "action": "Hold full position",
+      "narrative": "AI buildout in execution phase. Enterprise adoption beginning. Beat-and-raise continues.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "strong",
+        "phase_signal": 4,
+        "acceleration_score": 0.09,
+        "latest_qoq_pct": 22.0,
+        "prior_qoq_pct": 6.1,
+        "positive_quarters": 4,
+        "margin_trend": "stable",
+        "latest_margin": 73.4,
+        "history_summary": [
+          {
+            "q": "2024-10-27",
+            "qoq": 16.8
+          },
+          {
+            "q": "2025-04-27",
+            "qoq": 25.6
+          },
+          {
+            "q": "2025-07-27",
+            "qoq": 6.1
+          },
+          {
+            "q": "2025-10-26",
+            "qoq": 22.0
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 224.84,
+        "stage2": true,
+        "pct_from_52w_hi": 0.0,
+        "pct_from_52w_lo": 73.1,
+        "rs_6m_pct": 16.4,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "normal",
+        "price_phase_implied": 4
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 4,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [],
+      "phase_signals_missing": [
+        "Sequential capex increases every quarter from all hyperscalers",
+        "New GPU architecture released ahead of schedule",
+        "Enterprise AI deployment moving from pilot to production",
+        "Software monetization of AI visible (copilot revenue etc.)",
+        "Supply chain (CoWoS packaging, HBM) being built out to meet demand"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:36",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "NVDA",
+      "phase": 4,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:39",
+      "created": "2026-05-13",
+      "theme": "AI",
+      "phase_name": "Recognition",
+      "nrgc_composite_score": 70,
+      "action": "Hold full position",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "strong",
+        "phase_signal": 4,
+        "acceleration_score": 0.09,
+        "latest_qoq_pct": 22.0,
+        "prior_qoq_pct": 6.1,
+        "positive_quarters": 4,
+        "margin_trend": "stable",
+        "latest_margin": 73.4,
+        "history_summary": [
+          {
+            "q": "2024-10-27",
+            "qoq": 16.8
+          },
+          {
+            "q": "2025-04-27",
+            "qoq": 25.6
+          },
+          {
+            "q": "2025-07-27",
+            "qoq": 6.1
+          },
+          {
+            "q": "2025-10-26",
+            "qoq": 22.0
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 224.4,
+        "stage2": true,
+        "pct_from_52w_hi": 0.0,
+        "pct_from_52w_lo": 72.8,
+        "rs_6m_pct": 16.2,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "normal",
+        "price_phase_implied": 4
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 4,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "Margin expanding"
+      ],
+      "phase_signals_missing": [
+        "Consecutive beat-and-raise",
+        "Multiple analyst upgrades"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:39",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "NVDA",
+      "phase": 4,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:52",
+      "created": "2026-05-13",
+      "theme": "AI",
+      "phase_name": "Recognition",
+      "nrgc_composite_score": 70,
+      "action": "Hold full position",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "strong",
+        "phase_signal": 4,
+        "acceleration_score": 0.09,
+        "latest_qoq_pct": 22.0,
+        "prior_qoq_pct": 6.1,
+        "positive_quarters": 4,
+        "margin_trend": "stable",
+        "latest_margin": 73.4,
+        "history_summary": [
+          {
+            "q": "2024-10-27",
+            "qoq": 16.8
+          },
+          {
+            "q": "2025-04-27",
+            "qoq": 25.6
+          },
+          {
+            "q": "2025-07-27",
+            "qoq": 6.1
+          },
+          {
+            "q": "2025-10-26",
+            "qoq": 22.0
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 225.68,
+        "stage2": true,
+        "pct_from_52w_hi": 0.0,
+        "pct_from_52w_lo": 73.7,
+        "rs_6m_pct": 16.9,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "normal",
+        "price_phase_implied": 4
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 4,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "Margin expanding"
+      ],
+      "phase_signals_missing": [
+        "Consecutive beat-and-raise",
+        "Multiple analyst upgrades"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:52",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "NVDA",
+      "phase": 4,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:57",
+      "created": "2026-05-13",
+      "theme": "AI",
+      "phase_name": "Recognition",
+      "nrgc_composite_score": 70,
+      "action": "Hold full position",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "strong",
+        "phase_signal": 4,
+        "acceleration_score": 0.09,
+        "latest_qoq_pct": 22.0,
+        "prior_qoq_pct": 6.1,
+        "positive_quarters": 4,
+        "margin_trend": "stable",
+        "latest_margin": 73.4,
+        "history_summary": [
+          {
+            "q": "2024-10-27",
+            "qoq": 16.8
+          },
+          {
+            "q": "2025-04-27",
+            "qoq": 25.6
+          },
+          {
+            "q": "2025-07-27",
+            "qoq": 6.1
+          },
+          {
+            "q": "2025-10-26",
+            "qoq": 22.0
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 226.06,
+        "stage2": true,
+        "pct_from_52w_hi": 0.0,
+        "pct_from_52w_lo": 74.0,
+        "rs_6m_pct": 17.0,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "normal",
+        "price_phase_implied": 4
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 4,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "Margin expanding"
+      ],
+      "phase_signals_missing": [
+        "Consecutive beat-and-raise",
+        "Multiple analyst upgrades"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:57",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "NVDA",
+      "phase": 4,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 22:15",
+      "created": "2026-05-13",
+      "theme": "AI",
+      "phase_name": "Recognition",
+      "nrgc_composite_score": 70,
+      "action": "Hold full position",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "strong",
+        "phase_signal": 4,
+        "acceleration_score": 0.09,
+        "latest_qoq_pct": 22.0,
+        "prior_qoq_pct": 6.1,
+        "positive_quarters": 4,
+        "margin_trend": "stable",
+        "latest_margin": 73.4,
+        "history_summary": [
+          {
+            "q": "2024-10-27",
+            "qoq": 16.8
+          },
+          {
+            "q": "2025-04-27",
+            "qoq": 25.6
+          },
+          {
+            "q": "2025-07-27",
+            "qoq": 6.1
+          },
+          {
+            "q": "2025-10-26",
+            "qoq": 22.0
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 226.76,
+        "stage2": true,
+        "pct_from_52w_hi": 0.0,
+        "pct_from_52w_lo": 74.6,
+        "rs_6m_pct": 17.4,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "normal",
+        "price_phase_implied": 4
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 4,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "Margin expanding"
+      ],
+      "phase_signals_missing": [
+        "Consecutive beat-and-raise",
+        "Multiple analyst upgrades"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 22:15",
+      "snapshot_date": "2026-05-13"
+    }
+  ],
+  "last_updated": "2026-05-13 22:29",
+  "created": "2026-05-13",
+  "theme": "AI",
+  "phase_name": "Recognition",
+  "nrgc_composite_score": 70,
+  "action": "Hold full position",
+  "narrative": "",
+  "narrative_traction": 0.0,
+  "revenue_signal": {
+    "qoq_trend": "strong",
+    "phase_signal": 4,
+    "acceleration_score": 0.09,
+    "latest_qoq_pct": 22.0,
+    "prior_qoq_pct": 6.1,
+    "positive_quarters": 4,
+    "margin_trend": "stable",
+    "latest_margin": 73.4,
+    "history_summary": [
+      {
+        "q": "2024-10-27",
+        "qoq": 16.8
+      },
+      {
+        "q": "2025-04-27",
+        "qoq": 25.6
+      },
+      {
+        "q": "2025-07-27",
+        "qoq": 6.1
+      },
+      {
+        "q": "2025-10-26",
+        "qoq": 22.0
+      }
+    ]
+  },
+  "price_signal": {
+    "valid": true,
+    "price": 226.27,
+    "stage2": true,
+    "pct_from_52w_hi": 0.0,
+    "pct_from_52w_lo": 74.2,
+    "rs_6m_pct": 17.2,
+    "ma150_gt_200": true,
+    "above_30wma": true,
+    "vol_trend": "normal",
+    "price_phase_implied": 4
+  },
+  "insider_signal": "neutral",
+  "narrative_signals": {
+    "signals": [],
+    "signal_count": 0,
+    "dominant_phase": null,
+    "positive_count": 0,
+    "negative_count": 0
+  },
+  "rule_phase": 4,
+  "rule_confidence": 1.0,
+  "phase_signals_confirmed": [
+    "Margin expanding"
+  ],
+  "phase_signals_missing": [
+    "Consecutive beat-and-raise",
+    "Multiple analyst upgrades"
+  ],
+  "kill_switches": [],
+  "primary_evidence": [],
+  "assessed_at": "2026-05-13 22:29"
+}

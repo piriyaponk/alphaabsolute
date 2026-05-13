@@ -1,0 +1,26 @@
+[
+  {
+    "source": "seeking_alpha_rss",
+    "source_name": "Seeking Alpha — Market News",
+    "title": "Eos Energy Enterprises, Inc. 2026 Q1 - Results - Earnings Call Presentation",
+    "url": "https://seekingalpha.com/article/4903912-eos-energy-enterprises-inc-2026-q1-results-earnings-call-presentation?source=feed_all_articles",
+    "published": "Wed, 13 May 2026 11:08:15 -0400",
+    "text": "",
+    "themes": [
+      "Macro"
+    ],
+    "hash": "9b96c93cba196d226120a182c6a2eb81",
+    "fetched": "2026-05-13T22:13:14.974283",
+    "item_idx": 0,
+    "ticker": "EOSE",
+    "signal_type": "earnings",
+    "headline": "Eos Energy Enterprises Q1 2026 Earnings Call Presentation",
+    "key_metric": "No financial results provided",
+    "emls_impact": "neutral",
+    "urgency": "watch",
+    "actionable": false,
+    "action_note": null,
+    "nrgc_phase_signal": null,
+    "nrgc_phase_reason": null
+  }
+]

@@ -1,0 +1,327 @@
+{
+  "generated": "2026-05-10T15:57:40.990840",
+  "data_date": "260510",
+  "regime": "Cautious",
+  "us_macro": {
+    "fed_funds_rate": {
+      "label": "Fed Funds Rate (%)",
+      "value": 3.64,
+      "as_of": "2026-04-01"
+    },
+    "us_10y_yield": {
+      "label": "US 10Y Yield (%)",
+      "value": 4.41,
+      "as_of": "2026-05-07",
+      "change_bps": 5.0,
+      "change_bps_5d": 1.0,
+      "change_bps_mtd": 2.0,
+      "change_bps_ytd": 22.0
+    },
+    "us_2y_yield": {
+      "label": "US 2Y Yield (%)",
+      "value": 3.92,
+      "as_of": "2026-05-07",
+      "change_bps": 5.0,
+      "change_bps_5d": 4.0,
+      "change_bps_mtd": 4.0,
+      "change_bps_ytd": 45.0
+    },
+    "us_yield_spread_10_2": {
+      "label": "10Y-2Y Spread (%)",
+      "value": 0.48,
+      "as_of": "2026-05-08"
+    },
+    "dxy": {
+      "label": "USD Index (DXY proxy)",
+      "value": 118.3926,
+      "as_of": "2026-05-01"
+    },
+    "cpi_yoy": {
+      "label": "US CPI YoY (%)",
+      "value": null,
+      "as_of": null
+    },
+    "pce_yoy": {
+      "label": "US PCE YoY (%)",
+      "value": 3.5,
+      "as_of": "2026-03-01"
+    },
+    "unemployment": {
+      "label": "US Unemployment (%)",
+      "value": 4.3,
+      "as_of": "2026-04-01"
+    },
+    "m2_yoy": {
+      "label": "M2 YoY (%)",
+      "value": 4.57,
+      "as_of": "2026-03-01"
+    },
+    "vix": {
+      "label": "VIX",
+      "value": 17.08,
+      "as_of": "2026-05-07"
+    },
+    "us_gdp_growth": {
+      "label": "US Real GDP Growth YoY (%)",
+      "history": [
+        {
+          "year": "2024",
+          "value": 2.793
+        },
+        {
+          "year": "2023",
+          "value": 2.888
+        },
+        {
+          "year": "2022",
+          "value": 2.512
+        },
+        {
+          "year": "2021",
+          "value": 6.055
+        }
+      ],
+      "latest": {
+        "year": "2024",
+        "value": 2.793
+      },
+      "source": "World Bank API (free)"
+    }
+  },
+  "thai_macro": {
+    "th_gdp_growth": {
+      "label": "Thailand Real GDP Growth YoY (%)",
+      "history": [
+        {
+          "year": "2024",
+          "value": 2.542
+        },
+        {
+          "year": "2023",
+          "value": 2.018
+        },
+        {
+          "year": "2022",
+          "value": 2.58
+        },
+        {
+          "year": "2021",
+          "value": 1.552
+        }
+      ],
+      "latest": {
+        "year": "2024",
+        "value": 2.542
+      },
+      "source": "World Bank API (free)"
+    },
+    "th_cpi_inflation": {
+      "label": "Thailand CPI Inflation YoY (%)",
+      "history": [
+        {
+          "year": "2024",
+          "value": 1.366
+        },
+        {
+          "year": "2023",
+          "value": 8.478
+        },
+        {
+          "year": "2022",
+          "value": -1.611
+        },
+        {
+          "year": "2021",
+          "value": 1.23
+        }
+      ],
+      "latest": {
+        "year": "2024",
+        "value": 1.366
+      },
+      "source": "World Bank API (free)"
+    },
+    "th_exports_growth": {
+      "label": "Thailand Exports Growth YoY (%)",
+      "history": [],
+      "latest": null,
+      "source": "World Bank API (free)"
+    },
+    "th_current_account": {
+      "label": "Thailand Current Account (% of GDP)",
+      "history": [
+        {
+          "year": "2024",
+          "value": 2.207
+        },
+        {
+          "year": "2023",
+          "value": 1.644
+        },
+        {
+          "year": "2022",
+          "value": -3.429
+        },
+        {
+          "year": "2021",
+          "value": -2.141
+        }
+      ],
+      "latest": {
+        "year": "2024",
+        "value": 2.207
+      },
+      "source": "World Bank API (free)"
+    },
+    "th_fdi_net": {
+      "label": "Thailand Net FDI Inflows (USD bn)",
+      "history": [
+        {
+          "year": "2024",
+          "value": 14302158846.415
+        },
+        {
+          "year": "2023",
+          "value": 10327587425.687
+        },
+        {
+          "year": "2022",
+          "value": 11854822037.876
+        },
+        {
+          "year": "2021",
+          "value": 15389597696.242
+        }
+      ],
+      "latest": {
+        "year": "2024",
+        "value": 14302158846.415
+      },
+      "source": "World Bank API (free)"
+    },
+    "bot_policy_rate": {
+      "label": "Bank of Thailand Policy Rate (%)",
+      "value": 2.0,
+      "as_of": "2025-10-16",
+      "note": "BoT MPC rate \u2014 update manually after each MPC meeting. Source: bot.or.th",
+      "source": "Manual (BoT MPC)"
+    }
+  },
+  "imf_forecasts": {
+    "th_gdp_forecast": {
+      "label": "Thailand Real GDP Growth Forecast (IMF WEO, %)",
+      "current_year": "2026",
+      "current_year_forecast": 1.5,
+      "next_year_forecast": 2.1,
+      "as_of": "IMF WEO latest"
+    },
+    "us_gdp_forecast": {
+      "label": "US Real GDP Growth Forecast (IMF WEO, %)",
+      "current_year": "2026",
+      "current_year_forecast": 2.3,
+      "next_year_forecast": 2.1,
+      "as_of": "IMF WEO latest"
+    },
+    "th_cpi_forecast": {
+      "label": "Thailand CPI Forecast (IMF WEO, %)",
+      "current_year": "2026",
+      "current_year_forecast": 0.9,
+      "next_year_forecast": 1,
+      "as_of": "IMF WEO latest"
+    }
+  },
+  "fx_commodities": {
+    "thb_usd": {
+      "symbol": "THBUSD=X",
+      "price": 0.031104198,
+      "change_pct_1d": 0.28,
+      "ret_1w": 1.09
+    },
+    "usdthb": {
+      "symbol": "THB=X",
+      "price": 32.15,
+      "change_pct_1d": -0.28,
+      "ret_1w": -1.08
+    },
+    "dxy_index": {
+      "symbol": "DX-Y.NYB",
+      "price": 97.843,
+      "change_pct_1d": -0.06,
+      "ret_1w": -0.38
+    },
+    "gold_usd": {
+      "symbol": "GC=F",
+      "price": 4730.7,
+      "change_pct_1d": 0.42,
+      "ret_1w": 2.18
+    },
+    "oil_brent": {
+      "symbol": "BZ=F",
+      "price": 101.29,
+      "change_pct_1d": 1.23,
+      "ret_1w": -6.36
+    },
+    "set_index": {
+      "symbol": "^SET.BK",
+      "price": 1500.36,
+      "change_pct_1d": -0.48,
+      "ret_1w": 0.58
+    },
+    "sp500": {
+      "symbol": "^GSPC",
+      "price": 7398.93,
+      "change_pct_1d": 0.84,
+      "ret_1w": 2.33
+    },
+    "nasdaq": {
+      "symbol": "^IXIC",
+      "price": 26247.076,
+      "change_pct_1d": 1.71,
+      "ret_1w": 4.51
+    },
+    "dow": {
+      "symbol": "^DJI",
+      "price": 49609.16,
+      "change_pct_1d": 0.02,
+      "ret_1w": 0.22
+    }
+  },
+  "performance_context": {
+    "sp500": {
+      "mtd_pct": 2.33,
+      "ytd_pct": 7.88
+    },
+    "nasdaq": {
+      "mtd_pct": 4.51,
+      "ytd_pct": 12.96
+    },
+    "sox": {
+      "mtd_pct": 11.14,
+      "ytd_pct": 59.83
+    },
+    "dow": {
+      "mtd_pct": 0.22,
+      "ytd_pct": 2.54
+    },
+    "set": {
+      "mtd_pct": 0.69,
+      "ytd_pct": 17.21
+    },
+    "gold": {
+      "mtd_pct": 2.18,
+      "ytd_pct": 9.65
+    },
+    "brent": {
+      "mtd_pct": -6.36,
+      "ytd_pct": 66.73
+    },
+    "dxy": {
+      "mtd_pct": -0.38,
+      "ytd_pct": -0.59
+    },
+    "usdthb": {
+      "mtd_pct": -1.08,
+      "ytd_pct": 2.06
+    }
+  }
+}

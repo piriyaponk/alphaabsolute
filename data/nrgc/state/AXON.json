@@ -1,0 +1,297 @@
+{
+  "ticker": "AXON",
+  "phase": 1,
+  "confidence": 1.0,
+  "history": [
+    {
+      "ticker": "AXON",
+      "phase": null,
+      "confidence": 0,
+      "last_updated": null,
+      "created": "2026-05-13",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "AXON",
+      "phase": 1,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:29",
+      "created": "2026-05-13",
+      "theme": "DefenseTech",
+      "phase_name": "Neglect",
+      "nrgc_composite_score": 35,
+      "action": "Watchlist only",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 369.67,
+        "stage2": false,
+        "pct_from_52w_hi": -57.6,
+        "pct_from_52w_lo": 6.9,
+        "rs_6m_pct": -35.4,
+        "ma150_gt_200": false,
+        "above_30wma": false,
+        "vol_trend": "expanding",
+        "price_phase_implied": 1
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 1,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [],
+      "phase_signals_missing": [
+        "Budget sequestration / continuing resolution uncertainty",
+        "Geopolitical stability reducing urgency",
+        "Commercial tech competition (FAANG) for same contracts"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:29",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "AXON",
+      "phase": 1,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:39",
+      "created": "2026-05-13",
+      "theme": "DefenseTech",
+      "phase_name": "Neglect",
+      "nrgc_composite_score": 35,
+      "action": "Watchlist only",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 370.0,
+        "stage2": false,
+        "pct_from_52w_hi": -57.5,
+        "pct_from_52w_lo": 7.0,
+        "rs_6m_pct": -35.3,
+        "ma150_gt_200": false,
+        "above_30wma": false,
+        "vol_trend": "expanding",
+        "price_phase_implied": 1
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 1,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [],
+      "phase_signals_missing": [
+        "Budget sequestration / continuing resolution uncertainty",
+        "Geopolitical stability reducing urgency",
+        "Commercial tech competition (FAANG) for same contracts"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:39",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "AXON",
+      "phase": 1,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:52",
+      "created": "2026-05-13",
+      "theme": "DefenseTech",
+      "phase_name": "Neglect",
+      "nrgc_composite_score": 35,
+      "action": "Watchlist only",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 369.73,
+        "stage2": false,
+        "pct_from_52w_hi": -57.5,
+        "pct_from_52w_lo": 6.9,
+        "rs_6m_pct": -35.4,
+        "ma150_gt_200": false,
+        "above_30wma": false,
+        "vol_trend": "expanding",
+        "price_phase_implied": 1
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 1,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [],
+      "phase_signals_missing": [
+        "Budget sequestration / continuing resolution uncertainty",
+        "Geopolitical stability reducing urgency",
+        "Commercial tech competition (FAANG) for same contracts"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:52",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "AXON",
+      "phase": 1,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:57",
+      "created": "2026-05-13",
+      "theme": "DefenseTech",
+      "phase_name": "Neglect",
+      "nrgc_composite_score": 35,
+      "action": "Watchlist only",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 368.0,
+        "stage2": false,
+        "pct_from_52w_hi": -57.7,
+        "pct_from_52w_lo": 6.4,
+        "rs_6m_pct": -35.7,
+        "ma150_gt_200": false,
+        "above_30wma": false,
+        "vol_trend": "expanding",
+        "price_phase_implied": 1
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 1,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [],
+      "phase_signals_missing": [
+        "Budget sequestration / continuing resolution uncertainty",
+        "Geopolitical stability reducing urgency",
+        "Commercial tech competition (FAANG) for same contracts"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:57",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "AXON",
+      "phase": 1,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 22:17",
+      "created": "2026-05-13",
+      "theme": "DefenseTech",
+      "phase_name": "Neglect",
+      "nrgc_composite_score": 35,
+      "action": "Watchlist only",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 372.3,
+        "stage2": false,
+        "pct_from_52w_hi": -57.3,
+        "pct_from_52w_lo": 7.6,
+        "rs_6m_pct": -34.9,
+        "ma150_gt_200": false,
+        "above_30wma": false,
+        "vol_trend": "expanding",
+        "price_phase_implied": 1
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 1,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [],
+      "phase_signals_missing": [
+        "Budget sequestration / continuing resolution uncertainty",
+        "Geopolitical stability reducing urgency",
+        "Commercial tech competition (FAANG) for same contracts"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 22:17",
+      "snapshot_date": "2026-05-13"
+    }
+  ],
+  "last_updated": "2026-05-13 22:29",
+  "created": "2026-05-13",
+  "theme": "DefenseTech",
+  "phase_name": "Neglect",
+  "nrgc_composite_score": 35,
+  "action": "Watchlist only",
+  "narrative": "",
+  "narrative_traction": 0.0,
+  "revenue_signal": {
+    "qoq_trend": "no_data"
+  },
+  "price_signal": {
+    "valid": true,
+    "price": 371.89,
+    "stage2": false,
+    "pct_from_52w_hi": -57.3,
+    "pct_from_52w_lo": 7.5,
+    "rs_6m_pct": -35.0,
+    "ma150_gt_200": false,
+    "above_30wma": false,
+    "vol_trend": "expanding",
+    "price_phase_implied": 1
+  },
+  "insider_signal": "neutral",
+  "narrative_signals": {
+    "signals": [],
+    "signal_count": 0,
+    "dominant_phase": null,
+    "positive_count": 0,
+    "negative_count": 0
+  },
+  "rule_phase": 1,
+  "rule_confidence": 1.0,
+  "phase_signals_confirmed": [],
+  "phase_signals_missing": [
+    "Budget sequestration / continuing resolution uncertainty",
+    "Geopolitical stability reducing urgency",
+    "Commercial tech competition (FAANG) for same contracts"
+  ],
+  "kill_switches": [],
+  "primary_evidence": [],
+  "assessed_at": "2026-05-13 22:29"
+}

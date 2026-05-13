@@ -1,0 +1,38 @@
+กรุณาเขียน AlphaPULSE Research Brief ภาษาไทย สำหรับสัปดาห์ 8 พ.ค. 2569
+
+โปรดใช้ข้อมูลต่อไปนี้เท่านั้น อย่าแต่งตัวเลขขึ้นมาเอง:
+
+=== FRED MACRO DATA (ล่าสุด ณ 08 May 2026) ===
+- Fed Funds Rate (%): 3.64 %  (MoM: +0.000)  [as of 2026-04-01]
+- US 10Y Treasury Yield (%): 4.36 %  (MoM: -0.070)  [as of 2026-05-06]
+- US 2Y Treasury Yield (%): 3.87 %  (MoM: -0.060)  [as of 2026-05-06]
+- Yield Curve 10Y-2Y (bps): 0.49 bps  (MoM: +0.000)  [as of 2026-05-07]
+- US CPI Index: 330.293 index  (MoM: +2.833)  [as of 2026-03-01]
+- USD Index (DXY): 118.393 index  (MoM: -0.278)  [as of 2026-05-01]
+- Brent Crude Oil ($/bbl): 118.26 $/bbl  (MoM: -5.980)  [as of 2026-05-01]
+- US Unemployment Rate (%): 4.3 %  (MoM: +0.000)  [as of 2026-04-01]
+- US M2 Money Supply ($B): 22686.0 $B  (MoM: +58.700)  [as of 2026-03-01]
+
+=== Bloomberg / BLS Internal Data ===
+(user_input.txt ยังไม่ได้ใส่ข้อมูล Bloomberg/BLS)
+
+=== รูปแบบที่ต้องการ ===
+
+# AlphaPULSE Research Brief — 08 May 2026
+
+## ภาพรวม Macro Regime
+[2-3 ประโยค: ระบุโหมดตลาด Risk-on/Risk-off, Bull/Bear/Accumulation พร้อมอ้างอิงตัวเลข FRED ข้างต้น]
+
+## ปัจจัยขับเคลื่อนตลาด (Key Factors)
+[6-8 ข้อ — แต่ละข้อมีรูปแบบ: หมายเลข) บริบท + ตัวเลขเฉพาะเจาะจง + นัยการลงทุน]
+[ใช้ภาษาไทย + คำศัพท์การเงินอังกฤษในวงเล็บ เช่น risk premium, NIM, YoY, QoQ]
+[ตัวอย่างสไตล์: "ความไม่แน่นอนจากสงครามยังอยู่ในระดับสูง...ทำให้ risk premium ยังไม่หาย ราคาน้ำมัน Brent เคลื่อนไหวเหนือ $100/bbl"]
+
+## กลยุทธ์การลงทุน
+[1-2 investment themes พร้อมเหตุผล]
+
+## กลุ่มหุ้นที่น่าสนใจ
+[กลุ่ม sector ที่ได้ประโยชน์จาก themes ข้างต้น]
+
+## ความเสี่ยงที่ต้องติดตาม
+[3-4 ข้อ downside risks]

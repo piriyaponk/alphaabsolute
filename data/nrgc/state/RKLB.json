@@ -1,0 +1,459 @@
+{
+  "ticker": "RKLB",
+  "phase": 4,
+  "confidence": 0.6,
+  "history": [
+    {
+      "ticker": "RKLB",
+      "phase": null,
+      "confidence": 0,
+      "last_updated": null,
+      "created": "2026-05-13",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "RKLB",
+      "phase": 4,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 21:36",
+      "created": "2026-05-13",
+      "theme": "Space",
+      "phase_name": "Recognition",
+      "nrgc_composite_score": 41,
+      "action": "Hold full position",
+      "narrative": "Space economy scaling. Constellation deployment, cadence growing. Full position.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "strong",
+        "phase_signal": 4,
+        "acceleration_score": 0.21,
+        "latest_qoq_pct": 29.2,
+        "prior_qoq_pct": 7.3,
+        "positive_quarters": 4,
+        "margin_trend": "expanding",
+        "latest_margin": 38.2,
+        "history_summary": [
+          {
+            "q": "2025-03-31",
+            "qoq": 16.9
+          },
+          {
+            "q": "2025-06-30",
+            "qoq": 17.9
+          },
+          {
+            "q": "2025-09-30",
+            "qoq": 7.3
+          },
+          {
+            "q": "2026-03-31",
+            "qoq": 29.2
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 122.33,
+        "stage2": true,
+        "pct_from_52w_hi": 0.0,
+        "pct_from_52w_lo": 460.4,
+        "rs_6m_pct": 138.7,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "expanding",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 4,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [],
+      "phase_signals_missing": [
+        "Launch cadence accelerating each quarter",
+        "Satellite internet subscribers growing rapidly",
+        "Multiple government customers (not just NASA/DoD)",
+        "International expansion — allied nation contracts",
+        "Revenue growing 50%+ YoY consistently"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:36",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "RKLB",
+      "phase": 4,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 21:39",
+      "created": "2026-05-13",
+      "theme": "Space",
+      "phase_name": "Recognition",
+      "nrgc_composite_score": 41,
+      "action": "Hold full position",
+      "narrative": "Space economy scaling. Constellation deployment, cadence growing. Full position.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "strong",
+        "phase_signal": 4,
+        "acceleration_score": 0.21,
+        "latest_qoq_pct": 29.2,
+        "prior_qoq_pct": 7.3,
+        "positive_quarters": 4,
+        "margin_trend": "expanding",
+        "latest_margin": 38.2,
+        "history_summary": [
+          {
+            "q": "2025-03-31",
+            "qoq": 16.9
+          },
+          {
+            "q": "2025-06-30",
+            "qoq": 17.9
+          },
+          {
+            "q": "2025-09-30",
+            "qoq": 7.3
+          },
+          {
+            "q": "2026-03-31",
+            "qoq": 29.2
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 121.6,
+        "stage2": true,
+        "pct_from_52w_hi": 0.0,
+        "pct_from_52w_lo": 457.0,
+        "rs_6m_pct": 137.3,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "expanding",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 4,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [],
+      "phase_signals_missing": [
+        "Launch cadence accelerating each quarter",
+        "Satellite internet subscribers growing rapidly",
+        "Multiple government customers (not just NASA/DoD)",
+        "International expansion — allied nation contracts",
+        "Revenue growing 50%+ YoY consistently"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:39",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "RKLB",
+      "phase": 4,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 21:52",
+      "created": "2026-05-13",
+      "theme": "Space",
+      "phase_name": "Recognition",
+      "nrgc_composite_score": 41,
+      "action": "Hold full position",
+      "narrative": "Space economy scaling. Constellation deployment, cadence growing. Full position.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "strong",
+        "phase_signal": 4,
+        "acceleration_score": 0.21,
+        "latest_qoq_pct": 29.2,
+        "prior_qoq_pct": 7.3,
+        "positive_quarters": 4,
+        "margin_trend": "expanding",
+        "latest_margin": 38.2,
+        "history_summary": [
+          {
+            "q": "2025-03-31",
+            "qoq": 16.9
+          },
+          {
+            "q": "2025-06-30",
+            "qoq": 17.9
+          },
+          {
+            "q": "2025-09-30",
+            "qoq": 7.3
+          },
+          {
+            "q": "2026-03-31",
+            "qoq": 29.2
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 122.46,
+        "stage2": true,
+        "pct_from_52w_hi": 0.0,
+        "pct_from_52w_lo": 460.9,
+        "rs_6m_pct": 139.0,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "expanding",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 4,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [],
+      "phase_signals_missing": [
+        "Launch cadence accelerating each quarter",
+        "Satellite internet subscribers growing rapidly",
+        "Multiple government customers (not just NASA/DoD)",
+        "International expansion — allied nation contracts",
+        "Revenue growing 50%+ YoY consistently"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:52",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "RKLB",
+      "phase": 4,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 21:57",
+      "created": "2026-05-13",
+      "theme": "Space",
+      "phase_name": "Recognition",
+      "nrgc_composite_score": 41,
+      "action": "Hold full position",
+      "narrative": "Space economy scaling. Constellation deployment, cadence growing. Full position.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "strong",
+        "phase_signal": 4,
+        "acceleration_score": 0.21,
+        "latest_qoq_pct": 29.2,
+        "prior_qoq_pct": 7.3,
+        "positive_quarters": 4,
+        "margin_trend": "expanding",
+        "latest_margin": 38.2,
+        "history_summary": [
+          {
+            "q": "2025-03-31",
+            "qoq": 16.9
+          },
+          {
+            "q": "2025-06-30",
+            "qoq": 17.9
+          },
+          {
+            "q": "2025-09-30",
+            "qoq": 7.3
+          },
+          {
+            "q": "2026-03-31",
+            "qoq": 29.2
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 123.43,
+        "stage2": true,
+        "pct_from_52w_hi": 0.0,
+        "pct_from_52w_lo": 465.4,
+        "rs_6m_pct": 140.9,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "expanding",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 4,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [],
+      "phase_signals_missing": [
+        "Launch cadence accelerating each quarter",
+        "Satellite internet subscribers growing rapidly",
+        "Multiple government customers (not just NASA/DoD)",
+        "International expansion — allied nation contracts",
+        "Revenue growing 50%+ YoY consistently"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:57",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "RKLB",
+      "phase": 4,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 22:16",
+      "created": "2026-05-13",
+      "theme": "Space",
+      "phase_name": "Recognition",
+      "nrgc_composite_score": 41,
+      "action": "Hold full position",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "strong",
+        "phase_signal": 4,
+        "acceleration_score": 0.21,
+        "latest_qoq_pct": 29.2,
+        "prior_qoq_pct": 7.3,
+        "positive_quarters": 4,
+        "margin_trend": "expanding",
+        "latest_margin": 38.2,
+        "history_summary": [
+          {
+            "q": "2025-03-31",
+            "qoq": 16.9
+          },
+          {
+            "q": "2025-06-30",
+            "qoq": 17.9
+          },
+          {
+            "q": "2025-09-30",
+            "qoq": 7.3
+          },
+          {
+            "q": "2026-03-31",
+            "qoq": 29.2
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 124.06,
+        "stage2": true,
+        "pct_from_52w_hi": 0.0,
+        "pct_from_52w_lo": 468.3,
+        "rs_6m_pct": 142.1,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "expanding",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 4,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [],
+      "phase_signals_missing": [
+        "Launch cadence accelerating each quarter",
+        "Satellite internet subscribers growing rapidly",
+        "Multiple government customers (not just NASA/DoD)",
+        "International expansion — allied nation contracts",
+        "Revenue growing 50%+ YoY consistently"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 22:16",
+      "snapshot_date": "2026-05-13"
+    }
+  ],
+  "last_updated": "2026-05-13 22:29",
+  "created": "2026-05-13",
+  "theme": "Space",
+  "phase_name": "Recognition",
+  "nrgc_composite_score": 41,
+  "action": "Hold full position",
+  "narrative": "Space economy scaling. Constellation deployment, cadence growing. Full position.",
+  "narrative_traction": 0.0,
+  "revenue_signal": {
+    "qoq_trend": "strong",
+    "phase_signal": 4,
+    "acceleration_score": 0.21,
+    "latest_qoq_pct": 29.2,
+    "prior_qoq_pct": 7.3,
+    "positive_quarters": 4,
+    "margin_trend": "expanding",
+    "latest_margin": 38.2,
+    "history_summary": [
+      {
+        "q": "2025-03-31",
+        "qoq": 16.9
+      },
+      {
+        "q": "2025-06-30",
+        "qoq": 17.9
+      },
+      {
+        "q": "2025-09-30",
+        "qoq": 7.3
+      },
+      {
+        "q": "2026-03-31",
+        "qoq": 29.2
+      }
+    ]
+  },
+  "price_signal": {
+    "valid": true,
+    "price": 123.54,
+    "stage2": true,
+    "pct_from_52w_hi": 0.0,
+    "pct_from_52w_lo": 465.9,
+    "rs_6m_pct": 141.1,
+    "ma150_gt_200": true,
+    "above_30wma": true,
+    "vol_trend": "expanding",
+    "price_phase_implied": 3
+  },
+  "insider_signal": "neutral",
+  "narrative_signals": {
+    "signals": [],
+    "signal_count": 0,
+    "dominant_phase": null,
+    "positive_count": 0,
+    "negative_count": 0
+  },
+  "rule_phase": 4,
+  "rule_confidence": 0.6,
+  "phase_signals_confirmed": [],
+  "phase_signals_missing": [
+    "Launch cadence accelerating each quarter",
+    "Satellite internet subscribers growing rapidly",
+    "Multiple government customers (not just NASA/DoD)",
+    "International expansion — allied nation contracts",
+    "Revenue growing 50%+ YoY consistently"
+  ],
+  "kill_switches": [],
+  "primary_evidence": [],
+  "assessed_at": "2026-05-13 22:29"
+}

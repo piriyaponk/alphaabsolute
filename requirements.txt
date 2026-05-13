@@ -1,0 +1,10 @@
+requests==2.33.1
+pandas==3.0.2
+groq==1.2.0
+anthropic==0.100.0
+google-genai==2.2.0
+httpx==0.28.1
+urllib3==2.7.0
+feedparser==6.0.12
+beautifulsoup4==4.14.3
+lxml==6.1.0

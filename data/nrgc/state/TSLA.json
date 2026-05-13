@@ -1,0 +1,310 @@
+{
+  "ticker": "TSLA",
+  "phase": 2,
+  "confidence": 0.7,
+  "history": [
+    {
+      "ticker": "TSLA",
+      "phase": null,
+      "confidence": 0,
+      "last_updated": null,
+      "created": "2026-05-13",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "TSLA",
+      "phase": 2,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:29",
+      "created": "2026-05-13",
+      "theme": "Robotics",
+      "phase_name": "Accumulation",
+      "nrgc_composite_score": 35,
+      "action": "Build 25-30% of target",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 443.1,
+        "stage2": true,
+        "pct_from_52w_hi": -9.5,
+        "pct_from_52w_lo": 55.6,
+        "rs_6m_pct": 0.8,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "normal",
+        "price_phase_implied": 2
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 2,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "First positive signal"
+      ],
+      "phase_signals_missing": [
+        "Revenue stabilizing",
+        "Beat low estimates"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:29",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "TSLA",
+      "phase": 2,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:39",
+      "created": "2026-05-13",
+      "theme": "Robotics",
+      "phase_name": "Accumulation",
+      "nrgc_composite_score": 35,
+      "action": "Build 25-30% of target",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 446.08,
+        "stage2": true,
+        "pct_from_52w_hi": -8.9,
+        "pct_from_52w_lo": 56.7,
+        "rs_6m_pct": 1.5,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "normal",
+        "price_phase_implied": 2
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 2,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "First positive signal"
+      ],
+      "phase_signals_missing": [
+        "Revenue stabilizing",
+        "Beat low estimates"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:39",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "TSLA",
+      "phase": 2,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:52",
+      "created": "2026-05-13",
+      "theme": "Robotics",
+      "phase_name": "Accumulation",
+      "nrgc_composite_score": 35,
+      "action": "Build 25-30% of target",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 447.06,
+        "stage2": true,
+        "pct_from_52w_hi": -8.7,
+        "pct_from_52w_lo": 57.0,
+        "rs_6m_pct": 1.7,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "normal",
+        "price_phase_implied": 2
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 2,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "First positive signal"
+      ],
+      "phase_signals_missing": [
+        "Revenue stabilizing",
+        "Beat low estimates"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:52",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "TSLA",
+      "phase": 2,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:57",
+      "created": "2026-05-13",
+      "theme": "Robotics",
+      "phase_name": "Accumulation",
+      "nrgc_composite_score": 35,
+      "action": "Build 25-30% of target",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 447.05,
+        "stage2": true,
+        "pct_from_52w_hi": -8.7,
+        "pct_from_52w_lo": 57.0,
+        "rs_6m_pct": 1.7,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "normal",
+        "price_phase_implied": 2
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 2,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "First positive signal"
+      ],
+      "phase_signals_missing": [
+        "Revenue stabilizing",
+        "Beat low estimates"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:57",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "TSLA",
+      "phase": 2,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 22:18",
+      "created": "2026-05-13",
+      "theme": "Robotics",
+      "phase_name": "Accumulation",
+      "nrgc_composite_score": 35,
+      "action": "Build 25-30% of target",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 449.4,
+        "stage2": true,
+        "pct_from_52w_hi": -8.3,
+        "pct_from_52w_lo": 57.9,
+        "rs_6m_pct": 2.2,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "normal",
+        "price_phase_implied": 2
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 2,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "First positive signal"
+      ],
+      "phase_signals_missing": [
+        "Revenue stabilizing",
+        "Beat low estimates"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 22:18",
+      "snapshot_date": "2026-05-13"
+    }
+  ],
+  "last_updated": "2026-05-13 22:29",
+  "created": "2026-05-13",
+  "theme": "Robotics",
+  "phase_name": "Accumulation",
+  "nrgc_composite_score": 32,
+  "action": "Build 25-30% of target",
+  "narrative": "TSLA stabilizing",
+  "narrative_traction": 0.0,
+  "revenue_signal": {
+    "qoq_trend": "no_data"
+  },
+  "price_signal": {
+    "valid": true,
+    "price": 450.25,
+    "stage2": true,
+    "pct_from_52w_hi": -8.1,
+    "pct_from_52w_lo": 58.1,
+    "rs_6m_pct": 2.4,
+    "ma150_gt_200": true,
+    "above_30wma": true,
+    "vol_trend": "normal",
+    "price_phase_implied": 2
+  },
+  "insider_signal": "neutral",
+  "narrative_signals": {
+    "signals": [],
+    "signal_count": 0,
+    "dominant_phase": null,
+    "positive_count": 0,
+    "negative_count": 0
+  },
+  "rule_phase": 2,
+  "rule_confidence": 1.0,
+  "phase_signals_confirmed": [
+    "First positive signal"
+  ],
+  "phase_signals_missing": [
+    "Revenue stabilizing",
+    "Beat low estimates"
+  ],
+  "kill_switches": [
+    "qoq_trend: declining",
+    "guidance cut"
+  ],
+  "primary_evidence": [
+    "price_phase_implied: 2",
+    "above_30wma: true",
+    "pct_from_52w_lo: 58.1"
+  ],
+  "assessed_at": "2026-05-13 22:29"
+}

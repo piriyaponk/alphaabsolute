@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AlphaAbsolute CIO Dashboard</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0d1117; color: #e6edf3; font-size: 14px; }
+  .header { background: #161b22; border-bottom: 1px solid #30363d; padding: 16px 28px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+  .header h1 { font-size: 18px; font-weight: 700; color: #fff; letter-spacing: 1px; }
+  .header .meta { color: #8b949e; font-size: 12px; text-align: right; line-height: 1.6; }
+  .container { max-width: 1600px; margin: 0 auto; padding: 20px 24px; }
+  .panel { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+  .panel h2 { font-size: 13px; font-weight: 600; color: #8b949e; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; border-bottom: 1px solid #21262d; padding-bottom: 10px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .stat-box { background: #0d1117; border: 1px solid #21262d; border-radius: 6px; padding: 16px; }
+  .stat-box .label { font-size: 11px; color: #8b949e; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
+  .stat-box .value { font-size: 26px; font-weight: 700; }
+  .stat-box .sub { font-size: 12px; color: #8b949e; margin-top: 4px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: #1c2128; color: #8b949e; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px; padding: 8px 10px; text-align: left; border-bottom: 1px solid #30363d; white-space: nowrap; }
+  td { padding: 10px 10px; border-bottom: 1px solid #21262d; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #1c2128; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 600; color: #fff; }
+  .flag-row { padding: 10px 14px; border-radius: 5px; margin: 6px 0; font-size: 13px; }
+  .flag-row.red { background: rgba(224,85,85,0.12); border-left: 3px solid #e05555; }
+  .flag-row.yellow { background: rgba(245,166,35,0.1); border-left: 3px solid #f5a623; }
+  .regime-chip { display: inline-block; padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; background: #1c2128; border: 1px solid #30363d; }
+  .scrollable { overflow-x: auto; }
+  code { background: #1c2128; padding: 1px 6px; border-radius: 3px; font-size: 12px; color: #79c0ff; }
+  a { color: #4fa3e0; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .empty-msg { text-align: center; color: #555; padding: 40px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>⚡ AlphaAbsolute CIO Dashboard</h1>
+    <div style="font-size:12px;color:#8b949e;margin-top:4px">Regime: <span class="regime-chip">Pending first macro brief</span></div>
+  </div>
+  <div class="meta">
+    Generated: 09 May 2026  16:16<br>
+    Portfolio as of: 2026-05-09
+  </div>
+</div>
+
+<div class="container">
+
+<!-- PANEL 1: Portfolio Snapshot -->
+<div class="panel">
+  <h2>📊 Portfolio Snapshot</h2>
+  <div class="grid2">
+    <div>
+      <div style="font-size:12px;color:#8b949e;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.8px">Asset Allocation</div>
+      
+    <div style="margin:6px 0">
+      <div style="display:flex;align-items:center;gap:8px">
+        <div style="width:120px;font-size:13px;color:#bbb">Stocks</div>
+        <div style="flex:1;background:#1e2530;border-radius:3px;height:18px;max-width:300px">
+          <div style="width:0%;background:#00c896;height:18px;border-radius:3px;transition:width 0.4s"></div>
+        </div>
+        <div style="width:45px;text-align:right;font-weight:700;color:#00c896;font-size:14px">0%</div>
+      </div>
+    </div>
+      
+    <div style="margin:6px 0">
+      <div style="display:flex;align-items:center;gap:8px">
+        <div style="width:120px;font-size:13px;color:#bbb">  └ US Equity</div>
+        <div style="flex:1;background:#1e2530;border-radius:3px;height:18px;max-width:300px">
+          <div style="width:0%;background:#4fa3e0;height:18px;border-radius:3px;transition:width 0.4s"></div>
+        </div>
+        <div style="width:45px;text-align:right;font-weight:700;color:#4fa3e0;font-size:14px">0%</div>
+      </div>
+    </div>
+      
+    <div style="margin:6px 0">
+      <div style="display:flex;align-items:center;gap:8px">
+        <div style="width:120px;font-size:13px;color:#bbb">  └ Thai Equity</div>
+        <div style="flex:1;background:#1e2530;border-radius:3px;height:18px;max-width:300px">
+          <div style="width:0%;background:#1a9e6e;height:18px;border-radius:3px;transition:width 0.4s"></div>
+        </div>
+        <div style="width:45px;text-align:right;font-weight:700;color:#1a9e6e;font-size:14px">0%</div>
+      </div>
+    </div>
+      
+    <div style="margin:6px 0">
+      <div style="display:flex;align-items:center;gap:8px">
+        <div style="width:120px;font-size:13px;color:#bbb">Gold</div>
+        <div style="flex:1;background:#1e2530;border-radius:3px;height:18px;max-width:300px">
+          <div style="width:0%;background:#f5a623;height:18px;border-radius:3px;transition:width 0.4s"></div>
+        </div>
+        <div style="width:45px;text-align:right;font-weight:700;color:#f5a623;font-size:14px">0%</div>
+      </div>
+    </div>
+      
+    <div style="margin:6px 0">
+      <div style="display:flex;align-items:center;gap:8px">
+        <div style="width:120px;font-size:13px;color:#bbb">Cash</div>
+        <div style="flex:1;background:#1e2530;border-radius:3px;height:18px;max-width:300px">
+          <div style="width:100%;background:#8b949e;height:18px;border-radius:3px;transition:width 0.4s"></div>
+        </div>
+        <div style="width:45px;text-align:right;font-weight:700;color:#8b949e;font-size:14px">100%</div>
+      </div>
+    </div>
+    </div>
+    <div>
+      <div class="grid2" style="gap:12px">
+        <div class="stat-box">
+          <div class="label">Total P&L</div>
+          <div class="value" style="color:#00c896">0.0%</div>
+          <div class="sub">Realized + Unrealized</div>
+        </div>
+        <div class="stat-box">
+          <div class="label">Win Rate</div>
+          <div class="value" style="color:#e05555">0%</div>
+          <div class="sub">0 closed trades</div>
+        </div>
+        <div class="stat-box">
+          <div class="label">Avg Winner</div>
+          <div class="value" style="color:#00c896">0.0%</div>
+        </div>
+        <div class="stat-box">
+          <div class="label">Avg Loser</div>
+          <div class="value" style="color:#e05555">0.0%</div>
+        </div>
+      </div>
+      <div style="margin-top:16px;display:flex;gap:16px">
+        <div class="stat-box" style="flex:1;text-align:center">
+          <div class="label">US Breadth %&gt;200DMA</div>
+          <div style="font-size:20px;font-weight:700;color:#888">—</div>
+        </div>
+        <div class="stat-box" style="flex:1;text-align:center">
+          <div class="label">SET Breadth %&gt;200DMA</div>
+          <div style="font-size:20px;font-weight:700;color:#888">—</div>
+        </div>
+        <div class="stat-box" style="flex:1;text-align:center">
+          <div class="label">Open Positions</div>
+          <div style="font-size:20px;font-weight:700;color:#e6edf3">0</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 2: Holdings Table -->
+<div class="panel">
+  <h2>📋 Current Holdings</h2>
+  <div class="scrollable">
+    <table>
+      <thead><tr>
+        <th>Ticker</th><th>Setup</th><th>Theme</th><th>Weight</th>
+        <th>Entry</th><th>Current</th><th>P&L</th>
+        <th>Stage</th><th>Wyckoff</th><th>RS(1M)</th><th>Stop</th>
+        <th>Gate</th><th>Why Bought</th><th>Sizing Reason</th>
+      </tr></thead>
+      <tbody><tr><td colspan="14" style="text-align:center;color:#555;padding:40px">No open positions yet — run <code>update portfolio</code> to add positions</td></tr></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- PANEL 3: Performance Attribution -->
+<div class="panel">
+  <h2>📈 Performance Attribution</h2>
+  <div class="grid2">
+    <div>
+      <div style="font-size:12px;color:#8b949e;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.8px">By Setup (Closed Trades)</div>
+      <table>
+        <thead><tr><th>Setup</th><th>Trades</th><th>Win Rate</th><th>Avg P&L</th></tr></thead>
+        <tbody><tr><td colspan="4" style="color:#555;text-align:center">No closed trades yet</td></tr></tbody>
+      </table>
+    </div>
+    <div>
+      <div style="font-size:12px;color:#8b949e;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.8px">By Theme (Open Positions)</div>
+      <table>
+        <thead><tr><th>Theme</th><th>Weight</th><th>Unrealized</th></tr></thead>
+        <tbody>
+        <tr><td>AI-Related</td><td>—</td><td style="color:#888">—</td></tr><tr><td>Memory / HBM</td><td>—</td><td style="color:#888">—</td></tr><tr><td>DefenseTech</td><td>—</td><td style="color:#888">—</td></tr><tr><td>AI Infrastructure</td><td>—</td><td style="color:#888">—</td></tr><tr><td>Photonics</td><td>—</td><td style="color:#888">—</td></tr><tr><td>Nuclear / SMR</td><td>—</td><td style="color:#888">—</td></tr><tr><td>Data Center</td><td>—</td><td style="color:#888">—</td></tr><tr><td>Space</td><td>—</td><td style="color:#888">—</td></tr><tr><td>Data Center Infra</td><td>—</td><td style="color:#888">—</td></tr><tr><td>NeoCloud</td><td>—</td><td style="color:#888">—</td></tr><tr><td>Robotics</td><td>—</td><td style="color:#888">—</td></tr><tr><td>Connectivity</td><td>—</td><td style="color:#888">—</td></tr><tr><td>Drone / UAV</td><td>—</td><td style="color:#888">—</td></tr><tr><td>Quantum Computing</td><td>—</td><td style="color:#888">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 4: Risk Monitor -->
+<div class="panel">
+  <h2>⚠️ Risk Monitor</h2>
+  <div style="color:#00c896;padding:12px">✅ No active risk flags</div>
+</div>
+
+<!-- PANEL 5b: Theme Heatmap -->
+<div class="panel">
+  <h2>🌡️ 14 Megatrend Theme Heatmap</h2>
+  <div class="scrollable">
+    <table>
+      <thead><tr>
+        <th>Theme</th>
+        <th>RS vs Mkt</th><th>News Flow</th><th>EPS Revisions</th><th>Inst. Flow</th>
+        <th>Signal</th><th>Portfolio Wt</th><th>Contrib (Unrealized)</th>
+      </tr></thead>
+      <tbody><tr><td>AI-Related</td><td>🟡</td><td>🟡</td><td>🟡</td><td>🟡</td><td>🟡 HOLD</td><td>—</td><td style="color:#00c896">—</td></tr><tr><td>Memory / HBM</td><td>🟡</td><td>🟡</td><td>🟡</td><td>🟡</td><td>🟡 HOLD</td><td>—</td><td style="color:#00c896">—</td></tr><tr><td>DefenseTech</td><td>🟡</td><td>🟡</td><td>🟡</td><td>🟡</td><td>🟡 HOLD</td><td>—</td><td style="color:#00c896">—</td></tr><tr><td>AI Infrastructure</td><td>🟡</td><td>🟡</td><td>🟡</td><td>🟡</td><td>🟡 HOLD</td><td>—</td><td style="color:#00c896">—</td></tr><tr><td>Photonics</td><td>🟡</td><td>🟡</td><td>🟡</td><td>🟡</td><td>🟡 HOLD</td><td>—</td><td style="color:#00c896">—</td></tr><tr><td>Nuclear / SMR</td><td>🟡</td><td>🟡</td><td>🟡</td><td>🟡</td><td>🟡 HOLD</td><td>—</td><td style="color:#00c896">—</td></tr><tr><td>Data Center</td><td>🟡</td><td>🟡</td><td>🟡</td><td>🟡</td><td>🟡 HOLD</td><td>—</td><td style="color:#00c896">—</td></tr><tr><td>Space</td><td>🟡</td><td>🟡</td><td>🟡</td><td>🟡</td><td>🟡 HOLD</td><td>—</td><td style="color:#00c896">—</td></tr><tr><td>Data Center Infra</td><td>🟡</td><td>🟡</td><td>🟡</td><td>🟡</td><td>🟡 HOLD</td><td>—</td><td style="color:#00c896">—</td></tr><tr><td>NeoCloud</td><td>🟡</td><td>🟡</td><td>🟡</td><td>🟡</td><td>🟡 HOLD</td><td>—</td><td style="color:#00c896">—</td></tr><tr><td>Robotics</td><td>🟡</td><td>🟡</td><td>🟡</td><td>🟡</td><td>🟡 HOLD</td><td>—</td><td style="color:#00c896">—</td></tr><tr><td>Connectivity</td><td>🟡</td><td>🟡</td><td>🟡</td><td>🟡</td><td>🟡 HOLD</td><td>—</td><td style="color:#00c896">—</td></tr><tr><td>Drone / UAV</td><td>🟡</td><td>🟡</td><td>🟡</td><td>🟡</td><td>🟡 HOLD</td><td>—</td><td style="color:#00c896">—</td></tr><tr><td>Quantum Computing</td><td>🟡</td><td>🟡</td><td>🟡</td><td>🟡</td><td>🟡 HOLD</td><td>—</td><td style="color:#00c896">—</td></tr></tbody>
+    </table>
+  </div>
+  <div style="margin-top:10px;font-size:11px;color:#555">
+    Note: RS / News / EPS / Inst. Flow signals update when Agent 5 (Thematic) runs weekly.
+    Run <code>study [theme]</code> for a deep dive on any row.
+  </div>
+</div>
+
+<!-- PANEL 5: Decision Log -->
+<div class="panel">
+  <h2>📝 Trade Log & Decision History</h2>
+  <div class="scrollable">
+    <table>
+      <thead><tr>
+        <th>Date</th><th>Ticker</th><th>Action</th><th>Setup</th><th>Size</th>
+        <th>Entry</th><th>Exit</th><th>P&L</th><th>Outcome</th><th>Wyckoff</th><th>Exit Reason</th>
+      </tr></thead>
+      <tbody><tr><td colspan="11" style="text-align:center;color:#555;padding:30px">No trades recorded yet</td></tr></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- PANEL 6: Improvement Tracker -->
+<div class="panel">
+  <h2>🔧 Improvement Tracker — แก้ไขยังไง</h2>
+  <div style="color:#555;padding:20px;text-align:center" id="improvements-placeholder">
+    No improvements logged yet. Improvements are added automatically by Agent 13 (Performance)
+    after post-mortems. Run <code>what went wrong with [TICKER]</code> after any loss.
+    <br><br>
+    Framework updates are tracked in <code>memory/framework_updates.md</code>
+  </div>
+</div>
+
+<!-- Recent Reports -->
+<div class="panel">
+  <h2>📄 Recent Output Files</h2>
+  <table>
+    <thead><tr><th>File</th><th>Generated</th><th>Size</th></tr></thead>
+    <tbody><tr><td colspan="3" style="color:#555;text-align:center">No reports generated yet</td></tr></tbody>
+  </table>
+</div>
+
+</div><!-- /container -->
+<script>
+  document.title = 'AlphaAbsolute Dashboard — ' + new Date().toLocaleDateString();
+</script>
+</body>
+</html>

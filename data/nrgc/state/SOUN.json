@@ -1,0 +1,436 @@
+{
+  "ticker": "SOUN",
+  "phase": 3,
+  "confidence": 0.8,
+  "history": [
+    {
+      "ticker": "SOUN",
+      "phase": null,
+      "confidence": 0,
+      "last_updated": null,
+      "created": "2026-05-13",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "SOUN",
+      "phase": 1,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:29",
+      "created": "2026-05-13",
+      "theme": "AI",
+      "phase_name": "Neglect",
+      "nrgc_composite_score": 35,
+      "action": "Watchlist only",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 7.99,
+        "stage2": false,
+        "pct_from_52w_hi": -62.7,
+        "pct_from_52w_lo": 35.4,
+        "rs_6m_pct": -40.6,
+        "ma150_gt_200": false,
+        "above_30wma": false,
+        "vol_trend": "normal",
+        "price_phase_implied": 1
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 1,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "Negative guidance"
+      ],
+      "phase_signals_missing": [
+        "Revenue declining",
+        "Analyst downgrades"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:29",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "SOUN",
+      "phase": 3,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 21:39",
+      "created": "2026-05-13",
+      "theme": "AI",
+      "phase_name": "Inflection",
+      "nrgc_composite_score": 41,
+      "action": "Full position — highest conviction",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "positive",
+        "phase_signal": 3,
+        "acceleration_score": 0,
+        "latest_qoq_pct": 5.1,
+        "prior_qoq_pct": -1.5,
+        "positive_quarters": 3,
+        "margin_trend": "unknown",
+        "latest_margin": null,
+        "history_summary": [
+          {
+            "q": "2025-03-31",
+            "qoq": 16.1
+          },
+          {
+            "q": "2025-06-30",
+            "qoq": 46.5
+          },
+          {
+            "q": "2025-09-30",
+            "qoq": -1.5
+          },
+          {
+            "q": "2026-03-31",
+            "qoq": 5.1
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 7.99,
+        "stage2": false,
+        "pct_from_52w_hi": -62.6,
+        "pct_from_52w_lo": 35.5,
+        "rs_6m_pct": -40.5,
+        "ma150_gt_200": false,
+        "above_30wma": false,
+        "vol_trend": "normal",
+        "price_phase_implied": 1
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 3,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [
+        "Revenue accelerating QoQ"
+      ],
+      "phase_signals_missing": [
+        "Guidance raised",
+        "Analyst upgrades beginning"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:39",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "SOUN",
+      "phase": 3,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 21:52",
+      "created": "2026-05-13",
+      "theme": "AI",
+      "phase_name": "Inflection",
+      "nrgc_composite_score": 41,
+      "action": "Full position — highest conviction",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "positive",
+        "phase_signal": 3,
+        "acceleration_score": 0,
+        "latest_qoq_pct": 5.1,
+        "prior_qoq_pct": -1.5,
+        "positive_quarters": 3,
+        "margin_trend": "unknown",
+        "latest_margin": null,
+        "history_summary": [
+          {
+            "q": "2025-03-31",
+            "qoq": 16.1
+          },
+          {
+            "q": "2025-06-30",
+            "qoq": 46.5
+          },
+          {
+            "q": "2025-09-30",
+            "qoq": -1.5
+          },
+          {
+            "q": "2026-03-31",
+            "qoq": 5.1
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 8.05,
+        "stage2": false,
+        "pct_from_52w_hi": -62.4,
+        "pct_from_52w_lo": 36.4,
+        "rs_6m_pct": -40.1,
+        "ma150_gt_200": false,
+        "above_30wma": false,
+        "vol_trend": "normal",
+        "price_phase_implied": 1
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 3,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [
+        "Revenue accelerating QoQ"
+      ],
+      "phase_signals_missing": [
+        "Guidance raised",
+        "Analyst upgrades beginning"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:52",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "SOUN",
+      "phase": 3,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 21:57",
+      "created": "2026-05-13",
+      "theme": "AI",
+      "phase_name": "Inflection",
+      "nrgc_composite_score": 41,
+      "action": "Full position — highest conviction",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "positive",
+        "phase_signal": 3,
+        "acceleration_score": 0,
+        "latest_qoq_pct": 5.1,
+        "prior_qoq_pct": -1.5,
+        "positive_quarters": 3,
+        "margin_trend": "unknown",
+        "latest_margin": null,
+        "history_summary": [
+          {
+            "q": "2025-03-31",
+            "qoq": 16.1
+          },
+          {
+            "q": "2025-06-30",
+            "qoq": 46.5
+          },
+          {
+            "q": "2025-09-30",
+            "qoq": -1.5
+          },
+          {
+            "q": "2026-03-31",
+            "qoq": 5.1
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 8.05,
+        "stage2": false,
+        "pct_from_52w_hi": -62.4,
+        "pct_from_52w_lo": 36.4,
+        "rs_6m_pct": -40.1,
+        "ma150_gt_200": false,
+        "above_30wma": false,
+        "vol_trend": "normal",
+        "price_phase_implied": 1
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 3,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [
+        "Revenue accelerating QoQ"
+      ],
+      "phase_signals_missing": [
+        "Guidance raised",
+        "Analyst upgrades beginning"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:57",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "SOUN",
+      "phase": 3,
+      "confidence": 0.6,
+      "last_updated": "2026-05-13 22:16",
+      "created": "2026-05-13",
+      "theme": "AI",
+      "phase_name": "Inflection",
+      "nrgc_composite_score": 41,
+      "action": "Full position — highest conviction",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "positive",
+        "phase_signal": 3,
+        "acceleration_score": 0,
+        "latest_qoq_pct": 5.1,
+        "prior_qoq_pct": -1.5,
+        "positive_quarters": 3,
+        "margin_trend": "unknown",
+        "latest_margin": null,
+        "history_summary": [
+          {
+            "q": "2025-03-31",
+            "qoq": 16.1
+          },
+          {
+            "q": "2025-06-30",
+            "qoq": 46.5
+          },
+          {
+            "q": "2025-09-30",
+            "qoq": -1.5
+          },
+          {
+            "q": "2026-03-31",
+            "qoq": 5.1
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 8.19,
+        "stage2": false,
+        "pct_from_52w_hi": -61.8,
+        "pct_from_52w_lo": 38.7,
+        "rs_6m_pct": -39.1,
+        "ma150_gt_200": false,
+        "above_30wma": false,
+        "vol_trend": "normal",
+        "price_phase_implied": 1
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 3,
+      "rule_confidence": 0.6,
+      "phase_signals_confirmed": [
+        "Revenue accelerating QoQ"
+      ],
+      "phase_signals_missing": [
+        "Guidance raised",
+        "Analyst upgrades beginning"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 22:16",
+      "snapshot_date": "2026-05-13"
+    }
+  ],
+  "last_updated": "2026-05-13 22:29",
+  "created": "2026-05-13",
+  "theme": "AI",
+  "phase_name": "Inflection",
+  "nrgc_composite_score": 43,
+  "action": "Full position — highest conviction",
+  "narrative": "AI growth accelerating",
+  "narrative_traction": 0.0,
+  "revenue_signal": {
+    "qoq_trend": "positive",
+    "phase_signal": 3,
+    "acceleration_score": 0,
+    "latest_qoq_pct": 5.1,
+    "prior_qoq_pct": -1.5,
+    "positive_quarters": 3,
+    "margin_trend": "unknown",
+    "latest_margin": null,
+    "history_summary": [
+      {
+        "q": "2025-03-31",
+        "qoq": 16.1
+      },
+      {
+        "q": "2025-06-30",
+        "qoq": 46.5
+      },
+      {
+        "q": "2025-09-30",
+        "qoq": -1.5
+      },
+      {
+        "q": "2026-03-31",
+        "qoq": 5.1
+      }
+    ]
+  },
+  "price_signal": {
+    "valid": true,
+    "price": 8.24,
+    "stage2": false,
+    "pct_from_52w_hi": -61.5,
+    "pct_from_52w_lo": 39.7,
+    "rs_6m_pct": -38.7,
+    "ma150_gt_200": false,
+    "above_30wma": false,
+    "vol_trend": "normal",
+    "price_phase_implied": 1
+  },
+  "insider_signal": "neutral",
+  "narrative_signals": {
+    "signals": [],
+    "signal_count": 0,
+    "dominant_phase": null,
+    "positive_count": 0,
+    "negative_count": 0
+  },
+  "rule_phase": 3,
+  "rule_confidence": 0.6,
+  "phase_signals_confirmed": [
+    "Revenue accelerating QoQ"
+  ],
+  "phase_signals_missing": [
+    "Guidance raised",
+    "Analyst upgrades beginning"
+  ],
+  "kill_switches": [
+    "Guidance cut",
+    "Negative revenue surprise",
+    "Analyst downgrades"
+  ],
+  "primary_evidence": [
+    "Revenue accelerating QoQ with latest_qoq_pct at 5.1",
+    "Positive qoq_trend and phase_signal of 3",
+    "Industry-specific context of Phase 3 signals for AI"
+  ],
+  "assessed_at": "2026-05-13 22:29"
+}

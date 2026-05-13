@@ -1,0 +1,419 @@
+{
+  "date": "2026-05-10",
+  "generated": "2026-05-10T21:08:51.021094",
+  "universe_count": 52,
+  "screened": 47,
+  "leader": [
+    {
+      "ticker": "RKLB",
+      "screen": "Leader",
+      "score": 115,
+      "screen_detail": {
+        "pass": true,
+        "score": 115,
+        "checks": {
+          "above_ma50": true,
+          "above_ma150": true,
+          "above_ma200": true,
+          "ma150_above_ma200": true,
+          "ma150_rising": true,
+          "from_52w_high": true,
+          "from_52w_low": true,
+          "rs_6m_positive": "True",
+          "rs_momentum_ok": "True",
+          "stage2": true
+        },
+        "vcp_signal": null,
+        "fail_reasons": []
+      },
+      "gate": {
+        "weinstein_stage": "Stage 2 [PASS]",
+        "wyckoff_phase": "Mark-Up / Distribution boundary \u2014 watch for UTAD",
+        "wyckoff_signal": "SOS (Sign of Strength) \u2014 expanding volume on up day",
+        "gate_verdict": "GREEN \u2014 proceed per setup rules",
+        "stage_pass": true
+      }
+    },
+    {
+      "ticker": "AMD",
+      "screen": "Leader",
+      "score": 113,
+      "screen_detail": {
+        "pass": true,
+        "score": 113,
+        "checks": {
+          "above_ma50": true,
+          "above_ma150": true,
+          "above_ma200": true,
+          "ma150_above_ma200": true,
+          "ma150_rising": true,
+          "from_52w_high": true,
+          "from_52w_low": true,
+          "rs_6m_positive": "True",
+          "rs_momentum_ok": "False",
+          "stage2": true
+        },
+        "vcp_signal": null,
+        "fail_reasons": []
+      },
+      "gate": {
+        "weinstein_stage": "Stage 2 [PASS]",
+        "wyckoff_phase": "Mark-Up / Distribution boundary \u2014 watch for UTAD",
+        "wyckoff_signal": "Late Markup / ATH zone",
+        "gate_verdict": "GREEN \u2014 proceed per setup rules",
+        "stage_pass": true
+      }
+    },
+    {
+      "ticker": "MRVL",
+      "screen": "Leader",
+      "score": 113,
+      "screen_detail": {
+        "pass": true,
+        "score": 113,
+        "checks": {
+          "above_ma50": true,
+          "above_ma150": true,
+          "above_ma200": true,
+          "ma150_above_ma200": true,
+          "ma150_rising": true,
+          "from_52w_high": true,
+          "from_52w_low": true,
+          "rs_6m_positive": "True",
+          "rs_momentum_ok": "False",
+          "stage2": true
+        },
+        "vcp_signal": null,
+        "fail_reasons": []
+      },
+      "gate": {
+        "weinstein_stage": "Stage 2 [PASS]",
+        "wyckoff_phase": "Mark-Up / Distribution boundary \u2014 watch for UTAD",
+        "wyckoff_signal": "None identified",
+        "gate_verdict": "GREEN \u2014 proceed per setup rules",
+        "stage_pass": true
+      }
+    },
+    {
+      "ticker": "MU",
+      "screen": "Leader",
+      "score": 113,
+      "screen_detail": {
+        "pass": true,
+        "score": 113,
+        "checks": {
+          "above_ma50": true,
+          "above_ma150": true,
+          "above_ma200": true,
+          "ma150_above_ma200": true,
+          "ma150_rising": true,
+          "from_52w_high": true,
+          "from_52w_low": true,
+          "rs_6m_positive": "True",
+          "rs_momentum_ok": "False",
+          "stage2": true
+        },
+        "vcp_signal": null,
+        "fail_reasons": []
+      },
+      "gate": {
+        "weinstein_stage": "Stage 2 [PASS]",
+        "wyckoff_phase": "Mark-Up / Distribution boundary \u2014 watch for UTAD",
+        "wyckoff_signal": "Late Markup / ATH zone",
+        "gate_verdict": "GREEN \u2014 proceed per setup rules",
+        "stage_pass": true
+      }
+    },
+    {
+      "ticker": "CIEN",
+      "screen": "Leader",
+      "score": 113,
+      "screen_detail": {
+        "pass": true,
+        "score": 113,
+        "checks": {
+          "above_ma50": true,
+          "above_ma150": true,
+          "above_ma200": true,
+          "ma150_above_ma200": true,
+          "ma150_rising": true,
+          "from_52w_high": true,
+          "from_52w_low": true,
+          "rs_6m_positive": "True",
+          "rs_momentum_ok": "False",
+          "stage2": true
+        },
+        "vcp_signal": null,
+        "fail_reasons": []
+      },
+      "gate": {
+        "weinstein_stage": "Stage 2 [PASS]",
+        "wyckoff_phase": "Possible LPS / Accumulation Phase D",
+        "wyckoff_signal": "None identified",
+        "gate_verdict": "GREEN \u2014 proceed per setup rules",
+        "stage_pass": true
+      }
+    },
+    {
+      "ticker": "COHR",
+      "screen": "Leader",
+      "score": 113,
+      "screen_detail": {
+        "pass": true,
+        "score": 113,
+        "checks": {
+          "above_ma50": true,
+          "above_ma150": true,
+          "above_ma200": true,
+          "ma150_above_ma200": true,
+          "ma150_rising": true,
+          "from_52w_high": true,
+          "from_52w_low": true,
+          "rs_6m_positive": "True",
+          "rs_momentum_ok": "False",
+          "stage2": true
+        },
+        "vcp_signal": null,
+        "fail_reasons": []
+      },
+      "gate": {
+        "weinstein_stage": "Stage 2 [PASS]",
+        "wyckoff_phase": "Possible LPS / Accumulation Phase D",
+        "wyckoff_signal": "None identified",
+        "gate_verdict": "GREEN \u2014 proceed per setup rules",
+        "stage_pass": true
+      }
+    },
+    {
+      "ticker": "AAOI",
+      "screen": "Leader",
+      "score": 113,
+      "screen_detail": {
+        "pass": true,
+        "score": 113,
+        "checks": {
+          "above_ma50": true,
+          "above_ma150": true,
+          "above_ma200": true,
+          "ma150_above_ma200": true,
+          "ma150_rising": true,
+          "from_52w_high": true,
+          "from_52w_low": true,
+          "rs_6m_positive": "True",
+          "rs_momentum_ok": "False",
+          "stage2": true
+        },
+        "vcp_signal": null,
+        "fail_reasons": []
+      },
+      "gate": {
+        "weinstein_stage": "Stage 2 [PASS]",
+        "wyckoff_phase": "Possible Spring / Accumulation Phase C",
+        "wyckoff_signal": "None identified",
+        "gate_verdict": "GREEN \u2014 proceed per setup rules",
+        "stage_pass": true
+      }
+    },
+    {
+      "ticker": "LITE",
+      "screen": "Leader",
+      "score": 113,
+      "screen_detail": {
+        "pass": true,
+        "score": 113,
+        "checks": {
+          "above_ma50": true,
+          "above_ma150": true,
+          "above_ma200": true,
+          "ma150_above_ma200": true,
+          "ma150_rising": true,
+          "from_52w_high": true,
+          "from_52w_low": true,
+          "rs_6m_positive": "True",
+          "rs_momentum_ok": "False",
+          "stage2": true
+        },
+        "vcp_signal": null,
+        "fail_reasons": []
+      },
+      "gate": {
+        "weinstein_stage": "Stage 2 [PASS]",
+        "wyckoff_phase": "Possible Spring / Accumulation Phase C",
+        "wyckoff_signal": "None identified",
+        "gate_verdict": "GREEN \u2014 proceed per setup rules",
+        "stage_pass": true
+      }
+    },
+    {
+      "ticker": "LUNR",
+      "screen": "Leader",
+      "score": 113,
+      "screen_detail": {
+        "pass": true,
+        "score": 113,
+        "checks": {
+          "above_ma50": true,
+          "above_ma150": true,
+          "above_ma200": true,
+          "ma150_above_ma200": true,
+          "ma150_rising": true,
+          "from_52w_high": true,
+          "from_52w_low": true,
+          "rs_6m_positive": "True",
+          "rs_momentum_ok": "False",
+          "stage2": true
+        },
+        "vcp_signal": null,
+        "fail_reasons": []
+      },
+      "gate": {
+        "weinstein_stage": "Stage 2 [PASS]",
+        "wyckoff_phase": "Possible LPS / Accumulation Phase D",
+        "wyckoff_signal": "None identified",
+        "gate_verdict": "GREEN \u2014 proceed per setup rules",
+        "stage_pass": true
+      }
+    },
+    {
+      "ticker": "DELL",
+      "screen": "Leader",
+      "score": 113,
+      "screen_detail": {
+        "pass": true,
+        "score": 113,
+        "checks": {
+          "above_ma50": true,
+          "above_ma150": true,
+          "above_ma200": true,
+          "ma150_above_ma200": true,
+          "ma150_rising": true,
+          "from_52w_high": true,
+          "from_52w_low": true,
+          "rs_6m_positive": "True",
+          "rs_momentum_ok": "False",
+          "stage2": true
+        },
+        "vcp_signal": null,
+        "fail_reasons": []
+      },
+      "gate": {
+        "weinstein_stage": "Stage 2 [PASS]",
+        "wyckoff_phase": "Mark-Up / Distribution boundary \u2014 watch for UTAD",
+        "wyckoff_signal": "SOS (Sign of Strength) \u2014 expanding volume on up day",
+        "gate_verdict": "GREEN \u2014 proceed per setup rules",
+        "stage_pass": true
+      }
+    }
+  ],
+  "bottom_fish": [
+    {
+      "ticker": "CACI",
+      "screen": "Bottom Fishing",
+      "score": 75,
+      "screen_detail": {
+        "pass": true,
+        "score": 75,
+        "checks": {
+          "rs_inflecting": "True",
+          "near_52w_low": true,
+          "rs_6m_low": "True",
+          "sos_volume": false,
+          "stage_1_to_2": true
+        },
+        "sos_signal": null,
+        "fail_reasons": []
+      },
+      "gate": {
+        "weinstein_stage": "Stage 3/4 [FAIL \u2014 do not buy]",
+        "wyckoff_phase": "Mark-Down / Possible Accumulation Phase A",
+        "wyckoff_signal": "None identified",
+        "gate_verdict": "RED \u2014 do not buy (Stage 3/4 or criteria not met)",
+        "stage_pass": false
+      }
+    },
+    {
+      "ticker": "ISRG",
+      "screen": "Bottom Fishing",
+      "score": 75,
+      "screen_detail": {
+        "pass": true,
+        "score": 75,
+        "checks": {
+          "rs_inflecting": "True",
+          "near_52w_low": true,
+          "rs_6m_low": "True",
+          "sos_volume": false,
+          "stage_1_to_2": true
+        },
+        "sos_signal": null,
+        "fail_reasons": []
+      },
+      "gate": {
+        "weinstein_stage": "Stage 3/4 [FAIL \u2014 do not buy]",
+        "wyckoff_phase": "Mark-Down / Possible Accumulation Phase A",
+        "wyckoff_signal": "None identified",
+        "gate_verdict": "RED \u2014 do not buy (Stage 3/4 or criteria not met)",
+        "stage_pass": false
+      }
+    },
+    {
+      "ticker": "SAIC",
+      "screen": "Bottom Fishing",
+      "score": 70,
+      "screen_detail": {
+        "pass": true,
+        "score": 70,
+        "checks": {
+          "rs_inflecting": "True",
+          "near_52w_low": true,
+          "rs_6m_low": "True",
+          "sos_volume": false,
+          "stage_1_to_2": true
+        },
+        "sos_signal": null,
+        "fail_reasons": []
+      },
+      "gate": {
+        "weinstein_stage": "Stage 3/4 [FAIL \u2014 do not buy]",
+        "wyckoff_phase": "Mark-Down / Possible Accumulation Phase A",
+        "wyckoff_signal": "None identified",
+        "gate_verdict": "RED \u2014 do not buy (Stage 3/4 or criteria not met)",
+        "stage_pass": false
+      }
+    }
+  ],
+  "hypergrowth": [
+    {
+      "ticker": "RKLB",
+      "screen": "Hypergrowth",
+      "score": 98,
+      "screen_detail": {
+        "pass": true,
+        "score": 98,
+        "checks": {
+          "stage2": true,
+          "rs_6m_strong": "True",
+          "rs_accelerating": "True",
+          "not_extended": true,
+          "hyper_theme": true,
+          "base_forming": true
+        },
+        "base_signal": "Breakout: vol 3.2x avg, up +34.2%",
+        "fail_reasons": []
+      },
+      "gate": {
+        "weinstein_stage": "Stage 2 [PASS]",
+        "wyckoff_phase": "Mark-Up / Distribution boundary \u2014 watch for UTAD",
+        "wyckoff_signal": "SOS (Sign of Strength) \u2014 expanding volume on up day",
+        "gate_verdict": "GREEN \u2014 proceed per setup rules",
+        "stage_pass": true
+      }
+    }
+  ],
+  "spy_benchmark": {
+    "ret_6m": 8.761698696704467,
+    "ret_3m": 7.788578884413799,
+    "ret_1m": 8.487891669797376,
+    "ret_1w": 2.7311576558610495
+  }
+}

@@ -1,0 +1,1463 @@
+{
+  "NVDA": {
+    "ticker": "NVDA",
+    "theme": "AI",
+    "revenue_analysis": {
+      "qoq_trend": "strong",
+      "phase_signal": 4,
+      "acceleration_score": 0.09,
+      "latest_qoq_pct": 22.0,
+      "prior_qoq_pct": 6.1,
+      "positive_quarters": 4,
+      "margin_trend": "stable",
+      "latest_margin": 73.4,
+      "history_summary": [
+        {
+          "q": "2024-10-27",
+          "qoq": 16.8
+        },
+        {
+          "q": "2025-04-27",
+          "qoq": 25.6
+        },
+        {
+          "q": "2025-07-27",
+          "qoq": 6.1
+        },
+        {
+          "q": "2025-10-26",
+          "qoq": 22.0
+        }
+      ]
+    },
+    "earnings_history": [
+      {
+        "quarter": "2024-07-28",
+        "revenue": 30040000000,
+        "gross_profit": 22574000000,
+        "gross_margin": 75.1
+      },
+      {
+        "quarter": "2024-10-27",
+        "revenue": 35082000000,
+        "gross_profit": 26156000000,
+        "gross_margin": 74.6,
+        "revenue_qoq_pct": 16.8
+      },
+      {
+        "quarter": "2025-04-27",
+        "revenue": 44062000000,
+        "gross_profit": 26668000000,
+        "gross_margin": 60.5,
+        "revenue_qoq_pct": 25.6
+      },
+      {
+        "quarter": "2025-07-27",
+        "revenue": 46743000000,
+        "gross_profit": 33853000000,
+        "gross_margin": 72.4,
+        "revenue_qoq_pct": 6.1
+      },
+      {
+        "quarter": "2025-10-26",
+        "revenue": 57006000000,
+        "gross_profit": 41849000000,
+        "gross_margin": 73.4,
+        "revenue_qoq_pct": 22.0,
+        "revenue_yoy_pct": 89.8
+      }
+    ],
+    "recent_8k_count": 4,
+    "earnings_8k_count": 1,
+    "latest_filing_date": "2026-05-08"
+  },
+  "MSFT": {
+    "ticker": "MSFT",
+    "theme": "AI",
+    "revenue_analysis": {
+      "qoq_trend": "flat_to_slightly_positive",
+      "phase_signal": 5,
+      "acceleration_score": 0.02,
+      "latest_qoq_pct": 2.0,
+      "prior_qoq_pct": 4.6,
+      "positive_quarters": 4,
+      "margin_trend": "stable",
+      "latest_margin": 67.6,
+      "history_summary": [
+        {
+          "q": "2025-03-31",
+          "qoq": 0.6
+        },
+        {
+          "q": "2025-09-30",
+          "qoq": 10.9
+        },
+        {
+          "q": "2025-12-31",
+          "qoq": 4.6
+        },
+        {
+          "q": "2026-03-31",
+          "qoq": 2.0
+        }
+      ]
+    },
+    "earnings_history": [
+      {
+        "quarter": "2024-09-30",
+        "revenue": 65585000000,
+        "gross_profit": 45486000000,
+        "gross_margin": 69.4
+      },
+      {
+        "quarter": "2024-12-31",
+        "revenue": 69632000000,
+        "gross_profit": 47833000000,
+        "gross_margin": 68.7,
+        "revenue_qoq_pct": 6.2
+      },
+      {
+        "quarter": "2025-03-31",
+        "revenue": 70066000000,
+        "gross_profit": 48147000000,
+        "gross_margin": 68.7,
+        "revenue_qoq_pct": 0.6
+      },
+      {
+        "quarter": "2025-09-30",
+        "revenue": 77673000000,
+        "gross_profit": 53630000000,
+        "gross_margin": 69.0,
+        "revenue_qoq_pct": 10.9
+      },
+      {
+        "quarter": "2025-12-31",
+        "revenue": 81273000000,
+        "gross_profit": 55295000000,
+        "gross_margin": 68.0,
+        "revenue_qoq_pct": 4.6,
+        "revenue_yoy_pct": 23.9
+      },
+      {
+        "quarter": "2026-03-31",
+        "revenue": 82886000000,
+        "gross_profit": 56058000000,
+        "gross_margin": 67.6,
+        "revenue_qoq_pct": 2.0,
+        "revenue_yoy_pct": 19.0
+      }
+    ],
+    "recent_8k_count": 1,
+    "earnings_8k_count": 1,
+    "latest_filing_date": "2026-04-29"
+  },
+  "PLTR": {
+    "ticker": "PLTR",
+    "theme": "DefenseTech",
+    "revenue_analysis": {
+      "qoq_trend": "accelerating_strongly",
+      "phase_signal": 4,
+      "acceleration_score": 0.27,
+      "latest_qoq_pct": 38.2,
+      "prior_qoq_pct": 17.7,
+      "positive_quarters": 4,
+      "margin_trend": "expanding",
+      "latest_margin": 86.8,
+      "history_summary": [
+        {
+          "q": "2025-03-31",
+          "qoq": 21.8
+        },
+        {
+          "q": "2025-06-30",
+          "qoq": 13.6
+        },
+        {
+          "q": "2025-09-30",
+          "qoq": 17.7
+        },
+        {
+          "q": "2026-03-31",
+          "qoq": 38.2
+        }
+      ]
+    },
+    "earnings_history": [
+      {
+        "quarter": "2024-06-30",
+        "revenue": 678134000,
+        "gross_profit": 549572000,
+        "gross_margin": 81.0
+      },
+      {
+        "quarter": "2024-09-30",
+        "revenue": 725516000,
+        "gross_profit": 578877000,
+        "gross_margin": 79.8,
+        "revenue_qoq_pct": 7.0
+      },
+      {
+        "quarter": "2025-03-31",
+        "revenue": 883855000,
+        "gross_profit": 710885000,
+        "gross_margin": 80.4,
+        "revenue_qoq_pct": 21.8
+      },
+      {
+        "quarter": "2025-06-30",
+        "revenue": 1003697000,
+        "gross_profit": 810763000,
+        "gross_margin": 80.8,
+        "revenue_qoq_pct": 13.6
+      },
+      {
+        "quarter": "2025-09-30",
+        "revenue": 1181092000,
+        "gross_profit": 973785000,
+        "gross_margin": 82.4,
+        "revenue_qoq_pct": 17.7,
+        "revenue_yoy_pct": 74.2
+      },
+      {
+        "quarter": "2026-03-31",
+        "revenue": 1632583000,
+        "gross_profit": 1416785000,
+        "gross_margin": 86.8,
+        "revenue_qoq_pct": 38.2,
+        "revenue_yoy_pct": 125.0
+      }
+    ],
+    "recent_8k_count": 1,
+    "earnings_8k_count": 1,
+    "latest_filing_date": "2026-05-04"
+  },
+  "SOUN": {
+    "ticker": "SOUN",
+    "theme": "AI",
+    "revenue_analysis": {
+      "qoq_trend": "positive",
+      "phase_signal": 3,
+      "acceleration_score": 0,
+      "latest_qoq_pct": 5.1,
+      "prior_qoq_pct": -1.5,
+      "positive_quarters": 3,
+      "margin_trend": "unknown",
+      "latest_margin": null,
+      "history_summary": [
+        {
+          "q": "2025-03-31",
+          "qoq": 16.1
+        },
+        {
+          "q": "2025-06-30",
+          "qoq": 46.5
+        },
+        {
+          "q": "2025-09-30",
+          "qoq": -1.5
+        },
+        {
+          "q": "2026-03-31",
+          "qoq": 5.1
+        }
+      ]
+    },
+    "earnings_history": [
+      {
+        "quarter": "2024-06-30",
+        "revenue": 13462000,
+        "gross_profit": null,
+        "gross_margin": null
+      },
+      {
+        "quarter": "2024-09-30",
+        "revenue": 25094000,
+        "gross_profit": null,
+        "gross_margin": null,
+        "revenue_qoq_pct": 86.4
+      },
+      {
+        "quarter": "2025-03-31",
+        "revenue": 29129000,
+        "gross_profit": null,
+        "gross_margin": null,
+        "revenue_qoq_pct": 16.1
+      },
+      {
+        "quarter": "2025-06-30",
+        "revenue": 42683000,
+        "gross_profit": null,
+        "gross_margin": null,
+        "revenue_qoq_pct": 46.5
+      },
+      {
+        "quarter": "2025-09-30",
+        "revenue": 42049000,
+        "gross_profit": null,
+        "gross_margin": null,
+        "revenue_qoq_pct": -1.5,
+        "revenue_yoy_pct": 212.4
+      },
+      {
+        "quarter": "2026-03-31",
+        "revenue": 44195000,
+        "gross_profit": null,
+        "gross_margin": null,
+        "revenue_qoq_pct": 5.1,
+        "revenue_yoy_pct": 76.1
+      }
+    ],
+    "recent_8k_count": 4,
+    "earnings_8k_count": 2,
+    "latest_filing_date": "2026-05-07"
+  },
+  "CRWV": {
+    "ticker": "CRWV",
+    "theme": "NeoCloud",
+    "revenue_analysis": {
+      "qoq_trend": "accelerating_strongly",
+      "phase_signal": 4,
+      "acceleration_score": 0,
+      "latest_qoq_pct": 52.3,
+      "prior_qoq_pct": 12.5,
+      "positive_quarters": 4,
+      "margin_trend": "unknown",
+      "latest_margin": null,
+      "history_summary": [
+        {
+          "q": "2025-03-31",
+          "qoq": 68.2
+        },
+        {
+          "q": "2025-06-30",
+          "qoq": 23.5
+        },
+        {
+          "q": "2025-09-30",
+          "qoq": 12.5
+        },
+        {
+          "q": "2026-03-31",
+          "qoq": 52.3
+        }
+      ]
+    },
+    "earnings_history": [
+      {
+        "quarter": "2024-06-30",
+        "revenue": 395371000,
+        "gross_profit": null,
+        "gross_margin": null
+      },
+      {
+        "quarter": "2024-09-30",
+        "revenue": 583941000,
+        "gross_profit": null,
+        "gross_margin": null,
+        "revenue_qoq_pct": 47.7
+      },
+      {
+        "quarter": "2025-03-31",
+        "revenue": 982000000,
+        "gross_profit": null,
+        "gross_margin": null,
+        "revenue_qoq_pct": 68.2
+      },
+      {
+        "quarter": "2025-06-30",
+        "revenue": 1212788000,
+        "gross_profit": null,
+        "gross_margin": null,
+        "revenue_qoq_pct": 23.5
+      },
+      {
+        "quarter": "2025-09-30",
+        "revenue": 1364676000,
+        "gross_profit": null,
+        "gross_margin": null,
+        "revenue_qoq_pct": 12.5,
+        "revenue_yoy_pct": 245.2
+      },
+      {
+        "quarter": "2026-03-31",
+        "revenue": 2078000000,
+        "gross_profit": null,
+        "gross_margin": null,
+        "revenue_qoq_pct": 52.3,
+        "revenue_yoy_pct": 255.9
+      }
+    ],
+    "recent_8k_count": 8,
+    "earnings_8k_count": 2,
+    "latest_filing_date": "2026-05-07"
+  },
+  "MU": {
+    "ticker": "MU",
+    "theme": "Memory/HBM",
+    "revenue_analysis": {
+      "qoq_trend": "accelerating_strongly",
+      "phase_signal": 3,
+      "acceleration_score": 1,
+      "latest_qoq_pct": 74.9,
+      "prior_qoq_pct": 46.7,
+      "positive_quarters": 3,
+      "margin_trend": "expanding",
+      "latest_margin": 74.4,
+      "history_summary": [
+        {
+          "q": "2025-02-27",
+          "qoq": -7.5
+        },
+        {
+          "q": "2025-05-29",
+          "qoq": 15.5
+        },
+        {
+          "q": "2025-11-27",
+          "qoq": 46.7
+        },
+        {
+          "q": "2026-02-26",
+          "qoq": 74.9
+        }
+      ]
+    },
+    "earnings_history": [
+      {
+        "quarter": "2024-05-30",
+        "revenue": 6811000000,
+        "gross_profit": 1832000000,
+        "gross_margin": 26.9
+      },
+      {
+        "quarter": "2024-11-28",
+        "revenue": 8709000000,
+        "gross_profit": 3348000000,
+        "gross_margin": 38.4,
+        "revenue_qoq_pct": 27.9
+      },
+      {
+        "quarter": "2025-02-27",
+        "revenue": 8053000000,
+        "gross_profit": 2963000000,
+        "gross_margin": 36.8,
+        "revenue_qoq_pct": -7.5
+      },
+      {
+        "quarter": "2025-05-29",
+        "revenue": 9301000000,
+        "gross_profit": 3508000000,
+        "gross_margin": 37.7,
+        "revenue_qoq_pct": 15.5
+      },
+      {
+        "quarter": "2025-11-27",
+        "revenue": 13643000000,
+        "gross_profit": 7646000000,
+        "gross_margin": 56.0,
+        "revenue_qoq_pct": 46.7,
+        "revenue_yoy_pct": 100.3
+      },
+      {
+        "quarter": "2026-02-26",
+        "revenue": 23860000000,
+        "gross_profit": 17755000000,
+        "gross_margin": 74.4,
+        "revenue_qoq_pct": 74.9,
+        "revenue_yoy_pct": 174.0
+      }
+    ],
+    "recent_8k_count": 3,
+    "earnings_8k_count": 1,
+    "latest_filing_date": "2026-04-01"
+  },
+  "WDC": {
+    "ticker": "WDC",
+    "theme": "Memory/HBM",
+    "revenue_analysis": {
+      "qoq_trend": "positive",
+      "phase_signal": 3,
+      "acceleration_score": 0,
+      "latest_qoq_pct": 10.6,
+      "prior_qoq_pct": 7.1,
+      "positive_quarters": 4,
+      "margin_trend": "expanding",
+      "latest_margin": 50.2,
+      "history_summary": [
+        {
+          "q": "2025-06-27",
+          "qoq": 13.6
+        },
+        {
+          "q": "2025-10-03",
+          "qoq": 8.2
+        },
+        {
+          "q": "2026-01-02",
+          "qoq": 7.1
+        },
+        {
+          "q": "2026-04-03",
+          "qoq": 10.6
+        }
+      ]
+    },
+    "earnings_history": [
+      {
+        "quarter": "2024-06-28",
+        "revenue": 2004000000,
+        "gross_profit": 697000000,
+        "gross_margin": 34.8
+      },
+      {
+        "quarter": "2024-09-27",
+        "revenue": 4095000000,
+        "gross_profit": 1551000000,
+        "gross_margin": 37.9,
+        "revenue_qoq_pct": 104.3
+      },
+      {
+        "quarter": "2024-12-27",
+        "revenue": 4285000000,
+        "gross_profit": 1516000000,
+        "gross_margin": 35.4,
+        "revenue_qoq_pct": 4.6
+      },
+      {
+        "quarter": "2025-03-28",
+        "revenue": 2294000000,
+        "gross_profit": 912000000,
+        "gross_margin": 39.8,
+        "revenue_qoq_pct": -46.5
+      },
+      {
+        "quarter": "2025-06-27",
+        "revenue": 2605000000,
+        "gross_profit": 1067000000,
+        "gross_margin": 41.0,
+        "revenue_qoq_pct": 13.6,
+        "revenue_yoy_pct": 30.0
+      },
+      {
+        "quarter": "2025-10-03",
+        "revenue": 2818000000,
+        "gross_profit": 1227000000,
+        "gross_margin": 43.5,
+        "revenue_qoq_pct": 8.2,
+        "revenue_yoy_pct": -31.2
+      },
+      {
+        "quarter": "2026-01-02",
+        "revenue": 3017000000,
+        "gross_profit": 1380000000,
+        "gross_margin": 45.7,
+        "revenue_qoq_pct": 7.1,
+        "revenue_yoy_pct": -29.6
+      },
+      {
+        "quarter": "2026-04-03",
+        "revenue": 3337000000,
+        "gross_profit": 1676000000,
+        "gross_margin": 50.2,
+        "revenue_qoq_pct": 10.6,
+        "revenue_yoy_pct": 45.5
+      }
+    ],
+    "recent_8k_count": 3,
+    "earnings_8k_count": 1,
+    "latest_filing_date": "2026-04-30"
+  },
+  "AMAT": {
+    "ticker": "AMAT",
+    "theme": "Memory/HBM",
+    "revenue_analysis": {
+      "qoq_trend": "negative",
+      "phase_signal": 2,
+      "acceleration_score": 0,
+      "latest_qoq_pct": -4.0,
+      "prior_qoq_pct": 2.8,
+      "positive_quarters": 2,
+      "margin_trend": "expanding",
+      "latest_margin": 49.0,
+      "history_summary": [
+        {
+          "q": "2025-01-26",
+          "qoq": 5.7
+        },
+        {
+          "q": "2025-04-27",
+          "qoq": -0.9
+        },
+        {
+          "q": "2025-07-27",
+          "qoq": 2.8
+        },
+        {
+          "q": "2026-01-25",
+          "qoq": -4.0
+        }
+      ]
+    },
+    "earnings_history": [
+      {
+        "quarter": "2024-07-28",
+        "revenue": 6778000000,
+        "gross_profit": 3205000000,
+        "gross_margin": 47.3
+      },
+      {
+        "quarter": "2025-01-26",
+        "revenue": 7166000000,
+        "gross_profit": 3496000000,
+        "gross_margin": 48.8,
+        "revenue_qoq_pct": 5.7
+      },
+      {
+        "quarter": "2025-04-27",
+        "revenue": 7100000000,
+        "gross_profit": 3485000000,
+        "gross_margin": 49.1,
+        "revenue_qoq_pct": -0.9
+      },
+      {
+        "quarter": "2025-07-27",
+        "revenue": 7302000000,
+        "gross_profit": 3562000000,
+        "gross_margin": 48.8,
+        "revenue_qoq_pct": 2.8
+      },
+      {
+        "quarter": "2026-01-25",
+        "revenue": 7012000000,
+        "gross_profit": 3435000000,
+        "gross_margin": 49.0,
+        "revenue_qoq_pct": -4.0,
+        "revenue_yoy_pct": 3.5
+      }
+    ],
+    "recent_8k_count": 1,
+    "earnings_8k_count": 0,
+    "latest_filing_date": "2026-03-13"
+  },
+  "MRAM": {
+    "ticker": "MRAM",
+    "theme": "Memory/HBM",
+    "revenue_analysis": {
+      "qoq_trend": "positive",
+      "phase_signal": 4,
+      "acceleration_score": 0,
+      "latest_qoq_pct": 5.8,
+      "prior_qoq_pct": 6.5,
+      "positive_quarters": 4,
+      "margin_trend": "expanding",
+      "latest_margin": 52.7,
+      "history_summary": [
+        {
+          "q": "2025-03-31",
+          "qoq": 8.6
+        },
+        {
+          "q": "2025-06-30",
+          "qoq": 0.5
+        },
+        {
+          "q": "2025-09-30",
+          "qoq": 6.5
+        },
+        {
+          "q": "2026-03-31",
+          "qoq": 5.8
+        }
+      ]
+    },
+    "earnings_history": [
+      {
+        "quarter": "2024-06-30",
+        "revenue": 10636000,
+        "gross_profit": 5216000,
+        "gross_margin": 49.0
+      },
+      {
+        "quarter": "2024-09-30",
+        "revenue": 12093000,
+        "gross_profit": 5952000,
+        "gross_margin": 49.2,
+        "revenue_qoq_pct": 13.7
+      },
+      {
+        "quarter": "2025-03-31",
+        "revenue": 13138000,
+        "gross_profit": 6753000,
+        "gross_margin": 51.4,
+        "revenue_qoq_pct": 8.6
+      },
+      {
+        "quarter": "2025-06-30",
+        "revenue": 13201000,
+        "gross_profit": 6768000,
+        "gross_margin": 51.3,
+        "revenue_qoq_pct": 0.5
+      },
+      {
+        "quarter": "2025-09-30",
+        "revenue": 14060000,
+        "gross_profit": 7206000,
+        "gross_margin": 51.3,
+        "revenue_qoq_pct": 6.5,
+        "revenue_yoy_pct": 32.2
+      },
+      {
+        "quarter": "2026-03-31",
+        "revenue": 14872000,
+        "gross_profit": 7843000,
+        "gross_margin": 52.7,
+        "revenue_qoq_pct": 5.8,
+        "revenue_yoy_pct": 23.0
+      }
+    ],
+    "recent_8k_count": 4,
+    "earnings_8k_count": 2,
+    "latest_filing_date": "2026-04-29"
+  },
+  "RKLB": {
+    "ticker": "RKLB",
+    "theme": "Space",
+    "revenue_analysis": {
+      "qoq_trend": "strong",
+      "phase_signal": 4,
+      "acceleration_score": 0.21,
+      "latest_qoq_pct": 29.2,
+      "prior_qoq_pct": 7.3,
+      "positive_quarters": 4,
+      "margin_trend": "expanding",
+      "latest_margin": 38.2,
+      "history_summary": [
+        {
+          "q": "2025-03-31",
+          "qoq": 16.9
+        },
+        {
+          "q": "2025-06-30",
+          "qoq": 17.9
+        },
+        {
+          "q": "2025-09-30",
+          "qoq": 7.3
+        },
+        {
+          "q": "2026-03-31",
+          "qoq": 29.2
+        }
+      ]
+    },
+    "earnings_history": [
+      {
+        "quarter": "2024-06-30",
+        "revenue": 106251000,
+        "gross_profit": 27162000,
+        "gross_margin": 25.6
+      },
+      {
+        "quarter": "2024-09-30",
+        "revenue": 104808000,
+        "gross_profit": 27996000,
+        "gross_margin": 26.7,
+        "revenue_qoq_pct": -1.4
+      },
+      {
+        "quarter": "2025-03-31",
+        "revenue": 122569000,
+        "gross_profit": 35247000,
+        "gross_margin": 28.8,
+        "revenue_qoq_pct": 16.9
+      },
+      {
+        "quarter": "2025-06-30",
+        "revenue": 144498000,
+        "gross_profit": 46388000,
+        "gross_margin": 32.1,
+        "revenue_qoq_pct": 17.9
+      },
+      {
+        "quarter": "2025-09-30",
+        "revenue": 155080000,
+        "gross_profit": 57314000,
+        "gross_margin": 37.0,
+        "revenue_qoq_pct": 7.3,
+        "revenue_yoy_pct": 46.0
+      },
+      {
+        "quarter": "2026-03-31",
+        "revenue": 200348000,
+        "gross_profit": 76493000,
+        "gross_margin": 38.2,
+        "revenue_qoq_pct": 29.2,
+        "revenue_yoy_pct": 91.2
+      }
+    ],
+    "recent_8k_count": 7,
+    "earnings_8k_count": 2,
+    "latest_filing_date": "2026-05-08"
+  },
+  "LUNR": {
+    "ticker": "LUNR",
+    "theme": "Space",
+    "revenue_analysis": {
+      "qoq_trend": "insufficient_data",
+      "phase_signal": null
+    },
+    "earnings_history": [
+      {
+        "quarter": "2024-09-30",
+        "revenue": 58478000,
+        "gross_profit": null,
+        "gross_margin": null
+      },
+      {
+        "quarter": "2025-09-30",
+        "revenue": 52437000,
+        "gross_profit": null,
+        "gross_margin": null,
+        "revenue_qoq_pct": -10.3
+      }
+    ],
+    "recent_8k_count": 4,
+    "earnings_8k_count": 1,
+    "latest_filing_date": "2026-04-01"
+  },
+  "ASTS": {
+    "ticker": "ASTS",
+    "theme": "Space",
+    "revenue_analysis": {
+      "qoq_trend": "insufficient_data",
+      "phase_signal": null
+    },
+    "earnings_history": [
+      {
+        "quarter": "2024-06-30",
+        "revenue": 900000,
+        "gross_profit": null,
+        "gross_margin": null
+      },
+      {
+        "quarter": "2024-09-30",
+        "revenue": 1100000,
+        "gross_profit": null,
+        "gross_margin": null,
+        "revenue_qoq_pct": 22.2
+      }
+    ],
+    "recent_8k_count": 6,
+    "earnings_8k_count": 2,
+    "latest_filing_date": "2026-05-11"
+  },
+  "RDW": {
+    "ticker": "RDW",
+    "theme": "Space",
+    "revenue_analysis": {
+      "qoq_trend": "negative",
+      "phase_signal": 2,
+      "acceleration_score": 0.07,
+      "latest_qoq_pct": -6.2,
+      "prior_qoq_pct": 67.5,
+      "positive_quarters": 2,
+      "margin_trend": "expanding",
+      "latest_margin": 26.6,
+      "history_summary": [
+        {
+          "q": "2025-03-31",
+          "qoq": -10.6
+        },
+        {
+          "q": "2025-06-30",
+          "qoq": 0.6
+        },
+        {
+          "q": "2025-09-30",
+          "qoq": 67.5
+        },
+        {
+          "q": "2026-03-31",
+          "qoq": -6.2
+        }
+      ]
+    },
+    "earnings_history": [
+      {
+        "quarter": "2024-06-30",
+        "revenue": 78111000,
+        "gross_profit": 12984000,
+        "gross_margin": 16.6
+      },
+      {
+        "quarter": "2024-09-30",
+        "revenue": 68638000,
+        "gross_profit": 12023000,
+        "gross_margin": 17.5,
+        "revenue_qoq_pct": -12.1
+      },
+      {
+        "quarter": "2025-03-31",
+        "revenue": 61395000,
+        "gross_profit": 9041000,
+        "gross_margin": 14.7,
+        "revenue_qoq_pct": -10.6
+      },
+      {
+        "quarter": "2025-06-30",
+        "revenue": 61760000,
+        "gross_profit": -19064000,
+        "gross_margin": -30.9,
+        "revenue_qoq_pct": 0.6
+      },
+      {
+        "quarter": "2025-09-30",
+        "revenue": 103432000,
+        "gross_profit": 16810000,
+        "gross_margin": 16.3,
+        "revenue_qoq_pct": 67.5,
+        "revenue_yoy_pct": 32.4
+      },
+      {
+        "quarter": "2026-03-31",
+        "revenue": 96972000,
+        "gross_profit": 25808000,
+        "gross_margin": 26.6,
+        "revenue_qoq_pct": -6.2,
+        "revenue_yoy_pct": 41.3
+      }
+    ],
+    "recent_8k_count": 6,
+    "earnings_8k_count": 3,
+    "latest_filing_date": "2026-05-06"
+  },
+  "IONQ": {
+    "ticker": "IONQ",
+    "theme": "Quantum",
+    "revenue_analysis": {
+      "qoq_trend": "accelerating_strongly",
+      "phase_signal": 3,
+      "acceleration_score": 1,
+      "latest_qoq_pct": 62.2,
+      "prior_qoq_pct": 92.6,
+      "positive_quarters": 3,
+      "margin_trend": "unknown",
+      "latest_margin": null,
+      "history_summary": [
+        {
+          "q": "2025-03-31",
+          "qoq": -39.0
+        },
+        {
+          "q": "2025-06-30",
+          "qoq": 173.5
+        },
+        {
+          "q": "2025-09-30",
+          "qoq": 92.6
+        },
+        {
+          "q": "2026-03-31",
+          "qoq": 62.2
+        }
+      ]
+    },
+    "earnings_history": [
+      {
+        "quarter": "2024-06-30",
+        "revenue": 11381000,
+        "gross_profit": null,
+        "gross_margin": null
+      },
+      {
+        "quarter": "2024-09-30",
+        "revenue": 12400000,
+        "gross_profit": null,
+        "gross_margin": null,
+        "revenue_qoq_pct": 9.0
+      },
+      {
+        "quarter": "2025-03-31",
+        "revenue": 7566000,
+        "gross_profit": null,
+        "gross_margin": null,
+        "revenue_qoq_pct": -39.0
+      },
+      {
+        "quarter": "2025-06-30",
+        "revenue": 20694000,
+        "gross_profit": null,
+        "gross_margin": null,
+        "revenue_qoq_pct": 173.5
+      },
+      {
+        "quarter": "2025-09-30",
+        "revenue": 39866000,
+        "gross_profit": null,
+        "gross_margin": null,
+        "revenue_qoq_pct": 92.6,
+        "revenue_yoy_pct": 250.3
+      },
+      {
+        "quarter": "2026-03-31",
+        "revenue": 64668000,
+        "gross_profit": null,
+        "gross_margin": null,
+        "revenue_qoq_pct": 62.2,
+        "revenue_yoy_pct": 421.5
+      }
+    ],
+    "recent_8k_count": 6,
+    "earnings_8k_count": 2,
+    "latest_filing_date": "2026-05-06"
+  },
+  "RGTI": {
+    "ticker": "RGTI",
+    "theme": "Quantum",
+    "revenue_analysis": {
+      "qoq_trend": "accelerating_strongly",
+      "phase_signal": 3,
+      "acceleration_score": 1,
+      "latest_qoq_pct": 126.0,
+      "prior_qoq_pct": 8.1,
+      "positive_quarters": 3,
+      "margin_trend": "expanding",
+      "latest_margin": 31.3,
+      "history_summary": [
+        {
+          "q": "2025-03-31",
+          "qoq": -38.1
+        },
+        {
+          "q": "2025-06-30",
+          "qoq": 22.4
+        },
+        {
+          "q": "2025-09-30",
+          "qoq": 8.1
+        },
+        {
+          "q": "2026-03-31",
+          "qoq": 126.0
+        }
+      ]
+    },
+    "earnings_history": [
+      {
+        "quarter": "2024-06-30",
+        "revenue": 3086000,
+        "gross_profit": 1990000,
+        "gross_margin": 64.5
+      },
+      {
+        "quarter": "2024-09-30",
+        "revenue": 2378000,
+        "gross_profit": 1204000,
+        "gross_margin": 50.6,
+        "revenue_qoq_pct": -22.9
+      },
+      {
+        "quarter": "2025-03-31",
+        "revenue": 1472000,
+        "gross_profit": 442000,
+        "gross_margin": 30.0,
+        "revenue_qoq_pct": -38.1
+      },
+      {
+        "quarter": "2025-06-30",
+        "revenue": 1801000,
+        "gross_profit": 566000,
+        "gross_margin": 31.4,
+        "revenue_qoq_pct": 22.4
+      },
+      {
+        "quarter": "2025-09-30",
+        "revenue": 1947000,
+        "gross_profit": 404000,
+        "gross_margin": 20.7,
+        "revenue_qoq_pct": 8.1,
+        "revenue_yoy_pct": -36.9
+      },
+      {
+        "quarter": "2026-03-31",
+        "revenue": 4400000,
+        "gross_profit": 1378000,
+        "gross_margin": 31.3,
+        "revenue_qoq_pct": 126.0,
+        "revenue_yoy_pct": 85.0
+      }
+    ],
+    "recent_8k_count": 5,
+    "earnings_8k_count": 2,
+    "latest_filing_date": "2026-05-11"
+  },
+  "QUBT": {
+    "ticker": "QUBT",
+    "theme": "Quantum",
+    "revenue_analysis": {
+      "qoq_trend": "accelerating_strongly",
+      "phase_signal": 3,
+      "acceleration_score": 1,
+      "latest_qoq_pct": 861.2,
+      "prior_qoq_pct": 529.5,
+      "positive_quarters": 3,
+      "margin_trend": "compressing",
+      "latest_margin": -19.5,
+      "history_summary": [
+        {
+          "q": "2025-03-31",
+          "qoq": -61.4
+        },
+        {
+          "q": "2025-06-30",
+          "qoq": 56.4
+        },
+        {
+          "q": "2025-09-30",
+          "qoq": 529.5
+        },
+        {
+          "q": "2026-03-31",
+          "qoq": 861.2
+        }
+      ]
+    },
+    "earnings_history": [
+      {
+        "quarter": "2024-06-30",
+        "revenue": 183000,
+        "gross_profit": 58000,
+        "gross_margin": 31.7
+      },
+      {
+        "quarter": "2024-09-30",
+        "revenue": 101000,
+        "gross_profit": 9000,
+        "gross_margin": 8.9,
+        "revenue_qoq_pct": -44.8
+      },
+      {
+        "quarter": "2025-03-31",
+        "revenue": 39000,
+        "gross_profit": 13000,
+        "gross_margin": 33.3,
+        "revenue_qoq_pct": -61.4
+      },
+      {
+        "quarter": "2025-06-30",
+        "revenue": 61000,
+        "gross_profit": 26000,
+        "gross_margin": 42.6,
+        "revenue_qoq_pct": 56.4
+      },
+      {
+        "quarter": "2025-09-30",
+        "revenue": 384000,
+        "gross_profit": 126000,
+        "gross_margin": 32.8,
+        "revenue_qoq_pct": 529.5,
+        "revenue_yoy_pct": 109.8
+      },
+      {
+        "quarter": "2026-03-31",
+        "revenue": 3691000,
+        "gross_profit": -721000,
+        "gross_margin": -19.5,
+        "revenue_qoq_pct": 861.2,
+        "revenue_yoy_pct": 3554.5
+      }
+    ],
+    "recent_8k_count": 4,
+    "earnings_8k_count": 2,
+    "latest_filing_date": "2026-05-11"
+  },
+  "LITE": {
+    "ticker": "LITE",
+    "theme": "Photonics",
+    "revenue_analysis": {
+      "qoq_trend": "positive",
+      "phase_signal": 4,
+      "acceleration_score": 0.5,
+      "latest_qoq_pct": 5.7,
+      "prior_qoq_pct": 19.4,
+      "positive_quarters": 2,
+      "margin_trend": "expanding",
+      "latest_margin": 28.8,
+      "history_summary": [
+        {
+          "q": "2024-12-28",
+          "qoq": 19.4
+        },
+        {
+          "q": "2025-03-29",
+          "qoq": 5.7
+        }
+      ]
+    },
+    "earnings_history": [
+      {
+        "quarter": "2024-09-28",
+        "revenue": 336900000,
+        "gross_profit": 77900000,
+        "gross_margin": 23.1
+      },
+      {
+        "quarter": "2024-12-28",
+        "revenue": 402200000,
+        "gross_profit": 99600000,
+        "gross_margin": 24.8,
+        "revenue_qoq_pct": 19.4
+      },
+      {
+        "quarter": "2025-03-29",
+        "revenue": 425200000,
+        "gross_profit": 122500000,
+        "gross_margin": 28.8,
+        "revenue_qoq_pct": 5.7
+      }
+    ],
+    "recent_8k_count": 3,
+    "earnings_8k_count": 1,
+    "latest_filing_date": "2026-05-05"
+  },
+  "COHR": {
+    "ticker": "COHR",
+    "theme": "Photonics",
+    "revenue_analysis": {
+      "qoq_trend": "positive",
+      "phase_signal": 3,
+      "acceleration_score": 0.04,
+      "latest_qoq_pct": 7.1,
+      "prior_qoq_pct": 6.6,
+      "positive_quarters": 4,
+      "margin_trend": "unknown",
+      "latest_margin": null,
+      "history_summary": [
+        {
+          "q": "2025-03-31",
+          "qoq": 4.4
+        },
+        {
+          "q": "2025-09-30",
+          "qoq": 5.6
+        },
+        {
+          "q": "2025-12-31",
+          "qoq": 6.6
+        },
+        {
+          "q": "2026-03-31",
+          "qoq": 7.1
+        }
+      ]
+    },
+    "earnings_history": [
+      {
+        "quarter": "2024-09-30",
+        "revenue": 1348135000,
+        "gross_profit": null,
+        "gross_margin": null
+      },
+      {
+        "quarter": "2024-12-31",
+        "revenue": 1434665000,
+        "gross_profit": null,
+        "gross_margin": null,
+        "revenue_qoq_pct": 6.4
+      },
+      {
+        "quarter": "2025-03-31",
+        "revenue": 1497879000,
+        "gross_profit": null,
+        "gross_margin": null,
+        "revenue_qoq_pct": 4.4
+      },
+      {
+        "quarter": "2025-09-30",
+        "revenue": 1581378000,
+        "gross_profit": null,
+        "gross_margin": null,
+        "revenue_qoq_pct": 5.6
+      },
+      {
+        "quarter": "2025-12-31",
+        "revenue": 1685629000,
+        "gross_profit": null,
+        "gross_margin": null,
+        "revenue_qoq_pct": 6.6,
+        "revenue_yoy_pct": 25.0
+      },
+      {
+        "quarter": "2026-03-31",
+        "revenue": 1805641000,
+        "gross_profit": null,
+        "gross_margin": null,
+        "revenue_qoq_pct": 7.1,
+        "revenue_yoy_pct": 25.9
+      }
+    ],
+    "recent_8k_count": 3,
+    "earnings_8k_count": 1,
+    "latest_filing_date": "2026-05-06"
+  },
+  "AAOI": {
+    "ticker": "AAOI",
+    "theme": "Photonics",
+    "revenue_analysis": {
+      "qoq_trend": "strong",
+      "phase_signal": 4,
+      "acceleration_score": 0,
+      "latest_qoq_pct": 27.4,
+      "prior_qoq_pct": 15.2,
+      "positive_quarters": 4,
+      "margin_trend": "stable",
+      "latest_margin": 29.1,
+      "history_summary": [
+        {
+          "q": "2025-03-31",
+          "qoq": 53.3
+        },
+        {
+          "q": "2025-06-30",
+          "qoq": 3.1
+        },
+        {
+          "q": "2025-09-30",
+          "qoq": 15.2
+        },
+        {
+          "q": "2026-03-31",
+          "qoq": 27.4
+        }
+      ]
+    },
+    "earnings_history": [
+      {
+        "quarter": "2024-06-30",
+        "revenue": 43270000,
+        "gross_profit": 9562000,
+        "gross_margin": 22.1
+      },
+      {
+        "quarter": "2024-09-30",
+        "revenue": 65151000,
+        "gross_profit": 15917000,
+        "gross_margin": 24.4,
+        "revenue_qoq_pct": 50.6
+      },
+      {
+        "quarter": "2025-03-31",
+        "revenue": 99859000,
+        "gross_profit": 30544000,
+        "gross_margin": 30.6,
+        "revenue_qoq_pct": 53.3
+      },
+      {
+        "quarter": "2025-06-30",
+        "revenue": 102952000,
+        "gross_profit": 31162000,
+        "gross_margin": 30.3,
+        "revenue_qoq_pct": 3.1
+      },
+      {
+        "quarter": "2025-09-30",
+        "revenue": 118630000,
+        "gross_profit": 33263000,
+        "gross_margin": 28.0,
+        "revenue_qoq_pct": 15.2,
+        "revenue_yoy_pct": 174.2
+      },
+      {
+        "quarter": "2026-03-31",
+        "revenue": 151144000,
+        "gross_profit": 43916000,
+        "gross_margin": 29.1,
+        "revenue_qoq_pct": 27.4,
+        "revenue_yoy_pct": 132.0
+      }
+    ],
+    "recent_8k_count": 10,
+    "earnings_8k_count": 2,
+    "latest_filing_date": "2026-05-08"
+  },
+  "IPGP": {
+    "ticker": "IPGP",
+    "theme": "Photonics",
+    "revenue_analysis": {
+      "qoq_trend": "positive",
+      "phase_signal": 3,
+      "acceleration_score": 0.14,
+      "latest_qoq_pct": 5.9,
+      "prior_qoq_pct": 0.0,
+      "positive_quarters": 2,
+      "margin_trend": "stable",
+      "latest_margin": 37.5,
+      "history_summary": [
+        {
+          "q": "2025-03-31",
+          "qoq": -2.3
+        },
+        {
+          "q": "2025-06-30",
+          "qoq": 10.1
+        },
+        {
+          "q": "2025-09-30",
+          "qoq": 0.0
+        },
+        {
+          "q": "2026-03-31",
+          "qoq": 5.9
+        }
+      ]
+    },
+    "earnings_history": [
+      {
+        "quarter": "2024-06-30",
+        "revenue": 257645000,
+        "gross_profit": 96186000,
+        "gross_margin": 37.3
+      },
+      {
+        "quarter": "2024-09-30",
+        "revenue": 233143000,
+        "gross_profit": 54089000,
+        "gross_margin": 23.2,
+        "revenue_qoq_pct": -9.5
+      },
+      {
+        "quarter": "2025-03-31",
+        "revenue": 227793000,
+        "gross_profit": 89812000,
+        "gross_margin": 39.4,
+        "revenue_qoq_pct": -2.3
+      },
+      {
+        "quarter": "2025-06-30",
+        "revenue": 250721000,
+        "gross_profit": 93573000,
+        "gross_margin": 37.3,
+        "revenue_qoq_pct": 10.1
+      },
+      {
+        "quarter": "2025-09-30",
+        "revenue": 250792000,
+        "gross_profit": 99005000,
+        "gross_margin": 39.5,
+        "revenue_qoq_pct": 0.0,
+        "revenue_yoy_pct": -2.7
+      },
+      {
+        "quarter": "2026-03-31",
+        "revenue": 265497000,
+        "gross_profit": 99499000,
+        "gross_margin": 37.5,
+        "revenue_qoq_pct": 5.9,
+        "revenue_yoy_pct": 13.9
+      }
+    ],
+    "recent_8k_count": 3,
+    "earnings_8k_count": 1,
+    "latest_filing_date": "2026-05-05"
+  }
+}

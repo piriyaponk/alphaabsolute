@@ -1,0 +1,423 @@
+{
+  "ticker": "COHR",
+  "phase": 3,
+  "confidence": 0.9,
+  "history": [
+    {
+      "ticker": "COHR",
+      "phase": null,
+      "confidence": 0,
+      "last_updated": null,
+      "created": "2026-05-13",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "COHR",
+      "phase": 3,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:29",
+      "created": "2026-05-13",
+      "theme": "Photonics",
+      "phase_name": "Inflection",
+      "nrgc_composite_score": 35,
+      "action": "Full position — highest conviction",
+      "narrative": "AI interconnect supercycle. 800G demand spike from AI clusters. Entry zone.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 386.82,
+        "stage2": true,
+        "pct_from_52w_hi": 0.0,
+        "pct_from_52w_lo": 411.5,
+        "rs_6m_pct": 144.8,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "expanding",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 3,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "Data center revenue exceeding telecom for first time"
+      ],
+      "phase_signals_missing": [
+        "800G demand spike from AI cluster deployments",
+        "Lead times for 800G extending 20+ weeks",
+        "Hyperscaler committed large 800G/1.6T purchase orders",
+        "Gross margin recovering as product mix shifts higher"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:29",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "COHR",
+      "phase": 3,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:39",
+      "created": "2026-05-13",
+      "theme": "Photonics",
+      "phase_name": "Inflection",
+      "nrgc_composite_score": 70,
+      "action": "Full position — highest conviction",
+      "narrative": "AI interconnect supercycle. 800G demand spike from AI clusters. Entry zone.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "positive",
+        "phase_signal": 3,
+        "acceleration_score": 0.04,
+        "latest_qoq_pct": 7.1,
+        "prior_qoq_pct": 6.6,
+        "positive_quarters": 4,
+        "margin_trend": "unknown",
+        "latest_margin": null,
+        "history_summary": [
+          {
+            "q": "2025-03-31",
+            "qoq": 4.4
+          },
+          {
+            "q": "2025-09-30",
+            "qoq": 5.6
+          },
+          {
+            "q": "2025-12-31",
+            "qoq": 6.6
+          },
+          {
+            "q": "2026-03-31",
+            "qoq": 7.1
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 392.69,
+        "stage2": true,
+        "pct_from_52w_hi": 0.0,
+        "pct_from_52w_lo": 419.2,
+        "rs_6m_pct": 148.5,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "expanding",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 3,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "Gross margin recovering as product mix shifts higher"
+      ],
+      "phase_signals_missing": [
+        "800G demand spike from AI cluster deployments",
+        "Lead times for 800G extending 20+ weeks",
+        "Hyperscaler committed large 800G/1.6T purchase orders",
+        "Data center revenue exceeding telecom for first time"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:39",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "COHR",
+      "phase": 3,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:52",
+      "created": "2026-05-13",
+      "theme": "Photonics",
+      "phase_name": "Inflection",
+      "nrgc_composite_score": 70,
+      "action": "Full position — highest conviction",
+      "narrative": "AI interconnect supercycle. 800G demand spike from AI clusters. Entry zone.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "positive",
+        "phase_signal": 3,
+        "acceleration_score": 0.04,
+        "latest_qoq_pct": 7.1,
+        "prior_qoq_pct": 6.6,
+        "positive_quarters": 4,
+        "margin_trend": "unknown",
+        "latest_margin": null,
+        "history_summary": [
+          {
+            "q": "2025-03-31",
+            "qoq": 4.4
+          },
+          {
+            "q": "2025-09-30",
+            "qoq": 5.6
+          },
+          {
+            "q": "2025-12-31",
+            "qoq": 6.6
+          },
+          {
+            "q": "2026-03-31",
+            "qoq": 7.1
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 394.54,
+        "stage2": true,
+        "pct_from_52w_hi": 0.0,
+        "pct_from_52w_lo": 421.7,
+        "rs_6m_pct": 149.7,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "expanding",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 3,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "Gross margin recovering as product mix shifts higher"
+      ],
+      "phase_signals_missing": [
+        "800G demand spike from AI cluster deployments",
+        "Lead times for 800G extending 20+ weeks",
+        "Hyperscaler committed large 800G/1.6T purchase orders",
+        "Data center revenue exceeding telecom for first time"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:52",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "COHR",
+      "phase": 3,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 21:57",
+      "created": "2026-05-13",
+      "theme": "Photonics",
+      "phase_name": "Inflection",
+      "nrgc_composite_score": 35,
+      "action": "Full position — highest conviction",
+      "narrative": "AI interconnect supercycle. 800G demand spike from AI clusters. Entry zone.",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "no_data"
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 397.88,
+        "stage2": true,
+        "pct_from_52w_hi": 0.0,
+        "pct_from_52w_lo": 426.1,
+        "rs_6m_pct": 151.8,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "expanding",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 3,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "Data center revenue exceeding telecom for first time"
+      ],
+      "phase_signals_missing": [
+        "800G demand spike from AI cluster deployments",
+        "Lead times for 800G extending 20+ weeks",
+        "Hyperscaler committed large 800G/1.6T purchase orders",
+        "Gross margin recovering as product mix shifts higher"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 21:57",
+      "snapshot_date": "2026-05-13"
+    },
+    {
+      "ticker": "COHR",
+      "phase": 3,
+      "confidence": 1.0,
+      "last_updated": "2026-05-13 22:17",
+      "created": "2026-05-13",
+      "theme": "Photonics",
+      "phase_name": "Inflection",
+      "nrgc_composite_score": 70,
+      "action": "Full position — highest conviction",
+      "narrative": "",
+      "narrative_traction": 0.0,
+      "revenue_signal": {
+        "qoq_trend": "positive",
+        "phase_signal": 3,
+        "acceleration_score": 0.04,
+        "latest_qoq_pct": 7.1,
+        "prior_qoq_pct": 6.6,
+        "positive_quarters": 4,
+        "margin_trend": "unknown",
+        "latest_margin": null,
+        "history_summary": [
+          {
+            "q": "2025-03-31",
+            "qoq": 4.4
+          },
+          {
+            "q": "2025-09-30",
+            "qoq": 5.6
+          },
+          {
+            "q": "2025-12-31",
+            "qoq": 6.6
+          },
+          {
+            "q": "2026-03-31",
+            "qoq": 7.1
+          }
+        ]
+      },
+      "price_signal": {
+        "valid": true,
+        "price": 400.82,
+        "stage2": true,
+        "pct_from_52w_hi": 0.0,
+        "pct_from_52w_lo": 430.0,
+        "rs_6m_pct": 153.7,
+        "ma150_gt_200": true,
+        "above_30wma": true,
+        "vol_trend": "expanding",
+        "price_phase_implied": 3
+      },
+      "insider_signal": "neutral",
+      "narrative_signals": {
+        "signals": [],
+        "signal_count": 0,
+        "dominant_phase": null,
+        "positive_count": 0,
+        "negative_count": 0
+      },
+      "rule_phase": 3,
+      "rule_confidence": 1.0,
+      "phase_signals_confirmed": [
+        "Gross margin recovering as product mix shifts higher"
+      ],
+      "phase_signals_missing": [
+        "800G demand spike from AI cluster deployments",
+        "Lead times for 800G extending 20+ weeks",
+        "Hyperscaler committed large 800G/1.6T purchase orders",
+        "Data center revenue exceeding telecom for first time"
+      ],
+      "kill_switches": [],
+      "primary_evidence": [],
+      "assessed_at": "2026-05-13 22:17",
+      "snapshot_date": "2026-05-13"
+    }
+  ],
+  "last_updated": "2026-05-13 22:29",
+  "created": "2026-05-13",
+  "theme": "Photonics",
+  "phase_name": "Inflection",
+  "nrgc_composite_score": 69,
+  "action": "Full position — highest conviction",
+  "narrative": "COHR gains from 800G demand",
+  "narrative_traction": 0.0,
+  "revenue_signal": {
+    "qoq_trend": "positive",
+    "phase_signal": 3,
+    "acceleration_score": 0.04,
+    "latest_qoq_pct": 7.1,
+    "prior_qoq_pct": 6.6,
+    "positive_quarters": 4,
+    "margin_trend": "unknown",
+    "latest_margin": null,
+    "history_summary": [
+      {
+        "q": "2025-03-31",
+        "qoq": 4.4
+      },
+      {
+        "q": "2025-09-30",
+        "qoq": 5.6
+      },
+      {
+        "q": "2025-12-31",
+        "qoq": 6.6
+      },
+      {
+        "q": "2026-03-31",
+        "qoq": 7.1
+      }
+    ]
+  },
+  "price_signal": {
+    "valid": true,
+    "price": 402.74,
+    "stage2": true,
+    "pct_from_52w_hi": 0.0,
+    "pct_from_52w_lo": 432.5,
+    "rs_6m_pct": 154.9,
+    "ma150_gt_200": true,
+    "above_30wma": true,
+    "vol_trend": "expanding",
+    "price_phase_implied": 3
+  },
+  "insider_signal": "neutral",
+  "narrative_signals": {
+    "signals": [],
+    "signal_count": 0,
+    "dominant_phase": null,
+    "positive_count": 0,
+    "negative_count": 0
+  },
+  "rule_phase": 3,
+  "rule_confidence": 1.0,
+  "phase_signals_confirmed": [
+    "Gross margin recovering as product mix shifts higher"
+  ],
+  "phase_signals_missing": [
+    "800G demand spike from AI cluster deployments",
+    "Lead times for 800G extending 20+ weeks",
+    "Hyperscaler committed large 800G/1.6T purchase orders",
+    "Data center revenue exceeding telecom for first time"
+  ],
+  "kill_switches": [
+    "Guidance cut",
+    "Margin decline",
+    "800G demand slowdown"
+  ],
+  "primary_evidence": [
+    "Revenue qoq trend is positive with accelerating growth (7.1% latest qoq)",
+    "Price/technical signals imply stage 2 with price near 52w high",
+    "Industry-specific context indicates 800G demand spike and gross margin recovery"
+  ],
+  "assessed_at": "2026-05-13 22:29"
+}
