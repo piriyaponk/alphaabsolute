@@ -204,7 +204,8 @@ def send_weekly_summary(perf: dict, nrgc_assessments: dict, synthesis: dict,
                          portfolio: dict, promotions: list,
                          token_cost_usd: float = 0,
                          paper_stats: dict = None,
-                         new_lessons_count: int = 0):
+                         new_lessons_count: int = 0,
+                         focus_result: dict = None):
     """Send full weekly summary to Telegram."""
     now = datetime.now().strftime("%Y-%m-%d")
     beating = perf.get("beating_nasdaq", False)
@@ -336,6 +337,92 @@ def send_weekly_summary(perf: dict, nrgc_assessments: dict, synthesis: dict,
                 lines.append(f"  {theme}: {ts['wins']}/{ts['trades']} wins | avg {ts['avg_pnl']:+.1f}%")
         if new_lessons_count > 0:
             lines.append(f"  New lessons this week: {new_lessons_count} (saved to memory)")
+
+    # ── Focus List ────────────────────────────────────────────────────────────
+    if focus_result and focus_result.get("picks"):
+        picks = focus_result["picks"]
+        lines.append("")
+        lines.append(f"<b>WEEKLY FOCUS LIST ({len(picks)} picks)</b>")
+        phase_icon = {2: "ACCUM", 3: "INFLECT", 4: "RECOG"}
+        emls_icon  = {"Hyper Leader": "HYPER", "Institutional Leader": "LEADER",
+                      "Emerging Leader": "EMERG", "Watchlist": "WATCH"}
+        for i, p in enumerate(picks[:8], 1):
+            ticker = p["ticker"]
+            score  = p.get("emls_score", 0)
+            label  = p.get("emls_label", "")
+            phase  = p.get("phase", 0)
+            theme  = p.get("theme", "")
+            cap    = p.get("cap_tier", "")
+            trigger= p.get("trigger")
+            stop   = p.get("stop")
+            target = p.get("target")
+            rr     = p.get("rr_ratio", 0)
+            zone_l = p.get("zone_low")
+            zone_h = p.get("zone_high")
+            qoq    = p.get("qoq_pct")
+            rs6m   = p.get("rs_6m_pct")
+            vol_c  = p.get("vol_contracting", False)
+            ext    = p.get("extended", False)
+
+            ph_str = phase_icon.get(phase, f"Ph{phase}")
+            el_str = emls_icon.get(label, label)
+
+            row = f"  <b>#{i} {ticker}</b> | EMLS {score} {el_str} | {ph_str} | {cap}cap | {theme}"
+            if zone_l and zone_h:
+                row += f"\n     Zone: ${zone_l}–${zone_h}"
+            if trigger:
+                row += f"\n     Trigger: ${trigger}"
+                if stop:
+                    row += f" | Stop: ${stop} (−8%)"
+            if target and rr:
+                row += f" | Target: ${target} | R/R {rr}x"
+            extras = []
+            if qoq:
+                extras.append(f"QoQ {qoq:+.0f}%")
+            if rs6m:
+                extras.append(f"RS6m {rs6m:+.0f}%")
+            if vol_c:
+                extras.append("Vol dry")
+            if ext:
+                extras.append("EXTENDED-caution")
+            if extras:
+                row += f"\n     {' | '.join(extras)}"
+            lines.append(row)
+
+    # ── Last Week Focus List Outcomes ─────────────────────────────────────────
+    if focus_result and focus_result.get("prev_outcomes"):
+        outcomes = focus_result["prev_outcomes"]
+        triggered = [o for o in outcomes if o.get("triggered")]
+        if triggered:
+            lines.append("")
+            lines.append("<b>Last Week Focus — Outcomes:</b>")
+            for o in triggered:
+                label  = o.get("outcome_label", "?")
+                pnl    = o.get("outcome_pct")
+                ticker = o["ticker"]
+                pnl_str = f" {pnl:+.1f}%" if pnl is not None else ""
+                icon = {"BIG_WIN":"WIN+", "WIN":"WIN", "SMALL_WIN":"WIN-",
+                        "STOP":"STOP", "OPEN_LOSS":"OPEN-"}.get(label, label)
+                lines.append(f"  [{icon}] {ticker}{pnl_str}")
+        no_trig = [o for o in outcomes if o.get("outcome_label") == "NO_TRIGGER"]
+        if no_trig:
+            tickers = ", ".join(o["ticker"] for o in no_trig)
+            lines.append(f"  Not triggered: {tickers}")
+
+    # ── Focus Lessons ────────────────────────────────────────────────────────
+    if focus_result and focus_result.get("new_lessons"):
+        lessons = focus_result["new_lessons"]
+        lines.append("")
+        lines.append(f"<b>Lessons This Week ({len(lessons)}):</b>")
+        for l in lessons[:3]:
+            lesson  = l.get("lesson", "")[:80]
+            action  = l.get("action", "")[:80]
+            lines.append(f"  L: {lesson}")
+            if action:
+                lines.append(f"  A: {action}")
+        total_l = focus_result.get("total_lessons", 0)
+        if total_l:
+            lines.append(f"  Total lessons stored: {total_l}")
 
     # ── Cost ──────────────────────────────────────────────────────────────────
     if token_cost_usd > 0:

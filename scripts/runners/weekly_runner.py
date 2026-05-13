@@ -203,6 +203,33 @@ def run_weekly():
             import traceback
             log(f"  {traceback.format_exc()[:300]}")
 
+    # ── STEP 5c: Focus List — entry zones + outcome tracking + lessons ───────
+    log("\n[5c/9] Focus list: tracking outcomes + new entry zones...")
+    focus_result = {"picks": [], "new_lessons": [], "prev_outcomes": [], "total_lessons": 0}
+    if nrgc_assessments:
+        try:
+            from focus_list import run_focus_cycle
+            focus_regime = synthesis.get("regime_signal", "neutral") if synthesis else "neutral"
+            focus_result = run_focus_cycle(nrgc_assessments, regime=focus_regime)
+            n_picks   = len(focus_result.get("picks", []))
+            n_lessons = len(focus_result.get("new_lessons", []))
+            n_prev    = len(focus_result.get("prev_outcomes", []))
+            log(f"  New focus list: {n_picks} picks | Outcomes tracked: {n_prev} | New lessons: {n_lessons}")
+            for p in focus_result.get("picks", [])[:5]:
+                log(f"    #{p['ticker']} EMLS={p['emls_score']} Phase{p['phase']}"
+                    f" Trigger=${p.get('trigger','?')} R/R={p.get('rr_ratio','?')}x")
+            results["steps"]["focus_list"] = {
+                "picks": n_picks,
+                "outcomes_tracked": n_prev,
+                "new_lessons": n_lessons,
+                "total_lessons": focus_result.get("total_lessons", 0),
+                "top_picks": [p["ticker"] for p in focus_result.get("picks", [])[:5]],
+            }
+        except Exception as e:
+            log(f"  [ERROR] Focus list failed: {e}")
+            import traceback
+            log(f"  {traceback.format_exc()[:300]}")
+
     # ── STEP 6: Promotion check ───────────────────────────────────────────────
     log("\n[6/9] Promotion check (paper → real money)...")
     try:
@@ -320,6 +347,7 @@ def run_weekly():
             token_cost_usd=token_cost_this_run,
             paper_stats=paper_stats,
             new_lessons_count=new_lessons_count,
+            focus_result=focus_result,
         )
         log(f"  Telegram: {'sent' if ok else 'failed (check token/chat_id)'}")
     except Exception as e:
