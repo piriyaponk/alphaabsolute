@@ -1,0 +1,19 @@
+{
+  "theses": [
+    {
+      "id": "2026-W20_RKLB",
+      "week": "2026-W20",
+      "date": "2026-05-14",
+      "source": "agent_09_synthesis",
+      "ticker": "RKLB",
+      "thesis": "Phase3 inflection revenue +42%",
+      "conviction": 3,
+      "timeframe": "1-4 weeks",
+      "price_at": 124.15,
+      "verified": false,
+      "outcome_pct": null,
+      "outcome_correct": null
+    }
+  ],
+  "verified_count": 0
+}

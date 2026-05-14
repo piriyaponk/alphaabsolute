@@ -1,0 +1,22 @@
+{
+  "sources": {
+    "reuters": {
+      "total_items": 1,
+      "total_insights": 0,
+      "actionable": 0,
+      "triggered": 0,
+      "quality_score": 40.0,
+      "history": [
+        {
+          "date": "2026-05-14",
+          "items": 1,
+          "insights": 0,
+          "score": 0.0
+        }
+      ]
+    }
+  },
+  "updated": [
+    "2026-05-14"
+  ]
+}

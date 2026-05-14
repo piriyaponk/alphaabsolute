@@ -1,0 +1,88 @@
+{
+  "week": "2026-W20",
+  "date": "2026-05-14",
+  "agent_01": {
+    "agent": "01_macro",
+    "week": "2026-W20",
+    "date": "2026-05-14",
+    "regime_call": "risk-on",
+    "top_themes": [
+      "Space",
+      "AI-Related"
+    ],
+    "top_opportunities": [
+      "NNE"
+    ],
+    "qqq_at_call": 714.71,
+    "verified": false
+  },
+  "agent_03": {
+    "agent": "03_screener",
+    "week": "2026-W20",
+    "date": "2026-05-14",
+    "phase3_picks": [
+      "NNE"
+    ],
+    "phase2_picks": [],
+    "prices_at_call": {
+      "NNE": 27.05
+    },
+    "verified": false
+  },
+  "agent_05": {
+    "agent": "05_thematic",
+    "week": "2026-W20",
+    "date": "2026-05-14",
+    "theme_convictions": {
+      "Nuclear": {
+        "tickers": [
+          "NNE"
+        ],
+        "avg_score": 0.0,
+        "phase3_count": 1,
+        "conviction": 2
+      }
+    },
+    "theme_rep_prices": {
+      "Nuclear": {
+        "ticker": "NNE",
+        "price": 27.05
+      }
+    },
+    "verified": false
+  },
+  "agent_09": {
+    "agent": "09_strategist",
+    "week": "2026-W20",
+    "date": "2026-05-14",
+    "opportunities": [
+      {
+        "ticker": "NNE",
+        "thesis": "Nuclear SMR breakout"
+      }
+    ],
+    "prices_at_call": {
+      "NNE": 27.05
+    },
+    "verified": false
+  },
+  "agent_12": {
+    "agent": "12_risk",
+    "week": "2026-W20",
+    "date": "2026-05-14",
+    "risk_flags": [],
+    "n_positions": 1,
+    "cash_pct": 0.0,
+    "verified": false
+  },
+  "agent_16": {
+    "agent": "16_auditor",
+    "week": "2026-W20",
+    "date": "2026-05-14",
+    "n_fixes": 0,
+    "n_warnings": 0,
+    "n_removals": 0,
+    "log_sample": [],
+    "verified": false
+  }
+}

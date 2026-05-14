@@ -1,0 +1,77 @@
+{
+  "date": "2026-05-14",
+  "regime": "risk-on",
+  "regime_score": 3,
+  "notes": [
+    "HY spread tight 2.8% (risk-on)",
+    "IG spread tight 0.77%"
+  ],
+  "signals": {
+    "BAMLH0A0HYM2": 2.82,
+    "BAMLC0A0CM": 0.77,
+    "INDPRO": 101.7898,
+    "RSAFS": 757085.0,
+    "FEDFUNDS": 3.64,
+    "USALOLITONOSTSAM": 99.8541,
+    "M2SL": 22686.0,
+    "DTWEXBGS": 118.0392,
+    "DCOILWTICO": 101.56
+  },
+  "computed_at": "2026-05-14",
+  "raw": {
+    "BAMLH0A0HYM2": {
+      "name": "HY Credit Spread",
+      "value": 2.82,
+      "date": "2026-05-12",
+      "change_pct_4w": 2.55
+    },
+    "BAMLC0A0CM": {
+      "name": "IG Credit Spread",
+      "value": 0.77,
+      "date": "2026-05-12",
+      "change_pct_4w": -1.28
+    },
+    "INDPRO": {
+      "name": "Industrial Production",
+      "value": 101.7898,
+      "date": "2026-03-01",
+      "change_pct_4w": 0.7
+    },
+    "RSAFS": {
+      "name": "Retail Sales",
+      "value": 757085.0,
+      "date": "2026-04-01",
+      "change_pct_4w": 3.04
+    },
+    "FEDFUNDS": {
+      "name": "Fed Funds Rate",
+      "value": 3.64,
+      "date": "2026-04-01",
+      "change_pct_4w": -2.15
+    },
+    "USALOLITONOSTSAM": {
+      "name": "US Leading Index OECD",
+      "value": 99.8541,
+      "date": "2024-01-01",
+      "change_pct_4w": 0.37
+    },
+    "M2SL": {
+      "name": "M2 Money Supply",
+      "value": 22686.0,
+      "date": "2026-03-01",
+      "change_pct_4w": 1.83
+    },
+    "DTWEXBGS": {
+      "name": "USD Trade-Weighted Index",
+      "value": 118.0392,
+      "date": "2026-05-08",
+      "change_pct_4w": -0.66
+    },
+    "DCOILWTICO": {
+      "name": "WTI Oil",
+      "value": 101.56,
+      "date": "2026-05-11",
+      "change_pct_4w": -3.88
+    }
+  }
+}

@@ -47,13 +47,14 @@ jobs:
         run: |
           git config user.name  "AlphaAbsolute Bot"
           git config user.email "bot@alphaabsolute.ai"
-          git add memory/framework_updates.md \
-                  memory/paper_trading_lessons.md \
-                  memory/indicator_learnings.md \
+          git add memory/ \
                   output/framework_review_*.md \
                   output/indicator_proposals_*.md \
                   data/paper_trading/focus_lessons.json \
                   data/agent_memory/indicator_kb.json \
+                  data/agent_memory/ \
+                  data/smart_signals/ \
                   data/state/lifetime_stats.json || true
-          git diff --cached --quiet || git commit -m "auto: monthly framework update $(date -u +%Y-%m)"
+          git add -u data/smart_signals/ data/agent_memory/ memory/ || true
+          git diff --cached --quiet || git commit -m "auto: monthly framework update + memory janitor $(date -u +%Y-%m)"
           git push || true

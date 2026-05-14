@@ -1,0 +1,71 @@
+{
+  "born": "2026-05-14",
+  "system_version": "1.0",
+  "runs": {
+    "daily": 1,
+    "weekly": 1,
+    "monthly": 0,
+    "last_daily": "2026-05-14",
+    "last_weekly": "2026-05-14",
+    "last_monthly": ""
+  },
+  "knowledge": {
+    "indicator_kb_size": 12,
+    "indicator_novel_count": 3,
+    "indicator_adopted": 0,
+    "total_lessons": 5,
+    "focus_lessons": 1,
+    "framework_updates": 0,
+    "agent_lessons": {},
+    "thesis_accuracy_history": [],
+    "source_count": 0,
+    "kb_weekly_history": [
+      [
+        "2026-W20",
+        12
+      ]
+    ]
+  },
+  "performance": {
+    "all_time_return_pct": 5.0,
+    "all_time_alpha_pp": 1.8,
+    "best_week_return": 5.0,
+    "best_month_return": null,
+    "total_trades": 2,
+    "all_time_win_rate": 50.0,
+    "biggest_winner": {
+      "ticker": "NVDA",
+      "pnl": 12.3
+    },
+    "biggest_loser": {
+      "ticker": "AAPL",
+      "pnl": -4.1
+    },
+    "total_focus_picks": 2,
+    "total_focus_triggered": 1,
+    "focus_win_rate_history": [
+      100.0
+    ],
+    "peak_nav": 105000,
+    "peak_nav_date": "2026-05-14",
+    "current_drawdown_pct": 0.0,
+    "max_drawdown_pct": 0.0,
+    "months_beating_nasdaq": 0,
+    "months_lagging_nasdaq": 0
+  },
+  "milestones": [],
+  "snapshots": [
+    {
+      "week": "2026-W20",
+      "date": "2026-05-14",
+      "nav": 105000,
+      "return_pct": 5.0,
+      "alpha_pp": 1.8,
+      "total_trades": 2,
+      "win_rate": 50.0,
+      "indicator_kb_size": 12,
+      "total_lessons": 5,
+      "drawdown": 0.0
+    }
+  ]
+}

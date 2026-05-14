@@ -1,0 +1,38 @@
+{
+  "earnings_patterns": {
+    "RKLB": {
+      "theme": "Space",
+      "history": [
+        {
+          "date": "2026-05-14",
+          "qoq": 42,
+          "margin": null,
+          "phase": 3,
+          "score": null
+        }
+      ],
+      "peak_qoq": 42,
+      "phase_at_peak": 3,
+      "trend": null
+    }
+  },
+  "macro_turning_points": [
+    {
+      "date": "2026-05-14",
+      "regime": "risk-on",
+      "themes": [
+        "Space"
+      ],
+      "narrative": ""
+    }
+  ],
+  "theme_catalysts": {
+    "Space": {
+      "catalysts": [],
+      "signal_count": 1
+    }
+  },
+  "narrative_signals": [],
+  "updated_count": 1,
+  "last_updated": "2026-05-14"
+}

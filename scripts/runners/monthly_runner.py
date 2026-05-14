@@ -358,7 +358,8 @@ def write_framework_update(update_text: str, nrgc_data: dict, focus_perf: dict):
 
 # ─── Step 6: Telegram Monthly Report ─────────────────────────────────────────
 def send_monthly_telegram(perf: dict, nrgc_data: dict, focus_perf: dict,
-                           theme_health: dict, update_text: str):
+                           theme_health: dict, update_text: str,
+                           janitor_result: dict = None):
     """Send concise monthly review to Telegram."""
     try:
         from telegram_notifier import send_chunks
@@ -415,6 +416,17 @@ def send_monthly_telegram(perf: dict, nrgc_data: dict, focus_perf: dict,
                 end = update_text.find("\n## ", idx + 5)
                 snippet = update_text[idx:end if end > 0 else idx + 300]
                 lines.append(snippet[:250])
+
+    # Memory janitor health line
+    if janitor_result:
+        try:
+            from memory_janitor import get_janitor_telegram_line
+            janitor_line = get_janitor_telegram_line(janitor_result)
+            if janitor_line:
+                lines.append("")
+                lines.append(f"<b>Memory Health:</b> {janitor_line}")
+        except Exception:
+            pass
 
     lines.append("")
     lines.append("Full review saved to memory/framework_updates.md")
@@ -499,13 +511,35 @@ def run_monthly():
     else:
         log("  Skipping — no data yet (first month)")
 
-    # Step 6: Telegram
-    log("\n[6/6] Sending monthly Telegram report...")
+    # Step 5b: Memory Janitor — prune, rotate, compress
+    log("\n[5b/7] Memory janitor — monthly maintenance...")
+    janitor_result = {}
     try:
-        ok = send_monthly_telegram(perf, nrgc_data, focus_perf, theme_health, update_text)
+        from memory_janitor import run_memory_janitor, get_janitor_telegram_line
+        janitor_result = run_memory_janitor()
+        log(f"  {get_janitor_telegram_line(janitor_result)}")
+    except Exception as e:
+        log(f"  [skip]: {e}")
+
+    # Step 6: Telegram
+    log("\n[6/7] Sending monthly Telegram report...")
+    try:
+        ok = send_monthly_telegram(perf, nrgc_data, focus_perf, theme_health,
+                                   update_text, janitor_result=janitor_result)
         log(f"  Telegram: {'sent' if ok else 'failed'}")
     except Exception as e:
         log(f"  [Telegram ERROR]: {e}")
+
+    # Step 7: Update lifetime monthly stats
+    log("\n[7/7] Updating lifetime stats (monthly)...")
+    try:
+        from lifetime_tracker import update_monthly
+        beat = perf.get("alpha", 0) > 0
+        fw_updates = 1 if update_text else 0
+        update_monthly(perf=perf, beat_nasdaq=beat, framework_updates=fw_updates)
+        log("  Lifetime monthly stats updated")
+    except Exception as e:
+        log(f"  [skip]: {e}")
 
     elapsed = (datetime.now() - start).seconds
     log(f"\nMonthly run complete in {elapsed}s")

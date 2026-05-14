@@ -1,0 +1,39 @@
+[
+  {
+    "date": "2026-05-14",
+    "raw_scraped": 40,
+    "new_items_added": 40,
+    "total_kb_size": 41,
+    "novel_count": 4,
+    "sources_active": 4,
+    "top_categories": [
+      [
+        "relative_strength",
+        31
+      ],
+      [
+        "trend",
+        12
+      ],
+      [
+        "momentum",
+        10
+      ],
+      [
+        "pattern",
+        10
+      ],
+      [
+        "volatility",
+        5
+      ]
+    ],
+    "top_names": [
+      "ccxt",
+      "backtrader",
+      "quant-trading",
+      "My strategy outperformed the S&amp;P 500 over 3 years with 1/3 of the drawdown",
+      "Anyone else feel mentally messed up seeing people casually make insane money trading options?"
+    ]
+  }
+]

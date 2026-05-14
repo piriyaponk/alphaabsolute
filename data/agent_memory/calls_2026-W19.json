@@ -1,0 +1,53 @@
+{
+  "week": "2026-W19",
+  "date": "2026-05-07",
+  "agent_01": {
+    "regime_call": "risk-on",
+    "macro_thesis": "HY spread tight, yield curve positive = expansion",
+    "top_themes": [
+      "AI-Related",
+      "Space",
+      "Nuclear"
+    ]
+  },
+  "agent_03": {
+    "phase3_picks": [
+      "RKLB",
+      "PLTR",
+      "NNE"
+    ],
+    "phase2_picks": [
+      "IONQ",
+      "ACHR"
+    ],
+    "rationale": "Phase3 inflection + EMLS > 75"
+  },
+  "agent_05": {
+    "top_themes_by_conviction": {
+      "Space": "HIGH",
+      "AI-Related": "HIGH",
+      "Nuclear": "MEDIUM"
+    }
+  },
+  "agent_09": {
+    "opportunities": [
+      {
+        "ticker": "RKLB",
+        "thesis": "Phase3 inflection, Rev +42% QoQ"
+      },
+      {
+        "ticker": "NNE",
+        "thesis": "Nuclear SMR breakout from base"
+      }
+    ]
+  },
+  "agent_12": {
+    "risk_flags": [
+      "Market extended - >4 distribution days"
+    ]
+  },
+  "agent_16": {
+    "audit_fixes": 0,
+    "audit_issues": []
+  }
+}
