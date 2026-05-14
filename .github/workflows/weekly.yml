@@ -46,6 +46,8 @@ jobs:
           git config user.email "bot@alphaabsolute.ai"
           git add data/paper_trading/ \
                   data/nrgc/state/ \
-                  data/state/ || true
+                  data/state/ \
+                  data/agent_memory/ \
+                  memory/ || true
           git diff --cached --quiet || git commit -m "auto: weekly update $(date -u +%Y-%m-%d)"
           git push || true

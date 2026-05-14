@@ -320,6 +320,34 @@ def run_weekly():
         except Exception as e:
             log(f"  [NotebookLM skip]: {e}")
 
+    # ── STEP 8a: Agent Memory Loop — verify all agent calls + write lessons ──
+    log("\n[8a/9] Agent memory loop (6 agents learning this week)...")
+    agent_memory_result = {}
+    try:
+        sys.path.insert(0, str(BASE_DIR / "scripts" / "learning"))
+        from agent_memory_loop import run_agent_memory_loop
+        agent_memory_result = run_agent_memory_loop(
+            synthesis=synthesis,
+            nrgc_assessments=nrgc_assessments,
+            auto_trade_result=auto_trade_result,
+            focus_result=focus_result,
+            portfolio=portfolio,
+            audit_log=results.get("steps", {}).get("audit", {}).get("log", []),
+        )
+        n_verified = len(agent_memory_result.get("verified_agents", []))
+        n_lessons  = agent_memory_result.get("lessons_generated", 0)
+        updated    = agent_memory_result.get("agents_updated", [])
+        log(f"  Verified: {n_verified} agents | Lessons: {n_lessons} | Updated: {updated}")
+        results["steps"]["agent_memory"] = {
+            "verified": n_verified,
+            "lessons": n_lessons,
+            "agents_updated": updated,
+        }
+    except Exception as e:
+        log(f"  [ERROR] Agent memory loop: {e}")
+        import traceback
+        log(f"  {traceback.format_exc()[:300]}")
+
     # ── STEP 8b: Audit — verify ALL numbers before sending ───────────────────
     log("\n[8b/9] Auditing all data before Telegram send...")
     try:
@@ -370,6 +398,7 @@ def run_weekly():
             paper_stats=paper_stats,
             new_lessons_count=new_lessons_count,
             focus_result=focus_result,
+            agent_memory_result=agent_memory_result,
         )
         log(f"  Telegram: {'sent' if ok else 'failed (check token/chat_id)'}")
     except Exception as e:

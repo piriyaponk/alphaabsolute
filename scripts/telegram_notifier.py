@@ -205,7 +205,8 @@ def send_weekly_summary(perf: dict, nrgc_assessments: dict, synthesis: dict,
                          token_cost_usd: float = 0,
                          paper_stats: dict = None,
                          new_lessons_count: int = 0,
-                         focus_result: dict = None):
+                         focus_result: dict = None,
+                         agent_memory_result: dict = None):
     """Send full weekly summary to Telegram."""
     now = datetime.now().strftime("%Y-%m-%d")
     beating = perf.get("beating_nasdaq", False)
@@ -337,6 +338,37 @@ def send_weekly_summary(perf: dict, nrgc_assessments: dict, synthesis: dict,
                 lines.append(f"  {theme}: {ts['wins']}/{ts['trades']} wins | avg {ts['avg_pnl']:+.1f}%")
         if new_lessons_count > 0:
             lines.append(f"  New lessons this week: {new_lessons_count} (saved to memory)")
+
+    # ── Agent Accuracy ────────────────────────────────────────────────────────
+    if agent_memory_result and agent_memory_result.get("verified_agents"):
+        veri = agent_memory_result.get("verification", {})
+        n_lessons = agent_memory_result.get("lessons_generated", 0)
+        lines.append("")
+        lines.append(f"<b>Agent Accuracy This Week:</b>")
+        if "agent_01" in veri:
+            d = veri["agent_01"]
+            icon = "CORRECT" if d.get("regime_correct") else "WRONG"
+            lines.append(f"  01 Macro: Regime {d.get('regime_call','?')} [{icon}]"
+                         f" | QQQ {d.get('qqq_return_1w',0):+.1f}%")
+        if "agent_03" in veri:
+            d = veri["agent_03"]
+            lines.append(f"  03 Screener: Phase3 avg {d.get('avg_return',0):+.1f}%"
+                         f" | Beat QQQ: {d.get('beat_qqq_count',0)}/{d.get('total_picks',0)}")
+        if "agent_05" in veri:
+            d = veri["agent_05"]
+            edge = d.get("conviction_edge")
+            if edge is not None:
+                lines.append(f"  05 Thematic: Conviction edge {edge:+.1f}%pp")
+        if "agent_09" in veri:
+            d = veri["agent_09"]
+            lines.append(f"  09 Strategist: Opp hit rate {d.get('hit_rate',0):.0f}%")
+        if "agent_12" in veri:
+            d = veri["agent_12"]
+            lines.append(f"  12 Risk: {d.get('flags_raised',0)} flags | "
+                         f"{d.get('accuracy','?')}% accurate")
+        if n_lessons > 0:
+            updated = agent_memory_result.get("agents_updated", [])
+            lines.append(f"  Lessons generated: {n_lessons} | Updated: {', '.join(updated)}")
 
     # ── Focus List ────────────────────────────────────────────────────────────
     if focus_result and focus_result.get("picks"):
