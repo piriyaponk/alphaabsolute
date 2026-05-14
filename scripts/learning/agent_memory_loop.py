@@ -349,6 +349,13 @@ def verify_agent_calls(portfolio: dict) -> dict:
                         if t.get("exit_date", "") >= week_ago}
         flag_outcomes = []
         for flag in flags:
+            # flags can be strings ("market extended") or dicts with ticker info
+            if isinstance(flag, str):
+                flag_outcomes.append({
+                    "flag": flag, "ticker": None, "pnl_then": None,
+                    "exited": False, "exit_pnl": None, "correct": None,
+                })
+                continue
             ticker = flag.get("ticker")
             exit_t = recent_exits.get(ticker)
             flag_outcomes.append({
@@ -553,7 +560,8 @@ def write_agent_memory(lessons: dict, verification: dict):
                         f"Avg return: {data.get('avg_return',0):+.1f}% | "
                         f"Beat QQQ: {data.get('beat_qqq_count',0)}/{data.get('total_picks',0)}\n\n")
         elif agent_id == "agent_05":
-            section += (f"High-conviction edge: {data.get('conviction_edge',0):+.1f}%pp\n\n")
+            edge = data.get('conviction_edge') or 0
+            section += (f"High-conviction edge: {edge:+.1f}%pp\n\n")
         elif agent_id == "agent_09":
             section += (f"Opportunity hit rate: {data.get('hit_rate',0):.0f}%\n\n")
         elif agent_id == "agent_12":
@@ -598,8 +606,9 @@ def _update_master_index(verification: dict, today: str):
                      f"{d.get('avg_return',0):+.1f}% |")
     if "agent_05" in verification:
         d = verification["agent_05"]
+        edge = d.get('conviction_edge') or 0
         lines.append(f"| Agent 05 Thematic | Conviction edge | "
-                     f"{d.get('conviction_edge',0):+.1f}%pp |")
+                     f"{edge:+.1f}%pp |")
     if "agent_09" in verification:
         d = verification["agent_09"]
         lines.append(f"| Agent 09 Strategist | Opp hit rate | "

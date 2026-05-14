@@ -201,7 +201,11 @@ def scrape_tradingview_scripts(max_pages: int = 3) -> list:
                 if r.status_code != 200:
                     break
                 data = r.json()
-                scripts = data.get("scripts", data.get("results", []))
+                # API may return a list directly or a dict with 'scripts'/'results' key
+                if isinstance(data, list):
+                    scripts = data
+                else:
+                    scripts = data.get("scripts", data.get("results", []))
                 if not scripts:
                     break
                 for s in scripts:

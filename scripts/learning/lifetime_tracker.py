@@ -390,7 +390,7 @@ def get_lifetime_telegram_block(stats: dict = None) -> str:
         "",
         "<b>Cumulative Knowledge:</b>",
         f"  Indicators: {kb_size} | Lessons: {lessons} | Framework updates: {fw_upd}",
-        f"  Learning velocity: {vel_str} | Thesis accuracy: {thesis_start} → {thesis_now}",
+        f"  Learning velocity: {vel_str} | Thesis accuracy: {thesis_start} -> {thesis_now}",
     ]
 
     # Recent milestones
