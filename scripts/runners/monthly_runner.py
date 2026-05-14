@@ -472,6 +472,19 @@ def run_monthly():
     except Exception as e:
         log(f"  [skip]: {e}")
 
+    # Step 4b: Indicator KB proposals (Agent 14 style)
+    log("\n[4b/6] Indicator KB — framework proposals from community discoveries...")
+    indicator_proposals = ""
+    try:
+        from indicator_learner import run_indicator_proposals, get_kb_telegram_summary
+        indicator_proposals = run_indicator_proposals()
+        if indicator_proposals:
+            log(f"  Proposals generated ({len(indicator_proposals)} chars)")
+        else:
+            log("  KB too small — proposals skipped")
+    except Exception as e:
+        log(f"  [skip]: {e}")
+
     # Step 5: Generate framework update (LLM)
     log("\n[5/6] Generating framework improvement proposals (Groq/Gemini)...")
     update_text = ""

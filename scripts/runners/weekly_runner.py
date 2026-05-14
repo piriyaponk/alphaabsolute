@@ -388,6 +388,32 @@ def run_weekly():
         except Exception as e:
             log(f"  [NotebookLM skip]: {e}")
 
+    # ── STEP 7d: Indicator Learning — TradingView + GitHub + Reddit + QuantConnect
+    log("\n[7d/9] Indicator knowledge base — weekly discovery cycle...")
+    indicator_result = {"new_items_added": 0, "total_kb_size": 0, "top_new_items": []}
+    try:
+        from indicator_learner import run_indicator_discovery
+        from portfolio_engine import load_portfolio as _lp2
+        _port_for_indicators = _lp2() if "portfolio" not in dir() else portfolio
+        indicator_result = run_indicator_discovery(portfolio=_port_for_indicators)
+        log(f"  Scraped: {indicator_result.get('raw_scraped',0)} | "
+            f"New: {indicator_result.get('new_items_added',0)} | "
+            f"KB total: {indicator_result.get('total_kb_size',0)} | "
+            f"Novel: {indicator_result.get('novel_count',0)}")
+        for it in indicator_result.get("top_new_items",[])[:3]:
+            log(f"    + {it.get('name','')} [{it.get('source','')} | "
+                f"score={it.get('quality_score',0)}]")
+        results["steps"]["indicator_learning"] = {
+            "raw_scraped":     indicator_result.get("raw_scraped", 0),
+            "new_added":       indicator_result.get("new_items_added", 0),
+            "total_kb_size":   indicator_result.get("total_kb_size", 0),
+            "novel_count":     indicator_result.get("novel_count", 0),
+        }
+    except Exception as e:
+        log(f"  [ERROR] Indicator learning: {e}")
+        import traceback
+        log(f"  {traceback.format_exc()[:300]}")
+
     # ── STEP 7c: Research Memory Loop — source quality + thesis + knowledge base
     log("\n[7c/9] Research team memory loop (read/write/analyze/store)...")
     research_memory_result = {}
@@ -492,6 +518,7 @@ def run_weekly():
             focus_result=focus_result,
             agent_memory_result=agent_memory_result,
             research_memory_result=research_memory_result,
+            indicator_result=indicator_result,
         )
         log(f"  Telegram: {'sent' if ok else 'failed (check token/chat_id)'}")
     except Exception as e:

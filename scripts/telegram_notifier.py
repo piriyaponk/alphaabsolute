@@ -207,7 +207,8 @@ def send_weekly_summary(perf: dict, nrgc_assessments: dict, synthesis: dict,
                          new_lessons_count: int = 0,
                          focus_result: dict = None,
                          agent_memory_result: dict = None,
-                         research_memory_result: dict = None):
+                         research_memory_result: dict = None,
+                         indicator_result: dict = None):
     """Send full weekly summary to Telegram."""
     now = datetime.now().strftime("%Y-%m-%d")
     beating = perf.get("beating_nasdaq", False)
@@ -481,6 +482,37 @@ def send_weekly_summary(perf: dict, nrgc_assessments: dict, synthesis: dict,
         else:
             lines.append(f"  WRITE: {t_saved} theses saved (verified next week)")
         lines.append(f"  STORE: {kb_n} tickers tracked | +{kb_add} facts added this week")
+
+    # ── Indicator Knowledge Base ──────────────────────────────────────────────
+    if indicator_result and indicator_result.get("total_kb_size", 0) > 0:
+        lines.append("")
+        lines.append("<b>Indicator KB — Lifetime Learning:</b>")
+        total   = indicator_result.get("total_kb_size", 0)
+        added   = indicator_result.get("new_items_added", 0)
+        novel   = indicator_result.get("novel_count", 0)
+        sources = indicator_result.get("sources_active", 0)
+        lines.append(
+            f"  KB: {total} items | +{added} this week | {novel} novel discoveries"
+            f" | {sources} sources active"
+        )
+        # Top new discoveries
+        top_new = indicator_result.get("top_new_items", [])
+        if top_new:
+            for it in top_new[:3]:
+                name    = it.get("name", "")[:40]
+                src     = it.get("source", "")
+                score   = it.get("quality_score", 0)
+                insight = it.get("novel_insight", "") or ""
+                if insight and insight != "N/A":
+                    lines.append(f"  + {name} [{src} | q={score}]: {insight[:60]}")
+                else:
+                    cats = ", ".join(it.get("categories", [])[:2])
+                    lines.append(f"  + {name} [{src} | q={score}] ({cats})")
+        # Top categories
+        top_cats = indicator_result.get("top_categories", [])
+        if top_cats:
+            cat_str = " / ".join(f"{c}:{n}" for c, n in top_cats[:4])
+            lines.append(f"  Top: {cat_str}")
 
     # ── Cost ──────────────────────────────────────────────────────────────────
     if token_cost_usd > 0:
