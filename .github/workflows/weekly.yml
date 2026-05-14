@@ -48,6 +48,7 @@ jobs:
                   data/nrgc/state/ \
                   data/state/ \
                   data/agent_memory/ \
-                  memory/ || true
+                  memory/ \
+                  output/framework_review_*.md || true
           git diff --cached --quiet || git commit -m "auto: weekly update $(date -u +%Y-%m-%d)"
           git push || true

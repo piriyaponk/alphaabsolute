@@ -320,6 +320,30 @@ def run_weekly():
         except Exception as e:
             log(f"  [NotebookLM skip]: {e}")
 
+    # ── STEP 7c: Research Memory Loop — source quality + thesis + knowledge base
+    log("\n[7c/9] Research team memory loop (read/write/analyze/store)...")
+    research_memory_result = {}
+    try:
+        from research_memory import run_research_memory_loop
+        research_memory_result = run_research_memory_loop(
+            raw_items=raw_items if "raw_items" in dir() else {},
+            insights=insights,
+            synthesis=synthesis,
+            nrgc_assessments=nrgc_assessments,
+            portfolio=portfolio,
+            focus_result=focus_result,
+        )
+        log(f"  Top source: {research_memory_result.get('top_source','?')}"
+            f" | Theses verified: {research_memory_result.get('theses_verified',0)}"
+            f" | Accuracy: {research_memory_result.get('thesis_accuracy','N/A')}")
+        log(f"  KB: {research_memory_result.get('kb_tickers',0)} tickers"
+            f" | +{research_memory_result.get('kb_added',0)} facts this week")
+        results["steps"]["research_memory"] = research_memory_result
+    except Exception as e:
+        log(f"  [ERROR] Research memory: {e}")
+        import traceback
+        log(f"  {traceback.format_exc()[:300]}")
+
     # ── STEP 8a: Agent Memory Loop — verify all agent calls + write lessons ──
     log("\n[8a/9] Agent memory loop (6 agents learning this week)...")
     agent_memory_result = {}
@@ -399,6 +423,7 @@ def run_weekly():
             new_lessons_count=new_lessons_count,
             focus_result=focus_result,
             agent_memory_result=agent_memory_result,
+            research_memory_result=research_memory_result,
         )
         log(f"  Telegram: {'sent' if ok else 'failed (check token/chat_id)'}")
     except Exception as e:

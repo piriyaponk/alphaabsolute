@@ -206,7 +206,8 @@ def send_weekly_summary(perf: dict, nrgc_assessments: dict, synthesis: dict,
                          paper_stats: dict = None,
                          new_lessons_count: int = 0,
                          focus_result: dict = None,
-                         agent_memory_result: dict = None):
+                         agent_memory_result: dict = None,
+                         research_memory_result: dict = None):
     """Send full weekly summary to Telegram."""
     now = datetime.now().strftime("%Y-%m-%d")
     beating = perf.get("beating_nasdaq", False)
@@ -455,6 +456,31 @@ def send_weekly_summary(perf: dict, nrgc_assessments: dict, synthesis: dict,
         total_l = focus_result.get("total_lessons", 0)
         if total_l:
             lines.append(f"  Total lessons stored: {total_l}")
+
+    # ── Research Team Learning ────────────────────────────────────────────────
+    if research_memory_result:
+        lines.append("")
+        lines.append("<b>Research Team Learning:</b>")
+        top_src   = research_memory_result.get("top_source", "?")
+        n_src     = research_memory_result.get("sources_ranked", 0)
+        t_ver     = research_memory_result.get("theses_verified", 0)
+        t_acc     = research_memory_result.get("thesis_accuracy")
+        kb_n      = research_memory_result.get("kb_tickers", 0)
+        kb_add    = research_memory_result.get("kb_added", 0)
+        t_saved   = research_memory_result.get("theses_saved", 0)
+
+        lines.append(f"  READ: Top source = {top_src} ({n_src} sources ranked)")
+        if t_ver > 0:
+            acc_str = f"{t_acc:.0f}%" if t_acc else "—"
+            lines.append(f"  WRITE: {t_ver} theses verified | Accuracy: {acc_str}")
+            # Show top results
+            for r in research_memory_result.get("thesis_results", [])[:3]:
+                icon = "YES" if r.get("correct") else "NO"
+                lines.append(f"    [{icon}] {r['ticker']} {r.get('pct',0):+.1f}%"
+                             f" — {r.get('thesis','')[:50]}")
+        else:
+            lines.append(f"  WRITE: {t_saved} theses saved (verified next week)")
+        lines.append(f"  STORE: {kb_n} tickers tracked | +{kb_add} facts added this week")
 
     # ── Cost ──────────────────────────────────────────────────────────────────
     if token_cost_usd > 0:
