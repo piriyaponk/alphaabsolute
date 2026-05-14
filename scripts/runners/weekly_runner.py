@@ -34,6 +34,42 @@ def run_weekly():
 
     results = {"date": start.strftime("%Y-%m-%d"), "steps": {}}
 
+    # ── STEP 0: Smart Signals — zero-token intelligence layer ─────────────────
+    # Run FIRST: FRED regime + insider clusters + XBRL revenue + volume anomalies
+    # All free, all zero tokens — enriches every downstream step
+    log("\n[0/9] Smart Signals — zero-token intelligence (FRED/Insider/XBRL/Volume)...")
+    smart_data = {
+        "fred_regime":    {"regime": "neutral", "regime_score": 0},
+        "enrichment":     {},
+        "insider_signals": {},
+        "xbrl_financials": {},
+        "volume_anomalies": {},
+        "alerts_8k":      [],
+        "summary": {"regime": "neutral", "regime_score": 0,
+                    "insider_clusters": [], "volume_positive": [],
+                    "xbrl_accel": [], "alerts_count": 0},
+    }
+    try:
+        sys.path.insert(0, str(BASE_DIR / "scripts" / "learning"))
+        from smart_signals import run_smart_signals
+        from source_config import DEFAULT_WATCHLIST as _wl
+        _all_tickers = list({t for tickers in _wl.values() for t in tickers})
+        smart_data = run_smart_signals(
+            watchlist_tickers=_all_tickers,
+            nrgc_tickers=None,   # Phase 2-4 tickers unknown yet — use full watchlist
+        )
+        _sm = smart_data.get("summary", {})
+        log(f"  FRED Regime: {_sm.get('regime','?')} (score {_sm.get('regime_score',0):+d})")
+        log(f"  Insider clusters: {_sm.get('insider_clusters','none') or 'none'}")
+        log(f"  Volume positive: {(_sm.get('volume_positive') or [])[:5] or 'none'}")
+        log(f"  XBRL accelerating rev: {(_sm.get('xbrl_accel') or [])[:5] or 'none'}")
+        log(f"  8-K alerts: {_sm.get('alerts_count',0)}")
+        results["steps"]["smart_signals"] = _sm
+    except Exception as e:
+        log(f"  [ERROR] Smart signals: {e}")
+        import traceback
+        log(f"  {traceback.format_exc()[:300]}")
+
     # ── STEP 1: Scrape (no LLM, free) ────────────────────────────────────────
     log("\n[1/7] Research Scraping (weekly mode)...")
     try:
@@ -102,6 +138,34 @@ def run_weekly():
         from distill_engine import client as ai_client
         nrgc_assessments = run_nrgc_update(DEFAULT_WATCHLIST, client=ai_client,
                                             earnings_results=earnings_results)
+
+        # ── Merge smart signal enrichment into NRGC assessments ──────────────
+        _enrichment = smart_data.get("enrichment", {})
+        _enrich_count = 0
+        for _t, _assessment in nrgc_assessments.items():
+            _e = _enrichment.get(_t, {})
+            if not _e:
+                continue
+            _assessment["smart_signals"] = _e
+            _boost = 0
+            # Insider cluster = strong institutional conviction
+            if _e.get("insider_cluster"):
+                _boost += 5
+            # Revenue acceleration from authoritative XBRL source
+            if _e.get("xbrl_accel"):
+                _boost += 3
+            # 52W breakout on volume = institutional buying confirmed
+            if any("52W_HIGH" in str(s) for s in _e.get("vol_signals", [])):
+                _boost += 3
+            # Pocket pivot = accumulation signal
+            if any("POCKET_PIVOT" in str(s) for s in _e.get("vol_signals", [])):
+                _boost += 2
+            if _boost:
+                _assessment["emls_boost"] = _assessment.get("emls_boost", 0) + _boost
+            _enrich_count += 1
+        if _enrich_count:
+            log(f"  Enriched {_enrich_count} tickers with smart signals")
+        # ─────────────────────────────────────────────────────────────────────
 
         # Log top setups
         summary = get_nrgc_summary_for_all()
@@ -176,8 +240,10 @@ def run_weekly():
             from auto_trader import run_auto_trade_cycle
             from portfolio_engine import load_portfolio, save_portfolio
             portfolio = load_portfolio()   # reload after update_positions
-            # Pass regime from synthesis if available
-            weekly_regime = synthesis.get("regime_signal", "neutral") if synthesis else None
+            # Pass regime: LLM synthesis first, FRED rule-based as fallback
+            _fred_regime = smart_data.get("summary", {}).get("regime", "neutral")
+            weekly_regime = (synthesis.get("regime_signal", _fred_regime)
+                             if synthesis else _fred_regime)
             auto_trade_result = run_auto_trade_cycle(portfolio, nrgc_assessments,
                                                      regime=weekly_regime)
             save_portfolio(portfolio)
@@ -209,7 +275,9 @@ def run_weekly():
     if nrgc_assessments:
         try:
             from focus_list import run_focus_cycle
-            focus_regime = synthesis.get("regime_signal", "neutral") if synthesis else "neutral"
+            _fred_regime2 = smart_data.get("summary", {}).get("regime", "neutral")
+            focus_regime = (synthesis.get("regime_signal", _fred_regime2)
+                            if synthesis else _fred_regime2)
             focus_result = run_focus_cycle(nrgc_assessments, regime=focus_regime)
             n_picks   = len(focus_result.get("picks", []))
             n_lessons = len(focus_result.get("new_lessons", []))
