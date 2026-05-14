@@ -113,14 +113,22 @@ def run_daily():
     except Exception as e:
         print(f"  [Telegram ERROR]: {e}")
 
+    # 4b. Update lifetime stats (daily — performance only, fast)
+    try:
+        from lifetime_tracker import update_daily
+        update_daily(perf=perf, portfolio=portfolio)
+    except Exception as e:
+        print(f"  [Lifetime daily skip]: {e}")
+
     # 4. Update state file for other agents
     try:
+        import json as _json_state
         state_file = BASE_DIR / "data" / "state" / "active_state.json"
         state = {}
         if state_file.exists():
-            state = json.loads(state_file.read_text())
+            state = _json_state.loads(state_file.read_text())
         state["last_daily_run"] = start.strftime("%Y-%m-%d %H:%M")
-        state_file.write_text(json.dumps(state, indent=2))
+        state_file.write_text(_json_state.dumps(state, indent=2))
     except: pass
 
     elapsed = (datetime.now() - start).seconds

@@ -488,6 +488,35 @@ def run_weekly():
         import traceback
         log(f"  {traceback.format_exc()[:200]}")
 
+    # ── STEP 8c: Lifetime stats update ───────────────────────────────────────
+    log("\n[8c/9] Updating lifetime stats...")
+    lifetime_stats = {}
+    try:
+        from lifetime_tracker import update_weekly, get_lifetime_telegram_block
+        from portfolio_engine import load_portfolio as _lp3, get_performance as _gp3
+        _pf3  = _lp3()
+        _perf3 = _gp3(_pf3)
+        lifetime_stats = update_weekly(
+            perf=_perf3,
+            portfolio=_pf3,
+            focus_result=focus_result,
+            indicator_result=indicator_result,
+            research_result=research_memory_result,
+            agent_result=agent_memory_result,
+            lessons_count=new_lessons_count,
+        )
+        age_days = lifetime_stats.get("runs", {}).get("weekly", 0)
+        total_kb = lifetime_stats.get("knowledge", {}).get("indicator_kb_size", 0)
+        total_les = lifetime_stats.get("knowledge", {}).get("total_lessons", 0)
+        log(f"  Weekly run #{age_days} | KB: {total_kb} | Lessons: {total_les}")
+        results["steps"]["lifetime"] = {
+            "weekly_run": age_days,
+            "kb_size":    total_kb,
+            "lessons":    total_les,
+        }
+    except Exception as e:
+        log(f"  [Lifetime tracker]: {e}")
+
     # ── STEP 9: Telegram weekly summary ──────────────────────────────────────
     log("\n[9/9] Sending Telegram weekly summary...")
     try:
@@ -519,6 +548,7 @@ def run_weekly():
             agent_memory_result=agent_memory_result,
             research_memory_result=research_memory_result,
             indicator_result=indicator_result,
+            lifetime_stats=lifetime_stats,
         )
         log(f"  Telegram: {'sent' if ok else 'failed (check token/chat_id)'}")
     except Exception as e:

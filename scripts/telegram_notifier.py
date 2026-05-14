@@ -208,7 +208,8 @@ def send_weekly_summary(perf: dict, nrgc_assessments: dict, synthesis: dict,
                          focus_result: dict = None,
                          agent_memory_result: dict = None,
                          research_memory_result: dict = None,
-                         indicator_result: dict = None):
+                         indicator_result: dict = None,
+                         lifetime_stats: dict = None):
     """Send full weekly summary to Telegram."""
     now = datetime.now().strftime("%Y-%m-%d")
     beating = perf.get("beating_nasdaq", False)
@@ -518,6 +519,18 @@ def send_weekly_summary(perf: dict, nrgc_assessments: dict, synthesis: dict,
     if token_cost_usd > 0:
         lines.append("")
         lines.append(f"LLM cost this run: ${token_cost_usd:.4f}")
+
+    # ── Lifetime System Block ─────────────────────────────────────────────────
+    if lifetime_stats:
+        try:
+            from lifetime_tracker import get_lifetime_telegram_block
+            lifetime_block = get_lifetime_telegram_block(lifetime_stats)
+            if lifetime_block:
+                lines.append("")
+                lines.append("─" * 30)
+                lines.append(lifetime_block)
+        except Exception:
+            pass
 
     # Send (split if needed)
     msg = "\n".join(lines)
