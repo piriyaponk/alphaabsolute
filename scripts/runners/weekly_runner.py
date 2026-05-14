@@ -70,6 +70,40 @@ def run_weekly():
         import traceback
         log(f"  {traceback.format_exc()[:300]}")
 
+    # ── STEP 0b: Edge Intelligence — Alternative Data + Specialized Edge ────────
+    # Zero-token sector-specific leading indicators: Semi cycle, AI capex, HBM,
+    # Defense flow, Nuclear catalysts, DC Power + Google Trends + Short Interest
+    log("\n[0b/9] Edge Intelligence (AltData + SpecializedEdge + NarrativeTracker)...")
+    alt_data_result  = {"google_trends": {}, "short_interest": {}, "nrgc_theme_boosts": {}, "nrgc_ticker_boosts": {}}
+    edge_result      = {"nrgc_theme_boosts": {}, "semiconductor": {}, "ai_capex": {}, "hbm_memory": {}, "defense": {}, "nuclear": {}, "data_center_power": {}}
+    narrative_result = {"nrgc_boosts": {}, "top_accelerating": [], "super_narratives": {}}
+    try:
+        from alternative_data  import run_alternative_data, get_altdata_telegram_line
+        from specialized_edge  import run_specialized_edge, get_edge_telegram_lines
+        from narrative_tracker import run_narrative_tracker, get_narrative_telegram_line
+        # Use full watchlist tickers for short interest screen
+        try:
+            from source_config import DEFAULT_WATCHLIST as _wl2
+            _si_tickers = list({t for tickers in _wl2.values() for t in tickers})
+        except Exception:
+            _si_tickers = []
+        alt_data_result  = run_alternative_data(tickers=_si_tickers)
+        edge_result      = run_specialized_edge()
+        # Narrative tracker runs BEFORE scraping to catch prior-week data too
+        narrative_result = run_narrative_tracker()
+        log(f"  AltData: {get_altdata_telegram_line(alt_data_result)}")
+        log(f"  Narrative: {get_narrative_telegram_line(narrative_result)}")
+        _top_edge = edge_result.get("top_signals", [])[:2]
+        log(f"  Edge signals: {[(sig, f'{boost:+d}') for sig, boost, _ in _top_edge]}")
+        results["steps"]["edge_intelligence"] = {
+            "alt_data_boosts":  len(alt_data_result.get("nrgc_theme_boosts", {})),
+            "edge_boosts":      len(edge_result.get("nrgc_theme_boosts", {})),
+            "narrative_boosts": len(narrative_result.get("nrgc_boosts", {})),
+            "squeeze_candidates": len(alt_data_result.get("short_interest", {}).get("squeeze_candidates", [])),
+        }
+    except Exception as e:
+        log(f"  [Edge Intelligence skip]: {e}")
+
     # ── STEP 1: Scrape (no LLM, free) ────────────────────────────────────────
     log("\n[1/7] Research Scraping (weekly mode)...")
     try:
@@ -95,6 +129,47 @@ def run_weekly():
         except Exception as e:
             log(f"  [ERROR] Distillation failed: {e}")
             results["steps"]["distill"] = {"error": str(e)}
+
+    # ── STEP 2b: Earnings Tone Analysis — zero/near-zero token ───────────────
+    log("\n[2b/9] Earnings tone analysis (keyword + optional LLM)...")
+    tone_results = {}
+    try:
+        from earnings_tone import analyze_earnings_batch
+        # Build transcripts from insights that contain earnings/transcript text
+        _transcripts = {}
+        for ins in insights:
+            tkr = ins.get("ticker", "")
+            txt = ins.get("transcript", ins.get("content", ins.get("summary", "")))
+            if tkr and len(txt) > 200 and ins.get("source_type") in ("earnings", "transcript", "quartr"):
+                if tkr not in _transcripts:
+                    _transcripts[tkr] = {"current": txt}
+                else:
+                    _transcripts[tkr]["prior"] = txt   # second entry = prior quarter
+        # Also check raw earnings text files
+        _raw_transcripts_dir = BASE_DIR / "data" / "raw"
+        if _raw_transcripts_dir.exists():
+            for f in sorted(_raw_transcripts_dir.glob("transcript_*.txt"))[-10:]:
+                try:
+                    tkr = f.stem.split("_")[1].upper()
+                    txt = f.read_text(encoding="utf-8", errors="replace")
+                    if tkr and len(txt) > 200:
+                        _transcripts.setdefault(tkr, {})["current"] = txt[:6000]
+                except Exception:
+                    pass
+        if _transcripts:
+            tone_results = analyze_earnings_batch(_transcripts, use_llm=False)
+            positive_signals = [(t, d["nrgc_signal"]) for t, d in tone_results.items()
+                                if d.get("combined_nrgc_boost", 0) > 2]
+            log(f"  Tone analyzed: {len(tone_results)} tickers | "
+                f"Phase-change signals: {[t for t, _ in positive_signals[:3]]}")
+            results["steps"]["earnings_tone"] = {
+                "tickers": len(tone_results),
+                "phase_signals": len(positive_signals),
+            }
+        else:
+            log("  No transcript data available this week — skip")
+    except Exception as e:
+        log(f"  [Earnings tone skip]: {e}")
 
     # ── STEP 3: Weekly synthesis (1 Sonnet call) ──────────────────────────────
     log("\n[3/8] Weekly synthesis (Sonnet)...")
@@ -139,32 +214,65 @@ def run_weekly():
         nrgc_assessments = run_nrgc_update(DEFAULT_WATCHLIST, client=ai_client,
                                             earnings_results=earnings_results)
 
-        # ── Merge smart signal enrichment into NRGC assessments ──────────────
-        _enrichment = smart_data.get("enrichment", {})
+        # ── Merge ALL intelligence layers into NRGC assessments ─────────────
+        _enrichment   = smart_data.get("enrichment", {})
         _enrich_count = 0
         for _t, _assessment in nrgc_assessments.items():
-            _e = _enrichment.get(_t, {})
-            if not _e:
-                continue
-            _assessment["smart_signals"] = _e
+            _theme = _assessment.get("theme", "")
             _boost = 0
-            # Insider cluster = strong institutional conviction
-            if _e.get("insider_cluster"):
-                _boost += 5
-            # Revenue acceleration from authoritative XBRL source
-            if _e.get("xbrl_accel"):
-                _boost += 3
-            # 52W breakout on volume = institutional buying confirmed
-            if any("52W_HIGH" in str(s) for s in _e.get("vol_signals", [])):
-                _boost += 3
-            # Pocket pivot = accumulation signal
-            if any("POCKET_PIVOT" in str(s) for s in _e.get("vol_signals", [])):
-                _boost += 2
+            _signals_applied = []
+
+            # --- Layer 1: Smart Signals (FRED/Insider/XBRL/Volume) ---
+            _e = _enrichment.get(_t, {})
+            if _e:
+                _assessment["smart_signals"] = _e
+                if _e.get("insider_cluster"):
+                    _boost += 5; _signals_applied.append("insider_cluster")
+                if _e.get("xbrl_accel"):
+                    _boost += 3; _signals_applied.append("xbrl_revenue_accel")
+                if any("52W_HIGH" in str(s) for s in _e.get("vol_signals", [])):
+                    _boost += 3; _signals_applied.append("52w_breakout")
+                if any("POCKET_PIVOT" in str(s) for s in _e.get("vol_signals", [])):
+                    _boost += 2; _signals_applied.append("pocket_pivot")
+
+            # --- Layer 2: Alternative Data (Google Trends + Short Interest) ---
+            _alt_ticker_boost = alt_data_result.get("nrgc_ticker_boosts", {}).get(_t, 0)
+            _alt_theme_boost  = alt_data_result.get("nrgc_theme_boosts", {}).get(_theme, 0)
+            if _alt_ticker_boost:
+                _boost += _alt_ticker_boost; _signals_applied.append("squeeze_setup")
+            if _alt_theme_boost:
+                _boost += _alt_theme_boost
+                _trends_sig = alt_data_result.get("google_trends", {}).get(_theme, {}).get("nrgc_signal", "")
+                _signals_applied.append(f"trends:{_trends_sig}")
+
+            # --- Layer 3: Specialized Edge (Semi/Capex/HBM/Defense/Nuclear/DCPower) ---
+            _edge_boost = edge_result.get("nrgc_theme_boosts", {}).get(_theme, 0)
+            if _edge_boost:
+                _boost += min(abs(_edge_boost), 5) * (1 if _edge_boost > 0 else -1)
+                _signals_applied.append(f"edge:{_theme.lower().replace(' ', '_')}")
+
+            # --- Layer 4: Narrative Tracker ---
+            _narr_boost = narrative_result.get("nrgc_boosts", {}).get(_theme, 0)
+            if _narr_boost:
+                _boost += _narr_boost; _signals_applied.append("narrative_accel")
+
+            # --- Layer 5: Earnings Tone ---
+            _tone_boost = tone_results.get(_t, {}).get("combined_nrgc_boost", 0)
+            if _tone_boost:
+                _boost += _tone_boost; _signals_applied.append("earnings_tone")
+
             if _boost:
                 _assessment["emls_boost"] = _assessment.get("emls_boost", 0) + _boost
+                _assessment["edge_signals"] = _signals_applied
             _enrich_count += 1
+
         if _enrich_count:
-            log(f"  Enriched {_enrich_count} tickers with smart signals")
+            _top_boosted = sorted(
+                [(t, a.get("emls_boost", 0)) for t, a in nrgc_assessments.items()
+                 if a.get("emls_boost", 0) > 0],
+                key=lambda x: -x[1]
+            )[:5]
+            log(f"  Enriched {_enrich_count} tickers | Top boosts: {_top_boosted}")
         # ─────────────────────────────────────────────────────────────────────
 
         # Log top setups
@@ -549,6 +657,9 @@ def run_weekly():
             research_memory_result=research_memory_result,
             indicator_result=indicator_result,
             lifetime_stats=lifetime_stats,
+            alt_data_result=alt_data_result,
+            edge_result=edge_result,
+            narrative_result=narrative_result,
         )
         log(f"  Telegram: {'sent' if ok else 'failed (check token/chat_id)'}")
     except Exception as e:

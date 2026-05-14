@@ -209,7 +209,10 @@ def send_weekly_summary(perf: dict, nrgc_assessments: dict, synthesis: dict,
                          agent_memory_result: dict = None,
                          research_memory_result: dict = None,
                          indicator_result: dict = None,
-                         lifetime_stats: dict = None):
+                         lifetime_stats: dict = None,
+                         alt_data_result: dict = None,
+                         edge_result: dict = None,
+                         narrative_result: dict = None):
     """Send full weekly summary to Telegram."""
     now = datetime.now().strftime("%Y-%m-%d")
     beating = perf.get("beating_nasdaq", False)
@@ -514,6 +517,47 @@ def send_weekly_summary(perf: dict, nrgc_assessments: dict, synthesis: dict,
         if top_cats:
             cat_str = " / ".join(f"{c}:{n}" for c, n in top_cats[:4])
             lines.append(f"  Top: {cat_str}")
+
+    # ── Edge Intelligence Summary ─────────────────────────────────────────────
+    try:
+        if edge_result and edge_result.get("top_signals"):
+            lines.append("")
+            lines.append("<b>Edge Signals:</b>")
+            modules = {
+                "semiconductor":     "Semi",
+                "ai_capex":          "AI Capex",
+                "hbm_memory":        "HBM",
+                "defense":           "Defense",
+                "nuclear":           "Nuclear",
+                "data_center_power": "DC Power",
+            }
+            for key, label in modules.items():
+                m = edge_result.get(key, {})
+                sig   = m.get("nrgc_signal", "").replace("_", " ")
+                boost = m.get("nrgc_boost", 0)
+                if boost != 0:
+                    lines.append(f"  {label}: {sig} ({boost:+d})")
+        if alt_data_result:
+            trending = [t for t, d in alt_data_result.get("google_trends", {}).items()
+                        if d.get("trending")]
+            squeezes = alt_data_result.get("short_interest", {}).get("squeeze_candidates", [])
+            if trending or squeezes:
+                parts = []
+                if trending:
+                    parts.append(f"Trending: {', '.join(trending[:3])}")
+                if squeezes:
+                    parts.append(f"Squeeze: {', '.join(s['ticker'] for s in squeezes[:3])}")
+                lines.append("  " + " | ".join(parts))
+        if narrative_result and narrative_result.get("top_accelerating"):
+            top = narrative_result["top_accelerating"][:3]
+            narr_str = " ".join(f"{t}({a:+.0f}%)" for t, a, _ in top)
+            lines.append(f"  Narrative accel: {narr_str}")
+        if narrative_result and narrative_result.get("super_narratives"):
+            sn = list(narrative_result["super_narratives"].keys())[:2]
+            if sn:
+                lines.append(f"  Super-narrative: {', '.join(sn)}")
+    except Exception:
+        pass
 
     # ── Cost ──────────────────────────────────────────────────────────────────
     if token_cost_usd > 0:
