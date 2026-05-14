@@ -1,0 +1,54 @@
+name: AlphaAbsolute Monthly
+
+# 1st Sunday of each month, 09:00 Bangkok time = 02:00 UTC
+# GitHub Actions doesn't support "1st Sunday" natively, so we run every Sunday
+# and the script checks if it's the 1st Sunday of the month
+on:
+  schedule:
+    - cron: '0 2 1-7 * 0'    # Sundays in days 1-7 = 1st Sunday, 02:00 UTC = 09:00 ICT
+  workflow_dispatch:           # Manual trigger
+
+jobs:
+  monthly-run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Create required directories
+        run: |
+          mkdir -p data/paper_trading data/nrgc/state data/state data/raw output memory
+
+      - name: Run monthly runner
+        env:
+          GROQ_API_KEY:          ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY:        ${{ secrets.GEMINI_API_KEY }}
+          FINNHUB_API_KEY:       ${{ secrets.FINNHUB_API_KEY }}
+          FRED_API_KEY:          ${{ secrets.FRED_API_KEY }}
+          TELEGRAM_BOT_TOKEN:    ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:      ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python scripts/runners/monthly_runner.py
+
+      - name: Commit framework updates
+        run: |
+          git config user.name  "AlphaAbsolute Bot"
+          git config user.email "bot@alphaabsolute.ai"
+          git add memory/framework_updates.md \
+                  memory/paper_trading_lessons.md \
+                  output/framework_review_*.md \
+                  data/paper_trading/focus_lessons.json || true
+          git diff --cached --quiet || git commit -m "auto: monthly framework update $(date -u +%Y-%m)"
+          git push || true
