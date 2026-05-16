@@ -3,7 +3,7 @@ AlphaAbsolute — Auto Paper Trader (Fund Model)
 Philosophy: Beat Nasdaq with low drawdown. Cash is a position.
             Mid/small cap bias for alpha. Only act on strong NRGC/PULSE signals.
 
-Entry  : Phase 3 + score ≥ 50 + PULSE GREEN + regime OK + cap preference
+Entry  : Phase 3 + score >= 50 + PULSE GREEN + regime OK + cap preference
 Exit   : Hard stop -8% | Phase 5/6/7 | Trail after +30% | Regime risk-off + weak position
 Cash   : Raise when regime = risk-off, no setups, or market breadth deteriorating.
 No LLM — pure rule-based. Fast.
@@ -28,8 +28,8 @@ POSITION_PCT          = 0.10  # base equal-weight ~10%
 CAP_SMALL_MAX = 10_000_000_000    # < $10B  = small/mid (high alpha zone)
 CAP_MID_MAX   = 100_000_000_000   # < $100B = mid/large
 CAP_LARGE_MAX = 500_000_000_000   # < $500B = large
-# ≥ $500B = mega cap
-ADTV_MIN      = 5_000_000         # ADTV < $5M USD → too illiquid, skip
+# >= $500B = mega cap
+ADTV_MIN      = 5_000_000         # ADTV < $5M USD -> too illiquid, skip
 # Score requirements by cap tier
 CAP_MIN_SCORE = {
     "small": 50,   # standard — high alpha shots, accept
@@ -106,30 +106,42 @@ def _get_cap_info(ticker: str) -> tuple:
     import os, sys
     sys.path.insert(0, str(BASE_DIR / "scripts" / "paper_trading"))
 
-    # 1. Market cap from Finnhub
+    # 1. Market cap — yfinance fast_info (primary, no key needed)
+    #    Finnhub /stock/metric returns marketCapitalization in millions but has
+    #    been observed returning inflated/stale figures; yfinance is more reliable.
     market_cap = 0.0
     try:
-        import requests, urllib3
-        urllib3.disable_warnings()
-        # Load .env if present (local), else use os.environ (GitHub Actions)
-        _env_path = BASE_DIR / ".env"
-        if _env_path.exists():
-            for _ln in _env_path.read_text(encoding="utf-8-sig").splitlines():
-                _ln = _ln.strip()
-                if _ln and not _ln.startswith("#") and "=" in _ln:
-                    _k, _v = _ln.split("=", 1)
-                    os.environ.setdefault(_k.strip(), _v.strip())
-        finnhub_key = os.environ.get("FINNHUB_API_KEY", "")
-        if finnhub_key:
-            s = requests.Session()
-            s.verify = False
-            r = s.get("https://finnhub.io/api/v1/stock/metric",
-                      params={"symbol": ticker, "metric": "all", "token": finnhub_key},
-                      timeout=8)
-            mc_m = r.json().get("metric", {}).get("marketCapitalization", 0)
-            market_cap = float(mc_m or 0) * 1_000_000   # Finnhub returns in millions
+        import yfinance as yf
+        ticker_obj = yf.Ticker(ticker)
+        mc = ticker_obj.fast_info.get("market_cap") or ticker_obj.fast_info.get("marketCap")
+        if mc and float(mc) > 1e6:
+            market_cap = float(mc)
     except Exception:
         pass
+
+    # Finnhub fallback (if yfinance failed)
+    if market_cap <= 0:
+        try:
+            import requests, urllib3, os
+            urllib3.disable_warnings()
+            _env_path = BASE_DIR / ".env"
+            if _env_path.exists():
+                for _ln in _env_path.read_text(encoding="utf-8-sig").splitlines():
+                    _ln = _ln.strip()
+                    if _ln and not _ln.startswith("#") and "=" in _ln:
+                        _k, _v = _ln.split("=", 1)
+                        os.environ.setdefault(_k.strip(), _v.strip())
+            finnhub_key = os.environ.get("FINNHUB_API_KEY", "")
+            if finnhub_key:
+                s = requests.Session()
+                s.verify = False
+                r = s.get("https://finnhub.io/api/v1/stock/metric",
+                          params={"symbol": ticker, "metric": "all", "token": finnhub_key},
+                          timeout=8)
+                mc_m = r.json().get("metric", {}).get("marketCapitalization", 0)
+                market_cap = float(mc_m or 0) * 1_000_000   # Finnhub returns in millions
+        except Exception:
+            pass
 
     # 2. ADTV from price data (liquidity check)
     adtv = 0.0
@@ -201,8 +213,8 @@ def auto_enter(portfolio: dict, nrgc_assessments: dict,
     """
     Fund-style entry with mid/small cap preference and regime gate.
     - risk-off regime: no new entries
-    - Mid/small cap: standard bar (score ≥ 50)
-    - Large/mega cap: higher bar (score ≥ 70 / 85)
+    - Mid/small cap: standard bar (score >= 50)
+    - Large/mega cap: higher bar (score >= 70 / 85)
     Returns list of new entries made.
     """
     from portfolio_engine import get_current_price, check_pulse_setup
@@ -228,7 +240,7 @@ def auto_enter(portfolio: dict, nrgc_assessments: dict,
     if cash / capital < min_cash_pct:
         return entries_made
 
-    # Candidates: Phase 3, score ≥ base threshold, not already held
+    # Candidates: Phase 3, score >= base threshold, not already held
     candidates = [
         (ticker, data) for ticker, data in nrgc_assessments.items()
         if (data.get("phase") in ENTRY_PHASES
@@ -254,7 +266,7 @@ def auto_enter(portfolio: dict, nrgc_assessments: dict,
             continue
         min_score_for_tier = CAP_MIN_SCORE.get(tier, 50)
         if score < min_score_for_tier:
-            print(f"  [Skip] {ticker}: {tier} cap requires score≥{min_score_for_tier}, got {score}")
+            print(f"  [Skip] {ticker}: {tier} cap requires score>={min_score_for_tier}, got {score}")
             continue
 
         # PULSE gate — require GREEN
@@ -379,7 +391,7 @@ def auto_exit(portfolio: dict, nrgc_assessments: dict,
 
         # 1. Hard stop -8%
         if price <= stop:
-            reason = f"Hard stop -8% (${entry:.2f}→${price:.2f}, {pnl_pct:+.1f}%)"
+            reason = f"Hard stop -8% (${entry:.2f}->${price:.2f}, {pnl_pct:+.1f}%)"
 
         # 2. NRGC Phase 5/6/7
         elif curr_phase and curr_phase in EXIT_PHASES:
@@ -393,7 +405,7 @@ def auto_exit(portfolio: dict, nrgc_assessments: dict,
                 pos["trail_stop"] = trail
                 print(f"  [Trail] {ticker}: +{pnl_pct:.1f}% — trail set ${trail:.2f}")
             if price <= trail:
-                reason = f"Trail stop (peak ${high:.2f}→now ${price:.2f}, {pnl_pct:+.1f}%)"
+                reason = f"Trail stop (peak ${high:.2f}->now ${price:.2f}, {pnl_pct:+.1f}%)"
 
         # 4. Regime risk-off: cut any position bleeding > -4%
         elif regime == "risk-off" and pnl_pct < REGIME_RISKOFF_EXIT_BELOW * 100:
@@ -443,7 +455,7 @@ def enforce_cash_target(portfolio: dict, nrgc_assessments: dict,
                          regime: str = None) -> list:
     """
     If regime is risk-off: raise cash by exiting worst-performing positions
-    until cash ≥ 50% of capital. Exit weakest first (lowest pnl_pct).
+    until cash >= 50% of capital. Exit weakest first (lowest pnl_pct).
     Returns list of forced exits.
     """
     if regime is None:

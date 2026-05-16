@@ -1,12 +1,39 @@
 {
   "capital": 100000,
-  "cash": 100000,
-  "positions": {},
+  "cash": 94263.25,
+  "positions": {
+    "COHR": {
+      "ticker": "COHR",
+      "setup_type": "leader",
+      "cap_tier": "mid",
+      "market_cap_b": 73.8,
+      "adtv_m": 2143.3,
+      "nrgc_phase_entry": 3,
+      "nrgc_score_entry": 69,
+      "entry_price": 382.45,
+      "shares": 15,
+      "cost": 5736.75,
+      "stop": 351.854,
+      "open_date": "2026-05-16",
+      "theme": "Photonics",
+      "thesis": "Full position \u2014 highest conviction",
+      "current_price": 382.45,
+      "pnl_usd": 0.0,
+      "pnl_pct": 0.0,
+      "days_held": 0,
+      "status": "open",
+      "high_since_entry": 382.45,
+      "trail_stop": null,
+      "pulse_gate": "GREEN",
+      "pulse_score": 0.9,
+      "entry_regime": "bull"
+    }
+  },
   "closed": [],
   "realized_pnl_usd": 0.0,
   "benchmark_start_price": 711.585,
   "start_date": "2026-05-13",
-  "last_updated": "2026-05-13 23:30",
+  "last_updated": "2026-05-16 11:55",
   "rules": {
     "max_position_pct": 0.15,
     "hypergrowth_max_pct": 0.05,
@@ -18,5 +45,6 @@
     "min_cash_pct": 0.1,
     "cash_raise_200dma_50": 0.3,
     "cash_raise_200dma_30": 0.4
-  }
+  },
+  "cached_regime": "bull"
 }
