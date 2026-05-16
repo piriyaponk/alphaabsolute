@@ -1,0 +1,97 @@
+{
+  "name": "AlphaAbsolute",
+  "version": "1.0.0",
+  "description": "AI-powered asset management system — 20-agent PULSE/EMLS/NRGC framework for US + Thai equities",
+  "author": "Piriyapon Kongvanich (CIO)",
+  "repository": "https://github.com/piriyaponk/alphaabsolute",
+
+  "system": {
+    "framework": "Claude Code + Claude Agent SDK",
+    "primary_model": "claude-sonnet-4-5",
+    "agents": 20,
+    "investment_universe": ["US Nasdaq/NYSE", "Thai SET/MAI", "DRs"]
+  },
+
+  "architecture": {
+    "memory": [
+      "CLAUDE.md",
+      "Risk.md",
+      ".rules/investment.md",
+      ".rules/risk.md",
+      ".rules/data-sourcing.md"
+    ],
+    "contexts": [
+      ".claude/contexts/research.md",
+      ".claude/contexts/execution.md",
+      ".claude/contexts/review.md"
+    ],
+    "agents": [
+      ".claude/agents/pulse-screener.md",
+      ".claude/agents/risk-devil.md",
+      ".claude/agents/fact-checker.md",
+      ".claude/agents/journal-analyzer.md"
+    ],
+    "playbooks": [
+      "skills/playbooks/vcp_breakout_playbook.md",
+      "skills/playbooks/wyckoff_spring_playbook.md",
+      "skills/playbooks/nrgc_phase2_entry_playbook.md",
+      "skills/playbooks/earnings_play_playbook.md"
+    ],
+    "hooks": {
+      "SessionStart": "scripts/hooks/session_start.py",
+      "Stop": "scripts/hooks/session_stop.py",
+      "PostToolUse[Bash]": "scripts/hooks/post_runner_log.py"
+    },
+    "skills": "skills/agent_*.md"
+  },
+
+  "integrations": {
+    "obsidian": {
+      "vault": "obsidian-vault/AlphaAbsolute",
+      "port": 27125,
+      "writer": "scripts/utils/obsidian_writer.py",
+      "plugins_required": [
+        "obsidian-local-rest-api",
+        "dataview",
+        "smart-connections",
+        "obsidian-git",
+        "templater-obsidian",
+        "quickadd",
+        "obsidian-excalidraw-plugin"
+      ]
+    },
+    "data_sources": {
+      "macro": "FRED API",
+      "prices": "yfinance",
+      "thai_financials": "set-mcp (uvx set-mcp)",
+      "news": "Claude built-in web search",
+      "llm_primary": "Groq (llama-3.3-70b, free tier)",
+      "llm_secondary": "Gemini 2.5 Flash (free tier)",
+      "llm_premium": "Anthropic Claude (paid backup)"
+    },
+    "notifications": "Telegram Bot"
+  },
+
+  "runners": {
+    "daily": "python scripts/runners/daily_runner.py",
+    "weekly": "python scripts/runners/weekly_runner.py",
+    "monthly": "python scripts/runners/monthly_runner.py"
+  },
+
+  "commands": {
+    "run daily brief": "Agents 1->2->9->10->11",
+    "run weekly alphapulse": "Full pipeline",
+    "run PULSE screen": "Agent 03 full screen",
+    "analyse [TICKER]": "Agents 3->4->6or7->11",
+    "study [theme]": "Agent 05 deep dive",
+    "update portfolio": "Agents 8->6->7->12->10",
+    "show dashboard": "Agent 17 regenerate",
+    "special request: [instruction]": "Agent 15"
+  },
+
+  "install": {
+    "requirements": "pip install -r requirements.txt",
+    "env_template": ".env.example",
+    "obsidian_setup": "obsidian-vault/SETUP.md"
+  }
+}

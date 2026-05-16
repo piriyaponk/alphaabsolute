@@ -25,8 +25,11 @@ Settings -> Community Plugins -> Browse -> search and install:
 - Add to `.env` in AlphaAbsolute project root:
   ```
   OBSIDIAN_API_KEY=your_key_here
-  OBSIDIAN_URL=https://127.0.0.1:27124
+  OBSIDIAN_URL=https://127.0.0.1:27125
   ```
+  NOTE: Port 27125 is used to avoid conflict with any other Obsidian vaults
+  running on the default port 27124. The plugin data.json is pre-configured
+  for port 27125 in this vault.
 
 ## 5. Configure Templater
 - Settings -> Templater -> Template folder location: `templates`
@@ -75,15 +78,20 @@ LIMIT 10
 ## Vault Structure
 ```
 obsidian-vault/
-  tickers/        <- One note per ticker (auto-written by weekly_runner.py)
-  themes/         <- One note per theme (auto-updated with edge signals)
-  paper_trades/   <- One note per trade (create via QuickAdd)
-  daily/          <- Weekly brief (auto-written by weekly_runner.py)
-  research/
-    earnings/     <- Earnings notes per company
-    macro/        <- FOMC, PMI, macro regime notes
-  templates/      <- Templater templates (do not edit filenames)
+  AlphaAbsolute/            <- THIS is the Obsidian vault (open this folder)
+    tickers/                <- One note per ticker (auto-written by weekly_runner.py)
+    themes/                 <- One note per theme (auto-updated with edge signals)
+    paper_trades/           <- One note per trade (create via QuickAdd)
+    daily/                  <- Weekly brief (auto-written by weekly_runner.py)
+    research/
+      earnings/             <- Earnings notes per company
+      macro/                <- FOMC, PMI, macro regime notes
+    templates/              <- Templater templates (do not edit filenames)
+    .obsidian/              <- Plugin configs (Local REST API on port 27125)
 ```
+
+NOTE: When opening vault in Obsidian: File -> Open Vault -> Open folder as vault
+-> Select `obsidian-vault/AlphaAbsolute/` (the INNER folder, not obsidian-vault/)
 
 ## NotebookLM vs Obsidian — When to Use What
 
