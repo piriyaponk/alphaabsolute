@@ -625,6 +625,46 @@ def run_weekly():
     except Exception as e:
         log(f"  [Lifetime tracker]: {e}")
 
+    # ── STEP 8d: Obsidian Knowledge Base update ──────────────────────────────
+    log("\n[8d/9] Obsidian knowledge base update (ticker + theme notes)...")
+    obsidian_written = 0
+    try:
+        sys.path.insert(0, str(BASE_DIR / "scripts" / "utils"))
+        from obsidian_writer import (write_ticker_note, append_theme_signal,
+                                     write_daily_note, _is_available)
+        if _is_available():
+            # Write/update each ticker note with latest NRGC assessment
+            for ticker, assessment in (nrgc_assessments or {}).items():
+                ok = write_ticker_note(ticker, assessment)
+                if ok:
+                    obsidian_written += 1
+            # Append weekly edge signals to theme notes
+            theme_boosts = edge_result.get("nrgc_theme_boosts", {})
+            for theme, boost in theme_boosts.items():
+                if boost != 0:
+                    sig = f"Edge signal {boost:+d} NRGC | {datetime.now().strftime('%Y-W%W')}"
+                    append_theme_signal(theme, sig)
+            # Write daily summary note
+            daily_content = f"""# Weekly Brief {start.strftime('%Y-%m-%d')}
+
+## Portfolio
+- NAV: ${perf.get('total_value', 0):,.0f} | Return: {perf.get('total_return_pct', 0):+.2f}%
+- vs QQQ: {perf.get('alpha', 0):+.2f}% alpha
+
+## Top NRGC Signals
+{chr(10).join(f"- {t}: Phase {a.get('nrgc_phase','?')} | EMLS {a.get('emls_score','?')}" for t, a in list((nrgc_assessments or {}).items())[:5])}
+
+## Edge Intelligence
+- {get_edge_telegram_lines(edge_result) if 'get_edge_telegram_lines' in dir() else 'N/A'}
+"""
+            write_daily_note(daily_content)
+            log(f"  Obsidian: {obsidian_written} ticker notes written + theme signals + daily note")
+        else:
+            log("  Obsidian REST API not running (skip — start Obsidian to enable)")
+        results["steps"]["obsidian"] = {"tickers_written": obsidian_written}
+    except Exception as e:
+        log(f"  [Obsidian skip]: {e}")
+
     # ── STEP 9: Telegram weekly summary ──────────────────────────────────────
     log("\n[9/9] Sending Telegram weekly summary...")
     try:

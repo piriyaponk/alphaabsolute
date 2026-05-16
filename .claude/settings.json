@@ -51,13 +51,26 @@
     }
   },
   "hooks": {
-    "PostToolUse": [
+    "PreToolUse": [
       {
-        "matcher": "Read",
+        "matcher": "Bash",
         "hooks": [
           {
             "type": "command",
-            "command": "python -c \"import json,sys; f=open('data/paper_trading/portfolio_state.json',encoding='utf-8'); p=json.load(f); pos=p.get('positions',{}); cash_pct=round(p.get('cash',100000)/max(p.get('cash',100000)+sum(v.get('shares',0)*v.get('current_price',v.get('entry_price',0)) for v in pos.values()),1)*100,1); print(f'[Portfolio] {len(pos)} positions | Cash {cash_pct}% | NAV est ${p.get(\\\"cash\\\",100000)+sum(v.get(\\\"shares\\\",0)*v.get(\\\"current_price\\\",v.get(\\\"entry_price\\\",0)) for v in pos.values()):,.0f}')\" 2>/dev/null || true"
+            "command": "python scripts/hooks/post_runner_log.py 2>/dev/null || true",
+            "timeout": 8000
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python scripts/hooks/post_runner_log.py 2>/dev/null || true",
+            "timeout": 8000
           }
         ]
       }
@@ -67,7 +80,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python -c \"from pathlib import Path; import json; f=Path('memory/framework_updates.md'); lines=f.read_text(encoding='utf-8').splitlines() if f.exists() else []; last=[l for l in lines if l.startswith('#')]; print('[Memory] Last framework update:', last[-1] if last else 'none yet')\" 2>/dev/null || true"
+            "command": "python scripts/hooks/session_stop.py 2>/dev/null || true",
+            "timeout": 10000
           }
         ]
       }
