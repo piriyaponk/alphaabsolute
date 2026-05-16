@@ -4,13 +4,44 @@ Philosophy: Beat Nasdaq with low drawdown. Cash is a position.
             Mid/small cap bias for alpha. Only act on strong NRGC/PULSE signals.
 
 Entry  : Phase 3 + score >= 50 + PULSE GREEN + regime OK + cap preference
+         + TD Sequential gate (no Sell Setup 7-9, no Sell Countdown 10-13)
+         + Health Check >= 5/8 (7/8 for full size)
 Exit   : Hard stop -8% | Phase 5/6/7 | Trail after +30% | Regime risk-off + weak position
+         + TD Sell Countdown 13 on individual stock = immediate reduce
 Cash   : Raise when regime = risk-off, no setups, or market breadth deteriorating.
+         TD market-level warning also raises cash floor.
 No LLM — pure rule-based. Fast.
 """
 import json
+import sys
 from datetime import datetime
 from pathlib import Path
+
+# ── TD Sequential + Health Check (primary entry indicators) ────────────────────
+# Lazy import to avoid startup errors if deps missing
+_TD_MODULE  = None
+_HC_MODULE  = None
+
+def _get_td_module():
+    global _TD_MODULE
+    if _TD_MODULE is None:
+        try:
+            sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "learning"))
+            import td_sequential as _td
+            _TD_MODULE = _td
+        except Exception:
+            pass
+    return _TD_MODULE
+
+def _get_hc_module():
+    global _HC_MODULE
+    if _HC_MODULE is None:
+        try:
+            import health_check as _hc
+            _HC_MODULE = _hc
+        except Exception:
+            pass
+    return _HC_MODULE
 
 BASE_DIR   = Path(__file__).parent.parent.parent
 NRGC_DIR   = BASE_DIR / "data" / "nrgc" / "state"
@@ -179,31 +210,58 @@ def _get_cap_info(ticker: str) -> tuple:
 
 def _get_market_regime(portfolio: dict) -> str:
     """
-    Simple regime from QQQ vs 50DMA.
-    Returns 'risk-on', 'neutral', or 'risk-off'.
-    Cached from synthesis if available (weekly runner passes it).
+    Market regime = QQQ vs 50DMA baseline THEN downgraded by TD Sequential.
+
+    Layer 1 — Price structure (QQQ / SPY vs moving averages):
+      QQQ >= 1.03 * MA50 -> risk-on
+      QQQ >= 0.97 * MA50 -> neutral
+      else               -> risk-off
+
+    Layer 2 — TD Sequential override (primary market timing indicator):
+      TD caution/warning  -> downgrade one level (risk-on -> neutral)
+      TD reversal         -> downgrade to risk-off regardless
+      TD bullish          -> confirm current level (no upgrade beyond price structure)
+
+    Cached from synthesis if available (weekly runner passes it already adjusted).
     """
-    # Check if weekly synthesis cached a regime
+    # Check if weekly synthesis cached a regime (already TD-adjusted)
     cached = portfolio.get("cached_regime")
     if cached:
         return cached
 
-    # Fallback: QQQ vs 50DMA
+    # Layer 1: QQQ vs 50DMA
+    base_regime = "neutral"
     try:
-        import sys
         sys.path.insert(0, str(BASE_DIR / "scripts" / "paper_trading"))
         from portfolio_engine import get_price_data
         df = get_price_data("QQQ", period="6mo")
         if df is not None and not df.empty:
-            qqq = float(df["Close"].iloc[-1])
+            qqq  = float(df["Close"].iloc[-1])
             ma50 = float(df["MA50"].iloc[-1])
             ratio = qqq / ma50
-            if ratio >= 1.03:    return "risk-on"
-            elif ratio >= 0.97:  return "neutral"
-            else:                return "risk-off"
+            if ratio >= 1.03:   base_regime = "risk-on"
+            elif ratio >= 0.97: base_regime = "neutral"
+            else:               base_regime = "risk-off"
     except Exception:
         pass
-    return "neutral"
+
+    # Layer 2: TD Sequential market regime modifier
+    td = _get_td_module()
+    if td:
+        try:
+            # Use cached today's file if available, else compute fresh
+            td_state = td.load_cached_td_regime()
+            if td_state is None:
+                td_state = td.get_td_regime_signal(["SPY", "QQQ"])
+            final_regime = td.apply_td_regime_modifier(base_regime, td_state)
+            if final_regime != base_regime:
+                print(f"  [TD] Regime downgraded {base_regime} -> {final_regime}"
+                      f" | {td_state.get('summary', '')}")
+            return final_regime
+        except Exception:
+            pass
+
+    return base_regime
 
 
 # ─── Auto Entry ────────────────────────────────────────────────────────────────
@@ -269,7 +327,46 @@ def auto_enter(portfolio: dict, nrgc_assessments: dict,
             print(f"  [Skip] {ticker}: {tier} cap requires score>={min_score_for_tier}, got {score}")
             continue
 
-        # PULSE gate — require GREEN
+        # ── TD Sequential Gate (PRIMARY — market timing confirmation) ──────────
+        td_boost       = 0
+        td_gate_pass   = True
+        td_signal      = "unknown"
+        td_reason      = "TD module unavailable"
+        td = _get_td_module()
+        if td:
+            try:
+                gate_result  = td.td_entry_gate(ticker)
+                td_gate_pass = gate_result["pass"]
+                td_boost     = gate_result.get("boost", 0)
+                td_signal    = gate_result.get("signal", "neutral")
+                td_reason    = gate_result.get("reason", "")
+                if not td_gate_pass:
+                    print(f"  [Skip] {ticker}: {td_reason}")
+                    continue
+                # Apply TD boost to effective score for ranking/sizing
+                score = score + td_boost
+            except Exception:
+                pass
+
+        # ── Health Check Gate (PRIMARY — leadership state confirmation) ────────
+        hc_score     = 0
+        hc_rating    = "Unknown"
+        hc_entry_sz  = "full"
+        hc = _get_hc_module()
+        if hc:
+            try:
+                # Load cached first (avoids duplicate API calls)
+                hc_result = hc.load_cached_hc(ticker) or hc.run_health_check(ticker)
+                hc_score  = hc_result.get("score", 0)
+                hc_rating = hc_result.get("rating", "Unknown")
+                hc_entry_sz = hc_result.get("entry_size", "full")
+                if hc_score < 5:
+                    print(f"  [Skip] {ticker}: Health Check {hc_score}/8 < 5 ({hc_rating})")
+                    continue
+            except Exception:
+                pass
+
+        # ── PULSE gate — require GREEN ─────────────────────────────────────────
         pulse = check_pulse_setup(ticker, setup_type="leader")
         if not pulse.get("valid") or pulse.get("score", 0) < 0.5:
             pulse = check_pulse_setup(ticker, setup_type="hypergrowth")
@@ -282,13 +379,18 @@ def auto_enter(portfolio: dict, nrgc_assessments: dict,
         if not price:
             continue
 
-        # Position size: base × cap multiplier × score multiplier
+        # Position size: base x cap mult x score mult x health check mult
         cap_mult   = CAP_SIZE_MULT.get(tier, 0.80)
         if score >= 90:    score_mult = 1.00
         elif score >= 70:  score_mult = 0.80
         else:              score_mult = 0.60
 
-        size_usd = capital * POSITION_PCT * cap_mult * score_mult
+        # Health check size modifier
+        if hc_entry_sz == "none":
+            continue  # HC says don't enter
+        hc_mult = 1.00 if hc_entry_sz == "full" else 0.50  # Yellow = half size
+
+        size_usd = capital * POSITION_PCT * cap_mult * score_mult * hc_mult
         size_usd = min(size_usd, cash * 0.90)
         if size_usd < 1000:
             continue
@@ -296,11 +398,11 @@ def auto_enter(portfolio: dict, nrgc_assessments: dict,
         shares = int(size_usd / price)
         if shares < 1:
             continue
-        cost    = shares * price
-        stop    = round(price * 0.92, 4)
-        adtv_m  = round(adtv / 1e6, 1)
+        cost     = shares * price
+        stop     = round(price * 0.92, 4)
+        adtv_m   = round(adtv / 1e6, 1)
         mktcap_b = round(mktcap / 1e9, 1) if mktcap else None
-        setup   = "leader" if score >= 60 else "hypergrowth"
+        setup    = "leader" if score >= 60 else "hypergrowth"
 
         position = {
             "ticker":           ticker,
@@ -327,6 +429,10 @@ def auto_enter(portfolio: dict, nrgc_assessments: dict,
             "pulse_gate":       gate,
             "pulse_score":      round(pulse.get("score", 0), 2),
             "entry_regime":     regime,
+            "td_signal":        td_signal,
+            "td_boost":         td_boost,
+            "health_check_score": hc_score,
+            "health_check_rating": hc_rating,
         }
         portfolio["positions"][ticker] = position
         portfolio["cash"] = round(portfolio["cash"] - cost, 2)
@@ -334,7 +440,8 @@ def auto_enter(portfolio: dict, nrgc_assessments: dict,
 
         cap_str = f"${mktcap_b}B" if mktcap_b else f"ADTV${adtv_m}M"
         _log_trade("BUY", ticker, price, shares,
-                   f"NRGC Ph3 | Score={score} | Gate={gate} | {tier} {cap_str} | {nrgc.get('theme','')}",
+                   f"NRGC Ph3 | Score={score} | Gate={gate} | HC={hc_score}/8"
+                   f" | TD={td_signal} | {tier} {cap_str} | {nrgc.get('theme','')}",
                    nrgc.get("phase", 3), cap_tier=tier)
 
         entries_made.append({
@@ -342,9 +449,11 @@ def auto_enter(portfolio: dict, nrgc_assessments: dict,
             "cost": round(cost, 2), "theme": nrgc.get("theme", ""),
             "score": score, "gate": gate, "cap_tier": tier,
             "market_cap_b": mktcap_b, "adtv_m": adtv_m,
+            "td_signal": td_signal, "hc_score": hc_score,
         })
         print(f"  [BUY] {ticker} @ ${price:.2f} x{shares} = ${cost:.0f}"
-              f" | NRGC={score} | {tier} {cap_str} | {regime}")
+              f" | NRGC={score} | HC={hc_score}/8 | TD={td_signal}"
+              f" | {tier} {cap_str} | {regime}")
 
     return entries_made
 

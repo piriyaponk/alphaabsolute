@@ -1,0 +1,12 @@
+{
+  "symbol": "WDC",
+  "setup_count": -1,
+  "countdown_count": 0,
+  "setup_complete": false,
+  "countdown_complete": false,
+  "signal": "buy_setup_1",
+  "warning": "TD Buy Setup 1/9 in progress (8 bars to oversold completion)",
+  "bars_to_complete": 8,
+  "last_close": 482.02,
+  "as_of": "2026-05-16"
+}

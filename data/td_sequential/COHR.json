@@ -1,0 +1,12 @@
+{
+  "symbol": "COHR",
+  "setup_count": 6,
+  "countdown_count": 9,
+  "setup_complete": false,
+  "countdown_complete": false,
+  "signal": "sell_setup_6",
+  "warning": "TD Sell Setup 6/9 in progress (3 bars to exhaustion)",
+  "bars_to_complete": 3,
+  "last_close": 382.45,
+  "as_of": "2026-05-16"
+}

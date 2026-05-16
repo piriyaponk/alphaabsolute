@@ -95,6 +95,28 @@ def session_start():
     if risk_flags:
         lines.append("\n[!] RISK FLAGS: " + " | ".join(risk_flags))
 
+    # ── TD Sequential Market Regime (PRIMARY indicator — market timing)
+    td_state_file = ROOT / "data/td_sequential/_market_regime.json"
+    if td_state_file.exists():
+        try:
+            td_data = load_json(td_state_file)
+            as_of   = td_data.get("as_of", "?")
+            mod     = td_data.get("regime_modifier", "neutral").upper()
+            summ    = td_data.get("summary", "")
+            score   = td_data.get("score", 0)
+            sigs    = td_data.get("signals", {})
+            sig_parts = []
+            for sym, sig in sigs.items():
+                s  = sig.get("setup_count", 0)
+                cd = sig.get("countdown_count", 0)
+                sig_parts.append(f"{sym} Setup={s:+d}/9 CD={cd:+d}/13")
+            td_line = f"[TD Sequential] {mod} (score={score}) | {summ}"
+            if sig_parts:
+                td_line += "\n  " + " | ".join(sig_parts)
+            lines.append(f"\n{td_line}")
+        except Exception:
+            pass
+
     # ── Latest ops log snippet
     ops_today = ROOT / f"output/ops_log_{date.today().strftime('%y%m%d')}.md"
     ops_files = sorted((ROOT / "output").glob("ops_log_*.md"), reverse=True)

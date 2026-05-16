@@ -1,0 +1,65 @@
+{
+  "symbol": "NVDA",
+  "score": 6,
+  "max_score": 8,
+  "rating": "Yellow \u2014 Reduce Size",
+  "green": false,
+  "entry_size": "half",
+  "indicators": {
+    "TF Alignment": {
+      "score": 0,
+      "label": "3/4 Bull",
+      "green": false
+    },
+    "Market": {
+      "score": 1,
+      "label": "Healthy",
+      "green": true
+    },
+    "Rel Strength": {
+      "score": 1,
+      "label": "Leading",
+      "green": true
+    },
+    "Volume": {
+      "score": 1,
+      "label": "Accumulation",
+      "green": true
+    },
+    "Momentum": {
+      "score": 1,
+      "label": "Strong + Ranging",
+      "green": true
+    },
+    "Volatility": {
+      "score": 1,
+      "label": "Expanding",
+      "green": true
+    },
+    "Extension": {
+      "score": 1,
+      "label": "Normal",
+      "green": true
+    },
+    "Bull Streak": {
+      "score": 0,
+      "label": "0 bars (Bear/Mixed)",
+      "green": false
+    }
+  },
+  "details": {
+    "last_close": 225.32,
+    "ytd_pct": 66.45,
+    "30d_pct": 11.72,
+    "90d_pct": 21.82,
+    "vs_ath": -4.42,
+    "is_new_high": false,
+    "rsi": 56.24,
+    "macd": 9.33,
+    "52w_high": 235.74,
+    "52w_low": 131.26,
+    "bull_streak": 0
+  },
+  "as_of": "2026-05-16",
+  "tf_forced_yellow": true
+}

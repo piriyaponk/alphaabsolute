@@ -1,0 +1,12 @@
+{
+  "symbol": "NVDA",
+  "setup_count": 8,
+  "countdown_count": 11,
+  "setup_complete": false,
+  "countdown_complete": false,
+  "signal": "sell_setup_8",
+  "warning": "[~] TD Sell Setup 8/9 \u2014 CAUTION ZONE (1 bars to exhaustion)",
+  "bars_to_complete": 1,
+  "last_close": 225.32,
+  "as_of": "2026-05-16"
+}

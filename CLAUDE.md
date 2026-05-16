@@ -82,10 +82,54 @@ This project runs 20 specialized agents across 6 layers. Every agent has its own
 - Max position size: 5% for Base 0 names
 - Historical precedents: LITE, MU (early cycle), SNDK, AXTI
 
-### 3-Pillar Technical Framework
+### 4-Pillar Technical Framework
 1. **Wyckoff** — Market direction / phase (Accumulation A-E, Mark-Up, Distribution, Mark-Down)
 2. **Volume Profile** — Conviction / POC = institutional cost basis / HVN = accumulation zone
 3. **SMC** — Entry precision (Liquidity grab → Order Block → CHoCH confirmation)
+4. **TD Sequential** — Market timing / exhaustion detection (Setup 9 + Countdown 13) ← PRIMARY entry gate
+
+---
+
+## TD Sequential — Primary Market Timing Indicator
+
+**TD Sequential** (Tom DeMark) is the primary timing layer in AlphaAbsolute. It is integrated into PULSE + NRGC as a mandatory entry gate — fundamental and technical alignment are NOT sufficient without TD confirmation.
+
+**Source:** `scripts/learning/td_sequential.py`
+**State stored:** `data/td_sequential/` (per-symbol + `_market_regime.json`)
+**Displayed:** Session start hook every morning
+
+### How It Works
+- **Setup Phase (9 bars):** Count consecutive bars where `close > close[4 bars ago]` → Sell Setup
+  Count consecutive bars where `close < close[4 bars ago]` → Buy Setup
+  Setup 9 = exhaustion of the current move (warning: reversal imminent)
+- **Countdown Phase (13 bars):** After Setup 9, count bars meeting close vs high/low[2] condition
+  Countdown 13 = high-probability reversal confirmation
+
+### TD Signal Levels
+| Signal | Meaning | Action |
+|--------|---------|--------|
+| Sell Setup 9 | Upside exhaustion complete | Stop new entries, expect 1-2 week pullback |
+| Sell Setup 7-8 | Caution zone | Reduce new entry size 50% |
+| Sell Countdown 13 | Strong topping signal | Exit or reduce all longs |
+| Buy Setup 9 | Downside exhaustion complete | High probability bounce — entry window |
+| Buy Countdown 13 | Strong reversal signal | Maximum conviction buy window |
+| Neutral | No active signal | Proceed normally with other gates |
+
+### Integration Rules
+- **Market-level:** SPY+QQQ TD status gates ALL new entries system-wide
+  - TD caution/warning → downgrade regime (risk-on → neutral)
+  - TD reversal → downgrade to risk-off regardless of price structure
+- **Stock-level:** Run per-ticker before NRGC Phase 3 entry
+  - Sell Setup 7-9 active → BLOCK entry (wait for reset)
+  - Buy Setup 9 / Buy Countdown 13 → BOOST EMLS score +2, priority entry
+- **Position management:** Sell Countdown 10-13 on held position → reduce/exit
+- **Session start hook:** TD market regime shown every morning
+
+### Current Market TD Status (as of 2026-05-15)
+- SPY: Buy Setup 1/9 (market reset, fresh buy cycle starting)
+- QQQ: Buy Setup 1/9 (same)
+- NVDA: Sell Setup 8/9 → BLOCKED (1 bar from exhaustion, do not add)
+- COHR: Sell Setup 6/9 (watch — approaching caution zone)
 
 ---
 
@@ -158,9 +202,19 @@ AI must detect INFLECTION — not famous stocks, but stocks where:
 
 ---
 
-## Health Check Dashboard — Leadership State Score
+## Health Check Dashboard — Leadership State Score (PRIMARY ENTRY GATE)
+
+**Source:** `scripts/paper_trading/health_check.py`
+**State stored:** `data/health_checks/{TICKER}.json`
+**Required:** Score >= 5/8 to enter, >= 7/8 for full size. Run before EVERY BUY.
 
 A stock in **"Leadership State"** passes all 8 health indicators simultaneously. This is the PULSE composite readiness check — run before every BUY and on every held position weekly.
+
+**Entry size rules based on score:**
+- **7-8/8 = Green Light** — full position size
+- **5-6/8 = Yellow** — 50% size only (also triggered when TF Alignment < 4/4)
+- **< 5/8 = Red** — DO NOT ENTER, monitor only
+- **4/4 TF Alignment is mandatory** — if not aligned, maximum rating = Yellow regardless of other scores
 
 ### 8 Health Indicators
 
