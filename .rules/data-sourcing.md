@@ -1,36 +1,64 @@
 # Data Sourcing Rules — AlphaAbsolute
+*Rules for data quality, source hierarchy, hallucination prevention, and citation standards.*
 
-Always loaded. Governs how agents gather and cite data.
+## Source Hierarchy (use in priority order)
 
-## Source Hierarchy
+Tier 1 (MUST USE -- primary alpha):
+- FRED API: US macro regime (Fed funds, yield curve, industrial production, sentiment)
+- SEC EDGAR: 10-K/10-Q/8-K filings (primary financial statements -- never estimate)
+- Insider trades: OpenInsider cluster buys (3+ insiders > $1M within 2 weeks)
+- Earnings transcripts: Quartr / SEC (management tone, guidance, EPS acceleration)
 
-| Tier | Source | Use for |
-|------|--------|---------|
-| 1 | yfinance, FRED API, EDGAR XBRL | Price, macro, financials — primary |
-| 2 | Reuters, Investing.com, SEC filings | News, events, earnings |
-| 3 | SemiAnalysis, TrendForce | Semiconductor / AI capex sector intelligence |
-| 4 | IEA, Payload Space, Lightwave | Power demand, space, optical |
-| 5 | Seeking Alpha, earnings transcripts | Narrative, tone, management signals |
+Tier 2 (SHOULD USE -- confirmation):
+- yfinance: price, volume, MA, RS percentile (free, reliable for US equities)
+- SET MCP (uvx set-mcp): Thai SET financial statements (Income, Balance Sheet, CF)
+- IBD RSS: Market Pulse, IBD 50 leadership stocks (Minervini-aligned filter)
+- SemiAnalysis: semiconductor supply chain, AI chip data (moves prices)
 
-## Fabrication Rules (CRITICAL)
+Tier 3 (CONTEXT ONLY -- never sole source):
+- Reuters, FT, Seeking Alpha RSS: news context -- never trade on alone
+- Google Trends: narrative acceleration proxy -- use with Tier 1 confirmation
+- Reddit / social: sentiment signal only -- never fundamental data
 
-- **NEVER fabricate Thai stock numbers** — only use numbers from SETSMART or user-provided data
-- **NEVER invent analyst price targets** — only cite if from a named analyst with date
-- **Always write ข้อมูลล่าสุด: [date]** when data is not real-time
-- If unsure of a number: state "unverified — needs confirmation" rather than guessing
+## Hallucination Prevention Rules
 
-## Citation Format
+1. NEVER fabricate financial numbers -- only use numbers from actual data sources
+2. If a data source is unavailable, state explicitly: "Data unavailable -- [source] not reachable"
+3. Every financial figure must have a source citation: {value} [{source}, {date}]
+4. For Thai stocks: always write "ข้อมูลล่าสุด: [date]" when data is not real-time
+5. EPS/Revenue figures: use SEC filings or yfinance -- never estimate from memory
+6. If you cite a number from memory and cannot verify it, flag it: [UNVERIFIED]
 
-Every data point in reports must trace to a source:
-```
-[Fact] (Source: [name], [date])
-Example: EPS Q1 2026: $1.62 beat estimate $1.48 (Source: EDGAR 10-Q, 2026-04-30)
-```
+## Data Freshness Requirements
 
-## Caching Rules
+Price data: must be current-day or prior day close -- never use prices > 2 days old
+Earnings data: use most recent completed quarter (not TTM estimates)
+Macro data: FRED updates weekly -- use within 7 days of publication
+Insider data: cluster within 14-day window -- older clusters lose signal value
+13F filings: filed 45 days after quarter end -- always note the filing lag
 
-- Price data: cache max 1 day
-- EDGAR XBRL capex: cache by week (%Y-W%W)
-- Google Trends: cache by week
-- FRED macro series: cache max 1 week
-- News: no cache — always fresh
+## Allowed Data Operations (Bash tool)
+
+python scripts/fetch_macro.py -- FRED macro update
+python scripts/fetch_stock_data.py -- yfinance price data
+uvx set-mcp -- Thai SET financial data
+python scripts/run_screener.py -- PULSE screen
+python scripts/runners/daily_runner.py -- daily data pipeline
+python scripts/runners/weekly_runner.py -- full weekly pipeline
+
+## Data Storage Rules
+
+Raw numbers, time-series --> data/
+Processed outputs --> output/
+Portfolio state --> data/paper_trading/portfolio_state.json
+Trade log --> data/paper_trading/trade_log.json
+NRGC state per ticker --> data/nrgc/state/{TICKER}.json
+Smart signals latest --> data/smart_signals/latest.json
+Weekly run log --> data/state/weekly_run_log.json
+
+## Source Quality Tracking
+
+Track source accuracy in: data/agent_memory/research_kb.json
+- Each source gets hit rate: correct signals / total signals
+- Sources below 40% hit rate get deprioritized automatically
+- Top sources by accuracy are cited first in synthesis reports

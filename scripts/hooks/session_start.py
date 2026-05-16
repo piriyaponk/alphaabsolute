@@ -41,6 +41,37 @@ def session_start():
     else:
         lines.append("\n[Portfolio] No open positions | Cash only")
 
+    # ── NRGC top picks (Phase 3+ from nrgc/state/)
+    nrgc_dir = ROOT / "data/nrgc/state"
+    if nrgc_dir.exists():
+        nrgc_all = {}
+        for f in nrgc_dir.glob("*.json"):
+            try:
+                d = load_json(f)
+                if d:
+                    nrgc_all[f.stem] = d
+            except Exception:
+                pass
+        if nrgc_all:
+            # nrgc state files use "phase" key; score is "nrgc_composite_score"
+            # Phase 2-3 = entry zones; Phase 4 = hold/reduce; Phase 5-6 = avoid
+            entry_zone = sorted(
+                [(t,
+                  d.get("nrgc_composite_score", d.get("emls_score", 0)),
+                  d.get("phase", 0))
+                 for t, d in nrgc_all.items() if (d.get("phase") or 0) in (2, 3)],
+                key=lambda x: (-x[1])
+            )[:5]
+            phase4 = [(t, d.get("nrgc_composite_score", 0), d.get("phase", 0))
+                      for t, d in nrgc_all.items() if (d.get("phase") or 0) == 4]
+            if entry_zone:
+                lines.append("\n[Entry Zones Ph2-3] " + " | ".join(
+                    f"{t} Ph{ph} score={sc}" for t, sc, ph in entry_zone
+                ))
+            if phase4:
+                names = " | ".join(f"{t}({sc})" for t, sc, ph in sorted(phase4, key=lambda x: -x[1])[:5])
+                lines.append(f"[Phase 4 Hold] {names}")
+
     # ── EMLS top scores (from smart signals if available)
     signals_path = ROOT / "data/smart_signals/latest.json"
     signals = load_json(signals_path)
@@ -50,7 +81,7 @@ def session_start():
             key=lambda x: -x[1]
         )[:5]
         if top:
-            lines.append("\n[Top EMLS Signals] " + " | ".join(f"{t} +{b}" for t, b in top))
+            lines.append("\n[Top Edge Signals] " + " | ".join(f"{t} +{b}" for t, b in top))
 
     # ── Risk flags (any position near stop)
     risk_flags = []

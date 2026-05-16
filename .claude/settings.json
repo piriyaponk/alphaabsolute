@@ -51,14 +51,13 @@
     }
   },
   "hooks": {
-    "PreToolUse": [
+    "SessionStart": [
       {
-        "matcher": "Bash",
         "hooks": [
           {
             "type": "command",
-            "command": "python scripts/hooks/post_runner_log.py 2>/dev/null || true",
-            "timeout": 8000
+            "command": "python scripts/hooks/session_start.py 2>/dev/null || true",
+            "timeout": 10000
           }
         ]
       }

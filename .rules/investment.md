@@ -1,43 +1,64 @@
 # Investment Rules — AlphaAbsolute
+*Modular rule file. Loaded by agents that make BUY/SELL/HOLD decisions.*
 
-Always loaded. These rules govern every investment recommendation.
+## Core Philosophy
+- Never enter without confirming all framework gates
+- Never move a stop loss against the trade
+- Never add to a losing position
+- Never hold through earnings without explicit thesis re-evaluation
 
-## Framework Priority
+## The 3 Valid Setups
 
-1. **NRGC phase** determines the WHY — must map to Phase 1-6 before any action
-2. **PULSE 5-layer** determines the WHEN — all 5 layers must align for full size
-3. **EMLS score** determines conviction — score < 60 = no position
-4. **Risk.md** determines sizing — always check Risk.md before stating position size
+### Setup 1 — Leader / VCP (Minervini SEPA)
+- Weinstein Stage 2 ONLY
+- RS percentile > 72nd (all timeframes: 1W/2W/1M/3M/6M/12M)
+- Trend Template: 8/8 criteria required
+- VCP: 3+ contractions, volume dry-up, breakout volume > 150% of 50D avg
+- Entry: at pivot +/-2%, never more than +5% extended
 
-## Anti-Sycophancy Rules (non-negotiable)
+### Setup 2 — Bottom Fish (Wyckoff Spring)
+- Stage 1 to 2 transition: price crossing 30W MA on expanding volume
+- RS improving from below 50th percentile
+- Wyckoff Spring or SOS confirmed (volume expansion > 80% of 20D avg)
+- Wait 2 weeks after Spring before entry
+- Max size: 4% until Stage 2 confirmed (Risk.md)
 
-- Position changes ONLY when NEW DATA arrives — never because CIO prefers a different answer
-- If CIO proposes a stock that fails the framework → state clearly it fails, with specific reason
-- No cheerleading — analyze objectively, never validate without data
-- Before every BUY: answer "What would make this thesis wrong?"
-- Minority views must be preserved and presented in full
+### Setup 3 — Hypergrowth (Base 0 / 1)
+- Revenue accelerating QoQ AND YoY for 3+ quarters
+- Gross margin expanding
+- Large TAM + industry breakthrough catalyst
+- Base 0 or Base 1 ONLY
+- Max size: 5% for Base 0, 8% for Base 1 (Risk.md)
 
-## No-Trade Conditions (check before any BUY)
+## Mandatory Gates (all must PASS before entry)
 
-- Weinstein Stage 3 or 4 → NO BUY
-- Distribution days ≥ 4 in the market → NO new entries
-- Earnings within 5 trading days → NO new entry
-- EMLS score < 60 → NO position
-- %B > 200DMA < 50% → raise cash first
+Gate 1: Wyckoff x Weinstein -- Stage must be 2; Phase must be Accumulation or Mark-Up. Stage 3/4 = HARD STOP.
+Gate 2: Health Check -- 7-8/8 = Green (full size); 5-6/8 = Yellow (half size); <5/8 = Red (no entry). 4/4 TF Alignment required.
+Gate 3: Risk.md Compliance -- confirm no position, size, or timing violations.
+Gate 4: Thesis Challenge -- answer "What would make this wrong RIGHT NOW?" If no specific answer, do not enter.
 
-## EMLS Score Tiers
+## NRGC Phase Entry Map
 
-| Score | Action |
-|-------|--------|
-| 90-100 ⚡ Hyper Leader | Maximum size |
-| 80-89 🏆 Institutional Leader | Full size |
-| 70-79 🔺 Emerging Leader | Standard size |
-| 60-69 👁 Watchlist | Monitor only |
-| < 60 | No position |
+Phase 1-2 = Bottom Fish only (small size, confirm Stage transition)
+Phase 2-3 = VCP / Hypergrowth (standard entry if Wyckoff gate passes)
+Phase 3   = Leader (full size -- max conviction zone)
+Phase 4   = Leader extended (reduce size, tighter stop)
+Phase 5   = NO ENTRY -- euphoria
+Phase 6   = NO ENTRY -- distribution
 
-## Multibagger Conviction Check
+## Exit Triggers
 
-7-9 of 11 signals = HIGH conviction
-10-11 of 11 signals = Maximum size
+-8% from entry = mandatory stop review
+Stage 3/4 detected on held position = immediate exit review
+RS decays from top quartile = downgrade, reduce size
+Revenue QoQ decelerating = reduce
+EPS revision negative = exit -- thesis broken
+RSI > 85 + climax volume = trim aggressively
+Distribution days >= 4 = no new entries, reduce all
 
-Always state how many of 11 signals are confirmed.
+## Anti-Bias Rules
+
+1. Position changes only on NEW DATA -- not on CIO preference
+2. Minority views must be preserved and presented fully
+3. Never validate a thesis failing the framework
+4. Before every BUY: "What would make this wrong?" must be answered specifically

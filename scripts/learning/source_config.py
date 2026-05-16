@@ -266,15 +266,21 @@ TIER3_SOURCES = [
 # ─── WATCHLIST (core tickers to monitor) ─────────────────────────────────────
 
 DEFAULT_WATCHLIST = {
-    "AI":           ["NVDA", "MSFT", "PLTR", "SOUN", "CRWV"],
-    "Memory/HBM":   ["MU", "WDC", "AMAT", "MRAM"],
-    "Space":        ["RKLB", "LUNR", "ASTS", "RDW"],
-    "Quantum":      ["IONQ", "RGTI", "QUBT"],
-    "Photonics":    ["LITE", "COHR", "AAOI", "IPGP"],
-    "DefenseTech":  ["PLTR", "CACI", "AXON", "AVAV"],
-    "NeoCloud":     ["CRWV", "SMCI", "CORZ"],
-    "Nuclear/SMR":  ["NNE", "OKLO", "CEG", "CCJ"],
-    "Robotics":     ["ISRG", "TER", "TSLA"],
+    # ── 14 Official AlphaAbsolute Themes ─────────────────────────────────────
+    "AI":               ["NVDA", "MSFT", "PLTR", "SOUN", "CRWV"],
+    "Memory/HBM":       ["MU", "WDC", "AMAT", "MRAM"],
+    "Space":            ["RKLB", "LUNR", "ASTS", "RDW"],
+    "Quantum":          ["IONQ", "RGTI", "QUBT"],
+    "Photonics":        ["LITE", "COHR", "AAOI", "IPGP"],
+    "DefenseTech":      ["PLTR", "CACI", "AXON", "AVAV", "LDOS"],
+    "DataCenter":       ["EQIX", "DLR", "VRT", "ETN"],
+    "Nuclear/SMR":      ["NNE", "OKLO", "CEG", "CCJ"],
+    "NeoCloud":         ["CRWV", "SMCI", "CORZ", "NTAP"],
+    "AIInfrastructure": ["VRT", "DELL", "ANET", "APH"],
+    "DCInfra":          ["PWR", "EME", "GLDD"],
+    "Drone/UAV":        ["ACHR", "JOBY", "RCAT", "AVAV"],
+    "Robotics":         ["ISRG", "TER", "TSLA"],
+    "Connectivity":     ["TMUS", "ASTS", "ERIC"],
 }
 
 ALL_TICKERS = list({t for tickers in DEFAULT_WATCHLIST.values() for t in tickers})

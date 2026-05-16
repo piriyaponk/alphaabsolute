@@ -5,7 +5,7 @@ Writes investment research directly into Obsidian vault via Local REST API plugi
 Requirements:
   1. Obsidian installed with Local REST API plugin
   2. OBSIDIAN_API_KEY in .env
-  3. Plugin running on https://127.0.0.1:27124
+  3. Plugin running on https://127.0.0.1:27125 (port 27125 — avoids conflict with personal vault on 27124)
 
 NotebookLM is kept for long-form research uploads.
 Obsidian is used for: ticker notes, theme notes, trade logs, daily ops.
