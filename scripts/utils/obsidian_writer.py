@@ -18,6 +18,14 @@ from typing import Optional
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
+# Load .env from project root (two levels up from scripts/utils/)
+try:
+    from dotenv import load_dotenv
+    _env_path = Path(__file__).resolve().parents[2] / ".env"
+    load_dotenv(_env_path)
+except ImportError:
+    pass
+
 OBSIDIAN_URL = os.getenv("OBSIDIAN_URL", "https://127.0.0.1:27124")
 OBSIDIAN_KEY = os.getenv("OBSIDIAN_API_KEY", "")
 
@@ -28,12 +36,17 @@ def _headers(content_type: str = "text/markdown") -> dict:
     }
 
 def _is_available() -> bool:
-    """Check if Obsidian REST API is running."""
+    """Check if Obsidian REST API is running AND authenticated."""
     if not OBSIDIAN_KEY:
         return False
     try:
-        r = requests.get(f"{OBSIDIAN_URL}/", timeout=2, verify=False)
-        return r.status_code in (200, 401)
+        r = requests.get(
+            f"{OBSIDIAN_URL}/vault/",
+            headers=_headers(),
+            timeout=2,
+            verify=False,
+        )
+        return r.status_code == 200
     except Exception:
         return False
 
