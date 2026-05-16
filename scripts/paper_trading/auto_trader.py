@@ -137,20 +137,12 @@ def _get_cap_info(ticker: str) -> tuple:
     import os, sys
     sys.path.insert(0, str(BASE_DIR / "scripts" / "paper_trading"))
 
-    # 1. Market cap — yfinance fast_info (primary, no key needed)
-    #    Finnhub /stock/metric returns marketCapitalization in millions but has
-    #    been observed returning inflated/stale figures; yfinance is more reliable.
+    # 1. Market cap — Finnhub (primary, most reliable in WARP environment)
+    #    yfinance is skipped: fc.yahoo.com is blocked by Cloudflare WARP SSL.
+    #    Finnhub free tier = 60 req/min, returns marketCapitalization in millions.
     market_cap = 0.0
-    try:
-        import yfinance as yf
-        ticker_obj = yf.Ticker(ticker)
-        mc = ticker_obj.fast_info.get("market_cap") or ticker_obj.fast_info.get("marketCap")
-        if mc and float(mc) > 1e6:
-            market_cap = float(mc)
-    except Exception:
-        pass
 
-    # Finnhub fallback (if yfinance failed)
+    # Finnhub (primary market cap source — no WARP issues)
     if market_cap <= 0:
         try:
             import requests, urllib3, os

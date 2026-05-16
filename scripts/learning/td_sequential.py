@@ -212,25 +212,23 @@ def get_td_signal(symbol: str, period: str = "6mo", interval: str = "1d") -> dic
 
     closes = highs = lows = None
 
-    # Source 1: yfinance (with SSL bypass already patched)
-    if HAS_YF:
+    # Source 1: Check today's cached state file (fastest — no API call)
+    state_file = TD_STATE_PATH / f"{symbol}.json"
+    if state_file.exists():
         try:
-            ticker = yf.Ticker(symbol)
-            hist   = ticker.history(period=period, interval=interval)
-            if not hist.empty and len(hist) >= 15:
-                closes = hist["Close"].tolist()
-                highs  = hist["High"].tolist()
-                lows   = hist["Low"].tolist()
+            cached = json.loads(state_file.read_text(encoding="utf-8"))
+            if cached.get("as_of") == date.today().isoformat():
+                return cached  # Use today's cached result directly
         except Exception:
             pass
 
-    # Source 2: portfolio_engine fallback (already SSL-resolved, always works)
-    if closes is None:
-        pe = _fetch_ohlc_portfolio_engine(symbol, period)
-        if pe:
-            closes = pe["closes"]
-            highs  = pe["highs"]
-            lows   = pe["lows"]
+    # Source 2: portfolio_engine (SSL-safe, always works in this environment)
+    # Skip yfinance: fc.yahoo.com is blocked by Cloudflare WARP
+    pe = _fetch_ohlc_portfolio_engine(symbol, period)
+    if pe:
+        closes = pe["closes"]
+        highs  = pe["highs"]
+        lows   = pe["lows"]
 
     if not closes or len(closes) < 15:
         result["warning"] = f"No price data available for {symbol} (check internet/SSL)"

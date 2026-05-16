@@ -6,12 +6,25 @@ This is the gate between testing and actual investment.
 Rule: Never put real money without 14-day paper validation.
 """
 import json
+import sys
 from datetime import datetime
 from pathlib import Path
 from typing import Optional
-import yfinance as yf
 
 BASE_DIR   = Path(__file__).parent.parent.parent
+
+# SSL patch before any HTTP
+sys.path.insert(0, str(BASE_DIR / "scripts"))
+try:
+    from utils.ssl_patch import apply as _ssl; _ssl()
+except Exception:
+    pass
+
+try:
+    import yfinance as yf
+    HAS_YF = True
+except ImportError:
+    HAS_YF = False
 
 # Promotion criteria — ALL must pass
 PROMOTION_CRITERIA = {
@@ -110,19 +123,19 @@ def check_promotion(position: dict, current_price: float,
 def check_no_earnings(ticker: str) -> tuple[bool, str]:
     """Check if earnings are coming within 5 days."""
     try:
-        t = yf.Ticker(ticker)
-        cal = t.calendar
-        if cal is None or cal.empty:
-            return True, "no earnings data"
-        # calendar has Earnings Date column
-        if "Earnings Date" in cal.columns:
-            earn_date = cal["Earnings Date"].iloc[0]
-            days_to_earnings = (earn_date - datetime.now()).days
-            if days_to_earnings <= 5:
-                return False, f"earnings in {days_to_earnings} days"
-            return True, f"earnings in {days_to_earnings} days (safe)"
-        return True, "no earnings scheduled"
-    except:
+        # Try yfinance calendar if available
+        if HAS_YF:
+            t = yf.Ticker(ticker)
+            cal = t.calendar
+            if cal is not None and not cal.empty:
+                if "Earnings Date" in cal.columns:
+                    earn_date = cal["Earnings Date"].iloc[0]
+                    days_to_earnings = (earn_date - datetime.now()).days
+                    if days_to_earnings <= 5:
+                        return False, f"earnings in {days_to_earnings} days"
+                    return True, f"earnings in {days_to_earnings} days (safe)"
+        return True, "could not check (assume safe)"
+    except Exception:
         return True, "could not check"
 
 

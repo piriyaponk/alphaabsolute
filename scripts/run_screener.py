@@ -29,6 +29,15 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 requests.packages.urllib3.disable_warnings()  # type: ignore
 
 ROOT     = Path(__file__).parent.parent
+
+# ── Central SSL patch (Cloudflare WARP bypass) ─────────────────────────────────
+sys.path.insert(0, str(ROOT / "scripts"))
+sys.path.insert(0, str(ROOT / "scripts" / "paper_trading"))
+try:
+    from utils.ssl_patch import apply as _ssl_apply
+    _ssl_apply()
+except Exception:
+    pass
 DATA_DIR = ROOT / "data"
 OUT_DIR  = ROOT / "output"
 DATA_DIR.mkdir(exist_ok=True)
@@ -121,14 +130,22 @@ def patch_yfinance_ssl():
         return False
 
 
-def fetch_spy_benchmark() -> dict:
-    """Fetch SPY benchmark returns for RS calculation."""
+def _pe_get(ticker: str, period: str = "1y"):
+    """Fetch price data via portfolio_engine (SSL-safe, always works)."""
     try:
-        import yfinance as yf
-        hist = yf.Ticker("SPY").history(period="12mo")
-        if hist.empty:
-            return {}
-        c = hist["Close"]
+        from portfolio_engine import get_price_data
+        return get_price_data(ticker, period=period)
+    except Exception:
+        return None
+
+
+def fetch_spy_benchmark() -> dict:
+    """Fetch SPY benchmark returns for RS calculation (portfolio_engine source)."""
+    try:
+        df = _pe_get("SPY", "1y")
+        if df is None or df.empty:
+            return {"ret_6m": 0, "ret_3m": 0, "ret_1m": 0, "ret_1w": 0}
+        c = df["Close"]
         return {
             "ret_6m": (c.iloc[-1] / c.iloc[-130] - 1) * 100 if len(c) >= 130 else 0,
             "ret_3m": (c.iloc[-1] / c.iloc[-66]  - 1) * 100 if len(c) >= 66  else 0,
@@ -141,18 +158,16 @@ def fetch_spy_benchmark() -> dict:
 
 
 def fetch_ticker_data(ticker: str, spy: dict) -> dict:
-    """Fetch all metrics for one ticker."""
+    """Fetch all metrics for one ticker (portfolio_engine source — SSL safe)."""
     try:
-        import yfinance as yf
-        t    = yf.Ticker(ticker)
-        hist = t.history(period="12mo")
-        if hist.empty:
+        df = _pe_get(ticker, "1y")
+        if df is None or df.empty:
             return {"ticker": ticker, "error": "no data"}
 
-        c   = hist["Close"]
-        h   = hist["High"]
-        l   = hist["Low"]
-        v   = hist["Volume"]
+        c   = df["Close"]
+        h   = df["High"]
+        l   = df["Low"]
+        v   = df["Volume"]
 
         price     = round(float(c.iloc[-1]), 2)
         prev      = round(float(c.iloc[-2]), 2) if len(c) > 1 else price
