@@ -51,6 +51,8 @@ jobs:
           git config user.name  "AlphaAbsolute Bot"
           git config user.email "bot@alphaabsolute.ai"
           git add \
+            data/themes/ticker_labels.json \
+            data/themes/description_cache.json \
             data/calibration/signal_weights.json \
             data/postmortems/ \
             data/runner_logs/ \
