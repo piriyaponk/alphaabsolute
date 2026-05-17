@@ -1,15 +1,17 @@
-name: AlphaAbsolute Weekly
+name: AlphaAbsolute v2 Weekly Benchmark
 
-# Sunday 08:00 Bangkok time = Saturday 01:00 UTC
+# Saturday 06:00 Bangkok time = Friday 23:00 UTC
+# Rebuilds: full universe (5,021 tickers) + OHLCV disk cache + benchmark distribution
+# Takes ~60-75 min total — daily runs depend on this artifact
 on:
   schedule:
-    - cron: '0 1 * * 6'    # Saturday 01:00 UTC = Sunday 08:00 ICT
-  workflow_dispatch:         # Manual trigger from GitHub UI
+    - cron: '0 23 * * 5'    # Friday 23:00 UTC → Saturday 06:00 ICT
+  workflow_dispatch:          # Manual trigger from GitHub UI
 
 jobs:
-  weekly-run:
+  weekly-benchmark:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 120      # 2-hour cap — full OHLCV fetch can take ~60 min
 
     steps:
       - name: Checkout repo
@@ -28,29 +30,59 @@ jobs:
 
       - name: Create required directories
         run: |
-          mkdir -p data/paper_trading data/nrgc/state data/state data/raw output \
-                   data/agent_memory data/smart_signals memory
+          mkdir -p data/universe \
+                   data/ohlcv_cache \
+                   data/rs_universe \
+                   data/themes \
+                   data/runner_logs
 
-      - name: Run weekly runner
+      - name: Step 1 — Rebuild full universe (NYSE + NASDAQ ~5,021 tickers)
         env:
-          GROQ_API_KEY:          ${{ secrets.GROQ_API_KEY }}
-          GEMINI_API_KEY:        ${{ secrets.GEMINI_API_KEY }}
-          FINNHUB_API_KEY:       ${{ secrets.FINNHUB_API_KEY }}
-          FRED_API_KEY:          ${{ secrets.FRED_API_KEY }}
-          TELEGRAM_BOT_TOKEN:    ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID:      ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python scripts/runners/weekly_runner.py
+          POLYGON_API_KEY: ${{ secrets.POLYGON_API_KEY }}
+          TIINGO_API_KEY:  ${{ secrets.TIINGO_API_KEY }}
+          FMP_API_KEY:     ${{ secrets.FMP_API_KEY }}
+          FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+        run: python scripts/pre_compute/universe_builder.py
 
-      - name: Commit updated state + lessons
+      - name: Step 2 — Prefetch OHLCV for all tickers (290-day history)
+        env:
+          POLYGON_API_KEY: ${{ secrets.POLYGON_API_KEY }}
+          TIINGO_API_KEY:  ${{ secrets.TIINGO_API_KEY }}
+          FMP_API_KEY:     ${{ secrets.FMP_API_KEY }}
+          FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+        # Polygon free: 5 req/min → 13s sleep per ticker
+        # ~5,021 tickers × 13s = ~18 min (parallelised in ohlcv_prefetch.py)
+        run: python scripts/runners/pre_market_runner.py --step ohlcv_prefetch
+
+      - name: Step 3 — Build RS benchmark distribution from OHLCV cache
+        env:
+          POLYGON_API_KEY: ${{ secrets.POLYGON_API_KEY }}
+          TIINGO_API_KEY:  ${{ secrets.TIINGO_API_KEY }}
+          FMP_API_KEY:     ${{ secrets.FMP_API_KEY }}
+          FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+        # Forces benchmark build regardless of day-of-week check
+        run: python scripts/runners/pre_market_runner.py --step a03_bench
+
+      - name: Step 4 — Rebuild theme RS from fresh universe
+        env:
+          POLYGON_API_KEY: ${{ secrets.POLYGON_API_KEY }}
+          TIINGO_API_KEY:  ${{ secrets.TIINGO_API_KEY }}
+          FMP_API_KEY:     ${{ secrets.FMP_API_KEY }}
+          FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+        run: python scripts/runners/pre_market_runner.py --step a05
+
+      - name: Commit rebuilt artifacts to repo
         run: |
           git config user.name  "AlphaAbsolute Bot"
           git config user.email "bot@alphaabsolute.ai"
-          git add data/paper_trading/ \
-                  data/nrgc/state/ \
-                  data/state/ \
-                  data/agent_memory/ \
-                  data/smart_signals/ \
-                  memory/ \
-                  output/framework_review_*.md || true
-          git diff --cached --quiet || git commit -m "auto: weekly update $(date -u +%Y-%m-%d)"
+          git add \
+            data/universe/full_universe.json \
+            data/ohlcv_cache/ \
+            data/rs_universe/benchmark_distribution.json \
+            data/rs_universe/benchmark_tickers.json \
+            data/rs_universe/theme_rs_latest.json \
+            data/themes/ \
+            data/runner_logs/ || true
+          git diff --cached --quiet || \
+            git commit -m "auto: weekly benchmark rebuild $(date -u +%Y-%m-%d)"
           git push || true

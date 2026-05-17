@@ -1,15 +1,15 @@
-name: AlphaAbsolute Daily
+name: AlphaAbsolute v2 Daily Brief
 
 # Mon-Fri 06:30 Bangkok time = 23:30 UTC (previous day)
 on:
   schedule:
-    - cron: '30 23 * * 0-4'   # Sun-Thu 23:30 UTC = Mon-Fri 06:30 ICT
+    - cron: '30 23 * * 0-4'   # Sun-Thu 23:30 UTC → Mon-Fri 06:30 ICT
   workflow_dispatch:            # Manual trigger from GitHub UI
 
 jobs:
-  daily-run:
+  daily-brief:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
 
     steps:
       - name: Checkout repo
@@ -28,28 +28,48 @@ jobs:
 
       - name: Create required directories
         run: |
-          mkdir -p data/paper_trading data/nrgc/state data/state data/raw output \
-                   data/agent_memory data/smart_signals memory
+          mkdir -p data/regime \
+                   data/rs_universe \
+                   data/fundamentals/analyst_cache \
+                   data/themes \
+                   data/leadership \
+                   data/bigshot \
+                   data/setups \
+                   data/portfolio \
+                   data/risk \
+                   data/postmortems \
+                   data/calibration \
+                   data/runner_logs \
+                   output/postmortems
 
-      - name: Run daily runner
+      - name: Run pre-market pipeline (A01→A11)
         env:
-          GROQ_API_KEY:          ${{ secrets.GROQ_API_KEY }}
-          GEMINI_API_KEY:        ${{ secrets.GEMINI_API_KEY }}
-          FINNHUB_API_KEY:       ${{ secrets.FINNHUB_API_KEY }}
-          FRED_API_KEY:          ${{ secrets.FRED_API_KEY }}
-          TELEGRAM_BOT_TOKEN:    ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID:      ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python scripts/runners/daily_runner.py
+          POLYGON_API_KEY:    ${{ secrets.POLYGON_API_KEY }}
+          TIINGO_API_KEY:     ${{ secrets.TIINGO_API_KEY }}
+          FMP_API_KEY:        ${{ secrets.FMP_API_KEY }}
+          FINNHUB_API_KEY:    ${{ secrets.FINNHUB_API_KEY }}
+          FRED_API_KEY:       ${{ secrets.FRED_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python scripts/runners/pre_market_runner.py --mode premarket
 
-      - name: Commit updated state
+      - name: Commit updated data files
         run: |
           git config user.name  "AlphaAbsolute Bot"
           git config user.email "bot@alphaabsolute.ai"
-          git add data/paper_trading/portfolio_state.json \
-                  data/paper_trading/trade_log.json \
-                  data/paper_trading/lessons.json \
-                  data/paper_trading/performance_history.json \
-                  data/state/ \
-                  data/agent_memory/indicator_discovery_log.json || true
-          git diff --cached --quiet || git commit -m "auto: daily update $(date -u +%Y-%m-%d)"
+          git add \
+            data/regime/ \
+            data/rs_universe/latest.json \
+            data/rs_universe/theme_rs_latest.json \
+            data/rs_universe/changes_today.json \
+            data/themes/ \
+            data/leadership/ \
+            data/bigshot/ \
+            data/setups/ \
+            data/portfolio/action_signals.json \
+            data/portfolio/paper_portfolio_state.json \
+            data/risk/ \
+            data/runner_logs/ \
+            output/daily_brief_*.md || true
+          git diff --cached --quiet || git commit -m "auto: daily brief $(date -u +%Y-%m-%d)"
           git push || true

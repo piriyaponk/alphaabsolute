@@ -1,15 +1,14 @@
-name: AlphaAbsolute Monthly
+name: AlphaAbsolute v2 Monthly Report
 
-# 1st Sunday of each month, 09:00 Bangkok time = 02:00 UTC
-# GitHub Actions doesn't support "1st Sunday" natively, so we run every Sunday
-# and the script checks if it's the 1st Sunday of the month
+# 1st of each month, 09:00 Bangkok time = 02:00 UTC
+# Runs Bayesian signal calibration + full performance report vs QQQ
 on:
   schedule:
-    - cron: '0 2 1-7 * 0'    # Sundays in days 1-7 = 1st Sunday, 02:00 UTC = 09:00 ICT
-  workflow_dispatch:           # Manual trigger
+    - cron: '0 2 1 * *'      # 1st of every month, 02:00 UTC = 09:00 ICT
+  workflow_dispatch:           # Manual trigger from GitHub UI
 
 jobs:
-  monthly-run:
+  monthly-report:
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
@@ -30,31 +29,33 @@ jobs:
 
       - name: Create required directories
         run: |
-          mkdir -p data/paper_trading data/nrgc/state data/state data/raw output \
-                   data/agent_memory data/smart_signals memory
+          mkdir -p data/calibration \
+                   data/postmortems \
+                   data/portfolio \
+                   data/runner_logs \
+                   output/postmortems
 
-      - name: Run monthly runner
+      - name: Run monthly pipeline (Bayesian calibration + performance report)
         env:
-          GROQ_API_KEY:          ${{ secrets.GROQ_API_KEY }}
-          GEMINI_API_KEY:        ${{ secrets.GEMINI_API_KEY }}
-          FINNHUB_API_KEY:       ${{ secrets.FINNHUB_API_KEY }}
-          FRED_API_KEY:          ${{ secrets.FRED_API_KEY }}
-          TELEGRAM_BOT_TOKEN:    ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID:      ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python scripts/runners/monthly_runner.py
+          POLYGON_API_KEY:    ${{ secrets.POLYGON_API_KEY }}
+          TIINGO_API_KEY:     ${{ secrets.TIINGO_API_KEY }}
+          FMP_API_KEY:        ${{ secrets.FMP_API_KEY }}
+          FINNHUB_API_KEY:    ${{ secrets.FINNHUB_API_KEY }}
+          FRED_API_KEY:       ${{ secrets.FRED_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python scripts/runners/pre_market_runner.py --mode monthly
 
-      - name: Commit framework updates
+      - name: Commit calibration + performance artifacts
         run: |
           git config user.name  "AlphaAbsolute Bot"
           git config user.email "bot@alphaabsolute.ai"
-          git add memory/ \
-                  output/framework_review_*.md \
-                  output/indicator_proposals_*.md \
-                  data/paper_trading/focus_lessons.json \
-                  data/agent_memory/indicator_kb.json \
-                  data/agent_memory/ \
-                  data/smart_signals/ \
-                  data/state/lifetime_stats.json || true
-          git add -u data/smart_signals/ data/agent_memory/ memory/ || true
-          git diff --cached --quiet || git commit -m "auto: monthly framework update + memory janitor $(date -u +%Y-%m)"
+          git add \
+            data/calibration/signal_weights.json \
+            data/postmortems/ \
+            data/runner_logs/ \
+            output/performance_*.md \
+            output/postmortems/ || true
+          git diff --cached --quiet || \
+            git commit -m "auto: monthly report + calibration $(date -u +%Y-%m)"
           git push || true
