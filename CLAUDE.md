@@ -1,445 +1,717 @@
-﻿# AlphaAbsolute — AI Asset Management System
+# AlphaAbsolute v2 — Adaptive Secular Momentum Investing System
 ## Master Configuration for Claude Code
+### Version 2.0 | Redesigned 2026-05-17 | CIO: Piriyapon Kongvanich
 
 ---
 
-## Identity & Mandate
+## Philosophy — What This System Is
 
-AlphaAbsolute is a private AI-powered asset management system built for **Piriyapon Kongvanich (CIO)**.
+AlphaAbsolute v2 is built around one thesis:
 
-**Two mandates:**
-1. **Personal portfolio** — compound personal wealth, target multi-bagger / 10x returns
-2. **Research outputs** — institutional equity strategy reports (bilingual Thai/English) for clients
+> **"หุ้นที่วิ่ง 3–10 เด้ง ต้องการ 3 สิ่ง: right market, right stock, right moment."**
 
-**Universe:** US stocks (Nasdaq/NYSE) + Thai stocks (SET/MAI) + DRs
+The system does NOT try to predict markets. It identifies whether conditions are RIGHT for leaders to run — and when they are, it concentrates capital in the best setups available. When conditions are wrong, it sits in cash. That is it.
 
----
+**Core principle: Curate, don't score.** A composite score that averages a great story with a weak chart produces a mediocre result. Instead, every stock must PASS specific gates — no averaging, no exceptions.
 
-## The 20-Agent System
-
-This project runs 20 specialized agents across 6 layers. Every agent has its own `skills/agent_XX_name.md` file defining its persona, workflow, and rules. Always load the relevant skill file before acting as that agent.
-
-### Agent Directory
-
-| ID | Name | Layer | Role |
-|----|------|-------|------|
-| 00 | Orchestrator | 0 | Master router, scheduled triggers |
-| 0b | Deputy CIO / Chief of Staff | 0 | Work distribution, quality control, escalation |
-| 01 | Macro Intelligence | 1 | US/Global/Thai macro, regime, intermarket |
-| 02 | News & Event Intelligence | 1 | News aggregation, event calendar, catalysts |
-| 03 | Factor & Screener | 1 | PULSE screen — Leader/Bottom Fish/Hypergrowth |
-| 3b | Mispricing Intelligence | 1 | Valuation gap detection, contrarian opportunities |
-| 04 | Fundamental Analyst | 1 | CANSLIM scoring, SET/US financials, EPS revision |
-| 05 | Thematic Research | 1 | 14 megatrend themes, deep dives, theme heatmap |
-| 06 | Thai Fund Manager | 2 | Thai equity picks, SET/MAI, PULSE applied locally |
-| 07 | US Growth Fund Manager | 2 | US equity picks, Minervini/hypergrowth, megatrends |
-| 08 | Asset Allocator | 2 | Stocks/Gold/Cash weights, regime-based allocation |
-| 09 | Macro Strategist | 2 | Top-down synthesis, 6-8 factors, investment themes |
-| 10 | CIO Synthesis | 3 | Final decision — allocation + 3 setups + picks |
-| 11 | Report Writer | 3 | Daily/weekly/monthly reports + PPT generation |
-| 15 | Special Request & Strategic Research | 3 | Ad-hoc, strategy papers, template writing |
-| 12 | Risk Devil's Advocate | 4 | Portfolio risk check, debate, check & balance |
-| 16 | Fact-Check & Source Verification (Auditor) | 6 | Data accuracy, hallucination detection, audit stamp |
-| 17 | CIO Dashboard | 6 | HTML dashboard — performance, holdings, themes |
-| 13 | Portfolio Performance | 5 | Attribution, post-mortems, improvement prescriptions |
-| 14 | Learning & Memory (Style Guardian) | 5 | Capture investment style, update framework |
-| 14b | NotebookLM Knowledge Manager | 5 | Write/read NotebookLM, storage decisions |
+**Universe:** US stocks only — S&P 500 + Nasdaq (NYSE + NASDAQ listed).
+**Mandate:** Beat QQQ over a full market cycle.
 
 ---
 
-## Investment Framework: PULSE
+## Two Investment Modes
 
-### Three Investment Setups
+Every position falls into exactly one of these modes. Never mix criteria.
 
-**Setup 1 — Leader / Momentum (Minervini SEPA)**
-- Weinstein Stage 2 ONLY
-- RS > 72nd percentile (all timeframes: 1W/2W/1M/3M/6M/12M)
-- RS momentum (2W vs 1M, 3M vs 6M, 6M vs 12M) > -10%
-- All Sector RS > 70th percentile
-- % from 52W high > -20%
-- % from 52W low > +15%
-- % from 50D MA > -5%
-- 150D MA > 200D MA
-- 6M ADTV > 20M THB or $10M USD
-- Chart pattern: VCP (3+ tight pullbacks, volume contracting each base) or Cup & Handle
-- EPS revision: upward in past 30 days
-- CANSLIM score: C + A + N + I confirmed
+### Mode A — Momentum Leadership
+*"Buy the strongest stocks in the strongest market."*
 
-**Setup 2 — Bottom Fishing (Wyckoff Spring + RS Inflection)**
-- Stage 1 → 2 transition (price crossing 30W MA with expansion volume)
-- RS percentile turning up from bottom (improving trend)
-- Wyckoff: Spring or SOS confirmed (volume expansion on bounce > 80% of 20D avg)
-- 2-week wait after Spring before entry (confirm higher low)
-- CANSLIM fundamentals required (especially C and A)
-- Max position size: 4% until Stage 2 confirmed
+These are the confirmed leaders — stocks where institutions are already accumulating, fundamentals are accelerating, and the chart is acting right. The highest-probability setup in any bull market.
 
-**Setup 3 — Hypergrowth (Base 0/1, Revenue Acceleration)**
-- Revenue growth accelerating (QoQ and YoY)
-- Gross margin expanding
-- Large TAM + industry breakthrough catalyst
-- Base 0 or Base 1 ONLY (first or second base from breakout)
-- Stock price early-stage (not 3x+ from initial breakout)
-- Max position size: 5% for Base 0 names
-- Historical precedents: LITE, MU (early cycle), SNDK, AXTI
+**Entry criteria (ALL must pass — no exceptions):**
+- RS percentile vs S&P+Nasdaq benchmark: **> 70th** (3M and 6M both)
+- Revenue YoY growth (latest quarter): **> 25%**
+- EPS YoY growth (latest quarter): **> 25%** (or clear acceleration trend)
+- Gross margin trend: **stable or expanding** (not contracting)
+- Price structure: Stage 2 only (Wyckoff accumulation or mark-up confirmed)
+- Chart pattern: must be forming or breaking from a recognized base
+- % from 52-week high: **> -20%** (not extended down)
+- 6M ADTV: **> $10M USD** (enough liquidity to size)
 
-### 4-Pillar Technical Framework
-1. **Wyckoff** — Market direction / phase (Accumulation A-E, Mark-Up, Distribution, Mark-Down)
-2. **Volume Profile** — Conviction / POC = institutional cost basis / HVN = accumulation zone
-3. **SMC** — Entry precision (Liquidity grab → Order Block → CHoCH confirmation)
-4. **TD Sequential** — Market timing / exhaustion detection (Setup 9 + Countdown 13) ← PRIMARY entry gate
+**Position sizing:**
+- Full initial position: **10% of portfolio**
+- Maximum 10 Leaders simultaneously → 100% invested at full bull market
+- Can pyramid up to **15%** on confirmed leaders (price extended, volume confirmed)
+- Reduce to 5% on any Leader that drops from top-quartile RS
+
+**Stop loss:** -8% from entry (hard). If Stage 3/4 detected → immediate review.
 
 ---
 
-## TD Sequential — Primary Market Timing Indicator
+### Mode B — Monster Stock / Big Shot
+*"Find the next 10-bagger before the crowd sees it."*
 
-**TD Sequential** (Tom DeMark) is the primary timing layer in AlphaAbsolute. It is integrated into PULSE + NRGC as a mandatory entry gate — fundamental and technical alignment are NOT sufficient without TD confirmation.
+These are early-stage, narrative-driven, asymmetric opportunities. They may not yet have strong RS (it's early), but they have a structural growth driver and the chart is giving a clear entry signal via breakout.
 
-**Source:** `scripts/learning/td_sequential.py`
-**State stored:** `data/td_sequential/` (per-symbol + `_market_regime.json`)
-**Displayed:** Session start hook every morning
+**Entry criteria (ALL must pass):**
+- **Breakout required — no exceptions.** Price must be at a minimum **3-month high** (63-day high). Preferred: 6-month high (126-day high) or all-time high. No buying into consolidations that haven't resolved.
+- Strong narrative backing: must fit one of the 14 official themes with clear TAM and catalyst
+- Base structure: Base 0 or Base 1 ONLY (no late-stage entries)
+- Price structure: Early stage — either pre-discovery or entering early institutional phase
+- No RS floor: RS can be anywhere. Revenue can be pre-revenue or early. What matters is trajectory and narrative, not current numbers.
+- 6M ADTV: **> $3M USD** (smaller names acceptable, but must have some liquidity)
 
-### How It Works
-- **Setup Phase (9 bars):** Count consecutive bars where `close > close[4 bars ago]` → Sell Setup
-  Count consecutive bars where `close < close[4 bars ago]` → Buy Setup
-  Setup 9 = exhaustion of the current move (warning: reversal imminent)
-- **Countdown Phase (13 bars):** After Setup 9, count bars meeting close vs high/low[2] condition
-  Countdown 13 = high-probability reversal confirmation
+**Position sizing:**
+- Initial position: **5% of portfolio** (always — regardless of conviction)
+- Pyramid only after price action confirms (second breakout, pocket pivot): up to **10%**
+- Hard cap per stock: **30% of portfolio** (only for super-confirmed monsters after multi-year hold)
+- **Total Mode B bucket: ≤ 30% of portfolio at any time**
+- This means: max ~3-6 Big Shot positions at 5-10% each while keeping Leaders full
 
-### TD Signal Levels
-| Signal | Meaning | Action |
-|--------|---------|--------|
-| Sell Setup 9 | Upside exhaustion complete | Stop new entries, expect 1-2 week pullback |
-| Sell Setup 7-8 | Caution zone | Reduce new entry size 50% |
-| Sell Countdown 13 | Strong topping signal | Exit or reduce all longs |
-| Buy Setup 9 | Downside exhaustion complete | High probability bounce — entry window |
-| Buy Countdown 13 | Strong reversal signal | Maximum conviction buy window |
-| Neutral | No active signal | Proceed normally with other gates |
-
-### Integration Rules
-- **Market-level:** SPY+QQQ TD status gates ALL new entries system-wide
-  - TD caution/warning → downgrade regime (risk-on → neutral)
-  - TD reversal → downgrade to risk-off regardless of price structure
-- **Stock-level:** Run per-ticker before NRGC Phase 3 entry
-  - Sell Setup 7-9 active → BLOCK entry (wait for reset)
-  - Buy Setup 9 / Buy Countdown 13 → BOOST EMLS score +2, priority entry
-- **Position management:** Sell Countdown 10-13 on held position → reduce/exit
-- **Session start hook:** TD market regime shown every morning
-
-### Current Market TD Status (as of 2026-05-15)
-- SPY: Buy Setup 1/9 (market reset, fresh buy cycle starting)
-- QQQ: Buy Setup 1/9 (same)
-- NVDA: Sell Setup 8/9 → BLOCKED (1 bar from exhaustion, do not add)
-- COHR: Sell Setup 6/9 (watch — approaching caution zone)
+**Stop loss:** -10% from breakout pivot (wider because early stage, lower liquidity).
 
 ---
 
-## EMLS — Earnings-Momentum Leadership System
+## Market Regime & Cash Rules
 
-**EMLS** is the unified investment framework of AlphaAbsolute. It combines CANSLIM + Minervini SEPA + Wyckoff + Relative Strength Investing + Earnings Revision Investing + Institutional Momentum + Volatility Expansion Theory into one integrated scoring engine.
+**Cash is the most important position.** The regime determines how much of the portfolio is deployed. This is non-negotiable.
 
-**Core thesis:** "หุ้นที่วิ่ง 3–10 เด้ง มักมี pattern ซ้ำกัน" — Big winners repeat the same signature across Earnings, Revenue, Price Structure, RS, Volatility, Institutional Behavior, and Multi-TF Alignment.
+### 4-State Regime Classification
 
-**Mission:** Detect early-stage institutional leaders BEFORE mass recognition — find stocks at inflection, not after consensus forms.
+| State | SPY/QQQ Signal | Required Cash | New Entries |
+|-------|---------------|--------------|-------------|
+| **Markup** (bull) | Price rising, above 50DMA, breadth strong | 0-10% | Full size, both modes |
+| **Distribution** (topping) | Heavy sell volume, breadth weakening, leaders fading | 40-60% | Reduce size, Mode A only |
+| **Sideways/Choppy** | No clear direction, range-bound | 20-40% | Small size, high conviction only |
+| **Markdown** (bear) | Price below 200DMA, breadth collapsed | 75-100% | ONLY if something passes full screen — otherwise 100% cash |
 
-### EMLS Decision Engine — Weighted Score (0–100)
+**Key rule:** In Markdown regime — if no stock passes the full Mode A or Mode B screen, the answer is 100% cash. Do not force positions.
 
-| Factor | Weight | What AI Scores |
-|--------|--------|----------------|
-| Earnings Acceleration | 25% | EPS growth rate, QoQ acceleration, operating leverage |
-| Revenue Acceleration | 20% | Sequential YoY/QoQ acceleration curve, 3+ quarters |
-| Relative Strength | 20% | RS vs SPX + sector, percentile rank, trend direction |
-| Price Structure | 15% | VCP quality, base count, breakout confirmation |
-| Volume | 10% | Accumulation pattern, breakout vol, pocket pivot |
-| Market Regime | 10% | Breadth, distribution days, risk-on/off environment |
+**Cash enforcement mechanism:**
+- A01 Market Health Engine outputs `cash_floor` and `max_deployed` each morning
+- A09 Portfolio Manager reads these BEFORE any buy signal is executed
+- If current deployment > `max_deployed` → A09 flags which positions to reduce FIRST
 
-**Score tiers:**
-| Score | Label | Action |
-|-------|-------|--------|
-| 90–100 | ⚡ Hyper Leader | Maximum conviction — size up |
-| 80–89 | 🏆 Institutional Leader | Full position — high priority |
-| 70–79 | 🔺 Emerging Leader | Standard size — watchlist to active |
-| 60–69 | 👁 Watchlist | Monitor — not yet actionable |
-| < 60 | — Ignore | No position |
+---
 
-### Ideal Multibagger Signature (all 11 = maximum conviction)
+## TD Sequential in v2
 
-| # | Signal | Notes |
-|---|--------|-------|
-| ✅ 1 | Revenue acceleration | QoQ + YoY both accelerating ≥3 quarters |
-| ✅ 2 | EPS acceleration | EPS growing faster than revenue = operating leverage |
-| ✅ 3 | New highs | At or making ATH — market re-rating future growth |
-| ✅ 4 | RS leader | Top percentile vs SPX + sector — leading in up AND down |
-| ✅ 5 | Tight base | VCP or CwH — volatility contraction complete |
-| ✅ 6 | Volume dry-up | Pre-breakout: seller exhaustion, supply absorbed |
-| ✅ 7 | Volatility expansion | Post-breakout: demand overwhelming supply |
-| ✅ 8 | Institutional accumulation | Pocket pivots, up vol > down vol, 13F building |
-| ✅ 9 | 4/4 TF alignment | Monthly + Weekly + Daily + Intraday all bullish |
-| ✅ 10 | Narrative tailwind | Megatrend backing — AI, SMR, Space, Defense, Photonics |
-| ✅ 11 | Earnings revisions upward | Analyst upgrades, guidance raises, estimate breadth positive |
-
-**7–9 signals = HIGH conviction. 10–11 = maximum size.**
-
-### Failure Signals — Early Exit Checklist
+TD Sequential is **not a hard block** in v2. It is a **size modifier**.
 
 | Signal | Action |
 |--------|--------|
-| ❌ Revenue QoQ decelerating | Reduce — thesis weakening |
-| ❌ RS declining from top quartile | Flag — downgrade priority |
-| ❌ Failed breakout on volume | Exit or stop — institutional rejection |
-| ❌ Heavy sell volume on up days | Distribution — smart money exiting |
-| ❌ Momentum divergence (price up, RS down) | Warning — leading indicator of top |
-| ❌ RSI > 85 + parabolic move + climax volume | Euphoria — trim aggressively |
-| ❌ Distribution days ≥ 4 in market | Reduce ALL positions — regime change |
-| ❌ EPS revision turning negative | Exit — fundamental thesis broken |
+| Buy Setup 9 / Countdown 13 | +25% to normal size — priority entry window |
+| Neutral (no signal) | Normal size |
+| Sell Setup 5-6 | -25% size — scale in slowly |
+| Sell Setup 7-8 | -50% size — first tranche only, wait for reset |
+| Sell Setup 9 / Countdown 10-13 | -75% size — only if ALL other technicals remain bullish |
 
-### EMLS Early Detection Protocol (Section XII)
-AI must detect INFLECTION — not famous stocks, but stocks where:
-- Earnings just started accelerating (Phase 2 entry)
-- RS just crossed above 50th percentile from below
-- First breakout from base (Base 0 or Base 1)
-- Institutions quietly building (vol pattern changing)
-- Narrative exists but not yet crowded
+**Rationale:** In a strong trend, Sell Setup 9 can fire many times before a reversal. Blocking entry would miss the entire trend. Instead, reduce size and scale in if price continues to confirm.
+
+If TD says Sell Setup 9 but price is making new highs + RS climbing + volume accumulating → buy at 25% normal size and pyramid as it confirms.
 
 ---
 
-## Health Check Dashboard — Leadership State Score (PRIMARY ENTRY GATE)
+## 8 Official Buy Setup Types
 
-**Source:** `scripts/paper_trading/health_check.py`
-**State stored:** `data/health_checks/{TICKER}.json`
-**Required:** Score >= 5/8 to enter, >= 7/8 for full size. Run before EVERY BUY.
+Every entry must be classified as one of these. No entry without a named setup.
 
-A stock in **"Leadership State"** passes all 8 health indicators simultaneously. This is the PULSE composite readiness check — run before every BUY and on every held position weekly.
+| Code | Setup | Description | Entry Rule |
+|------|-------|-------------|-----------|
+| **BKT** | Breakout | Price clears resistance on volume ≥ 1.5× 20D average | Buy within 3% above pivot |
+| **VCP** | Volatility Contraction Pattern | 3+ contracting swings, volume drying up | Buy on breakout of final tight pivot |
+| **CWH** | Cup with Handle | 7+ week cup, handle ≤ 12% depth, volume dry-up | Buy on handle breakout |
+| **SPR** | Wyckoff Spring | Price dips below support then snaps back on volume | Buy the snap-back, stop below spring low |
+| **PPT** | Pocket Pivot | Strong up-day volume exceeds any down-day in prior 10 days | Buy within 5% of 10DMA |
+| **EMA** | EMA Pullback | Price pulls back to 10EMA or 21EMA in uptrend | Buy the touch, stop below 50DMA |
+| **VPS** | Volume Pocket Support | Price lands in High Volume Node (HVN) from Volume Profile | Buy at HVN midpoint |
+| **FIB** | Fibonacci Retracement | Price retraces to 38.2% or 50% Fibonacci level with confluence | Buy at Fibonacci level |
 
-**Entry size rules based on score:**
-- **7-8/8 = Green Light** — full position size
-- **5-6/8 = Yellow** — 50% size only (also triggered when TF Alignment < 4/4)
-- **< 5/8 = Red** — DO NOT ENTER, monitor only
-- **4/4 TF Alignment is mandatory** — if not aligned, maximum rating = Yellow regardless of other scores
-
-### 8 Health Indicators
-
-| Indicator | What It Checks | Bullish Condition |
-|-----------|----------------|-------------------|
-| **TF Alignment** | Monthly + Weekly + Daily + Intraday all trending same direction | 4/4 Bull (all timeframes aligned) |
-| **Market** | Breadth, index trend, distribution days, % stocks above 50DMA, new highs vs lows | Healthy — risk-on environment confirmed |
-| **Rel Strength** | Outperforming Nasdaq/SPX + sector peers, top percentile rank | Leading — outperforms in up AND down moves |
-| **Volume** | Breakout volume support, institutional accumulation footprint, dry-up before breakout | Normal to Strong — not climax/euphoric |
-| **Momentum** | Trend strength + price extension relative to MAs | Strong + Ranging — powerful but not parabolic |
-| **Volatility** | ATR, Bollinger squeeze, range compression cycle | Expanding after compression — breakout confirmed |
-| **Extension** | Distance from 10EMA / 21EMA / 50DMA | Normal — not extended (RSI < 80, < 10% above 10EMA) |
-| **Bull Streak** | Consecutive bullish bars — measures demand persistence | 4+ bars (trend quality and buying pressure) |
-
-### Details Panel — Supporting Metrics
-
-| Metric | Bullish Signal | Red Flag |
-|--------|---------------|----------|
-| YTD % | Outperforming SPX/SET YTD | Lagging index significantly |
-| 30D %Chg | Accelerating vs 90D (30D > 90D rate) | 30D decelerating vs 90D |
-| 90D %Chg | +15% or more | Negative or flat |
-| vs ATH | At or making New High | More than 20% below ATH |
-| MACD | Positive and rising | Negative or crossing below zero |
-| RSI | 50–75 zone (bullish healthy) | > 85 (climax risk) or < 40 (trend break) |
-| EPS / PE | EPS accelerating; PE justified by growth rate | PE > 3× sector avg with decelerating EPS |
-| Mkt Cap | Any — use for sizing context | Mega-cap limits explosive upside |
-
-### Health Check Score (0–8)
-- **7–8 / 8** = Green Light — full size entry allowed
-- **5–6 / 8** = Yellow — reduced size, watch for remaining conditions
-- **< 5 / 8** = Red — do not enter, monitor only
-- **Must be 4/4 TF Alignment** — if not aligned, maximum score = Yellow regardless of others
+**Minimum R:R for any entry: 3:1**
+- 7% stop requires ≥ 21% expected upside
+- 10% stop (Big Shot) requires ≥ 30% expected upside
+- If R:R < 3:1 → wait for better entry or skip
 
 ---
 
-## 6-Phase Multibagger Theory
+## Position Management Rules
 
-Every 10x stock repeats the same 6 phases. PULSE + NRGC maps to this cycle:
+### Adding to Positions (Pyramiding)
+- **Rule:** Only add to WINNING positions. Never average down.
+- Add at: +5% from entry (first add), +15% from entry (second add)
+- Each add: 50% of original position size
+- Total max: initial 10% → add 5% → max 15% for one Leader (A10 hard cap — no exceptions)
+- For Big Shot: initial 5% → add 3% → max 8% before full confirmation
 
-| Phase | Name | What Happens | AI Detects | NRGC Phase |
-|-------|------|-------------|-----------|------------|
-| 1 | **Neglect** | Market ignores it. Volume light, analyst silent, valuation low, earnings stabilizing | Downside slowing, margins stabilizing, revenue contraction decelerating | Ph 0–1 |
-| 2 | **Early Acceleration** | Revenue/EPS starts growing. QoQ turns positive. Guidance improves. First breakout from base | Sequential acceleration, estimate upgrades, first volume expansion | Ph 1–2 |
-| 3 | **Institutional Discovery** | Smart money enters. Volume expands. RS surges. ATH breakout | Abnormal volume, RS percentile jump, new highs, 4/4 TF alignment | Ph 2–3 |
-| 4 | **Narrative Expansion** | Market believes the story. PE re-rates. Momentum funds chase | Crowdedness signals, sentiment acceleration, extension checks | Ph 3–4 |
-| 5 | **Euphoria** | Everyone bullish. RSI > 85. Parabolic. Retail FOMO | Climax volume, RSI divergence, failed breakouts | Ph 5 |
-| 6 | **Distribution** | Smart money exits. Earnings still good but price fails. RS declines | Momentum decay, distribution days, RS deterioration, failed pivots | Ph 6 |
+### Selling Rules (Priority Order)
 
-**Entry zones:** Phase 2 (first breakout) and Phase 3 (institutional discovery) = highest R/R
-**Exit warning:** Phase 5 signals + Health Check score drops below 5
+**IMMEDIATE — Exit today, no debate:**
+- Hard stop: -8% from entry (Leader) or -10% (Big Shot) triggered
+- EPS guidance cut by management
+- Revenue deceleration 3 consecutive quarters (Mode A only)
+- Gap down -10% on earnings miss
+- Wyckoff Distribution Phase confirmed (Stage 3 or 4)
+- Market enters Markdown regime AND stock shows relative weakness
+
+**TODAY — Evaluate for exit:**
+- TD Sell Countdown 13 on daily chart
+- RS drops from top quartile AND stock breaks 50DMA
+- RS rank falls below 50th percentile AND breaks 21EMA (dual confirmation)
+- Base failure (breakout reversal closing back in base)
+
+**REVIEW — Monitor, reduce if confirmed:**
+- Stock breaks 21EMA after extended run
+- RS declining for 3 consecutive weeks
+- Volume pattern changes (down days > up days consistently)
+
+**PROFIT TAKING:**
+- Trail stop to breakeven after +15% gain
+- Take 25% off after +25% gain (lock profit, let rest run)
+- Take 50% off after +50% gain
+- Let final 25-50% run (use wide trailing stop at 10-week MA)
+- TD Countdown 13 on WEEKLY chart → exit 75% of position
 
 ---
 
-## 5-Layer PULSE Architecture
+## The 12-Agent System
 
-| Layer | Name | Purpose |
-|-------|------|---------|
-| I | **Fundamental** | Earnings acceleration — revenue QoQ/YoY, EPS operating leverage, estimate revision, gross margin expansion |
-| II | **Price Structure** | VCP / Cup & Handle / base quality — volatility contraction → expansion, institutional absorption |
-| III | **Relative Strength** | RS vs index, vs sector, vs peers — leadership identification, top percentile confirmation |
-| IV | **Volatility** | ATR contraction → expansion cycle; Bollinger squeeze → breakout; compression precedes explosive move |
-| V | **Market Regime** | Breadth (% > 50/200DMA), index trend, distribution days, new highs/lows — confirms momentum environment |
+### Agent Directory
 
-All 5 layers must align before maximum position size. Partial alignment = reduced size.
+| ID | Name | Layer | Daily Role |
+|----|------|-------|-----------|
+| A01 | Market Health Engine | 0 — Foundation | Regime classification + cash floor |
+| A02 | Macro Monitor | 0 — Foundation | Rates, credit, Fed direction |
+| A03 | RS Universe Ranker | 1 — Intelligence | Daily RS percentile for 500+ stocks |
+| A04 | Fundamental Engine | 1 — Intelligence | EDGAR XBRL, EPS/Rev acceleration |
+| A05 | Theme Intelligence | 1 — Intelligence | 14 themes, HOT/WARM/WEAK heatmap |
+| A06 | Leadership Curator | 2 — Curation | Mode A screen → Top 30 watchlist + Top 10 active |
+| A07 | Monster Scout | 2 — Curation | Mode B screen → Big Shot candidates |
+| A08 | Setup Scanner | 3 — Execution | 8 setup types, entry/stop/RR for each |
+| A09 | Portfolio Manager | 3 — Execution | Position monitoring, exits, cash management |
+| A10 | Risk Guardian | 3 — Execution | Portfolio risk, concentration, regime enforcement |
+| A11 | Report Writer | 4 — Output | Daily brief + Telegram signals |
+| A12 | Performance Tracker | 4 — Learning | Post-mortems, Bayesian calibration, monthly reports |
 
-### Wyckoff × Weinstein Gate (MANDATORY — every BUY)
+---
+
+### Layer 0: Foundation — Runs Pre-Market, Every Day
+
+#### A01 — Market Health Engine
+**Purpose:** Determine the market regime and set cash floor for the day.
+
+**Inputs:** SPY + QQQ daily OHLCV, breadth data (% stocks above 50DMA/200DMA), distribution day count, VIX
+
+**Outputs:** `data/regime/market_health.json`
+```json
+{
+  "date": "YYYY-MM-DD",
+  "regime": "Markup | Distribution | Sideways | Markdown",
+  "cash_floor": 0.0,
+  "max_deployed": 1.0,
+  "leaders_ok": true,
+  "bigshot_ok": true,
+  "spy_td_signal": "Neutral | SellSetup7 | SellSetup9 | BuySetup9",
+  "qqq_td_signal": "...",
+  "distribution_days": 3,
+  "pct_above_50dma": 68.4,
+  "pct_above_200dma": 71.2,
+  "regime_note": "Short explanation"
+}
 ```
-STAGE/WYCKOFF GATE CHECK:
-- Weinstein Stage: [1/2/3/4] — [PASS/FAIL]
-- Wyckoff Phase: [Accumulation/Distribution/Mark-Up/Mark-Down] — [PASS/FAIL]
-- Wyckoff Signal: [Spring/SOS/LPS/CHoCH/None]
-- GATE VERDICT: [GREEN/YELLOW/RED]
-- If YELLOW/RED: Re-check trigger = [price level or volume signal to watch]
+
+**Source file:** `scripts/pre_compute/market_regime.py` (extend from v1)
+
+**Regime logic:**
+- Markup: QQQ above 50DMA + 200DMA, distribution_days < 4, pct_above_50dma > 60%
+- Distribution: 4+ distribution days in 25 sessions OR pct_above_50dma dropping fast below 55%
+- Sideways: price between MAs, no clear direction, VIX > 18
+- Markdown: QQQ below 200DMA, breadth collapsed (pct_above_50dma < 40%)
+
+**Cash floor by regime:**
+- Markup: cash_floor = 0.00 (max_deployed = 1.00)
+- Distribution: cash_floor = 0.40 (max_deployed = 0.60)
+- Sideways: cash_floor = 0.20 (max_deployed = 0.80)
+- Markdown: cash_floor = 0.75 (max_deployed = 0.25) — only deploy if stocks pass full screen
+
+---
+
+#### A02 — Macro Monitor
+**Purpose:** Track macro backdrop — is the environment supportive for growth stocks?
+
+**Inputs:** FRED (10Y yield, 2Y yield, HY spread, DXY)
+
+**Outputs:** `data/regime/macro_state.json`
+```json
+{
+  "date": "YYYY-MM-DD",
+  "rate_environment": "Supportive | Neutral | Restrictive",
+  "credit_stress": false,
+  "yield_curve": "Normal | Flat | Inverted",
+  "hy_spread_bps": 280,
+  "macro_note": "1-2 sentence summary",
+  "macro_modifier": 1.0
+}
 ```
-**Stage 3 or 4 = NO BUY, no exceptions.**
-**Fundamentals alone are never sufficient — must pass Wyckoff gate.**
+
+**macro_modifier rules:**
+- Restrictive + credit_stress=true → macro_modifier = 0.75 (reduce all sizes 25%)
+- Restrictive only → macro_modifier = 0.90
+- Neutral → macro_modifier = 1.00
+- Supportive → macro_modifier = 1.00 (no leverage — cap at full deployment only)
+
+**Note:** macro_modifier never exceeds 1.0. This system does not use leverage.
+
+**Source file:** `scripts/pre_compute/macro_monitor.py` (new)
 
 ---
 
-## 14 Official Investment Themes
+### Layer 1: Intelligence — Runs Daily, After Market Close
 
-| # | Theme | Key Names (examples) |
-|---|-------|----------------------|
-| 1 | AI-Related | NVDA, MSFT, PLTR, SOUN |
-| 2 | Memory / HBM | MU, WDC, AMAT, SK Hynix |
-| 3 | Space | RKLB, LUNR, AST, ASTS |
-| 4 | Quantum Computing | IONQ, RGTI, QUBT, IBM |
-| 5 | Photonics | LITE, COHR, FNSR, IIVI |
-| 6 | DefenseTech | PLTR, CACI, LDOS, AXON |
-| 7 | Data Center | EQIX, DLR, VRT, ETN |
-| 8 | Nuclear / SMR | NNE, OKLO, CEG, CCJ |
-| 9 | NeoCloud | CRWV, SMCI, NTAP, CORZ |
-| 10 | AI Infrastructure | VRT, DELL, ANET, APH |
-| 11 | Data Center Infra | PWR, EME, AMPS, GLDD |
-| 12 | Drone / UAV | ACHR, JOBY, RCAT, AVAV |
-| 13 | Robotics | ISRG, TER, BRKS, TSLA (Optimus) |
-| 14 | Connectivity | TMUS, ASTS, ERIC, NOK |
+#### A03 — RS Universe Ranker
+**Purpose:** Rank every S&P+Nasdaq stock by relative strength. Foundation of Mode A screening.
 
-Theme heatmap: 4 signals per theme — RS vs Market / News Flow / EPS Revisions / Institutional Flow
+**Outputs:**
+- `data/rs_universe/latest.json` — full ranked list with RS percentile at 1M/3M/6M/12M
+- `data/rs_universe/benchmark_distribution.json` — return distribution (written weekly)
+- `data/rs_universe/benchmark_tickers.json` — full ticker list (written weekly)
 
----
+**Source files:** `scripts/pre_compute/rs_benchmark.py` + `scripts/pre_compute/rs_ranker.py` (reuse from v1)
 
-## PULSE Momentum Screen Thresholds
-
-| Parameter | Threshold |
-|-----------|-----------|
-| % from 52W high | > -20% |
-| % from 52W low | > +15% |
-| % from 50D MA | > -5% |
-| % from 1.5Y high | > 0% |
-| 150D MA above 200D MA | > 0% |
-| % to 1M high | > -5% |
-| % from 1M low | > +10% |
-| 5D MA above 20D MA | > 0% |
-| 10D MA above 20D MA | > 0% |
-| 20D MA above 50D MA | > 0% |
-| % from 20D MA | > 0% |
-| 6M ADTV | > 20M THB / $10M USD |
-| 1W / 2W / 1M / 3M / 6M / 12M RS | > 72nd percentile |
-| RS momentum (2W vs 1M) | > -10% |
-| RS momentum (3M vs 6M) | > -10% |
-| RS momentum (6M vs 12M) | > -10% |
-| Sector RS (all timeframes) | > 70th percentile |
-| Sector RS momentum (all) | > -10% |
+**Key output per ticker:**
+```json
+{
+  "ticker": "NVDA",
+  "rs_pct_1m": 91.2,
+  "rs_pct_3m": 88.5,
+  "rs_pct_6m": 85.1,
+  "rs_momentum_1m_3m": 2.7,
+  "rs_momentum_3m_6m": 3.4,
+  "rs_source": "polygon",
+  "phase": "Leader | Emerging | Recovering | Weak"
+}
+```
 
 ---
 
-## Risk Rules (enforced by Agent 12)
+#### A04 — Fundamental Engine
+**Purpose:** Fetch and classify fundamental acceleration — EPS, Revenue, Gross Margin.
 
-- Max single position: 15% of equity
-- Max theme concentration: 50% of equity
-- Hypergrowth Base 0 max: 5% per position
-- Bottom Fish max before Stage 2 confirm: 4% per position
-- Stop loss: -8% from entry = mandatory review flag
-- Earnings within 5 trading days: NO new entry, reduce existing to < 3%
+**Source file:** `scripts/utils/data_engine.py` (reuse from v1 — EDGAR disk cache already built)
+
+**Key output per ticker (cached 7 days):**
+```json
+{
+  "ticker": "NVDA",
+  "eps_yoy_latest": 82.4,
+  "rev_yoy_latest": 78.2,
+  "gm_trend": "Expanding | Stable | Contracting",
+  "eps_5q_trend": [22, 35, 55, 68, 82],
+  "rev_5q_trend": [28, 40, 58, 72, 78],
+  "acceleration_label": "ACCELERATING | DECELERATING | STABLE | TURNAROUND | EARLY",
+  "cached_date": "YYYY-MM-DD"
+}
+```
+
+**Acceleration labels:**
+- ACCELERATING: EPS and Rev YoY both increasing 3+ consecutive quarters
+- TURNAROUND: was negative, now positive
+- EARLY: first quarter of positive growth
+- STABLE: growing but flat YoY rate
+- DECELERATING: growth rate slowing 2+ quarters
+
+---
+
+#### A05 — Theme Intelligence
+**Purpose:** Classify every stock by theme, rank themes HOT/WARM/WEAK.
+
+**Source file:** `scripts/pre_compute/rs_theme_ranker.py` (reuse from v1 — 148 tickers mapped)
+
+**Theme grading:**
+- HOT: theme RS vs all themes > 75th percentile + positive news flow
+- WARM: theme RS 50th–75th percentile
+- WEAK: theme RS < 50th percentile or deteriorating
+
+**HOT theme bonus in A06:** Lower Mode A RS threshold from 70th to 60th percentile for stocks in HOT themes. *(Threshold pending backtest validation — do not adjust without running A12 backtest first)*
+
+**14 Official Themes:** AI-Related, Memory/HBM, Space, Quantum Computing, Photonics, DefenseTech, Data Center, Nuclear/SMR, NeoCloud, AI Infrastructure, Data Center Infra, Drone/UAV, Robotics, Connectivity
+
+---
+
+### Layer 2: Curation — Runs Daily, After Layer 1
+
+#### A06 — Leadership Curator (Mode A)
+**Purpose:** Run the full Mode A screen. Output: Top 30 Watchlist + Top 10 Active Leaders.
+
+**Decision logic:**
+```
+FOR each ticker in universe:
+  [RS Gate]          rs_pct_3m > 70 AND rs_pct_6m > 70
+  [Fundamental Gate] eps_yoy_latest > 25 AND rev_yoy_latest > 25
+  [Quality Gate]     gm_trend != "Contracting"
+  [Technical Gate]   pct_from_52w_high > -20
+  [Stage Gate]       stage == "Stage 2"
+
+  HOT theme bonus: if in HOT theme → relax RS gate to 60th (pending backtest)
+
+  → Top 30 Watchlist if passes 4+ of 5 gates
+  → Top 10 Active if passes ALL 5 gates AND has valid setup (A08 confirms)
+```
+
+**Outputs:** `data/leadership/top30_watchlist.json` + `data/leadership/top10_active.json`
+
+**Top 10 Active ranking:**
+1. RS momentum (acceleration of RS percentile) — most important
+2. Fundamental acceleration strength
+3. Base quality (VCP > Flat > Cup > other)
+4. Theme heat (HOT = +1 rank bonus)
+
+---
+
+#### A07 — Monster Scout (Mode B)
+**Purpose:** Find early-stage Big Shot candidates breaking out before institutional discovery.
+
+**Screen logic:**
+```
+FOR each ticker in thematic watchlist:
+  [Hard Gate]      price >= 63-day high (3-month high minimum)
+  [Narrative Gate] must be in 1 of 14 themes with clear catalyst
+  [Stage Gate]     Base 0 or Base 1 only
+
+  → Flag as BIG_SHOT_CANDIDATE if all gates pass
+  → Rank by: breakout strength × narrative freshness × base number
+  → Max 5 candidates per day
+```
+
+**Outputs:** `data/bigshot/candidates.json`
+
+**Important:** A07 does NOT use RS as a filter. RS is context only (shows where institutional discovery stands).
+
+---
+
+### Layer 3: Execution — Runs Daily
+
+#### A08 — Setup Scanner
+**Purpose:** For every A06 + A07 candidate — identify exact entry, stop, target, R:R.
+
+**Output per actionable name:**
+```json
+{
+  "ticker": "COHR",
+  "mode": "A",
+  "setup_type": "VCP",
+  "pivot": 95.50,
+  "buy_zone": [95.50, 98.27],
+  "stop": 87.86,
+  "target_1": 116.0,
+  "target_2": 143.0,
+  "rr_ratio": 3.4,
+  "td_signal": "Neutral",
+  "size_modifier": 1.0,
+  "recommended_size_pct": 10.0,
+  "entry_note": "VCP 3-swing contraction, volume dried to 40% avg",
+  "setup_grade": "A | B | C"
+}
+```
+
+**Setup grading:**
+- Grade A: All 5 Mode A gates + setup BKT/VCP/CWH + R:R > 4:1
+- Grade B: 4+ gates + any setup + R:R > 3:1
+- Grade C: Monitor only — not ready for entry
+
+**R:R < 3:1 → skip, mark as "wait_for_better_entry"**
+
+**TD size modifier applied here:**
+- Sell Setup 7-8: recommended_size_pct × 0.5
+- Sell Setup 9: recommended_size_pct × 0.25
+- Buy Setup 9: recommended_size_pct × 1.25
+
+---
+
+#### A09 — Portfolio Manager
+**Purpose:** Monitor all positions daily. Issue action signals. Enforce cash rules.
+
+**Daily checks per position:**
+1. Stop hit? → IMMEDIATE exit
+2. Stage 3/4 detected? → REVIEW exit
+3. RS dropping from top quartile? → REDUCE
+4. TD Sell Countdown 10-13? → Take partial profit
+5. +25% gain? → Take 25% profit signal
+6. Cash floor breach? → Flag positions to reduce
+
+**Cash enforcement:**
+```
+IF deployed > max_deployed (from A01):
+  Reduce lowest-conviction positions first:
+    - Leaders below Grade B
+    - Positions showing RS deterioration
+    - Positions closest to stop
+  Issue REDUCE signal for bottom 1-2 positions
+```
+
+**Outputs:** Updated `data/portfolio/portfolio_state.json` + `data/portfolio/action_signals.json`
+
+---
+
+#### A10 — Risk Guardian
+**Purpose:** Portfolio-level risk check. Hard limits. Devil's advocate.
+
+**Hard limits enforced:**
+- Max single position: 15% of portfolio
+- Max Mode B bucket total: 30% of portfolio
+- Max one theme: 40% of portfolio
+- Min R:R before entry: 3:1
+- No new entry if earnings within 5 trading days
 - ADTV rule: position size ≤ 20% of 6M ADTV
-- %>200DMA < 50%: raise cash to 30%+
-- %>200DMA < 30%: raise cash to 40%+
-- Stage 3 or 4 detected on held position: immediate flag, exit review
-- RS rank decay from top quartile: downgrade priority
+
+**For every proposed entry, A10 answers:**
+1. Does this breach any concentration limit?
+2. What is worst-case drawdown if correlated positions all hit stop simultaneously?
+3. What is the ADTV constraint?
+4. Is there an earnings date within 5 days?
+5. **"What would make this thesis completely wrong?"** (mandatory — goes into daily brief)
+
+**Outputs:** `data/risk/risk_report.json` + approval/block verdict per entry
 
 ---
 
-## Anti-Bias & No-Sycophancy Rules (ALL agents)
+### Layer 4: Output & Learning
 
-1. Position changes only when NEW DATA arrives — never because CIO prefers a different answer
-2. If CIO proposes a stock that fails the framework → agent must state clearly it fails, with specific reason
-3. No cheerleading — analyze objectively, never validate decisions without data
-4. Minority views must be preserved and presented to CIO in full
-5. CIO overrides are allowed but must be logged by Deputy CIO every time
-6. Before every BUY: "What would make this thesis wrong?" must be answered
+#### A11 — Report Writer + Telegram
+**Purpose:** Daily brief + push signals to Telegram before market open.
 
----
+**Daily brief structure:**
+```
+ALPHAABSOLUTE DAILY BRIEF [DATE]
+=================================
+MARKET: [Regime] | Cash Floor: [X%] | SPY TD: [signal] | QQQ TD: [signal]
+MACRO: [1-sentence state]
+THEMES HOT: [...] | WARM: [...]
 
-## MCP Connections
+TOP SETUPS TODAY:
+1. $[TICKER] — Mode [A/B] | [Setup] | Buy: $[pivot] | Stop: $[stop] | RR: [X]x
+   → [1-line thesis]
+2. ...
 
-| MCP | Command | Purpose |
-|-----|---------|---------|
-| set-mcp | `uvx set-mcp` | Thai SET financials (Income, Balance Sheet, CF) |
-| TradingView | per github config | Price, volume, MA, chart patterns |
-| NotebookLM | `python scripts/notebooklm_mcp.py` | Knowledge base — 5 notebooks |
-| FRED | API key in .env | US macro data |
-| Web search | Claude built-in | News, research, events |
+PORTFOLIO: [N] positions | Deployed: [X%] | Cash: [Y%]
+[Positions with action signals]
 
----
+RISK FLAGS: [from A10 — including devil's advocate]
+```
 
-## NotebookLM — 5 Knowledge Notebooks
+**Telegram format (mobile-optimized):**
+```
+🟢 SETUP: $COHR
+Mode A | VCP | Pivot $95.50
+Stop: $87.86 | Target: $116 | RR: 3.4x
+Size: 10% (full) | Grade: A
+⚡ Photonics HOT + RS #88
+```
 
-| Notebook | Contents | Agents |
-|----------|----------|--------|
-| PULSE framework | Minervini/Wyckoff/Weinstein rules, skill.md files, VCP/CwH criteria | 3, 6, 7, 10 |
-| Megatrend Themes | 14 theme deep dives, earnings transcripts, 13F summaries | 5, 7, 9, 15 |
-| Investment Lessons | Post-mortems, rule changes, framework updates, monthly improvement reports | 13, 14, 10 |
-| Thai Market Intelligence | SET company profiles, sector analysis, BoT reports, AlphaPULSE archive | 6, 9, 15 |
-| Global Macro Database | Fed minutes, FOMC, macro frameworks, regime history, intermarket research | 1, 8, 9 |
+**Config in .env:** `TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID`
 
----
+**Outputs:**
+- `output/daily_brief_YYMMDD.md`
+- Telegram push via bot
 
-## Storage Rules: Desktop vs NotebookLM
-
-**Store LOCALLY:**
-- Raw numbers, price data, time-series → `data/`
-- Daily/weekly operational outputs → `output/`
-- Structured tabular data (JSON, CSV) → `data/`
-- Active portfolio state → `data/portfolio.json`
-- Scripts and code → `scripts/`
-- Templates → `templates/`
-- API keys → `.env`
-
-**Store in NOTEBOOKLM:**
-- Investment framework rules and methodology
-- Long-form research reports and thematic deep dives
-- Lessons learned and post-mortems
-- Thai market company knowledge
-- Macro history and frameworks
-- Earnings call summaries and analyst research
+**Source file:** `scripts/output/report_writer.py` (new)
 
 ---
 
-## Output File Conventions
+#### A12 — Performance Tracker + Learning System
+**Purpose:** Close the learning loop. Every trade becomes a lesson.
 
-| Output | Agent | Path |
-|--------|-------|------|
-| Daily brief | 11 | `output/daily_brief_YYMMDD.md` |
-| Weekly AlphaPULSE | 11 | `output/AlphaPULSE_YYMMDD_draft.pptx` |
-| Monthly institutional | 11 | `output/monthly_brief_YYMMDD.pptx` |
-| CIO brief | 10 | `output/cio_brief_YYMMDD.md` |
-| Thematic deep dive | 5 | `output/theme_[NAME]_YYMMDD.md` |
-| Stock one-pager | 11/15 | `output/stock_[TICKER]_YYMMDD.md` |
-| Risk report | 12 | `output/risk_report_YYMMDD.md` |
-| Performance report | 13 | `output/performance_YYMMDD.md` |
-| Improvement report | 13/14 | `output/improvement_YYMMDD.md` |
-| Dashboard | 17 | `output/dashboard.html` |
-| Ops log | 0b | `output/ops_log_YYMMDD.md` |
-| Audit log | 16 | `output/audit_log_YYMMDD.md` |
+**4 Learning Components:**
+
+**1. Auto Post-Mortem (every closed trade)**
+- Triggered by any position close
+- Captures: entry gate scores, setup quality, what worked, what failed, signal accuracy
+- Output: `data/postmortems/[TICKER]_[DATE].json` + `output/postmortems/[TICKER]_[DATE].md`
+
+**2. Signal Calibration — Bayesian (monthly)**
+- Calculate hit rate per signal from all closed trades
+- Bayesian update: blend prior (theory-based) with posterior (empirical)
+- Guardrail: no signal can change by more than 20% in a single month
+- Output: `data/calibration/signal_weights.json` (read by A06/A08 for sizing)
+
+**3. Monthly Performance Report**
+- Attribution: which positions drove alpha vs QQQ
+- Mistake classification: exit too early, stop too tight, bought extended, wrong mode, wrong regime
+- Top 3 recurring mistakes with $ impact
+- Output: `output/performance_YYMMDD.md`
+
+**4. Backtest New Rules Before Adding**
+- When CIO proposes new rule → A12 runs it on historical portfolio data
+- If rule improves Sharpe ratio AND win rate → add
+- If not → reject with data showing why
+- Output: `output/backtest_[RULENAME]_YYMMDD.md`
+
+**Source files:**
+- `scripts/pre_compute/auto_postmortem.py` (reuse from v1)
+- `scripts/pre_compute/framework_calibrator.py` (reuse from v1)
+- `scripts/portfolio/performance_tracker.py` (new)
 
 ---
 
-## Thai Writing Style Guide (for all Thai-language outputs)
+## Model Portfolio + Backtesting
 
-- Institutional Thai — precise, analytical, written for professional investors
-- Embedded English financial terms (do NOT translate): risk premium, earnings revision, YoY, QoQ, PMI, NIM, GRM, EPS, VCP, CHoCH, RS, ADTV, etc.
-- Each key factor follows: [Context] → [Data with specific numbers] → [Implication for Thai equities]
-- Never fabricate Thai data numbers — only use numbers from data sources or user_input.txt
-- Always write "ข้อมูลล่าสุด: [date]" when data is not real-time
+The system runs a **Paper Trading Model Portfolio** alongside real account signals.
+
+**Paper portfolio rules:**
+- Grade A setups → auto-execute (no human approval)
+- Grade B setups → auto-execute if regime = Markup
+- All exits triggered automatically by A09 rules
+- Separate state: `data/portfolio/paper_portfolio_state.json`
+
+**Benchmark:**
+- Primary: Beat QQQ on rolling 12-month basis
+- Secondary: Beat QQQ on rolling 3-month basis (faster feedback)
+- Stretch: Sharpe ratio > 1.0
+
+---
+
+## Daily Automation Schedule
+
+```
+PRE-MARKET (6:00 AM):
+  1. market_regime.py           → A01 regime + cash floor
+  2. macro_monitor.py           → A02 macro state
+
+MORNING COMPUTATION (7:00 AM):
+  3. rs_benchmark.py            → A03 benchmark (Fridays only)
+  4. rs_ranker.py               → A03 daily RS ranking
+  5. rs_theme_ranker.py         → A05 theme heatmap
+  6. prewarm_analyst_cache.py   → A04 support (Tuesdays only)
+
+CURATION (8:00 AM):
+  7. trend_template_screener.py → A06 leadership screen
+  8. monster_scout.py           → A07 Big Shot candidates
+
+EXECUTION (8:30 AM):
+  9. setup_scanner.py           → A08 entry/stop/RR
+  10. portfolio_manager.py      → A09 position review + cash check
+  11. risk_guardian.py          → A10 risk check + approve/block
+
+OUTPUT (9:00 AM — before market open):
+  12. report_writer.py          → A11 daily brief + Telegram push
+
+POST-MARKET (4:30 PM):
+  13. auto_postmortem.py        → A12 post-mortem on closed trades
+  14. portfolio_manager.py      → A09 EOD price update
+
+MONTHLY (1st of month):
+  15. framework_calibrator.py   → A12 Bayesian signal weights
+  16. performance_tracker.py    → A12 monthly performance report
+```
+
+**Master runner:** `scripts/runners/pre_market_runner.py`
+
+---
+
+## Data Source Architecture
+
+| Priority | Source | Use Case | Cost |
+|----------|--------|---------|------|
+| 1st | **Polygon.io** | Price OHLCV, quotes | Free EOD / $29/mo real-time |
+| 2nd | **Tiingo** | Price backup | Free / $10/mo |
+| 3rd | **FMP** | Fundamentals, earnings, analyst | Free 250/day / $15/mo |
+| 4th | **Finnhub** | Market cap, quotes | Free 60/min |
+| 5th | **query2.finance.yahoo.com** | Emergency fallback | Free |
+| Macro | **FRED** | Yields, DXY, macro | Free |
+
+**EDGAR XBRL** — Free. 7-day disk cache in data_engine.py (built in v1).
+
+**Required .env keys:**
+```
+POLYGON_API_KEY=
+TIINGO_API_KEY=
+FMP_API_KEY=
+FINNHUB_API_KEY=
+FRED_API_KEY=
+TELEGRAM_BOT_TOKEN=
+TELEGRAM_CHAT_ID=
+```
+
+---
+
+## File & Folder Structure
+
+```
+AlphaAbsolute/
+├── CLAUDE.md                           ← This file (v2 operating manual)
+├── .env                                ← API keys (never commit)
+│
+├── scripts/
+│   ├── utils/
+│   │   └── data_engine.py              ← Multi-source data + EDGAR cache (v1 reuse)
+│   ├── pre_compute/
+│   │   ├── market_regime.py            ← A01 (v1 extend)
+│   │   ├── macro_monitor.py            ← A02 (new)
+│   │   ├── rs_benchmark.py             ← A03 (v1 reuse)
+│   │   ├── rs_ranker.py                ← A03 (v1 reuse)
+│   │   ├── rs_theme_ranker.py          ← A05 (v1 reuse)
+│   │   ├── trend_template_screener.py  ← A06 (v1 extend to full Mode A screen)
+│   │   ├── monster_scout.py            ← A07 (new)
+│   │   ├── setup_scanner.py            ← A08 (new)
+│   │   ├── risk_guardian.py            ← A10 (v1 extend)
+│   │   ├── framework_calibrator.py     ← A12 (v1 reuse)
+│   │   ├── auto_postmortem.py          ← A12 (v1 reuse)
+│   │   └── prewarm_analyst_cache.py    ← A04 support (v1 reuse)
+│   ├── paper_trading/
+│   │   └── auto_trader.py              ← Paper portfolio execution (v1 extend)
+│   ├── portfolio/
+│   │   ├── portfolio_manager.py        ← A09 (new)
+│   │   └── performance_tracker.py      ← A12 (new)
+│   ├── output/
+│   │   └── report_writer.py            ← A11 (new)
+│   └── runners/
+│       └── pre_market_runner.py        ← Master daily runner (v1 extend)
+│
+├── data/
+│   ├── regime/
+│   │   ├── market_health.json          ← A01 output
+│   │   └── macro_state.json            ← A02 output
+│   ├── rs_universe/                    ← A03 outputs (v1 structure)
+│   ├── fundamentals/                   ← A04 per-ticker cache
+│   ├── themes/                         ← A05 outputs
+│   ├── leadership/
+│   │   ├── top30_watchlist.json        ← A06 output
+│   │   └── top10_active.json           ← A06 output
+│   ├── bigshot/
+│   │   └── candidates.json             ← A07 output
+│   ├── setups/
+│   │   └── setups_today.json           ← A08 output
+│   ├── portfolio/
+│   │   ├── portfolio_state.json        ← Real signals (human executes)
+│   │   ├── paper_portfolio_state.json  ← Auto paper trading
+│   │   └── action_signals.json         ← A09 daily signals
+│   ├── risk/
+│   │   └── risk_report.json            ← A10 output
+│   ├── postmortems/                    ← A12 per-trade JSON
+│   └── calibration/
+│       └── signal_weights.json         ← A12 Bayesian weights
+│
+├── output/
+│   ├── daily_brief_YYMMDD.md           ← A11 daily brief
+│   ├── postmortems/                    ← A12 markdown post-mortems
+│   └── performance_YYMMDD.md           ← A12 monthly reports
+│
+├── memory/                             ← Knowledge base (persists across sessions)
+│
+└── archive/
+    └── v1_knowledge_base/              ← Full v1 system archived
+        └── CLAUDE_v1.md
+```
+
+---
+
+## Anti-Bias & No-Sycophancy Rules (ALL Agents)
+
+1. **Position changes only when NEW DATA arrives** — never because CIO prefers a different answer
+2. **If CIO proposes a stock that fails gates → state clearly it fails**, with specific gate reason
+3. **No cheerleading** — "this stock looks interesting" is not analysis. Numbers only.
+4. **A10 must always challenge** — devil's advocate question is mandatory, not optional
+5. **CIO overrides are allowed** but must be logged. If override leads to loss → A12 tracks as "override trade"
+6. **Before every BUY:** "What is the maximum loss scenario if I am completely wrong?" must be answered
 
 ---
 
@@ -447,17 +719,38 @@ Theme heatmap: 4 signals per theme — RS vs Market / News Flow / EPS Revisions 
 
 | Command | Action |
 |---------|--------|
-| `run daily brief` | Agents 1→2→9→10→11 |
-| `run weekly alphapulse` | Full pipeline |
-| `run PULSE screen` | Agent 3 full screen |
-| `study [theme]` | Agent 5 deep dive |
-| `analyse [TICKER]` | Agents 3→4→6or7→11 |
-| `update portfolio` | Agents 8→6→7→12→10 |
-| `what went wrong with [TICKER]` | Agent 13 post-mortem + fix |
-| `find mispricing in [sector]` | Agent 3b |
-| `learn: [lesson]` | Agent 14b + 14 |
-| `special request: [instruction]` | Agent 15 |
-| `show dashboard` | Agent 17 regenerate |
-| `strategy: [topic]` | Agent 15 strategic research |
-| `event study [event]` | Agents 2→5→9→11 |
+| `run daily brief` | Full pipeline → brief + Telegram |
+| `analyse [TICKER]` | A03 + A04 + A08 → full analysis with entry/stop/RR |
+| `screen leaders` | A06 → run full Mode A screen, output top 30 |
+| `find big shots` | A07 → run Mode B screen, output candidates |
+| `update portfolio` | A09 → review all positions, cash check, action signals |
+| `risk check` | A10 → full portfolio risk assessment |
+| `post-mortem [TICKER]` | A12 → write lesson learned for closed trade |
+| `calibrate signals` | A12 → run Bayesian weight update |
+| `monthly report` | A12 → full performance vs QQQ |
+| `backtest rule: [description]` | A12 → test new rule on historical trades |
+| `study [THEME]` | A05 → theme deep dive, top stocks, heatmap |
+| `what went wrong with [TICKER]` | A12 → post-mortem + identify which signal failed |
 
+---
+
+## Key Metrics — How to Know If the System Works
+
+**Monthly:**
+- Paper portfolio vs QQQ: target > +2%/month in bull, < -5% in bear (capital preservation)
+- Win rate: target > 55%
+- Average winner / average loser ratio: target > 2.5:1
+
+**Annually:**
+- Beat QQQ by > 5% in bull year
+- Beat QQQ by > 10% in correction year (preserving capital IS alpha)
+- Sharpe ratio > 1.0
+
+**Learning system health:**
+- 1+ post-mortem per week
+- Signal weights updated monthly
+- No single signal weight changes by > 20% in one month (stability guardrail)
+
+---
+
+*v2 built on v1 research — EDGAR cache, RS benchmark, RS theme ranker, data_engine multi-source, framework calibrator, auto_postmortem all carry forward. New in v2: Two-mode investment system (Leader + Monster), Monster Scout, Setup Scanner, Portfolio Manager, Report Writer with Telegram, 4-state regime with hard cash floors, TD as size modifier not gate, 3:1 minimum R:R hard rule.*

@@ -84,6 +84,30 @@ _load_env()
 #   kwargs          extra keyword args to pass (step must accept **kwargs)
 
 STEPS: list[dict] = [
+    # ── Pre-Market Data Prep ──────────────────────────────────────────────────
+    {
+        "id":       "earnings_cal",
+        "layer":    "0-Data",
+        "name":     "Earnings Calendar Fetch",
+        "module":   "scripts.pre_compute.fetch_earnings_calendar",
+        "func":     "run",
+        "output":   "data/regime/earnings_next30.json",
+        "desc":     "FMP bulk earnings calendar -> earnings_calendar table + within_5td gate file",
+        "critical": False,
+        "modes":    ["premarket"],
+    },
+    {
+        "id":       "data_quality",
+        "layer":    "0-Data",
+        "name":     "Data Quality Check",
+        "module":   "scripts.pre_compute.data_quality",
+        "func":     "run",
+        "output":   "data/quality/quality_latest.json",
+        "desc":     "10-check data health audit: dates, volumes, coverage, freshness",
+        "critical": False,
+        "modes":    ["premarket"],
+    },
+
     # ── Layer 0: Foundation ───────────────────────────────────────────────────
     {
         "id":       "a01",
@@ -240,6 +264,74 @@ STEPS: list[dict] = [
     },
 
     # ── EOD Mode ──────────────────────────────────────────────────────────────
+    {
+        "id":       "ohlcv_update",
+        "layer":    "0-Data",
+        "name":     "OHLCV Daily Update",
+        "module":   "scripts.pre_compute.update_ohlcv_daily",
+        "func":     "main",
+        "output":   "data/ohlcv.db",
+        "desc":     "Fetch today's OHLCV bars for all tickers (Yahoo -> Polygon fallback)",
+        "critical": True,
+        "modes":    ["eod"],
+    },
+    {
+        "id":       "rs_history",
+        "layer":    "1-Intelligence",
+        "name":     "RS History Backfill (rolling 30d)",
+        "module":   "scripts.pre_compute.pipeline_rs_history",
+        "func":     "run",
+        "output":   "data/rs_universe/latest.json",
+        "desc":     "Backfill rs_daily for last 30 trading dates (keeps history current after gaps)",
+        "critical": False,
+        "modes":    ["eod"],
+        "skip_if_missing": True,
+    },
+    {
+        "id":       "pipeline_metrics",
+        "layer":    "1-Intelligence",
+        "name":     "Pipeline Metrics (full recompute)",
+        "module":   "scripts.pre_compute.pipeline_metrics",
+        "func":     "main",
+        "output":   "data/screening/mode_a_full_latest.json",
+        "desc":     "ADTV + 52W + MAs + Stage2 + RS percentiles + screening + history append",
+        "critical": False,
+        "modes":    ["eod"],
+    },
+    {
+        "id":       "fundamentals",
+        "layer":    "1-Intelligence",
+        "name":     "A04 Fundamentals Pipeline",
+        "module":   "scripts.pre_compute.pipeline_fundamentals",
+        "func":     "main",
+        "output":   "data/ohlcv.db",
+        "desc":     "EDGAR+FMP EPS/Rev/GM fetch → fundamentals_summary + gate_eps/gate_rev/gate_gm (top candidates first)",
+        "critical": False,
+        "modes":    ["eod"],
+    },
+    {
+        "id":              "fill_ohlc",
+        "layer":           "0-Data",
+        "name":            "Fill OHLC Gaps (open/high/low)",
+        "module":          "scripts.pre_compute.fill_ohlc_gaps",
+        "func":            "run",
+        "output":          "data/quality/quality_latest.json",
+        "desc":            "Update NULL open/high/low for existing rows via Polygon (run until coverage=100%)",
+        "critical":        False,
+        "modes":           ["eod"],
+        "skip_if_missing": True,
+    },
+    {
+        "id":       "data_quality_eod",
+        "layer":    "0-Data",
+        "name":     "Data Quality Check (EOD)",
+        "module":   "scripts.pre_compute.data_quality",
+        "func":     "run",
+        "output":   "data/quality/quality_latest.json",
+        "desc":     "EOD data health audit after OHLCV update",
+        "critical": False,
+        "modes":    ["eod"],
+    },
     {
         "id":       "ohlcv_prefetch",
         "layer":    "0-Data",
@@ -544,8 +636,9 @@ Examples:
   python scripts/runners/pre_market_runner.py --dry-run
 
 Available step IDs:
-  a01 a02 a03_bench a03 a05 a04_prewarm a06 a07 a08 a09 a10 a11
-  a12_postmortem a09_eod a12_calibrate a12_performance
+  Premarket: earnings_cal data_quality a01 a02 a03_bench a03 a03c a05 a04_prewarm a06 a07 a08 a09 a10 a11
+  EOD:       ohlcv_update pipeline_metrics data_quality_eod ohlcv_prefetch a12_postmortem a09_eod
+  Monthly:   theme_mapper a12_calibrate a12_performance
         """,
     )
     parser.add_argument(
