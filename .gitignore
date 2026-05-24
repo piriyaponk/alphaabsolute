@@ -1,29 +1,66 @@
-# API keys — never commit
+# ── Secrets — NEVER commit ────────────────────────────────────────────────────
 .env
 
-# Raw scraped data — too large, regenerated each run
-data/raw/
-data/state/logs/
+# ── SQLite databases — stored in GitHub Actions Cache, not git ────────────────
+# (too large / binary — ohlcv.db ~80 MB, breadth_prices.db ~350 MB)
+*.db
+*.sqlite
+*.sqlite3
+data/state/http_cache.sqlite
 
-# Python cache
+# ── Large data directories (regenerated or cached externally) ─────────────────
+data/raw/
+data/state/
+data/edgar_cache/          # EDGAR XBRL cache — large, rebuilt weekly
+data/ohlcv_cache/          # Legacy v1 file-based OHLCV cache
+data/nrgc/analyst_cache/   # Analyst cache — large, rebuilt
+data/themes/company_info_cache/  # Company info cache
+
+# ── Agent memory / ephemeral state ───────────────────────────────────────────
+data/agent_memory/
+data/td_sequential/
+data/nrgc/state/
+data/nrgc/weekly/
+data/paper_trading/
+data/smart_signals/
+data/health_checks/
+data/insights/
+
+# ── Logs and ops files ────────────────────────────────────────────────────────
+logs/
+data/data_warnings.jsonl
+data/rs_run_log.txt
+data/source_health.json
+data/system_health/
+output/ops_log_*.md
+output/source_status_*.md
+output/mtm_log.jsonl
+
+# ── Python cache ──────────────────────────────────────────────────────────────
 __pycache__/
 *.pyc
 *.pyo
 .pytest_cache/
 
-# Output files — regenerated
+# ── Output files — local only ─────────────────────────────────────────────────
 output/*.pptx
 output/*.pdf
+output/*.xlsx
 
-# Windows / OS
+# ── Windows / OS ──────────────────────────────────────────────────────────────
 Thumbs.db
 .DS_Store
 desktop.ini
 
-# Task scheduler XML (local only)
+# ── Task scheduler / local runner scripts ─────────────────────────────────────
 data/state/task_*.xml
 setup_scheduler.bat
+scripts/runners/run_*.bat
 
-# Large model files
+# ── Large model / binary files ────────────────────────────────────────────────
 *.pkl
 *.h5
+
+# ── Obsidian local state ──────────────────────────────────────────────────────
+obsidian-vault/**/.obsidian/workspace.json
+obsidian-vault/**/.smart-env/

@@ -1,23 +1,58 @@
-name: AlphaAbsolute v2 Daily Brief
+name: AlphaAbsolute Daily Pipeline
 
-# Mon-Fri 06:30 Bangkok time = 23:30 UTC (previous day)
+# Bangkok (UTC+7) schedule:
+#   06:00 AM = premarket (A01→A11 full pipeline)
+#   16:30 PM = EOD update (postmortem + price update)
+#
+# UTC cron:
+#   06:00 Bangkok = 23:00 UTC prev day → Sun-Thu UTC = Mon-Fri Bangkok
+#   16:30 Bangkok = 09:30 UTC same day
+
 on:
   schedule:
-    - cron: '30 23 * * 0-4'   # Sun-Thu 23:30 UTC → Mon-Fri 06:30 ICT
-  workflow_dispatch:            # Manual trigger from GitHub UI
+    - cron: '0 23 * * 0-4'    # Mon-Fri 06:00 Bangkok (premarket)
+    - cron: '30 9 * * 1-5'    # Mon-Fri 16:30 Bangkok (EOD)
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Pipeline mode'
+        required: true
+        default: 'premarket'
+        type: choice
+        options: [premarket, eod, monthly]
 
 jobs:
-  daily-brief:
+  pipeline:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
 
     steps:
+      # ── 1. Checkout ────────────────────────────────────────────────────────────
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set up Python
+      # ── 2. Detect run mode ─────────────────────────────────────────────────────
+      - name: Detect run mode
+        id: mode
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "mode=${{ inputs.mode }}" >> $GITHUB_OUTPUT
+          else
+            # Check UTC hour to distinguish premarket (23:xx) vs EOD (09:xx)
+            HOUR=$(date -u +%H)
+            if [ "$HOUR" -ge 20 ] || [ "$HOUR" -le 4 ]; then
+              echo "mode=premarket" >> $GITHUB_OUTPUT
+            else
+              echo "mode=eod" >> $GITHUB_OUTPUT
+            fi
+          fi
+          echo "Detected mode: $(cat $GITHUB_OUTPUT | grep mode | cut -d= -f2)"
+
+      # ── 3. Python setup ────────────────────────────────────────────────────────
+      - name: Set up Python 3.12
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -26,23 +61,57 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      # ── 4. Restore SQLite databases (persistent between runs) ──────────────────
+      #
+      # Cache key = today's date → new key each day
+      # restore-keys fallback = grabs yesterday's DB if today's not cached yet
+      # GitHub Actions Cache: 10 GB limit, 7-day TTL (renewed each run)
+      # Total DB size: ohlcv.db ~80 MB + breadth_prices.db ~350 MB = ~430 MB
+      - name: Get cache date key
+        id: cachekey
+        run: echo "key=$(date -u +%Y-%m-%d)" >> $GITHUB_OUTPUT
+
+      - name: Restore SQLite databases from cache
+        id: dbcache
+        uses: actions/cache@v4
+        with:
+          path: |
+            data/ohlcv.db
+            data/breadth/breadth_prices.db
+          key: sqlite-${{ steps.cachekey.outputs.key }}
+          restore-keys: |
+            sqlite-
+
+      - name: Log cache status
+        run: |
+          echo "Cache hit: ${{ steps.dbcache.outputs.cache-hit }}"
+          ls -lh data/ohlcv.db 2>/dev/null || echo "ohlcv.db: not in cache (first run or expired)"
+          ls -lh data/breadth/breadth_prices.db 2>/dev/null || echo "breadth_prices.db: not in cache"
+
+      # ── 5. Create required directories ─────────────────────────────────────────
       - name: Create required directories
         run: |
-          mkdir -p data/regime \
-                   data/rs_universe \
-                   data/fundamentals/analyst_cache \
-                   data/themes \
-                   data/leadership \
-                   data/bigshot \
-                   data/setups \
-                   data/portfolio \
-                   data/risk \
-                   data/postmortems \
-                   data/calibration \
-                   data/runner_logs \
-                   output/postmortems
+          mkdir -p \
+            data/regime \
+            data/rs_universe \
+            data/fundamentals/analyst_cache \
+            data/themes \
+            data/leadership \
+            data/bigshot \
+            data/setups \
+            data/portfolio \
+            data/risk \
+            data/postmortems \
+            data/calibration \
+            data/runner_logs \
+            data/health \
+            data/breadth \
+            data/board \
+            data/quality \
+            output/postmortems
 
-      - name: Run pre-market pipeline (A01→A11)
+      # ── 6. Run pipeline ────────────────────────────────────────────────────────
+      - name: Run AlphaAbsolute pipeline
         env:
           POLYGON_API_KEY:    ${{ secrets.POLYGON_API_KEY }}
           TIINGO_API_KEY:     ${{ secrets.TIINGO_API_KEY }}
@@ -51,25 +120,40 @@ jobs:
           FRED_API_KEY:       ${{ secrets.FRED_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python scripts/runners/pre_market_runner.py --mode premarket
+          # Tell scripts they're running in CI (used for platform-specific code)
+          ALPHAABSOLUTE_CI: "1"
+        run: |
+          python scripts/runners/pre_market_runner.py --mode ${{ steps.mode.outputs.mode }}
 
-      - name: Commit updated data files
+      # ── 7. Commit data outputs back to repo ────────────────────────────────────
+      #
+      # SQLite DBs are NOT committed (too large / binary) — they live in the cache.
+      # Only JSON + Markdown outputs go to git.
+      - name: Commit data outputs to repo
+        if: always()   # commit even if pipeline had partial failures
         run: |
           git config user.name  "AlphaAbsolute Bot"
           git config user.email "bot@alphaabsolute.ai"
-          git add \
-            data/regime/ \
-            data/rs_universe/latest.json \
-            data/rs_universe/theme_rs_latest.json \
-            data/rs_universe/changes_today.json \
-            data/themes/ \
-            data/leadership/ \
-            data/bigshot/ \
-            data/setups/ \
-            data/portfolio/action_signals.json \
-            data/portfolio/paper_portfolio_state.json \
-            data/risk/ \
-            data/runner_logs/ \
-            output/daily_brief_*.md || true
-          git diff --cached --quiet || git commit -m "auto: daily brief $(date -u +%Y-%m-%d)"
+
+          # Add outputs (ignore missing files/dirs quietly)
+          git add data/regime/                          2>/dev/null || true
+          git add data/rs_universe/latest.json          2>/dev/null || true
+          git add data/rs_universe/theme_rs_latest.json 2>/dev/null || true
+          git add data/rs_universe/changes_today.json   2>/dev/null || true
+          git add data/rs_universe/strong_leader_latest.json 2>/dev/null || true
+          git add data/themes/                          2>/dev/null || true
+          git add data/leadership/                      2>/dev/null || true
+          git add data/bigshot/                         2>/dev/null || true
+          git add data/setups/                          2>/dev/null || true
+          git add data/portfolio/action_signals.json    2>/dev/null || true
+          git add data/portfolio/paper_portfolio_state.json 2>/dev/null || true
+          git add data/risk/                            2>/dev/null || true
+          git add data/health/                          2>/dev/null || true
+          git add data/board/                           2>/dev/null || true
+          git add data/breadth/market_breadth_history.json 2>/dev/null || true
+          git add data/runner_logs/                     2>/dev/null || true
+          git add output/daily_brief_*.md               2>/dev/null || true
+
+          git diff --cached --quiet || \
+            git commit -m "auto: ${{ steps.mode.outputs.mode }} $(date -u +%Y-%m-%d)"
           git push || true
