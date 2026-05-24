@@ -21,10 +21,13 @@ import json
 import time
 import argparse
 from datetime import datetime, timedelta
+from pathlib import Path
 from dotenv import load_dotenv
 
 load_dotenv()
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'utils'))
+
+BASE_DIR = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(BASE_DIR / "scripts" / "utils"))
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -36,8 +39,9 @@ except Exception as e:
     print(f"WARNING: data_engine import failed: {e}")
     DATA_ENGINE_OK = False
 
-DB_PATH = "data/ohlcv.db"
-LABELS_PATH = "data/themes/ticker_labels.json"
+DB_PATH = str(BASE_DIR / "data" / "ohlcv.db")
+LABELS_PATH = str(BASE_DIR / "data" / "themes" / "ticker_labels.json")
+SCREENING_DIR = BASE_DIR / "data" / "screening"
 
 CACHE_DAYS = 7          # re-fetch if older than this
 SLEEP_BETWEEN = 0.5     # seconds between API calls
@@ -57,7 +61,7 @@ def setup_tables(conn):
             rev_yoy_pct REAL,
             -- Gross margin trend
             gm_latest REAL,
-            gm_prev REAL,
+            gm_1q_ago REAL,
             gm_2q_ago REAL,
             gm_trend TEXT,           -- EXPANDING | STABLE | CONTRACTING | N/A
             -- Trend labels
@@ -76,25 +80,60 @@ def setup_tables(conn):
     """)
     conn.commit()
 
+    # Migration: rename gm_prev -> gm_1q_ago if the old column still exists
+    # SQLite does not support RENAME COLUMN on older versions, so we add if missing
+    try:
+        cols = [row[1] for row in c.execute("PRAGMA table_info(fundamentals_summary)").fetchall()]
+        if "gm_1q_ago" not in cols:
+            c.execute("ALTER TABLE fundamentals_summary ADD COLUMN gm_1q_ago REAL")
+            conn.commit()
+            print("  [MIGRATE] Added gm_1q_ago column to fundamentals_summary")
+        # Revenue YoY history columns (for inflection detection)
+        for col in ("rev_yoy_q1", "rev_yoy_q2", "rev_yoy_q3", "rev_inflection_label"):
+            if col not in cols:
+                col_type = "TEXT" if col == "rev_inflection_label" else "REAL"
+                c.execute(f"ALTER TABLE fundamentals_summary ADD COLUMN {col} {col_type}")
+                conn.commit()
+                print(f"  [MIGRATE] Added {col} column to fundamentals_summary")
+    except Exception as _mig_err:
+        print(f"  [WARN] Migration check failed: {_mig_err}")
+
 
 def get_cached_tickers(conn):
+    """Return set of tickers that have fresh, real fundamentals data.
+
+    IMPORTANT: exclude mark_no_data() records (source='none' or all-NULL data).
+    Those must be retried until we get real data or confirm EDGAR/FMP truly has nothing.
+    Without this fix, a failed first-fetch permanently blocks re-fetching for 7 days.
+    """
     cutoff = (datetime.now() - timedelta(days=CACHE_DAYS)).isoformat()
     c = conn.cursor()
-    c.execute("SELECT ticker FROM fundamentals_summary WHERE last_fetched > ?", (cutoff,))
+    c.execute("""
+        SELECT ticker FROM fundamentals_summary
+        WHERE last_fetched > ?
+          AND source != 'none'
+          AND (eps_yoy_pct IS NOT NULL OR rev_yoy_pct IS NOT NULL
+               OR gate_eps = 1 OR gate_rev = 1)
+    """, (cutoff,))
     return {r[0] for r in c.fetchall()}
 
 
 def compute_gm_trend(gm_history):
-    """Compute GM trend from list of gross margin % values (newest first)."""
+    """Compute GM trend from list of gross margin % values (newest first).
+    Returns (trend, gm_latest, gm_1q, gm_2q, gm_3q, gm_4q).
+    """
     valid = [g for g in gm_history if g is not None]
     if len(valid) < 2:
-        return "N/A", valid[0] if valid else None, None, None
+        nones = [None] * 5
+        return ("N/A", valid[0] if valid else None) + tuple(nones[1:])
 
     gm_latest = valid[0]
-    gm_prev = valid[1] if len(valid) > 1 else None
+    gm_1q = valid[1] if len(valid) > 1 else None
     gm_2q = valid[2] if len(valid) > 2 else None
+    gm_3q = valid[3] if len(valid) > 3 else None
+    gm_4q = valid[4] if len(valid) > 4 else None
 
-    # Compare latest vs oldest available
+    # Compare latest vs oldest available (up to 5 quarters back)
     gm_ref = valid[-1] if len(valid) >= 3 else valid[-1]
     delta = gm_latest - gm_ref
 
@@ -105,7 +144,7 @@ def compute_gm_trend(gm_history):
     else:
         trend = "STABLE"
 
-    return trend, gm_latest, gm_prev, gm_2q
+    return trend, gm_latest, gm_1q, gm_2q, gm_3q, gm_4q
 
 
 def eps_label(eps_yoy, eps_latest, eps_hist):
@@ -157,16 +196,44 @@ def process_ticker(conn, ticker):
         elif isinstance(gm, (int, float)):
             gm_values.append(float(gm))
 
-    gm_trend, gm_latest, gm_prev, gm_2q = compute_gm_trend(gm_values)
+    gm_trend, gm_latest, gm_prev, gm_2q, gm_3q, gm_4q = compute_gm_trend(gm_values)
+
+    # Revenue YoY history — Q1/Q2/Q3 for inflection detection
+    rev_hist = result.get('revenue_history', [])
+    rev_yoy_history = []
+    for r in rev_hist:
+        if isinstance(r, dict):
+            yoy = r.get('yoy_growth') or r.get('yoy_pct')
+            if yoy is not None:
+                rev_yoy_history.append(float(yoy))
+    # Q0 = rev_yoy (already set above), Q1/Q2/Q3 = prior quarters
+    rev_yoy_q1 = rev_yoy_history[1] if len(rev_yoy_history) > 1 else None
+    rev_yoy_q2 = rev_yoy_history[2] if len(rev_yoy_history) > 2 else None
+    rev_yoy_q3 = rev_yoy_history[3] if len(rev_yoy_history) > 3 else None
+
+    # Inflection label (Fund Manager spec: FIRST_INFLECTION = highest priority for Monster Scout)
+    rev_inflection_label = "NONE"
+    if rev_yoy is not None and rev_yoy >= 25:
+        if rev_yoy_q1 is None or rev_yoy_q1 < 25:
+            rev_inflection_label = "FIRST_INFLECTION"    # first quarter above 25%
+        elif rev_yoy_q1 is not None and rev_yoy > rev_yoy_q1:
+            rev_inflection_label = "ACCELERATING"        # growing but already above 25%
+        else:
+            rev_inflection_label = "SUSTAINED_GROWTH"   # stable or decelerating above 25%
+    elif rev_yoy is not None and rev_yoy > 0 and (rev_yoy_q1 is None or rev_yoy_q1 <= 0):
+        rev_inflection_label = "TURNAROUND"              # first positive quarter after negative
 
     # Labels
     eps_acc = eps_label(eps_yoy, eps_latest, eps_hist)
     rev_acc = eps_label(rev_yoy, rev_latest, result.get('revenue_history', []))
 
     # Gate results
+    # gate_eps requires BOTH: YoY growth > 25% AND absolute EPS > 0
+    # Rationale: a company improving from -$1.00 to -$0.65 shows 35% "growth"
+    # but is still losing money — should not pass the quality gate.
     gate_eps = -1
     if eps_yoy is not None:
-        gate_eps = 1 if eps_yoy > 25 else 0
+        gate_eps = 1 if (eps_yoy > 25 and eps_latest is not None and eps_latest > 0) else 0
 
     gate_rev = -1
     if rev_yoy is not None:
@@ -188,12 +255,13 @@ def process_ticker(conn, ticker):
         INSERT INTO fundamentals_summary (
             ticker, source,
             eps_latest, eps_yoy_pct, rev_latest, rev_yoy_pct,
-            gm_latest, gm_prev, gm_2q_ago, gm_trend,
+            gm_latest, gm_1q_ago, gm_2q_ago, gm_3q_ago, gm_4q_ago, gm_trend,
             eps_acceleration, rev_acceleration,
             gate_eps, gate_rev, gate_gm,
             latest_period, n_quarters,
+            rev_yoy_q1, rev_yoy_q2, rev_yoy_q3, rev_inflection_label,
             last_fetched, last_updated
-        ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
         ON CONFLICT(ticker) DO UPDATE SET
             source = excluded.source,
             eps_latest = excluded.eps_latest,
@@ -201,8 +269,10 @@ def process_ticker(conn, ticker):
             rev_latest = excluded.rev_latest,
             rev_yoy_pct = excluded.rev_yoy_pct,
             gm_latest = excluded.gm_latest,
-            gm_prev = excluded.gm_prev,
+            gm_1q_ago = excluded.gm_1q_ago,
             gm_2q_ago = excluded.gm_2q_ago,
+            gm_3q_ago = excluded.gm_3q_ago,
+            gm_4q_ago = excluded.gm_4q_ago,
             gm_trend = excluded.gm_trend,
             eps_acceleration = excluded.eps_acceleration,
             rev_acceleration = excluded.rev_acceleration,
@@ -211,15 +281,20 @@ def process_ticker(conn, ticker):
             gate_gm = excluded.gate_gm,
             latest_period = excluded.latest_period,
             n_quarters = excluded.n_quarters,
+            rev_yoy_q1 = excluded.rev_yoy_q1,
+            rev_yoy_q2 = excluded.rev_yoy_q2,
+            rev_yoy_q3 = excluded.rev_yoy_q3,
+            rev_inflection_label = excluded.rev_inflection_label,
             last_fetched = excluded.last_fetched,
             last_updated = excluded.last_updated
     """, (
         ticker, result.get('source', 'unknown'),
         eps_latest, eps_yoy, rev_latest, rev_yoy,
-        gm_latest, gm_prev, gm_2q, gm_trend,
+        gm_latest, gm_prev, gm_2q, gm_3q, gm_4q, gm_trend,
         eps_acc, rev_acc,
         gate_eps, gate_rev, gate_gm,
         latest_period, len(eps_hist),
+        rev_yoy_q1, rev_yoy_q2, rev_yoy_q3, rev_inflection_label,
         now, now
     ))
     conn.commit()
@@ -253,13 +328,21 @@ def update_screening_gates(conn, universe, screen_date):
             gate_rev = COALESCE((SELECT gate_rev FROM fundamentals_summary WHERE ticker = screening_results.ticker), -1),
             gate_gm  = COALESCE((SELECT gate_gm  FROM fundamentals_summary WHERE ticker = screening_results.ticker), -1),
             gates_passed = (
-                COALESCE(gate_rs, 0) +
-                COALESCE(gate_adtv, 0) +
-                COALESCE(gate_52w, 0) +
-                COALESCE((SELECT gate_eps FROM fundamentals_summary WHERE ticker = screening_results.ticker), 0) +
-                COALESCE((SELECT gate_rev FROM fundamentals_summary WHERE ticker = screening_results.ticker), 0) +
-                COALESCE((SELECT gate_gm  FROM fundamentals_summary WHERE ticker = screening_results.ticker), 0)
+                MAX(COALESCE(gate_rs,       -1), 0) +
+                MAX(COALESCE(gate_adtv,     -1), 0) +
+                MAX(COALESCE(gate_52w,      -1), 0) +
+                MAX(COALESCE(gate_stage2,   -1), 0) +
+                MAX(COALESCE(gate_earnings, -1), 0) +
+                MAX(COALESCE((SELECT gate_eps FROM fundamentals_summary WHERE ticker = screening_results.ticker), -1), 0) +
+                MAX(COALESCE((SELECT gate_rev FROM fundamentals_summary WHERE ticker = screening_results.ticker), -1), 0) +
+                MAX(COALESCE((SELECT gate_gm  FROM fundamentals_summary WHERE ticker = screening_results.ticker), -1), 0)
             )
+            -- All 8 gates counted: rs, adtv, 52w, stage2, earnings, eps, rev, gm
+            -- gate values: 1=pass, 0=fail, -1=unknown/no data
+            -- MAX(..., 0) converts -1 (unknown) to 0 — unknown does NOT subtract from score
+            -- gates_passed=8 = fully clean entry (no ambiguity, no blocks)
+            -- gates_passed=7 = one gate blocked (e.g. earnings=0 means "wait for earnings")
+            -- This prevents MRVL (earnings blocked) from showing 8/8 same as MU (clean)
         WHERE SUBSTR(date, 1, 10) = ? AND ticker IN ({placeholders})
     """, [screen_date] + universe)
     conn.commit()
@@ -349,7 +432,7 @@ def print_full_mode_a(conn, universe, screen_date):
             print(f"  {ticker:<7} {label_s:<16} RS={comp_s} | Missing: {', '.join(missing)}")
 
     # Save JSON
-    os.makedirs("data/screening", exist_ok=True)
+    SCREENING_DIR.mkdir(parents=True, exist_ok=True)
     output = {
         "date": screen_date,
         "generated_at": datetime.now().isoformat(),
@@ -383,9 +466,10 @@ def print_full_mode_a(conn, universe, screen_date):
             for i, r in enumerate(rows)
         ]
     }
-    with open("data/screening/mode_a_full_latest.json", 'w') as f:
+    out_path = SCREENING_DIR / "mode_a_full_latest.json"
+    with open(out_path, 'w', encoding='utf-8') as f:
         json.dump(output, f, indent=2)
-    print(f"\nSaved to data/screening/mode_a_full_latest.json")
+    print(f"\nSaved to {out_path}")
     return len(rows)
 
 
@@ -403,7 +487,7 @@ def main():
         print("ERROR: data_engine not available")
         return
 
-    with open(LABELS_PATH) as f:
+    with open(LABELS_PATH, encoding='utf-8') as f:
         labels_data = json.load(f)
     labels = labels_data['labels']
     universe = list(labels.keys())

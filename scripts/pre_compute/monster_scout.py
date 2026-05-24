@@ -213,13 +213,21 @@ def estimate_base_count(closes: list[float]) -> dict:
 # ── RS context (not a gate) ───────────────────────────────────────────────────
 
 def get_rs_context(ticker: str, rs_data: dict) -> dict:
-    """RS is informational only in Mode B — not a filter."""
+    """RS is informational only in Mode B — not a filter.
+    BOA-005-BUG-05 fix (2026-05-24): latest.json uses 'rs_3m_pct' (not 'rs_pct_3m').
+    Both key names tried for backward compatibility.
+    """
     if ticker in rs_data:
         r = rs_data[ticker]
+        # latest.json uses rs_3m_pct / rs_6m_pct (rs_ranker.py schema)
+        # Some older code used rs_pct_3m / rs_pct_6m — try both
+        rs3m = r.get("rs_3m_pct") or r.get("rs_pct_3m")
+        rs6m = r.get("rs_6m_pct") or r.get("rs_pct_6m")
+        phase = r.get("nrgc_phase") or r.get("phase", "Unknown")
         return {
-            "rs_pct_3m": r.get("rs_pct_3m"),
-            "rs_pct_6m": r.get("rs_pct_6m"),
-            "rs_phase":  r.get("phase", "Unknown"),
+            "rs_pct_3m": rs3m,
+            "rs_pct_6m": rs6m,
+            "rs_phase":  phase,
             "note": "RS context only — not used as gate in Mode B",
         }
     return {"rs_pct_3m": None, "rs_pct_6m": None, "rs_phase": "Unknown", "note": "No RS data"}
@@ -228,10 +236,18 @@ def get_rs_context(ticker: str, rs_data: dict) -> dict:
 # ── Score candidate ───────────────────────────────────────────────────────────
 
 def score_candidate(breakout: dict, base: dict, theme_hot: bool,
-                    adtv_usd: Optional[float]) -> float:
+                    adtv_usd: Optional[float],
+                    inflection_label: Optional[str] = None) -> float:
     """
     Composite conviction score for ranking (higher = better).
-    Max ~30 points.
+    Max ~33 points (30 base + 3 revenue inflection bonus).
+
+    Revenue inflection bonus (Fund Manager spec — CONDITIONAL APPROVED 2026-05-24):
+      FIRST_INFLECTION  → +3.0 (first quarter above 25% rev growth)
+      TURNAROUND        → +2.0 (first positive quarter after negative)
+      ACCELERATING      → +1.5 (3Q of improving rev growth)
+    Regime constraint enforced in run() — Distribution/Markdown candidates
+    are downgraded to watch_queue regardless of score.
     """
     score = 0.0
 
@@ -260,7 +276,88 @@ def score_candidate(breakout: dict, base: dict, theme_hot: bool,
     elif pct > 25: score += 3.0
     elif pct > 10: score += 1.5
 
+    # Revenue inflection bonus (sort inflecting stocks to top of candidate list)
+    inflection_bonus = {
+        "FIRST_INFLECTION": 3.0,
+        "TURNAROUND":       2.0,
+        "ACCELERATING":     1.5,
+        "SUSTAINED_GROWTH": 0.5,
+    }
+    if inflection_label and inflection_label in inflection_bonus:
+        score += inflection_bonus[inflection_label]
+
     return round(score, 2)
+
+
+# ── Rapid Breakout scanner (BOA-020-A1) ──────────────────────────────────────
+
+def rapid_breakout_scan() -> list[dict]:
+    """
+    BOA-020-A1 (2026-05-24 — APPROVED 4/4): Monster fingerprint detector.
+
+    A stock gaining ≥ 20% in ≤ 21 trading days from breakout = Monster fingerprint.
+    These stocks should NOT be sold at the normal +25% profit-taking level.
+    Instead they go onto the Monster Scout watch list as secondary entry candidates
+    (buy 10EMA touches during the 8-week hold window).
+
+    Reads from paper_portfolio_state.json + rs_universe/latest.json.
+    Returns list of tickers currently in "rapid breakout" phase.
+    """
+    results = []
+    today = date.today().isoformat()
+
+    # Read paper portfolio positions
+    paper_file = ROOT / "data" / "portfolio" / "paper_portfolio_state.json"
+    if not paper_file.exists():
+        return results
+    try:
+        paper = json.loads(paper_file.read_text(encoding="utf-8"))
+    except Exception:
+        return results
+
+    positions = paper.get("positions", {})
+    for ticker, pos in positions.items():
+        entry_date_str = pos.get("entry_date", "")
+        entry_price    = pos.get("entry_price", 0)
+        current_price  = pos.get("current_price", 0)
+        mode           = pos.get("mode", "A")
+
+        if not entry_price or not current_price or mode != "A":
+            continue
+
+        # Compute trading days since entry
+        try:
+            entry = date.fromisoformat(entry_date_str[:10])
+            today_d = date.today()
+            days_in = sum(1 for i in range((today_d - entry).days)
+                         if (entry + __import__('datetime').timedelta(days=i+1)).weekday() < 5)
+        except Exception:
+            continue
+
+        pnl_pct = (current_price - entry_price) / entry_price * 100
+
+        # Monster fingerprint: ≥ +20% in ≤ 21 trading days
+        if days_in <= 21 and pnl_pct >= 20.0:
+            results.append({
+                "ticker":          ticker,
+                "mode":            "A",
+                "fingerprint":     "MONSTER",
+                "days_in":         days_in,
+                "pnl_pct":         round(pnl_pct, 1),
+                "entry_price":     entry_price,
+                "current_price":   current_price,
+                "eight_week_hold": True,
+                "hold_days_remaining": max(0, 56 - days_in),
+                "ema_hold_eligible": True,   # A08 can add EMA_HOLD pyramid signal
+                "note": (
+                    f"Monster fingerprint: +{pnl_pct:.1f}% in {days_in} trading days. "
+                    f"8-week hold active — do NOT take profit. "
+                    f"Watch for 10EMA pullback for pyramid add (EMA_HOLD setup)."
+                ),
+                "date": today,
+            })
+
+    return results
 
 
 # ── Load theme data ───────────────────────────────────────────────────────────
@@ -277,21 +374,27 @@ def load_theme_members() -> dict[str, dict]:
 
     try:
         data = json.loads(theme_file.read_text(encoding="utf-8"))
-        for theme_id, theme_data in data.items():
+        # theme_rs_latest.json structure: {"date": ..., "themes": {"Memory_HBM": {...}, ...}}
+        # Fall back to flat structure if "themes" key not present (old format)
+        themes_dict = data.get("themes", data)
+        for theme_id, theme_data in themes_dict.items():
             if theme_id.startswith("_"):
                 continue
             if not isinstance(theme_data, dict):
                 continue
             is_hot = theme_data.get("grade") == "HOT"
-            for ticker in theme_data.get("members", []):
+            # members is a dict {ticker: {...}} in new format, or list in old format
+            members_raw = theme_data.get("members", {})
+            tickers_iter = members_raw.keys() if isinstance(members_raw, dict) else members_raw
+            for ticker in tickers_iter:
                 if isinstance(ticker, str) and ticker.upper():
                     members[ticker.upper()] = {
-                        "theme": theme_id,
+                        "theme": theme_data.get("name", theme_id),
                         "is_hot": is_hot,
                         "theme_grade": theme_data.get("grade", "UNKNOWN"),
                     }
-    except Exception:
-        pass
+    except Exception as e:
+        print(f"  [WARN] load_theme_members: {e}")
 
     return members
 
@@ -304,12 +407,13 @@ def load_rs_data() -> dict[str, dict]:
         return rs
     try:
         data = json.loads(latest_file.read_text(encoding="utf-8"))
-        for item in data.get("results", []):
-            ticker = item.get("ticker", "").upper()
-            if ticker:
-                rs[ticker] = item
-    except Exception:
-        pass
+        # rs_ranker.py writes universe as a dict keyed by ticker under "universe" key
+        # NOT as a list under "results" — that key does not exist
+        universe = data.get("universe", {})
+        for ticker, item in universe.items():
+            rs[ticker.upper()] = item
+    except Exception as e:
+        print(f"  [WARN] monster_scout load_rs_data failed: {e}")
     return rs
 
 
@@ -321,18 +425,91 @@ def run() -> dict:
     print(f"  A07 Monster Scout (Mode B)  [{today}]")
     print(f"{'='*55}")
 
-    # Check regime first — in Markdown, no Big Shot entries
+    # Check regime first — in Distribution/Markdown, no new Big Shot entries
     health_file = ROOT / "data" / "regime" / "market_health.json"
     health = _load_json(health_file)
     if not health.get("bigshot_ok", True):
         regime = health.get("regime", "Unknown")
         print(f"  [BLOCKED] bigshot_ok=False (regime={regime}) — no Mode B entries today")
+        # Build watch_queue from DB (fast — no API calls, uses cached ticker_meta + RS data)
+        # Purpose: show which Mode B candidates to act on immediately when regime clears
+        print("  Building watch_queue from DB cache (no API calls)...")
+        import sqlite3
+        db_path = ROOT / "data" / "ohlcv.db"
+        rs_data_wq    = load_rs_data()
+        theme_members_wq = load_theme_members()
+        watch_queue   = []
+
+        # Load pct_from_3m_high and adtv from DB for all theme tickers at once
+        db_tech: dict = {}
+        if db_path.exists():
+            try:
+                conn = sqlite3.connect(str(db_path))
+                conn.row_factory = sqlite3.Row
+                tickers_in = "','".join(theme_members_wq.keys())
+                rows = conn.execute(f"""
+                    SELECT ticker, pct_from_3m_high, pct_from_6m_high, adtv_6m_usd,
+                           mode_b_eligible, last_close, stage2_flag
+                    FROM ticker_meta WHERE ticker IN ('{tickers_in}')
+                """).fetchall()
+                conn.close()
+                for r in rows:
+                    db_tech[r["ticker"]] = dict(r)
+            except Exception as e:
+                print(f"  [WARN] DB read for watch_queue: {e}")
+
+        for ticker, theme_info in theme_members_wq.items():
+            tech = db_tech.get(ticker, {})
+            # Gate: at or near 3-month high (within -5% of 3M high = breakout zone)
+            pct_3m = tech.get("pct_from_3m_high")  # negative = below, 0 = at high
+            if pct_3m is None or pct_3m < -5.0:    # more than 5% below 3M high → not breaking out
+                continue
+            # ADTV gate: Mode B minimum $3M
+            adtv = tech.get("adtv_6m_usd")
+            if adtv is not None and adtv < 3_000_000:
+                continue
+            # RS context
+            rs_ctx = get_rs_context(ticker, rs_data_wq)
+            rs_3m  = rs_ctx.get("rs_pct_3m") or 0
+            # Conviction score: HOT theme + near ATH + RS
+            is_hot = theme_info.get("is_hot", False)
+            pct_6m = tech.get("pct_from_6m_high") or pct_3m
+            score  = (10 if is_hot else 5) + max(0, 10 + pct_3m) + rs_3m * 0.05
+            watch_queue.append({
+                "ticker":           ticker,
+                "theme":            theme_info.get("theme"),
+                "theme_grade":      theme_info.get("theme_grade"),
+                "pct_from_3m_high": round(pct_3m, 1),
+                "pct_from_6m_high": round(pct_6m, 1) if pct_6m else None,
+                "rs_pct_3m":        rs_3m,
+                "adtv_usd":         round(adtv, 0) if adtv else None,
+                "conviction_score": round(score, 1),
+                "note":             "WATCH — regime clears → review for entry",
+            })
+
+        watch_queue.sort(key=lambda x: x["conviction_score"], reverse=True)
+        watch_queue = watch_queue[:10]   # top 10 only
+        if watch_queue:
+            print(f"  Watch queue: {len(watch_queue)} candidates ready when regime improves")
+            for w in watch_queue:
+                pct3m = w.get('pct_from_3m_high', 0)
+                print(f"    {w['ticker']:6} | {str(w['theme'] or ''):25} | Score={w['conviction_score']:.1f} | RS3M={w['rs_pct_3m']:.0f} | {pct3m:+.1f}% from 3M high")
+        else:
+            print("  Watch queue: 0 (no theme tickers near 3-month highs)")
+        # BOA-020-A1: Still scan for monster fingerprints even in Distribution regime
+        # (existing positions may be in 8-week hold regardless of regime)
+        rapid_breakouts = rapid_breakout_scan()
+        if rapid_breakouts:
+            print(f"  Monster fingerprint positions: {len(rapid_breakouts)} (8-week hold active)")
+
         result = {
-            "date": today,
-            "regime": regime,
-            "bigshot_ok": False,
-            "candidates": [],
-            "note": f"Mode B blocked by regime ({regime})",
+            "date":        today,
+            "regime":      regime,
+            "bigshot_ok":  False,
+            "candidates":  [],
+            "watch_queue": watch_queue,
+            "rapid_breakouts": rapid_breakouts,
+            "note": f"Mode B blocked by regime ({regime}). {len(watch_queue)} candidates in watch queue — ready to act when bigshot_ok=True.",
         }
         CAND_FILE.write_text(json.dumps(result, indent=2), encoding="utf-8")
         return result
@@ -342,6 +519,22 @@ def run() -> dict:
     theme_members = load_theme_members()
     rs_data       = load_rs_data()
     print(f"  Theme members: {len(theme_members)} | RS data: {len(rs_data)} tickers")
+
+    # Load earnings inflection data (priority sort bonus)
+    inflection_lookup: dict[str, str] = {}  # {ticker: inflection_label}
+    inflection_file = ROOT / "data" / "bigshot" / "earnings_inflection.json"
+    if inflection_file.exists():
+        try:
+            inf_data = json.loads(inflection_file.read_text(encoding="utf-8"))
+            for c in inf_data.get("inflection_candidates", []) + inf_data.get("accelerating_candidates", []):
+                ticker = c.get("ticker", "")
+                label  = c.get("inflection_label", "")
+                if ticker and label:
+                    inflection_lookup[ticker] = label
+            if inflection_lookup:
+                print(f"  Inflection data loaded: {len(inflection_lookup)} tickers with revenue signal")
+        except Exception as _e:
+            print(f"  [WARN] Could not load earnings_inflection.json: {_e}")
 
     if not theme_members:
         print("  [WARN] No theme data — run rs_theme_ranker.py first")
@@ -388,8 +581,9 @@ def run() -> dict:
             continue
 
         # All gates passed — score the candidate
-        is_hot = theme_info.get("is_hot", False)
-        conv_score = score_candidate(breakout, base, is_hot, adtv)
+        is_hot            = theme_info.get("is_hot", False)
+        inflection_label  = inflection_lookup.get(ticker)
+        conv_score = score_candidate(breakout, base, is_hot, adtv, inflection_label)
         rs_ctx = get_rs_context(ticker, rs_data)
 
         candidates.append({
@@ -415,6 +609,9 @@ def run() -> dict:
             "rs_phase":         rs_ctx.get("rs_phase"),
             "adtv_usd":         round(adtv, 0) if adtv else None,
 
+            # Revenue inflection signal (from earnings_inflection_scout.py)
+            "revenue_inflection": inflection_label,  # None if no inflection data
+
             # Score for ranking
             "conviction_score": conv_score,
         })
@@ -434,6 +631,15 @@ def run() -> dict:
             print(f"    {i}. {c['ticker']:6} {c['breakout_type']:8} | Base {c['base_count']} | "
                   f"Theme: {c['theme']}{hot_tag} | Score: {c['conviction_score']}")
 
+    # BOA-020-A1: Scan existing portfolio positions for Monster fingerprint
+    # Stocks gaining ≥20% in ≤21 days → EMA_HOLD pyramid add candidates
+    rapid_breakouts = rapid_breakout_scan()
+    if rapid_breakouts:
+        print(f"\n  MONSTER FINGERPRINT DETECTED ({len(rapid_breakouts)} positions):")
+        for rb in rapid_breakouts:
+            print(f"    {rb['ticker']:6} +{rb['pnl_pct']:.1f}% in {rb['days_in']}d "
+                  f"| Hold {rb['hold_days_remaining']}d more | EMA_HOLD eligible")
+
     result = {
         "date":        today,
         "regime":      health.get("regime", "Unknown"),
@@ -441,6 +647,7 @@ def run() -> dict:
         "screened":    checked,
         "passed":      len(candidates),
         "candidates":  top_candidates,
+        "rapid_breakouts": rapid_breakouts,   # BOA-020-A1: Monster fingerprint positions
         "note":        f"Screened {checked} theme tickers — {len(candidates)} passed all Mode B gates",
         "generated_at": datetime.now().strftime("%H:%M"),
     }
