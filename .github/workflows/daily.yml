@@ -85,8 +85,36 @@ jobs:
       - name: Log cache status
         run: |
           echo "Cache hit: ${{ steps.dbcache.outputs.cache-hit }}"
-          ls -lh data/ohlcv.db 2>/dev/null || echo "ohlcv.db: not in cache (first run or expired)"
+          ls -lh data/ohlcv.db 2>/dev/null || echo "ohlcv.db: not in cache"
           ls -lh data/breadth/breadth_prices.db 2>/dev/null || echo "breadth_prices.db: not in cache"
+
+      # ── 4b. Bootstrap DBs from GitHub Release on cache miss ───────────────────
+      #
+      # First run (or cache expired after 7 days): download seed DBs from the
+      # "data-bootstrap" release. After this run the cache is saved and subsequent
+      # runs use the cache directly (no download needed).
+      # Release assets are public → no auth required.
+      - name: Bootstrap DBs from release (cache miss only)
+        if: steps.dbcache.outputs.cache-hit != 'true'
+        run: |
+          RELEASE_BASE="https://github.com/piriyaponk/alphaabsolute/releases/download/data-bootstrap"
+          echo "Cache miss — downloading seed databases from data-bootstrap release..."
+
+          mkdir -p data/breadth
+
+          echo "  Downloading ohlcv.db (~80 MB)..."
+          curl -L --retry 3 --retry-delay 5 -o data/ohlcv.db \
+            "$RELEASE_BASE/ohlcv.db" && \
+            echo "  ohlcv.db: $(du -sh data/ohlcv.db | cut -f1)" || \
+            echo "  WARNING: ohlcv.db download failed — pipeline will run degraded"
+
+          echo "  Downloading breadth_prices.db (~350 MB)..."
+          curl -L --retry 3 --retry-delay 5 -o data/breadth/breadth_prices.db \
+            "$RELEASE_BASE/breadth_prices.db" && \
+            echo "  breadth_prices.db: $(du -sh data/breadth/breadth_prices.db | cut -f1)" || \
+            echo "  WARNING: breadth_prices.db download failed — breadth step will be skipped"
+
+          echo "Bootstrap complete."
 
       # ── 5. Create required directories ─────────────────────────────────────────
       - name: Create required directories
