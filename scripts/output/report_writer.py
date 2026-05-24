@@ -111,10 +111,9 @@ def _load_paper_portfolio() -> dict:
 
 
 def _load_risk() -> dict:
-    # Try v2 path first (risk_guardian/daily_report.json), fall back to v1 path
-    v2 = ROOT / "data" / "risk_guardian" / "daily_report.json"
-    v1 = ROOT / "data" / "risk" / "risk_report.json"
-    return _load_json(v2) if v2.exists() else _load_json(v1)
+    # v2 canonical path: data/risk/risk_report.json (written by risk_guardian.py)
+    # data/risk_guardian/daily_report.json was a v1 path that no longer exists — removed
+    return _load_json(ROOT / "data" / "risk" / "risk_report.json")
 
 
 def _load_changes() -> dict:
@@ -430,6 +429,22 @@ def build_brief(today: str) -> str:
     lines.append("## PORTFOLIO")
     lines.append(f"**Real:** {n_pos} positions | Deployed: {deployed}% | Cash: {cash_pct}%")
     lines.append(f"**Paper:** {paper_pos} positions | Value: ${paper_val:,.0f} | Cash: {paper_cash}%")
+
+    # Expectancy / edge metrics (Minervini Lesson 7)
+    exp = paper.get("expectancy", {})
+    n_trades = exp.get("total_closed_trades", 0)
+    if n_trades >= 3:   # need at least 3 trades for meaningful stats
+        win_rate   = exp.get("win_rate", 0)
+        avg_win    = exp.get("avg_winner_pct", 0)
+        avg_loss   = exp.get("avg_loser_pct", 0)
+        edge       = exp.get("expectancy_pct", 0)
+        pf         = exp.get("profit_factor")
+        pf_str     = f"{pf:.2f}" if pf is not None else "N/A"
+        lines.append(
+            f"**Edge (N={n_trades}):** Win {win_rate*100:.0f}% | "
+            f"Avg +{avg_win:.1f}% / Avg {avg_loss:.1f}% | "
+            f"Expectancy {edge:+.1f}% | PF {pf_str}"
+        )
     lines.append("")
 
     # Action signals
@@ -531,324 +546,267 @@ def _dollar(v) -> str:
 
 # ── Build Telegram messages — 7-Step Flow ─────────────────────────────────────
 
+def _setup_card(s: dict, by_ticker: dict, rs_universe: dict, grade: str) -> str:
+    """Full entry card for one setup — used for Grade A messages."""
+    ticker  = s.get("ticker", "?")
+    stype   = s.get("setup_type", "?")
+    mode    = s.get("mode", "A")
+    pivot   = s.get("pivot", 0)
+    stop    = s.get("stop", 0)
+    t1      = s.get("target_1", 0)
+    t2      = s.get("target_2", 0)
+    rr      = s.get("rr_ratio", 0)
+    size    = s.get("recommended_size_pct", 10)
+    risk    = round(abs(pivot - stop) / pivot * 100, 1) if pivot else 0
+    why     = s.get("entry_note", "")[:70]
+
+    rs_e   = rs_universe.get(ticker, s)
+    r1     = rs_e.get("rs_1m_pct") or rs_e.get("rs_pct_1m") or s.get("rs_pct_1m")
+    r3     = rs_e.get("rs_3m_pct") or rs_e.get("rs_pct_3m") or s.get("rs_pct_3m")
+    r6     = rs_e.get("rs_6m_pct") or rs_e.get("rs_pct_6m") or s.get("rs_pct_6m")
+    rs_str = "/".join(str(int(x)) for x in [r1, r3, r6] if x is not None) or "—"
+
+    thm      = by_ticker.get(ticker, {})
+    thm_nm   = thm.get("theme_name", s.get("theme", ""))
+    heat     = thm.get("theme_heat", "")
+    heat_e   = "🔥" if heat == "HOT" else ("🌤" if heat == "WARM" else "")
+    thm_line = f"{heat_e} {thm_nm}" if thm_nm else ""
+
+    eps_g = s.get("eps_yoy") or s.get("eps_growth")
+    rev_g = s.get("rev_yoy") or s.get("rev_growth")
+    fund_parts = []
+    if eps_g: fund_parts.append(f"EPS {eps_g:+.0f}%")
+    if rev_g: fund_parts.append(f"Rev {rev_g:+.0f}%")
+    fund_line = "  ".join(fund_parts)
+
+    grade_e = {"A": "⭐", "B": "✅"}.get(grade, "✅")
+    target_str = _dollar(t1)
+    if t2 and t2 > t1:
+        target_str += f" / {_dollar(t2)}"
+
+    stop_regime = s.get("regime_stop", "")
+
+    lines = [
+        f"{grade_e} *{ticker}* — {stype}  |  Mode {mode}  |  Grade {grade}",
+        f"{'─'*34}",
+        f"Entry:  {_dollar(pivot)}",
+        f"Stop:   {_dollar(stop)}  ({risk:.1f}% risk){' — ' + stop_regime if stop_regime else ''}",
+        f"Target: {target_str}  |  RR {rr:.1f}x",
+        f"Size:   {size:.0f}%",
+    ]
+    if rs_str != "—":
+        lines.append(f"RS:     {rs_str}  (1M/3M/6M)")
+    if thm_line:
+        lines.append(f"Theme:  {thm_line}")
+    if fund_line:
+        lines.append(f"Fund:   {fund_line}")
+    if why:
+        lines.append(f"📌 {why}")
+    lines.append(f"⛔ Invalid if close below {_dollar(stop)}")
+    return "\n".join(lines)
+
+
 def build_telegram_messages(health: dict, setups: list, signals: dict,
                               portfolio: dict, paper: dict,
                               changes: Optional[dict] = None) -> list[str]:
     """
-    7-Step Daily Brief for Telegram.
-    Sends as multiple messages (one per step) for easy reading on mobile.
+    AlphaAbsolute v2 Telegram format — mobile-optimized, numbers over words.
 
-    STEP 1: Market Health
-    STEP 2: Exposure Recommendation
-    STEP 3+4: Top 30 Focus List with Theme Tags
-    STEP 5: Top 5 Actionable Today (detailed entry cards)
-    STEP 6: New Adders
-    STEP 7: Droppers
+    MSG 1: Regime header + cash floor + themes
+    MSG 2+: One message per Grade A setup (max 5)
+    MSG N: Grade B setups summary (if any, compact)
+    MSG N+1: Portfolio summary + action signals
+    MSG N+2: Watchlist alerts (new adders / droppers) — if any
     """
     messages = []
     today = date.today().strftime("%d %b %Y")
 
-    # Load extra data
-    top30       = _load_top30()
-    rs_universe = _load_rs_universe()
+    # ── Load all data ─────────────────────────────────────────────────────────
     theme_data  = _load_theme_detail()
     by_ticker   = theme_data.get("by_ticker", {})
     macro       = _load_macro()
+    rs_universe = _load_rs_universe()
+    changes     = changes or _load_changes()
 
     regime     = health.get("regime", "Unknown")
     cash_floor = int(health.get("cash_floor", 0) * 100)
     max_dep    = int(health.get("max_deployed", 1) * 100)
+    spy_td     = health.get("spy_td_signal", "Neutral")
     qqq_td     = health.get("qqq_td_signal", "Neutral")
     dist_days  = health.get("distribution_days", 0)
     pct_50dma  = health.get("pct_above_50dma")
-    pct_200dma = health.get("pct_above_200dma")
-    warnings   = health.get("early_warnings", [])
+    leaders_ok = health.get("leaders_ok", True)
+    bigshot_ok = health.get("bigshot_ok", False)
     emoji      = REGIME_EMOJI.get(regime, "⚪")
 
-    macro_note    = macro.get("macro_note", "")
-    rate_env      = macro.get("rate_environment", "")
-    hy_spread     = macro.get("hy_spread_bps") or macro.get("hy_spread_pct")
-    yield_10y     = macro.get("yield_10y")
-    macro_mod     = macro.get("macro_modifier", 1.0)
+    macro_note = macro.get("macro_note", "")
+    macro_mod  = macro.get("macro_modifier", 1.0)
+    hy_bps     = macro.get("hy_spread_bps") or macro.get("hy_spread_pct")
+    yield_10y  = macro.get("yield_10y")
 
-    # ── MSG 1: STEP 1 — Market Health ────────────────────────────────────────
-    def _health_verdict(regime, pct_50, dist, td) -> str:
-        if regime == "Markup":
-            return "Risk-On ✅" if (pct_50 or 0) > 60 else "Risk-On (breadth weak) ⚠️"
-        if regime == "Distribution":
-            return "Risk-Off ⚠️ — Reduce exposure"
-        if regime == "Sideways":
-            return "Neutral 🟡 — Selective only"
-        return "Risk-Off 🔴 — Mostly Cash"
+    messages = []
+    today_str = date.today().strftime("%d %b %Y")
 
-    def _leaders_verdict(health) -> str:
-        leaders_ok = health.get("leaders_ok", True)
-        return "Acting well ✅" if leaders_ok else "Showing cracks ⚠️"
-
-    def _breakout_verdict(regime, dist_days) -> str:
-        if regime == "Markup" and dist_days < 3:
-            return "Working ✅"
-        if dist_days >= 4:
-            return "Failing — wait ❌"
-        return "Mixed ⚠️"
-
-    def _overextended_verdict(health) -> str:
-        qqq_ext = health.get("qqq_pct_from_50dma")
-        if qqq_ext is None:
-            return "—"
-        if qqq_ext > 8:
-            return f"Extended +{qqq_ext:.1f}% from 50DMA ⚠️"
-        return f"+{qqq_ext:.1f}% from 50DMA ✅"
-
-    # Exposure output label
-    if regime == "Markup" and (pct_50dma or 0) > 60 and dist_days < 4:
-        stance = "🟢 OFFENSIVE"
-    elif regime == "Markup" or regime == "Sideways":
-        stance = "🟡 NEUTRAL"
-    elif regime == "Distribution":
-        stance = "🟠 DEFENSIVE"
-    else:
-        stance = "🔴 MOSTLY CASH"
-
-    step1 = [
-        f"{emoji} *STEP 1: MARKET HEALTH* — {today}",
-        f"{'━'*32}",
-        f"• Risk:        {_health_verdict(regime, pct_50dma, dist_days, qqq_td)}",
-        f"• Nasdaq:      *{regime}* phase",
-        f"• Breadth:     {'Good ✅' if (pct_50dma or 0) > 60 else 'Weak ⚠️'}"
-          + (f" ({pct_50dma:.0f}% above 50DMA)" if pct_50dma else ""),
-        f"• Leaders:     {_leaders_verdict(health)}",
-        f"• Breakouts:   {_breakout_verdict(regime, dist_days)}",
-        f"• TD:          QQQ={qqq_td}" + (" ⚠️" if "Sell" in qqq_td else ""),
-        f"• Extension:   {_overextended_verdict(health)}",
-        f"• Macro:       {macro_note[:60]}" if macro_note else "• Macro:  —",
-        "",
-        f"➡️  *{stance}*",
-    ]
-    if warnings:
-        step1.append("")
-        step1.append("⚡ *Leading Warnings:*")
-        for w in warnings[:3]:
-            step1.append(f"  • {w}")
-    messages.append("\n".join(step1))
-
-    # ── MSG 2: STEP 2 — Exposure Recommendation ───────────────────────────────
-    equity_pct = max_dep
-    cash_pct   = 100 - equity_pct
-    size_mod   = macro_mod
-
+    # ── MSG 1: Regime Header ──────────────────────────────────────────────────
+    # Mode line: what's allowed today
     if regime == "Markup":
-        beta_rec   = "Increase beta — lead with high-RS names"
-        stop_rec   = "Normal stops (-8% Leader, -10% Big Shot)"
-        cap_rec    = "Large + Mid cap leaders"
-        bigshot    = "Yes — up to 30% sleeve ✅"
-    elif regime == "Sideways":
-        beta_rec   = "Neutral — avoid speculative names"
-        stop_rec   = "Tighten to -6% on Leaders"
-        cap_rec    = "Large cap only"
-        bigshot    = "No — wait for trend ❌"
-    elif regime == "Distribution":
-        beta_rec   = "Reduce beta — trim extended names"
-        stop_rec   = "Tighten to -5%, no new adds"
-        cap_rec    = "Large cap defensive only"
-        bigshot    = "No — close sleeve ❌"
+        mode_line = "Mode A + Mode B  ✅"
+    elif regime in ("Distribution", "Sideways"):
+        mode_line = "Mode A only  |  No Big Shot entries"
     else:
-        beta_rec   = "Minimal — cash is a position"
-        stop_rec   = "Hard stops, no exceptions"
-        cap_rec    = "None — 100% cash preferred"
-        bigshot    = "No ❌"
+        mode_line = "No new entries  |  Cash is the position"
 
-    step2 = [
-        "📊 *STEP 2: EXPOSURE RECOMMENDATION*",
-        f"{'━'*32}",
-        f"• Equity:      *{equity_pct}%* max deployed",
-        f"• Cash:        *{cash_pct}%* minimum",
-        f"• Beta:        {beta_rec}",
-        f"• Stops:       {stop_rec}",
-        f"• Cap size:    {cap_rec}",
-        f"• Big Shot:    {bigshot}",
-    ]
-    if size_mod != 1.0:
-        step2.append(f"• Macro mod:   ×{size_mod:.2f} (reduce all sizes)")
-    messages.append("\n".join(step2))
+    # TD signals — only show if not Neutral
+    td_parts = []
+    if spy_td != "Neutral": td_parts.append(f"SPY {spy_td}")
+    if qqq_td != "Neutral": td_parts.append(f"QQQ {qqq_td}")
+    td_line = "  |  " + " · ".join(td_parts) if td_parts else ""
 
-    # ── MSG 3: STEP 3+4 — Top 30 Focus List with Theme Tags ─────────────────
-    # Pull from top30_watchlist or rs_universe top by composite
-    focus_list = top30[:30] if top30 else []
+    # Breadth line
+    breadth_line = ""
+    if pct_50dma is not None:
+        breadth_icon = "✅" if pct_50dma > 60 else ("⚠️" if pct_50dma > 45 else "🔴")
+        breadth_line = f"\nBreadth: {pct_50dma:.0f}% above 50DMA {breadth_icon}  |  Dist days: {dist_days}"
 
-    # If no top30 file, fall back to rs_universe top 30 by composite
-    if not focus_list and rs_universe:
-        sorted_rs = sorted(rs_universe.items(),
-                           key=lambda x: x[1].get("rs_composite_pct", 0) or 0,
-                           reverse=True)
-        focus_list = [{"ticker": t, **d} for t, d in sorted_rs[:30]]
+    # Macro line
+    macro_line = ""
+    if macro_note:
+        macro_line = f"\n📊 {macro_note[:70]}"
+    elif yield_10y:
+        rate_env = macro.get("rate_environment", "")
+        macro_line = f"\n📊 10Y={yield_10y:.2f}%"
+        if hy_bps: macro_line += f"  |  HY={hy_bps:.2f}%"
+        if rate_env: macro_line += f"  |  {rate_env}"
 
-    lines30 = [
-        "📋 *STEP 3+4: TOP 30 FOCUS LIST*",
-        f"{'━'*32}",
-        "_RS = 1M/3M/6M percentile vs market_",
-        "",
-    ]
+    macro_mod_line = ""
+    if macro_mod < 1.0:
+        macro_mod_line = f"\n⚠️ Macro modifier ×{macro_mod:.2f} — reduce all sizes"
 
-    for i, stock in enumerate(focus_list[:30], 1):
-        ticker = stock.get("ticker", "?")
-        rs_e   = rs_universe.get(ticker, stock)
-        rs_s   = _rs_str(rs_e)
-        thm    = by_ticker.get(ticker, {})
-        tag    = THEME_TAG.get(thm.get("primary_theme", ""), "")
-        heat   = thm.get("theme_heat", "")
-        heat_s = "🔥" if heat == "HOT" else ("🌤" if heat == "WARM" else "")
-        # RS momentum
-        r1 = rs_e.get("rs_1m_pct") or rs_e.get("rs_pct_1m")
-        r3 = rs_e.get("rs_3m_pct") or rs_e.get("rs_pct_3m")
-        mom = ""
-        if r1 is not None and r3 is not None:
-            d = r1 - r3
-            mom = f" ↑" if d > 5 else (" ↓" if d < -5 else "")
-        lines30.append(f"{i:2}. `${ticker:<6}` RS:{rs_s}{mom}  {heat_s}{tag}")
+    # HOT / WARM themes
+    themes_raw = theme_data.get("themes", {})
+    hot_themes  = [v.get("name", t).split("/")[0].strip() for t, v in themes_raw.items()
+                   if isinstance(v, dict) and v.get("phase") == "HOT"]
+    warm_themes = [v.get("name", t).split("/")[0].strip() for t, v in themes_raw.items()
+                   if isinstance(v, dict) and v.get("phase") == "WARM"]
 
-    messages.append("\n".join(lines30))
+    theme_line = ""
+    if hot_themes:  theme_line += f"\n🔥 HOT:  {', '.join(hot_themes[:5])}"
+    if warm_themes: theme_line += f"\n🌤 WARM: {', '.join(warm_themes[:4])}"
 
-    # ── MSG 4: STEP 5 — Top 5 Actionable Today ───────────────────────────────
-    # Use setups_today.json Grade A first, then B
-    actionable = sorted(setups, key=lambda x: (
-        0 if x.get("setup_grade") == "A" else 1,
-        -(x.get("rr_ratio") or 0)
-    ))[:5]
+    header = (
+        f"{emoji} *AlphaAbsolute  |  {regime}  |  {today_str}*\n"
+        f"{'─'*34}\n"
+        f"Cash floor: *{cash_floor}%*  |  Deploy max: *{max_dep}%*\n"
+        f"{mode_line}{td_line}"
+        f"{breadth_line}"
+        f"{macro_line}"
+        f"{macro_mod_line}"
+        f"{theme_line}"
+    )
+    messages.append(header)
 
-    lines5 = [
-        "🎯 *STEP 5: TOP 5 ACTIONABLE TODAY*",
-        f"{'━'*32}",
-        "",
-    ]
+    # ── MSG 2+: Grade A setups — one message each ─────────────────────────────
+    context_types = {"EMA", "VPS", "FIB"}   # observation only — never actionable
+    grade_a = [s for s in setups
+               if s.get("setup_grade") == "A"
+               and s.get("setup_type", "") not in context_types][:5]
+    grade_b = [s for s in setups
+               if s.get("setup_grade") == "B"
+               and s.get("setup_type", "") not in context_types][:5]
 
-    if not actionable:
-        lines5.append("_No Grade A/B setups today — watchlist mode_")
-        lines5.append("_Wait for better entry conditions_")
+    if not grade_a and not grade_b:
+        messages.append(
+            "🎯 *TOP SETUPS*\n"
+            f"{'─'*34}\n"
+            "_No Grade A/B setups today_\n"
+            "_Wait for better entry conditions_"
+        )
     else:
-        for i, s in enumerate(actionable, 1):
-            ticker  = s.get("ticker", "?")
-            stype   = s.get("setup_type", "?")
-            grade   = s.get("setup_grade", "B")
-            pivot   = s.get("pivot", 0)
-            stop    = s.get("stop", 0)
-            t1      = s.get("target_1", 0)
-            rr      = s.get("rr_ratio", 0)
-            risk    = round(abs(pivot - stop) / pivot * 100, 1) if pivot else 0
-            rs_e    = rs_universe.get(ticker, s)
-            rs_s    = _rs_str(rs_e)
-            r1      = rs_e.get("rs_1m_pct") or s.get("rs_pct_1m")
-            r3      = rs_e.get("rs_3m_pct") or s.get("rs_pct_3m")
-            rs_chg  = f" Δ{r1-r3:+.0f}" if (r1 and r3) else ""
-            thm     = by_ticker.get(ticker, {})
-            thm_nm  = thm.get("theme_name", "")
-            thm_pct = thm.get("theme_vs_themes_pct")
-            thm_s   = f"{thm_nm} {thm_pct:.0f}th" if (thm_nm and thm_pct) else thm_nm
-            rev_g   = s.get("rev_yoy") or s.get("rev_growth")
-            eps_g   = s.get("eps_yoy") or s.get("eps_growth")
-            fund_s  = ""
-            if rev_g: fund_s += f"Rev:{rev_g:+.0f}%"
-            if eps_g: fund_s += f" EPS:{eps_g:+.0f}%"
-            why     = s.get("entry_note", "")[:60]
-            invalid = s.get("invalid_if", f"Close below {_dollar(stop)}")
-            grade_e = SETUP_EMOJI.get(grade, "✅")
+        # One full card per Grade A
+        for s in grade_a:
+            messages.append(_setup_card(s, by_ticker, rs_universe, "A"))
 
-            card = [
-                f"{grade_e} *#{i} ${ticker}* — {stype} (Grade {grade})",
-                f"  Entry: {_dollar(pivot)} | Stop: {_dollar(stop)} | Target: {_dollar(t1)}",
-                f"  RR: {rr:.1f}x | Risk: {risk:.1f}%",
-                f"  RS: {rs_s}{rs_chg}",
-                f"  Sector: {thm_s}" if thm_s else "",
-                f"  Fund: {fund_s}" if fund_s else "",
-                f"  📌 Why now: {why}" if why else "",
-                f"  ⛔ Invalid if: {invalid}",
-                "",
-            ]
-            lines5.extend([l for l in card if l != ""])
+        # Grade B: compact list (all in one message)
+        if grade_b:
+            b_lines = ["✅ *Grade B Setups* (watch, smaller size)\n" + "─"*34]
+            for s in grade_b:
+                ticker = s.get("ticker", "?")
+                stype  = s.get("setup_type", "?")
+                pivot  = s.get("pivot", 0)
+                stop   = s.get("stop", 0)
+                t1     = s.get("target_1", 0)
+                rr     = s.get("rr_ratio", 0)
+                size   = s.get("recommended_size_pct", 5)
+                thm    = by_ticker.get(ticker, {})
+                heat   = "🔥" if thm.get("theme_heat") == "HOT" else ""
+                b_lines.append(
+                    f"• *${ticker}* {stype} | Entry {_dollar(pivot)} | "
+                    f"Stop {_dollar(stop)} | RR {rr:.1f}x | {size:.0f}%  {heat}"
+                )
+            messages.append("\n".join(b_lines))
 
-    messages.append("\n".join(lines5))
+    # ── MSG N: Portfolio summary ──────────────────────────────────────────────
+    real_pos   = portfolio.get("positions", {})
+    paper_pos  = paper.get("positions", {})
+    real_cash  = portfolio.get("cash_pct", 100)
+    paper_val  = paper.get("total_value", 100000)
+    paper_cash = paper.get("cash_pct", 100)
+    n_real     = len(real_pos)
+    n_paper    = len(paper_pos)
 
-    # ── MSG 5: STEP 6+7 — New Adders + Droppers ──────────────────────────────
+    port_lines = [f"💼 *Portfolio  |  {today_str}*\n" + "─"*34]
+    if n_real == 0:
+        port_lines.append(f"Real:  Cash only  |  0 positions")
+    else:
+        deployed = 100 - real_cash
+        port_lines.append(f"Real:  {n_real} positions  |  Deployed {deployed:.0f}%  |  Cash {real_cash:.0f}%")
+        for ticker, pos in list(real_pos.items())[:6]:
+            pnl = pos.get("unrealized_pct", 0) or 0
+            pnl_s = f"+{pnl:.1f}%" if pnl >= 0 else f"{pnl:.1f}%"
+            stop  = pos.get("stop_price", 0)
+            port_lines.append(f"  • ${ticker}  {pnl_s}  |  Stop {_dollar(stop)}")
+
+    port_lines.append("")
+    deployed_paper = 100 - paper_cash
+    port_lines.append(
+        f"Paper: {n_paper} positions  |  ${paper_val:,.0f}  "
+        f"|  Deployed {deployed_paper:.0f}%"
+    )
+
+    # Immediate action signals
+    imm = [s for s in signals.get("signals", []) if s.get("priority") == "IMMEDIATE"]
+    if imm:
+        port_lines.append("")
+        port_lines.append("🚨 *Action Required:*")
+        for s in imm[:4]:
+            port_lines.append(f"  🚨 ${s['ticker']}: {s['action']} — {s.get('reason','')[:50]}")
+
+    messages.append("\n".join(port_lines))
+
+    # ── MSG N+1: Watchlist alerts (only if there's something notable) ─────────
     climbers = (changes or {}).get("climbers", [])
     droppers = (changes or {}).get("droppers", [])
-    rev_infl = (changes or {}).get("revenue_inflections", [])
+    urgent_drops = [d for d in droppers if d.get("action") in ("TRIM_IMMEDIATELY", "STOP_CHECK")]
 
-    lines67 = [
-        "📈📉 *STEP 6+7: ADDERS & DROPPERS*",
-        f"{'━'*32}",
-    ]
-
-    # Step 6 — New Adders
-    lines67.append("")
-    lines67.append("*📈 STEP 6 — New Adders:*")
-    adder_label = {
-        "new_rs_leader":      "New RS Leader (>70th)",
-        "fresh_breakout":     "Fresh Breakout (63D high)",
-        "sector_rs_improver": "Sector RS Improving",
-        "revenue_inflection": "Revenue Inflection",
-        "new_hot_theme":      "Entered HOT Theme",
-    }
-    added_any = False
-    for c in climbers[:8]:
-        ticker = c.get("ticker", "?")
-        event  = c.get("event", "")
-        label  = adder_label.get(event, event)
-        rs_s   = f" RS:{c['rs_3m_today']:.0f}" if c.get("rs_3m_today") else ""
-        thm    = by_ticker.get(ticker, {})
-        tag    = THEME_TAG.get(thm.get("primary_theme", ""), "")
-        lines67.append(f"  • ${ticker} — {label}{rs_s} {tag}")
-        added_any = True
-    for r in rev_infl[:3]:
-        ticker  = r.get("ticker", "?")
-        rev_now = r.get("rev_q0")
-        rev_str = f" Rev→{rev_now:.0f}%" if rev_now else ""
-        lines67.append(f"  • ${ticker} — 💰 Revenue Inflection{rev_str}")
-        added_any = True
-    if not added_any:
-        lines67.append("  _No new entries today_")
-
-    # Step 7 — Droppers
-    lines67.append("")
-    lines67.append("*📉 STEP 7 — Droppers:*")
-    dropper_label = {
-        "rs_fell_below_70":       "Fell below RS 70th",
-        "rs_rank_drop_20":        "RS rank drop >20pts",
-        "ma50_break":             "Broke MA50",
-        "failed_breakout":        "Failed Breakout",
-        "sector_lost_momentum":   "Sector lost momentum",
-    }
-    action_emoji = {
-        "TRIM_IMMEDIATELY": "🚨",
-        "STOP_CHECK":       "⚠️",
-        "TRIM":             "✂️",
-        "REVIEW":           "📋",
-        "REMOVE_WATCHLIST": "🗑️",
-    }
-    dropped_any = False
-    for d in sorted(droppers, key=lambda x: (
-        0 if x.get("action") == "TRIM_IMMEDIATELY" else
-        1 if x.get("action") == "STOP_CHECK" else 2
-    ))[:8]:
-        ticker = d.get("ticker", "?")
-        event  = d.get("event", "")
-        action = d.get("action", "REVIEW")
-        label  = dropper_label.get(event, event)
-        ae     = action_emoji.get(action, "📋")
-        rs_s   = f" RS:{d['rs_3m_today']:.0f}" if d.get("rs_3m_today") else ""
-        lines67.append(f"  {ae} ${ticker} — {label}{rs_s}")
-        dropped_any = True
-    if not dropped_any:
-        lines67.append("  _No drops today — all clear ✅_")
-
-    # Immediate portfolio signals
-    imm_sigs = [s for s in signals.get("signals", []) if s.get("priority") == "IMMEDIATE"]
-    if imm_sigs:
-        lines67.append("")
-        lines67.append("🚨 *Portfolio Actions:*")
-        for s in imm_sigs[:4]:
-            lines67.append(f"  🚨 ${s['ticker']}: {s['action']} — {s.get('reason','')[:40]}")
-
-    messages.append("\n".join(lines67))
+    if climbers or urgent_drops:
+        alert_lines = [f"📡 *Watchlist Alerts*\n" + "─"*34]
+        if climbers[:5]:
+            alert_lines.append("*📈 New entries:*")
+            for c in climbers[:5]:
+                ticker = c.get("ticker", "?")
+                event  = c.get("event", "").replace("_", " ").title()
+                rs_s   = f" RS:{c['rs_3m_today']:.0f}" if c.get("rs_3m_today") else ""
+                thm    = by_ticker.get(ticker, {})
+                tag    = THEME_TAG.get(thm.get("primary_theme", ""), "")
+                alert_lines.append(f"  • ${ticker} — {event}{rs_s} {tag}")
+        if urgent_drops:
+            alert_lines.append("*📉 Urgent exits:*")
+            for d in urgent_drops[:5]:
+                ticker = d.get("ticker", "?")
+                event  = d.get("event", "").replace("_", " ").title()
+                ae     = "🚨" if d.get("action") == "TRIM_IMMEDIATELY" else "⚠️"
+                alert_lines.append(f"  {ae} ${ticker} — {event}")
+        messages.append("\n".join(alert_lines))
 
     return messages
 
