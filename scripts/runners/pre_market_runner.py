@@ -84,6 +84,19 @@ _load_env()
 #   kwargs          extra keyword args to pass (step must accept **kwargs)
 
 STEPS: list[dict] = [
+    # ── Step 0: System Health Check (always first — surfaces problems early) ──
+    {
+        "id":       "health_check",
+        "layer":    "0-Diagnostics",
+        "name":     "System Health Check",
+        "module":   "scripts.diagnostics.health_check",
+        "func":     "run_with_heal",         # auto-heal: silent fix → re-check → print once
+        "output":   "data/health/health_report.json",
+        "desc":     "Full pipeline diagnostic + auto-heal: data freshness, DB schema, API keys, imports",
+        "critical": False,   # warn but don't abort if check finds issues
+        "modes":    ["premarket", "eod"],
+    },
+
     # ── Pre-Market Data Prep ──────────────────────────────────────────────────
     {
         "id":       "earnings_cal",
@@ -118,6 +131,17 @@ STEPS: list[dict] = [
         "output":   "data/regime/market_health.json",
         "desc":     "4-state regime + cash floor + TD signals — gates all downstream agents",
         "critical": True,
+        "modes":    ["premarket"],
+    },
+    {
+        "id":       "a01b",
+        "layer":    "0-Foundation",
+        "name":     "A01b Full-Market Breadth (Polygon)",
+        "module":   "scripts.pre_compute.fetch_market_breadth",
+        "func":     "run",
+        "output":   "data/breadth/market_breadth_history.json",
+        "desc":     "BOA-004-A7: fetch yesterday full-market NH/NL from Polygon grouped daily (~15s)",
+        "critical": False,
         "modes":    ["premarket"],
     },
     {
@@ -239,13 +263,64 @@ STEPS: list[dict] = [
         "modes":    ["premarket"],
     },
     {
+        "id":       "a10_trader",
+        "layer":    "3-Execution",
+        "name":     "A10 Paper Trader (premarket)",
+        "module":   "scripts.paper_trading.auto_trader",
+        "func":     "run",
+        "output":   "data/portfolio/paper_portfolio_state.json",
+        "desc":     "Execute Grade A (always) + Grade B (Markup only) setups in paper portfolio",
+        "critical": False,
+        "modes":    ["premarket"],
+    },
+    {
         "id":       "a10",
         "layer":    "3-Execution",
         "name":     "A10 Risk Guardian",
         "module":   "scripts.pre_compute.risk_guardian",
         "func":     "run",
-        "output":   "data/risk_guardian/daily_report.json",  # v1 path — v2 upgrade pending
+        "output":   "data/risk/risk_report.json",
         "desc":     "Portfolio-level hard limits + devil's advocate + entry approval/block",
+        "critical": False,
+        "modes":    ["premarket"],
+    },
+
+    # ── Weekly Forward-Test Snapshot (Fridays only, after A06) ──────────────
+    {
+        "id":          "fwd_snapshot",
+        "layer":       "2-Curation",
+        "name":        "Weekly Forward-Test Snapshot",
+        "module":      "scripts.pre_compute.weekly_snapshot",
+        "func":        "run",
+        "output":      "data/ohlcv.db",
+        "desc":        "Capture Friday cohort for 4W/8W/13W learning loop (Fridays only)",
+        "critical":    False,
+        "modes":       ["premarket"],
+        "friday_only": True,
+    },
+    # ── Forward Test Report (Fridays, before A11) ─────────────────────────
+    {
+        "id":          "fwd_report",
+        "layer":       "4-Output",
+        "name":        "Forward Test Attribution Report",
+        "module":      "scripts.output.fwd_report",
+        "func":        "run",
+        "output":      "output/",
+        "desc":        "Gate attribution: which gates predict 4W/8W/13W excess returns (Fridays only)",
+        "critical":    False,
+        "modes":       ["premarket"],
+        "friday_only": True,
+    },
+
+    # ── System Health Probe (runs after risk, before report) ─────────────────
+    {
+        "id":       "health_probe",
+        "layer":    "3-Execution",
+        "name":     "System Health Probe",
+        "module":   "scripts.pre_compute.system_health_probe",
+        "func":     "run",
+        "output":   "data/system_health/alerts.json",
+        "desc":     "7-probe pipeline health check — PASS/WARN/FAIL. FAILs surfaced in daily brief.",
         "critical": False,
         "modes":    ["premarket"],
     },
@@ -344,6 +419,17 @@ STEPS: list[dict] = [
         "modes":    ["eod"],
     },
     {
+        "id":       "fwd_fill",
+        "layer":    "4-Learning",
+        "name":     "Forward Return Filler",
+        "module":   "scripts.pre_compute.fwd_fill",
+        "func":     "run",
+        "output":   "data/ohlcv.db",
+        "desc":     "Fill 4W/8W/13W forward returns for cohorts whose window has elapsed",
+        "critical": False,
+        "modes":    ["eod"],
+    },
+    {
         "id":       "a12_postmortem",
         "layer":    "4-Learning",
         "name":     "A12 Auto Post-Mortem",
@@ -359,11 +445,24 @@ STEPS: list[dict] = [
         "layer":    "3-Execution",
         "name":     "A09 Portfolio Manager (EOD update)",
         "module":   "scripts.portfolio.portfolio_manager",
-        "func":     "run_eod",
+        "func":     "run",
+        "kwargs":   {"mode": "eod"},
         "output":   "data/portfolio/portfolio_state.json",
         "desc":     "End-of-day price update + P&L recalculation for all positions",
         "critical": False,
         "modes":    ["eod"],
+    },
+    {
+        "id":       "a10_trader_eod",
+        "layer":    "3-Execution",
+        "name":     "A10 Paper Trader (EOD mark-to-market)",
+        "module":   "scripts.paper_trading.auto_trader",
+        "func":     "run",
+        "output":   "data/portfolio/paper_portfolio_state.json",
+        "desc":     "EOD mark-to-market for paper portfolio — checks exits, updates prices",
+        "critical": False,
+        "modes":    ["eod"],
+        "kwargs":   {"mode": "eod"},
     },
 
     # ── Monthly Mode ─────────────────────────────────────────────────────────
@@ -488,13 +587,26 @@ def run_step(step: dict, dry_run: bool = False) -> tuple[bool, float, str, bool]
         if func is None:
             return False, time.time() - t0, f"Function '{step['func']}' not in {module_path}", False
 
-        func()
+        kw = step.get("kwargs", {})
+        func(**kw) if kw else func()
         duration = time.time() - t0
 
-        # Verify output exists (skip check for directory outputs)
+        # Verify output exists
         output_p = _resolve_output(step)
-        if not step["output"].endswith("/") and not output_p.exists():
-            return False, duration, "Output file not written", False
+        if step["output"].endswith("/"):
+            # Directory output: verify at least one file was written there today
+            # (avoids a11=ok when daily_brief not actually written — BOA-005-BUG-01)
+            today_str = date.today().strftime("%y%m%d")
+            if not output_p.exists():
+                pass  # Directory not yet created — not a failure for output dirs
+            # Special check for a11 report_writer: confirm today's brief was written
+            elif step["id"] == "a11":
+                brief = output_p / f"daily_brief_{today_str}.md"
+                if not brief.exists():
+                    return False, duration, f"A11: daily_brief_{today_str}.md not written", False
+        else:
+            if not output_p.exists():
+                return False, duration, "Output file not written", False
 
         return True, duration, "", False
 
@@ -567,8 +679,41 @@ def run_pipeline(mode: str = "premarket", step_filter: str | None = None,
     print(f"  Log: {log.log_file.name}")
     print(f"{'='*62}\n")
 
+    # Alert on failures via Telegram (EOD mode — price data must be fresh)
+    if summary.get("failed", 0) > 0 or aborted:
+        _send_pipeline_alert(summary, mode, aborted)
+
     _print_regime_summary()
     return summary
+
+
+def _send_pipeline_alert(summary: dict, mode: str, aborted: bool) -> None:
+    """Send Telegram alert when pipeline fails. Silent if Telegram not configured."""
+    import os, requests as _req
+    token = os.getenv("TELEGRAM_BOT_TOKEN", "")
+    chat_id = os.getenv("TELEGRAM_CHAT_ID", "")
+    if not token or not chat_id:
+        return
+    failed_steps = [s["name"] for s in summary.get("steps", []) if s.get("status") == "failed"]
+    status_icon = "🔴" if aborted else "🟡"
+    msg = (
+        f"{status_icon} AlphaAbsolute Pipeline Alert\n"
+        f"Mode: {mode.upper()} | {'ABORTED' if aborted else 'PARTIAL FAILURE'}\n"
+        f"Failed: {len(failed_steps)} step(s)\n"
+    )
+    if failed_steps:
+        msg += "Steps: " + ", ".join(failed_steps[:5])
+    if aborted:
+        msg += "\n⚠️ OHLCV update failed — tomorrow's brief will use STALE DATA"
+    try:
+        _req.post(
+            f"https://api.telegram.org/bot{token}/sendMessage",
+            json={"chat_id": chat_id, "text": msg},
+            timeout=10
+        )
+        print(f"  [Alert] Telegram failure notification sent.")
+    except Exception as e:
+        print(f"  [Alert] Telegram send failed: {e}")
 
 
 # ── Regime Summary ────────────────────────────────────────────────────────────
@@ -636,8 +781,8 @@ Examples:
   python scripts/runners/pre_market_runner.py --dry-run
 
 Available step IDs:
-  Premarket: earnings_cal data_quality a01 a02 a03_bench a03 a03c a05 a04_prewarm a06 a07 a08 a09 a10 a11
-  EOD:       ohlcv_update pipeline_metrics data_quality_eod ohlcv_prefetch a12_postmortem a09_eod
+  Premarket: earnings_cal data_quality a01 a02 a03_bench a03 a03c a05 a04_prewarm a06 a07 fwd_snapshot fwd_report a08 a09 a10_trader a10 health_probe a11
+  EOD:       ohlcv_update rs_history pipeline_metrics fundamentals fill_ohlc data_quality_eod ohlcv_prefetch fwd_fill a12_postmortem a09_eod a10_trader_eod
   Monthly:   theme_mapper a12_calibrate a12_performance
         """,
     )
