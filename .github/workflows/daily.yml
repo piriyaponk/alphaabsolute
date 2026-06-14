@@ -1,17 +1,23 @@
 name: AlphaAbsolute Daily Pipeline
 
 # Bangkok (UTC+7) schedule:
-#   06:00 AM = premarket (A01→A11 full pipeline)
-#   16:30 PM = EOD update (postmortem + price update)
+#   06:00 AM = premarket (A01→A11 full pipeline + weekly_picker on Sunday)
+#   16:30 PM = EOD update (postmortem + price update + weekly_scorer on Saturday)
 #
 # UTC cron:
-#   06:00 Bangkok = 23:00 UTC prev day → Sun-Thu UTC = Mon-Fri Bangkok
+#   06:00 Bangkok = 23:00 UTC prev day
+#     Mon-Fri Bangkok  = Sun-Thu UTC  → cron: 0-4
+#     Sunday  Bangkok  = Sat     UTC  → cron: 6    (weekly_picker fires via day_filter=[6])
 #   16:30 Bangkok = 09:30 UTC same day
+#     Mon-Fri Bangkok  = Mon-Fri UTC  → cron: 1-5
+#     Saturday Bangkok = Sat     UTC  → cron: 6    (weekly_scorer fires via day_filter=[5])
 
 on:
   schedule:
-    - cron: '0 23 * * 0-4'    # Mon-Fri 06:00 Bangkok (premarket)
-    - cron: '30 9 * * 1-5'    # Mon-Fri 16:30 Bangkok (EOD)
+    - cron: '0 23 * * 0-4'    # Mon-Fri 06:00 Bangkok premarket
+    - cron: '0 23 * * 6'      # Sunday  06:00 Bangkok premarket (weekly_picker)
+    - cron: '30 9 * * 1-5'    # Mon-Fri 16:30 Bangkok EOD
+    - cron: '30 9 * * 6'      # Saturday 16:30 Bangkok EOD (weekly_scorer)
   workflow_dispatch:
     inputs:
       mode:
@@ -180,6 +186,7 @@ jobs:
           git add data/board/                           2>/dev/null || true
           git add data/breadth/market_breadth_history.json 2>/dev/null || true
           git add data/runner_logs/                     2>/dev/null || true
+          git add data/weekly_picks/                    2>/dev/null || true
           git add output/daily_brief_*.md               2>/dev/null || true
 
           git diff --cached --quiet || \

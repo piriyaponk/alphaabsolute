@@ -97,6 +97,35 @@ STEPS: list[dict] = [
         "modes":    ["premarket", "eod"],
     },
 
+    # ── OHLCV Update — MUST run FIRST so all downstream agents see fresh prices ──
+    # Premarket (6 AM Bangkok = 11 PM UTC): fetches YESTERDAY's data (US closed 2h ago)
+    # EOD (5 PM Bangkok = 10 AM UTC): catches any gaps; skips today (market still open)
+    # critical=False: an OHLCV failure should NOT abort the entire pipeline — better to run
+    # regime/RS/screener on yesterday's prices than to skip the brief entirely.
+    # Telegram alert still fires on any step failure (see _send_pipeline_alert).
+    {
+        "id":       "ohlcv_update",
+        "layer":    "0-Data",
+        "name":     "OHLCV Bulk Update (Polygon Grouped)",
+        "module":   "scripts.pre_compute.update_ohlcv_bulk",
+        "func":     "run",
+        "output":   "data/ohlcv.db",
+        "desc":     "1 Polygon grouped call → ALL tickers in <10s. Premarket=fresh data for analysis; EOD=gap fill.",
+        "critical": False,
+        "modes":    ["premarket", "eod"],
+    },
+    {
+        "id":       "fix_volumes",
+        "layer":    "0-Data",
+        "name":     "Fix Float Volumes",
+        "module":   "scripts.pre_compute.fix_dates_volumes",
+        "func":     "run",
+        "output":   "data/ohlcv.db",
+        "desc":     "Convert float volumes to INTEGER in ohlcv.db after Polygon grouped insert",
+        "critical": False,
+        "modes":    ["premarket", "eod"],
+    },
+
     # ── Pre-Market Data Prep ──────────────────────────────────────────────────
     {
         "id":       "earnings_cal",
@@ -203,16 +232,47 @@ STEPS: list[dict] = [
         "modes":    ["premarket"],
     },
     {
-        "id":           "a04_prewarm",
-        "layer":        "1-Intelligence",
-        "name":         "A04 Analyst Cache Pre-Warm",
-        "module":       "scripts.pre_compute.prewarm_analyst_cache",
-        "func":         "run",
-        "output":       "data/fundamentals/analyst_cache/",
-        "desc":         "Batch-fetch analyst coverage counts for Discovery Index (Tuesdays only)",
-        "critical":     False,
-        "modes":        ["premarket"],
-        "tuesday_only": True,
+        "id":              "a04_prewarm",
+        "layer":           "1-Intelligence",
+        "name":            "A04 Analyst Cache Pre-Warm",
+        "module":          "scripts.pre_compute.prewarm_analyst_cache",
+        "func":            "run",
+        "output":          "data/fundamentals/analyst_cache/",
+        "desc":            "Batch-fetch analyst coverage counts for Discovery Index (Tuesdays only)",
+        "critical":        False,
+        "modes":           ["premarket"],
+        "tuesday_only":    True,
+        # FIX: dry-run was showing FAIL because analyst_cache/ directory doesn't exist
+        # yet on fresh installs. Directory output with skip_if_missing=True skips the
+        # dry-run existence check — the script itself creates the directory on first run.
+        "skip_if_missing": False,   # script exists — run it; skip dry-run existence check below
+    },
+
+    # ── Data Enrichment (weekly scrapers — 7-day TTL, near-zero daily cost) ─────
+    {
+        "id":          "sa_fetcher",
+        "layer":       "1-Intelligence",
+        "name":        "StockAnalysis Fundamentals Fetcher",
+        "module":      "scripts.pre_compute.stockanalysis_fetcher",
+        "func":        "run",
+        # FIX: use checkpoint file not ohlcv.db — ohlcv.db always exists so success was always
+        # reported even on total failure. The fetcher writes this checkpoint on every run.
+        "output":      "data/sa_fetcher_checkpoint.json",
+        "desc":        "StockAnalysis.com: fill missing gm_latest, rev_yoy_q1, eps_yoy_pct (7-day TTL, skips fresh)",
+        "critical":    False,
+        "modes":       ["premarket"],
+    },
+    {
+        "id":          "finviz_fetcher",
+        "layer":       "1-Intelligence",
+        "name":        "Finviz Market Cap Fetcher",
+        "module":      "scripts.pre_compute.finviz_fetcher",
+        "func":        "run",
+        # FIX: use checkpoint file not ohlcv.db — same silent-success issue
+        "output":      "data/finviz_fetcher_checkpoint.json",
+        "desc":        "Finviz: fill missing ticker_meta.market_cap (7-day TTL, skips fresh)",
+        "critical":    False,
+        "modes":       ["premarket"],
     },
 
     # ── Layer 2: Curation ─────────────────────────────────────────────────────
@@ -248,6 +308,32 @@ STEPS: list[dict] = [
         "desc":     "Mode B screen → Big Shot breakout candidates (max 5, breakout ≥63D high, inflection bonus)",
         "critical": False,
         "modes":    ["premarket"],
+    },
+    {
+        "id":          "motw_selector",
+        "layer":       "2-Curation",
+        "name":        "Monster of the Week Selector",
+        "module":      "scripts.pre_compute.monster_of_week_selector",
+        "func":        "run",
+        "output":      "data/bigshot/motw_selection.json",
+        "desc":        "Phase 1 scoring (100 pts) → pick top Monster Scout candidate for deep research (Sundays)",
+        "critical":    False,
+        "modes":       ["premarket"],
+        "sunday_only": True,
+        "skip_if_missing": False,
+    },
+    {
+        "id":          "motw_research",
+        "layer":       "2-Curation",
+        "name":        "Monster Deep Research + Telegram",
+        "module":      "scripts.pre_compute.monster_deep_research",
+        "func":        "run",
+        "output":      "data/bigshot/",
+        "desc":        "Claude Haiku plain-language 10x thesis + 3-message Telegram brief (Sundays)",
+        "critical":    False,
+        "modes":       ["premarket"],
+        "sunday_only": True,
+        "skip_if_missing": False,
     },
 
     # ── Layer 3: Execution ────────────────────────────────────────────────────
@@ -294,6 +380,32 @@ STEPS: list[dict] = [
         "desc":     "Portfolio-level hard limits + devil's advocate + entry approval/block",
         "critical": False,
         "modes":    ["premarket"],
+    },
+
+    # ── Weekly Data Enrichment (Fridays only, before Monster Scout) ─────────
+    {
+        "id":          "fetch_rev_multiq",
+        "layer":       "1-Intelligence",
+        "name":        "Revenue Multi-Quarter Fetcher",
+        "module":      "scripts.pre_compute.fetch_revenue_multiquarter",
+        "func":        "main",
+        "output":      "data/themes/revenue_multiquarter_cache.json",
+        "desc":        "Fetch 4Q revenue YoY trend from EDGAR for all theme tickers (Fridays only)",
+        "critical":    False,
+        "modes":       ["premarket"],
+        "friday_only": True,
+    },
+    {
+        "id":          "fetch_mktcap",
+        "layer":       "1-Intelligence",
+        "name":        "Market Cap Cache Builder",
+        "module":      "scripts.pre_compute.fetch_market_cap",
+        "func":        "main",
+        "output":      "data/themes/market_cap_cache.json",
+        "desc":        "Fetch market cap from Finnhub for all theme tickers — $20B gate (Fridays only)",
+        "critical":    False,
+        "modes":       ["premarket"],
+        "friday_only": True,
     },
 
     # ── Weekly Forward-Test Snapshot (Fridays only, after A06) ──────────────
@@ -349,18 +461,33 @@ STEPS: list[dict] = [
         "modes":    ["premarket"],
     },
 
-    # ── EOD Mode ──────────────────────────────────────────────────────────────
+    # ── Weekly Prediction System ──────────────────────────────────────────────
     {
-        "id":       "ohlcv_update",
-        "layer":    "0-Data",
-        "name":     "OHLCV Daily Update",
-        "module":   "scripts.pre_compute.update_ohlcv_daily",
-        "func":     "main",
-        "output":   "data/ohlcv.db",
-        "desc":     "Fetch today's OHLCV bars for all tickers (Yahoo -> Polygon fallback)",
-        "critical": True,
-        "modes":    ["eod"],
+        "id":       "weekly_picker",
+        "layer":    "4-Output",
+        "name":     "Weekly Top-5 Picker (Monday only)",
+        "module":   "scripts.weekly.weekly_picker",
+        "func":     "run",
+        "output":   "data/weekly_picks/",
+        "desc":     "Picks top 5 setups for the week, sends Telegram. Runs Sunday only.",
+        "critical": False,
+        "modes":    ["premarket"],
+        "day_filter": [6],  # Sunday = 6
     },
+    {
+        "id":       "weekly_scorer",
+        "layer":    "4-Output",
+        "name":     "Weekly Scorer (Friday only)",
+        "module":   "scripts.weekly.weekly_scorer",
+        "func":     "run",
+        "output":   "data/weekly_picks/learning_curve.json",
+        "desc":     "Scores this week's picks vs QQQ, updates learning curve, sends Telegram. Runs Saturday only.",
+        "critical": False,
+        "modes":    ["eod"],
+        "day_filter": [5],  # Saturday = 5
+    },
+
+    # ── EOD Mode (post-market analysis) ───────────────────────────────────────
     {
         "id":       "rs_history",
         "layer":    "1-Intelligence",
@@ -576,6 +703,13 @@ def run_step(step: dict, dry_run: bool = False) -> tuple[bool, float, str, bool]
     """
     t0 = time.time()
 
+    # --- skip if day_filter doesn't match today ---
+    day_filter = step.get("day_filter")
+    if day_filter is not None:
+        today_weekday = date.today().weekday()  # 0=Mon, 4=Fri
+        if today_weekday not in day_filter:
+            return True, 0.0, "", True  # silently skip — wrong day
+
     # --- skip if script file missing ---
     module_path = step["module"].replace(".", "/") + ".py"
     full_path   = BASE_DIR / module_path
@@ -586,7 +720,13 @@ def run_step(step: dict, dry_run: bool = False) -> tuple[bool, float, str, bool]
 
     if dry_run:
         output_p = _resolve_output(step)
-        exists   = output_p.exists()
+        if step["output"].endswith("/"):
+            # Directory outputs: dry-run always passes — the script creates the dir on first run.
+            # FIX: old code returned FAIL when analyst_cache/ didn't exist yet, causing
+            # "PARTIAL FAILURE | Failed: 0 step(s)" Telegram (alert fired but step list
+            # was inconsistent due to the directory-output special handling).
+            return True, 0.0, "", False
+        exists = output_p.exists()
         return exists, 0.0, "" if exists else f"Output missing: {step['output']}", False
 
     try:
@@ -632,14 +772,42 @@ def run_step(step: dict, dry_run: bool = False) -> tuple[bool, float, str, bool]
 
 # ── Pipeline ──────────────────────────────────────────────────────────────────
 
+def _cleanup_stale_pkl_cache() -> None:
+    """Delete ohlcv_cache PKL files from previous days (BOA-022 DEC-024).
+    PKLs are intraday deduplication caches — they have zero readers once the
+    calendar date advances. Only today's date is kept.
+    """
+    cache_dir = BASE_DIR / "data" / "ohlcv_cache"
+    if not cache_dir.exists():
+        return
+    today_str = date.today().strftime("%Y-%m-%d")
+    deleted = 0
+    for f in cache_dir.glob("*.pkl"):
+        # Filename format: TICKER_<period>_<YYYY-MM-DD>.pkl
+        # Keep files containing today's date string; delete all others.
+        if today_str not in f.name:
+            try:
+                f.unlink()
+                deleted += 1
+            except OSError:
+                pass
+    if deleted:
+        print(f"  [Cleanup] Removed {deleted} stale PKL cache files (BOA-022)")
+
+
 def run_pipeline(mode: str = "premarket", step_filter: str | None = None,
                  dry_run: bool = False) -> dict:
     today_str = date.today().strftime("%Y-%m-%d")
     run_mode  = "DRY-RUN" if dry_run else mode.upper()
-    weekday   = date.today().weekday()   # 0=Mon, 4=Fri, 1=Tue
-    is_friday = weekday == 4
+    weekday    = date.today().weekday()   # 0=Mon, 4=Fri, 1=Tue, 6=Sun
+    is_friday  = weekday == 4
     is_tuesday = weekday == 1
+    is_sunday  = weekday == 6
     is_first_of_month = date.today().day == 1
+
+    # BOA-022 DEC-024: purge stale PKL cache before pipeline starts
+    if not dry_run:
+        _cleanup_stale_pkl_cache()
 
     print(f"\n{'='*62}")
     print(f"  AlphaAbsolute v2 Runner  [{today_str}]  [{run_mode}]")
@@ -659,6 +827,7 @@ def run_pipeline(mode: str = "premarket", step_filter: str | None = None,
             if mode in s.get("modes", ["premarket"])
             and not (s.get("friday_only")  and not is_friday)
             and not (s.get("tuesday_only") and not is_tuesday)
+            and not (s.get("sunday_only")  and not is_sunday)
         ]
 
     log = RunnerLog(mode)
@@ -705,22 +874,47 @@ def _send_pipeline_alert(summary: dict, mode: str, aborted: bool) -> None:
     chat_id = os.getenv("TELEGRAM_CHAT_ID", "")
     if not token or not chat_id:
         return
-    failed_steps = [s["name"] for s in summary.get("steps", []) if s.get("status") == "failed"]
-    status_icon = "🔴" if aborted else "🟡"
+
+    # Collect failed step names defensively.
+    # Use summary["failed"] (integer from RunnerLog.save()) as the authoritative count.
+    # failed_steps list is for display — if it disagrees with the count, show both.
+    failed_count = summary.get("failed", 0)
+    try:
+        failed_steps = [s["name"] for s in summary.get("steps", [])
+                        if s.get("status") == "fail"]
+    except Exception:
+        failed_steps = []
+
+    # If count and list disagree, show raw count (prevents "Failed: 0" when count > 0)
+    display_count = failed_count if failed_count != len(failed_steps) else len(failed_steps)
+
+    status_icon = "[ABORT]" if aborted else "[WARN]"
     msg = (
         f"{status_icon} AlphaAbsolute Pipeline Alert\n"
         f"Mode: {mode.upper()} | {'ABORTED' if aborted else 'PARTIAL FAILURE'}\n"
-        f"Failed: {len(failed_steps)} step(s)\n"
+        f"Failed: {display_count} step(s)\n"
     )
     if failed_steps:
         msg += "Steps: " + ", ".join(failed_steps[:5])
+    elif display_count > 0:
+        # count > 0 but names not found — flag as counting error
+        msg += f"(step names unavailable — check runner log)"
+
     if aborted:
-        msg += "\n⚠️ OHLCV update failed — tomorrow's brief will use STALE DATA"
+        # Skip cascaded "Pipeline aborted by critical failure" entries — find the real trigger
+        aborted_step = next(
+            (s["name"] for s in summary.get("steps", [])
+             if s.get("status") == "fail"
+             and "Pipeline aborted by critical failure" not in s.get("error", "")),
+            "unknown step"
+        )
+        msg += f"\n[!] Pipeline aborted at: {aborted_step} — downstream steps skipped"
     try:
         _req.post(
             f"https://api.telegram.org/bot{token}/sendMessage",
             json={"chat_id": chat_id, "text": msg},
-            timeout=10
+            timeout=10,
+            verify=False,   # FIX: self-signed cert in corporate proxy chain
         )
         print(f"  [Alert] Telegram failure notification sent.")
     except Exception as e:
@@ -792,7 +986,7 @@ Examples:
   python scripts/runners/pre_market_runner.py --dry-run
 
 Available step IDs:
-  Premarket: earnings_cal data_quality a01 a02 a03_bench a03 a03c a05 a04_prewarm a06 a07 fwd_snapshot fwd_report a08 a09 a10_trader a10 health_probe a11
+  Premarket: ohlcv_update earnings_cal data_quality a01 a02 a03_bench a03 a03c a05 a04_prewarm a06 a07 motw_selector motw_research [Sun] fwd_snapshot fwd_report a08 a09 a10_trader a10 health_probe a11
   EOD:       ohlcv_update rs_history pipeline_metrics fundamentals fill_ohlc data_quality_eod ohlcv_prefetch fwd_fill a12_postmortem a09_eod a10_trader_eod
   Monthly:   theme_mapper a12_calibrate a12_performance
         """,
