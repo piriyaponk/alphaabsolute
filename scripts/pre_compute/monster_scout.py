@@ -1,24 +1,64 @@
 """
-AlphaAbsolute v2 -- A07 Monster Scout (Mode B)
-===============================================
+AlphaAbsolute v2 -- A07 Monster Scout (Monster Scout) v2
+=========================================================
 Finds early-stage Big Shot candidates breaking out BEFORE institutional discovery.
+"10x Before The Supercycle" -- pre-institutional, narrative-driven, asymmetric.
 
-3 hard gates (ALL must pass -- no exceptions):
-  1. Breakout gate: price at >= 63-day high (3-month minimum)
-                   preferred: >= 126-day high (6-month)
-  2. Narrative gate: must be in 1 of 14 official themes
-  3. Stage gate: Base 0 or Base 1 only (no late-stage entries)
+v2 CIO-APPROVED FRAMEWORK (2026-05-25, revised 2026-05-27):
 
-RS is NOT used as a filter. RS is context only.
-Output: max 5 candidates per day, ranked by breakout strength + narrative + base.
+TWO-OUTPUT DESIGN:
+  universe.json   = Monster Scout UNIVERSE: all tickers eligible to enter (maintained weekly)
+                    Gates: mktcap + rev2Q + theme — NO base count, NO breakout required
+                    Setup Scanner checks universe daily for buy points
+  candidates.json = subset of universe currently AT breakout (backward compat + daily briefing)
+
+UNIVERSE HARD GATES (all must pass to be in universe.json):
+  1. Market cap < $20B       (Monster zone: <$20B ceiling -- no blue chips)
+                              GRACEFUL: if market_cap unknown -> do NOT fail, log as unknown
+  2. Revenue: 2 quarters MINIMUM
+                              rev_yoy_q1 must be NOT NULL in fundamentals_summary
+                              HARD: no data = excluded from universe (no graceful pass)
+                              Pre-revenue companies with no EDGAR data are excluded.
+  3. Narrative gate          must be in 1 of 14 official themes (implicit — iterates theme_members)
+
+  NOTE: Base count is NOT a gate. It is informational context only.
+        Monster Scout universe includes ALL stages — early and late.
+        CIO decision 2026-05-27: base gate removed entirely.
+
+CANDIDATES ADDITIONAL GATE (required for candidates.json):
+  4. Breakout gate           price at >= 63-day high (3-month minimum)
+
+BONUS SCORING (ranking only -- not gates):
+  +15 pts  market_cap < $2B  (Monster Elite Zone)
+  +8 pts   market_cap $2B-$10B
+  +10 pts  rev_yoy latest quarter > 50%
+  +5 pts   rev_yoy latest quarter > 25%
+  +12 pts  short_interest_pct > 25% (squeeze potential)
+  +8 pts   short_interest_pct > 15%
+  +10 pts  bottleneck owner (data/themes/bottleneck_owners.json)
+  +8 pts   gross margin expanding (eps acceleration proxy)
+  +5 pts   theme RS > 80th percentile (HOT theme)
+  +8 pts   peer confirmation (2+ theme peers with RS > 70)
+
+PHASE CLASSIFICATION (auto-tag on output):
+  PHASE_B      = turnaround/first_inflection + base<=1 + rs_3m<70  (pre-institutional sweet spot)
+  PHASE_C      = accelerating_strong + rs_3m>=70                   (institutional discovery)
+  PHASE_D_RISK = rs_3m>=90 + pct_above_63d_low>=15%                (extended -- late entry risk)
+  UNKNOWN      = insufficient data
+
+RS is NOT a gate. RS is context only (shows where institutional discovery stands).
 
 Input sources:
-  - data/rs_universe/theme_rs_latest.json (A05 theme members)
+  - data/rs_universe/theme_rs_latest.json (A05 theme members + theme RS grade)
   - data/rs_universe/latest.json (RS context only)
+  - data/themes/market_cap_cache.json (Finnhub market cap -- built by fetch_market_cap.py)
+  - data/themes/bottleneck_owners.json (static bottleneck lookup)
+  - data/bigshot/earnings_inflection.json (revenue multi-quarter data)
   - Price data via data_engine.py
 
 Output: data/bigshot/candidates.json
 Run: 8:00 AM daily (after A05 theme heatmap)
+Prerequisite: python scripts/pre_compute/fetch_market_cap.py  (weekly)
 
 Cost: $0 (Python only)
 """
@@ -36,9 +76,11 @@ if hasattr(sys.stdout, "reconfigure"):
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "scripts" / "utils"))
 
-OUT_DIR    = ROOT / "data" / "bigshot"
+OUT_DIR       = ROOT / "data" / "bigshot"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
-CAND_FILE  = OUT_DIR / "candidates.json"
+CAND_FILE     = OUT_DIR / "candidates.json"
+UNIVERSE_FILE = OUT_DIR / "universe.json"   # full pre-breakout universe (new)
+DB_PATH       = ROOT / "data" / "ohlcv.db"
 
 # 14 official themes (must match rs_theme_ranker.py PRIMARY_THEME_MAP)
 OFFICIAL_THEMES = {
@@ -68,27 +110,36 @@ def _load_list_json(path: Path) -> list:
 
 
 def _fetch_price_history(ticker: str, days: int = 130) -> list[float]:
-    """Returns list of closing prices, oldest first. Returns [] on failure."""
+    """Returns list of closing prices, oldest first. Reads from SQLite — zero network calls."""
     try:
-        from data_engine import get_ohlcv
-        df = get_ohlcv(ticker, period="6mo")
-        if df is not None and not df.empty:
-            closes = [float(row["Close"]) for _, row in df.iterrows()]
-            return closes[-days:]
+        import sqlite3
+        if DB_PATH.exists():
+            with sqlite3.connect(str(DB_PATH)) as conn:
+                rows = conn.execute(
+                    "SELECT close FROM ohlcv WHERE ticker=? AND close IS NOT NULL ORDER BY date ASC",
+                    (ticker,)
+                ).fetchall()
+            if rows:
+                return [float(r[0]) for r in rows][-days:]
     except Exception:
         pass
     return []
 
 
 def _fetch_adtv(ticker: str, days: int = 126) -> Optional[float]:
-    """Returns 6-month average daily dollar volume in USD."""
+    """Returns 6-month average daily dollar volume. Reads from SQLite — zero network calls."""
     try:
-        from data_engine import get_ohlcv
-        df = get_ohlcv(ticker, period="6mo")
-        if df is not None and not df.empty:
-            recent = df.tail(days)
-            dollar_vols = recent["Close"] * recent["Volume"]
-            return float(dollar_vols.mean())
+        import sqlite3
+        if DB_PATH.exists():
+            with sqlite3.connect(str(DB_PATH)) as conn:
+                rows = conn.execute(
+                    """SELECT close, volume FROM ohlcv
+                       WHERE ticker=? AND close IS NOT NULL AND volume IS NOT NULL
+                       ORDER BY date DESC LIMIT ?""",
+                    (ticker, days)
+                ).fetchall()
+            if rows:
+                return float(sum(r[0] * r[1] for r in rows) / len(rows))
     except Exception:
         pass
     return None
@@ -233,59 +284,93 @@ def get_rs_context(ticker: str, rs_data: dict) -> dict:
     return {"rs_pct_3m": None, "rs_pct_6m": None, "rs_phase": "Unknown", "note": "No RS data"}
 
 
-# ── Score candidate ───────────────────────────────────────────────────────────
+# ── Score candidate v2 (CIO-approved 2026-05-25) ─────────────────────────────
+
+def score_candidate_v2(
+    theme_hot: bool,
+    theme_rs_pct: Optional[float],
+    market_cap_usd: Optional[float],
+    rev_yoy_q0: Optional[float],
+    short_interest_pct: Optional[float],
+    is_bottleneck_owner: bool,
+    eps_accel: bool,
+    peer_rs70_count: int,
+) -> tuple[float, dict]:
+    """
+    Monster Scout v2 bonus scoring (ranking only — hard gates enforced separately).
+    Returns (total_bonus_score, breakdown_dict).
+
+    Bonus structure (CIO-approved 2026-05-25):
+      Market cap tier  : +15 (<$2B), +8 ($2B-$10B), +0 ($10B-$20B)
+      Revenue growth   : +10 (q0 > 50%), +5 (q0 > 25%)
+      Short interest   : +12 (>25%), +8 (>15%)
+      Bottleneck owner : +10
+      EPS acceleration : +8
+      Theme HOT/RS>80  : +5
+      Peer confirmation: +8 (2+ theme peers RS>70)
+    Max possible: 66 pts
+    """
+    score = 0.0
+    breakdown: dict = {}
+
+    if market_cap_usd is not None:
+        if market_cap_usd < 2_000_000_000:
+            score += 15; breakdown["mktcap_elite_lt2b"] = 15
+        elif market_cap_usd < 10_000_000_000:
+            score += 8;  breakdown["mktcap_standard_lt10b"] = 8
+
+    if rev_yoy_q0 is not None:
+        if rev_yoy_q0 > 50:
+            score += 10; breakdown["rev_gt50pct"] = 10
+        elif rev_yoy_q0 > 25:
+            score += 5;  breakdown["rev_gt25pct"] = 5
+
+    if short_interest_pct is not None:
+        if short_interest_pct > 25:
+            score += 12; breakdown["short_gt25pct"] = 12
+        elif short_interest_pct > 15:
+            score += 8;  breakdown["short_gt15pct"] = 8
+
+    if is_bottleneck_owner:
+        score += 10; breakdown["bottleneck_owner"] = 10
+
+    if eps_accel:
+        score += 8; breakdown["eps_accel"] = 8
+
+    if theme_hot or (theme_rs_pct is not None and theme_rs_pct > 80):
+        score += 5; breakdown["theme_hot_rs80"] = 5
+
+    if peer_rs70_count >= 2:
+        score += 8; breakdown["peer_confirmation_2plus"] = 8
+
+    return round(score, 2), breakdown
+
+
+# ── Legacy score_candidate (watch_queue path only) ────────────────────────────
 
 def score_candidate(breakout: dict, base: dict, theme_hot: bool,
                     adtv_usd: Optional[float],
                     inflection_label: Optional[str] = None) -> float:
-    """
-    Composite conviction score for ranking (higher = better).
-    Max ~33 points (30 base + 3 revenue inflection bonus).
-
-    Revenue inflection bonus (Fund Manager spec — CONDITIONAL APPROVED 2026-05-24):
-      FIRST_INFLECTION  → +3.0 (first quarter above 25% rev growth)
-      TURNAROUND        → +2.0 (first positive quarter after negative)
-      ACCELERATING      → +1.5 (3Q of improving rev growth)
-    Regime constraint enforced in run() — Distribution/Markdown candidates
-    are downgraded to watch_queue regardless of score.
-    """
+    """Legacy scoring for watch_queue path only. Main candidates use score_candidate_v2."""
     score = 0.0
-
-    # Breakout quality (0-10)
     score += breakout.get("score", 0)
-
-    # Base number (0 or 1 = better, max 5 pts)
     base_count = base.get("base_count", 2)
     if   base_count == 0: score += 5.0
     elif base_count == 1: score += 3.0
-
-    # HOT theme bonus (5 pts)
-    if theme_hot:
-        score += 5.0
-
-    # Liquidity bonus (0-5 pts)
+    if theme_hot: score += 5.0
     if adtv_usd is not None:
-        if   adtv_usd >= 50_000_000:  score += 5.0   # >$50M ADTV — very liquid
-        elif adtv_usd >= 10_000_000:  score += 3.5   # >$10M ADTV
-        elif adtv_usd >=  3_000_000:  score += 2.0   # >$3M ADTV — minimum
-        else:                          score += 0.5   # below min (warn)
-
-    # Momentum bonus: pct above 63d low
+        if   adtv_usd >= 50_000_000: score += 5.0
+        elif adtv_usd >= 10_000_000: score += 3.5
+        elif adtv_usd >=  3_000_000: score += 2.0
+        else:                         score += 0.5
     pct = breakout.get("pct_above_63d_low", 0)
     if   pct > 50: score += 5.0
     elif pct > 25: score += 3.0
     elif pct > 10: score += 1.5
-
-    # Revenue inflection bonus (sort inflecting stocks to top of candidate list)
-    inflection_bonus = {
-        "FIRST_INFLECTION": 3.0,
-        "TURNAROUND":       2.0,
-        "ACCELERATING":     1.5,
-        "SUSTAINED_GROWTH": 0.5,
-    }
+    inflection_bonus = {"FIRST_INFLECTION": 3.0, "TURNAROUND": 2.0,
+                        "ACCELERATING": 1.5, "SUSTAINED_GROWTH": 0.5}
     if inflection_label and inflection_label in inflection_bonus:
         score += inflection_bonus[inflection_label]
-
     return round(score, 2)
 
 
@@ -440,7 +525,32 @@ def run() -> dict:
         theme_members_wq = load_theme_members()
         watch_queue   = []
 
-        # Load pct_from_3m_high and adtv from DB for all theme tickers at once
+        # Load inflection + bottleneck for watch_queue enrichment (same files as normal path)
+        wq_inflection_lookup: dict[str, str] = {}
+        wq_inflection_detail: dict[str, dict] = {}
+        wq_inf_file = ROOT / "data" / "bigshot" / "earnings_inflection.json"
+        if wq_inf_file.exists():
+            try:
+                _inf = json.loads(wq_inf_file.read_text(encoding="utf-8"))
+                for _c in _inf.get("inflection_candidates", []) + _inf.get("accelerating_candidates", []):
+                    _t = _c.get("ticker", "")
+                    _l = _c.get("inflection_label", "")
+                    if _t and _l:
+                        wq_inflection_lookup[_t] = _l
+                        wq_inflection_detail[_t] = _c
+            except Exception:
+                pass
+
+        wq_bottleneck_set: set[str] = set()
+        _wq_bn_file = ROOT / "data" / "themes" / "bottleneck_owners.json"
+        if _wq_bn_file.exists():
+            try:
+                _bn = json.loads(_wq_bn_file.read_text(encoding="utf-8"))
+                wq_bottleneck_set = {e.get("ticker","") for e in _bn.get("bottleneck_owners", [])}
+            except Exception:
+                pass
+
+        # Load pct_from_3m_high, adtv, market_cap from DB for all theme tickers at once
         db_tech: dict = {}
         if db_path.exists():
             try:
@@ -449,7 +559,7 @@ def run() -> dict:
                 tickers_in = "','".join(theme_members_wq.keys())
                 rows = conn.execute(f"""
                     SELECT ticker, pct_from_3m_high, pct_from_6m_high, adtv_6m_usd,
-                           mode_b_eligible, last_close, stage2_flag
+                           mode_b_eligible, last_close, stage2_flag, market_cap
                     FROM ticker_meta WHERE ticker IN ('{tickers_in}')
                 """).fetchall()
                 conn.close()
@@ -464,6 +574,10 @@ def run() -> dict:
             pct_3m = tech.get("pct_from_3m_high")  # negative = below, 0 = at high
             if pct_3m is None or pct_3m < -5.0:    # more than 5% below 3M high → not breaking out
                 continue
+            # v2 Gate: Market cap < $20B (from ticker_meta.market_cap — populated by fetch_market_cap.py)
+            _wq_mc = tech.get("market_cap")
+            if _wq_mc is not None and _wq_mc >= 20_000_000_000:
+                continue  # mega-cap → out of Monster Scout scope
             # ADTV gate: Mode B minimum $3M
             adtv = tech.get("adtv_6m_usd")
             if adtv is not None and adtv < 3_000_000:
@@ -475,6 +589,20 @@ def run() -> dict:
             is_hot = theme_info.get("is_hot", False)
             pct_6m = tech.get("pct_from_6m_high") or pct_3m
             score  = (10 if is_hot else 5) + max(0, 10 + pct_3m) + rs_3m * 0.05
+            # Fundamental enrichment for watch_queue
+            _wq_infl   = wq_inflection_lookup.get(ticker)
+            _wq_detail = wq_inflection_detail.get(ticker, {})
+            _wq_rev    = _wq_detail.get("rev_yoy_q0") or _wq_detail.get("rev_yoy_pct")
+            _wq_eps    = _wq_detail.get("eps_yoy_q0") or _wq_detail.get("eps_yoy_pct")
+            # Phase classification
+            if _wq_infl in ("FIRST_INFLECTION", "TURNAROUND") and rs_3m < 70:
+                _wq_phase = "PHASE_B"
+            elif _wq_infl in ("ACCELERATING_STRONG", "ACCELERATING") and rs_3m >= 70:
+                _wq_phase = "PHASE_C"
+            elif rs_3m >= 90:
+                _wq_phase = "PHASE_D_RISK"
+            else:
+                _wq_phase = "UNKNOWN"
             watch_queue.append({
                 "ticker":           ticker,
                 "theme":            theme_info.get("theme"),
@@ -484,6 +612,12 @@ def run() -> dict:
                 "rs_pct_3m":        rs_3m,
                 "adtv_usd":         round(adtv, 0) if adtv else None,
                 "conviction_score": round(score, 1),
+                # Monster Scout differentiator fields
+                "revenue_inflection":    _wq_infl,
+                "rev_yoy_pct":           round(_wq_rev, 1) if _wq_rev is not None else None,
+                "eps_yoy_pct":           round(_wq_eps, 1) if _wq_eps is not None else None,
+                "phase_classification":  _wq_phase,
+                "is_bottleneck_owner":   ticker in wq_bottleneck_set,
                 "note":             "WATCH — regime clears → review for entry",
             })
 
@@ -520,8 +654,34 @@ def run() -> dict:
     rs_data       = load_rs_data()
     print(f"  Theme members: {len(theme_members)} | RS data: {len(rs_data)} tickers")
 
-    # Load earnings inflection data (priority sort bonus)
-    inflection_lookup: dict[str, str] = {}  # {ticker: inflection_label}
+    # ── Load revenue multi-quarter directly from DB (primary source) ─────────
+    # This is the authoritative source for the rev2Q hard gate.
+    # earnings_inflection.json is kept as supplementary source for eps_yoy only.
+    import sqlite3 as _sqlite3
+    rev_data_db: dict[str, dict] = {}   # {ticker: {q0,q1,q2,q3,label}}
+    try:
+        _conn = _sqlite3.connect(DB_PATH)
+        _rows = _conn.execute(
+            "SELECT ticker, rev_yoy_pct, rev_yoy_q1, rev_yoy_q2, rev_yoy_q3, "
+            "rev_inflection_label FROM fundamentals_summary"
+        ).fetchall()
+        _conn.close()
+        for _r in _rows:
+            rev_data_db[_r[0]] = {
+                "rev_yoy_q0": _r[1],
+                "rev_yoy_q1": _r[2],
+                "rev_yoy_q2": _r[3],
+                "rev_yoy_q3": _r[4],
+                "label":      _r[5],
+            }
+        print(f"  Revenue DB: {len(rev_data_db)} tickers | "
+              f"2Q data: {sum(1 for v in rev_data_db.values() if v['rev_yoy_q1'] is not None)}")
+    except Exception as _e:
+        print(f"  [WARN] Could not load revenue data from DB: {_e}")
+
+    # Load earnings inflection data (supplementary — eps_yoy enrichment only)
+    inflection_lookup: dict[str, str] = {}   # {ticker: inflection_label} (fallback)
+    inflection_detail: dict[str, dict] = {}  # {ticker: eps context}
     inflection_file = ROOT / "data" / "bigshot" / "earnings_inflection.json"
     if inflection_file.exists():
         try:
@@ -531,10 +691,49 @@ def run() -> dict:
                 label  = c.get("inflection_label", "")
                 if ticker and label:
                     inflection_lookup[ticker] = label
-            if inflection_lookup:
-                print(f"  Inflection data loaded: {len(inflection_lookup)} tickers with revenue signal")
+                    inflection_detail[ticker] = c
         except Exception as _e:
             print(f"  [WARN] Could not load earnings_inflection.json: {_e}")
+
+    # Load bottleneck owners lookup (BOA-017-A1)
+    bottleneck_set: set[str] = set()
+    bottleneck_desc_map: dict[str, str] = {}
+    bn_file = ROOT / "data" / "themes" / "bottleneck_owners.json"
+    if bn_file.exists():
+        try:
+            bn_data = json.loads(bn_file.read_text(encoding="utf-8"))
+            for entry in bn_data.get("bottleneck_owners", []):
+                t = entry.get("ticker", "")
+                if t:
+                    bottleneck_set.add(t)
+                    bottleneck_desc_map[t] = entry.get("bottleneck_description", "")
+            print(f"  Bottleneck owners loaded: {len(bottleneck_set)} tickers")
+        except Exception:
+            pass
+
+    # Load market cap cache (v2 hard gate: <$20B) — built by fetch_market_cap.py
+    market_cap_cache: dict[str, dict] = {}
+    mc_file = ROOT / "data" / "themes" / "market_cap_cache.json"
+    if mc_file.exists():
+        try:
+            mc_data = json.loads(mc_file.read_text(encoding="utf-8"))
+            market_cap_cache = mc_data.get("tickers", {})
+            covered = sum(1 for v in market_cap_cache.values() if v.get("market_cap"))
+            print(f"  Market cap cache: {covered}/{len(market_cap_cache)} tickers with data")
+        except Exception as e:
+            print(f"  [WARN] Could not load market_cap_cache.json: {e}")
+    else:
+        print("  [WARN] market_cap_cache.json missing — run fetch_market_cap.py to enable $20B gate")
+
+    # Build peer RS>70 count per theme (for peer confirmation bonus)
+    peer_rs70_by_theme: dict[str, int] = {}
+    for _ticker, _rd in rs_data.items():
+        rs3m_val = _rd.get("rs_3m_pct") or _rd.get("rs_pct_3m") or 0
+        if rs3m_val >= 70:
+            _ti = theme_members.get(_ticker, {})
+            _theme = _ti.get("theme", "")
+            if _theme:
+                peer_rs70_by_theme[_theme] = peer_rs70_by_theme.get(_theme, 0) + 1
 
     if not theme_members:
         print("  [WARN] No theme data — run rs_theme_ranker.py first")
@@ -543,93 +742,205 @@ def run() -> dict:
         return result
 
     # Screen all theme members
-    candidates = []
+    universe   = []   # all tickers passing mktcap + rev2Q + theme (no breakout needed)
+    candidates = []   # subset of universe currently at breakout
     checked    = 0
-    skipped_breakout = 0
-    skipped_adtv     = 0
-    skipped_base     = 0
+    skipped_market_cap  = 0
+    skipped_rev_accel   = 0   # includes no-data (hard gate now)
+    unknown_market_cap  = 0
 
-    print(f"  Screening {len(theme_members)} theme tickers...")
+    print(f"  Screening {len(theme_members)} theme tickers (v2 universe gates)...")
 
     for ticker, theme_info in theme_members.items():
         checked += 1
 
-        # Fetch price history
+        # ── v2 Gate 1: Market cap < $20B ──────────────────────────────────────
+        mc_entry = market_cap_cache.get(ticker, {})
+        market_cap_usd = mc_entry.get("market_cap")   # None if unknown
+        if market_cap_usd is not None:
+            if market_cap_usd >= 20_000_000_000:       # >= $20B → reject
+                skipped_market_cap += 1
+                continue
+        else:
+            unknown_market_cap += 1                    # unknown → don't fail, log
+
+        # ── v2 Gate 2: Revenue — 2 quarters MINIMUM (HARD GATE) ──────────────
+        # Primary source: fundamentals_summary DB (populated by fetch_revenue_multiquarter.py)
+        # No graceful pass. No q1 = excluded from universe.
+        rev_db        = rev_data_db.get(ticker, {})
+        rev_yoy_q0    = rev_db.get("rev_yoy_q0")
+        rev_yoy_q1    = rev_db.get("rev_yoy_q1")   # MUST be NOT NULL
+        rev_yoy_q2    = rev_db.get("rev_yoy_q2")
+        inflection_label = rev_db.get("label") or inflection_lookup.get(ticker)
+
+        if rev_yoy_q1 is None:
+            # Hard fail: less than 2 quarters of revenue data
+            # Run: python scripts/pre_compute/fetch_revenue_multiquarter.py to fix
+            skipped_rev_accel += 1
+            continue
+
+        # Classify revenue trend for rev_gate_status field
+        q0q1_accel  = (rev_yoy_q0 is not None and rev_yoy_q0 > rev_yoy_q1)
+        turnaround  = (rev_yoy_q1 < 0 and rev_yoy_q0 is not None and rev_yoy_q0 > 0)
+        if turnaround:
+            rev_gate_status = "turnaround"
+        elif q0q1_accel:
+            rev_gate_status = "accelerating"
+        elif inflection_label in ("FIRST_INFLECTION", "TURNAROUND", "ACCELERATING",
+                                   "ACCELERATING_STRONG", "SUSTAINED_GROWTH"):
+            rev_gate_status = "label_pass"
+        else:
+            rev_gate_status = "has_2q_data"   # has data, not accelerating — still in universe
+
+        # ── UNIVERSE GATE PASSED (mktcap + rev2Q + theme) ─────────────────────
+        # Base count and ADTV are NOT gates. Informational only.
+        # Ticker qualifies for Monster Scout universe regardless of stage or liquidity.
+        # Setup Scanner checks this universe daily for buy points.
+
+        # Fetch OHLCV for breakout check + informational base count
         closes = _fetch_price_history(ticker, days=130)
-        if not closes or len(closes) < 64:
-            continue
 
-        # Gate 1: Breakout (price at >= 63-day high)
-        breakout = check_breakout(closes)
-        if not breakout["passes"]:
-            skipped_breakout += 1
-            continue
+        # ── Gate 3: Breakout (price at >= 63-day high) — candidates only ──────
+        # Does NOT gate universe membership — gates candidates.json only.
+        breakout = check_breakout(closes) if closes and len(closes) >= 64 else \
+                   {"passes": False, "breakout_type": "NONE", "score": 0.0}
 
-        # Gate 2: Narrative (already passed by being in theme_members)
-        # (theme membership IS the narrative gate)
+        # Base count: informational only (not a gate — CIO 2026-05-27)
+        base = estimate_base_count(closes) if closes and len(closes) >= 60 else \
+               {"base_count": None, "passes": True, "note": "No OHLCV data"}
 
-        # Gate 3: Base count (0 or 1 only)
-        base = estimate_base_count(closes)
-        if not base["passes"]:
-            skipped_base += 1
-            continue
-
-        # ADTV check (> $3M minimum for Mode B)
+        # ADTV: informational only
         adtv = _fetch_adtv(ticker)
-        if adtv is not None and adtv < 3_000_000:
-            skipped_adtv += 1
-            continue
 
-        # All gates passed — score the candidate
-        is_hot            = theme_info.get("is_hot", False)
-        inflection_label  = inflection_lookup.get(ticker)
-        conv_score = score_candidate(breakout, base, is_hot, adtv, inflection_label)
-        rs_ctx = get_rs_context(ticker, rs_data)
+        # ── All universe gates passed → compute v2 bonus score ────────────────
+        is_hot       = theme_info.get("is_hot", False)
+        theme_rs_pct = theme_info.get("theme_rs_pct")   # from theme_rs_latest
+        rs_ctx       = get_rs_context(ticker, rs_data)
+        rs_3m        = rs_ctx.get("rs_pct_3m") or 0
 
-        candidates.append({
+        # eps_yoy: from earnings_inflection.json supplementary source
+        _infl_detail = inflection_detail.get(ticker, {})
+        eps_yoy = _infl_detail.get("eps_yoy_pct") or _infl_detail.get("eps_yoy_q0")
+        # EPS acceleration proxy: if eps_yoy exists and positive, treat as expanding
+        eps_accel_flag = (eps_yoy is not None and eps_yoy > 0)
+
+        # Peer confirmation: count theme peers with RS > 70
+        my_theme = theme_info.get("theme", "")
+        peer_count = peer_rs70_by_theme.get(my_theme, 0)
+
+        bonus_score, bonus_breakdown = score_candidate_v2(
+            theme_hot           = is_hot,
+            theme_rs_pct        = theme_rs_pct,
+            market_cap_usd      = market_cap_usd,
+            rev_yoy_q0          = rev_yoy_q0,
+            short_interest_pct  = None,      # not yet sourced — future BOA item
+            is_bottleneck_owner = ticker in bottleneck_set,
+            eps_accel           = eps_accel_flag,
+            peer_rs70_count     = peer_count,
+        )
+
+        # Phase classification (base count removed as condition — CIO 2026-05-27)
+        if inflection_label in ("FIRST_INFLECTION", "TURNAROUND") and rs_3m < 70:
+            phase = "PHASE_B"   # pre-institutional: revenue just turning, institutions not yet in
+        elif inflection_label in ("ACCELERATING_STRONG", "ACCELERATING") and rs_3m >= 70:
+            phase = "PHASE_C"   # institutional discovery: acceleration confirmed + RS elevated
+        elif rs_3m >= 90 and breakout.get("pct_above_63d_low", 0) >= 15:
+            phase = "PHASE_D_RISK"  # extended: well-discovered, late entry risk
+        else:
+            phase = "UNKNOWN"
+
+        is_bn_owner = ticker in bottleneck_set
+        bn_desc     = bottleneck_desc_map.get(ticker)
+
+        # Phase-based size guidance
+        if phase == "PHASE_D_RISK":
+            size_pct = 0.0   # WATCH_ONLY — too extended
+        else:
+            size_pct = 5.0   # standard Monster Scout size
+
+        # Build the full record (shared between universe + candidates)
+        record = {
             "ticker":           ticker,
             "mode":             "B",
             "theme":            theme_info.get("theme"),
             "theme_grade":      theme_info.get("theme_grade"),
 
-            # Gate results
+            # v2 gate results
+            "market_cap_usd":   round(market_cap_usd, 0) if market_cap_usd else None,
+            "market_cap_b":     round(market_cap_usd / 1e9, 2) if market_cap_usd else None,
+            "market_cap_bucket": mc_entry.get("bucket", "unknown"),
+            "market_cap_gate":  "unknown" if market_cap_usd is None else "pass",
+            "rev_gate_status":  rev_gate_status,
+            "rev_yoy_q1":       rev_yoy_q1,   # confirm 2Q data present
+
+            # Breakout status (informational for universe; required for candidates)
             "breakout_type":    breakout["breakout_type"],
+            "at_breakout":      breakout["passes"],
             "pct_above_63d_low": breakout.get("pct_above_63d_low"),
             "days_at_high":     breakout.get("days_at_high"),
             "base_count":       base["base_count"],
 
-            # Sizing guidance (A09/A10 will finalize)
-            "initial_size_pct": 5.0,          # Mode B always starts at 5%
-            "max_size_pct":     10.0,          # before full confirmation
-            "stop_pct":         -10.0,         # -10% from breakout pivot
+            # Sizing guidance
+            "initial_size_pct": size_pct,
+            "max_size_pct":     10.0,
+            "stop_pct":         -10.0,
 
-            # Context (informational only)
+            # RS context (informational only)
             "rs_pct_3m":        rs_ctx.get("rs_pct_3m"),
             "rs_pct_6m":        rs_ctx.get("rs_pct_6m"),
             "rs_phase":         rs_ctx.get("rs_phase"),
             "adtv_usd":         round(adtv, 0) if adtv else None,
 
-            # Revenue inflection signal (from earnings_inflection_scout.py)
-            "revenue_inflection": inflection_label,  # None if no inflection data
+            # Revenue signal (from DB)
+            "revenue_inflection": inflection_label,
+            "rev_yoy_pct":        round(rev_yoy_q0, 1) if rev_yoy_q0 is not None else None,
+            "rev_yoy_q1":         round(rev_yoy_q1, 1) if rev_yoy_q1 is not None else None,
+            "eps_yoy_pct":        round(eps_yoy, 1) if eps_yoy is not None else None,
 
-            # Score for ranking
-            "conviction_score": conv_score,
-        })
+            # Phase classification
+            "phase_classification": phase,
 
-    # Sort by conviction score, take top MAX_CANDIDATES
-    candidates.sort(key=lambda x: x["conviction_score"], reverse=True)
+            # Bottleneck owner
+            "is_bottleneck_owner":    is_bn_owner,
+            "bottleneck_description": bn_desc,
+
+            # v2 bonus score (ranking only)
+            "bonus_score":     bonus_score,
+            "bonus_breakdown": bonus_breakdown,
+
+            # Legacy conviction_score field (for backward compatibility with setup_scanner, report_writer)
+            "conviction_score": bonus_score,
+        }
+
+        # Add to universe (all that passed mktcap + rev2Q + base + adtv)
+        universe.append(record)
+
+        # Add to candidates only if at breakout
+        if breakout["passes"]:
+            candidates.append(record)
+
+    # Sort by bonus_score (v2), take top MAX_CANDIDATES for candidates
+    universe.sort(key=lambda x: x["bonus_score"], reverse=True)
+    candidates.sort(key=lambda x: x["bonus_score"], reverse=True)
     top_candidates = candidates[:MAX_CANDIDATES]
 
     # Summary
-    print(f"\n  Screened: {checked} | Breakout fail: {skipped_breakout} | ADTV fail: {skipped_adtv} | Base fail: {skipped_base}")
-    print(f"  Passed ALL gates: {len(candidates)} | Outputting top {len(top_candidates)}")
+    print(f"\n  Screened: {checked}")
+    print(f"  Gate 1 (mktcap<$20B) fail: {skipped_market_cap} | unknown: {unknown_market_cap}")
+    print(f"  Gate 2 (rev 2Q hard) fail: {skipped_rev_accel}  <- run fetch_revenue_multiquarter.py to reduce")
+    print(f"  UNIVERSE size: {len(universe)} | At breakout today: {len(candidates)} | Top {len(top_candidates)} output")
 
     if top_candidates:
-        print("\n  TOP BIG SHOT CANDIDATES:")
+        print("\n  TOP BIG SHOT CANDIDATES (v2):")
         for i, c in enumerate(top_candidates, 1):
             hot_tag = " [HOT]" if c["theme_grade"] == "HOT" else ""
-            print(f"    {i}. {c['ticker']:6} {c['breakout_type']:8} | Base {c['base_count']} | "
-                  f"Theme: {c['theme']}{hot_tag} | Score: {c['conviction_score']}")
+            mc_b = c.get("market_cap_b")
+            mc_str = f"${mc_b}B" if mc_b else "mktcap=?"
+            bc = c.get("base_count")
+            bc_str = f"Base {bc}" if bc is not None else "Base ?"
+            print(f"    {i}. {c['ticker']:6} {c['breakout_type']:8} | {bc_str} [info] | "
+                  f"Phase={c['phase_classification']:12} | {mc_str} | "
+                  f"Theme: {c['theme']}{hot_tag} | Score: {c['bonus_score']}")
 
     # BOA-020-A1: Scan existing portfolio positions for Monster fingerprint
     # Stocks gaining ≥20% in ≤21 days → EMA_HOLD pyramid add candidates
@@ -640,20 +951,54 @@ def run() -> dict:
             print(f"    {rb['ticker']:6} +{rb['pnl_pct']:.1f}% in {rb['days_in']}d "
                   f"| Hold {rb['hold_days_remaining']}d more | EMA_HOLD eligible")
 
+    # ── Write universe.json (full pre-breakout universe) ─────────────────────
+    universe_result = {
+        "date":        today,
+        "regime":      health.get("regime", "Unknown"),
+        "framework":   "v2",
+        "universe_size": len(universe),
+        "at_breakout_today": len(candidates),
+        "gate_stats": {
+            "screened":              checked,
+            "fail_market_cap_gt20b": skipped_market_cap,
+            "unknown_market_cap":    unknown_market_cap,
+            "fail_rev_2q_hard":      skipped_rev_accel,
+        },
+        "universe":    universe,   # ALL qualifying tickers (breakout or not)
+        "generated_at": datetime.now().strftime("%H:%M"),
+        "note": (f"Universe: {len(universe)} stocks eligible | "
+                 f"{len(candidates)} at breakout today | "
+                 f"Setup Scanner scans universe daily for buy points | "
+                 f"Gates: mktcap<$20B + rev_yoy_q1 NOT NULL only"),
+    }
+    UNIVERSE_FILE.write_text(json.dumps(universe_result, indent=2, default=str), encoding="utf-8")
+    print(f"\n  -> Universe written: {UNIVERSE_FILE} ({len(universe)} tickers)")
+
+    # ── Write candidates.json (at-breakout subset, backward compat) ──────────
     result = {
         "date":        today,
         "regime":      health.get("regime", "Unknown"),
         "bigshot_ok":  True,
+        "framework":   "v2",
         "screened":    checked,
+        "universe_size": len(universe),
         "passed":      len(candidates),
+        "gate_stats": {
+            "screened":              checked,
+            "fail_market_cap_gt20b": skipped_market_cap,
+            "unknown_market_cap":    unknown_market_cap,
+            "fail_rev_2q_hard":      skipped_rev_accel,
+        },
         "candidates":  top_candidates,
-        "rapid_breakouts": rapid_breakouts,   # BOA-020-A1: Monster fingerprint positions
-        "note":        f"Screened {checked} theme tickers — {len(candidates)} passed all Mode B gates",
+        "rapid_breakouts": rapid_breakouts,
+        "note":        (f"v2: {len(universe)} in universe | "
+                        f"{len(candidates)} at breakout | "
+                        f"Top {len(top_candidates)} output"),
         "generated_at": datetime.now().strftime("%H:%M"),
     }
 
     CAND_FILE.write_text(json.dumps(result, indent=2, default=str), encoding="utf-8")
-    print(f"\n  -> Written: {CAND_FILE}")
+    print(f"  -> Candidates written: {CAND_FILE} ({len(top_candidates)} top candidates)")
 
     return result
 

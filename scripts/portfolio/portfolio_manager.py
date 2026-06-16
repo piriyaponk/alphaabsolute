@@ -65,12 +65,18 @@ def _save_json(path: Path, data: dict) -> None:
 
 
 def _get_price(ticker: str) -> Optional[float]:
-    """Fetch latest closing price from data_engine."""
+    """Fetch latest closing price from SQLite ohlcv.db — zero network calls."""
     try:
-        from data_engine import get_ohlcv
-        df = get_ohlcv(ticker, period="5d")
-        if df is not None and not df.empty:
-            return float(df["Close"].iloc[-1])
+        import sqlite3
+        db = ROOT / "data" / "ohlcv.db"
+        if db.exists():
+            with sqlite3.connect(str(db)) as conn:
+                row = conn.execute(
+                    "SELECT close FROM ohlcv WHERE ticker=? AND close IS NOT NULL ORDER BY date DESC LIMIT 1",
+                    (ticker,)
+                ).fetchone()
+            if row:
+                return float(row[0])
     except Exception:
         pass
     return None
@@ -81,52 +87,167 @@ def _get_rs_pct(ticker: str) -> Optional[float]:
     try:
         latest_file = ROOT / "data" / "rs_universe" / "latest.json"
         data = json.loads(latest_file.read_text(encoding="utf-8"))
-        for item in data.get("results", []):
-            if item.get("ticker") == ticker:
-                return item.get("rs_pct_3m")
-    except Exception:
-        pass
+        # rs_ranker.py writes universe as a dict keyed by ticker under "universe" key
+        # NOT as a list under "results" (that key does not exist)
+        universe = data.get("universe", {})
+        item = universe.get(ticker) or universe.get(ticker.upper())
+        if item:
+            return item.get("rs_pct_3m") or item.get("rs_3m_pct")
+    except Exception as e:
+        print(f"  [WARN] _get_rs_pct({ticker}) failed: {e}")
     return None
 
 
 def _get_sma50(ticker: str) -> Optional[float]:
-    """Get 50-day SMA for a ticker."""
+    """Get 50-day SMA from SQLite ohlcv.db — zero network calls."""
     try:
-        from data_engine import get_ohlcv
-        df = get_ohlcv(ticker, period="6mo")
-        if df is not None and len(df) >= 50:
-            return float(df["Close"].tail(50).mean())
+        import sqlite3
+        db = ROOT / "data" / "ohlcv.db"
+        if db.exists():
+            with sqlite3.connect(str(db)) as conn:
+                rows = conn.execute(
+                    "SELECT close FROM ohlcv WHERE ticker=? AND close IS NOT NULL ORDER BY date DESC LIMIT 50",
+                    (ticker,)
+                ).fetchall()
+            if len(rows) >= 50:
+                return float(sum(r[0] for r in rows) / len(rows))
     except Exception:
         pass
     return None
+
+
+def _get_rs_line_direction(ticker: str) -> Optional[int]:
+    """
+    Get rs_line_direction (1=rising, 0=flat, -1=falling) from ticker_meta in ohlcv.db.
+    Computed by pipeline_metrics.py step_b5_rs_line (BOA-009-A1).
+    Returns None if db not available or column missing.
+    """
+    try:
+        import sqlite3
+        db_path = ROOT / "data" / "ohlcv.db"
+        if not db_path.exists():
+            return None
+        with sqlite3.connect(str(db_path)) as conn:
+            # Column added by BOA-009-A1 — may not exist in older DBs
+            try:
+                row = conn.execute(
+                    "SELECT rs_line_direction FROM ticker_meta WHERE ticker = ?",
+                    (ticker.upper(),)
+                ).fetchone()
+                if row and row[0] is not None:
+                    return int(row[0])
+            except sqlite3.OperationalError:
+                # Column doesn't exist yet (pipeline hasn't run with new schema)
+                pass
+    except Exception:
+        pass
+    return None
+
+
+def _get_weekly_ohlcv(ticker: str, weeks: int = 15):
+    """
+    Compute weekly OHLCV from daily bars in SQLite. Zero network calls.
+    Returns DataFrame with Open/High/Low/Close/Volume indexed by week-end date.
+    """
+    try:
+        import sqlite3, pandas as pd
+        db = ROOT / "data" / "ohlcv.db"
+        if not db.exists():
+            return None
+        days_needed = weeks * 7 + 14
+        with sqlite3.connect(str(db)) as conn:
+            rows = conn.execute(
+                """SELECT date, open, high, low, close, volume FROM ohlcv
+                   WHERE ticker=? AND close IS NOT NULL ORDER BY date DESC LIMIT ?""",
+                (ticker, days_needed)
+            ).fetchall()
+        if not rows or len(rows) < 15:
+            return None
+        df = pd.DataFrame(rows, columns=["date","Open","High","Low","Close","Volume"])
+        df["date"] = pd.to_datetime(df["date"])
+        df = df.sort_values("date").set_index("date")
+        weekly = df.resample("W-FRI").agg({
+            "Open": "first", "High": "max", "Low": "min",
+            "Close": "last", "Volume": "sum",
+        }).dropna(subset=["Close"])
+        return weekly if len(weekly) >= 3 else None
+    except Exception:
+        return None
 
 
 def _check_earnings_soon(ticker: str, days_ahead: int = 5) -> bool:
     """
     Check if earnings are within days_ahead trading days.
-    Reads from FMP earnings calendar cache if available.
+    Reads from fetch_earnings_calendar.py output: data/regime/earnings_next30.json
+    Format: {"within_5_trading_days": ["AAPL", "NVDA", ...], "events": [...]}
+    Falls back to False (conservative = allow entry) if calendar not available.
     """
-    earnings_file = ROOT / "data" / "fundamentals" / f"{ticker}_earnings.json"
-    if not earnings_file.exists():
+    cal_path = ROOT / "data" / "regime" / "earnings_next30.json"
+    if not cal_path.exists():
         return False
     try:
-        data = json.loads(earnings_file.read_text(encoding="utf-8"))
-        next_date_str = data.get("next_earnings_date")
-        if not next_date_str:
-            return False
-        next_date = date.fromisoformat(next_date_str)
-        delta = (next_date - date.today()).days
-        return 0 <= delta <= days_ahead
-    except Exception:
+        data = json.loads(cal_path.read_text(encoding="utf-8"))
+        # Primary: check the pre-computed within_5_trading_days list
+        within_5 = data.get("within_5_trading_days", [])
+        if ticker in within_5 or ticker.upper() in within_5:
+            return True
+        # Fallback: scan events list for this ticker within days_ahead calendar days
+        for ev in data.get("events", []):
+            if ev.get("symbol", "").upper() != ticker.upper():
+                continue
+            ev_date_str = ev.get("date") or ev.get("reportDate") or ev.get("next_earnings_date")
+            if not ev_date_str:
+                continue
+            try:
+                ev_date = date.fromisoformat(ev_date_str[:10])
+                delta = (ev_date - date.today()).days
+                if 0 <= delta <= days_ahead:
+                    return True
+            except ValueError:
+                continue
+        return False
+    except Exception as e:
+        print(f"  [WARN] _check_earnings_soon({ticker}) failed: {e}")
         return False
 
 
 # ── Position action checks ────────────────────────────────────────────────────
 
+def _trading_days_since(entry_date_str: str) -> int:
+    """Approximate number of trading days (Mon-Fri) between entry_date and today."""
+    try:
+        entry = date.fromisoformat(entry_date_str[:10])
+        today = date.today()
+        if today <= entry:
+            return 0
+        # Count weekdays only (approximation — doesn't exclude holidays)
+        count = 0
+        d = entry + timedelta(days=1)
+        while d <= today:
+            if d.weekday() < 5:  # 0=Mon..4=Fri
+                count += 1
+            d += timedelta(days=1)
+        return count
+    except Exception:
+        return 999  # unknown → assume past window
+
+
 def check_position(ticker: str, pos: dict, regime: str,
                    max_deployed: float, current_deployed: float) -> list[dict]:
     """
     Run all checks on a single position. Returns list of action signals.
+
+    Priority order:
+      1. Stop hit                → IMMEDIATE exit
+      2. Base failure (0-10d)    → IMMEDIATE exit  [Minervini Lesson 9]
+      3. Earnings within 5d      → FLAG / no new adds
+      4. RS + 50DMA dual fail    → REDUCE 50% (Mode A)
+      5. Profit-taking ladder    → regime-calibrated thresholds
+      6. Cash floor              → handled at portfolio level
+
+    Distribution regime profit-taking (tighter):
+      +15% → take 25% off  (vs +25% in Markup)
+      +30% → take 50% off  (vs +50% in Markup)
     """
     signals = []
     today   = date.today().isoformat()
@@ -135,7 +256,11 @@ def check_position(ticker: str, pos: dict, regime: str,
     entry_date  = pos.get("entry_date", today)
     mode        = pos.get("mode", "A")
     size_pct    = pos.get("size_pct", 10.0)
-    stop_pct    = -0.08 if mode == "A" else -0.10
+    # Regime-calibrated stops (per A12 backtest 2026-05-23)
+    if regime == "Markup":
+        stop_pct = -0.12 if mode == "A" else -0.10
+    else:
+        stop_pct = -0.08 if mode == "A" else -0.10
 
     current_price = _get_price(ticker)
     if not current_price or not entry_price:
@@ -148,14 +273,14 @@ def check_position(ticker: str, pos: dict, regime: str,
     pos["pnl_pct"]       = round(pnl_pct, 2)
     pos["last_updated"]  = today
 
-    # ── Check 1: Stop hit ──────────────────────────────────────────────────
+    # ── Check 1: Hard stop hit ─────────────────────────────────────────────
     stop_level = entry_price * (1 + stop_pct)
     if current_price <= stop_level:
         signals.append({
             "ticker":   ticker,
             "action":   "SELL_STOP",
             "priority": "IMMEDIATE",
-            "reason":   f"Stop hit: {pnl_pct:.1f}% (stop={stop_pct*100:.0f}% from entry)",
+            "reason":   f"Stop hit: {pnl_pct:.1f}% (stop={stop_pct*100:.0f}% from entry, regime={regime})",
             "size":     size_pct,
             "price":    round(current_price, 2),
             "date":     today,
@@ -163,7 +288,11 @@ def check_position(ticker: str, pos: dict, regime: str,
         return signals  # no need to check further
 
     # ── Check 2: Earnings within 5 days ───────────────────────────────────
-    if _check_earnings_soon(ticker):
+    # DA Analyst Issue 5 fix: earnings check BEFORE BASE_FAILURE.
+    # Pre-earnings pullback below pivot is expected (window dressing / hedging)
+    # and should NOT trigger IMMEDIATE exit — earnings event must be respected first.
+    earnings_soon = _check_earnings_soon(ticker)
+    if earnings_soon:
         signals.append({
             "ticker":   ticker,
             "action":   "FLAG_EARNINGS",
@@ -174,7 +303,40 @@ def check_position(ticker: str, pos: dict, regime: str,
             "date":     today,
         })
 
-    # ── Check 3: RS deteriorating + 50DMA break (Mode A only) ─────────────
+    # ── Check 3: Breakout confirmation (Minervini Lesson 9) ───────────────
+    # If within 10 trading days of entry AND price closes back below the
+    # breakout pivot → BASE_FAILURE → exit immediately.
+    # Skipped if earnings within 5 days (pre-earnings pullback is expected behaviour).
+    # The pivot is stored as pos["pivot"] when the position is entered.
+    # Fallback: use entry_price as pivot if not stored.
+    days_in   = _trading_days_since(entry_date)
+    pivot     = pos.get("pivot") or entry_price
+    if (days_in <= 10
+            and current_price < pivot
+            and not pos.get("base_failure_checked")
+            and not earnings_soon):    # earnings gate: don't call BASE_FAILURE pre-earnings
+        signals.append({
+            "ticker":   ticker,
+            "action":   "BASE_FAILURE",
+            "priority": "IMMEDIATE",
+            "reason":   (
+                f"Price {current_price:.2f} closed below breakout pivot {pivot:.2f} "
+                f"on day {days_in} (within 10-day confirmation window). "
+                f"Base failure — exit immediately. [Minervini L9]"
+            ),
+            "size":     size_pct,
+            "price":    round(current_price, 2),
+            "date":     today,
+        })
+        pos["base_failure_checked"] = True
+        return signals  # IMMEDIATE — no further checks needed
+
+    # If still in confirmation window but holding — track status
+    if days_in <= 10:
+        pos["breakout_day"] = days_in
+        pos["holding_above_pivot"] = current_price >= pivot
+
+    # ── Check 4: RS deteriorating + 50DMA break (Mode A only) ─────────────
     if mode == "A":
         rs_pct = _get_rs_pct(ticker)
         sma50  = _get_sma50(ticker)
@@ -192,43 +354,188 @@ def check_position(ticker: str, pos: dict, regime: str,
                 "date":     today,
             })
 
-    # ── Check 4: Profit targets ────────────────────────────────────────────
-    if pnl_pct >= 50:
-        signals.append({
-            "ticker":   ticker,
-            "action":   "TAKE_PROFIT_50PCT",
-            "priority": "TODAY",
-            "reason":   f"+{pnl_pct:.1f}% gain — take 50% off, trail remaining with 10W MA",
-            "size":     round(size_pct * 0.5, 1),
-            "price":    round(current_price, 2),
-            "date":     today,
-        })
-    elif pnl_pct >= 25:
-        # Check if we've already taken 25% profit (logged in position state)
+    # ── Check 4b: 8-Week Hold Rule (BOA-005 DEC-011, 2026-05-24 — APPROVED 4/4) ──
+    # If stock gains ≥ 20% in first 21 trading days → hold min 56 trading days.
+    # During 8-week hold: suppress ALL profit ladder signals.
+    # Mode A only (Mode B: higher volatility, maintain normal exit logic).
+    # HYPOTHESIS until N≥10 qualifying events.
+    is_eight_week_hold = False
+    if mode == "A":
+        # Record pnl at day 21 (first time we cross day 21)
+        if days_in == 21 and pos.get("day_21_gain_pct") is None:
+            pos["day_21_gain_pct"] = round(pnl_pct, 2)
+            if pnl_pct >= 20.0:
+                pos["eight_week_hold_active"] = True
+                pos["eight_week_hold_start"] = entry_date
+                print(f"  [8WK HOLD] {ticker}: +{pnl_pct:.1f}% in 21 days → 8-week hold activated (suppress profit ladder until day 56)")
+
+        # Check if 8-week hold is still active (suppress until day 56)
+        if pos.get("eight_week_hold_active"):
+            if days_in < 56:
+                is_eight_week_hold = True
+            else:
+                # 8-week window passed — deactivate and resume normal ladder
+                pos["eight_week_hold_active"] = False
+                print(f"  [8WK HOLD] {ticker}: 8-week hold complete at day {days_in} — resuming profit ladder")
+
+    # ── Check 4c: Behavior-Based Exits (BOA-008-A1, DEC-018 — Markup only) ──
+    # Markup regime: exits driven by price ACTION, not fixed % thresholds.
+    # Distribution/Sideways: keep mechanical profit ladder (less trend follow).
+    # 8-week hold SUPPRESSES all four signals (let the monster run).
+    # HYPOTHESIS status — log all fires, review after N=10 qualifying events.
+    if regime == "Markup" and not is_eight_week_hold and mode == "A":
+
+        # (a) RS Line Break — rs_line falling while in meaningful profit
+        # Source: rs_line_direction from ticker_meta (BOA-009-A1)
+        # Signal: TODAY (reduce 25% — protect gain, keep core position running)
+        rs_dir = _get_rs_line_direction(ticker)
+        if rs_dir is not None and rs_dir == -1 and pnl_pct > 15.0:
+            signals.append({
+                "ticker":   ticker,
+                "action":   "RS_LINE_BREAK",
+                "priority": "TODAY",
+                "reason":   (
+                    f"RS line falling (20-day slope negative) while +{pnl_pct:.1f}% — "
+                    f"relative strength deteriorating vs SPY. Take 25% off, hold rest."
+                ),
+                "size":     round(size_pct * 0.25, 1),
+                "price":    round(current_price, 2),
+                "date":     today,
+                "behavior_exit": True,
+            })
+
+        # (b) 10-Week MA Breach on heavy volume
+        # Signal: IMMEDIATE — large institutions are exiting (volume confirms)
+        # Sell 75% of position; trail remainder with 10W MA
+        weekly = _get_weekly_ohlcv(ticker, weeks=15)
+        if weekly is not None and len(weekly) >= 12:
+            # 10W SMA: average of 10 completed weeks BEFORE the most recent
+            ma10w             = float(weekly["Close"].iloc[-11:-1].mean())
+            last_weekly_close = float(weekly["Close"].iloc[-1])
+            avg_weekly_vol    = float(weekly["Volume"].iloc[-11:-1].mean())
+            last_weekly_vol   = float(weekly["Volume"].iloc[-1])
+
+            if (last_weekly_close < ma10w
+                    and avg_weekly_vol > 0
+                    and last_weekly_vol > avg_weekly_vol * 1.5
+                    and pnl_pct > 0):      # only protective exit — stop handles losses
+                signals.append({
+                    "ticker":   ticker,
+                    "action":   "TEN_WEEK_MA_BREAK",
+                    "priority": "IMMEDIATE",
+                    "reason":   (
+                        f"Weekly close {last_weekly_close:.2f} < 10W MA {ma10w:.2f} "
+                        f"on {last_weekly_vol/avg_weekly_vol:.1f}x avg volume — "
+                        f"institutional exit signal. Sell 75%."
+                    ),
+                    "size":     round(size_pct * 0.75, 1),
+                    "price":    round(current_price, 2),
+                    "date":     today,
+                    "behavior_exit": True,
+                })
+
+            # (c) Climax Top: +20% in single week, volume >2x avg, total gain >75%
+            # Signal: TODAY — exhaustion move, lock most gains before reversal
+            elif len(weekly) >= 3:
+                prev_weekly_close = float(weekly["Close"].iloc[-2])
+                weekly_gain_pct   = (last_weekly_close - prev_weekly_close) / prev_weekly_close * 100
+
+                if (weekly_gain_pct >= 20.0
+                        and avg_weekly_vol > 0
+                        and last_weekly_vol > avg_weekly_vol * 2.0
+                        and pnl_pct >= 75.0):
+                    signals.append({
+                        "ticker":   ticker,
+                        "action":   "CLIMAX_TOP",
+                        "priority": "TODAY",
+                        "reason":   (
+                            f"Climax top: +{weekly_gain_pct:.1f}% last week on "
+                            f"{last_weekly_vol/avg_weekly_vol:.1f}x avg volume, "
+                            f"total gain={pnl_pct:.1f}% from entry. Exit 75% — exhaustion move."
+                        ),
+                        "size":     round(size_pct * 0.75, 1),
+                        "price":    round(current_price, 2),
+                        "date":     today,
+                        "behavior_exit": True,
+                    })
+
+        # (d) TD Weekly Countdown 13 — stateful weekly TD tracking
+        # TODO: implement weekly TD Sequential counter.
+        # Requires: tracking weekly TD setup count + countdown state per position
+        # across sessions. Complex stateful logic deferred pending dedicated module.
+        # When ready: if td_weekly_countdown >= 13 → exit 75%, priority TODAY.
+
+    # ── Check 5: Profit-taking ladder (regime-calibrated) ─────────────────
+    # 8-week hold overrides: suppress ladder if monster fingerprint active
+    # Distribution/Sideways: tighter — protect gains faster
+    # Markup: standard Minervini ladder
+    is_distribution = regime in ("Distribution", "Sideways")
+
+    tp50_threshold = 30.0 if is_distribution else 50.0   # take 50% off at...
+    tp25_threshold = 15.0 if is_distribution else 25.0   # take 25% off at...
+
+    if is_eight_week_hold:
+        # 8-week hold active: suppress profit ladder entirely. Only stop/base-failure applies.
+        # Record the hold status in position for audit trail
+        pos["eight_week_hold_day"] = days_in
+        # No profit ladder signals emitted
+    elif pnl_pct >= tp50_threshold:
+        if not pos.get("took_50pct_profit"):
+            signals.append({
+                "ticker":   ticker,
+                "action":   "TAKE_PROFIT_50PCT",
+                "priority": "TODAY",
+                "reason":   (
+                    f"+{pnl_pct:.1f}% gain — take 50% off at {tp50_threshold:.0f}% threshold "
+                    f"({'Distribution/Sideways regime' if is_distribution else 'Markup regime'}), "
+                    f"trail remaining with 10W MA"
+                ),
+                "size":     round(size_pct * 0.5, 1),
+                "price":    round(current_price, 2),
+                "date":     today,
+            })
+            pos["took_50pct_profit"] = True
+
+    elif pnl_pct >= tp25_threshold:
         if not pos.get("took_25pct_profit"):
             signals.append({
                 "ticker":   ticker,
                 "action":   "TAKE_PROFIT_25PCT",
                 "priority": "TODAY",
-                "reason":   f"+{pnl_pct:.1f}% gain — take 25% off, trail stop to breakeven",
+                "reason":   (
+                    f"+{pnl_pct:.1f}% gain — take 25% off at {tp25_threshold:.0f}% threshold "
+                    f"({'Distribution/Sideways regime' if is_distribution else 'Markup regime'}), "
+                    f"trail stop to breakeven"
+                ),
                 "size":     round(size_pct * 0.25, 1),
                 "price":    round(current_price, 2),
                 "date":     today,
             })
             pos["took_25pct_profit"] = True
-    elif pnl_pct >= 15 and not pos.get("breakeven_stop_set"):
-        signals.append({
-            "ticker":   ticker,
-            "action":   "TRAIL_STOP_BREAKEVEN",
-            "priority": "REVIEW",
-            "reason":   f"+{pnl_pct:.1f}% gain — trail stop to breakeven ({entry_price:.2f})",
-            "size":     0,
-            "price":    round(current_price, 2),
-            "date":     today,
-        })
-        pos["breakeven_stop_set"] = True
 
-    # ── Check 5: Cash floor breach ─────────────────────────────────────────
+    elif not is_eight_week_hold:
+        # DA Quant Issue 3 fix: regime-calibrated breakeven trigger
+        # Markup: stop=-12%, breakeven at +18% (1.5×12) — not at +15% (sub-3:1 realized RR)
+        # Distribution/Sideways: stop=-8%, breakeven at +12% (1.5×8)
+        # This prevents the breakeven stop from firing at a gain below the implied 3:1 threshold
+        # 8-week hold active: skip breakeven trail — let it run (BOA-005 DEC-011)
+        be_trigger = 12.0 if is_distribution else 18.0
+        if pnl_pct >= be_trigger and not pos.get("breakeven_stop_set"):
+            signals.append({
+                "ticker":   ticker,
+                "action":   "TRAIL_STOP_BREAKEVEN",
+                "priority": "REVIEW",
+                "reason":   (
+                    f"+{pnl_pct:.1f}% gain — trail stop to breakeven ({entry_price:.2f}). "
+                    f"Trigger: {be_trigger:.0f}% (1.5× |stop| for {regime} regime)"
+                ),
+                "size":     0,
+                "price":    round(current_price, 2),
+                "date":     today,
+            })
+            pos["breakeven_stop_set"] = True
+
+    # ── Check 6: Cash floor breach ─────────────────────────────────────────
     # (handled at portfolio level below, flagged per position if needed)
 
     return signals
@@ -314,6 +621,7 @@ def execute_paper_signal(signal: dict, paper_port: dict) -> None:
         positions[ticker] = {
             "mode":         signal.get("mode", "A"),
             "entry_price":  round(price, 2),
+            "pivot":        round(price, 2),   # breakout pivot for base-failure check
             "entry_date":   today,
             "shares":       round(shares, 4),
             "size_pct":     size_pct,
@@ -362,6 +670,46 @@ def execute_paper_signal(signal: dict, paper_port: dict) -> None:
             pos["shares"] = round(remaining, 4)
 
 
+def compute_expectancy(paper_port: dict) -> dict:
+    """
+    Compute Minervini expectancy metrics from closed trades.
+    E = (win_rate × avg_winner) - (loss_rate × avg_loser)
+    Returns dict with win_rate, avg_winner_pct, avg_loser_pct,
+    expectancy_pct, profit_factor, and total_closed_trades.
+    """
+    trades = paper_port.get("trades_history", [])
+    if not trades:
+        return {
+            "total_closed_trades": 0,
+            "win_rate": None,
+            "avg_winner_pct": None,
+            "avg_loser_pct": None,
+            "expectancy_pct": None,
+            "profit_factor": None,
+        }
+
+    winners = [t["pnl_pct"] for t in trades if t.get("pnl_pct", 0) > 0]
+    losers  = [t["pnl_pct"] for t in trades if t.get("pnl_pct", 0) <= 0]
+    n       = len(trades)
+
+    win_rate     = len(winners) / n if n else 0
+    avg_winner   = sum(winners) / len(winners) if winners else 0
+    avg_loser    = sum(losers)  / len(losers)  if losers  else 0  # negative number
+    expectancy   = (win_rate * avg_winner) + ((1 - win_rate) * avg_loser)
+    total_wins   = sum(winners) if winners else 0
+    total_losses = abs(sum(losers)) if losers else 0
+    profit_factor = round(total_wins / total_losses, 2) if total_losses > 0 else None
+
+    return {
+        "total_closed_trades": n,
+        "win_rate":       round(win_rate, 3),
+        "avg_winner_pct": round(avg_winner, 2),
+        "avg_loser_pct":  round(avg_loser, 2),
+        "expectancy_pct": round(expectancy, 2),
+        "profit_factor":  profit_factor,
+    }
+
+
 def update_paper_portfolio_value(paper_port: dict) -> None:
     """Recalculate paper portfolio value using current prices."""
     cash  = paper_port.get("cash", 100_000)
@@ -380,6 +728,9 @@ def update_paper_portfolio_value(paper_port: dict) -> None:
     paper_port["cash_pct"]         = round(cash / total, 4) if total > 0 else 1.0
     paper_port["total_positions"]  = len(paper_port.get("positions", {}))
     paper_port["last_updated"]     = date.today().isoformat()
+
+    # Update expectancy metrics from all closed trades
+    paper_port["expectancy"] = compute_expectancy(paper_port)
 
 
 # ── Main ──────────────────────────────────────────────────────────────────────

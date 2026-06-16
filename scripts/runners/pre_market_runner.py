@@ -240,12 +240,9 @@ STEPS: list[dict] = [
         "output":          "data/fundamentals/analyst_cache/",
         "desc":            "Batch-fetch analyst coverage counts for Discovery Index (Tuesdays only)",
         "critical":        False,
-        "modes":           ["premarket"],
+        "modes":           [],      # DISABLED: HTTP 402 on every request — API plan doesn't support endpoint. Re-enable when API upgraded.
         "tuesday_only":    True,
-        # FIX: dry-run was showing FAIL because analyst_cache/ directory doesn't exist
-        # yet on fresh installs. Directory output with skip_if_missing=True skips the
-        # dry-run existence check — the script itself creates the directory on first run.
-        "skip_if_missing": False,   # script exists — run it; skip dry-run existence check below
+        "skip_if_missing": False,
     },
 
     # ── Data Enrichment (weekly scrapers — 7-day TTL, near-zero daily cost) ─────
@@ -696,9 +693,67 @@ def _resolve_output(step: dict) -> Path:
     return p
 
 
+def _execute_step_once(step: dict, full_path) -> tuple[bool, float, str]:
+    """
+    Execute one attempt of a pipeline step.
+    Returns (success, duration, error_msg).
+    Separated from run_step() so retry logic can call it cleanly.
+    """
+    t0 = time.time()
+    try:
+        spec   = importlib.util.spec_from_file_location(step["id"], full_path)
+        module = importlib.util.module_from_spec(spec)  # type: ignore[arg-type]
+        spec.loader.exec_module(module)  # type: ignore[union-attr]
+
+        func = getattr(module, step["func"], None)
+        if func is None:
+            return False, time.time() - t0, f"Function '{step['func']}' not in {step['module']}"
+
+        kw = step.get("kwargs", {})
+        func(**kw) if kw else func()
+        duration = time.time() - t0
+
+        # Verify output exists
+        output_p = _resolve_output(step)
+        if step["output"].endswith("/"):
+            today_str = date.today().strftime("%y%m%d")
+            if output_p.exists() and step["id"] == "a11":
+                brief = output_p / f"daily_brief_{today_str}.md"
+                if not brief.exists():
+                    return False, duration, f"A11: daily_brief_{today_str}.md not written"
+        else:
+            if not output_p.exists():
+                return False, duration, "Output file not written"
+
+        return True, duration, ""
+
+    except Exception as exc:
+        import traceback
+        err = f"{type(exc).__name__}: {exc}"
+        print(f"\n    TRACEBACK:")
+        traceback.print_exc()
+        return False, time.time() - t0, err[:200]
+
+
+# Errors that are worth retrying (transient: network, rate-limit, SSL, file lock)
+_RETRYABLE = (
+    "ConnectionError", "Timeout", "HTTPError", "ReadTimeout", "ConnectTimeout",
+    "429", "503", "SSLError", "RemoteDisconnected", "IncompleteRead",
+    "PermissionError", "WinError 5",   # file-lock on Windows — usually clears in seconds
+    "Output file not written",         # script ran but output not flushed yet
+)
+
+# Steps whose output is cheap to recompute — suppress retry noise for these
+_NO_RETRY_STEPS = {"health_check", "data_quality", "data_quality_eod"}
+
+# Max retry attempts for transient failures (total attempts = 1 + MAX_RETRIES)
+MAX_RETRIES = 2
+RETRY_DELAY = 5   # seconds between retries
+
+
 def run_step(step: dict, dry_run: bool = False) -> tuple[bool, float, str, bool]:
     """
-    Run a single pipeline step.
+    Run a single pipeline step with auto-retry on transient failures.
     Returns (success, duration, error_msg, was_skipped).
     """
     t0 = time.time()
@@ -729,45 +784,35 @@ def run_step(step: dict, dry_run: bool = False) -> tuple[bool, float, str, bool]
         exists = output_p.exists()
         return exists, 0.0, "" if exists else f"Output missing: {step['output']}", False
 
-    try:
-        spec   = importlib.util.spec_from_file_location(step["id"], full_path)
-        module = importlib.util.module_from_spec(spec)  # type: ignore[arg-type]
-        spec.loader.exec_module(module)  # type: ignore[union-attr]
-
-        func = getattr(module, step["func"], None)
-        if func is None:
-            return False, time.time() - t0, f"Function '{step['func']}' not in {module_path}", False
-
-        kw = step.get("kwargs", {})
-        func(**kw) if kw else func()
-        duration = time.time() - t0
-
-        # Verify output exists
-        output_p = _resolve_output(step)
-        if step["output"].endswith("/"):
-            # Directory output: verify at least one file was written there today
-            # (avoids a11=ok when daily_brief not actually written — BOA-005-BUG-01)
-            today_str = date.today().strftime("%y%m%d")
-            if not output_p.exists():
-                pass  # Directory not yet created — not a failure for output dirs
-            # Special check for a11 report_writer: confirm today's brief was written
-            elif step["id"] == "a11":
-                brief = output_p / f"daily_brief_{today_str}.md"
-                if not brief.exists():
-                    return False, duration, f"A11: daily_brief_{today_str}.md not written", False
-        else:
-            if not output_p.exists():
-                return False, duration, "Output file not written", False
-
+    # --- Attempt 1 ---
+    ok, duration, err = _execute_step_once(step, full_path)
+    if ok:
         return True, duration, "", False
 
-    except Exception as exc:
-        import traceback
-        err = f"{type(exc).__name__}: {exc}"
-        # Print full traceback to help debugging
-        print(f"\n    TRACEBACK:")
-        traceback.print_exc()
-        return False, time.time() - t0, err[:200], False
+    # --- Retry logic ---
+    # Skip retry for non-transient errors (code bugs, missing functions, etc.)
+    # and for cheap diagnostic steps that aren't worth re-running
+    step_id = step.get("id", "")
+    is_transient = any(kw in err for kw in _RETRYABLE)
+    should_retry = is_transient and step_id not in _NO_RETRY_STEPS and not dry_run
+
+    if not should_retry:
+        return False, time.time() - t0, err, False
+
+    for attempt in range(1, MAX_RETRIES + 1):
+        print(f"\n    [RETRY {attempt}/{MAX_RETRIES}] {step['name']} — sleeping {RETRY_DELAY}s then retrying...")
+        print(f"    Last error: {err[:120]}")
+        time.sleep(RETRY_DELAY)
+
+        ok, duration, err = _execute_step_once(step, full_path)
+        if ok:
+            print(f"    [RETRY {attempt}/{MAX_RETRIES}] RECOVERED after {attempt} retry(ies)")
+            return True, time.time() - t0, "", False
+        print(f"    [RETRY {attempt}/{MAX_RETRIES}] Still failing: {err[:120]}")
+
+    # All retries exhausted
+    print(f"\n    [RETRY] All {MAX_RETRIES} retries exhausted for {step['name']}")
+    return False, time.time() - t0, f"[after {MAX_RETRIES} retries] {err}", False
 
 
 # ── Pipeline ──────────────────────────────────────────────────────────────────
@@ -795,8 +840,41 @@ def _cleanup_stale_pkl_cache() -> None:
         print(f"  [Cleanup] Removed {deleted} stale PKL cache files (BOA-022)")
 
 
+# All directories that pipeline scripts expect to exist at import time.
+# Runner creates these before any step runs → module-level mkdir() calls become
+# no-ops (exist_ok=True on an existing dir is always safe, no PermissionError).
+_REQUIRED_DIRS = [
+    "data/regime", "data/rs_universe", "data/rs_universe/snapshots",
+    "data/themes", "data/leadership", "data/bigshot",
+    "data/setups", "data/portfolio", "data/risk",
+    "data/postmortems", "data/calibration", "data/runner_logs",
+    "data/health", "data/breadth", "data/board", "data/quality",
+    "data/system_health", "data/weekly_picks", "data/weekly_picks",
+    "data/fundamentals", "data/fundamentals/analyst_cache",
+    "data/fundamentals/company_names", "data/macro",
+    "data/weekly_picks", "data/nrgc", "data/nrgc/state", "data/nrgc/weekly",
+    "data/insights", "data/paper_trading",
+    "output", "output/postmortems",
+    "data/ohlcv_cache",
+]
+
+
+def _ensure_dirs() -> None:
+    """Create all required output directories before any script is imported.
+    Prevents PermissionError on module-level mkdir() calls on Windows/OneDrive
+    (exist_ok=True on an already-existing dir is a safe no-op)."""
+    for rel in _REQUIRED_DIRS:
+        d = BASE_DIR / rel
+        if not d.exists():
+            try:
+                d.mkdir(parents=True, exist_ok=True)
+            except PermissionError:
+                pass   # dir was created by another process between exists() and mkdir()
+
+
 def run_pipeline(mode: str = "premarket", step_filter: str | None = None,
                  dry_run: bool = False) -> dict:
+    _ensure_dirs()   # guarantee all output dirs exist before any step imports
     today_str = date.today().strftime("%Y-%m-%d")
     run_mode  = "DRY-RUN" if dry_run else mode.upper()
     weekday    = date.today().weekday()   # 0=Mon, 4=Fri, 1=Tue, 6=Sun
@@ -859,64 +937,73 @@ def run_pipeline(mode: str = "premarket", step_filter: str | None = None,
     print(f"  Log: {log.log_file.name}")
     print(f"{'='*62}\n")
 
-    # Alert on failures via Telegram (EOD mode — price data must be fresh)
-    if summary.get("failed", 0) > 0 or aborted:
-        _send_pipeline_alert(summary, mode, aborted)
+    # Always send a pipeline status alert to Telegram
+    _send_pipeline_alert(summary, mode, aborted)
 
     _print_regime_summary()
     return summary
 
 
 def _send_pipeline_alert(summary: dict, mode: str, aborted: bool) -> None:
-    """Send Telegram alert when pipeline fails. Silent if Telegram not configured."""
+    """
+    Send a Telegram pipeline status alert.
+    - ALL PASS  → green check, step counts, no failures listed
+    - PARTIAL FAILURE / ABORT → warning with failed step names
+    Always fires (not just on failure) so the user can confirm the pipeline ran.
+    Silent if Telegram not configured.
+    """
     import os, requests as _req
     token = os.getenv("TELEGRAM_BOT_TOKEN", "")
     chat_id = os.getenv("TELEGRAM_CHAT_ID", "")
     if not token or not chat_id:
         return
 
-    # Collect failed step names defensively.
-    # Use summary["failed"] (integer from RunnerLog.save()) as the authoritative count.
-    # failed_steps list is for display — if it disagrees with the count, show both.
     failed_count = summary.get("failed", 0)
+    passed_count = summary.get("passed", 0)
+    skipped_count = summary.get("skipped", 0)
+    run_date = summary.get("date", date.today().isoformat())
+
     try:
         failed_steps = [s["name"] for s in summary.get("steps", [])
                         if s.get("status") == "fail"]
     except Exception:
         failed_steps = []
 
-    # If count and list disagree, show raw count (prevents "Failed: 0" when count > 0)
     display_count = failed_count if failed_count != len(failed_steps) else len(failed_steps)
 
-    status_icon = "[ABORT]" if aborted else "[WARN]"
-    msg = (
-        f"{status_icon} AlphaAbsolute Pipeline Alert\n"
-        f"Mode: {mode.upper()} | {'ABORTED' if aborted else 'PARTIAL FAILURE'}\n"
-        f"Failed: {display_count} step(s)\n"
-    )
-    if failed_steps:
-        msg += "Steps: " + ", ".join(failed_steps[:5])
-    elif display_count > 0:
-        # count > 0 but names not found — flag as counting error
-        msg += f"(step names unavailable — check runner log)"
-
     if aborted:
-        # Skip cascaded "Pipeline aborted by critical failure" entries — find the real trigger
         aborted_step = next(
             (s["name"] for s in summary.get("steps", [])
              if s.get("status") == "fail"
              and "Pipeline aborted by critical failure" not in s.get("error", "")),
             "unknown step"
         )
-        msg += f"\n[!] Pipeline aborted at: {aborted_step} — downstream steps skipped"
+        status_line = f"[ABORT] PIPELINE ABORTED | {mode.upper()} | {run_date}"
+        detail = f"Failed: {display_count} step(s)\nAborted at: {aborted_step} — downstream skipped"
+        if failed_steps:
+            detail += "\nFailed steps: " + ", ".join(failed_steps[:5])
+    elif failed_count > 0:
+        status_line = f"[WARN] PARTIAL FAILURE | {mode.upper()} | {run_date}"
+        detail = f"Failed: {display_count} step(s) | Passed: {passed_count} | Skipped: {skipped_count}"
+        if failed_steps:
+            detail += "\nFailed: " + ", ".join(failed_steps[:5])
+        else:
+            detail += "\n(step names unavailable — check runner log)"
+    else:
+        status_line = f"[OK] ALL PASS | {mode.upper()} | {run_date}"
+        detail = f"Passed: {passed_count} | Skipped: {skipped_count} | No failures"
+
+    msg = f"{status_line}\n{detail}"
+
     try:
         _req.post(
             f"https://api.telegram.org/bot{token}/sendMessage",
             json={"chat_id": chat_id, "text": msg},
             timeout=10,
-            verify=False,   # FIX: self-signed cert in corporate proxy chain
+            verify=False,
         )
-        print(f"  [Alert] Telegram failure notification sent.")
+        label = "ALL PASS" if failed_count == 0 and not aborted else ("ABORT" if aborted else "PARTIAL FAILURE")
+        print(f"  [Alert] Telegram pipeline status sent: {label}")
     except Exception as e:
         print(f"  [Alert] Telegram send failed: {e}")
 
@@ -1005,4 +1092,7 @@ Available step IDs:
     )
     args = parser.parse_args()
 
-    run_pipeline(mode=args.mode, step_filter=args.step, dry_run=args.dry_run)
+    result = run_pipeline(mode=args.mode, step_filter=args.step, dry_run=args.dry_run)
+    # Exit non-zero on failures so GitHub Actions marks the workflow as failed
+    if result and (result.get("failed", 0) > 0):
+        sys.exit(1)
