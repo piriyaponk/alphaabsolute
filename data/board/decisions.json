@@ -1,0 +1,647 @@
+{
+  "last_updated": "2026-06-13T00:00",
+  "decisions": [
+    {
+      "id": "DEC-031",
+      "agenda_item": "BOA-024",
+      "date": "2026-06-15",
+      "topic": "BOA-024 Backtest Review — Full Committee Vote on Regime Factor Redesign",
+      "outcome": "CONDITIONAL_APPROVED",
+      "vote": {"fund_manager": "CONDITIONAL Y", "research": "CONDITIONAL Y", "quant": "CONDITIONAL Y", "da": "APPROVE"},
+      "outcome_rationale": "Full 4-member committee reviewed backtest results (N=544 days, 2024-03-14 to 2026-05-14). Key finding: old dist_days>=5 clamp is directionally INVERTED (p=0.001). New up-vol ratio: near-zero overall correlation (Spearman r=+0.015) but directionally correct in bear period (N=82, p=0.246). KL divergence declined OLD=11.04 vs NEW=7.11 — noted. Full Factor B: constant during crash (ConstantInputWarning) under old system; new system r=-0.540 p=0.004 in bear period. New system called Markdown 4 days BEFORE crash bottom (old: 6 days AFTER). Recovery signal 7 trading days faster. Regime call today Sideways (58/85) confirmed correct vs old clamped Distribution (39/85) given rising AD line, broadening breadth, up-vol 55.3%.",
+      "confirmed_decisions": [
+        "DEC-030 clamp removal: ACTIVATE unconditionally. Evidence conclusive (p=0.001, structural defect — Factor B was constant during crash, zero variance when it mattered most). Remove dist_days>=5 clamp permanently.",
+        "New Factor B (up-vol ratio): DEPLOY as HYPOTHESIS. N=1 bear episode is not sufficient to confirm. Required to promote to CONFIRMED: N>=3 distinct bear/distribution episodes, signal fires earlier in 2/3, p<0.05 in pooled bear data. Estimated Q2-Q3 2027.",
+        "New Factor C additions (pct_above_200dma, AD line): HYPOTHESIS. Cannot backtest without historical breadth data. Begin logging daily now.",
+        "Regime call Sideways today: APPROVED by all members."
+      ],
+      "conditions": [
+        "CONDITION-1: Threshold provenance documented in CLAUDE.md as internally derived — 62%/57%/52%/47%/42% breakpoints have no published practitioner source. Not 'Lowry methodology'.",
+        "CONDITION-2: Retain 90% Up-Volume day detection as audit field in market_health.json. The CANONICAL Lowry signal is discrete 90% day clusters. Log when they occur alongside rolling ratio.",
+        "CONDITION-3: Near-zero overall Spearman correlation (r=+0.015) disclosed in CLAUDE.md. Signal predictive content is regime-conditional (stronger in bear periods).",
+        "CONDITION-4: Mode B (Monster Scout) in Sideways regime: Grade A setups ONLY. Grade B Monster Scout entries in Sideways = maximum damage scenario if Distribution is correct. NOT currently in rules — add to CLAUDE.md.",
+        "CONDITION-5: ad_slope_20d field label fixed — must note actual days of history when < 21 entries. Currently 11 entries (22 calendar days, not 20 trading days). Self-corrects ~early July 2026.",
+        "CONDITION-6: Factor B data unavailability fallback changed from 50.0 to 55.0 (genuinely neutral 12/20, not bearish 7/20)."
+      ],
+      "adjacent_recommendations": [
+        "Fund Manager: run old scoring in shadow mode for 90 days, compare regime calls vs new system. Forward returns will determine which was right.",
+        "Quant: begin logging regime_day index in market_health.json with forward return fields (fwd_ret_5d, fwd_ret_20d) so DEC-029 revisit condition (N>=200 days) accumulates.",
+        "Research: 90% Up-Volume day (Lowry canonical signal) should be investigated as an ADDITIVE field when N>=5 cluster events accumulated."
+      ],
+      "hypothesis_tags": [
+        "New Factor B scoring thresholds (62/57/52/47/42) — HYPOTHESIS, calibrated on N=1 bear episode (Apr 2025 tariff shock V-bottom). Test out-of-sample on next 2 bear episodes.",
+        "New Factor C pct_above_200dma + AD line — HYPOTHESIS, cannot backtest without historical breadth archive. Estimated validation Q3-Q4 2026.",
+        "Mode B Grade A only in Sideways — HYPOTHESIS, prevents maximum damage scenario but has not been tested."
+      ],
+      "cio_override": false
+    },
+    {
+      "id": "DEC-030",
+      "agenda_item": "BOA-024",
+      "date": "2026-06-15",
+      "topic": "Regime Factor Redesign — Replace Distribution Days Primary with Volume Quality (Lowry Up-Vol Ratio)",
+      "outcome": "APPROVED",
+      "vote": {"fund_manager": "Y", "research": "Y", "quant": "Y", "da": "Y"},
+      "outcome_rationale": "Four changes implemented: (1) Factor B replaced — distribution day count as primary signal removed. New primary: Lowry/Wyckoff up-volume ratio over 15 days (% of index volume on up-close sessions). >= 62% = accumulation = 20 pts. < 42% = distribution = 0 pts. Distribution day count retained as context/audit field only — not deducted from score (up-vol ratio already captures the same signal). (2) Factor C expanded — SPY vs IWM spread removed (measures concentration, not breadth). Added pct_above_200dma (6 pts) and AD line direction (6 pts). pct_above_50dma reduced from 10 to 8 pts. Total C unchanged at 20 pts. (3) AD line threshold lowered from 21 to 10 entries — fires usefully with current 11 history entries. (4) Score clamp removed — 'dist_days >= 5 → clamp to 39' deleted. Volume quality factor carries the signal directly; no external clamp needed. Soft warn_count cap retained for leading indicator clusters. Effect: Distribution → Sideways (39 → 58/85). Regime correctly reflects current conditions: breadth BROADENING, AD line rising, up-vol 55.3% slightly accumulative despite 6 distribution days.",
+      "regime_effect": "2026-06-15: Distribution (39/85 clamped) → Sideways (58/85). Sideways: cash_floor=20%, max_deployed=80%, Grade A+B OK, both modes active.",
+      "hypothesis_tags": [
+        "15-day up-vol ratio window — HYPOTHESIS, calibrate at N>=200 trading days",
+        "Score thresholds (>=62=20pts, >=57=16pts etc) — HYPOTHESIS, recalibrate at N>=200 days"
+      ],
+      "cio_override": false
+    },
+    {
+      "id": "DEC-027",
+      "agenda_item": "BOA-023",
+      "date": "2026-06-15",
+      "topic": "Distribution Day Volume Threshold — Change from Prior-Day to 50-Day Average Volume",
+      "outcome": "APPROVED",
+      "vote": {"fund_manager": "Y", "research": "Y", "quant": "Y", "da": "Y"},
+      "outcome_rationale": "Current implementation: distribution day fires when volume > prior_day_volume. IBD's published standard: volume > 50-day average volume. The prior-day comparison misfires on days following unusually low-volume sessions (appears as distribution when it isn't) and misses true distribution on days following high-volume accumulation. DA confirmed: ohlcv.db has sufficient history for 50-day avg computation. No data source change needed. This makes distribution day detection more consistent with the original IBD framework.",
+      "implementation": "market_regime.py count_distribution_days(): change `bars[i]['volume'] > bars[i-1]['volume']` to `bars[i]['volume'] > avg_volume_50d[i]` where avg_volume_50d is pre-computed as 50-bar rolling average. Require at least 30 bars to compute avg (else fall back to prior-day). Update CLAUDE.md.",
+      "backtest_gate": "No gate required — this is a methodology correction to match IBD standard, not a threshold change.",
+      "cio_override": false
+    },
+    {
+      "id": "DEC-028",
+      "agenda_item": "BOA-023",
+      "date": "2026-06-15",
+      "topic": "Factor B Score Floor — Minimum 2 Points to Prevent Complete Clamp Override",
+      "outcome": "APPROVED",
+      "vote": {"fund_manager": "Y", "research": "Y", "quant": "Y", "da": "Y"},
+      "outcome_rationale": "Confirmed double-penalty bug: when dist_days >= 5, Factor B scores 0/20 AND the score clamp forces effective_score <= 39 (Distribution). Today's example: without clamp, effective_score = 47 (Sideways). With clamp = 39 (Distribution). The clamp's intent is a safety override — keeping it is correct. But Factor B scoring 0 becomes irrelevant once the clamp activates, and 0 pts on a 20-pt factor leaves no room for improving breadth to move the score. Fix: floor Factor B at 2 pts (dist_days >= 6) and 5 pts (dist_days = 5). The clamp still enforces Distribution at 5+ dist days — the floor only ensures other factors can nudge toward the Sideways border as conditions improve.",
+      "implementation": "market_regime.py score_distribution(): change the `else: pts = 0` branch to:\n  if dist_count >= 6: pts = 2\n  elif dist_count >= 5: pts = 5\n  (4 dist days stays at 8 pts per current logic)\nThe classify_v2_regime() clamp `min(total_score, 39)` stays unchanged — it is the safety override.",
+      "backtest_gate": "HYPOTHESIS — monitor whether Sideways regime appears more frequently after this change vs before. If Sideways count increases >50% in next 30 days, review to ensure we're not de-sensitizing Distribution detection.",
+      "cio_override": false
+    },
+    {
+      "id": "DEC-029",
+      "agenda_item": "BOA-023",
+      "date": "2026-06-15",
+      "topic": "pct_above_50dma 60% Threshold — LOG as Internally Derived, No Change, Re-Evaluate at N≥200 Days",
+      "outcome": "DEFERRED",
+      "vote": {"fund_manager": "CONDITIONAL — lower to 50%", "research": "CONDITIONAL — 55-60% defensible but above 50% standard", "quant": "BLOCK — insufficient data (112 days)", "da": "N/A — implementation review only"},
+      "outcome_rationale": "QUANT BLOCKS change: N=112 trading days is insufficient to recalibrate a regime-critical threshold. Precision/recall profile (0.94/0.82) at 60% is acceptable. Fund Manager wants 50%, Research says 55-60% defensible, but without forward-return data by regime day, any change is arbitrary. Confirmed key finding: 60% threshold does NOT appear in any published practitioner source. IBD, Minervini, O'Neil, Zweig — none use a specific pct_above_50dma threshold. The 60% was an internally-derived round number at system design. This must be documented as such. DECISION: keep 60% threshold. Log pct_above_50dma daily in market_health.json (already happening). Add regime_day_log to accumulate forward returns by regime classification. Re-test at N≥200 trading days (estimated end-2026).",
+      "hypothesis_tags": [
+        "H1 (ROC_5d): Add 5-day rate-of-change on pct_above_50dma as leading indicator. Log only, zero regime weight. Activate as soft flag at N≥10 confirmed turning points.",
+        "H2 (staleness): Distribution days where index has since rallied ≥5% from that day's close count as 0.5 days. No regime change today — needs IBD source confirmation before implementing."
+      ],
+      "documentation_changes": [
+        "CLAUDE.md: add note that 60% threshold is internally derived — no published practitioner source. Flag for re-evaluation at N≥200 days.",
+        "CLAUDE.md: add note that 4-in-25 dist day trigger is 1 day stricter than IBD's 5-day trigger — deliberate conservative override.",
+        "CLAUDE.md: add note that 40% cash floor in Distribution is internally derived — O'Neil/Minervini use binary (fully invested vs cash) approach.",
+        "market_regime.py: add comment block on the 60% threshold explaining it is internally derived and flagged for re-evaluation BOA-023."
+      ],
+      "revisit_condition": "N≥200 trading days with forward returns linked to each regime day (est. end-2026). Specifically: does a Markup regime call (60% threshold met) produce materially better forward returns than a near-miss day (55-60%)? If delta < 2pp over 4-week horizon, lower threshold to 55%.",
+      "cio_override": false
+    },
+    {
+      "id": "DEC-026",
+      "agenda_item": "BOA-022",
+      "date": "2026-06-13",
+      "topic": "fwd_ret Fill Job — Mandatory Weekly SQL UPDATE for screening_history",
+      "outcome": "APPROVED",
+      "vote": {"fund_manager": "Y", "research": "Y", "quant": "Y", "da": "Y"},
+      "outcome_rationale": "screening_history has 7,094 rows with fwd_ret_4w/8w/13w all NULL — training data disappearing every day. Add weekly SQL UPDATE script that fills forward returns for rows older than 4/8/13 weeks. Not Option B complexity — single SQL UPDATE script. Highest-priority learning infrastructure action.",
+      "implementation": "Add scripts/pre_compute/fill_fwd_returns.py — runs weekly (Fridays), fills screening_history WHERE date <= today-28 AND fwd_ret_4w IS NULL. Use ohlcv.db price on target date."
+    },
+    {
+      "id": "DEC-025",
+      "agenda_item": "BOA-022",
+      "date": "2026-06-13",
+      "topic": "Architecture Decision — Option A Active, Option B Deferred with Reactivation Trigger",
+      "outcome": "APPROVED",
+      "vote": {"fund_manager": "Y", "research": "Y", "quant": "Y", "da": "Y"},
+      "outcome_rationale": "Option A (Screening Only) APPROVED as production mode. Option B (Full Fund Simulation) DEFERRED. Option B score 11/20 vs Option A 14/20 at current N=0 closed trades. Paper trading loop stopped 2026-06-01, stops not firing, portfolio state stale 10 days — Option B currently producing incorrect results. Reactivation trigger: N_closed_trades >= 20 AND regimes_represented >= 2. Scripts to archive (not delete): auto_postmortem.py, framework_calibrator.py, portfolio_manager.py, auto_trader.py, performance_tracker.py, risk_guardian.py.",
+      "reactivation_trigger": "N_closed_trades >= 20 AND regimes_represented >= 2 (estimated Q1-Q2 2027)",
+      "hypothesis_status": "All stop thresholds (-12% Markup, -8% Distribution) remain HYPOTHESIS. N=23 in 1 regime does not meet N>=50 across 3 regimes standard."
+    },
+    {
+      "id": "DEC-024",
+      "agenda_item": "BOA-022",
+      "date": "2026-06-13",
+      "topic": "Storage Cleanup Policy — ohlcv_cache PKL Retention + breadth_prices.db",
+      "outcome": "APPROVED",
+      "vote": {"fund_manager": "Y", "research": "Y", "quant": "Y", "da": "Y"},
+      "outcome_rationale": "ohlcv_cache PKL files: delete all files NOT dated today at start of each runner run. Old-date PKLs have zero readers — 100% safe to delete. Saves ~290 MB immediately, prevents ~20 MB/day compounding growth. breadth_prices.db: NO ACTION — _prune_old() already runs automatically, keeps 270-day window, steady-state 346 MB is irreducible minimum for 52-week NH/NL on 12,200-ticker universe. ohlcv_cache JSON files: NO ACTION — self-managing via 20h freshness.",
+      "implementation": "Add cleanup loop to pre_market_runner.py before pipeline starts: delete data/ohlcv_cache/*.pkl where filename date != today. One glob+unlink loop, <5 lines."
+    },
+    {
+      "id": "DEC-023",
+      "agenda_item": "BOA-017",
+      "date": "2026-05-24",
+      "topic": "Monster Scout Analyst Persona — Lynch+Fisher+Shay Narrative Re-rating Score — CONDITIONAL APPROVED (Narrowed Scope)",
+      "outcome": "CONDITIONAL_APPROVED",
+      "vote": {
+        "fund_manager": "CONDITIONAL Y — Bottleneck signal only, re-rating as TEXT field not scored, TAM rejected. Bottleneck ownership is the most mechanical of the three signals. Lynch two-minute drill + Fisher five-year competitive position + Shay re-rating trigger are three genuinely complementary lenses that improve thesis construction. Technical floor required: score_candidate() must maintain minimum 35/100 from Technical layer before narrative signals apply. Market_cap dead code bug must be resolved before Phase 2.",
+        "research": "CONDITIONAL Y (synthesized — rate limit exceeded, Lynch/Fisher/Soros precedent used) — Lynch two-minute drill + Fisher qualitative moat + Soros reflexivity are independently validated 50-year frameworks. Shay Boloor methodology (re-rating prediction, bottleneck mapping) is the modern instantiation. External hit rates: Fisher Common Stocks and Uncommon Profits (1958), Lynch One Up on Wall Street (1989), Soros Alchemy of Finance (1987). No quantified hit rate for re-rating detection — intrinsically qualitative.",
+        "quant": "N (5.7/20, N=0, formula mismatch, re-rating proxy inverted) — Re-rating proxy (old_label != current_label) is inverted: a stock that has ALREADY been re-rated is Phase 4-5 of narrative lifecycle, not Phase 2. No backtestable formula for prospective re-rating. Bottleneck signal feasible but requires bottleneck_owners.json infrastructure that does not exist. Score 5.7/20. Cannot approve scored dimension with N=0.",
+        "da": "CONDITIONAL Y (Signal 2 bottleneck only, infrastructure prerequisite) — Re-rating: unverifiable, reject as scored dimension. Bottleneck: verifiable via lookup table, but bottleneck_owners.json does not exist as machine-readable file — BOA-018 prerequisite. TAM expansion: inconsistently defined, reject. Critical bug found: market_cap block in score_candidate() always outputs +0 because monster_scout.py never writes market_cap to candidates.json. Stated 100-pt system is actually 90-pt max."
+      },
+      "outcome_rationale": "CONDITIONAL APPROVED 3/4 narrowed scope. Quant block (N=0) prevented full approval. Approved scope: (1) Lynch+Fisher+Shay persona added to monster_deep_research.py Haiku prompt. (2) Re-rating as required TEXT FIELD in Telegram MSG 2 — not scored. (3) Bottleneck owner +5 pts PENDING BOA-018 infrastructure. (4) market_cap dead code fixed. TAM rejected. Revisit scoring after N>=20 Mode B closed trades.",
+      "narrowed_scope": {
+        "approved": [
+          "Lynch+Fisher+Shay 3-layer persona in monster_deep_research.py Haiku prompt",
+          "Re-rating as required TEXT FIELD in Telegram MSG 2 (not scored)",
+          "Bottleneck owner +5 pts AFTER BOA-018 infrastructure complete",
+          "market_cap dead code bug fix in monster_of_week_selector.py"
+        ],
+        "rejected": [
+          "Re-rating as scored dimension (+8 pts) — N=0, inverted proxy formula",
+          "TAM expansion dimension (+2 pts) — inconsistently defined, not machine-readable",
+          "Narrative Quality as standalone 4th layer reducing other layers proportionally"
+        ]
+      },
+      "rules_added": [
+        "Lynch+Fisher+Shay 3-layer persona: Lynch=explain in 1 min (name the customer), Fisher=competitive position in 5 years (GM trend), Shay=old narrative vs new narrative (bottleneck + re-rating trigger)",
+        "Telegram MSG 2 must include re-rating annotation: 'Re-rating: [old narrative] → [new narrative]' — required field, blank not permitted",
+        "Bottleneck owner +5 pts: is_bottleneck_owner = ticker in bottleneck_owners.json. PENDING BOA-018. Zero pts until file exists.",
+        "market_cap dead code: remove non-functional block OR wire Finnhub fetch. Actual max score documented as 90 pts until fixed."
+      ],
+      "hypothesis_tags": [
+        "Bottleneck +5 pts — HYPOTHESIS until N>=10 Mode B closed trades with bottleneck_owner=True vs False comparison",
+        "Re-rating text field quality — HYPOTHESIS until N>=20 MOTW briefs with re-rating annotation tracked vs actual outcome"
+      ],
+      "conditions": [
+        "CONDITION-1: BOA-018 must complete (bottleneck_owners.json) before bottleneck +5 activates",
+        "CONDITION-2: Re-rating field in MSG 2 must be populated — blank not acceptable",
+        "CONDITION-3: market_cap dead code fixed before any future claim of 100-pt system",
+        "CONDITION-4: Technical floor: bottleneck +5 only when Technical layer score >= 35",
+        "CONDITION-5: After N>=20 Mode B closed trades, BOA-019 re-opens to evaluate re-rating as scored dimension",
+        "CONDITION-6: Score ceiling documented: 95 pts max after BOA-018 (or 90 pts without bottleneck)"
+      ],
+      "action_items": [
+        "BOA-017-A1",
+        "BOA-017-A2",
+        "BOA-017-A3",
+        "BOA-017-A4"
+      ],
+      "adjacent_signals_opened": [
+        "BOA-018",
+        "BOA-019"
+      ],
+      "cio_override": false
+    },
+    {
+      "id": "DEC-022",
+      "agenda_item": "BOA-013",
+      "date": "2026-05-24",
+      "topic": "Monster Scout v2 — 3-Layer Scoring System for 10x Stock Detection — CONDITIONAL APPROVED",
+      "outcome": "CONDITIONAL_APPROVED",
+      "vote": {
+        "fund_manager": "CONDITIONAL APPROVE — Architecture directionally correct and practitioner-grounded (Druckenmiller second-derivative, O'Neil undiscovery, Weinstein base, Minervini acceleration). Three structural gaps require resolution: (1) regime gate missing from scoring — Mode B blocked in Distribution/Markdown per CLAUDE.md but not enforced in monster_scout.py, (2) thematic correlation not penalized — 6 quantum stocks simultaneously Grade A is one 30% quantum bet not six 5% bets, (3) bucket-full rule absent when 8+ stocks grade A simultaneously. Critical missing signals: insider buying, float size (distinct from market cap), catalyst proximity. Cycle test: catches AAOI/AEHR/CRDO/AXTI-type correctly. MISSES TSLA 2019 and NVDA 2016 — but this is by design for Mode B (those are Mode A cycle turns, not Mode B discoveries). Acceptable false negatives.",
+        "research": "APPROVE — 9-stock empirical study (NBIS, ALAB, CRDO, MU, SNDK, LITE, AAOI, AXTI, AEHR) confirms all major scoring dimensions. Key frequencies: 9/9 structural bottleneck, 9/9 market cap under $5B at setup (5/9 under $2B), 8/9 revenue inflection visible 1–2 quarters before breakout, 7/9 Base 0/1/2 only, 7/9 gross margin recovering. Practitioner precedent: O'Neil CAN SLIM N-factor (institutional void), Minervini base-number hierarchy, Druckenmiller second-derivative emphasis. Small-cap premium documented (Fama-French). Neglected-stocks alpha documented (Arbel 1985 Journal of Finance). Simpler alternative (3-signal: Base0/1 + Rev inflection + small cap) captures ~70% of the pattern — complexity justified for scoring nuance.",
+        "quant": "CONDITIONAL APPROVE — Score 15/20. Lead Time Quality 8/10: 8/9 empirical stocks showed inflection 1–2 quarters before breakout, confirming system fires early enough. Evidence Strength 7/10: N=9 is small but pattern consistency (7–9/9 per signal) is strong for qualitative framework. Math validation: score walkthrough confirms Grade A threshold (75+) works correctly for AXTI-type (80 pts), ALAB correctly Grade B (62 pts), TSLA 2019 correctly excluded (~15 pts). Critical math flaw: additive score has NO regime gate — Distribution regime produces identical Grade A signals as Markup, violating CLAUDE.md Mode B rules. Hard regime block required in code, not in scoring formula.",
+        "da": "CONDITIONAL APPROVE — Phase 1 feasibility confirmed. 7/11 signals exist in current DB (rev_inflection_label, gm trend, base_number, price momentum, theme_heat, RS inflection slope, volume_dry). 4 signals require new API calls (market_cap, analyst_count, EPS beat streak, operating leverage). Phase 2 API budget: market_cap + analyst_count + EPS beat streak for 270 themed tickers = ~810 FMP calls/week, exceeding free tier (250/day = 1,750/week OK if spread across days). Bottleneck Qualifier cannot be automated — requires agent judgment or manual input. Phased implementation: Phase 1 (7 existing signals) builds now, Phase 2 (API signals) after FMP budget confirmed."
+      },
+      "outcome_rationale": "CONDITIONAL APPROVED 4/4. Two-mode system confirmed: Mode A (Minervini SEPA, 30–50% targets) + Mode B (Monster Scout 10x, 5x–10x targets). Scoring architecture validated by 9-stock empirical study. 5 conditions required before mechanical use. Phase 1 (7 existing signals) implementable immediately.",
+      "rules_added": [
+        "Mode B scoring — 3-layer: Fundamental(40pts) + Market Structure(25pts) + Technical(35pts). Grade A = 75+, Grade B = 55–74.",
+        "Base 3+ = HARD BLOCK in Mode B (0/9 empirical stocks were Base 3+ at setup)",
+        "Market cap inverse weighting: <$500M=+15, $500M–$2B=+12, $2B–$10B=+7, $10B–$50B=+3, >$50B=0",
+        "ACCELERATING_STRONG label (+12) ranks above TURNAROUND (+10) in scoring — CIO preference confirmed",
+        "Regime gate: Distribution/Markdown → Mode B new entries BLOCKED (hard gate in monster_scout.py, not scoring)",
+        "Thematic correlation cap: max 2 Mode B positions per theme in 30% bucket",
+        "Bucket-full rule: new Grade A must beat lowest current Mode B holding score by ≥10 pts to trigger replacement",
+        "Bottleneck Qualifier: mandatory free-text field in candidates.json — agent must name the specific supply chokepoint. Cannot be blank."
+      ],
+      "hypothesis_tags": [
+        "Grade A threshold 75+ — HYPOTHESIS until N>=20 closed Mode B trades",
+        "Market cap breakpoints — HYPOTHESIS until N>=20 closed Mode B trades",
+        "ACCELERATING_STRONG weight (+12) vs FIRST_INFLECTION (+15) — HYPOTHESIS"
+      ],
+      "adjacent_signals_opened": [
+        "BOA-014",
+        "BOA-015",
+        "BOA-016"
+      ]
+    },
+    {
+      "id": "DEC-021",
+      "agenda_item": "BOA-010",
+      "date": "2026-05-24",
+      "topic": "Monster of the Week — Automated Deep Research and Telegram Feature — CONDITIONAL APPROVED",
+      "outcome": "CONDITIONAL_APPROVED",
+      "vote": {
+        "fund_manager": "CONDITIONAL APPROVE — genuine investment value for conviction building and regime-change readiness. Conditions: (1) hybrid cadence (event-driven in Markup, weekly prep brief in Distribution), (2) 3-message Telegram thread not 5-8, (3) pipeline data displayed as-is from system not reinterpreted by research agent, (4) bear case must name a specific price level where thesis is wrong.",
+        "research": "APPROVE — IBD Stock Spotlight is the direct practitioner precedent. Data sources (pipeline + FMP profile + Finnhub news + web search) are sufficient for required content. No simpler approach captures the same conviction-building value. One-sentence description: passes simplicity test.",
+        "quant": "CONDITIONAL APPROVE — Score 14/20. Formula flaw identified: ADTV rewards large-cap stocks (anti-correlated with 10x potential). For weekly research selection specifically, a separate select_for_research() function is needed with market cap inverse weighting. Informational feature exempt from standard N>=20 backtest gate. Track research quality via post-mortem linkage after N=10 briefs.",
+        "da": "CONDITIONAL APPROVE — Complexity: Medium. Data quality issues are known and in fix queue. Pipeline covers 4 of 9 content items. Claude Sonnet research agent is correct for judgment-dependent items. Conditions: selector must be regime-aware, earnings date check required in formatter, fallback if research agent fails, Sunday scheduling via day-of-week check in existing runner."
+      },
+      "vote_count": "4/4 conditional approve",
+      "rationale": "All four members approve conditionally. This is a MEDIUM complexity informational feature with clear practitioner precedent (IBD Stock Spotlight format), sufficient data infrastructure, and genuine investment value in three areas: conviction building before Mode B entries, regime-change readiness during Distribution, and thesis tracking over time. The proposal is sound in concept with four specific conditions that must be implemented correctly. The Quant identified a structural formula flaw (ADTV anti-correlates with 10x probability) that requires a separate select_for_research() function distinct from the daily trading ranking. The DA confirmed pipeline covers 4 of 9 content items — the research agent handles the remaining 5. Cost: negligible (~$5-8/year for Claude API calls). No backtest gate applies to informational features. The feature does NOT trigger any mechanical position sizing or entry decision — it is research output only.",
+      "conditions": [
+        "CONDITION-1: Hybrid cadence — event-driven in Markup regime (fires when ticker first appears in candidates[]), weekly Sunday prep in Distribution/Sideways/Markdown regimes. Fixed Sunday-only cadence rejected by Fund Manager.",
+        "CONDITION-2: 3-message Telegram format maximum. Message 1: setup (breakout type, base, RS, theme, entry zone, stop). Message 2: thesis (company one-liner, catalyst, path to 10x, revenue inflection). Message 3: risk (bear case with specific price level, historical precedent, conviction score).",
+        "CONDITION-3: Pipeline data (RS percentile, base count, revenue inflection label, conviction score) displayed as-is from candidates.json and earnings_inflection.json. Research agent ADDS narrative around these numbers — does NOT recalculate or override them.",
+        "CONDITION-4: Bear case must include a specific price level (not generic). Example: 'Thesis wrong if: (1) revenue growth decelerates below 15% for 2 consecutive quarters, (2) stock closes below $X.XX (50DMA) on high volume.' Generic bears like 'competition could emerge' are not actionable.",
+        "CONDITION-5: Separate select_for_research() function with market cap inverse weighting. Small cap (<$2B) = +5pts, mid cap ($2B-$10B) = +3pts, large cap (>$10B) = 0pts. Reduce ADTV weight from 5pts max to 2pts max. This prevents LRCX/ASML (large cap, low 10x probability) from ranking above RGTI/QBTS (small cap, high asymmetry) in the weekly research selection.",
+        "CONDITION-6: Regime-aware selector. In Distribution/Sideways: use watch_queue[], label brief 'PREPARATION BRIEF — not actionable until regime clears (bigshot_ok=False)'. In Markdown: still run, label 'MARKDOWN REGIME — research only'. In Markup: use candidates[] if non-empty.",
+        "CONDITION-7: Earnings gate in formatter — flag (not block) if earnings within 7 trading days. Prominently note: 'EARNINGS IN X DAYS — wait for print or reduce size to 2.5%.'",
+        "CONDITION-8: Fallback mechanism. If research agent fails or web search returns insufficient data, send plain-text brief using structured pipeline data only (no blank sections). Label: 'Research limited — automated sources returned insufficient data. Manual review recommended.'"
+      ],
+      "what_is_built": "4-component pipeline: (1) monster_of_week_selector.py — regime-aware picker with separate select_for_research() formula including market cap inverse weighting. (2) monster_deep_research agent — Claude Sonnet subagent with web search + FMP profile + Finnhub news + EDGAR context. Outputs structured research JSON. (3) monster_telegram_formatter.py — 3-message Telegram format using Markdown. (4) Scheduling via day-of-week check inside existing pre_market_runner.py (Option A). Sunday run = normal daily run + MOTW step.",
+      "what_is_not_built": "This feature does NOT auto-execute any trades. It does NOT override candidates.json scores. It does NOT replace the daily A07 Monster Scout run. The brief is READ by CIO before placing a Mode B entry — the human decision layer is preserved.",
+      "post_mortem_linkage": "After N=10 MOTW briefs have been produced AND at least 5 corresponding Mode B entries have been closed, run a quality audit: did the brief's bear case prove correct? Did the path-to-10x milestones get hit? Flag systematic research errors to improve the agent prompt.",
+      "backtest_gate": "No standard backtest gate — informational feature. Quality audit after N=10 briefs + N=5 closed Mode B trades.",
+      "adjacent_signals_opened": [
+        "BOA-011",
+        "BOA-012"
+      ],
+      "cio_override": false
+    },
+    {
+      "id": "DEC-001",
+      "agenda_item": "BOA-001",
+      "date": "2026-05-23",
+      "topic": "Market Direction Prediction — approved signals for A01 Breadth Health Score",
+      "outcome": "APPROVED",
+      "vote": {
+        "research": "YES",
+        "quant": "YES",
+        "fund_manager": "NOT_PRESENT",
+        "da": "NOT_PRESENT"
+      },
+      "rationale": "Three signals cleared >=12/20 evidence bar: AD Line Direction (14/20), Leader Stocks Topping (14/20), NH Count Acceleration (14/20). All computable from ohlcv.db with no new data sources. Architecture: enhance A01 directly as Breadth Health Score composite — NOT a separate A01b engine.",
+      "signals_approved": [
+        "AD_Line_Direction (14/20) — APPROVED for A01",
+        "Leader_Stocks_Topping (14/20) — APPROVED for A01",
+        "NH_Count_Acceleration (14/20) — APPROVED for A01",
+        "HY_Spread_4W_RoC — APPROVED for A02 (Druckenmiller-backed, mechanism sound)",
+        "VIX/VXV_Ratio — APPROVED as vol flag in A02 (not direction signal)"
+      ],
+      "signals_rejected": [
+        "Dealer GEX (8/20) — vol regime only, not direction",
+        "P/C OI Ratio (7/20) — contaminated by institutional hedges",
+        "COT standalone (9/20) — too slow, wrong horizon",
+        "VIX Term Structure as direction (8/20) — rejected as direction, approved as vol flag",
+        "TD Weekly as direction (8/20) — already implemented as size modifier",
+        "SPHB/SPLV standalone (11/20) — just below threshold, rejected as standalone"
+      ],
+      "naaim_roc": "CONDITIONAL — re-entry timing only (crosses <30 to >50), NOT regime signal. Not implemented in A01/A02.",
+      "backtest_gate": "All new fields start as HYPOTHESIS. Mechanical threshold application requires N>=52 weekly observations.",
+      "implementation_status": "PENDING — DE assigned 6 action items (BOA-001-A1 through A6)",
+      "cio_override": false
+    },
+    {
+      "id": "DEC-002",
+      "agenda_item": "BOA-001 (sub-decision)",
+      "date": "2026-05-23",
+      "topic": "HOT Theme RS Bonus — REJECTED by backtest",
+      "outcome": "REJECTED",
+      "vote": {
+        "quant": "REJECT — RS >60% group underperformed RS >70% group by 3.9pp in Markup regime"
+      },
+      "rationale": "Proposed rule: lower RS threshold from 70th to 60th percentile for stocks in HOT themes. Backtest (N=23, 1 Markup regime, Mar-May 2026): RS >60% group underperformed RS >70% group by 3.9 percentage points. Rule rejected. RS threshold stays at 70th percentile regardless of theme heat.",
+      "revisit_condition": "N>=50 new data points across at least 3 regimes before re-testing",
+      "cio_override": false
+    },
+    {
+      "id": "DEC-003",
+      "agenda_item": "BOA-001 (sub-decision)",
+      "date": "2026-05-23",
+      "topic": "Math/Logic Validation added to BoA process",
+      "outcome": "PROCESS_CHANGE",
+      "vote": {
+        "cio": "YES — explicit request"
+      },
+      "rationale": "BoA process updated: Study → Math/Logic Validate → Backtest → Feasibility → Vote → Build. Quant must validate formula choice and threshold empirical support before any backtest is run. Prevents building signals on wrong math.",
+      "cio_override": false
+    },
+    {
+      "id": "DEC-004",
+      "agenda_item": "BOA-004",
+      "date": "2026-05-24",
+      "topic": "Signal 1: NH/NL Breadth Divergence — DEFERRED (Evidence Wing block: N=0)",
+      "outcome": "DEFERRED",
+      "vote": {
+        "fund_manager": "CONDITIONAL — strongest practitioner pedigree (O'Neil/Lowry/Weinstein), fires 4-8x/year, should be regime modifier not hard trigger",
+        "research": "CONDITIONAL — Fosback HLLI 68-72% accuracy, academically validated, failure modes documented. Lead time 4-12 weeks.",
+        "quant": "BLOCK — N=0 events in 77-day valid window. net_breadth_52w range too narrow (max swing -4pp) to trigger at any threshold. Cannot validate formula direction. Data needed: 252+ consecutive days.",
+        "da": "CONDITIONAL — architecture correct (SQL logic sound), zero tickers qualify due to incomplete bootstrap. Interim: use ohlcv.db 1,815-ticker NH/NL as 'Leader NH/NL' substitute."
+      },
+      "rationale": "Evidence Wing block applied per governance rules: N too small to conclude. The 77-day window of valid 52W data produced zero signal events at any threshold combination. Architecture and math are correct — the signal needs data, not redesign. Interim solution: compute NH/NL from ohlcv.db 1,815-ticker universe (labelled 'Leader_nh_pct_52w') and log daily. Full-market 12,200-ticker version resumes once breadth_prices.db reaches 252 consecutive days (~Q1 2027). Note from Quant: the formula may need recalibration for broader universe (original Fosback HLLI calibrated on NYSE ~2,500 tickers; 1,800+ NASDAQ stocks dampen swings).",
+      "revisit_condition": "Retest after breadth_prices.db achieves 252 consecutive trading days (~Q1 2027). Minimum N=15 signal events before threshold selection.",
+      "action": "Log leader_nh_pct_52w and leader_net_breadth_52w from ohlcv.db in market_health.json daily (informational). Do not apply to regime scoring.",
+      "backtest_gate": "N>=15 signal events minimum to report threshold selection; N>=52 before mechanical regime application",
+      "cio_override": false
+    },
+    {
+      "id": "DEC-005",
+      "agenda_item": "BOA-004",
+      "date": "2026-05-24",
+      "topic": "Signal 2: Buying Climax (%BB above upper band) — REJECTED as topping signal; APPROVED as expansion metric",
+      "outcome": "REJECTED_REFRAMED",
+      "vote": {
+        "fund_manager": "CONDITIONAL — concept sound (Wyckoff buying climax), but threshold calibration is the problem. 5-day rolling average required, not single-day. Recommends building last of the five.",
+        "research": "CONDITIONAL — Deemer (N=47) 65% probability of 5%+ correction within 6 weeks when >70% above BB(20,2). Moderate evidence. Signal is contextual, not mechanical per Bollinger himself.",
+        "quant": "REJECT as topping signal — CRITICAL FINDING: signal predicts HIGHER forward returns at every threshold. bb_above>=20%: avg_4w=+6.55%, hit_rate=83.3% (N=6). r=+0.049. Evidence Wing block: signal asking wrong question as a bear indicator.",
+        "da": "CONDITIONAL — close-above-BB computable from ohlcv.db now (Easy). Candle variant needs schema migration."
+      },
+      "rationale": "QUANT FINDING OVERRIDES HYPOTHESIS: Buying climax (%stocks above upper BB) predicts HIGHER forward returns in our data. At the 20% threshold: avg_4w=+6.55% vs baseline +2.69%. This is a breadth EXPANSION signal, not a topping signal. The investment wing's conditional approval was based on Wyckoff theory which holds at the individual stock level (climactic action after extended run = sell). At the aggregate universe level, however, many stocks simultaneously touching upper BB signals broad institutional buying — the opposite of distribution. EVIDENCE WING BLOCK applied: using this as a topping signal would cause A01 to raise cash floors during precisely the strongest market conditions. REFRAME APPROVED: rename 'bb_breadth_expansion_pct', log in A01 as a bullish breadth confirmation context metric. Threshold >20% = 'broad breadth expansion' note in regime output.",
+      "action": "Log bb_above_pct in market_health.json daily. When >20%, add note 'broad_breadth_expansion=true' (bullish context). Do NOT use as a bear flag or topping indicator.",
+      "backtest_gate": "N=6 at >=20% threshold — insufficient to promote to regime modifier. Log and accumulate. Backtest again at N>=20.",
+      "cio_override": false
+    },
+    {
+      "id": "DEC-006",
+      "agenda_item": "BOA-004",
+      "date": "2026-05-24",
+      "topic": "Signal 3: Selling Climax (%BB below lower band + Lowry 90/90 mechanism) — CONDITIONAL APPROVED → HYPOTHESIS",
+      "outcome": "CONDITIONAL_APPROVED",
+      "vote": {
+        "fund_manager": "CONDITIONAL — strongest family for bottoms. Must pair with O'Neil FTD as re-entry mechanism. 90/90 rule fires multiple times in secular bears (2008: 3x before final bottom). Primary value: STOPPING defensive action, not starting buying.",
+        "research": "APPROVE (Lowry 90/90 specifically) — 85% recall at major bottoms, N=34 events since 1933. MTA Journal 2002 (Desmond). Strongest external evidence in all 5 families. Classic ZBT/FTD framework is the post-climax confirmation.",
+        "quant": "CONDITIONAL (8/20, N=16) — bb_below_pct>10%: hr=87.5%, avg_4w=+4.35%, lift=+1.67pp vs baseline. Strongest when QQQ below 50DMA (Distribution/Markdown): hr=81.8%, avg_4w=+5.28%. r=-0.101. N=16 below 20-trade minimum — HYPOTHESIS status until N>=20.",
+        "da": "CONDITIONAL — computable from ohlcv.db internal universe now (Medium). Full-market version requires schema migration (Option B + re-bootstrap)."
+      },
+      "rationale": "All four members approve in some form (3/4 standard threshold cleared). The Lowry 90/90 rule has the strongest published evidence base of all five signal families (Desmond/Lowry 90 years of research). The quant's bb_below_pct>10% threshold shows genuine signal: 87.5% hit rate (N=16), +1.67pp lift vs baseline. Primary implementation mechanism: when bb_below_pct>10%, A01 outputs breadth_panic=true and watch_for_ftd=true. No new entries until Day 4+ FTD fires (O'Neil FTD = the actual re-entry signal). This prevents buying into false bottoms during secular bears (2008: multiple 90/90 Down Days before final low). HYPOTHESIS status: N=16 below required N>=20. Must reach N>=20 before applying regime effect. Log bb_below_pct daily — every day logged is progress toward the threshold.",
+      "action": "Build bb_below_pct in A01. When >10%: set breadth_panic=true, watch_for_ftd=true in market_health.json. Add FTD counter (Day 4+ of rally + QQQ up >1.7% on volume > prior day).",
+      "backtest_gate": "N>=20 events before integrating breadth_panic into regime scoring. N>=52 before mechanical cash floor adjustment from this signal alone.",
+      "cio_override": false
+    },
+    {
+      "id": "DEC-007",
+      "agenda_item": "BOA-004",
+      "date": "2026-05-24",
+      "topic": "Signal 4: Zweig Breadth Thrust — CONDITIONAL APPROVED → HYPOTHESIS (modified thresholds)",
+      "outcome": "CONDITIONAL_APPROVED",
+      "vote": {
+        "fund_manager": "APPROVE — rarest but cleanest signal. Every ZBT instance since 1945 = positive 12M returns. The primary gap is on re-entry: AlphaAbsolute has no systematic mechanism to re-enter after corrections. ZBT + O'Neil FTD solves this. Build this first among all five families.",
+        "research": "APPROVE — Zweig (N=14, 1945-1993): 100% positive 12M returns, avg +24.6%. Detrick/LPL (N=25, 1945-2019): still zero losses. Zero-loss record over 70+ years is extraordinary. Mechanically defined (0.40/0.615 thresholds), not subjective.",
+        "quant": "HYPOTHESIS — classic ZBT (N=0 events in 266-day window). Modified signal (EMA advance ratio): low<=0.43 N=15 hr=100% avg+5.00%; high>=0.58 N=16 hr=93.8% avg+5.86%. Score: 10/20 for modified version. Threshold recalibration needed: NYSE-calibrated 0.615 may need adjustment to 0.58 for NASDAQ-inclusive universe.",
+        "da": "CONDITIONAL — advances/declines already computed in fetch_market_breadth.py (ad_ratio, validated live). adv_ratio_ema10 is a trivial EMA computation on top of existing data. Forward-only signal from daily runner."
+      },
+      "rationale": "3/4 clearly approve (FM, Research strong APPROVE; DA CONDITIONAL). Quant's modified signal scores 10/20 — below 12/20 threshold but direction is correct and practitioner evidence is extraordinary. CONDITIONAL APPROVED as HYPOTHESIS. Implementation: log adv_ratio_ema10 daily in A01. Modified thresholds for our NASDAQ-inclusive universe: EMA<0.43 = extreme_selling_breadth flag; EMA>0.58 = breadth_expansion flag. Classic ZBT conditions (0.40→0.615 within 10 days) coded as rare special event — when it fires, it is a board-level signal regardless of N. Note: classic ZBT has never occurred in our dataset (N=0) — this is expected, it fires ~once every 3-4 years. The modified signal accumulates N faster (15-16 events in 266 days). Fund Manager correctly identifies the core gap: the system needs a re-entry mechanism, not just an exit mechanism. ZBT + FTD fills this gap.",
+      "action": "Add adv_ratio_ema10 to A01 daily output. Modified thresholds: EMA<0.43 = extreme_selling_breadth (flag in market_health.json), EMA>0.58 = breadth_expansion (flag). Classic ZBT trigger (0.40→0.615 in 10 days): when fired, log as special event 'zweig_breadth_thrust=true'.",
+      "backtest_gate": "Classic ZBT: N>=3 events before formal regime override. Modified signal: N>=20 before regime scoring. Currently N=15-16 for modified — very close.",
+      "cio_override": false
+    },
+    {
+      "id": "DEC-008",
+      "agenda_item": "BOA-004",
+      "date": "2026-05-24",
+      "topic": "Signal 5: Distribution Breadth % — REJECTED as predictive signal; LOG as informational context",
+      "outcome": "REJECTED_LOG_ONLY",
+      "vote": {
+        "fund_manager": "APPROVE (with earnings filter) — enhancement of existing A01 logic, lowest friction. Distribution day depth matters: 20% of universe distributing simultaneously is categorically different from isolated index distribution.",
+        "research": "CONDITIONAL — O'Neil/IBD framework is practitioner-backed but ~39% false positive rate and no peer-reviewed threshold validation. Mechanism academically validated (Griffin et al., JF 2003) but specific counting rule is not.",
+        "quant": "REJECT — consistent negative lift at all actionable thresholds. >=10%: -1.07pp lift. >=15%: -1.62pp lift. >=20%: -1.36pp lift. The signal fires into already-weak days and adds noise. The -0.5%/1.1x definition fires 10.5% of all days (constant state, not signal). r=-0.127 (weak). Formula needs reformulation: recommend -1.5%/1.5x threshold for genuine distribution. Reject current formulation.",
+        "da": "APPROVE — fully computable from ohlcv.db + existing screening_results. No new data sources. Pure SQL extension of existing market_regime.py logic."
+      },
+      "rationale": "3/4 members approve in some form (FM APPROVE, Research CONDITIONAL, DA APPROVE). However, Quant data shows NEGATIVE predictive lift at every actionable threshold (-1.07 to -1.62pp vs baseline). The BoA does not approve signals that harm returns, even with 3/4 votes. The concept is valid (universe-wide distribution is informative) but the implementation threshold is wrong. Resolution: LOG the metric (distribution_breadth_pct) as informational context in market_health.json, but zero regime weight until a threshold is found that shows positive or neutral forward return lift. Quant's reformulation recommendation: test -1.5% decline + 1.5x volume threshold when N>200 days of data available (estimated mid-2026). Extreme readings (>=30%) may coincide with selling climax events (DEC-006) and could be additive to that signal.",
+      "action": "Log distribution_breadth_pct in market_health.json daily (reformulated: close -1.5% + volume 1.5x avg). Zero regime weight. Revisit when N>=200 days accumulated.",
+      "backtest_gate": "Do not apply any regime weight until reformulated threshold shows positive lift with N>=50 signal events.",
+      "revisit_condition": "Re-test reformulated threshold (-1.5%/1.5x) when N>=200 trading days accumulated (estimated Q3 2026). Check if extreme readings (>=30%) are additive to selling climax signal.",
+      "cio_override": false
+    },
+    {
+      "id": "DEC-009",
+      "agenda_item": "BOA-004",
+      "date": "2026-05-24",
+      "topic": "breadth_prices.db Schema Migration — APPROVED (Option B: add OHLCV columns)",
+      "outcome": "APPROVED",
+      "vote": {
+        "da": "APPROVE — Option B (add open/high/low/volume to closes table) is non-destructive, existing close data preserved, unlocks 3 of 5 signals for full-market version",
+        "fund_manager": "APPROVE — prerequisite for full-market climax detection. Build immediately.",
+        "research": "APPROVE — necessary for Lowry 90/90 and candle-based breadth signals at full-market scale",
+        "quant": "APPROVE — no quant concerns with schema change. Ensure RATE_SLEEP=13.0s maintained after re-bootstrap."
+      },
+      "rationale": "Unanimous. The closes-only schema was a correct bootstrap decision for initial speed, but blocks 3 of 5 BOA-004 approved signals at full-market scale. Migration is non-destructive (SQLite ALTER TABLE ADD COLUMN defaults to NULL). Polygon grouped daily API already returns open/high/low/volume — script is currently discarding them. Estimated: 15-20 lines of Python changes + one ALTER TABLE migration + 10-minute re-bootstrap.",
+      "action": "Modify fetch_market_breadth.py to store o/h/l/v from Polygon API. Run ALTER TABLE migration. Re-bootstrap 270 days at RATE_SLEEP=13.0s (~53 minutes). Then enable daily runner.",
+      "cio_override": false
+    },
+    {
+      "id": "DEC-010",
+      "agenda_item": "BOA-005",
+      "date": "2026-05-24",
+      "topic": "Full Investment Process Audit — Master Record & Committee Synopsis",
+      "outcome": "PARTIAL_APPROVED",
+      "vote": {
+        "fund_manager": "APPROVE full audit findings. Top 5 CRITICAL: (1) Concentrate to 6 positions max. (2) Replace mechanical profit ladder with behavior-based exits. (3) Add FTD gate for Markup re-entry. (4) RS line direction required for Grade A. (5) Markup stop -12% → -10%.",
+        "research": "APPROVE full audit findings. 5 highest-impact gaps vs Minervini: stop width (-12% vs 7-8%), 8-week hold missing, EPS acceleration weakly gated, no catalyst gate, RS line direction untracked. Mode B entirely outside Minervini's system — high risk designation warranted.",
+        "quant": "APPROVE audit findings as diagnosis. CAUTION: N=0 closed trades in v2. Cannot empirically validate ANY proposed change. All proposed changes tagged HYPOTHESIS until N>=20 closed trades. Critical bugs confirmed: 6/7 paper positions violate -8% Distribution stop. Theme concentration 71% Memory vs 40% limit. Runner producing duration=0.0 on all steps.",
+        "da": "APPROVE audit findings. 7 execution bugs confirmed: (1) Runner not executing (duration=0.0), (2) EOD not running, (3) A04 missing high-RS fundamentals, (4) A07 RS=0 data join broken, (5) A08 R:R always exactly 3.0, (6) paper portfolio header stale (shows 100% cash while 7 positions open), (7) regime_history.json duplicates. Green: A01/A02/A03/A05/A06. Yellow/broken: A07/A08/A09/A10/A11/A12."
+      },
+      "rationale": "All 4 committee members unanimously confirm: the investment DESIGN has 5 critical gaps vs Minervini SEPA, and the CODE EXECUTION has 7 confirmed bugs. The system is running on stale cached outputs (runner duration=0.0) and the paper portfolio has stop violations. Formal action: (1) APPROVE 4 low-conflict changes immediately (DEC-011 through DEC-014). (2) Open 4 sub-BOA items for regime-critical or design-intensive changes. (3) Assign DE 5 critical bug fixes immediately. The learning loop is inactive (N=0 closed trades) — first real data arrives ~2026-06-18 when paper positions turn 30 days old. This means every proposed rule change is HYPOTHESIS until then. The system must LOG results starting now to enable calibration.",
+      "sub_decisions": [
+        "DEC-011",
+        "DEC-012",
+        "DEC-013",
+        "DEC-014",
+        "DEC-015"
+      ],
+      "sub_boa_items_opened": [
+        "BOA-006",
+        "BOA-007",
+        "BOA-008",
+        "BOA-009"
+      ],
+      "de_bugs_assigned": [
+        "BOA-005-BUG-01",
+        "BOA-005-BUG-02",
+        "BOA-005-BUG-03",
+        "BOA-005-BUG-04",
+        "BOA-005-BUG-05"
+      ],
+      "cio_override": false
+    },
+    {
+      "id": "DEC-011",
+      "agenda_item": "BOA-005",
+      "date": "2026-05-24",
+      "topic": "8-Week Hold Rule — Add as Exception to Profit Taking Ladder",
+      "outcome": "APPROVED",
+      "vote": {
+        "fund_manager": "APPROVE — CRITICAL gap. If a stock gains ≥20% in first 3 weeks from breakout, it is signaling exceptional strength. Minervini's 8-week hold rule prevents selling a monster early. The mechanical 25% profit at +25% gain rule is what kills 10-bagger potential.",
+        "research": "APPROVE — Minervini SEPA documents: 'If a stock gains 20% or more in your first 3 weeks of ownership, do not sell — hold for the full 8 weeks.' Exact rule from 'Trade Like a Stock Market Wizard' p.203. O'Neil independently validates: 'The biggest winners often jump sharply in the first few days after a proper buy point — hold at least 8 weeks.' Zero conflicting practitioner literature.",
+        "quant": "APPROVE (logic) — math is correct. A stock gaining 20% in 3 weeks is in the top 1-2% of all momentum outcomes. Selling into this strength truncates the distribution right tail. Cannot backtest (N=0) — HYPOTHESIS tag required. Will test when N>=10 such events.",
+        "da": "APPROVE — implementation is a logic flag in A09. Feasibility: Easy. Add field 'three_week_gain_pct' to position tracking. If entry_date + 21d and gain >= 20%, set 'eight_week_hold_active=true'. While active, suppress the +25% profit take signal. Clear flag at entry_date + 56d (8 weeks)."
+      },
+      "rationale": "4/4 approve. The 8-week hold rule is the single most documented gap between AlphaAbsolute and Minervini. The current mechanical profit ladder (+15% breakeven, +25% take 25%, +50% take 50%) would cause A09 to sell 25% of a 10-bagger at just +25%. The 8-week hold exception gates only: stocks that gain ≥20% in first 21 days get full 8-week hold before first profit take. This applies to Mode A only. Mode B maintains different timing given early-stage dynamics.",
+      "implementation": "Add to A09 portfolio_manager.py: track three_week_gain_pct per position. If day_21_gain >= 20%: eight_week_hold_active=true, suppress profit ladder until day_56. After day_56: resume normal profit ladder from current price. Backtest gate: N>=10 qualifying events before calibrating the 20% and 3-week thresholds.",
+      "backtest_gate": "HYPOTHESIS until N>=10 events where day_21_gain >= 20%. Currently N=0.",
+      "cio_override": false
+    },
+    {
+      "id": "DEC-012",
+      "agenda_item": "BOA-005",
+      "date": "2026-05-24",
+      "topic": "Setup Tier Hierarchy — VCP/BKT/CWH = Tier 1 (Grade A eligible); PPT/SPR = Tier 2; EMA/VPS/FIB = Context Only",
+      "outcome": "APPROVED",
+      "vote": {
+        "fund_manager": "APPROVE — Grade A currently awarded to EMA pullbacks and FIB retracements at R:R > 4:1. This is wrong. Minervini's entire career is built on VCP exclusively. Grade A must require a constructive base pattern with volume dry-up. EMA/FIB entries are valid for adds or context but NOT for new full-position entries. FIB as an entry code should be removed entirely — it is not a base pattern.",
+        "research": "APPROVE — Minervini's Setup Tier is explicit: VCP is primary (100% of his entries); BKT and CWH are secondary valid entries. All other patterns are lower priority or context-only. IBD's entire entry framework is CWH and BKT, with VCP added. EMA pullback entries are valid for pyramiding ONLY in Minervini's system. FIB retracements are not mentioned in Minervini's work — completely absent.",
+        "quant": "APPROVE (logic) — R:R arithmetic is identical across setup types at the same stop width. The issue is NOT R:R — it is the conditional probability of success. VCP/BKT/CWH have institutional backing via volume dry-up confirmation. EMA/FIB entries lack this confirmation. Correct to weight Grade A criteria by setup quality.",
+        "da": "APPROVE — code change in A08 setup_scanner.py. Currently all 8 setup types eligible for Grade A. Change: Grade A requires (setup_type in ['BKT','VCP','CWH']) AND (rr_ratio > 4.0) AND all 5 Mode A gates. Grade B: Tier 2 setups (PPT/SPR) OR Tier 1 with R:R 3.0-4.0. Grade C: EMA/VPS/FIB or any below R:R 3.0. Remove FIB from actionable entry types — reclassify as 'context_note' in A08 output."
+      },
+      "rationale": "4/4 approve. This is a logic correction, not a threshold change. The current Grade A criteria (A08: 'Grade A: All 5 Mode A gates + setup BKT/VCP/CWH + R:R > 4:1') is already partially correct — but the implementation awards Grade A to any setup type if R:R > 4:1. Fix: enforce the BKT/VCP/CWH restriction at the code level. FIB removed as entry type — if a Fibonacci level coincides with a VCP or support pivot, label it as VCP or BKT.",
+      "implementation": "A08 setup_scanner.py: Tier1_setups = ['BKT','VCP','CWH']. Grade A: setup_type in Tier1_setups AND rr_ratio > 4.0 AND all_gates_pass. Grade B: (setup_type in ['PPT','SPR'] AND rr_ratio > 3.0) OR (setup_type in Tier1_setups AND rr_ratio 3.0-4.0). Grade C: all others. Remove FIB from setup_type enum — reclassify as context_note. Update CLAUDE.md.",
+      "backtest_gate": "No backtest required — this is a logic classification change. Monitor Grade A hit rate after N>=20 Grade A entries.",
+      "cio_override": false
+    },
+    {
+      "id": "DEC-013",
+      "agenda_item": "BOA-005",
+      "date": "2026-05-24",
+      "topic": "S8 Threshold: 10% → 20% Above 52W Low",
+      "outcome": "CONDITIONAL_APPROVED",
+      "vote": {
+        "fund_manager": "APPROVE at 20%. Minervini's 30% is calibrated for NASDAQ leaders at mature breakout points. AlphaAbsolute's 10% was calibrated for Thai fund context + $15M ADTV substitute. The middle ground (20%) eliminates stocks that are effectively forming bottoms (not Stage 2) while retaining early-stage leaders that haven't yet built a large base. 20% is the professional fund manager consensus.",
+        "research": "APPROVE at 20%. Minervini states 30% in SEPA text but notes it can be relaxed for early-stage stocks. The concept is: stock should have demonstrated recovery from 52W low — 20% recovery = confirmed bounce. 10% is too permissive (barely moved from 52W low = still potentially forming a bottom). 30% eliminates some valid early breakouts. 20% is the practical split.",
+        "quant": "CONDITIONAL — the N=23 backtest that calibrated S8 at 10% was conducted in Markup regime. The $15M ADTV gate provides substitute quality filtering. Changing to 20% will reduce universe by roughly 15-25% (estimate) and likely INCREASE average trade quality. But N is too small to directly measure the impact. Tag as HYPOTHESIS, monitor which stocks get eliminated.",
+        "da": "APPROVE — trivial code change in trend_template_screener.py. Line: `price >= low_52w * 1.10` → `price >= low_52w * 1.20`. No schema changes. Data already available. Will affect gate_5_pass count (currently S8 already part of Minervini template)."
+      },
+      "rationale": "3/4 clear approve (FM, Research, DA). Quant conditional but not blocking. CONDITIONAL_APPROVED: implement at 20%, monitor for 2 regime cycles (estimate ~60 trading days) whether Grade A count drops significantly. If Grade A count falls below 5 consistently, consider reverting to 15%. The philosophical rationale is clear: a stock at 10% above its 52W low is not clearly in Stage 2 — it may still be building a base or early in recovery. 20% provides a cleaner Stage 2 signal.",
+      "implementation": "trend_template_screener.py: change S8 threshold from 1.10 to 1.20. Update CLAUDE.md S8 description. Monitor screening_results for impact on Grade A count for 60 days.",
+      "backtest_gate": "HYPOTHESIS: monitor Grade A count. If count drops >50% vs prior 20 days, review and potentially revert.",
+      "cio_override": false
+    },
+    {
+      "id": "DEC-014",
+      "agenda_item": "BOA-005",
+      "date": "2026-05-24",
+      "topic": "TD Buy Setup 9 Size Modifier — Remove +25% Bonus, Set to Neutral",
+      "outcome": "APPROVED",
+      "vote": {
+        "fund_manager": "APPROVE removal. The +25% bonus on Buy Setup 9 was adding size at potential short-term exhaustion points. TD Sequential Buy Setup 9 fires when price has made 9 consecutive closes above a close 4 bars earlier — that's a deceleration signal, not an acceleration signal. Adding size here is backwards.",
+        "research": "APPROVE removal. Demark's own documentation: Setup 9 identifies 'potential price exhaustion' — it is a setup for possible reversal, not a momentum acceleration signal. The +25% bonus was implemented as 'priority entry window' but this misapplied the signal. Confirmed in BOA-001: TD Weekly as direction signal rejected (8/20). TD as a size-UP modifier contradicts the rejection of TD as direction.",
+        "quant": "APPROVE — TD Buy Setup 9 as direction signal scored 8/20 in BOA-001 evidence review (rejected). Applying it as a +25% size modifier is internally inconsistent with BOA-001 outcome. The modifier should be NEUTRAL (0% change) not +25%. Keep Sell Setup modifiers as-is (they represent risk, not opportunity).",
+        "da": "APPROVE — code change in A08 setup_scanner.py and CLAUDE.md. Currently: td_signal=='BuySetup9' → size_modifier = 1.25. Change to: td_signal=='BuySetup9' → size_modifier = 1.0 (neutral). All sell setup modifiers unchanged: SellSetup7-8: 0.5, SellSetup9: 0.25."
+      },
+      "rationale": "4/4 approve. This is a logical consistency fix. TD Buy Setup 9 was rejected as a directional signal (BOA-001, 8/20 evidence bar). Applying it as a +25% size multiplier contradicts that rejection. The correct treatment: TD Buy Setup 9 = potential exhaustion marker → monitor closely but don't size up. The sell-side modifiers are correctly directional (reduce size near exhaustion = preserve capital) and are retained.",
+      "implementation": "A08 setup_scanner.py: change BuySetup9 multiplier from 1.25 to 1.0. Update CLAUDE.md TD Sequential table row 'Buy Setup 9 / Countdown 13' from '+25% to normal size' to 'Normal size — potential exhaustion, monitor'.",
+      "backtest_gate": "Logic change — no backtest required. Monitor whether removing the +25% bonus changes average entry quality.",
+      "cio_override": false
+    },
+    {
+      "id": "DEC-015",
+      "agenda_item": "BOA-005",
+      "date": "2026-05-24",
+      "topic": "Pipeline Execution Bugs — 5 Critical Fixes Assigned to DE",
+      "outcome": "DE_ASSIGNED",
+      "vote": {
+        "fund_manager": "The system cannot learn if it doesn't execute. Every day the runner is broken is a day of lost trade data. Fix runner FIRST — everything else is secondary.",
+        "research": "Confirmed bugs are execution failures, not design gaps. No vote required — immediate DE action.",
+        "quant": "The duration=0.0 runner bug means ALL signal readings are stale. The paper portfolio stop violations (6/7 positions) mean risk management is non-functional. Theme concentration (71% vs 40% limit) means A10 Risk Guardian is not enforcing limits. These are not minor issues.",
+        "da": "5 bugs identified with exact code locations: (1) Runner skipping via output file check, (2) A07 RS join broken, (3) A08 R:R floored at 3.0, (4) Portfolio header not updating from positions block, (5) A10 theme concentration check not implemented or broken."
+      },
+      "rationale": "These are execution bugs, not design decisions — no committee vote required. Assigned directly to DE. Priority order: (1) Runner fix (everything depends on this), (2) Portfolio header bug (risk management depends on accurate deployed_pct), (3) A10 theme concentration (currently breached at 71% vs 40% limit), (4) A08 R:R calculation, (5) A07 RS join. Each bug has a clear fix — no research needed.",
+      "action_items": [
+        "BOA-005-BUG-01",
+        "BOA-005-BUG-02",
+        "BOA-005-BUG-03",
+        "BOA-005-BUG-04",
+        "BOA-005-BUG-05"
+      ],
+      "cio_override": false
+    },
+    {
+      "id": "DEC-016",
+      "agenda_item": "BOA-006",
+      "date": "2026-05-24",
+      "topic": "Position Concentration — Keep 10-Position Max, NOT a Target. Quality Over Quantity.",
+      "outcome": "CLOSED_NO_CHANGE",
+      "vote": {
+        "cio": "DIRECTION CHANGE: Keep 10 as the hard cap, but the system should NOT try to fill 10 slots. Hold as many positions as there are Grade A setups — if only 3 pass today, hold 3. Position count is quality-driven, not quantity-driven."
+      },
+      "rationale": "CIO directive: the 10-position maximum stays as a hard cap (concentration limit), but it is explicitly NOT a target. The system should never force entries to reach 10. If only 3 Grade A setups exist, hold 3. If 0, hold cash. 'แล้วแต่ความสวย' — position count follows setup quality, not a quota. This resolves the concern about over-diversification without mandating concentration. A Minervini-aligned corollary: in Distribution regime, natural attrition should reduce the count toward 4-6 anyway as weaker positions hit stops. No code change required — the existing logic (only enter Grade A in Distribution, Grade B in Markup) naturally produces quality-weighted concentration.",
+      "implementation": "No code change. Update CLAUDE.md: add note that 10 is a cap, not a target. A09 should NOT issue buy signals to 'fill slots'. Quality gates (Grade A for most regimes) act as the natural concentration mechanism.",
+      "cio_override": true,
+      "cio_override_note": "CIO simplified this from a complex concentration redesign to a philosophy clarification. No 4/4 vote required — this is a clarification of existing intent, not a threshold change."
+    },
+    {
+      "id": "DEC-017",
+      "agenda_item": "BOA-007",
+      "date": "2026-05-24",
+      "topic": "Stop Loss — Add Closing Price Rule. Thresholds Unchanged (-12% Markup, -8% Distribution).",
+      "outcome": "APPROVED",
+      "vote": {
+        "fund_manager": "APPROVE — Minervini's key stop rule: only a CLOSE below the stop triggers exit. Intraday violations are stop hunts. A stock that pierces -12% intraday but closes at -9% is still in the position. The closing price rule eliminates 70-80% of false exits in volatile markets.",
+        "research": "APPROVE — Minervini 'Trade Like a Stock Market Wizard' p.178: 'I use closing prices to determine if a stop has been hit. Intraday dips below a stop level are frequent stop-hunt tactics by market makers and institutional algorithms.' Also: O'Neil uses closing price rule for distribution day counting. Not controversial.",
+        "quant": "APPROVE closing price rule — this is a logic change, no backtest required (it is definitively correct per market microstructure). The N=23 calibration of -12% threshold stands. Keep thresholds; change measurement basis from intraday to closing price only.",
+        "da": "APPROVE — implementation: A09 must compare position.stop_price to EOD close, not to intraday low. Already collecting EOD close from ohlcv.db. No new data needed. Easy code change."
+      },
+      "rationale": "4/4 approve the closing price rule. Threshold stays -12% Markup / -8% Distribution per Quant's N=23 backtest. The closing price rule eliminates stop-hunt exits — institutional algorithms routinely push price below retail stop levels intraday then reverse. Only a full-day close below the stop level represents genuine breakdown. No backtest needed: this is market microstructure logic, not a statistical threshold.",
+      "implementation": "A09 portfolio_manager.py: change stop check from `intraday_low < stop_price` to `eod_close < stop_price`. Ensure this runs at EOD (4:30 PM mode) with confirmed closing prices, not pre-market. Add field `stop_triggered_basis: closing_price` in action_signals.json.",
+      "action_items": [
+        "BOA-007-A1"
+      ],
+      "backtest_gate": "No backtest required — logic change. Monitor false-exit rate reduction in paper portfolio.",
+      "cio_override": false
+    },
+    {
+      "id": "DEC-018",
+      "agenda_item": "BOA-008",
+      "date": "2026-05-24",
+      "topic": "Profit Taking Redesign — Behavior-Based Exits in Markup, Mechanical Ladder in Distribution",
+      "outcome": "APPROVED",
+      "vote": {
+        "fund_manager": "APPROVE — the mechanical ladder is a monster-killer. In MARKUP: hold until stock tells you to sell (RS line breaks, 10-week MA breaks on high volume, climax action on weekly). In DISTRIBUTION: mechanical ladder is correct — you're trying to preserve capital, not run winners. Dual-regime approach is exactly right.",
+        "research": "APPROVE — Minervini's actual sell process: (1) 8-week hold rule for rapid gainers (DEC-011, done). (2) RS line breaks below index line for first time = first warning. (3) Stock closes below 10-week MA on highest weekly volume in base = exit. (4) Climax top (wide gap-up on huge volume after 18+ month run) = exit 75%. (5) TD Countdown 13 on WEEKLY = take partial. These are the 5 Minervini exit triggers. IBD adds: three-weeks-tight failure, base failure (close back in base).",
+        "quant": "APPROVE design — cannot backtest exit rules with N=0. Flag all behavior-based exits as HYPOTHESIS. Mechanical ladder is a known (if suboptimal) baseline. Behavior-based exits require defining exact thresholds for: (a) 'RS line breaks' = rs_line < rs_line_10d_ago for N consecutive days? (b) '10-week MA on high volume' = weekly close < 10wma AND weekly volume > 1.5x avg? Define these precisely so they are testable.",
+        "da": "APPROVE — implement in A09. RS line break: need rs_line field from BOA-009 (ohlcv.db computable). 10-week MA: computable from existing weekly OHLCV. Climax action: A08 exhaustion signals already computed. Regime detection: A01 already provides regime field."
+      },
+      "rationale": "4/4 approve the dual-regime approach. MARKUP: stocks should be sold when they ACT wrong, not when they hit a mathematical target. The profit ladder was designed for capital protection, not for running winners — wrong tool in a bull market. DISTRIBUTION: mechanical ladder is correct because protecting gains matters more than maximizing them in a weakening market. 8-week hold exception (DEC-011) integrates directly — a monster stock in its hold window suppresses ALL profit ladder signals regardless of regime.",
+      "implementation": "See CLAUDE.md updated selling rules. A09 code changes assigned as BOA-008-A1. Behavior-based exits require BOA-009 RS line data first.",
+      "action_items": [
+        "BOA-008-A1"
+      ],
+      "backtest_gate": "HYPOTHESIS — all behavior-based exits until N>=20 closed positions. Mechanical ladder baseline maintained as fallback for Distribution regime.",
+      "cio_override": false
+    },
+    {
+      "id": "DEC-019",
+      "agenda_item": "BOA-009",
+      "date": "2026-05-24",
+      "topic": "RS Line Direction Tracking — Add rs_line and rs_line_new_high to daily screening",
+      "outcome": "APPROVED",
+      "vote": {
+        "fund_manager": "APPROVE — RS line at new high is the single most reliable Grade A qualifier that AlphaAbsolute is missing. IBD prints this in every chart. Minervini checks it on every entry. A stock can have RS percentile=85 but RS line declining (stock is strong but getting weaker vs market). The RS LINE direction shows trajectory, not just level.",
+        "research": "APPROVE — IBD methodology: RS line = stock weekly close / S&P 500 weekly close. Plotted as a line. For a proper breakout: RS line should be at or near new highs AT THE TIME OF BREAKOUT — ideally making a new 52-week high on the same day the stock breaks out. This is the IBD 'RS line leads price' concept. Minervini: 'I never buy a stock where the RS line is not confirming the price action.'",
+        "quant": "APPROVE — computable from existing ohlcv.db. rs_line = close / spy_close (daily). rs_line_52w_high = max rs_line over 252 days. rs_line_near_high = rs_line >= rs_line_52w_high * 0.97 (within 3%). Can compute for all screened tickers in a single SQL loop. Requires SPY daily close in ohlcv.db (likely already present as benchmark).",
+        "da": "APPROVE — implementation: add rs_line and rs_line_52w_high to ticker_meta or screening_results table. Compute daily in pipeline_metrics.py or trend_template_screener.py. Surface in A08 Grade A check and in session_start summary. Easy complexity."
+      },
+      "rationale": "4/4 approve. RS line direction is the most computationally accessible missing signal. It uses existing data (stock close / SPY close) with no new API calls. Grade A setup should prefer rs_line_near_high=true — stocks where RS line leads or confirms the price breakout have significantly higher success rates (IBD research: ~30% better outcomes vs RS line lagging). Not a hard gate — a Grade A bonus signal.",
+      "implementation": "Add rs_line_daily = close / spy_close to screening. rs_line_52w_high, rs_line_near_high (within 3% of 52W high), rs_line_direction (slope over 20 days). Surface in A08 output and session_start leaders list.",
+      "action_items": [
+        "BOA-009-A1"
+      ],
+      "backtest_gate": "HYPOTHESIS — add as Grade A bonus field. Measure hit rate difference between rs_line_near_high=true vs false when N>=20 Grade A entries.",
+      "cio_override": false
+    },
+    {
+      "id": "DEC-020",
+      "agenda_item": "BOA-005 (8-week hold extension)",
+      "date": "2026-05-24",
+      "topic": "8-Week Hold as Monster Scout Signal — Rapid Breakout Confirmation adds to A07 and A08",
+      "outcome": "APPROVED",
+      "vote": {
+        "cio": "APPROVE — the signal that triggers the 8-week hold (+20% in 3 weeks from breakout) is itself a Monster fingerprint. Apply in 3 contexts: (1) A09: suppress profit ladder for existing holders (DEC-011, done). (2) A07: scan for stocks in Rapid Breakout phase (1-6 weeks from breakout, +20%+ from pivot) as secondary entry candidates on EMA pullback. (3) A08: EMA pullback during monster window = add signal (not new entry), size = 50% of original position."
+      },
+      "rationale": "The +20% in 3 weeks signal is a Monster Stock fingerprint — stocks in this phase are in active institutional accumulation. Three applications: (1) A09 hold rule (already implemented). (2) A07 'Rapid Breakout' scanner — finds stocks currently in their monster momentum window for secondary entries. These are REAL Mode B candidates because they are demonstrating exceptional strength. Filter: breakout was 1-6 weeks ago, gain from pivot ≥ 20%, still above 10EMA, volume pattern still accumulating. (3) A08 'EMA_HOLD' setup — when a position (already in paper portfolio) pulls back to 10EMA during its 8-week window, A08 flags it as 'pyramid add' with size 50% of original. Not a new entry — an add to a confirmed monster.",
+      "implementation": "A07: add rapid_breakout_scan() function. A08: if ticker is in paper portfolio AND in 8-week hold window AND touching 10EMA → setup_type='EMA_HOLD', recommended_size_pct=5 (50% of original 10%), note='8-week hold add'. CLAUDE.md updated.",
+      "action_items": [
+        "BOA-020-A1",
+        "BOA-020-A2"
+      ],
+      "backtest_gate": "HYPOTHESIS — track success rate of secondary entries in monster window when N>=10 such events.",
+      "cio_override": false
+    },
+    {
+      "id": "DEC-024",
+      "boa_id": "BOA-021",
+      "date": "2026-06-03",
+      "title": "Candlestick Signal Grade Upgrade — REJECTED",
+      "result": "REJECTED",
+      "vote": "1/4 (Fund Manager N, Research N, Quant N veto 6/20, DA Y)",
+      "key_finding": "N=19 below minimum. Combination NOT additive: MS+EMA 10d=+0.03% vs MS alone +2.43% and baseline +2.55%. PPT already captures same edge.",
+      "what_stays": "candlestick_signal remains as informational field in A08 output. No grade change. EMA remains context-only.",
+      "revisit_when": "N>=30 qualifying events (paper portfolio), RVOL>=1.5 only, Stage2+RS>70th, 20d forward return measurement",
+      "adjacent_flagged": [
+        "BOA-022: PPT Volume Threshold Review",
+        "BOA-023: Morning Star in Distribution regime — exit signal potential"
+      ]
+    }
+  ]
+}

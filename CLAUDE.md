@@ -271,11 +271,35 @@ Every entry must be classified as one of these. No entry without a named setup.
 
 **Source file:** `scripts/pre_compute/market_regime.py` (extend from v1)
 
-**Regime logic:**
-- Markup: QQQ above 50DMA + 200DMA, distribution_days < 4, pct_above_50dma > 60%
-- Distribution: 4+ distribution days in 25 sessions OR pct_above_50dma dropping fast below 55%
-- Sideways: price between MAs, no clear direction, VIX > 18
-- Markdown: QQQ below 200DMA, breadth collapsed (pct_above_50dma < 40%)
+**Regime factors (BOA-024 redesign, 2026-06-15):**
+
+| Factor | Measures | Weight |
+|--------|---------|--------|
+| A — Price Structure | QQQ/SPY vs 50/200DMA | 25 pts |
+| B — Volume Quality | Up-vol ratio 15d (Lowry/Wyckoff accumulation signal) | 20 pts |
+| C — Breadth | pct_above_50dma (8) + pct_above_200dma (6) + AD line direction (6) | 20 pts |
+| E — RS Leaders | Top-tier RS leader count | 10 pts |
+| F — Intermarket | VIX + yield curve | 5 pts |
+| G — Credit | HY spread | 5 pts |
+| **Total** | | **85 pts** |
+
+**Factor B (Volume Quality):** Primary = 15-day up-volume ratio. >= 62% = accumulation = 20 pts. < 42% = distribution = 0 pts. Distribution day count kept as audit context only — not deducted (up-vol ratio already captures the same signal). Bulkowski (N=568, 60yr): distribution day counts have zero predictive value in rising trends. No hard score clamp on dist_days.
+
+**Regime thresholds:**
+- Markup: effective_score >= 68
+- Sideways: 50–67
+- Distribution: 35–49
+- Markdown: < 35 OR QQQ below 200DMA
+
+**Threshold provenance (BOA-023 DEC-029 + BOA-024 DEC-031, 2026-06-15):**
+- `pct_above_50dma > 60%` = **internally derived**, no published practitioner source. IBD/Minervini/Zweig/O'Neil do not use this specific number. Practitioners use 50% as the basic bull/bear neutral line. 60% is a deliberate conservative choice requiring genuine breadth. **HYPOTHESIS — re-evaluate at N≥200 trading days with forward returns by regime day (est. end-2026).**
+- `distribution_days >= 4` = 1 day stricter than IBD's published "4-5 days" trigger. Deliberate conservative override.
+- `cash_floor = 40%` in Distribution = **internally derived**. O'Neil/Minervini use binary approach (fully invested or fully cash). The 40% is an operational translation for a fund that must stay partially deployed. Not a published number.
+- Distribution day volume comparison = **50-day average volume** (IBD standard, BOA-023 DEC-027). Prior-day volume comparison was the original implementation — changed to 50-day avg to match IBD methodology.
+- **Factor B up-volume ratio thresholds (≥62=20pts, ≥57=16pts, ≥52=12pts, ≥47=7pts, ≥42=3pts) = INTERNALLY DERIVED** — NOT canonical Lowry methodology. Lowry's published signal uses discrete 90% Up-Volume day clusters. The 15-day rolling ratio is an engineering approximation of Lowry's Buying Power principle, calibrated on 1 bear episode (April 2025, N=82 days). **HYPOTHESIS — recalibrate at N≥3 distinct bear episodes.** Do not represent these thresholds as "Lowry methodology."
+- **Factor B overall Spearman r = +0.015 (near-zero across all conditions)** — predictive content is regime-conditional: strong in bear periods (r=-0.540, p=0.004, N=82) and near-zero in bull/sideways. Expected behavior for a defensive signal. Disclosed per DEC-031.
+- **90% Up-Volume day (canonical Lowry signal)**: logged as audit context in market_health.json when index up-volume ≥ 90% of total. Not scored — informational until N≥5 cluster events (clusters of 2+ within 10 sessions = historical bull market confirmation per Desmond/Lowry 1938-2024).
+- **Mode B (Monster Scout) in Sideways regime: Grade A setups ONLY** (BOA-024 DEC-031). Grade B Monster Scout entries in Sideways prohibited — maximum damage scenario if regime is actually Distribution. PRISM entries in Sideways remain Grade A+B eligible.
 
 **Cash floor by regime:**
 - Markup: cash_floor = 0.00 (max_deployed = 1.00)
@@ -669,8 +693,29 @@ These rules encode bugs found in production. When fixing pipeline errors, apply 
 ### Weekly Picker — day_filter in Runner Steps
 **Rule:** Steps with `"day_filter": [6]` run Sunday only, `[5]` runs Saturday only (weekday 5=Sat, 6=Sun). Runner checks `date.today().weekday()` before executing — silently skips wrong days. `weekly_picker.py` (Sunday) saves QQQ entry price at pick time for Saturday comparison. `weekly_scorer.py` (Saturday) reads from ohlcv.db (must run after Friday EOD update). Learning curve: `data/weekly_picks/learning_curve.json`.
 
+### OHLCV — Stale Open Price Bug (open > high by >0.5%)
+**Rule:** When `open > high` by more than 0.5%, the open is a stale copy of the previous day's open (Polygon grouped endpoint bug — seen on gap-down days like 2026-05-26). Fix: `UPDATE ohlcv SET open = NULL WHERE open > high AND (open-high)/high > 0.005`. NULL open is handled by setup_scanner which falls back to `open = close`. Run `fix_dates_volumes.py` or a one-off SQL after discovering this.
+
+### OHLCV — Adjusted Close vs Unadjusted OHLC (close < low)
+**Rule:** ~41,960 rows have `close < low` because `close` is dividend/split-adjusted but `open/high/low` are unadjusted. This is a known data architecture issue — NOT a data error. MA calculations (MA50/150/200) use `close` and are internally consistent. Pattern detection using `high/low` may have slight price-level discrepancies but does not affect RS or trend template gates. Do NOT delete these rows. Fix requires re-fetching fully adjusted OHLC from Polygon (future work).
+
+### OHLCV — NULL open/high/low from Tiingo Fallback
+**Rule:** 673 tickers have rows where `open/high/low = NULL` (Tiingo returns only close+volume for some tickers). `setup_scanner.py` must filter out bars where `high IS NULL OR low IS NULL` — never use `float(r or 0)` which converts NULL to 0. Use `float(r) if r is not None else None` and skip bars missing high/low. Fallback: `open = close` when open is NULL but high/low are present.
+
 ### OHLCV Backfill — Auto-Detect Gap, Cap at 30 Days
 **Rule:** `update_ohlcv_bulk.py` default `backfill_days` must be `None` (auto-detect), NOT a fixed number like 5. Auto-detect calculates the actual gap between last DB date and today, capped at 30 calendar days. A fixed `backfill_days=5` permanently loses data when the pipeline misses a weekend or holiday.
+
+### Module-Level mkdir — Pre-Create All Dirs at Runner Startup
+**Rule:** 50+ scripts call `Path.mkdir(parents=True, exist_ok=True)` at module level (top-level code, not inside `run()`). On Windows with OneDrive, `makedirs` on an already-syncing parent directory can raise `PermissionError` even with `exist_ok=True`. Fix: `run_pipeline()` calls `_ensure_dirs()` FIRST — this creates all 32 required output directories before any step is imported. After that, module-level `mkdir(exist_ok=True)` is always a safe no-op. Do NOT add individual PermissionError retries to each script — fix at the runner level instead. `_REQUIRED_DIRS` list in `scripts/runners/pre_market_runner.py` must be updated whenever a new output directory is added to any script.
+
+### Pipeline Step Retry — Auto-Retry Transient Failures
+**Rule:** `run_step()` in `pre_market_runner.py` retries transient failures automatically before counting as FAIL. Config: `MAX_RETRIES=2`, `RETRY_DELAY=5s`. Retryable errors: ConnectionError, Timeout, HTTPError, 429, 503, SSLError, PermissionError/WinError 5, "Output file not written". Non-retryable: ImportError, AttributeError, KeyError, code bugs — these retry immediately without delay and won't help. Diagnostic steps (`health_check`, `data_quality`, `data_quality_eod`) skip retry (not worth re-running). File: `scripts/runners/pre_market_runner.py` `_RETRYABLE`, `_NO_RETRY_STEPS`.
+
+### Pipeline Telegram Alert — Always Fire (ALL PASS + PARTIAL FAILURE)
+**Rule:** `_send_pipeline_alert()` fires on EVERY pipeline run, not just on failures. Three states: `[OK] ALL PASS` (all steps pass), `[WARN] PARTIAL FAILURE` (some steps fail after retries), `[ABORT]` (critical step aborted pipeline). Purpose: if no Telegram message arrives → pipeline never ran (GitHub Actions down, cron missed). This is also how CIO confirms the pipeline is healthy without opening logs. File: `scripts/runners/pre_market_runner.py` `_send_pipeline_alert()`.
+
+### Pipeline Exit Code — sys.exit(1) on Failures
+**Rule:** `pre_market_runner.py` exits with `sys.exit(1)` when `result["failed"] > 0`. This causes GitHub Actions to mark the workflow run as **failed** (red X), making failures visible in the Actions tab without needing to read logs. File: `scripts/runners/pre_market_runner.py` `__main__` block.
 
 ---
 
@@ -823,6 +868,69 @@ AlphaAbsolute/
     └── v1_knowledge_base/              ← Full v1 system archived
         └── CLAUDE_v1.md
 ```
+
+---
+
+## Bug-Fix Philosophy — Root Cause Only, No Patches
+
+**Core principle: ถ้าแก้แล้วปัญหายังเกิดได้อีก = ยังไม่ได้แก้**
+
+Every bug fix must eliminate the problem class permanently, not just suppress the symptom. A fix that makes the pipeline run today but fail next month under the same conditions is not a fix — it is deferred debt.
+
+### Step 1 — Diagnose Before Touching Code
+
+Before writing any code, answer these 3 questions:
+
+1. **WHERE does it break?** — exact file, line number, call stack. Read the traceback fully. Do not guess.
+2. **WHY does it happen?** — the real reason, not the surface error. `PermissionError` is not the cause; "makedirs runs at module import time before the directory exists" is the cause.
+3. **How often / under what conditions?** — is this deterministic or intermittent? Local only or also CI? What triggers it?
+
+If you cannot answer all 3, keep reading code until you can. Do not write a fix for a bug you do not fully understand.
+
+### Step 2 — Fix at the Right Layer
+
+Ask: **what is the highest layer where this problem can be prevented for ALL instances at once?**
+
+- If 50 scripts all call `mkdir` at module level → fix in the **runner** (`_ensure_dirs`), not in each script
+- If 10 scripts all retry Tiingo 429 inconsistently → fix in the **shared utility** (`data_engine.py`), not each script
+- If a check runs on stale data → fix the **data flow** (when the check runs), not the check logic
+
+**Wrong approach:** patch the specific instance that broke today  
+**Right approach:** fix the pattern so every current and future instance is covered
+
+### Step 3 — Verify the Fix Eliminates the Problem Class
+
+After fixing, confirm:
+
+1. **Run the full pipeline** — not just the broken step. Confirm `0 failed` end-to-end.
+2. **Check that the same error cannot recur** — if the fix requires a precondition (e.g., dir must exist), verify that precondition is now guaranteed unconditionally.
+3. **Check related code** — if the pattern exists elsewhere, fix those too or document why they're safe.
+
+### Step 4 — Document in CLAUDE.md
+
+Every root cause fix gets a rule in the **Pipeline Auto-Fix Rules** section above. The rule must state:
+- What the symptom was
+- What the actual root cause was
+- What the fix is and where it lives
+- Why the same problem cannot recur
+
+### Anti-Patterns — Never Do These
+
+| Anti-pattern | Why it's wrong | Right approach |
+|---|---|---|
+| Wrap in `try: ... except: pass` | Silently hides the real failure | Fix the cause; only catch errors you handle explicitly |
+| Increase retry count | Treats symptom, not disease | Understand why it fails; retry is valid only for truly transient external failures (429, timeout) |
+| Add `skip_if_missing=True` | Pretends the problem doesn't exist | Make sure the dependency exists before the step runs |
+| `if error: print warning and continue` | Degrades silently over time | Either fix the error or fail loudly |
+| Fix the specific instance | Pattern recurs elsewhere or next version | Fix the class — find all similar code |
+| "It passed locally" | CI environment is different | Run in the target environment or mock it faithfully |
+| Add a feature flag / bypass | Creates permanent complexity | Remove the bad code; don't route around it |
+
+### The Standard: Pipeline Must Run Clean
+
+The definition of "fixed" is: **the full pipeline runs `0 failed` in both local and CI environments, and the failure mechanism no longer exists in the codebase.**
+
+Not "it passed this time." Not "it should be fine now." Confirmed 0 failures on a real run.
 
 ---
 

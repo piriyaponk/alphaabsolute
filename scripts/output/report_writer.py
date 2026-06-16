@@ -20,11 +20,25 @@ Daily brief format:
   RISK FLAGS: [from A10]
 
 Telegram format (mobile-optimized):
-  🟢 SETUP: $COHR
-  Mode A | VCP | Pivot $95.50
-  Stop: $87.86 | Target: $116 | RR: 3.4x
-  Size: 10% (full) | Grade: A
-  ⚡ Photonics HOT + RS #88
+
+  TWO-MODE SYSTEM:
+  ── PRISM (Minervini SEPA) — Confirmed leaders, 30-50% targets ──
+  ⭐ TICKER — Full Setup Name | PRISM | Grade A
+  Entry: $95.50 | Stop: $87.86 (7.5% risk)
+  Target: $116 | T2: $143 | RR 3.4x | Size: 10%
+  RS: 88/91/85 | 🔥 Photonics
+  📌 VCP 3-swing contraction, vol dried
+  ⛔ Invalid if EOD close < $87.86
+
+  ── Monster Scout — 10x candidates, 5% size ──
+  🚀 TICKER — Breakout | Monster Scout | Grade A
+  Entry: $15.20 | Stop: $13.60 (10.5% risk) | Size: 5%
+  📈 ACCELERATING STRONG | +30%→+50% | Base 1
+  RS: 72/68 | 🔥 Quantum Computing | $380M
+  📌 Only commercial InP substrate at scale
+  ⛔ Invalid if EOD close < $13.60
+
+  In Distribution: Monster Scout shown as 👁 WATCH ONLY (no entry)
 
 Output:
   output/daily_brief_YYMMDD.md
@@ -40,12 +54,18 @@ Cost: $0 (Python only, Telegram free)
 from __future__ import annotations
 import json
 import os
+import ssl
 import sys
 import urllib.request
 import urllib.parse
 from datetime import date, datetime
 from pathlib import Path
 from typing import Optional
+
+# FIX: self-signed cert in corporate proxy — disable verification for Telegram calls
+_SSL_CTX = ssl.create_default_context()
+_SSL_CTX.check_hostname = False
+_SSL_CTX.verify_mode    = ssl.CERT_NONE
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -317,8 +337,9 @@ def format_setup_line(setup: dict, index: int) -> str:
     td_note = f" [TD:{td_sig}]" if td_sig != "Neutral" else ""
     theme_note = f" | {theme}" if theme else ""
 
+    mode_label = "PRISM" if mode == "A" else "Monster Scout"
     return (
-        f"{index}. ${ticker} — Mode {mode} | {stype} | "
+        f"{index}. ${ticker} — {mode_label} | {stype} | "
         f"Buy: ${pivot:.2f} | Stop: ${stop:.2f} | RR: {rr:.1f}x | "
         f"Size: {size:.0f}%{td_note}{theme_note} | Grade: {grade}"
     )
@@ -333,7 +354,7 @@ def format_setup_thesis(setup: dict) -> str:
 
     parts = []
     if entry_note:
-        parts.append(entry_note[:80])
+        parts.append(entry_note[:80].replace("_", " "))
     if theme:
         parts.append(f"Theme: {theme}")
     if rs_pct and mode == "A":
@@ -633,7 +654,15 @@ def _setup_card_full(s: dict, rs_universe: dict, grade: str) -> str:
     _note   = (s.get("entry_note", "") or "").strip()
     # Remove trailing "| No recognized setup pattern" artifact (old setups.json cleanup)
     _note   = _note.replace(" | No recognized setup pattern", "").replace("No recognized setup pattern | ", "").strip(" |")
-    why     = _note[:85].rsplit(" ", 1)[0] if len(_note) > 85 else _note  # trim at word boundary
+    # FIX: old [:85].rsplit truncated at word boundary but often mid-arrow (→).
+    # New: truncate at 100 chars, prefer pipe separator as natural break point.
+    if len(_note) > 100:
+        # Try to cut at last pipe within 100 chars
+        cut = _note[:100].rfind(" | ")
+        why = _note[:cut] if cut > 20 else _note[:100]
+    else:
+        why = _note
+    why = why.replace("_", " ")  # underscore in Markdown V1 = italic tag → 400 Bad Request
     risk_pct = s.get("risk_pct", abs(pivot - stop) / pivot * 100 if pivot else 0)
 
     # RR: use rr_to_t2 for display (realistic extended target).
@@ -657,21 +686,104 @@ def _setup_card_full(s: dict, rs_universe: dict, grade: str) -> str:
     rs_str = "RS: " + "/".join(rs_parts) if rs_parts else ""
 
     # Theme (HOT = fire emoji)
-    theme   = s.get("theme", "")
-    t_heat  = ""  # could add theme heat if available
-    theme_s = f"🔥 {theme}" if theme else ""
+    # FIX: theme can be "—" (dash string from A06 when theme not labeled) — treat as empty
+    theme   = s.get("theme", "") or ""
+    theme_s = f"🔥 {theme}" if (theme and theme not in ("—", "-", "None", "null")) else ""
 
     rs_theme = " | ".join(x for x in [rs_str, theme_s] if x)
 
     grade_e = "⭐" if grade == "A" else "✅"
 
     lines = [
-        f"{grade_e} *{ticker}* — {stype} | Mode {mode} | Grade {grade}",
+        f"{grade_e} *{ticker}* — {stype} | PRISM | Grade {grade}",
         f"Entry: *{_dollar(pivot)}* | Stop: {_dollar(stop)} ({risk_pct:.1f}% risk)",
         f"Target: {_dollar(t1)} | T2: {_dollar(t2)} | RR {rr_display:.1f}x{rr_note} | Size: {size:.0f}%",
     ]
     if rs_theme:
         lines.append(rs_theme)
+    if why:
+        lines.append(f"📌 {why}")
+    lines.append(f"⛔ Invalid if EOD close < {_dollar(stop)}")
+
+    return "\n".join(lines)
+
+
+def _setup_card_monster(s: dict, rs_universe: dict, grade: str) -> str:
+    """
+    Mode B (Monster Scout 10x) setup card — different emphasis from Mode A.
+
+    Line 1: 🚀 TICKER — Full Setup Name | Mode B (10x) | Grade A/B
+    Line 2: Entry: $XX.XX | Stop: $XX.XX (-10% risk) | Size: 5%
+    Line 3: Rev: INFLECTION_LABEL | Trend: +30%→+50% | Base 1
+    Line 4: RS: 1M/3M | 🔥 Theme | Mkt Cap: $XXM
+    Line 5: 📌 Bottleneck/why now
+    Line 6: ⛔ Invalid if EOD close < $XX.XX
+    """
+    ticker  = s.get("ticker", "?")
+    stype   = _setup_full(s.get("setup_type", "?"))
+    pivot   = s.get("pivot", 0)
+    stop    = s.get("stop", 0)
+    size    = s.get("recommended_size_pct", 5)
+    _note   = (s.get("entry_note", "") or "").strip()
+    _note   = _note.replace(" | No recognized setup pattern", "").replace("No recognized setup pattern | ", "").strip(" |")
+    if len(_note) > 100:
+        cut = _note[:100].rfind(" | ")
+        why = _note[:cut] if cut > 20 else _note[:100]
+    else:
+        why = _note
+    why = why.replace("_", " ")  # underscore in Markdown V1 = italic tag → 400 Bad Request
+    risk_pct = abs(pivot - stop) / pivot * 100 if pivot else 10.0
+
+    # Revenue inflection info
+    inflection  = s.get("revenue_inflection") or s.get("inflection_label", "")
+    trend_str   = s.get("trend_str", "")
+    base_num    = s.get("base_number") or s.get("base_count", "")
+    base_s      = f"Base {base_num}" if base_num not in (None, "", 0) else ""
+
+    # Market cap formatting
+    mkt_cap = s.get("market_cap") or s.get("mkt_cap")
+    if mkt_cap:
+        if mkt_cap < 1e9:
+            mkt_cap_s = f"${mkt_cap/1e6:.0f}M"
+        else:
+            mkt_cap_s = f"${mkt_cap/1e9:.1f}B"
+    else:
+        mkt_cap_s = ""
+
+    # RS from universe
+    rs_e = rs_universe.get(ticker, s)
+    r1 = rs_e.get("rs_1m_pct") or rs_e.get("rs_pct_1m") or s.get("rs_pct_1m")
+    r3 = rs_e.get("rs_3m_pct") or rs_e.get("rs_pct_3m") or s.get("rs_pct_3m")
+    rs_parts = [str(int(r)) for r in [r1, r3] if r is not None]
+    rs_str   = "RS: " + "/".join(rs_parts) if rs_parts else ""
+
+    theme   = s.get("theme", "")
+    theme_s = f"🔥 {theme}" if theme else ""
+
+    grade_e = "🚀" if grade == "A" else "🌱"
+
+    # Inflection line
+    inflection_parts = []
+    if inflection and inflection not in ("NONE", ""):
+        inflection_parts.append(inflection.replace("_", " "))
+    if trend_str and trend_str != "N/A":
+        inflection_parts.append(trend_str)
+    if base_s:
+        inflection_parts.append(base_s)
+    inflection_line = " | ".join(inflection_parts) if inflection_parts else ""
+
+    # RS + theme + market cap line
+    meta_parts = [p for p in [rs_str, theme_s, mkt_cap_s] if p]
+    meta_line  = " | ".join(meta_parts) if meta_parts else ""
+
+    lines = [
+        f"{grade_e} *{ticker}* — {stype} | Monster Scout | Grade {grade}",
+        f"Entry: *{_dollar(pivot)}* | Stop: {_dollar(stop)} ({risk_pct:.1f}% risk) | Size: {size:.0f}%",
+    ]
+    if inflection_line:
+        lines.append(f"📈 {inflection_line}")
+    if meta_line:
+        lines.append(meta_line)
     if why:
         lines.append(f"📌 {why}")
     lines.append(f"⛔ Invalid if EOD close < {_dollar(stop)}")
@@ -715,11 +827,11 @@ def build_telegram_messages(health: dict, setups: list, signals: dict,
     # ── MSG 1: Regime header ──────────────────────────────────────────────────
     # Entry rule line
     if regime == "Markup":
-        entry_rule = "Full size | Both modes ✅"
+        entry_rule = "Full size | PRISM + Monster Scout ✅"
     elif regime == "Sideways":
-        entry_rule = "Mode A only | Selective"
+        entry_rule = "PRISM only | Selective"
     elif regime == "Distribution":
-        entry_rule = "Mode A only | No Big Shot entries"
+        entry_rule = "PRISM only | No Monster Scout entries"
     else:
         entry_rule = "No new entries — cash priority"
 
@@ -741,7 +853,10 @@ def build_telegram_messages(health: dict, setups: list, signals: dict,
     if hy_spread:
         macro_parts.append(f"HY {hy_spread:.2f}%")
     macro_line = "📊 " + " | ".join(macro_parts) if macro_parts else ""
-    macro_mod_line = f"⚠️ Macro ×{macro_mod:.2f} — all sizes reduced" if macro_mod < 1.0 else ""
+    # FIX: macro_modifier was demoted to INFORMATIONAL in BOA-005 DEC-014.
+    # It no longer reduces position sizes — A01 cash_floor handles risk at portfolio level.
+    # Old message "all sizes reduced" was wrong. Show as context note only.
+    macro_mod_line = f"[Macro] {rate_env} — A02 informational (sizes not reduced)" if macro_mod < 1.0 else ""
 
     # HOT themes with RS percentile + momentum
     hot_str = _hot_themes_str()
@@ -762,42 +877,107 @@ def build_telegram_messages(health: dict, setups: list, signals: dict,
 
     messages.append("\n".join(header_lines))
 
-    # ── Grade A setups — full card each (max 5) ───────────────────────────────
+    # ── Split setups: Mode A (Minervini) vs Mode B (Monster Scout 10x) ──────────
     context_types = {"EMA", "VPS", "FIB"}
-    grade_a = [s for s in setups
-               if s.get("setup_grade") == "A"
-               and s.get("setup_type", "") not in context_types][:5]
-    grade_b = [s for s in setups
-               if s.get("setup_grade") == "B"
-               and s.get("setup_type", "") not in context_types]
+    bigshot_ok    = health.get("bigshot_ok", regime == "Markup")
 
-    if grade_a:
-        for s in grade_a:
+    # Mode A: Minervini SEPA leaders — entry/stop/target/RR format
+    mode_a_a = [s for s in setups
+                if s.get("setup_grade") == "A"
+                and s.get("mode", "A") == "A"
+                and s.get("setup_type", "") not in context_types][:5]
+    mode_a_b = [s for s in setups
+                if s.get("setup_grade") == "B"
+                and s.get("mode", "A") == "A"
+                and s.get("setup_type", "") not in context_types]
+
+    # FIX: deduplicate Mode B — if a ticker already appears in Mode A (PRISM),
+    # skip it in Mode B to avoid sending the same stock twice on Telegram.
+    # PRISM takes precedence over Monster Scout for the same ticker.
+    mode_a_tickers = {s.get("ticker") for s in mode_a_a} | {s.get("ticker") for s in mode_a_b}
+
+    # Mode B: Monster Scout 10x candidates
+    mode_b_a = [s for s in setups
+                if s.get("setup_grade") == "A"
+                and s.get("mode", "A") == "B"
+                and s.get("setup_type", "") not in context_types
+                and s.get("ticker") not in mode_a_tickers][:3]   # FIX: exclude Mode A tickers
+    mode_b_b = [s for s in setups
+                if s.get("setup_grade") == "B"
+                and s.get("mode", "A") == "B"
+                and s.get("setup_type", "") not in context_types
+                and s.get("ticker") not in mode_a_tickers][:2]   # FIX: exclude Mode A tickers
+
+    # ── Mode A: Grade A cards ─────────────────────────────────────────────────
+    if mode_a_a:
+        for s in mode_a_a:
             messages.append(_setup_card_full(s, rs_universe, "A"))
     else:
-        messages.append("🎯 *No Grade A setups today — watchlist mode*")
+        messages.append("⭐ *No PRISM Grade A setups today — watchlist mode*")
 
-    # ── Grade B compact list (Distribution allowed — reduced size) ────────────
-    # Grade B shown in Markup + Distribution (not Markdown/Sideways)
-    if grade_b and regime in ("Markup", "Distribution"):
-        b_lines = ["✅ *Grade B — reduced size, no pyramid:*"]
-        for s in grade_b[:4]:
+    # ── Mode A: Grade B compact list (Markup + Distribution) ─────────────────
+    if mode_a_b and regime in ("Markup", "Distribution"):
+        b_lines = ["✅ *PRISM Grade B — reduced size (5%), no pyramid:*"]
+        for s in mode_a_b[:4]:
             ticker = s.get("ticker", "?")
             stype  = _setup_full(s.get("setup_type", "?"))
             pivot  = s.get("pivot", 0)
             stop   = s.get("stop", 0)
             t2b    = s.get("target_2", 0)
-            # Use rr_to_t2 for display; compute from targets if not stored
             rr = s.get("rr_to_t2")
             if rr is None and t2b and pivot and stop and pivot > stop:
                 rr = (t2b - pivot) / (pivot - stop)
-            rr = rr if (rr and rr > 0) else s.get("rr_ratio", 0)
-            size   = s.get("recommended_size_pct", 5)
+            rr   = rr if (rr and rr > 0) else s.get("rr_ratio", 0)
+            size = s.get("recommended_size_pct", 5)
             b_lines.append(
                 f"  ✅ *{ticker}* — {stype} | {_dollar(pivot)} | Stop {_dollar(stop)} "
                 f"| RR {rr:.1f}x | {size:.0f}%"
             )
         messages.append("\n".join(b_lines))
+
+    # ── Mode B: Monster Scout 10x candidates ─────────────────────────────────
+    has_mode_b = mode_b_a or mode_b_b
+    if has_mode_b:
+        if bigshot_ok:
+            # Active regime — show as actionable
+            for s in mode_b_a:
+                messages.append(_setup_card_monster(s, rs_universe, "A"))
+            if mode_b_b:
+                bb_lines = ["🌱 *Monster Scout Grade B — 2.5% size, high risk:*"]
+                for s in mode_b_b:
+                    ticker     = s.get("ticker", "?")
+                    inflection = s.get("revenue_inflection") or s.get("inflection_label", "")
+                    stype      = s.get("setup_type", "")
+                    theme      = s.get("theme", "") or ""
+                    mkt        = s.get("market_cap")
+                    mkt_s      = f"${mkt/1e6:.0f}M" if mkt and mkt < 1e9 else (f"${mkt/1e9:.1f}B" if mkt else "")
+                    pivot      = s.get("pivot", 0)
+                    stop       = s.get("stop", 0)
+                    # FIX: show setup_type if inflection empty, show theme if mkt_cap empty
+                    label = inflection.replace("_", " ") if inflection else stype
+                    meta  = theme if (theme and theme not in ("—", "-")) else mkt_s
+                    bb_lines.append(
+                        f"  🌱 *{ticker}* | {label} | "
+                        f"{_dollar(pivot)} stop {_dollar(stop)} | {meta}"
+                    )
+                messages.append("\n".join(bb_lines))
+        else:
+            # Distribution/Markdown — show as watch-only (no entry)
+            watch_lines = [
+                f"👁 *Monster Scout — WATCH ONLY ({regime} regime, no entry)*",
+                "Preparing for regime change. Entry blocked until regime clears."
+            ]
+            for s in (mode_b_a + mode_b_b)[:4]:
+                ticker     = s.get("ticker", "?")
+                inflection = s.get("revenue_inflection") or s.get("inflection_label", "")
+                mkt        = s.get("market_cap")
+                mkt_s      = f"${mkt/1e6:.0f}M" if mkt and mkt < 1e9 else (f"${mkt/1e9:.1f}B" if mkt else "")
+                base_num   = s.get("base_number") or s.get("base_count", "")
+                base_s     = f"Base {base_num}" if base_num not in (None, "", 0) else ""
+                theme      = s.get("theme", "")
+                meta       = " | ".join(p for p in [inflection.replace("_", " "), base_s, mkt_s, theme] if p)
+                watch_lines.append(f"  👁 *{ticker}* — {meta}")
+            messages.append("\n".join(watch_lines))
 
     # ── Portfolio summary (always last) ───────────────────────────────────────
     real_pos   = portfolio.get("positions", {})
@@ -859,18 +1039,25 @@ def send_telegram(message: str) -> bool:
         print("  [WARN] Telegram not configured (set TELEGRAM_BOT_TOKEN + TELEGRAM_CHAT_ID in .env)")
         return False
 
-    try:
-        url  = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
-        data = urllib.parse.urlencode({
-            "chat_id":    TELEGRAM_CHAT_ID,
-            "text":       message,
-            "parse_mode": "Markdown",
-        }).encode("utf-8")
+    url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
+
+    def _post(payload: dict) -> bool:
+        data = urllib.parse.urlencode(payload).encode("utf-8")
         req  = urllib.request.Request(url, data=data, method="POST")
-        with urllib.request.urlopen(req, timeout=10) as resp:
-            result = json.loads(resp.read().decode())
-            return result.get("ok", False)
+        with urllib.request.urlopen(req, timeout=10, context=_SSL_CTX) as resp:
+            return json.loads(resp.read().decode()).get("ok", False)
+
+    try:
+        return _post({"chat_id": TELEGRAM_CHAT_ID, "text": message, "parse_mode": "Markdown"})
     except Exception as e:
+        # 400 Bad Request = Markdown parse error (unescaped special chars).
+        # Retry as plain text — always succeeds.
+        if "400" in str(e):
+            try:
+                return _post({"chat_id": TELEGRAM_CHAT_ID, "text": message})
+            except Exception as e2:
+                print(f"  [ERROR] Telegram send failed (plain fallback): {e2}")
+                return False
         print(f"  [ERROR] Telegram send failed: {e}")
         return False
 
