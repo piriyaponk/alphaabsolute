@@ -214,7 +214,7 @@ def vp_weights(df_screen, exposure):
 def compute_metrics(nav_history, inception_nav, inception_date):
     """Returns dict: cagr, sharpe, max_dd from nav_history dict."""
     if len(nav_history) < 2:
-        return {'cagr': 0.0, 'sharpe': 0.0, 'max_dd': 0.0}
+        return {'cagr': 0.0, 'sharpe': None, 'max_dd': 0.0}
 
     sorted_dates = sorted(nav_history.keys())
     navs = pd.Series(
