@@ -599,8 +599,8 @@ def run_daily():
 
     # QQQ
     qqq_data = data_dict.get('QQQ')
-    qqq_now  = float(qqq_data[0].iloc[-1]) if qqq_data else 0
-    qqq_inc  = float(state.get('qqq_inception', qqq_now))
+    qqq_inc  = float(state.get('qqq_inception', 0))
+    qqq_now  = float(qqq_data[0].iloc[-1]) if qqq_data else qqq_inc  # fallback = no change
     qqq_ret  = (qqq_now / qqq_inc - 1) * 100 if qqq_inc > 0 else 0
 
     # NAV history + metrics
