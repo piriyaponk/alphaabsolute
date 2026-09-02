@@ -361,13 +361,14 @@ def run_rebalance(init=False):
         f'vs QQQ inception: {qqq_ret:+.1f}%',
         f'',
         f'<b>NEW PORTFOLIO ({len(new_positions)} stocks | {deployed*100:.0f}% deployed)</b>',
-        f'{"Ticker":<7} {"Wt":>5}  {"RS":>4}  {"Beta":>5}  {"vs MA200":>9}',
+        f'{"Ticker":<7} {"Wt":>5}  {"Cost":>8}  {"P&L%":>6}',
     ]
-    for _, row in passed.iterrows():
+    for _, row in passed.sort_values('weight', ascending=False).iterrows():
+        tkr  = row['ticker']
+        cost = float(new_positions[tkr]['cost_basis'])
         lines.append(
-            f'{row["ticker"]:<7} {row["weight"]*100:>4.1f}%  '
-            f'{row["rs_pct"]:>4.0f}  {row["beta"]:>5.2f}  '
-            f'{row["vs_ma200_pct"]:>+8.1f}%'
+            f'{tkr:<7} {row["weight"]*100:>4.1f}%  '
+            f'${cost:>7.2f}   0.0%'
         )
 
     if added:
@@ -377,7 +378,14 @@ def run_rebalance(init=False):
     if stayed and not init:
         lines.append(f'<b>HELD ({len(stayed)}):</b> ' + ', '.join(sorted(stayed)))
 
-    lines.append(f'\nNext rebalance: end of next month')
+    # Compute next month-end date
+    import calendar as _cal
+    bkk_now_dt = datetime.now(BKK)
+    nm = bkk_now_dt.month % 12 + 1
+    ny = bkk_now_dt.year + (1 if bkk_now_dt.month == 12 else 0)
+    next_me_day = _cal.monthrange(ny, nm)[1]
+    next_me = datetime(ny, nm, next_me_day).strftime('%d %b %Y')
+    lines.append(f'\nNext rebalance: <b>{next_me}</b>')
     tg_send('\n'.join(lines))
 
     print('=== Rebalance complete ===')
@@ -493,7 +501,7 @@ def run_daily():
         f'Excess: <b>{since_inc - qqq_ret:+.1f}%</b>',
         f'',
         f'<b>Holdings ({len(pos_rows)} stocks)</b>',
-        f'{"Ticker":<7} {"Wt%":>4}  {"P&L%":>7}  {"Value":>10}',
+        f'{"Ticker":<7} {"Wt%":>4}  {"Cost":>7}  {"P&L%":>6}',
         f'{"─"*38}',
     ]
 
@@ -501,7 +509,7 @@ def run_daily():
         icon = '' if r['pnl_pct'] >= 0 else ''
         lines.append(
             f'{icon}{r["ticker"]:<6} {r["weight_act"]:>4.1f}%  '
-            f'{r["pnl_pct"]:>+6.1f}%  ${r["mkt_value"]:>9,.0f}'
+            f'${r["cost"]:>6.2f}  {r["pnl_pct"]:>+5.1f}%'
         )
 
     total_pnl_usd = sum(r['pnl_usd'] for r in pos_rows)
@@ -509,12 +517,15 @@ def run_daily():
     lines.append(f'Total P&L: <b>${total_pnl_usd:>+,.0f}</b>')
 
     # Month-end warning
-    bkk_dt = datetime.now(BKK)
-    import calendar
-    last_day = calendar.monthrange(bkk_dt.year, bkk_dt.month)[1]
+    import calendar as _cal2
+    bkk_dt  = datetime.now(BKK)
+    last_day = _cal2.monthrange(bkk_dt.year, bkk_dt.month)[1]
     days_left = last_day - bkk_dt.day
+    me_date = datetime(bkk_dt.year, bkk_dt.month, last_day).strftime('%d %b %Y')
     if days_left <= 3:
-        lines.append(f'\n<b>Rebalance in {days_left} day(s)</b>')
+        lines.append(f'\n<b>Rebalance on {me_date} ({days_left}d)</b>')
+    else:
+        lines.append(f'\nNext rebalance: {me_date}')
 
     tg_send('\n'.join(lines))
     print(f'Daily update done. NAV=${nav:,.0f} | {since_inc:+.1f}% since inception')
