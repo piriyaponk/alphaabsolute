@@ -482,15 +482,16 @@ def run_rebalance(init=False):
     ny = datetime.now(BKK).year + (1 if datetime.now(BKK).month == 12 else 0)
     next_me = datetime(ny, nm, calendar.monthrange(ny, nm)[1]).strftime('%d %b %Y')
 
+    header = 'AlphaAbsolute v4.0 — พอร์ตเริ่มต้น' if init else 'AlphaAbsolute v4.0 — Monthly Rebalance'
     lines = [
-        f'<b>AlphaAbsolute v4.0 — Monthly Rebalance</b>',
+        f'<b>{header}</b>',
         f'<b>{bkk_now}</b> | Regime: <b>{regime}</b>',
         f'',
         f'NAV: <b>${new_nav:,.0f}</b> | Since inception: <b>{since_inc:+.1f}%</b>',
         f'CAGR: <b>{cagr_pct:+.1f}%</b> | QQQ: {qqq_ret:+.1f}% | Excess: <b>{since_inc-qqq_ret:+.1f}%</b>',
         f'Sharpe: {sharpe:.2f} | MaxDD: {max_dd_pct:.1f}%',
         f'',
-        f'<b>NEW PORTFOLIO ({len(new_positions)} stocks | {deployed*100:.0f}% deployed)</b>',
+        f'<b>{"PORTFOLIO (" if init else "NEW PORTFOLIO ("}{len(new_positions)} stocks | {deployed*100:.0f}% deployed)</b>',
         f'{"Ticker":<7} {"Wt":>5}  {"Cost":>8}  {"P&L%":>6}',
     ]
     for _, row in passed.sort_values('weight', ascending=False).iterrows():
@@ -501,9 +502,10 @@ def run_rebalance(init=False):
         pnl  = (cur / cost - 1) * 100
         lines.append(f'{tkr:<7} {row["weight"]*100:>4.1f}%  ${cost:>7.2f}  {pnl:>+5.1f}%')
 
+    # ADDED / REMOVED / HELD — แสดงเสมอ init ขึ้น ADDED=ทั้งหมด REMOVED/HELD=-
     if added:
         lines.append(f'\n<b>ADDED ({len(added)}):</b> ' + ', '.join(sorted(added)))
-    if removed:
+    if removed and not init:
         parts = []
         for tkr in sorted(removed):
             ex = next((r for r in this_exits if r['ticker'] == tkr), None)
@@ -513,8 +515,12 @@ def run_rebalance(init=False):
             else:
                 parts.append(tkr)
         lines.append(f'<b>REMOVED ({len(removed)}):</b> ' + ', '.join(parts))
+    else:
+        lines.append(f'<b>REMOVED:</b> -')
     if stayed and not init:
         lines.append(f'<b>HELD ({len(stayed)}):</b> ' + ', '.join(sorted(stayed)))
+    else:
+        lines.append(f'<b>HELD:</b> -')
 
     if this_realized != 0:
         s = '+' if this_realized >= 0 else ''
