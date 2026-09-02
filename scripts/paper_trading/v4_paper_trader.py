@@ -227,13 +227,13 @@ def compute_metrics(nav_history, inception_nav, inception_date):
     n_yrs  = max(n_days / 365.25, 1/365.25)
     cagr   = (navs.iloc[-1] / inception_nav) ** (1 / n_yrs) - 1
 
-    # Daily returns → Sharpe (annualized, risk-free=0 for simplicity)
+    # Daily returns → Sharpe (suppress < 63 trading days — institutional standard)
     daily_ret = navs.pct_change().dropna()
-    if len(daily_ret) >= 5:
+    if len(daily_ret) >= 63:
         sharpe = float(daily_ret.mean() / daily_ret.std() * np.sqrt(252)) \
                  if daily_ret.std() > 0 else 0.0
     else:
-        sharpe = 0.0
+        sharpe = None  # not enough data
 
     # Max Drawdown
     peak   = navs.cummax()
@@ -391,8 +391,10 @@ def run_rebalance(init=False):
                 cost_basis = old_cost
                 entry_date = prev.get('entry_date', today)
         else:
-            # New position — pay half spread on entry
-            cost_basis = round(px * (1 + COST_HALF), 4)
+            # New position
+            # Init: no spread (backtest doesn't charge inception entry cost)
+            # Rebalance: pay half spread on new entry
+            cost_basis = px if init else round(px * (1 + COST_HALF), 4)
             entry_date = today
 
         new_positions[tkr] = {
@@ -471,7 +473,7 @@ def run_rebalance(init=False):
 
     metrics      = compute_metrics(nav_history, float(new_state['inception_nav']),
                                    new_state['inception_date'])
-    since_inc    = (new_nav / float(new_state['inception_nav']) - 1) * 100
+    since_inc    = 0.0 if init else (new_nav / float(new_state['inception_nav']) - 1) * 100
     cagr_pct     = metrics['cagr'] * 100
     sharpe       = metrics['sharpe']
     max_dd_pct   = metrics['max_dd'] * 100
@@ -607,10 +609,12 @@ def run_daily():
     since_inc = (nav / inc_nav - 1) * 100
 
     nav_history = dict(state.get('nav_history', {}))
-    # Daily change — on inception day force 0% (API re-fetch noise is not real P&L)
+    # On inception day: lock NAV = inception_nav to avoid API re-fetch noise
     if today == inc_date:
+        nav       = inc_nav          # $1,000,000 exactly
         daily_chg = 0.0
-        since_inc = 0.0   # Day 1: no real performance yet
+        since_inc = 0.0
+        # Unrealized still shows spread cost (-$750) from cost_basis vs market price
     else:
         prev_dates = [d for d in sorted(nav_history.keys()) if d < today]
         if prev_dates:
@@ -629,29 +633,22 @@ def run_daily():
 
     metrics  = compute_metrics(nav_history, inc_nav, inc_date)
     cagr_pct = metrics['cagr'] * 100
-    sharpe   = metrics['sharpe']
+    sharpe   = metrics['sharpe']  # None if < 63 trading days
 
     # Realized P&L
     realized_log   = state.get('realized_pnl', [])
     total_realized = sum(r['realized_usd'] for r in realized_log)
     unrealized_pnl = sum(r['pnl_usd'] for r in pos_rows)
+    total_pnl      = unrealized_pnl + total_realized
 
-    # Entry spread costs paid (0.075% × inception NAV = permanent cost)
-    # cost_basis includes spread; unrealized already nets it out
-    # We surface this once to reconcile "since_inc%" vs "unrealized $"
-    spread_paid = round(inc_nav * COST_HALF, 0)  # approx total spread at inception
+    # since_inc = NAV vs inception cash (includes all spread costs paid at rebalances)
+    excess_ret = since_inc - qqq_ret  # honest excess: portfolio paid spread, QQQ did not
 
-    total_pnl = unrealized_pnl + total_realized  # net of spread (cost_basis already includes it)
-
-    # Portfolio net return (excluding the spread already embedded in cost_basis)
-    # since_inc uses inception cash ($1M) as base → includes entry spread gain/loss
-    # For fair QQQ comparison: portfolio_net = total_pnl / inc_nav
-    port_net_ret = total_pnl / inc_nav * 100
-    excess_ret   = port_net_ret - qqq_ret  # honest excess: both net of their respective costs
-
-    # CAGR: suppress if fewer than 30 trading days of history
+    # Suppress CAGR < 90 calendar days (institutional standard)
     n_trading_days = len([d for d in nav_history if d <= today])
-    show_cagr = n_trading_days >= 30
+    n_cal_days     = (datetime.strptime(today, '%Y-%m-%d') -
+                      datetime.strptime(inc_date, '%Y-%m-%d')).days
+    show_cagr = n_cal_days >= 90
 
     # Save state
     state.update({
@@ -674,7 +671,8 @@ def run_daily():
     me_date  = datetime(bkk_dt.year, bkk_dt.month, last_day).strftime('%d %b %Y')
     days_left = last_day - bkk_dt.day
 
-    cagr_str = f'CAGR: <b>{cagr_pct:+.1f}%</b>' if show_cagr else 'CAGR: <b>N/A (&lt;30d)</b>'
+    cagr_str   = f'CAGR: <b>{cagr_pct:+.1f}%</b>' if show_cagr else 'CAGR: <b>N/A (&lt;90d)</b>'
+    sharpe_str = f'Sharpe: {sharpe:.2f}' if sharpe is not None else 'Sharpe: N/A (&lt;63d)'
 
     lines = [
         f'<b>AlphaAbsolute v4.0 | {bkk_now} BKK</b>',
@@ -682,7 +680,7 @@ def run_daily():
         f'',
         f'<b>NAV: ${nav:,.0f}</b>  ({daily_chg:+.1f}% today)',
         f'Since {inc_date}: <b>{pnl_sign}{since_inc:.1f}%</b>',
-        f'{cagr_str} | Sharpe: {sharpe:.2f} | MaxDD: {max_dd:.1f}%',
+        f'{cagr_str} | {sharpe_str} | MaxDD: {max_dd:.1f}%',
         f'vs QQQ: {qqq_ret:+.1f}% | Excess: <b>{excess_ret:+.1f}%</b>',
         f'',
         f'<b>Holdings ({len(pos_rows)} stocks)</b>',
@@ -701,10 +699,9 @@ def run_daily():
     rea_s = '+' if total_realized >= 0 else ''
     lines.append(f'{"─"*38}')
     lines.append(f'Unrealized: {unr_s}${unrealized_pnl:,.0f}')
-    lines.append(f'Entry costs: -${spread_paid:,.0f}')
     if total_realized != 0:
         lines.append(f'Realized:   {rea_s}${total_realized:,.0f}')
-    lines.append(f'<b>Total P&amp;L (net): {pnl_s}${total_pnl:,.0f}</b>')
+    lines.append(f'<b>Total P&amp;L: {pnl_s}${total_pnl:,.0f}</b>')
 
     if days_left <= 3:
         lines.append(f'\n<b>Rebalance on {me_date} ({days_left}d)</b>')
@@ -712,7 +709,9 @@ def run_daily():
         lines.append(f'\nNext rebalance: {me_date}')
 
     tg_send('\n'.join(lines))
-    print(f'Daily done. NAV=${nav:,.0f} | {since_inc:+.1f}% since inception | CAGR={cagr_pct:+.1f}% | Sh={sharpe:.2f} | DD={max_dd:.1f}%')
+    sh_str   = f'{sharpe:.2f}' if sharpe is not None else 'N/A'
+    cagr_str2 = f'{cagr_pct:+.1f}%' if show_cagr else 'N/A'
+    print(f'Daily done. NAV=${nav:,.0f} | {since_inc:+.1f}% since inception | CAGR={cagr_str2} | Sh={sh_str} | DD={max_dd:.1f}%')
 
 
 # ── MAIN ──────────────────────────────────────────────────────────────────────

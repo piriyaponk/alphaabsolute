@@ -1,0 +1,44 @@
+name: Paper Trading — Audit Gate (CI)
+
+# Runs on every push to any branch.
+# Blocks merge if audit_gate.py fails.
+# Same checks as the local pre-push hook — no double standard.
+
+on:
+  push:
+    branches: ['**']
+  workflow_dispatch:
+
+jobs:
+  audit:
+    name: Formula & Accounting Audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install deps
+        run: pip install pandas numpy --quiet
+
+      - name: Check state.json exists
+        run: |
+          if [ ! -f data/paper_trading/state.json ]; then
+            echo "No state.json — audit skipped (run init first)"
+            exit 0
+          fi
+
+      - name: Run audit gate
+        run: python scripts/paper_trading/audit_gate.py
+
+      - name: Upload audit log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: audit-result
+          path: data/paper_trading/state.json
+          retention-days: 7
