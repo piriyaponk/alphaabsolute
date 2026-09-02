@@ -338,11 +338,18 @@ def run_rebalance(init=False):
     passed['weight'] = weights
 
     # ── Build new positions with correct cost basis ───────────────────────────
-    state          = load_state() or {}
-    today          = datetime.now(BKK).strftime('%Y-%m-%d')
-    nav            = float(state.get('nav', START_NAV))
-    prev_positions = state.get('positions', {})
-    realized_log   = list(state.get('realized_pnl', []))
+    today = datetime.now(BKK).strftime('%Y-%m-%d')
+    if init:
+        # Fresh start — ignore any existing state entirely
+        state          = {}
+        nav            = float(START_NAV)
+        prev_positions = {}
+        realized_log   = []
+    else:
+        state          = load_state() or {}
+        nav            = float(state.get('nav', START_NAV))
+        prev_positions = state.get('positions', {})
+        realized_log   = list(state.get('realized_pnl', []))
 
     new_positions = {}
     for _, row in passed.iterrows():
@@ -445,8 +452,9 @@ def run_rebalance(init=False):
         'positions':      new_positions,
         'nav_history':    nav_history,
         'peak_nav':       peak_nav,
-        'qqq_inception':  state.get('qqq_inception',
-                          float(qqq_close.iloc[-1]) if qqq_close is not None else 0),
+        'qqq_inception':  (float(qqq_close.iloc[-1]) if (init and qqq_close is not None)
+                          else state.get('qqq_inception',
+                          float(qqq_close.iloc[-1]) if qqq_close is not None else 0)),
         'qqq_nav_history': state.get('qqq_nav_history', {}),
         'realized_pnl':   realized_log,
     }
@@ -502,7 +510,7 @@ def run_rebalance(init=False):
         pnl  = (cur / cost - 1) * 100
         lines.append(f'{tkr:<7} {row["weight"]*100:>4.1f}%  ${cost:>7.2f}  {pnl:>+5.1f}%')
 
-    # ADDED / REMOVED / HELD — แสดงเสมอ init ขึ้น ADDED=ทั้งหมด REMOVED/HELD=-
+    # ADDED / REMOVED — init: ADDED=all 15, REMOVED=-
     if added:
         lines.append(f'\n<b>ADDED ({len(added)}):</b> ' + ', '.join(sorted(added)))
     if removed and not init:
@@ -517,10 +525,6 @@ def run_rebalance(init=False):
         lines.append(f'<b>REMOVED ({len(removed)}):</b> ' + ', '.join(parts))
     else:
         lines.append(f'<b>REMOVED:</b> -')
-    if stayed and not init:
-        lines.append(f'<b>HELD ({len(stayed)}):</b> ' + ', '.join(sorted(stayed)))
-    else:
-        lines.append(f'<b>HELD:</b> -')
 
     if this_realized != 0:
         s = '+' if this_realized >= 0 else ''

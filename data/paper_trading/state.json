@@ -1,5 +1,5 @@
 {
-  "nav": 1001967.37,
+  "nav": 999999.95,
   "cash": 0.0,
   "inception_nav": 1000000.0,
   "inception_date": "2026-09-02",
@@ -7,199 +7,148 @@
   "regime": "BULL",
   "positions": {
     "MRNA": {
-      "shares": 158.7738,
-      "cost_basis": 149.1666,
-      "weight_target": 0.0237,
+      "shares": 152.8568,
+      "cost_basis": 147.4905,
+      "weight_target": 0.0225,
       "entry_date": "2026-09-02",
-      "adtv_m": 1819.7,
+      "adtv_m": 1820.4,
       "rs_pct": 100.0,
-      "beta": 1.77
+      "beta": 1.76
     },
     "SNDK": {
-      "shares": 25.7412,
-      "cost_basis": 1534.6085,
-      "weight_target": 0.0396,
+      "shares": 24.4179,
+      "cost_basis": 1544.7827,
+      "weight_target": 0.0377,
       "entry_date": "2026-09-02",
-      "adtv_m": 22221.6,
+      "adtv_m": 22228.6,
       "rs_pct": 99.9,
       "beta": 2.75
     },
     "TXG": {
-      "shares": 1140.5088,
-      "cost_basis": 61.081,
-      "weight_target": 0.069,
+      "shares": 1092.7693,
+      "cost_basis": 60.2051,
+      "weight_target": 0.0657,
       "entry_date": "2026-09-02",
       "adtv_m": 144.1,
       "rs_pct": 99.7,
       "beta": 1.73
     },
     "TWST": {
-      "shares": 400.2122,
-      "cost_basis": 133.2621,
+      "shares": 406.849,
+      "cost_basis": 128.4663,
       "weight_target": 0.0522,
       "entry_date": "2026-09-02",
-      "adtv_m": 180.8,
+      "adtv_m": 181.0,
       "rs_pct": 99.6,
       "beta": 2.3
     },
     "LITE": {
-      "shares": 62.2468,
-      "cost_basis": 855.1743,
-      "weight_target": 0.0533,
+      "shares": 61.2013,
+      "cost_basis": 860.625,
+      "weight_target": 0.0526,
       "entry_date": "2026-09-02",
-      "adtv_m": 4146.8,
-      "rs_pct": 99.1,
+      "adtv_m": 4148.0,
+      "rs_pct": 99.2,
       "beta": 2.25
     },
     "DELL": {
-      "shares": 166.1726,
-      "cost_basis": 441.1576,
-      "weight_target": 0.0739,
+      "shares": 155.5691,
+      "cost_basis": 450.5827,
+      "weight_target": 0.07,
       "entry_date": "2026-09-02",
-      "adtv_m": 3050.9,
+      "adtv_m": 3058.4,
       "rs_pct": 99.1,
       "beta": 1.27
     },
     "RVMD": {
-      "shares": 635.0057,
-      "cost_basis": 205.2866,
-      "weight_target": 0.131,
+      "shares": 604.0213,
+      "cost_basis": 206.9301,
+      "weight_target": 0.1249,
       "entry_date": "2026-09-02",
-      "adtv_m": 429.1,
+      "adtv_m": 429.3,
       "rs_pct": 99.0,
       "beta": 0.83
     },
-    "SYRE": {
-      "shares": 886.3146,
-      "cost_basis": 86.1783,
-      "weight_target": 0.0761,
-      "entry_date": "2026-09-02",
-      "adtv_m": 122.1,
-      "rs_pct": 98.9,
-      "beta": 1.47
-    },
     "STX": {
-      "shares": 78.9026,
-      "cost_basis": 791.4295,
-      "weight_target": 0.0625,
+      "shares": 74.8916,
+      "cost_basis": 795.1559,
+      "weight_target": 0.0595,
       "entry_date": "2026-09-02",
-      "adtv_m": 4174.7,
-      "rs_pct": 98.8,
+      "adtv_m": 4176.4,
+      "rs_pct": 98.9,
       "beta": 1.54
     },
-    "AAOI": {
-      "shares": 375.502,
-      "cost_basis": 102.1821,
-      "weight_target": 0.0382,
+    "SYRE": {
+      "shares": 846.1838,
+      "cost_basis": 85.6342,
+      "weight_target": 0.0724,
       "entry_date": "2026-09-02",
-      "adtv_m": 1574.4,
+      "adtv_m": 122.2,
+      "rs_pct": 98.8,
+      "beta": 1.47
+    },
+    "AAOI": {
+      "shares": 356.7084,
+      "cost_basis": 102.0966,
+      "weight_target": 0.0364,
+      "entry_date": "2026-09-02",
+      "adtv_m": 1574.6,
       "rs_pct": 98.8,
       "beta": 2.85
     },
     "WDC": {
-      "shares": 119.4625,
-      "cost_basis": 440.3135,
-      "weight_target": 0.0528,
+      "shares": 112.5778,
+      "cost_basis": 446.8549,
+      "weight_target": 0.0503,
       "entry_date": "2026-09-02",
-      "adtv_m": 4678.6,
+      "adtv_m": 4680.0,
       "rs_pct": 98.7,
       "beta": 1.98
     },
     "ANDG": {
-      "shares": 1599.9652,
-      "cost_basis": 56.4741,
-      "weight_target": 0.0894,
+      "shares": 1523.2284,
+      "cost_basis": 55.9319,
+      "weight_target": 0.0851,
       "entry_date": "2026-09-02",
       "adtv_m": 19.7,
       "rs_pct": 98.6,
       "beta": 0.55
     },
     "RNG": {
-      "shares": 1088.8059,
-      "cost_basis": 71.1912,
-      "weight_target": 0.0774,
+      "shares": 1037.2065,
+      "cost_basis": 71.1233,
+      "weight_target": 0.0737,
       "entry_date": "2026-09-02",
-      "adtv_m": 90.9,
+      "adtv_m": 91.0,
       "rs_pct": 98.6,
       "beta": 0.4
     },
     "TVTX": {
-      "shares": 1835.0937,
-      "cost_basis": 66.3796,
+      "shares": 1831.4468,
+      "cost_basis": 66.4298,
       "weight_target": 0.1216,
       "entry_date": "2026-09-02",
-      "adtv_m": 100.9,
+      "adtv_m": 101.0,
       "rs_pct": 98.3,
       "beta": 0.99
     },
-    "NBIS": {
-      "shares": 197.1148,
-      "cost_basis": 199.9132,
-      "weight_target": 0.0394,
+    "PBF": {
+      "shares": 1001.2856,
+      "cost_basis": 75.2064,
+      "weight_target": 0.0752,
       "entry_date": "2026-09-02",
-      "adtv_m": 4634.6,
+      "adtv_m": 170.3,
       "rs_pct": 98.1,
-      "beta": 2.56
+      "beta": 0.3
     }
   },
   "nav_history": {
-    "2026-09-02": 1001967.37
+    "2026-09-02": 999999.95
   },
-  "peak_nav": 1001967.37327943,
-  "qqq_inception": 708.27001953125,
+  "peak_nav": 999999.95,
+  "qqq_inception": 709.375,
   "qqq_nav_history": {
-    "2026-09-02": 709.0399780273438
+    "2026-09-02": 709.375
   },
-  "realized_pnl": [
-    {
-      "date": "2026-09-02",
-      "ticker": "DELL",
-      "shares_sold": 0.3194,
-      "cost": 440.95,
-      "exit_px": 445.3907,
-      "realized_usd": 1.42,
-      "pnl_pct": 1.01,
-      "type": "partial_sell"
-    },
-    {
-      "date": "2026-09-02",
-      "ticker": "ERAS",
-      "shares_sold": 4307.3142,
-      "cost": 16.2,
-      "exit_px": 16.0779,
-      "realized_usd": -525.78,
-      "pnl_pct": -0.75,
-      "type": "full_exit"
-    },
-    {
-      "date": "2026-09-02",
-      "ticker": "MRVL",
-      "shares_sold": 239.6469,
-      "cost": 205.4,
-      "exit_px": 204.8666,
-      "realized_usd": -127.82,
-      "pnl_pct": -0.26,
-      "type": "full_exit"
-    },
-    {
-      "date": "2026-09-02",
-      "ticker": "PACS",
-      "shares_sold": 2830.703,
-      "cost": 43.27,
-      "exit_px": 42.7829,
-      "realized_usd": -1378.87,
-      "pnl_pct": -1.13,
-      "type": "full_exit"
-    },
-    {
-      "date": "2026-09-02",
-      "ticker": "PBF",
-      "shares_sold": 1001.6364,
-      "cost": 75.4756,
-      "exit_px": 74.7489,
-      "realized_usd": -727.89,
-      "pnl_pct": -0.96,
-      "type": "full_exit"
-    }
-  ]
+  "realized_pnl": []
 }
