@@ -607,13 +607,17 @@ def run_daily():
     since_inc = (nav / inc_nav - 1) * 100
 
     nav_history = dict(state.get('nav_history', {}))
-    # Daily change: compare to last DIFFERENT day to avoid same-day re-run showing 0%
-    prev_dates = [d for d in sorted(nav_history.keys()) if d != today]
-    if prev_dates:
-        prev_nav  = nav_history[prev_dates[-1]]
-        daily_chg = (nav / prev_nav - 1) * 100
-    else:
+    # Daily change — on inception day force 0% (API re-fetch noise is not real P&L)
+    if today == inc_date:
         daily_chg = 0.0
+        since_inc = 0.0   # Day 1: no real performance yet
+    else:
+        prev_dates = [d for d in sorted(nav_history.keys()) if d < today]
+        if prev_dates:
+            prev_nav  = nav_history[prev_dates[-1]]
+            daily_chg = (nav / prev_nav - 1) * 100
+        else:
+            daily_chg = 0.0
 
     nav_history[today] = round(nav, 2)
 
