@@ -300,22 +300,73 @@ def run_rebalance(init=False):
     today = datetime.now(BKK).strftime('%Y-%m-%d')
     nav   = float(state.get('nav', START_NAV))
     prev_positions = state.get('positions', {})
+    realized_log   = state.get('realized_pnl', [])
 
     new_positions = {}
     for _, row in passed.iterrows():
-        tkr = row['ticker']
-        alloc = nav * float(row['weight'])
-        px    = float(row['close'])
-        shares = alloc / px
+        tkr    = row['ticker']
+        px     = float(row['close'])
+        alloc  = nav * float(row['weight'])
+        new_sh = alloc / px
+
+        prev = prev_positions.get(tkr)
+        if prev:
+            old_sh   = float(prev['shares'])
+            old_cost = float(prev['cost_basis'])
+            if new_sh > old_sh:
+                # Buying more — blend cost basis
+                extra_sh = new_sh - old_sh
+                blended_cost = (old_sh * old_cost + extra_sh * px) / new_sh
+                cost_basis = round(blended_cost, 4)
+                entry_date = prev.get('entry_date', today)
+            elif new_sh < old_sh:
+                # Selling some — realize P&L on sold shares, keep cost
+                sold_sh   = old_sh - new_sh
+                realized  = round(sold_sh * (px - old_cost), 2)
+                pnl_pct   = round((px / old_cost - 1) * 100, 2)
+                realized_log.append({
+                    'date': today, 'ticker': tkr,
+                    'shares_sold': round(sold_sh, 4),
+                    'cost': old_cost, 'exit_px': round(px, 4),
+                    'realized_usd': realized, 'pnl_pct': pnl_pct,
+                    'type': 'partial_sell'
+                })
+                cost_basis = old_cost  # cost unchanged on sells
+                entry_date = prev.get('entry_date', today)
+            else:
+                cost_basis = old_cost
+                entry_date = prev.get('entry_date', today)
+        else:
+            # New position
+            cost_basis = round(px, 4)
+            entry_date = today
+
         new_positions[tkr] = {
-            'shares':       round(shares, 4),
-            'cost_basis':   round(px, 4),
+            'shares':        round(new_sh, 4),
+            'cost_basis':    cost_basis,
             'weight_target': round(float(row['weight']), 4),
-            'entry_date':   today,
-            'adtv_m':       round(float(row['adtv_63m']), 1),
-            'rs_pct':       round(float(row['rs_pct']), 1),
-            'beta':         round(float(row['beta']), 2),
+            'entry_date':    entry_date,
+            'adtv_m':        round(float(row['adtv_63m']), 1),
+            'rs_pct':        round(float(row['rs_pct']), 1),
+            'beta':          round(float(row['beta']), 2),
         }
+
+    # Record realized P&L for positions fully exited
+    for tkr, prev in prev_positions.items():
+        if tkr not in new_positions:
+            px_exit = float(price_dict.get(tkr, pd.Series([float(prev['cost_basis'])])).iloc[-1]) \
+                      if tkr in price_dict else float(prev['cost_basis'])
+            old_sh   = float(prev['shares'])
+            old_cost = float(prev['cost_basis'])
+            realized  = round(old_sh * (px_exit - old_cost), 2)
+            pnl_pct   = round((px_exit / old_cost - 1) * 100, 2)
+            realized_log.append({
+                'date': today, 'ticker': tkr,
+                'shares_sold': old_sh,
+                'cost': old_cost, 'exit_px': round(px_exit, 4),
+                'realized_usd': realized, 'pnl_pct': pnl_pct,
+                'type': 'full_exit'
+            })
 
     # Cash: weight sum < 1.0 means some cash (bear mode)
     deployed = weights.sum()
@@ -331,9 +382,12 @@ def run_rebalance(init=False):
         'positions':      new_positions,
         'nav_history':    state.get('nav_history', {}),
         'qqq_inception':  state.get('qqq_inception', float(qqq.iloc[-1]) if qqq is not None else 0),
+        'realized_pnl':   realized_log,
     }
     new_state['nav_history'][today] = round(nav, 2)
     save_state(new_state)
+
+    total_realized = sum(r['realized_usd'] for r in realized_log)
 
     # Diff vs prev
     prev_tkrs = set(prev_positions.keys())
@@ -371,12 +425,31 @@ def run_rebalance(init=False):
             f'${cost:>7.2f}   0.0%'
         )
 
+    # Realized P&L from exits this rebalance
+    this_rebal_exits = [r for r in realized_log if r['date'] == today and r['type'] == 'full_exit']
+    this_rebal_realized = sum(r['realized_usd'] for r in this_rebal_exits)
+
     if added:
         lines.append(f'\n<b>ADDED ({len(added)}):</b> ' + ', '.join(sorted(added)))
     if removed:
-        lines.append(f'<b>REMOVED ({len(removed)}):</b> ' + ', '.join(sorted(removed)))
+        exit_parts = []
+        for tkr in sorted(removed):
+            ex = next((r for r in this_rebal_exits if r['ticker'] == tkr), None)
+            if ex:
+                sign = '+' if ex['realized_usd'] >= 0 else ''
+                exit_parts.append(f'{tkr} ({sign}{ex["pnl_pct"]}%  {sign}${ex["realized_usd"]:,.0f})')
+            else:
+                exit_parts.append(tkr)
+        lines.append(f'<b>REMOVED ({len(removed)}):</b> ' + ', '.join(exit_parts))
     if stayed and not init:
         lines.append(f'<b>HELD ({len(stayed)}):</b> ' + ', '.join(sorted(stayed)))
+
+    if this_rebal_realized != 0:
+        sign = '+' if this_rebal_realized >= 0 else ''
+        lines.append(f'\nRealized P&amp;L this rebalance: <b>{sign}${this_rebal_realized:,.0f}</b>')
+    if total_realized != 0 and len(realized_log) > len(this_rebal_exits):
+        sign = '+' if total_realized >= 0 else ''
+        lines.append(f'Cumulative realized: <b>{sign}${total_realized:,.0f}</b>')
 
     # Compute next month-end date
     import calendar as _cal
