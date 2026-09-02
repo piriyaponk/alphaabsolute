@@ -21,7 +21,8 @@ data/agent_memory/
 data/td_sequential/
 data/nrgc/state/
 data/nrgc/weekly/
-data/paper_trading/
+# data/paper_trading/ — unignored: state.json must persist in repo for GH Actions
+data/paper_trading/*.txt
 data/smart_signals/
 data/health_checks/
 data/insights/

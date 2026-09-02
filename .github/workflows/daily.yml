@@ -1,188 +1,55 @@
-name: AlphaAbsolute Daily Pipeline
+name: AlphaAbsolute v4.0 Paper Trading — Daily
 
-# Triggered by cron-job.org at exact Bangkok time via workflow_dispatch.
+# Triggered by cron-job.org at 00:00 UTC = 07:00 Bangkok every day.
 # Do NOT use GH Actions schedule: — free tier delays cron jobs 1-3 hours.
 #
-# cron-job.org jobs (set up at cron-job.org):
-#   Premarket: 23:00 UTC Sun-Thu  (= 06:00 Bangkok Mon-Fri)
-#   EOD:       09:30 UTC Mon-Fri  (= 16:30 Bangkok Mon-Fri)
-#   Premarket Sunday: 23:00 UTC Sat (= 06:00 Bangkok Sun, weekly_picker)
-#   EOD Saturday:     09:30 UTC Sat (= 16:30 Bangkok Sat, weekly_scorer)
+# cron-job.org setup:
+#   URL: https://api.github.com/repos/piriyaponk/AlphaAbsolute/actions/workflows/daily.yml/dispatches
+#   Method: POST | Every day 00:00 UTC
+#   Headers: Authorization: Bearer <PAT>  |  Content-Type: application/json
+#   Body: {"ref":"main"}
+#
+# Script auto-detects month-end and switches to full rebalance mode automatically.
 
 on:
   workflow_dispatch:
     inputs:
       mode:
-        description: 'Pipeline mode'
-        required: true
-        default: 'premarket'
-        type: choice
-        options: [premarket, eod, monthly]
+        description: 'daily (auto-detect) | rebalance (force)'
+        required: false
+        default: 'daily'
 
 jobs:
-  pipeline:
+  paper-trading:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
-    permissions:
-      contents: write
+    timeout-minutes: 30
 
     steps:
-      # ── 1. Checkout ────────────────────────────────────────────────────────────
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      # ── 2. Detect run mode ─────────────────────────────────────────────────────
-      - name: Detect run mode
-        id: mode
-        run: |
-          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
-            echo "mode=${{ inputs.mode }}" >> $GITHUB_OUTPUT
-          else
-            # Check UTC hour to distinguish premarket (23:xx) vs EOD (09:xx)
-            HOUR=$(date -u +%H)
-            if [ "$HOUR" -ge 20 ] || [ "$HOUR" -le 4 ]; then
-              echo "mode=premarket" >> $GITHUB_OUTPUT
-            else
-              echo "mode=eod" >> $GITHUB_OUTPUT
-            fi
-          fi
-          echo "Detected mode: $(cat $GITHUB_OUTPUT | grep mode | cut -d= -f2)"
-
-      # ── 3. Python setup ────────────────────────────────────────────────────────
       - name: Set up Python 3.12
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-          cache: 'pip'
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install pandas numpy pyarrow requests --quiet
 
-      # ── 4. Restore SQLite databases (persistent between runs) ──────────────────
-      #
-      # Cache key = today's date → new key each day
-      # restore-keys fallback = grabs yesterday's DB if today's not cached yet
-      # GitHub Actions Cache: 10 GB limit, 7-day TTL (renewed each run)
-      # Total DB size: ohlcv.db ~80 MB + breadth_prices.db ~350 MB = ~430 MB
-      - name: Get cache date key
-        id: cachekey
-        run: echo "key=$(date -u +%Y-%m-%d)" >> $GITHUB_OUTPUT
-
-      - name: Restore SQLite databases from cache
-        id: dbcache
-        uses: actions/cache@v4
-        with:
-          path: |
-            data/ohlcv.db
-            data/breadth/breadth_prices.db
-          key: sqlite-${{ steps.cachekey.outputs.key }}
-          restore-keys: |
-            sqlite-
-
-      - name: Log cache status
-        run: |
-          echo "Cache hit: ${{ steps.dbcache.outputs.cache-hit }}"
-          ls -lh data/ohlcv.db 2>/dev/null || echo "ohlcv.db: not in cache"
-          ls -lh data/breadth/breadth_prices.db 2>/dev/null || echo "breadth_prices.db: not in cache"
-
-      # ── 4b. Bootstrap DBs from GitHub Release on cache miss ───────────────────
-      #
-      # First run (or cache expired after 7 days): download seed DBs from the
-      # "data-bootstrap" release. After this run the cache is saved and subsequent
-      # runs use the cache directly (no download needed).
-      # Release assets are public → no auth required.
-      - name: Bootstrap DBs from release (cache miss only)
-        if: steps.dbcache.outputs.cache-hit != 'true'
-        run: |
-          RELEASE_BASE="https://github.com/piriyaponk/alphaabsolute/releases/download/data-bootstrap"
-          echo "Cache miss — downloading seed databases from data-bootstrap release..."
-
-          mkdir -p data/breadth
-
-          echo "  Downloading ohlcv.db (~80 MB)..."
-          curl -L --retry 3 --retry-delay 5 -o data/ohlcv.db \
-            "$RELEASE_BASE/ohlcv.db" && \
-            echo "  ohlcv.db: $(du -sh data/ohlcv.db | cut -f1)" || \
-            echo "  WARNING: ohlcv.db download failed — pipeline will run degraded"
-
-          echo "  Downloading breadth_prices.db (~350 MB)..."
-          curl -L --retry 3 --retry-delay 5 -o data/breadth/breadth_prices.db \
-            "$RELEASE_BASE/breadth_prices.db" && \
-            echo "  breadth_prices.db: $(du -sh data/breadth/breadth_prices.db | cut -f1)" || \
-            echo "  WARNING: breadth_prices.db download failed — breadth step will be skipped"
-
-          echo "Bootstrap complete."
-
-      # ── 5. Create required directories ─────────────────────────────────────────
-      - name: Create required directories
-        run: |
-          mkdir -p \
-            data/regime \
-            data/rs_universe \
-            data/fundamentals/analyst_cache \
-            data/themes \
-            data/leadership \
-            data/bigshot \
-            data/setups \
-            data/portfolio \
-            data/risk \
-            data/postmortems \
-            data/calibration \
-            data/runner_logs \
-            data/health \
-            data/breadth \
-            data/board \
-            data/quality \
-            output/postmortems
-
-      # ── 6. Run pipeline ────────────────────────────────────────────────────────
-      - name: Run AlphaAbsolute pipeline
+      - name: Run paper trader
         env:
-          POLYGON_API_KEY:    ${{ secrets.POLYGON_API_KEY }}
-          TIINGO_API_KEY:     ${{ secrets.TIINGO_API_KEY }}
-          FMP_API_KEY:        ${{ secrets.FMP_API_KEY }}
-          FINNHUB_API_KEY:    ${{ secrets.FINNHUB_API_KEY }}
-          FRED_API_KEY:       ${{ secrets.FRED_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
-          # Tell scripts they're running in CI (used for platform-specific code)
-          ALPHAABSOLUTE_CI: "1"
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
-          python scripts/runners/pre_market_runner.py --mode ${{ steps.mode.outputs.mode }}
+          python scripts/paper_trading/v4_paper_trader.py \
+            --mode ${{ github.event.inputs.mode || 'daily' }}
 
-      # ── 7. Commit data outputs back to repo ────────────────────────────────────
-      #
-      # SQLite DBs are NOT committed (too large / binary) — they live in the cache.
-      # Only JSON + Markdown outputs go to git.
-      - name: Commit data outputs to repo
-        if: always()   # commit even if pipeline had partial failures
+      - name: Commit state update
         run: |
-          git config user.name  "AlphaAbsolute Bot"
-          git config user.email "bot@alphaabsolute.ai"
-
-          # Add outputs (ignore missing files/dirs quietly)
-          git add data/regime/                          2>/dev/null || true
-          git add data/rs_universe/latest.json          2>/dev/null || true
-          git add data/rs_universe/theme_rs_latest.json 2>/dev/null || true
-          git add data/rs_universe/changes_today.json   2>/dev/null || true
-          git add data/rs_universe/strong_leader_latest.json 2>/dev/null || true
-          git add data/themes/                          2>/dev/null || true
-          git add data/leadership/                      2>/dev/null || true
-          git add data/bigshot/                         2>/dev/null || true
-          git add data/setups/                          2>/dev/null || true
-          git add data/portfolio/action_signals.json    2>/dev/null || true
-          git add data/portfolio/paper_portfolio_state.json 2>/dev/null || true
-          git add data/risk/                            2>/dev/null || true
-          git add data/health/                          2>/dev/null || true
-          git add data/board/                           2>/dev/null || true
-          git add data/breadth/market_breadth_history.json 2>/dev/null || true
-          git add data/runner_logs/                     2>/dev/null || true
-          git add data/weekly_picks/                    2>/dev/null || true
-          git add output/daily_brief_*.md               2>/dev/null || true
-
-          git diff --cached --quiet || \
-            git commit -m "auto: ${{ steps.mode.outputs.mode }} $(date -u +%Y-%m-%d)"
-          git push || true
+          git config user.name "AlphaAbsolute Bot"
+          git config user.email "bot@alphaabsolute.local"
+          git add data/paper_trading/state.json
+          git diff --staged --quiet || git commit -m "paper: state $(date -u +%Y-%m-%d)"
+          git push

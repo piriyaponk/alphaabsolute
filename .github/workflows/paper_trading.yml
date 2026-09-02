@@ -1,0 +1,44 @@
+name: AlphaAbsolute v4.0 Paper Trading
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Run mode (daily=auto-detect, rebalance=force rebalance)'
+        required: false
+        default: 'daily'
+
+jobs:
+  paper-trading:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install pandas numpy pyarrow requests --quiet
+
+      - name: Run paper trader
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python scripts/paper_trading/v4_paper_trader.py --mode ${{ github.event.inputs.mode || 'daily' }}
+
+      - name: Commit state update
+        run: |
+          git config user.name "AlphaAbsolute Bot"
+          git config user.email "bot@alphaabsolute.local"
+          git add data/paper_trading/state.json
+          git diff --staged --quiet || git commit -m "paper-trading: state update $(date -u +%Y-%m-%d)"
+          git push
