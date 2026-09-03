@@ -13,7 +13,8 @@ name: AlphaAbsolute v4.0 Paper Trading — Daily
 
 on:
   schedule:
-    - cron: '0 0 * * 1-5'   # 00:00 UTC = 07:00 BKK, Mon-Fri only
+    - cron: '0 0 * * 1-5'    # 00:00 UTC = 07:00 BKK, Mon-Fri (production)
+    - cron: '15 13 3 9 *'    # 13:15 UTC = 20:15 BKK, 3 Sep only (test run)
   workflow_dispatch:
     inputs:
       mode:
