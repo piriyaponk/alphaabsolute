@@ -80,9 +80,9 @@ chk("realized_pnl empty at inception",
 # cost_basis == close_px at inception (no spread baked in)
 for tkr, pos in positions.items():
     cb   = float(pos["cost_basis"])
-    # cost_basis at inception should be raw close price — NOT × 1.00075
+    # cost_basis at inception should be raw close price — NOT x 1.00075
     # Check: cb should NOT be systematically 0.075% above current market
-    # We flag if cost_basis has the COST_HALF fingerprint (px × 1.00075)
+    # We flag if cost_basis has the COST_HALF fingerprint (px x 1.00075)
     # by checking if cb / (cb / 1.00075) == 1.00075 ... we can't know original px
     # So we just validate cost_basis is positive and finite
     if not (cb > 0 and math.isfinite(cb)):
@@ -145,12 +145,12 @@ chk("+2% since_inc approx +2%",
     abs(since_sim2 - 2.0) < 0.1,
     f"since_inc={since_sim2:.4f}% (expected ~2.00%)")
 
-chk("+2% unrealized ≈ +2% × invested_capital",
+chk("+2% unrealized ~ +2% x invested_capital",
     abs(unr_sim2 - (nav_sim2 - cash - sum(float(p["shares"]) * float(p["cost_basis"])
                                           for p in positions.values()))) < 1,
     f"unrealized={unr_sim2:.2f}")
 
-# Invariant: total_pnl ≈ NAV - inc_nav (when no realized yet)
+# Invariant: total_pnl ~ NAV - inc_nav (when no realized yet)
 if len(realized_log) == 0:
     expected_pnl = nav_sim2 - inc_nav
     chk(f"Invariant: total_pnl = NAV - inc_nav (±$1)",
@@ -175,7 +175,7 @@ chk("-20% NAV > 0",
     nav_neg20 > 0,
     f"nav={nav_neg20:.2f}")
 
-chk("-20% since_inc ≈ -20%",
+chk("-20% since_inc ~ -20%",
     abs(since_neg20 - (-20.0)) < 1.0,
     f"since_inc={since_neg20:.2f}% (expected ~-20%)")
 
@@ -192,17 +192,17 @@ test_cost    = 100.0
 # Exit spread
 exit_px   = test_px * (1 - COST_HALF)
 realized  = test_sh * (exit_px - test_cost)
-chk("Exit: exit_px = close × (1 - 0.00075)",
+chk("Exit: exit_px = close x (1 - 0.00075)",
     abs(exit_px - 99.925) < 0.001,
     f"exit_px={exit_px}")
-chk("Exit: realized = shares × (exit_px - cost)",
+chk("Exit: realized = shares x (exit_px - cost)",
     abs(realized - (10 * (99.925 - 100.0))) < 0.001)
 
 # New entry spread
 entry_px  = test_px * (1 + COST_HALF)
 new_sh    = 1000.0 / entry_px
 cb_new    = entry_px
-chk("Entry: entry_px = close × (1 + 0.00075)",
+chk("Entry: entry_px = close x (1 + 0.00075)",
     abs(entry_px - 100.075) < 0.001)
 chk("Entry: cost_basis = entry_px",
     abs(cb_new - 100.075) < 0.001)
