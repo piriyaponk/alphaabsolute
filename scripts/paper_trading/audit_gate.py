@@ -1,23 +1,23 @@
 """
-audit_gate.py — Pre-push formula validator for AlphaAbsolute Paper Trading
+audit_gate.py -- Pre-push formula validator for AlphaAbsolute Paper Trading
 ===========================================================================
 Runs automatically before every git push (via .git/hooks/pre-push).
 Also runs in GitHub Actions CI on every push.
 
 Checks:
-  1. Init invariants  — NAV = $1M, P&L = $0, cost_basis = close_px
-  2. Daily invariants — NAV includes cash, since_inc consistent, MaxDD rolling
-  3. Simulation +2%   — NAV/P&L/excess formula correct
-  4. Simulation -10%  — bear scenario, no negative shares, realized correct
-  5. Rebalance spread — exit pays 0.075%, new entry pays 0.075%, held = no cost
-  6. Bear regime      — cash = 50%, NAV includes cash
-  7. QQQ excess       — excess = since_inc - qqq_ret (honest, portfolio pays spread)
-  8. Sharpe/CAGR      — suppressed below thresholds
-  9. Idempotency      — realized_pnl no duplicates
-  10. Invariant check — total_pnl = NAV - inc_nav (±rounding)
+  1. Init invariants  -- NAV = $1M, P&L = $0, cost_basis = close_px
+  2. Daily invariants -- NAV includes cash, since_inc consistent, MaxDD rolling
+  3. Simulation +2%   -- NAV/P&L/excess formula correct
+  4. Simulation -10%  -- bear scenario, no negative shares, realized correct
+  5. Rebalance spread -- exit pays 0.075%, new entry pays 0.075%, held = no cost
+  6. Bear regime      -- cash = 50%, NAV includes cash
+  7. QQQ excess       -- excess = since_inc - qqq_ret (honest, portfolio pays spread)
+  8. Sharpe/CAGR      -- suppressed below thresholds
+  9. Idempotency      -- realized_pnl no duplicates
+  10. Invariant check -- total_pnl = NAV - inc_nav (+/-rounding)
 
-Exit 0 = ALL PASS → push allowed
-Exit 1 = ANY FAIL → push BLOCKED
+Exit 0 = ALL PASS -> push allowed
+Exit 1 = ANY FAIL -> push BLOCKED
 """
 import sys, json, os, math
 from pathlib import Path
@@ -37,17 +37,17 @@ def chk(name, condition, detail=""):
     if condition:
         print(f"  {PASS_ICON} {name}")
     else:
-        print(f"  {FAIL_ICON} {name}{' — ' + detail if detail else ''}")
+        print(f"  {FAIL_ICON} {name}{' -- ' + detail if detail else ''}")
         failures.append(name)
 
 def warn(name, detail=""):
-    print(f"  {WARN_ICON} {name}{' — ' + detail if detail else ''}")
+    print(f"  {WARN_ICON} {name}{' -- ' + detail if detail else ''}")
     warnings.append(name)
 
-# ── Load state ────────────────────────────────────────────────────────────────
+# ?? Load state ????????????????????????????????????????????????????????????????
 STATE_FILE = "data/paper_trading/state.json"
 if not os.path.exists(STATE_FILE):
-    print(f"[SKIP] No state.json found — skipping audit (run --mode init first)")
+    print(f"[SKIP] No state.json found -- skipping audit (run --mode init first)")
     sys.exit(0)
 
 with open(STATE_FILE) as f:
@@ -64,10 +64,10 @@ nav_history  = state.get("nav_history", {})
 peak_nav     = float(state.get("peak_nav", nav))
 
 print("=" * 60)
-print("  AlphaAbsolute Paper Trading — AUDIT GATE")
+print("  AlphaAbsolute Paper Trading -- AUDIT GATE")
 print("=" * 60)
 
-# ── CHECK 1: Init invariants ──────────────────────────────────────────────────
+# ?? CHECK 1: Init invariants ??????????????????????????????????????????????????
 print("\n[1] INIT INVARIANTS")
 chk("inception_nav = $1,000,000",
     abs(inc_nav - 1_000_000) < 1,
@@ -80,7 +80,7 @@ chk("realized_pnl empty at inception",
 # cost_basis == close_px at inception (no spread baked in)
 for tkr, pos in positions.items():
     cb   = float(pos["cost_basis"])
-    # cost_basis at inception should be raw close price — NOT x 1.00075
+    # cost_basis at inception should be raw close price -- NOT x 1.00075
     # Check: cb should NOT be systematically 0.075% above current market
     # We flag if cost_basis has the COST_HALF fingerprint (px x 1.00075)
     # by checking if cb / (cb / 1.00075) == 1.00075 ... we can't know original px
@@ -91,7 +91,7 @@ for tkr, pos in positions.items():
 else:
     print(f"  {PASS_ICON} cost_basis valid for all {len(positions)} positions")
 
-# ── CHECK 2: NAV consistency ──────────────────────────────────────────────────
+# ?? CHECK 2: NAV consistency ??????????????????????????????????????????????????
 print("\n[2] NAV CONSISTENCY")
 mkt_value = sum(float(p["shares"]) * float(p["cost_basis"]) for p in positions.values())
 nav_from_positions = mkt_value + cash
@@ -112,19 +112,19 @@ chk("qqq_inception > 0",
     qqq_inc > 0,
     f"qqq_inception={qqq_inc} (would cause division by zero)")
 
-# ── CHECK 3: Simulation — flat price (day 0 equivalent) ──────────────────────
-print("\n[3] SIMULATION — FLAT PRICES (P&L = 0)")
+# ?? CHECK 3: Simulation -- flat price (day 0 equivalent) ??????????????????????
+print("\n[3] SIMULATION -- FLAT PRICES (P&L = 0)")
 pnl_flat = 0.0
 for tkr, pos in positions.items():
     cost   = float(pos["cost_basis"])
     shares = float(pos["shares"])
-    # If cur_px == cost_basis → pnl = 0
+    # If cur_px == cost_basis -> pnl = 0
     pnl_flat += shares * (cost - cost)  # = 0 by definition
 
 chk("Flat price: unrealized = $0", abs(pnl_flat) < 0.01)
 
-# ── CHECK 4: Simulation — +2% shock ──────────────────────────────────────────
-print("\n[4] SIMULATION — ALL POSITIONS +2%")
+# ?? CHECK 4: Simulation -- +2% shock ??????????????????????????????????????????
+print("\n[4] SIMULATION -- ALL POSITIONS +2%")
 nav_sim2 = cash
 unr_sim2 = 0.0
 for tkr, pos in positions.items():
@@ -153,12 +153,12 @@ chk("+2% unrealized ~ +2% x invested_capital",
 # Invariant: total_pnl ~ NAV - inc_nav (when no realized yet)
 if len(realized_log) == 0:
     expected_pnl = nav_sim2 - inc_nav
-    chk(f"Invariant: total_pnl = NAV - inc_nav (±$1)",
+    chk(f"Invariant: total_pnl = NAV - inc_nav (+/-$1)",
         abs(unr_sim2 - expected_pnl) < 1.01,
         f"unr={unr_sim2:.2f} expected={expected_pnl:.2f}")
 
-# ── CHECK 5: Simulation — -20% shock (bear scenario) ─────────────────────────
-print("\n[5] SIMULATION — ALL POSITIONS -20% (bear stress)")
+# ?? CHECK 5: Simulation -- -20% shock (bear scenario) ?????????????????????????
+print("\n[5] SIMULATION -- ALL POSITIONS -20% (bear stress)")
 nav_neg20 = cash
 unr_neg20 = 0.0
 for tkr, pos in positions.items():
@@ -179,11 +179,11 @@ chk("-20% since_inc ~ -20%",
     abs(since_neg20 - (-20.0)) < 1.0,
     f"since_inc={since_neg20:.2f}% (expected ~-20%)")
 
-chk("-20% drawdown ≤ 0",
+chk("-20% drawdown ? 0",
     dd_neg20 <= 0,
     f"dd={dd_neg20:.2f}%")
 
-# ── CHECK 6: Rebalance spread logic ──────────────────────────────────────────
+# ?? CHECK 6: Rebalance spread logic ??????????????????????????????????????????
 print("\n[6] REBALANCE SPREAD FORMULAS")
 test_px      = 100.0
 test_sh      = 10.0
@@ -217,7 +217,7 @@ chk("Blended cost_basis = WACB",
     abs(blended - expected_blend) < 0.001,
     f"blended={blended:.4f} expected={expected_blend:.4f}")
 
-# ── CHECK 7: QQQ excess ───────────────────────────────────────────────────────
+# ?? CHECK 7: QQQ excess ???????????????????????????????????????????????????????
 print("\n[7] QQQ EXCESS FORMULA")
 test_since_inc = 5.0
 test_qqq_ret   = 3.0
@@ -228,9 +228,9 @@ chk("excess = since_inc - qqq_ret",
 
 chk("qqq_inception in state",
     qqq_inc > 0,
-    "qqq_inception = 0 → division by zero risk")
+    "qqq_inception = 0 -> division by zero risk")
 
-# ── CHECK 8: Metric suppression thresholds ────────────────────────────────────
+# ?? CHECK 8: Metric suppression thresholds ????????????????????????????????????
 print("\n[8] METRIC SUPPRESSION")
 n_days_hist = len(nav_history)
 chk("CAGR suppressed < 90 cal days (verified in code)",
@@ -239,16 +239,16 @@ chk("Sharpe suppressed < 63 trading days (verified in code)",
     True)
 
 if n_days_hist < 63:
-    warn(f"Only {n_days_hist} days of NAV history — Sharpe/CAGR should show N/A")
+    warn(f"Only {n_days_hist} days of NAV history -- Sharpe/CAGR should show N/A")
 
-# ── CHECK 9: Idempotency guard ────────────────────────────────────────────────
-print("\n[9] IDEMPOTENCY — NO DUPLICATE REALIZED ENTRIES")
+# ?? CHECK 9: Idempotency guard ????????????????????????????????????????????????
+print("\n[9] IDEMPOTENCY -- NO DUPLICATE REALIZED ENTRIES")
 dup_keys = [f'{r["date"]}|{r["ticker"]}|{r["type"]}' for r in realized_log]
 chk("No duplicate realized_pnl entries",
     len(dup_keys) == len(set(dup_keys)),
     f"found {len(dup_keys) - len(set(dup_keys))} duplicates")
 
-# ── CHECK 10: Shares integrity ────────────────────────────────────────────────
+# ?? CHECK 10: Shares integrity ????????????????????????????????????????????????
 print("\n[10] POSITION INTEGRITY")
 chk("All positions have positive shares",
     all(float(p["shares"]) > 0 for p in positions.values()),
@@ -262,23 +262,23 @@ chk("Position count 5-20",
     5 <= len(positions) <= 20,
     f"positions = {len(positions)}")
 
-# ── FINAL VERDICT ─────────────────────────────────────────────────────────────
+# ?? FINAL VERDICT ?????????????????????????????????????????????????????????????
 print()
 print("=" * 60)
 if failures:
-    print(f"  AUDIT FAILED — {len(failures)} check(s) failed:")
+    print(f"  AUDIT FAILED -- {len(failures)} check(s) failed:")
     for f in failures:
         print(f"    x {f}")
     if warnings:
         print(f"  Warnings ({len(warnings)}): {', '.join(warnings)}")
-    print("  PUSH BLOCKED — fix the above before pushing")
+    print("  PUSH BLOCKED -- fix the above before pushing")
     print("=" * 60)
     sys.exit(1)
 else:
     if warnings:
         print(f"  AUDIT PASSED ({len(warnings)} warning(s)): {', '.join(warnings)}")
     else:
-        print(f"  AUDIT PASSED — all {10} checks OK")
+        print(f"  AUDIT PASSED -- all {10} checks OK")
     print("  Push allowed.")
     print("=" * 60)
     sys.exit(0)
