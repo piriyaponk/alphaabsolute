@@ -12,6 +12,8 @@ name: AlphaAbsolute v4.0 Paper Trading — Daily
 # Script auto-detects month-end and switches to full rebalance mode automatically.
 
 on:
+  schedule:
+    - cron: '0 0 * * 1-5'   # 00:00 UTC = 07:00 BKK, Mon-Fri only
   workflow_dispatch:
     inputs:
       mode:
