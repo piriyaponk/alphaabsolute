@@ -71,7 +71,7 @@ def fetch_yahoo(ticker, days=300):
         return None, None
 
 
-def fetch_many(tickers, days=300, threads=8):
+def fetch_many(tickers, days=300, threads=8, min_len=20):
     """Parallel fetch. Returns {ticker: (close_series, vol_series)}."""
     from concurrent.futures import ThreadPoolExecutor, as_completed
     results = {}
@@ -80,7 +80,7 @@ def fetch_many(tickers, days=300, threads=8):
         for f in as_completed(futs):
             t = futs[f]
             c, v = f.result()
-            if c is not None and len(c) > 20:
+            if c is not None and len(c) >= min_len:
                 results[t] = (c, v)
     return results
 
@@ -556,7 +556,7 @@ def run_daily():
 
     fetch_tkrs = list(positions.keys()) + ['QQQ', 'IWM']
     print(f'Fetching {len(fetch_tkrs)} prices...')
-    data_dict = fetch_many(fetch_tkrs, days=10, threads=12)
+    data_dict = fetch_many(fetch_tkrs, days=10, threads=12, min_len=2)
 
     # IWM regime
     iwm_data = data_dict.get('IWM')
