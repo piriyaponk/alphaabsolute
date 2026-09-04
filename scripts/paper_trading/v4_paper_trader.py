@@ -736,7 +736,7 @@ def run_daily():
         icon = '' if r['pnl_pct'] >= 0 else ''
         lines.append(
             f'{icon}{r["ticker"]:<6} {r["weight_act"]:>4.1f}%  '
-            f'${r["cost"]:>6.2f}  {r["pnl_pct"]:>+5.1f}%'
+            f'${r["cost"]:>7.2f}→${r["cur_px"]:>7.2f}  {r["pnl_pct"]:>+5.1f}%'
         )
 
     pnl_s = '+' if total_pnl >= 0 else ''
