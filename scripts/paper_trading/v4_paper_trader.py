@@ -28,6 +28,10 @@ import pandas as pd
 import numpy as np
 import requests
 import ssl
+try:
+    from dotenv import load_dotenv; load_dotenv()
+except ImportError:
+    pass
 ssl._create_default_https_context = ssl._create_unverified_context
 
 # ── CONFIG ────────────────────────────────────────────────────────────────────
@@ -48,6 +52,27 @@ BKK           = timezone(timedelta(hours=7))
 
 TELEGRAM_TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN', '')
 TELEGRAM_CHAT  = os.environ.get('TELEGRAM_CHAT_ID', '')
+
+
+# ── TIINGO EOD PRICE FETCH (daily mark-to-market) ─────────────────────────────
+def fetch_tiingo_price(ticker):
+    """Fetch last EOD close from Tiingo. Returns float or None."""
+    key = os.environ.get('TIINGO_API_KEY', '')
+    if not key:
+        return None
+    url = (f'https://api.tiingo.com/tiingo/daily/{ticker}/prices'
+           f'?startDate=2026-08-01&token={key}')
+    try:
+        r = requests.get(url, headers={'Content-Type': 'application/json'},
+                         verify=False, timeout=10)
+        if r.status_code != 200:
+            return None
+        data = r.json()
+        if not isinstance(data, list) or len(data) == 0:
+            return None
+        return float(data[-1]['adjClose'])
+    except Exception:
+        return None
 
 
 # ── YAHOO FINANCE ─────────────────────────────────────────────────────────────
@@ -555,12 +580,27 @@ def run_daily():
     bkk_now  = datetime.now(BKK).strftime('%d %b %Y %H:%M')
 
     fetch_tkrs = list(positions.keys()) + ['QQQ', 'IWM']
-    print(f'Fetching {len(fetch_tkrs)} prices...')
-    data_dict = fetch_many(fetch_tkrs, days=10, threads=12, min_len=2)
+    print(f'Fetching {len(fetch_tkrs)} prices via Tiingo...')
 
-    # IWM regime
-    iwm_data = data_dict.get('IWM')
-    if iwm_data:
+    # Tiingo sequential fetch (rate-limit friendly: ~20 req/day, 50/hour limit)
+    tiingo_prices = {}
+    for t in fetch_tkrs:
+        px = fetch_tiingo_price(t)
+        if px is not None:
+            tiingo_prices[t] = px
+        time.sleep(0.2)  # 5 req/sec max, well under Tiingo free limits
+    print(f'  Tiingo OK: {sum(1 for t in fetch_tkrs if t in tiingo_prices)}/{len(fetch_tkrs)}')
+
+    # Yahoo fallback for any missing tickers
+    missing = [t for t in fetch_tkrs if t not in tiingo_prices]
+    data_dict = {}
+    if missing:
+        print(f'  Yahoo fallback for: {missing}')
+        data_dict = fetch_many(missing, days=10, threads=8, min_len=2)
+
+    # IWM regime (use Tiingo price; MA200 from Yahoo full-history fetch)
+    iwm_px = tiingo_prices.get('IWM')
+    if iwm_px:
         iwm_full_data = fetch_many(['IWM'], days=300)
         if 'IWM' in iwm_full_data:
             iwm_full = iwm_full_data['IWM'][0]
@@ -570,12 +610,15 @@ def run_daily():
     else:
         bull = state.get('regime', 'BULL') == 'BULL'
 
-    # Price each position
+    # Price each position — Tiingo primary, Yahoo fallback, then cost_basis
     total_mkt = float(state.get('cash', 0))
     pos_rows  = []
     for tkr, pos in positions.items():
-        td     = data_dict.get(tkr)
-        cur_px = float(td[0].iloc[-1]) if td else float(pos['cost_basis'])
+        if tkr in tiingo_prices:
+            cur_px = tiingo_prices[tkr]
+        else:
+            td = data_dict.get(tkr)
+            cur_px = float(td[0].iloc[-1]) if td else float(pos['cost_basis'])
         shares = float(pos['shares'])
         cost   = float(pos['cost_basis'])
         mkt    = shares * cur_px
@@ -597,10 +640,12 @@ def run_daily():
     peak_nav = max(float(state.get('peak_nav', nav)), nav)
     max_dd   = (nav / peak_nav - 1) * 100
 
-    # QQQ
-    qqq_data = data_dict.get('QQQ')
+    # QQQ — Tiingo primary, Yahoo fallback
     qqq_inc  = float(state.get('qqq_inception', 0))
-    qqq_now  = float(qqq_data[0].iloc[-1]) if qqq_data else qqq_inc  # fallback = no change
+    qqq_now  = tiingo_prices.get('QQQ')
+    if qqq_now is None:
+        qqq_data = data_dict.get('QQQ')
+        qqq_now = float(qqq_data[0].iloc[-1]) if qqq_data else qqq_inc
     qqq_ret  = (qqq_now / qqq_inc - 1) * 100 if qqq_inc > 0 else 0
 
     # NAV history + metrics
