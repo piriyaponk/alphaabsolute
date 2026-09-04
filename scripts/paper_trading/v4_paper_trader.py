@@ -729,8 +729,8 @@ def run_daily():
         f'vs QQQ: {qqq_ret:+.1f}% | Excess: <b>{excess_ret:+.1f}%</b>',
         f'',
         f'<b>Holdings ({len(pos_rows)} stocks)</b>',
-        f'{"Ticker":<7} {"Wt%":>4}  {"Cost":>7}  {"P&L%":>6}',
-        f'{"─"*38}',
+        f'{"Ticker":<7} {"Wt%":>4}  {"Cost":>7}  {"Price":>7}  {"P&L%":>6}',
+        f'{"─"*46}',
     ]
     for r in pos_rows:
         icon = '' if r['pnl_pct'] >= 0 else ''
@@ -742,7 +742,7 @@ def run_daily():
     pnl_s = '+' if total_pnl >= 0 else ''
     unr_s = '+' if unrealized_pnl >= 0 else ''
     rea_s = '+' if total_realized >= 0 else ''
-    lines.append(f'{"─"*38}')
+    lines.append(f'{"─"*46}')
     lines.append(f'Unrealized: {unr_s}${unrealized_pnl:,.0f}')
     if total_realized != 0:
         lines.append(f'Realized:   {rea_s}${total_realized:,.0f}')
