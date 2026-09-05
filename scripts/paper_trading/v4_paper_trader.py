@@ -670,7 +670,7 @@ def run_daily():
 
     nav_history[today] = round(nav, 2)
 
-    if qqq_data:
+    if qqq_now and qqq_now != qqq_inc:
         qqq_nav_history = dict(state.get('qqq_nav_history', {}))
         qqq_nav_history[today] = qqq_now
     else:
