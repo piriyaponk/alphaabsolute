@@ -1,0 +1,56 @@
+name: AlphaAbsolute Sunday Research Deep Dive
+
+# Sunday 07:00 Bangkok (ICT) = Sunday 00:00 UTC
+# Team K: weekly research summary → Telegram
+# A15: performance attribution → Obsidian
+on:
+  schedule:
+    - cron: '0 0 * * 0'     # Sunday 00:00 UTC = 07:00 BKK
+  workflow_dispatch:
+
+jobs:
+  sunday-research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Create required directories
+        run: |
+          mkdir -p data/postmortems \
+                   data/paper_trading \
+                   output
+
+      - name: Team K — Weekly research digest + Telegram
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python scripts/brain/weekly_research_push.py
+
+      - name: A15 — Performance monitor check
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python scripts/brain/performance_monitor.py --monthly
+
+      - name: Commit any outputs
+        run: |
+          git config user.name  "AlphaAbsolute Bot"
+          git config user.email "bot@alphaabsolute.ai"
+          git add data/ output/ || true
+          git diff --cached --quiet || \
+            git commit -m "auto: sunday research $(date -u +%Y-%m-%d)"
+          git push || true

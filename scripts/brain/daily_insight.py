@@ -1,0 +1,242 @@
+"""
+AlphaAbsolute — Daily Insight (Team K)
+Fetches latest research from free RSS sources + writes to Obsidian.
+Called by session_start.py every Claude Code open.
+
+Cost: $0 — RSS fetch + file write only, no API calls.
+Output: Knowledge/Daily/YYYY-MM-DD.md + returns 5-line summary for terminal.
+"""
+import sys, os, json, time
+from pathlib import Path
+from datetime import date, datetime
+from typing import Optional
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+
+try:
+    from dotenv import load_dotenv
+    load_dotenv(Path(__file__).resolve().parents[2] / ".env")
+except ImportError:
+    pass
+
+# Safe imports
+try:
+    import requests
+    HAS_REQUESTS = True
+except ImportError:
+    HAS_REQUESTS = False
+
+try:
+    import xml.etree.ElementTree as ET
+    HAS_XML = True
+except ImportError:
+    HAS_XML = False
+
+from scripts.brain.obsidian_writer_v2 import write_daily_note, is_available
+
+TODAY = date.today().isoformat()
+
+# ── RSS sources (free, no auth) ───────────────────────────────────────────────
+
+RSS_SOURCES = [
+    {
+        "id": "ibd",
+        "name": "IBD",
+        "url": "https://www.investors.com/feed/",
+        "max_items": 2,
+    },
+    {
+        "id": "reuters",
+        "name": "Reuters Markets",
+        "url": "https://feeds.reuters.com/reuters/businessNews",
+        "max_items": 2,
+    },
+    {
+        "id": "seeking_alpha",
+        "name": "Seeking Alpha",
+        "url": "https://seekingalpha.com/feed.xml",
+        "max_items": 2,
+    },
+    {
+        "id": "semianalysis",
+        "name": "SemiAnalysis",
+        "url": "https://www.semianalysis.com/feed",
+        "max_items": 1,
+    },
+]
+
+# Keywords to flag as relevant to AlphaAbsolute themes
+RELEVANT_KEYWORDS = [
+    "nvidia", "nvda", "ai", "hbm", "memory", "dram", "photonics",
+    "datacenter", "data center", "nuclear", "smr", "quantum", "space",
+    "breakout", "momentum", "earnings", "revenue", "guidance",
+    "mu ", "micron", "cohr", "coherent", "rklb", "rocket lab",
+    "semiconductor", "chip", "gpu", "interconnect",
+    "insider buy", "13f", "institutional",
+    "fed", "rates", "yield", "regime", "bull", "correction",
+]
+
+
+_ATOM_NS = "http://www.w3.org/2005/Atom"
+
+
+def _fetch_rss(url: str, max_items: int = 3, timeout: int = 8) -> list:
+    """Fetch RSS or Atom feed. Returns list of {title, link, date} dicts."""
+    if not HAS_REQUESTS or not HAS_XML:
+        return []
+    try:
+        r = requests.get(url, timeout=timeout,
+                         headers={"User-Agent": "AlphaAbsolute/2.0 RSS Reader"})
+        if r.status_code != 200:
+            return []
+        root = ET.fromstring(r.text)
+        items = []
+        # Detect Atom feed (SemiAnalysis, Stratechery use Atom)
+        is_atom = root.tag in (f"{{{_ATOM_NS}}}feed", "feed")
+        if is_atom:
+            for entry in root.iter(f"{{{_ATOM_NS}}}entry"):
+                t_el = entry.find(f"{{{_ATOM_NS}}}title")
+                l_el = entry.find(f"{{{_ATOM_NS}}}link")
+                d_el = entry.find(f"{{{_ATOM_NS}}}updated")
+                if t_el is None:
+                    continue
+                # Atom link is an attribute, not text
+                link = l_el.get("href", "") if l_el is not None else ""
+                items.append({
+                    "title": (t_el.text or "").strip(),
+                    "link":  link,
+                    "date":  (d_el.text or "").strip() if d_el is not None else "",
+                })
+                if len(items) >= max_items:
+                    break
+        else:
+            for item in root.iter("item"):
+                title_el = item.find("title")
+                link_el  = item.find("link")
+                date_el  = item.find("pubDate")
+                if title_el is None:
+                    continue
+                items.append({
+                    "title": (title_el.text or "").strip(),
+                    "link":  (link_el.text or "").strip() if link_el is not None else "",
+                    "date":  (date_el.text or "").strip() if date_el is not None else "",
+                })
+                if len(items) >= max_items:
+                    break
+        return items
+    except Exception:
+        return []
+
+
+def _is_relevant(title: str) -> bool:
+    t = title.lower()
+    return any(kw in t for kw in RELEVANT_KEYWORDS)
+
+
+def _fetch_all() -> dict:
+    """Fetch all sources. Return {source_id: [items]}."""
+    results = {}
+    for src in RSS_SOURCES:
+        items = _fetch_rss(src["url"], src["max_items"])
+        results[src["id"]] = {"name": src["name"], "items": items}
+        time.sleep(0.3)
+    return results
+
+
+def _format_obsidian(data: dict) -> str:
+    """Build full Obsidian daily note."""
+    header = [
+        "---",
+        f"date: {TODAY}",
+        "type: daily-insight",
+        "---",
+        "",
+        f"# Daily Research Digest — {TODAY}",
+        "",
+        "_Auto-generated by AlphaAbsolute session_start.py | Team K_",
+        "",
+    ]
+
+    # First pass: collect flagged items and build source sections
+    flagged = []
+    source_lines = []
+    for src_id, src_data in data.items():
+        name  = src_data["name"]
+        items = src_data["items"]
+        if not items:
+            continue
+        source_lines.append(f"## {name}")
+        for it in items:
+            title = it["title"]
+            link  = it["link"]
+            flag  = " 🔴" if _is_relevant(title) else ""
+            if flag:
+                flagged.append(f"[{name}] {title}")
+            if link:
+                source_lines.append(f"- [{title}]({link}){flag}")
+            else:
+                source_lines.append(f"- {title}{flag}")
+        source_lines.append("")
+
+    # Build final note: flagged block first, then source sections
+    body = []
+    if flagged:
+        body.append("## Flagged — Relevant to AlphaAbsolute Themes")
+        body.append("")
+        for f in flagged:
+            body.append(f"- {f}")
+        body.append("")
+
+    body += source_lines
+    body += [
+        "---",
+        "",
+        "## Research Notes",
+        "_Add your own notes from Druckenmiller interviews, SemiAnalysis, earnings calls here_",
+        "",
+    ]
+    return "\n".join(header + body)
+
+
+def _format_terminal(data: dict) -> str:
+    """Return compact 5-line summary for session_start terminal output."""
+    flagged = []
+    for src_id, src_data in data.items():
+        for it in src_data.get("items", []):
+            if _is_relevant(it["title"]):
+                flagged.append(f"  [{src_data['name']}] {it['title'][:70]}")
+
+    if not flagged:
+        total = sum(len(v["items"]) for v in data.values())
+        return f"[Team K] {total} headlines fetched — none flagged for themes"
+
+    lines = [f"[Team K] {len(flagged)} relevant headlines:"]
+    for f in flagged[:4]:
+        lines.append(f)
+    if len(flagged) > 4:
+        lines.append(f"  ... +{len(flagged)-4} more in Obsidian")
+    return "\n".join(lines)
+
+
+def run(silent: bool = False) -> str:
+    """Main entry point. Returns terminal summary string."""
+    if not HAS_REQUESTS:
+        return "[Team K] requests not installed — install with: pip install requests"
+
+    data = _fetch_all()
+    terminal_summary = _format_terminal(data)
+
+    if is_available():
+        note = _format_obsidian(data)
+        ok = write_daily_note(note)
+        if not silent and ok:
+            terminal_summary += f"\n  → Saved to Obsidian: Knowledge/Daily/{TODAY}.md"
+    else:
+        if not silent:
+            terminal_summary += "\n  [!] Obsidian vault not found — file not saved"
+
+    return terminal_summary
+
+
+if __name__ == "__main__":
+    print(run())

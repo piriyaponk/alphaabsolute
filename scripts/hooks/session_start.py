@@ -1092,6 +1092,24 @@ def session_start():
         if last_decision:
             lines.append(f"\n[Last Ops] {last_ops.name}: {last_decision[-1]}")
 
+    # ── Team K: Daily Research Digest ─────────────────────────────────────────
+    try:
+        if str(ROOT) not in sys.path:
+            sys.path.insert(0, str(ROOT))
+        from scripts.brain.daily_insight import run as run_daily_insight
+        insight = run_daily_insight(silent=True)
+        lines.append(f"\n{insight}")
+    except Exception as _e:
+        lines.append(f"\n[Team K] skipped ({type(_e).__name__}: {_e})")
+
+    # ── A15: Performance Monitor ──────────────────────────────────────────────
+    try:
+        from scripts.brain.performance_monitor import run as run_perf
+        perf = run_perf()
+        lines.append(f"\n{perf}")
+    except Exception as _e:
+        lines.append(f"\n[A15] skipped ({type(_e).__name__}: {_e})")
+
     # ── Today's context reminder
     lines.append(f"\n[Context] Load mode: research.md / execution.md / review.md")
     lines.append(f"{'='*60}\n")

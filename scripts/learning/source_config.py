@@ -285,6 +285,23 @@ DEFAULT_WATCHLIST = {
 
 ALL_TICKERS = list({t for tickers in DEFAULT_WATCHLIST.values() for t in tickers})
 
+# ─── X / NITTER SOURCES ───────────────────────────────────────────────────────
+# Direct file write — no API key. Uses nitter.net (free X mirror).
+# Configure X_USERNAME in .env or set directly here.
+
+X_SOURCES = [
+    {
+        "id": "p_equity_research",
+        "name": "P Equity Research (CIO account)",
+        "nitter_url": "https://nitter.net/{username}/rss",
+        "username_env": "X_CIO_USERNAME",  # set in .env: X_CIO_USERNAME=your_handle
+        "type": "nitter_rss",
+        "freq": "daily",
+        "priority": 1,
+        "why": "CIO's own equity research posts — highest priority signal source",
+    },
+]
+
 # ─── SUPER INVESTORS to track (Dataroma / 13F) ───────────────────────────────
 
 SUPER_INVESTORS = {
