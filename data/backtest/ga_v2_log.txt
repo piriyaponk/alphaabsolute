@@ -1,0 +1,35 @@
+Loading: signals.parquet
+Universe: 406 tickers  (S&P500-only for GA speed; validate best on expanded after)
+
+Timing: 12.2s per eval  ->  estimated 122 min for full GA
+
+Search space: 11,943,936 combinations
+GA: pop=30  gen=20  evals=600
+Windows: WF0(2017-19 bull)  WF2(2022-23 bear)  FULL(2017-26)
+Objective: WF0x2 + WF2x4 + FULLx2 + Sharpex8 - consistency_penalty
+
+
+  Gen  1/20  eval  1/30
+  Gen  1/20  eval  2/30
+  Gen  1/20  eval  3/30
+  Gen  1/20  eval  4/30
+  Gen  1/20  eval  5/30
+  Gen  1/20  eval  6/30
+  Gen  1/20  eval  7/30
+  Gen  1/20  eval  8/30
+  Gen  1/20  eval  9/30
+  Gen  1/20  eval 10/30
+  Gen  1/20  eval 11/30
+  Gen  1/20  eval 12/30
+  Gen  1/20  eval 13/30
+  Gen  1/20  eval 14/30
+  Gen  1/20  eval 15/30
+  Gen  1/20  eval 16/30
+  Gen  1/20  eval 17/30
+  Gen  1/20  eval 18/30
+  Gen  1/20  eval 19/30
+  Gen  1/20  eval 20/30
+  Gen  1/20  eval 21/30
+  Gen  1/20  eval 22/30
+  Gen  1/20  eval 23/30
+  Gen  1/20  eval 24/30

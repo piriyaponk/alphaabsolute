@@ -1,0 +1,82 @@
+{
+  "date": "2026-05-21",
+  "mode": "eod",
+  "run_at": "2026-05-21T20:31:28.981033",
+  "steps": [
+    {
+      "step": "ohlcv_update",
+      "name": "OHLCV Daily Update",
+      "status": "ok",
+      "duration": 0.0,
+      "output": "data/ohlcv.db",
+      "error": "",
+      "time": "20:31:28"
+    },
+    {
+      "step": "rs_history",
+      "name": "RS History Backfill (rolling 30d)",
+      "status": "ok",
+      "duration": 0.0,
+      "output": "data/rs_universe/latest.json",
+      "error": "",
+      "time": "20:31:28"
+    },
+    {
+      "step": "pipeline_metrics",
+      "name": "Pipeline Metrics (full recompute)",
+      "status": "ok",
+      "duration": 0.0,
+      "output": "data/screening/mode_a_full_latest.json",
+      "error": "",
+      "time": "20:31:28"
+    },
+    {
+      "step": "fill_ohlc",
+      "name": "Fill OHLC Gaps (open/high/low)",
+      "status": "ok",
+      "duration": 0.0,
+      "output": "data/quality/quality_latest.json",
+      "error": "",
+      "time": "20:31:28"
+    },
+    {
+      "step": "data_quality_eod",
+      "name": "Data Quality Check (EOD)",
+      "status": "ok",
+      "duration": 0.0,
+      "output": "data/quality/quality_latest.json",
+      "error": "",
+      "time": "20:31:28"
+    },
+    {
+      "step": "ohlcv_prefetch",
+      "name": "OHLCV Pre-fetch (600 tickers)",
+      "status": "ok",
+      "duration": 0.0,
+      "output": "data/ohlcv_cache/_manifest.json",
+      "error": "",
+      "time": "20:31:28"
+    },
+    {
+      "step": "a12_postmortem",
+      "name": "A12 Auto Post-Mortem",
+      "status": "fail",
+      "duration": 0.0,
+      "output": "data/postmortems/lessons.json",
+      "error": "Output missing: data/postmortems/lessons.json",
+      "time": "20:31:28"
+    },
+    {
+      "step": "a09_eod",
+      "name": "A09 Portfolio Manager (EOD update)",
+      "status": "ok",
+      "duration": 0.0,
+      "output": "data/portfolio/portfolio_state.json",
+      "error": "",
+      "time": "20:31:28"
+    }
+  ],
+  "passed": 7,
+  "failed": 1,
+  "skipped": 0
+}

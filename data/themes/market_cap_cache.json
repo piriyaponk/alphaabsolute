@@ -1,0 +1,1988 @@
+{
+  "last_updated": "2026-05-25",
+  "source": "finnhub_profile2 + fmp_profile fallback",
+  "total_tickers": 283,
+  "fetched_today": 282,
+  "skipped_fresh": 0,
+  "failed": 1,
+  "tickers": {
+    "AAOI": {
+      "market_cap": 14563260284.0,
+      "market_cap_b": 14.56,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "ABTC": {
+      "market_cap": 1179944670.0,
+      "market_cap_b": 1.18,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "ACHR": {
+      "market_cap": 4831043524.0,
+      "market_cap_b": 4.83,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "ACLS": {
+      "market_cap": 4823377753.0,
+      "market_cap_b": 4.82,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "ACMR": {
+      "market_cap": 4857594168.0,
+      "market_cap_b": 4.86,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "ADBE": {
+      "market_cap": 98931992767.0,
+      "market_cap_b": 98.93,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "AEC": {
+      "market_cap": 109655413.0,
+      "market_cap_b": 0.11,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "AEHR": {
+      "market_cap": 2988688156.0,
+      "market_cap_b": 2.99,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "AEIS": {
+      "market_cap": 12354637996.0,
+      "market_cap_b": 12.35,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "AEVA": {
+      "market_cap": 1596193570.0,
+      "market_cap_b": 1.6,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "AGMH": {
+      "market_cap": 2237941.0,
+      "market_cap_b": 0.0,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "AGPU": {
+      "market_cap": 55560780.0,
+      "market_cap_b": 0.06,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "AI": {
+      "market_cap": 1317240514.0,
+      "market_cap_b": 1.32,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "AIIO": {
+      "market_cap": 50580965.0,
+      "market_cap_b": 0.05,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "AISP": {
+      "market_cap": 88165281.0,
+      "market_cap_b": 0.09,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "AKAM": {
+      "market_cap": 21405099517.0,
+      "market_cap_b": 21.41,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "ALAB": {
+      "market_cap": 52601670607.0,
+      "market_cap_b": 52.6,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "ALMU": {
+      "market_cap": 414432796.0,
+      "market_cap_b": 0.41,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "ALP": {
+      "market_cap": 8532534.0,
+      "market_cap_b": 0.01,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "AMAT": {
+      "market_cap": 343117502234.0,
+      "market_cap_b": 343.12,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "AMBA": {
+      "market_cap": 3840073104.0,
+      "market_cap_b": 3.84,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "AMCI": {
+      "market_cap": 115035850.0,
+      "market_cap_b": 0.12,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "AMD": {
+      "market_cap": 762322095855.0,
+      "market_cap_b": 762.32,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "AMKR": {
+      "market_cap": 16297617718.0,
+      "market_cap_b": 16.3,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "AMT": {
+      "market_cap": 85654443102.0,
+      "market_cap_b": 85.65,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "AMTM": {
+      "market_cap": 5675467879.0,
+      "market_cap_b": 5.68,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "AMZN": {
+      "market_cap": 2864833447537.0,
+      "market_cap_b": 2864.83,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "ANET": {
+      "market_cap": 193954980597.0,
+      "market_cap_b": 193.95,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "ANY": {
+      "market_cap": 8020823.0,
+      "market_cap_b": 0.01,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "AOSL": {
+      "market_cap": 1248662063.0,
+      "market_cap_b": 1.25,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "APH": {
+      "market_cap": 162464764680.0,
+      "market_cap_b": 162.46,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "APLD": {
+      "market_cap": 13108248093.0,
+      "market_cap_b": 13.11,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "APP": {
+      "market_cap": 161815574152.0,
+      "market_cap_b": 161.82,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "ARBE": {
+      "market_cap": 138594208.0,
+      "market_cap_b": 0.14,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "ARM": {
+      "market_cap": 326126650391.0,
+      "market_cap_b": 326.13,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "ARQQ": {
+      "market_cap": 273751015.0,
+      "market_cap_b": 0.27,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "ASAN": {
+      "market_cap": 1613382075.0,
+      "market_cap_b": 1.61,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "ASML": {
+      "market_cap": 538216586365.0,
+      "market_cap_b": 538.22,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "ASPI": {
+      "market_cap": 698764129.0,
+      "market_cap_b": 0.7,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "ASTC": {
+      "market_cap": 4010413.0,
+      "market_cap_b": 0.0,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "ASTS": {
+      "market_cap": 41086865884.0,
+      "market_cap_b": 41.09,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "ASX": {
+      "market_cap": 2461607462402.0,
+      "market_cap_b": 2461.61,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "ATKR": {
+      "market_cap": 2861775736.0,
+      "market_cap_b": 2.86,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "ATOM": {
+      "market_cap": 357740445.0,
+      "market_cap_b": 0.36,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "AUR": {
+      "market_cap": 13865706074.0,
+      "market_cap_b": 13.87,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "AVAV": {
+      "market_cap": 8699998948.0,
+      "market_cap_b": 8.7,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "AVGO": {
+      "market_cap": 1960815461934.0,
+      "market_cap_b": 1960.82,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "AXON": {
+      "market_cap": 31112403381.0,
+      "market_cap_b": 31.11,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "AXTI": {
+      "market_cap": 9213547581.0,
+      "market_cap_b": 9.21,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "AZTA": {
+      "market_cap": 930152798.0,
+      "market_cap_b": 0.93,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "BA": {
+      "market_cap": 172653974675.0,
+      "market_cap_b": 172.65,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "BAER": {
+      "market_cap": 113546156.0,
+      "market_cap_b": 0.11,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "BAH": {
+      "market_cap": 9488366710.0,
+      "market_cap_b": 9.49,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "BAND": {
+      "market_cap": 1965381307.0,
+      "market_cap_b": 1.97,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "BB": {
+      "market_cap": 6376348778.0,
+      "market_cap_b": 6.38,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "BBAI": {
+      "market_cap": 2002008545.0,
+      "market_cap_b": 2.0,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "BGDE": {
+      "market_cap": 32575388.0,
+      "market_cap_b": 0.03,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "BGIN": {
+      "market_cap": 377874033.0,
+      "market_cap_b": 0.38,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "BILL": {
+      "market_cap": 3599425597.0,
+      "market_cap_b": 3.6,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "BITF": {
+      "market_cap": 3488230000.0,
+      "market_cap_b": 3.49,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "BKSY": {
+      "market_cap": 1776409124.0,
+      "market_cap_b": 1.78,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "BNAI": {
+      "market_cap": 120424744.0,
+      "market_cap_b": 0.12,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "BTBT": {
+      "market_cap": 694888898.0,
+      "market_cap_b": 0.69,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "BTDR": {
+      "market_cap": 3564544862.0,
+      "market_cap_b": 3.56,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "BWXT": {
+      "market_cap": 18589528340.0,
+      "market_cap_b": 18.59,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "CACI": {
+      "market_cap": 11075475786.0,
+      "market_cap_b": 11.08,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "CALX": {
+      "market_cap": 2502179562.0,
+      "market_cap_b": 2.5,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "CAMT": {
+      "market_cap": 7670254334.0,
+      "market_cap_b": 7.67,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "CAN": {
+      "market_cap": 299755866.0,
+      "market_cap_b": 0.3,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "CAT": {
+      "market_cap": 405309917730.0,
+      "market_cap_b": 405.31,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "CCI": {
+      "market_cap": 39917896350.0,
+      "market_cap_b": 39.92,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "CCJ": {
+      "market_cap": 45614224661.0,
+      "market_cap_b": 45.61,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "CCOI": {
+      "market_cap": 909410360.0,
+      "market_cap_b": 0.91,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "CDNS": {
+      "market_cap": 103042101987.0,
+      "market_cap_b": 103.04,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "CEG": {
+      "market_cap": 106215164612.0,
+      "market_cap_b": 106.22,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "CGNX": {
+      "market_cap": 10998660765.0,
+      "market_cap_b": 11.0,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "CHKP": {
+      "market_cap": 13928629000.0,
+      "market_cap_b": 13.93,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "CIEN": {
+      "market_cap": 82539913618.0,
+      "market_cap_b": 82.54,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "CIFR": {
+      "market_cap": 8986810519.0,
+      "market_cap_b": 8.99,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "CLS": {
+      "market_cap": 58405187189.0,
+      "market_cap_b": 58.41,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "CLSK": {
+      "market_cap": 4098039603.0,
+      "market_cap_b": 4.1,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "CMCSA": {
+      "market_cap": 90038020448.0,
+      "market_cap_b": 90.04,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "COHR": {
+      "market_cap": 73867542507.0,
+      "market_cap_b": 73.87,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "COHU": {
+      "market_cap": 2195068809.0,
+      "market_cap_b": 2.2,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "COIN": {
+      "market_cap": 48737650390.0,
+      "market_cap_b": 48.74,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "CORZ": {
+      "market_cap": 8029782357.0,
+      "market_cap_b": 8.03,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "CRDO": {
+      "market_cap": 40285711178.0,
+      "market_cap_b": 40.29,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "CRM": {
+      "market_cap": 147306948711.0,
+      "market_cap_b": 147.31,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "CRWD": {
+      "market_cap": 168874801359.0,
+      "market_cap_b": 168.87,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "CRWV": {
+      "market_cap": 57552215171.0,
+      "market_cap_b": 57.55,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "CSCO": {
+      "market_cap": 474588180442.0,
+      "market_cap_b": 474.59,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "CW": {
+      "market_cap": 27012857810.0,
+      "market_cap_b": 27.01,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "DDOG": {
+      "market_cap": 79137073529.0,
+      "market_cap_b": 79.14,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "DELL": {
+      "market_cap": 192589188475.0,
+      "market_cap_b": 192.59,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "DLR": {
+      "market_cap": 67480506597.0,
+      "market_cap_b": 67.48,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "DNN": {
+      "market_cap": 4032614491.0,
+      "market_cap_b": 4.03,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "DOCN": {
+      "market_cap": 16537548904.0,
+      "market_cap_b": 16.54,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "DRS": {
+      "market_cap": 11982952368.0,
+      "market_cap_b": 11.98,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "DUOL": {
+      "market_cap": 4967292570.0,
+      "market_cap_b": 4.97,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "EH": {
+      "market_cap": 734195211.0,
+      "market_cap_b": 0.73,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "EME": {
+      "market_cap": 37725794439.0,
+      "market_cap_b": 37.73,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "EMR": {
+      "market_cap": 76408837644.0,
+      "market_cap_b": 76.41,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "ENVX": {
+      "market_cap": 1457264958.0,
+      "market_cap_b": 1.46,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "EOSE": {
+      "market_cap": 2736483289.0,
+      "market_cap_b": 2.74,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "EQIX": {
+      "market_cap": 106493485264.0,
+      "market_cap_b": 106.49,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "ERIC": {
+      "market_cap": 419638098130.0,
+      "market_cap_b": 419.64,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "ESTC": {
+      "market_cap": 5672890340.0,
+      "market_cap_b": 5.67,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "ETN": {
+      "market_cap": 151961202593.0,
+      "market_cap_b": 151.96,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "EU": {
+      "market_cap": 397490108.0,
+      "market_cap_b": 0.4,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "EVEX": {
+      "market_cap": 1062329001.0,
+      "market_cap_b": 1.06,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "EVTL": {
+      "market_cap": 333599373.0,
+      "market_cap_b": 0.33,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "EXTR": {
+      "market_cap": 3347919191.0,
+      "market_cap_b": 3.35,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "FANUY": {
+      "market_cap": 7560602265747.0,
+      "market_cap_b": 7560.6,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "FCEL": {
+      "market_cap": 1324976469.0,
+      "market_cap_b": 1.32,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "FFIV": {
+      "market_cap": 22208308344.0,
+      "market_cap_b": 22.21,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "FIX": {
+      "market_cap": 64358836999.0,
+      "market_cap_b": 64.36,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "FLNC": {
+      "market_cap": 3960836313.0,
+      "market_cap_b": 3.96,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "FLY": {
+      "market_cap": 7931643105.0,
+      "market_cap_b": 7.93,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "FN": {
+      "market_cap": 25219119298.0,
+      "market_cap_b": 25.22,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "FORM": {
+      "market_cap": 10055386591.0,
+      "market_cap_b": 10.06,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "FROG": {
+      "market_cap": 8961648423.0,
+      "market_cap_b": 8.96,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "FTNT": {
+      "market_cap": 98123591694.0,
+      "market_cap_b": 98.12,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "GD": {
+      "market_cap": 92727806935.0,
+      "market_cap_b": 92.73,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "GE": {
+      "market_cap": 315964258137.0,
+      "market_cap_b": 315.96,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "GEN": {
+      "market_cap": 14952409187.0,
+      "market_cap_b": 14.95,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "GEV": {
+      "market_cap": 279130211444.0,
+      "market_cap_b": 279.13,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "GNRC": {
+      "market_cap": 15902785820.0,
+      "market_cap_b": 15.9,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "GOOG": {
+      "market_cap": 4640064520000.0,
+      "market_cap_b": 4640.06,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "GOOGL": {
+      "market_cap": 4640064520000.0,
+      "market_cap_b": 4640.06,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "GREE": {
+      "market_cap": 21008898.0,
+      "market_cap_b": 0.02,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "GSAT": {
+      "market_cap": 10689480789.0,
+      "market_cap_b": 10.69,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "GTLB": {
+      "market_cap": 4513409722.0,
+      "market_cap_b": 4.51,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "HIVE": {
+      "market_cap": 1211170000.0,
+      "market_cap_b": 1.21,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "HON": {
+      "market_cap": 144422221872.0,
+      "market_cap_b": 144.42,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "HOOD": {
+      "market_cap": 66372122654.0,
+      "market_cap_b": 66.37,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "HPE": {
+      "market_cap": 49863180484.0,
+      "market_cap_b": 49.86,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "HUBB": {
+      "market_cap": 25100373390.0,
+      "market_cap_b": 25.1,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "HUBS": {
+      "market_cap": 10344446830.0,
+      "market_cap_b": 10.34,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "HUT": {
+      "market_cap": 11923716271.0,
+      "market_cap_b": 11.92,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "IBM": {
+      "market_cap": 238580469410.0,
+      "market_cap_b": 238.58,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "ICHR": {
+      "market_cap": 2396381276.0,
+      "market_cap_b": 2.4,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "IESC": {
+      "market_cap": 13142792713.0,
+      "market_cap_b": 13.14,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "IMOS": {
+      "market_cap": 55727778692.0,
+      "market_cap_b": 55.73,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "IONQ": {
+      "market_cap": 23754897989.0,
+      "market_cap_b": 23.75,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "IPGP": {
+      "market_cap": 5050790634.0,
+      "market_cap_b": 5.05,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "IR": {
+      "market_cap": 27749697681.0,
+      "market_cap_b": 27.75,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "IRDM": {
+      "market_cap": 5163743085.0,
+      "market_cap_b": 5.16,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "IREN": {
+      "market_cap": 20280211521.0,
+      "market_cap_b": 20.28,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "ISRG": {
+      "market_cap": 155158743153.0,
+      "market_cap_b": 155.16,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "JOBY": {
+      "market_cap": 10741380361.0,
+      "market_cap_b": 10.74,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "KLAC": {
+      "market_cap": 246674392513.0,
+      "market_cap_b": 246.67,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "KLIC": {
+      "market_cap": 5463552555.0,
+      "market_cap_b": 5.46,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "KRMN": {
+      "market_cap": 8494935044.0,
+      "market_cap_b": 8.49,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "KTOS": {
+      "market_cap": 10534873040.0,
+      "market_cap_b": 10.53,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "LDOS": {
+      "market_cap": 15850227224.0,
+      "market_cap_b": 15.85,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "LHX": {
+      "market_cap": 58120301294.0,
+      "market_cap_b": 58.12,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "LI": {
+      "market_cap": 126195014234.0,
+      "market_cap_b": 126.2,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "LIDR": {
+      "market_cap": 87535008.0,
+      "market_cap_b": 0.09,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "LITE": {
+      "market_cap": 73668824789.0,
+      "market_cap_b": 73.67,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "LMT": {
+      "market_cap": 122945739220.0,
+      "market_cap_b": 122.95,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "LRCX": {
+      "market_cap": 381861876200.0,
+      "market_cap_b": 381.86,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "LSCC": {
+      "market_cap": 19622265630.0,
+      "market_cap_b": 19.62,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "LTBR": {
+      "market_cap": 394350070.0,
+      "market_cap_b": 0.39,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "LUMN": {
+      "market_cap": 9695226684.0,
+      "market_cap_b": 9.7,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "LUNR": {
+      "market_cap": 8303221423.0,
+      "market_cap_b": 8.3,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "LWLG": {
+      "market_cap": 1979923180.0,
+      "market_cap_b": 1.98,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "MARA": {
+      "market_cap": 5265345873.0,
+      "market_cap_b": 5.27,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "MBLY": {
+      "market_cap": 8573455125.0,
+      "market_cap_b": 8.57,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "MDB": {
+      "market_cap": 26253445488.0,
+      "market_cap_b": 26.25,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "META": {
+      "market_cap": 1549098121757.0,
+      "market_cap_b": 1549.1,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "MOD": {
+      "market_cap": 13737529962.0,
+      "market_cap_b": 13.74,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "MPWR": {
+      "market_cap": 78107369877.0,
+      "market_cap_b": 78.11,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "MRAM": {
+      "market_cap": 789714384.0,
+      "market_cap_b": 0.79,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "MRCY": {
+      "market_cap": 5917265581.0,
+      "market_cap_b": 5.92,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "MRVL": {
+      "market_cap": 171897353824.0,
+      "market_cap_b": 171.9,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "MSFT": {
+      "market_cap": 3109319912503.0,
+      "market_cap_b": 3109.32,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "MSTR": {
+      "market_cap": 56033069298.0,
+      "market_cap_b": 56.03,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "MTSI": {
+      "market_cap": 29448644600.0,
+      "market_cap_b": 29.45,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "MTZ": {
+      "market_cap": 30193778774.0,
+      "market_cap_b": 30.19,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "MU": {
+      "market_cap": 846928240601.0,
+      "market_cap_b": 846.93,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "MVIS": {
+      "market_cap": 206629485.0,
+      "market_cap_b": 0.21,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "NBIS": {
+      "market_cap": 54046965446.0,
+      "market_cap_b": 54.05,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "NET": {
+      "market_cap": 76408798146.0,
+      "market_cap_b": 76.41,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "NNDM": {
+      "market_cap": 345257229.0,
+      "market_cap_b": 0.35,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "NNE": {
+      "market_cap": 1392186423.0,
+      "market_cap_b": 1.39,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "NOC": {
+      "market_cap": 78910953537.0,
+      "market_cap_b": 78.91,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "NOK": {
+      "market_cap": 73982970832.0,
+      "market_cap_b": 73.98,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "NOVT": {
+      "market_cap": 5687213673.0,
+      "market_cap_b": 5.69,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "NOW": {
+      "market_cap": 105327481512.0,
+      "market_cap_b": 105.33,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "NTAP": {
+      "market_cap": 27499966590.0,
+      "market_cap_b": 27.5,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "NTNX": {
+      "market_cap": 12496793735.0,
+      "market_cap_b": 12.5,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "NVDA": {
+      "market_cap": 5210986044312.0,
+      "market_cap_b": 5210.99,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "NVEC": {
+      "market_cap": 441391382.0,
+      "market_cap_b": 0.44,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "NVT": {
+      "market_cap": 26628891369.0,
+      "market_cap_b": 26.63,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "NVTS": {
+      "market_cap": 6836110085.0,
+      "market_cap_b": 6.84,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "NXE": {
+      "market_cap": 9750776306.0,
+      "market_cap_b": 9.75,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "NXPI": {
+      "market_cap": 79899524450.0,
+      "market_cap_b": 79.9,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "OKLO": {
+      "market_cap": 11462525420.0,
+      "market_cap_b": 11.46,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "OKTA": {
+      "market_cap": 16173954980.0,
+      "market_cap_b": 16.17,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "ON": {
+      "market_cap": 45539150440.0,
+      "market_cap_b": 45.54,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "ONTO": {
+      "market_cap": 13045249818.0,
+      "market_cap_b": 13.05,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "ORCL": {
+      "market_cap": 552430901438.0,
+      "market_cap_b": 552.43,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "OUST": {
+      "market_cap": 2357809288.0,
+      "market_cap_b": 2.36,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "PANW": {
+      "market_cap": 212633269043.0,
+      "market_cap_b": 212.63,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "PATH": {
+      "market_cap": 5688449642.0,
+      "market_cap_b": 5.69,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "PCOR": {
+      "market_cap": 7069206249.0,
+      "market_cap_b": 7.07,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "PL": {
+      "market_cap": 15351707994.0,
+      "market_cap_b": 15.35,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "PLAB": {
+      "market_cap": 3034410701.0,
+      "market_cap_b": 3.03,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "PLTR": {
+      "market_cap": 328144117833.0,
+      "market_cap_b": 328.14,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "POET": {
+      "market_cap": 2230551353.0,
+      "market_cap_b": 2.23,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "POWL": {
+      "market_cap": 10172444870.0,
+      "market_cap_b": 10.17,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "PRCT": {
+      "market_cap": 1650646427.0,
+      "market_cap_b": 1.65,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "PRIM": {
+      "market_cap": 6377667470.0,
+      "market_cap_b": 6.38,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "PSTG": {
+      "market_cap": null,
+      "fetched": "2026-05-25"
+    },
+    "PWR": {
+      "market_cap": 108559515388.0,
+      "market_cap_b": 108.56,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "QBTS": {
+      "market_cap": 10875461914.0,
+      "market_cap_b": 10.88,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "QLYS": {
+      "market_cap": 3605165071.0,
+      "market_cap_b": 3.61,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "QUBT": {
+      "market_cap": 2776335802.0,
+      "market_cap_b": 2.78,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "RCAT": {
+      "market_cap": 1155005617.0,
+      "market_cap_b": 1.16,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "RDW": {
+      "market_cap": 3479088572.0,
+      "market_cap_b": 3.48,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "RDWR": {
+      "market_cap": 1274100618.0,
+      "market_cap_b": 1.27,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "RGTI": {
+      "market_cap": 8781976419.0,
+      "market_cap_b": 8.78,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "RIOT": {
+      "market_cap": 9260923159.0,
+      "market_cap_b": 9.26,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "RIVN": {
+      "market_cap": 17923140728.0,
+      "market_cap_b": 17.92,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "RKLB": {
+      "market_cap": 78587047626.0,
+      "market_cap_b": 78.59,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "RMBS": {
+      "market_cap": 15461423583.0,
+      "market_cap_b": 15.46,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "ROK": {
+      "market_cap": 50328098645.0,
+      "market_cap_b": 50.33,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "RPD": {
+      "market_cap": 485858605.0,
+      "market_cap_b": 0.49,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "RTX": {
+      "market_cap": 238376412317.0,
+      "market_cap_b": 238.38,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "S": {
+      "market_cap": 6389130062.0,
+      "market_cap_b": 6.39,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "SAIC": {
+      "market_cap": 4310669763.0,
+      "market_cap_b": 4.31,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "SATL": {
+      "market_cap": 1572869800.0,
+      "market_cap_b": 1.57,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "SBAC": {
+      "market_cap": 21803375551.0,
+      "market_cap_b": 21.8,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "SEDG": {
+      "market_cap": 3767687721.0,
+      "market_cap_b": 3.77,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "SERV": {
+      "market_cap": 673147683.0,
+      "market_cap_b": 0.67,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "SHEN": {
+      "market_cap": 878513344.0,
+      "market_cap_b": 0.88,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "SITM": {
+      "market_cap": 19231672723.0,
+      "market_cap_b": 19.23,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "SLDP": {
+      "market_cap": 688450073.0,
+      "market_cap_b": 0.69,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "SMCI": {
+      "market_cap": 21398471974.0,
+      "market_cap_b": 21.4,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "SMR": {
+      "market_cap": 4166484913.0,
+      "market_cap_b": 4.17,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "SMTC": {
+      "market_cap": 14598491503.0,
+      "market_cap_b": 14.6,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "SNDK": {
+      "market_cap": 218978849562.0,
+      "market_cap_b": 218.98,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "SNOW": {
+      "market_cap": 59685019230.0,
+      "market_cap_b": 59.69,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "SNPS": {
+      "market_cap": 100520256165.0,
+      "market_cap_b": 100.52,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "SOUN": {
+      "market_cap": 3482136224.0,
+      "market_cap_b": 3.48,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "SPCE": {
+      "market_cap": 326214350.0,
+      "market_cap_b": 0.33,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "SPIR": {
+      "market_cap": 851031461.0,
+      "market_cap_b": 0.85,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "STEM": {
+      "market_cap": 84732776.0,
+      "market_cap_b": 0.08,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "STM": {
+      "market_cap": 51701500946.0,
+      "market_cap_b": 51.7,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "STRL": {
+      "market_cap": 22490962570.0,
+      "market_cap_b": 22.49,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "STX": {
+      "market_cap": 182237621564.0,
+      "market_cap_b": 182.24,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "SYM": {
+      "market_cap": 32564421300.0,
+      "market_cap_b": 32.56,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "T": {
+      "market_cap": 175515041376.0,
+      "market_cap_b": 175.52,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "TDY": {
+      "market_cap": 28744912931.0,
+      "market_cap_b": 28.74,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "TEAM": {
+      "market_cap": 21676850463.0,
+      "market_cap_b": 21.68,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "TENB": {
+      "market_cap": 2806421982.0,
+      "market_cap_b": 2.81,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "TER": {
+      "market_cap": 56110972225.0,
+      "market_cap_b": 56.11,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "TLS": {
+      "market_cap": 347160930.0,
+      "market_cap_b": 0.35,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "TMUS": {
+      "market_cap": 207209737511.0,
+      "market_cap_b": 207.21,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "TSLA": {
+      "market_cap": 1599975861491.0,
+      "market_cap_b": 1599.98,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "TSM": {
+      "market_cap": 58477840351562.0,
+      "market_cap_b": 58477.84,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "TTD": {
+      "market_cap": 10521032879.0,
+      "market_cap_b": 10.52,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "TXT": {
+      "market_cap": 15968225081.0,
+      "market_cap_b": 15.97,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "UCTT": {
+      "market_cap": 3612268530.0,
+      "market_cap_b": 3.61,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "UEC": {
+      "market_cap": 6421892597.0,
+      "market_cap_b": 6.42,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "URG": {
+      "market_cap": 818500000.0,
+      "market_cap_b": 0.82,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "UROY": {
+      "market_cap": 689930000.0,
+      "market_cap_b": 0.69,
+      "bucket": "elite",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "UUUU": {
+      "market_cap": 4045070000.0,
+      "market_cap_b": 4.05,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "VECO": {
+      "market_cap": 3337620000.0,
+      "market_cap_b": 3.34,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "VIAV": {
+      "market_cap": 11526980000.0,
+      "market_cap_b": 11.53,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "VICR": {
+      "market_cap": 11095880000.0,
+      "market_cap_b": 11.1,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "VOYG": {
+      "market_cap": 2226480000.0,
+      "market_cap_b": 2.23,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "VRNS": {
+      "market_cap": 3418020000.0,
+      "market_cap_b": 3.42,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "VRT": {
+      "market_cap": 123925030000.0,
+      "market_cap_b": 123.93,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "VST": {
+      "market_cap": 45421850000.0,
+      "market_cap_b": 45.42,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "VZ": {
+      "market_cap": 199341180000.0,
+      "market_cap_b": 199.34,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "WDAY": {
+      "market_cap": 32294330000.0,
+      "market_cap_b": 32.29,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "WDC": {
+      "market_cap": 157106120000.0,
+      "market_cap_b": 157.11,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    },
+    "WOLF": {
+      "market_cap": 2843790000.0,
+      "market_cap_b": 2.84,
+      "bucket": "standard",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "WULF": {
+      "market_cap": 10574670000.0,
+      "market_cap_b": 10.57,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "XPEV": {
+      "market_cap": 14302850000.0,
+      "market_cap_b": 14.3,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "ZBRA": {
+      "market_cap": 11772590000.0,
+      "market_cap_b": 11.77,
+      "bucket": "large",
+      "passes_20b": true,
+      "fetched": "2026-05-25"
+    },
+    "ZS": {
+      "market_cap": 28178570000.0,
+      "market_cap_b": 28.18,
+      "bucket": "mega",
+      "passes_20b": false,
+      "fetched": "2026-05-25"
+    }
+  }
+}

@@ -1,0 +1,172 @@
+{
+  "date": "2026-05-25",
+  "mode": "premarket",
+  "run_at": "2026-05-25T18:42:44.512347",
+  "steps": [
+    {
+      "step": "health_check",
+      "name": "System Health Check",
+      "status": "ok",
+      "duration": 2.7,
+      "output": "data/health/health_report.json",
+      "error": "",
+      "time": "18:20:23"
+    },
+    {
+      "step": "earnings_cal",
+      "name": "Earnings Calendar Fetch",
+      "status": "fail",
+      "duration": 1.1,
+      "output": "data/regime/earnings_next30.json",
+      "error": "PermissionError: [WinError 5] Access is denied: 'data'",
+      "time": "18:20:24"
+    },
+    {
+      "step": "data_quality",
+      "name": "Data Quality Check",
+      "status": "ok",
+      "duration": 6.8,
+      "output": "data/quality/quality_latest.json",
+      "error": "",
+      "time": "18:20:31"
+    },
+    {
+      "step": "a01",
+      "name": "A01 Market Health Engine",
+      "status": "ok",
+      "duration": 50.8,
+      "output": "data/regime/market_health.json",
+      "error": "",
+      "time": "18:21:21"
+    },
+    {
+      "step": "a01b",
+      "name": "A01b Full-Market Breadth (Polygon)",
+      "status": "ok",
+      "duration": 0.0,
+      "output": "data/breadth/market_breadth_history.json",
+      "error": "",
+      "time": "18:21:21"
+    },
+    {
+      "step": "a02",
+      "name": "A02 Macro Monitor",
+      "status": "ok",
+      "duration": 5.0,
+      "output": "data/regime/macro_state.json",
+      "error": "",
+      "time": "18:21:26"
+    },
+    {
+      "step": "a03",
+      "name": "A03 RS Universe Ranker",
+      "status": "ok",
+      "duration": 784.8,
+      "output": "data/rs_universe/latest.json",
+      "error": "",
+      "time": "18:34:31"
+    },
+    {
+      "step": "a03c",
+      "name": "A03c RS Change Detector",
+      "status": "ok",
+      "duration": 29.5,
+      "output": "data/rs_universe/changes_today.json",
+      "error": "",
+      "time": "18:35:01"
+    },
+    {
+      "step": "a05",
+      "name": "A05 Theme Intelligence (RS Theme Ranker)",
+      "status": "ok",
+      "duration": 0.9,
+      "output": "data/rs_universe/theme_rs_latest.json",
+      "error": "",
+      "time": "18:35:02"
+    },
+    {
+      "step": "a06",
+      "name": "A06 Leadership Curator (Mode A)",
+      "status": "ok",
+      "duration": 1.3,
+      "output": "data/leadership/top30_watchlist.json",
+      "error": "",
+      "time": "18:35:03"
+    },
+    {
+      "step": "earnings_inflection",
+      "name": "Earnings Inflection Scout",
+      "status": "ok",
+      "duration": 0.1,
+      "output": "data/bigshot/earnings_inflection.json",
+      "error": "",
+      "time": "18:35:03"
+    },
+    {
+      "step": "a07",
+      "name": "A07 Monster Scout (Mode B)",
+      "status": "ok",
+      "duration": 0.1,
+      "output": "data/bigshot/candidates.json",
+      "error": "",
+      "time": "18:35:03"
+    },
+    {
+      "step": "a08",
+      "name": "A08 Setup Scanner",
+      "status": "ok",
+      "duration": 117.4,
+      "output": "data/setups/setups_today.json",
+      "error": "",
+      "time": "18:37:00"
+    },
+    {
+      "step": "a09",
+      "name": "A09 Portfolio Manager (pre-market)",
+      "status": "ok",
+      "duration": 255.6,
+      "output": "data/portfolio/action_signals.json",
+      "error": "",
+      "time": "18:41:16"
+    },
+    {
+      "step": "a10_trader",
+      "name": "A10 Paper Trader (premarket)",
+      "status": "ok",
+      "duration": 0.1,
+      "output": "data/portfolio/paper_portfolio_state.json",
+      "error": "",
+      "time": "18:41:16"
+    },
+    {
+      "step": "a10",
+      "name": "A10 Risk Guardian",
+      "status": "ok",
+      "duration": 67.8,
+      "output": "data/risk/risk_report.json",
+      "error": "",
+      "time": "18:42:24"
+    },
+    {
+      "step": "health_probe",
+      "name": "System Health Probe",
+      "status": "ok",
+      "duration": 0.1,
+      "output": "data/system_health/alerts.json",
+      "error": "",
+      "time": "18:42:24"
+    },
+    {
+      "step": "a11",
+      "name": "A11 Report Writer + Telegram",
+      "status": "ok",
+      "duration": 20.0,
+      "output": "output/",
+      "error": "",
+      "time": "18:42:44"
+    }
+  ],
+  "passed": 17,
+  "failed": 1,
+  "skipped": 0
+}

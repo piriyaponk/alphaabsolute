@@ -1,0 +1,5 @@
+{
+  "updated": "2026-07-02",
+  "note": "CIO priority watch list (requested 2026-07-02). Telegram alert fires the instant any of these tickers hits a valid Minervini-style buy point -- a Grade A/B setup breakout from A08, or (if not yet in today's curated A06/A07 screen) a raw 63-day-high breakout on 1.5x+ volume. Edit 'tickers' to add/remove names.",
+  "tickers": ["MU", "SNDK", "OUST", "MRVL"]
+}

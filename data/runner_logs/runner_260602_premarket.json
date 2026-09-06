@@ -1,0 +1,19 @@
+{
+  "date": "2026-06-02",
+  "mode": "premarket",
+  "run_at": "2026-06-02T19:04:05.617564",
+  "steps": [
+    {
+      "step": "ohlcv_update",
+      "name": "OHLCV Bulk Update (Polygon Grouped)",
+      "status": "ok",
+      "duration": 8.2,
+      "output": "data/ohlcv.db",
+      "error": "",
+      "time": "19:04:05"
+    }
+  ],
+  "passed": 1,
+  "failed": 0,
+  "skipped": 0
+}

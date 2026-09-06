@@ -1,0 +1,93 @@
+[
+  {
+    "date": "2026-09-04",
+    "flag": "NEUTRAL",
+    "diff": 0.64,
+    "rsp_roc": 3.94,
+    "spy_roc": 3.31
+  },
+  {
+    "date": "2026-08-21",
+    "flag": "NEUTRAL",
+    "diff": -0.05,
+    "rsp_roc": 3.57,
+    "spy_roc": 3.62
+  },
+  {
+    "date": "2026-08-14",
+    "flag": "NEUTRAL",
+    "diff": 0.14,
+    "rsp_roc": 2.38,
+    "spy_roc": 2.24
+  },
+  {
+    "date": "2026-08-07",
+    "flag": "NEUTRAL",
+    "diff": -0.6,
+    "rsp_roc": 2.56,
+    "spy_roc": 3.16
+  },
+  {
+    "date": "2026-07-31",
+    "flag": "NEUTRAL",
+    "diff": 0.06,
+    "rsp_roc": 0.73,
+    "spy_roc": 0.67
+  },
+  {
+    "date": "2026-07-24",
+    "flag": "NEUTRAL",
+    "diff": 0.07,
+    "rsp_roc": 2.06,
+    "spy_roc": 1.99
+  },
+  {
+    "date": "2026-07-10",
+    "flag": "BROADENING",
+    "diff": 4.21,
+    "rsp_roc": 2.05,
+    "spy_roc": -2.15
+  },
+  {
+    "date": "2026-06-26",
+    "flag": "BROADENING",
+    "diff": 3.04,
+    "rsp_roc": 4.62,
+    "spy_roc": 1.58
+  },
+  {
+    "date": "2026-06-16",
+    "flag": "BROADENING",
+    "diff": 3.5,
+    "rsp_roc": 5.62,
+    "spy_roc": 2.12
+  },
+  {
+    "date": "2026-06-15",
+    "flag": "BROADENING",
+    "diff": 4.78,
+    "rsp_roc": 3.92,
+    "spy_roc": -0.86
+  },
+  {
+    "date": "2026-06-14",
+    "flag": "BROADENING",
+    "diff": 4.78,
+    "rsp_roc": 3.92,
+    "spy_roc": -0.86
+  },
+  {
+    "date": "2026-06-12",
+    "flag": "NEUTRAL",
+    "diff": -0.25,
+    "rsp_roc": 2.92,
+    "spy_roc": 3.17
+  },
+  {
+    "date": "2026-06-03",
+    "flag": "NARROWING",
+    "diff": -1.62,
+    "rsp_roc": 4.17,
+    "spy_roc": 5.79
+  }
+]

@@ -1,0 +1,30 @@
+[BOOTSTRAP] Fetching 270 trading days from Polygon...
+  Estimated time: 12 min
+  [10/270] 2025-04-21: 10,981 tickers
+  [20/270] 2025-05-12: 11,085 tickers
+  [30/270] 2025-05-27: 11,089 tickers
+  [40/270] 2025-06-10: 11,136 tickers
+  [50/270] 2025-07-02: 11,233 tickers
+  [60/270] 2025-07-17: 11,241 tickers
+  [70/270] 2025-08-07: 11,326 tickers
+  [80/270] 2025-09-02: 11,405 tickers
+  [90/270] 2025-09-23: 11,455 tickers
+  [100/270] 2025-10-07: 11,554 tickers
+  [110/270] 2025-10-22: 11,561 tickers
+  [120/270] 2025-11-12: 11,628 tickers
+  [130/270] 2025-11-26: 11,719 tickers
+  [140/270] 2025-12-11: 11,782 tickers
+  [150/270] 2026-01-05: 11,817 tickers
+  [160/270] 2026-01-20: 11,858 tickers
+  [170/270] 2026-02-10: 11,908 tickers
+  [180/270] 2026-02-25: 11,881 tickers
+  [190/270] 2026-03-11: 11,914 tickers
+  [200/270] 2026-04-01: 11,973 tickers
+  [210/270] 2026-04-23: 12,040 tickers
+  [220/270] 2026-05-07: 12,108 tickers
+  Fetched: 226 days | Already stored: 55
+  Computing NH/NL breadth...
+  History: 281 days saved to market_breadth_history.json
+  Days with universe>=5000 (full market): 270
+  Latest: 2026-05-22 | universe=9,597 | NH%=9.2% | net_breadth=+0.075
+[BOOTSTRAP] Complete.

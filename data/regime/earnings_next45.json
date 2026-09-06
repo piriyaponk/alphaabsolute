@@ -1,0 +1,3528 @@
+{
+  "generated_at": "2026-08-05T17:47:51.712928",
+  "window": {
+    "from": "2026-08-05",
+    "to": "2026-09-19"
+  },
+  "total_events": 1493,
+  "tickers_in_universe_with_earnings": 240,
+  "within_5_trading_days": [
+    "AADX",
+    "AAPI",
+    "AASP",
+    "ABCP",
+    "ABEO",
+    "ABIT",
+    "ABSI",
+    "ABVC",
+    "AC",
+    "ACCS",
+    "ACRS",
+    "ADAP",
+    "ADCT",
+    "ADIL",
+    "ADTX",
+    "ADVM",
+    "AEMD",
+    "AERG",
+    "AERT",
+    "AFJK",
+    "AGRO",
+    "AIFA",
+    "AII",
+    "AIM",
+    "AIMD",
+    "AIRI",
+    "AIXC",
+    "AKTX",
+    "ALLO",
+    "ALLT",
+    "AMBQ",
+    "AMCR",
+    "AMNF",
+    "AMPG",
+    "AMPY",
+    "AMZE",
+    "ANDG",
+    "ANNA",
+    "ANSC",
+    "AOSL",
+    "AP",
+    "APLT",
+    "APT",
+    "APTO",
+    "AQST",
+    "AQUC",
+    "AREB",
+    "ARMK",
+    "ARTL",
+    "ASFT",
+    "ASNS",
+    "ASPI",
+    "ATER",
+    "ATEX",
+    "ATGN",
+    "ATPC",
+    "ATRO",
+    "ATXI",
+    "ATYR",
+    "AUID",
+    "AUMN",
+    "AUST",
+    "AVEX",
+    "AWH",
+    "AZ",
+    "BACK",
+    "BAYA",
+    "BBLG",
+    "BBXIA",
+    "BCAX",
+    "BCDA",
+    "BCLI",
+    "BDCO",
+    "BEAG",
+    "BEAM",
+    "BEEP",
+    "BESS",
+    "BETA",
+    "BFRG",
+    "BFRI",
+    "BGDE",
+    "BGMS",
+    "BGS",
+    "BHF",
+    "BICX",
+    "BINI",
+    "BIOA",
+    "BKTI",
+    "BKYI",
+    "BLGO",
+    "BLMH",
+    "BLNC",
+    "BMR",
+    "BNBX",
+    "BNKK",
+    "BNZI",
+    "BOC",
+    "BOLT",
+    "BORR",
+    "BOTY",
+    "BOXL",
+    "BPTH",
+    "BRCB",
+    "BRGX",
+    "BRN",
+    "BSEM",
+    "BSIN",
+    "BSTT",
+    "BTCS",
+    "BTCY",
+    "BTGO",
+    "BUDZ",
+    "BURU",
+    "BWEN",
+    "BWMG",
+    "BYSD",
+    "CAAS",
+    "CAH",
+    "CAMP",
+    "CAN",
+    "CAPC",
+    "CAPN",
+    "CAPR",
+    "CARV",
+    "CAVA",
+    "CBRS",
+    "CCO",
+    "CCRD",
+    "CDAQF",
+    "CDIO",
+    "CDNL",
+    "CDT",
+    "CDXS",
+    "CDZI",
+    "CEP",
+    "CEPO",
+    "CETX",
+    "CFOO",
+    "CGTX",
+    "CHEV",
+    "CHGA",
+    "CINT",
+    "CISO",
+    "CLIR",
+    "CLOQ",
+    "CLRB",
+    "CLRO",
+    "CMCT",
+    "CMMB",
+    "CMPD",
+    "CMRF",
+    "CNFN",
+    "CNGO",
+    "CNSP",
+    "CNTX",
+    "CNVS",
+    "CODX",
+    "COGT",
+    "COHR",
+    "COLA",
+    "CPRX",
+    "CREX",
+    "CRNT",
+    "CRT",
+    "CRTAF",
+    "CRVW",
+    "CRWE",
+    "CRWV",
+    "CSAI",
+    "CURI",
+    "CVM",
+    "CVSI",
+    "CVV",
+    "CWCO",
+    "DAIO",
+    "DAO",
+    "DARE",
+    "DDI",
+    "DERM",
+    "DFDV",
+    "DFPH",
+    "DLPN",
+    "DMAC",
+    "DOX",
+    "DPLS",
+    "DQWS",
+    "DRMA",
+    "DROR",
+    "DSS",
+    "DWTX",
+    "DYAI",
+    "DYNC",
+    "EAT",
+    "EAXR",
+    "EBFI",
+    "ECTM",
+    "ECX",
+    "EDBL",
+    "EESE",
+    "ELAB",
+    "ELLH",
+    "ELTP",
+    "EML",
+    "EMYB",
+    "ENS",
+    "ENSC",
+    "ENVB",
+    "ENVX",
+    "ENZN",
+    "EPIX",
+    "EPSN",
+    "EQ",
+    "EQPT",
+    "ERNA",
+    "EROC",
+    "ESEA",
+    "EVFM",
+    "EVOK",
+    "EYE",
+    "FABC",
+    "FBIO",
+    "FBRX",
+    "FFLO",
+    "FGI",
+    "FMHS",
+    "FOSL",
+    "FRMO",
+    "FRVO",
+    "FSSL",
+    "FTLF",
+    "FUST",
+    "FWDI",
+    "GAME",
+    "GBCS",
+    "GEDC",
+    "GLBE",
+    "GLSI",
+    "GNLN",
+    "GNPX",
+    "GO",
+    "GOGY",
+    "GORV",
+    "GPRK",
+    "GRDX",
+    "GRI",
+    "GRRR",
+    "GSHR",
+    "GTBP",
+    "GTCH",
+    "GTERA",
+    "GTHP",
+    "GWRS",
+    "HBUV",
+    "HCWC",
+    "HDRN",
+    "HIND",
+    "HLIT",
+    "HLYK",
+    "HMBL",
+    "HSAI",
+    "HSDT",
+    "HSPT",
+    "HYPD",
+    "IBRX",
+    "IDAI",
+    "IGC",
+    "IKT",
+    "ILAL",
+    "IMAQ",
+    "IMRX",
+    "INFQ",
+    "INKT",
+    "INVE",
+    "IPCX",
+    "IPDN",
+    "IPSI",
+    "IQST",
+    "ISCO",
+    "ITP",
+    "ITRN",
+    "IVDA",
+    "JAGX",
+    "JMIA",
+    "KBLB",
+    "KBSR",
+    "KCHV",
+    "KE",
+    "KEWL",
+    "KLNG",
+    "KLRA",
+    "KLXE",
+    "KORE",
+    "KRNT",
+    "KROS",
+    "KTB",
+    "KTTA",
+    "KULR",
+    "KWIK",
+    "LAC",
+    "LFWD",
+    "LGL",
+    "LGVN",
+    "LICT",
+    "LIFD",
+    "LIMX",
+    "LMRI",
+    "LPA",
+    "LPAA",
+    "LPBBU",
+    "LPTVQ",
+    "LQDA",
+    "LSMG",
+    "LTRN",
+    "LTUM",
+    "LUCD",
+    "LVLU",
+    "LVPR",
+    "LWLG",
+    "MACI",
+    "MALG",
+    "MCGA",
+    "MCHX",
+    "MCI",
+    "MGRX",
+    "MIRA",
+    "MIST",
+    "MJNA",
+    "MLTX",
+    "MODD",
+    "MPTI",
+    "MRKR",
+    "MRMD",
+    "MSBB",
+    "MSGM",
+    "MSN",
+    "MSPR",
+    "MTNB",
+    "MTR",
+    "MXCT",
+    "NAMS",
+    "NASB",
+    "NASO",
+    "NBIS",
+    "NBRI",
+    "NCRA",
+    "NDRA",
+    "NEON",
+    "NHICU",
+    "NIHK",
+    "NIKA",
+    "NMRA",
+    "NMTC",
+    "NSTS",
+    "NUAI",
+    "NUVR",
+    "NUWE",
+    "NVVE",
+    "NWBO",
+    "NXDT",
+    "NYC",
+    "OCTV",
+    "OLOX",
+    "OMER",
+    "ONCO",
+    "OPRX",
+    "ORBT",
+    "ORGN",
+    "ORMP",
+    "OSRH",
+    "OTLK",
+    "PACH",
+    "PAR",
+    "PARK",
+    "PCMC",
+    "PCSV",
+    "PCVX",
+    "PETV",
+    "PEVM",
+    "PFGC",
+    "PFSA",
+    "PGAC",
+    "PHIO",
+    "PLAG",
+    "PLGO",
+    "PLMK",
+    "PNBK",
+    "POLA",
+    "PORT",
+    "PSTV",
+    "PULM",
+    "PVCT",
+    "PVL",
+    "PXHI",
+    "PYPD",
+    "QDMI",
+    "QPRC",
+    "QSEP",
+    "QURT",
+    "RAFI",
+    "RANG",
+    "RBCN",
+    "RBTK",
+    "RDAG",
+    "RDCM",
+    "RDI",
+    "RDNW",
+    "REEMF",
+    "REZI",
+    "RHEP",
+    "RKDA",
+    "RLBY",
+    "RMSL",
+    "RNGE",
+    "RNTX",
+    "RNXT",
+    "RPMT",
+    "RRGB",
+    "RSAU",
+    "RSKD",
+    "RSRV",
+    "RTB",
+    "RTON",
+    "SBEV",
+    "SCGX",
+    "SCOR",
+    "SDCH",
+    "SDEV",
+    "SDOT",
+    "SEAL PR B",
+    "SECZ",
+    "SERA",
+    "SFRX",
+    "SGRP",
+    "SHFS",
+    "SIDU",
+    "SIMA",
+    "SKYT",
+    "SLBT",
+    "SLE",
+    "SMID",
+    "SMWB",
+    "SMXT",
+    "SNGX",
+    "SNRG",
+    "SNYR",
+    "SPAI",
+    "SPCE",
+    "SPIR",
+    "SPMC",
+    "SPRB",
+    "SPRO",
+    "SPTN",
+    "SQFT",
+    "SRG",
+    "STAA",
+    "STCB",
+    "STEM",
+    "STUB",
+    "SUIC",
+    "SVVC",
+    "SWKH",
+    "TACT",
+    "TAIT",
+    "TAVI",
+    "TBBB",
+    "TCRT",
+    "TDAC",
+    "TELO",
+    "TGEN",
+    "TLSS",
+    "TNGX",
+    "TNYA",
+    "TOMZ",
+    "TRAW",
+    "TRDA",
+    "TREP",
+    "TTNP",
+    "TVA",
+    "TVGN",
+    "TWAV",
+    "TYCB",
+    "UAVS",
+    "UCIX",
+    "UEEC",
+    "UPB",
+    "USIO",
+    "VACH",
+    "VASO",
+    "VERF",
+    "VERO",
+    "VIPS",
+    "VLN",
+    "VNJA",
+    "VNME",
+    "VPRB",
+    "VRDN",
+    "VS",
+    "VYNE",
+    "WATT",
+    "WHEN",
+    "WHK",
+    "WORX",
+    "WRAP",
+    "WRD",
+    "WTER",
+    "XELB",
+    "XNET",
+    "XTIA",
+    "XWEL",
+    "XXII",
+    "YCBD",
+    "YHGJ",
+    "ZIVO",
+    "ZSQR"
+  ],
+  "by_date": {
+    "2026-08-11": [
+      "ABCP",
+      "ABIT",
+      "ABSI",
+      "ABVC",
+      "ACCS",
+      "ADAP",
+      "ADCT",
+      "ADIL",
+      "ADVM",
+      "AEMD",
+      "AERG",
+      "AFJK",
+      "AGRO",
+      "AII",
+      "AIMD",
+      "AKTX",
+      "AMBQ",
+      "AMNF",
+      "ANSC",
+      "APLT",
+      "APTO",
+      "AQST",
+      "AREB",
+      "ARMK",
+      "ATER",
+      "ATEX",
+      "ATGN",
+      "ATPC",
+      "ATRO",
+      "AUMN",
+      "AWH",
+      "BCAX",
+      "BEAM",
+      "BEEP",
+      "BFRG",
+      "BFRI",
+      "BGMS",
+      "BGS",
+      "BKYI",
+      "BLMH",
+      "BMR",
+      "BOC",
+      "BORR",
+      "BOXL",
+      "BRCB",
+      "BRN",
+      "BSIN",
+      "BSTT",
+      "BWEN",
+      "BYSD",
+      "CAAS",
+      "CAH",
+      "CARV",
+      "CAVA",
+      "CCO",
+      "CDAQF",
+      "CDNL",
+      "CDXS",
+      "CDZI",
+      "CEP",
+      "CGTX",
+      "CHEV",
+      "CINT",
+      "CLOQ",
+      "CMCT",
+      "CMPD",
+      "CMRF",
+      "COGT",
+      "COLA",
+      "CREX",
+      "CRNT",
+      "CRT",
+      "CRVW",
+      "CRWV",
+      "CSAI",
+      "CVSI",
+      "CWCO",
+      "DDI",
+      "DERM",
+      "DLPN",
+      "DRMA",
+      "DWTX",
+      "DYNC",
+      "EAXR",
+      "ECX",
+      "EESE",
+      "ELAB",
+      "EML",
+      "EMYB",
+      "ENSC",
+      "EPIX",
+      "ERNA",
+      "EROC"
+    ],
+    "2026-08-12": [
+      "AADX",
+      "AAPI",
+      "AASP",
+      "ABEO",
+      "AC",
+      "ACRS",
+      "ADTX",
+      "AERT",
+      "AIFA",
+      "AIM",
+      "AIRI",
+      "AIXC",
+      "ALLO",
+      "ALLT",
+      "AMCR",
+      "AMPG",
+      "AMPY",
+      "AMZE",
+      "ANDG",
+      "ANNA",
+      "AOSL",
+      "AP",
+      "APT",
+      "AQUC",
+      "ARTL",
+      "ASFT",
+      "ASNS",
+      "ASPI",
+      "ATXI",
+      "ATYR",
+      "AUID",
+      "AUST",
+      "AVEX",
+      "AZ",
+      "BACK",
+      "BAYA",
+      "BBLG",
+      "BBXIA",
+      "BCDA",
+      "BCLI",
+      "BDCO",
+      "BEAG",
+      "BESS",
+      "BETA",
+      "BGDE",
+      "BHF",
+      "BICX",
+      "BINI",
+      "BIOA",
+      "BKTI",
+      "BLGO",
+      "BLNC",
+      "BNBX",
+      "BNKK",
+      "BNZI",
+      "BOLT",
+      "BOTY",
+      "BPTH",
+      "BRGX",
+      "BSEM",
+      "BTCS",
+      "BTCY",
+      "BTGO",
+      "BUDZ",
+      "BURU",
+      "BWMG",
+      "CAMP",
+      "CAN",
+      "CAPC",
+      "CAPN",
+      "CAPR",
+      "CBRS",
+      "CCRD",
+      "CDIO",
+      "CDT",
+      "CEPO",
+      "CETX",
+      "CFOO",
+      "CHGA",
+      "CISO",
+      "CLIR",
+      "CLRB",
+      "CLRO",
+      "CMMB",
+      "CNFN",
+      "CNGO",
+      "CNSP",
+      "CNTX",
+      "CNVS",
+      "CODX",
+      "COHR",
+      "CPRX",
+      "CRTAF",
+      "CRWE",
+      "CURI",
+      "CVM",
+      "CVV",
+      "DAIO",
+      "DAO",
+      "DARE",
+      "DFDV",
+      "DFPH",
+      "DMAC",
+      "DOX",
+      "DPLS",
+      "DQWS",
+      "DROR",
+      "DSS",
+      "DYAI",
+      "EAT",
+      "EBFI",
+      "ECTM",
+      "EDBL",
+      "ELLH",
+      "ELTP",
+      "ENS",
+      "ENVB",
+      "ENVX",
+      "ENZN",
+      "EPSN",
+      "EQ",
+      "EQPT",
+      "ESEA",
+      "EVFM",
+      "EVOK",
+      "EYE",
+      "FABC",
+      "FBIO",
+      "FBRX",
+      "FFLO",
+      "FGI",
+      "FMHS",
+      "FOSL",
+      "FRMO",
+      "FRVO",
+      "FSSL",
+      "FTLF",
+      "FUST",
+      "FWDI",
+      "GAME",
+      "GBCS",
+      "GEDC",
+      "GLBE",
+      "GLSI",
+      "GNLN",
+      "GNPX",
+      "GO",
+      "GOGY",
+      "GORV",
+      "GPRK",
+      "GRDX",
+      "GRI",
+      "GRRR",
+      "GSHR",
+      "GTBP",
+      "GTCH",
+      "GTERA",
+      "GTHP",
+      "GWRS",
+      "HBUV",
+      "HCWC",
+      "HDRN",
+      "HIND",
+      "HLIT",
+      "HLYK",
+      "HMBL",
+      "HSAI",
+      "HSDT",
+      "HSPT",
+      "HYPD",
+      "IBRX",
+      "IDAI",
+      "IGC",
+      "IKT",
+      "ILAL",
+      "IMAQ",
+      "IMRX",
+      "INFQ",
+      "INKT",
+      "INVE",
+      "IPCX",
+      "IPDN",
+      "IPSI",
+      "IQST",
+      "ISCO",
+      "ITP",
+      "ITRN",
+      "IVDA",
+      "JAGX",
+      "JMIA",
+      "KBLB",
+      "KBSR",
+      "KCHV",
+      "KE",
+      "KEWL",
+      "KLNG",
+      "KLRA",
+      "KLXE",
+      "KORE",
+      "KRNT",
+      "KROS",
+      "KTB",
+      "KTTA",
+      "KULR",
+      "KWIK",
+      "LAC",
+      "LFWD",
+      "LGL",
+      "LGVN",
+      "LICT",
+      "LIFD",
+      "LIMX",
+      "LMRI",
+      "LPA",
+      "LPAA",
+      "LPBBU",
+      "LPTVQ",
+      "LQDA",
+      "LSMG",
+      "LTRN",
+      "LTUM",
+      "LUCD",
+      "LVLU",
+      "LVPR",
+      "LWLG",
+      "MACI",
+      "MALG",
+      "MCGA",
+      "MCHX",
+      "MCI",
+      "MGRX",
+      "MIRA",
+      "MIST",
+      "MJNA",
+      "MLTX",
+      "MODD",
+      "MPTI",
+      "MRKR",
+      "MRMD",
+      "MSBB",
+      "MSGM",
+      "MSN",
+      "MSPR",
+      "MTNB",
+      "MTR",
+      "MXCT",
+      "NAMS",
+      "NASB",
+      "NASO",
+      "NBIS",
+      "NBRI",
+      "NCRA",
+      "NDRA",
+      "NEON",
+      "NHICU",
+      "NIHK",
+      "NIKA",
+      "NMRA",
+      "NMTC",
+      "NSTS",
+      "NUAI",
+      "NUVR",
+      "NUWE",
+      "NVVE",
+      "NWBO",
+      "NXDT",
+      "NYC",
+      "OCTV",
+      "OLOX",
+      "OMER",
+      "ONCO",
+      "OPRX",
+      "ORBT",
+      "ORGN",
+      "ORMP",
+      "OSRH",
+      "OTLK",
+      "PACH",
+      "PAR",
+      "PARK",
+      "PCMC",
+      "PCSV",
+      "PCVX",
+      "PETV",
+      "PEVM",
+      "PFGC",
+      "PFSA",
+      "PGAC",
+      "PHIO",
+      "PLAG",
+      "PLGO",
+      "PLMK",
+      "PNBK",
+      "POLA",
+      "PORT",
+      "PSTV",
+      "PULM",
+      "PVCT",
+      "PVL",
+      "PXHI",
+      "PYPD",
+      "QDMI",
+      "QPRC",
+      "QSEP",
+      "QURT",
+      "RAFI",
+      "RANG",
+      "RBCN",
+      "RBTK",
+      "RDAG",
+      "RDCM",
+      "RDI",
+      "RDNW",
+      "REEMF",
+      "REZI",
+      "RHEP",
+      "RKDA",
+      "RLBY",
+      "RMSL",
+      "RNGE",
+      "RNTX",
+      "RNXT",
+      "RPMT",
+      "RRGB",
+      "RSAU",
+      "RSKD",
+      "RSRV",
+      "RTB",
+      "RTON",
+      "SBEV",
+      "SCGX",
+      "SCOR",
+      "SDCH",
+      "SDEV",
+      "SDOT",
+      "SEAL PR B",
+      "SECZ",
+      "SERA",
+      "SFRX",
+      "SGRP",
+      "SHFS",
+      "SIDU",
+      "SIMA",
+      "SKYT",
+      "SLBT",
+      "SLE",
+      "SMID",
+      "SMWB",
+      "SMXT",
+      "SNGX",
+      "SNRG",
+      "SNYR",
+      "SPAI",
+      "SPCE",
+      "SPIR",
+      "SPMC",
+      "SPRB",
+      "SPRO",
+      "SPTN",
+      "SQFT",
+      "SRG",
+      "STAA",
+      "STCB",
+      "STEM",
+      "STUB",
+      "SUIC",
+      "SVVC",
+      "SWKH",
+      "TACT",
+      "TAIT",
+      "TAVI",
+      "TBBB",
+      "TCRT",
+      "TDAC",
+      "TELO",
+      "TGEN",
+      "TLSS",
+      "TNGX",
+      "TNYA",
+      "TOMZ",
+      "TRAW",
+      "TRDA",
+      "TREP",
+      "TTNP",
+      "TVA",
+      "TVGN",
+      "TWAV",
+      "TYCB",
+      "UAVS",
+      "UCIX",
+      "UEEC",
+      "UPB",
+      "USIO",
+      "VACH",
+      "VASO",
+      "VERF",
+      "VERO",
+      "VIPS",
+      "VLN",
+      "VNJA",
+      "VNME",
+      "VPRB",
+      "VRDN",
+      "VS",
+      "VYNE",
+      "WATT",
+      "WHEN",
+      "WHK",
+      "WORX",
+      "WRAP",
+      "WRD",
+      "WTER",
+      "XELB",
+      "XNET",
+      "XTIA",
+      "XWEL",
+      "XXII",
+      "YCBD",
+      "YHGJ",
+      "ZIVO",
+      "ZSQR"
+    ],
+    "2026-08-13": [
+      "ACOG",
+      "AEBI",
+      "AEYE",
+      "AFCG",
+      "AGIG",
+      "AIRO",
+      "AIT",
+      "ALH",
+      "AMAT",
+      "AMCI",
+      "ARAI",
+      "ARCO",
+      "ARX",
+      "ATVK",
+      "AURI",
+      "AVAH",
+      "AVX",
+      "BAFN",
+      "BAP",
+      "BDVC",
+      "BEAT",
+      "BILI",
+      "BIRK",
+      "BIVI",
+      "BLIN",
+      "BLNE",
+      "BLSH",
+      "BN",
+      "BOF",
+      "BTBT",
+      "BZAI",
+      "CAAP",
+      "CBUS",
+      "CHAI",
+      "CIBY",
+      "CLBT",
+      "CRCW",
+      "CRMD",
+      "CV",
+      "CVAC",
+      "CWD",
+      "CYCU",
+      "DLO",
+      "DSHK",
+      "ECIA",
+      "EESE",
+      "ELMT",
+      "ELUT",
+      "EMAT",
+      "EQS",
+      "ETON",
+      "EUSP",
+      "EVTL",
+      "FIGR",
+      "FRMI",
+      "FRMM",
+      "GEMI",
+      "GLNG",
+      "GLOB",
+      "GLTK",
+      "GMRS",
+      "GNSS",
+      "GRSD",
+      "GTEC",
+      "GTIJF",
+      "GWH",
+      "HIT",
+      "HTFL",
+      "ICCC",
+      "IDN",
+      "INV",
+      "IPWR",
+      "ISSC",
+      "IVF",
+      "JCAP",
+      "JSDA",
+      "JTAI",
+      "KLC",
+      "LASE",
+      "LGN",
+      "LIEN",
+      "LUNR",
+      "LWAY",
+      "LYTS",
+      "MAGE",
+      "MDWD",
+      "MDXH",
+      "MFON",
+      "MFP",
+      "MGRM",
+      "MH",
+      "MOBQ",
+      "MRLN",
+      "MSGS",
+      "MWH",
+      "NA",
+      "NKTR",
+      "NMAX",
+      "NNE",
+      "NOMD",
+      "NPWR",
+      "NTES",
+      "NU",
+      "NXPL",
+      "NXXT",
+      "OCLN",
+      "ONDS",
+      "ONFO",
+      "OPTX",
+      "OSTX",
+      "PAYD",
+      "PED",
+      "PEW",
+      "PREM",
+      "PS",
+      "PSFE",
+      "PTHS",
+      "QFIN",
+      "QSI",
+      "REKR",
+      "RMHI",
+      "RMTI",
+      "RNW",
+      "SBC",
+      "SBDS",
+      "SGA",
+      "SLGL",
+      "SLNH",
+      "SMEV",
+      "SPCB",
+      "SPRY",
+      "SRTS",
+      "SSYS",
+      "STEX",
+      "STNE",
+      "SWMR",
+      "TAYD",
+      "TNON",
+      "TOUR",
+      "TPR",
+      "TSAT",
+      "TSSI",
+      "TVRD",
+      "VENU",
+      "VERI",
+      "VTIX",
+      "VTSI",
+      "VUZI",
+      "WKHS",
+      "WWW",
+      "WYY",
+      "XBP",
+      "XE",
+      "XOS",
+      "YETI",
+      "YSS",
+      "YSWY",
+      "ZSPC"
+    ],
+    "2026-08-14": [
+      "ACTU",
+      "ACXP",
+      "AHNR",
+      "AIRE",
+      "BRFH",
+      "BRUN",
+      "CREG",
+      "EWCZ",
+      "FSI",
+      "GPUS",
+      "HURA",
+      "KFII",
+      "KG",
+      "LNZA",
+      "MCIC",
+      "MSGE",
+      "MSS",
+      "MTBLY",
+      "NWTG",
+      "ONVC",
+      "RMIX",
+      "SLAI",
+      "SMNR",
+      "SOWG",
+      "TKMO",
+      "TMS",
+      "YIYU"
+    ],
+    "2026-08-15": [
+      "ALLR",
+      "ATHR"
+    ],
+    "2026-08-17": [
+      "ABOS",
+      "AGPU",
+      "AHRO",
+      "AIDG",
+      "AIHS",
+      "ANNX",
+      "API",
+      "AREC",
+      "ARKR",
+      "ATEK",
+      "AXIM",
+      "AXXA",
+      "AZIO",
+      "BASA",
+      "BBW",
+      "BCHT",
+      "BOLD",
+      "BRST",
+      "BSFC",
+      "BTO",
+      "BYNO",
+      "CAHO",
+      "CBAT",
+      "CETY",
+      "CHMX",
+      "CLNN",
+      "CNRD",
+      "CNTB",
+      "COCH",
+      "COCP",
+      "CPMV",
+      "CRGO",
+      "CRVO",
+      "CVU",
+      "CYPH",
+      "DAAQ",
+      "DNMX",
+      "DOYU",
+      "DTST",
+      "DUOT",
+      "DVLT",
+      "EDXC",
+      "EMCG",
+      "EMMA",
+      "ESGH",
+      "ESOA",
+      "FBLA",
+      "FEED",
+      "FFAI",
+      "FGNV",
+      "FLNT",
+      "FLX",
+      "FLXS",
+      "FN",
+      "FOXO",
+      "FTFT",
+      "GALT",
+      "GLOO",
+      "GRF",
+      "HENI",
+      "HGYN",
+      "HMR",
+      "HTCR",
+      "HUMA",
+      "IDR",
+      "IMII",
+      "INLX",
+      "IQMX",
+      "JOB",
+      "KTEL",
+      "KUBR",
+      "KUST",
+      "LONA",
+      "MAMO",
+      "MCAG",
+      "MESH",
+      "MNTS",
+      "NCL",
+      "NRXP",
+      "OLB",
+      "OMEX",
+      "OMQS",
+      "OPRA",
+      "ORKA",
+      "OXBR",
+      "OZSC",
+      "PAIYY",
+      "PDIV",
+      "PLX",
+      "PNRG",
+      "PPSI",
+      "PWCM",
+      "QCLS",
+      "QETA",
+      "QMMM",
+      "RIME",
+      "RVP",
+      "RVPH",
+      "SCTH",
+      "SCYX",
+      "SEGG",
+      "SEPN",
+      "SHMN",
+      "SIF",
+      "SION",
+      "SLND",
+      "SMTI",
+      "SNFCA",
+      "SNPW",
+      "SNTW",
+      "SOAR",
+      "SPND",
+      "STI",
+      "STRS",
+      "SUNE",
+      "TMC",
+      "TOFB",
+      "TOON",
+      "TSHA",
+      "UNCY",
+      "USAR",
+      "UUU",
+      "VDRM",
+      "VEEA",
+      "VIVK",
+      "VVOS",
+      "VWAV",
+      "WAVE",
+      "WOK",
+      "XMAX",
+      "XONI"
+    ],
+    "2026-08-18": [
+      "ABHBY",
+      "ACRG",
+      "ANTA",
+      "ARMP",
+      "AS",
+      "ASII",
+      "AUNA",
+      "AVBP",
+      "BIDU",
+      "BMTM",
+      "BZ",
+      "CALC",
+      "CFNB",
+      "CLYM",
+      "COYA",
+      "CSPI",
+      "CTOR",
+      "CUE",
+      "DOMH",
+      "DRTS",
+      "EICCF",
+      "EP",
+      "EVGN",
+      "FINV",
+      "FUTU",
+      "GYRE",
+      "HD",
+      "HKHC",
+      "IGTA",
+      "IHS",
+      "IQ",
+      "JFIN",
+      "KEYS",
+      "KLAR",
+      "KRRO",
+      "KYTX",
+      "LZB",
+      "MAZE",
+      "MLSS",
+      "MNR",
+      "MRCY",
+      "MTEX",
+      "MTVA",
+      "NBP",
+      "NCNA",
+      "NNDM",
+      "NNOX",
+      "NXGL",
+      "OBIO",
+      "OICT",
+      "OKUR",
+      "OPXS",
+      "OVID",
+      "PDSB",
+      "PHYTF",
+      "PONY",
+      "PROP",
+      "QBAK",
+      "RERE",
+      "ROLR",
+      "SSM",
+      "TE",
+      "TISI",
+      "TOL",
+      "UFI",
+      "VANI",
+      "VRME",
+      "WILC",
+      "WVVI",
+      "XP",
+      "ZBIO"
+    ],
+    "2026-08-19": [
+      "AARD",
+      "ACRV",
+      "ADGM",
+      "ADI",
+      "AISP",
+      "ALMS",
+      "ALVO",
+      "AMS",
+      "ARAY",
+      "ASFH",
+      "BCG",
+      "BEEM",
+      "BIAF",
+      "BILL",
+      "CADL",
+      "CATO",
+      "CCIF",
+      "CHUC",
+      "COTY",
+      "CRWS",
+      "CSCO",
+      "CTGO",
+      "DDL",
+      "EL",
+      "ELTK",
+      "ELVN",
+      "FBYD",
+      "FIEE",
+      "FLYX",
+      "GFR",
+      "GRO",
+      "IMNM",
+      "INBX",
+      "INVU",
+      "IVVD",
+      "KLRS",
+      "KMDA",
+      "KOD",
+      "LENZ",
+      "LOW",
+      "LWAC",
+      "LXEO",
+      "MGX",
+      "MSAI",
+      "MSS",
+      "NAKA",
+      "NDSN",
+      "NEGG",
+      "NROM",
+      "PHVS",
+      "PODC",
+      "POET",
+      "PRLD",
+      "PYXS",
+      "QMCI",
+      "RDZN",
+      "RMCO",
+      "ROST",
+      "SCND",
+      "SCWO",
+      "SEBC",
+      "SFL",
+      "SGMT",
+      "SLQT",
+      "TCRX",
+      "TECX",
+      "TGT",
+      "TJX",
+      "TLPH",
+      "TPCS",
+      "VIP",
+      "VNET",
+      "VNRX",
+      "WOLF",
+      "YMM",
+      "YRD",
+      "YSG",
+      "ZDPY",
+      "ZIM",
+      "ZURA"
+    ],
+    "2026-08-20": [
+      "AAP",
+      "AFRM",
+      "AGTX",
+      "AXIL",
+      "BKE",
+      "BOSC",
+      "BRID",
+      "CLGN",
+      "DE",
+      "DOMO",
+      "ELLO",
+      "EVAX",
+      "FECOF",
+      "FTII",
+      "GRAB",
+      "HAIN",
+      "IGR",
+      "KNOP",
+      "KOSS",
+      "LTRX",
+      "MOV",
+      "MZTI",
+      "OSIS",
+      "PDEX",
+      "RLX",
+      "SCPX",
+      "SPR",
+      "UCLE",
+      "WMT",
+      "ZKH"
+    ],
+    "2026-08-21": [
+      "AIRJ",
+      "BJ",
+      "UI"
+    ],
+    "2026-08-24": [
+      "ADMT",
+      "AMWD",
+      "ATAT",
+      "CAF",
+      "CDIX",
+      "CLM",
+      "CNF",
+      "COSM",
+      "CTRN",
+      "DKS",
+      "DQ",
+      "EMD",
+      "FMTO",
+      "GGR",
+      "GOTU",
+      "IIF",
+      "JOYY",
+      "MSD",
+      "PAI",
+      "PDCC",
+      "PDD",
+      "PVH",
+      "RENX",
+      "RHCO",
+      "SNT",
+      "SOND",
+      "SRAX",
+      "THCH",
+      "TUYA",
+      "XPEV"
+    ],
+    "2026-08-25": [
+      "ALCY",
+      "ANF",
+      "BOX",
+      "BSPK",
+      "DREM",
+      "DXLG",
+      "DYNR",
+      "FIVE",
+      "FSCO",
+      "FUFU",
+      "GES",
+      "INTU",
+      "IVFH",
+      "JKHY",
+      "JKS",
+      "KSS",
+      "LFVN",
+      "MYND",
+      "NOAH",
+      "NTHI",
+      "REX",
+      "RMT",
+      "SCSC",
+      "SHMD",
+      "SJ",
+      "TEI",
+      "TIGR",
+      "VMET",
+      "WSM",
+      "YB",
+      "ZM"
+    ],
+    "2026-08-26": [
+      "A",
+      "AFYA",
+      "AVNW",
+      "BANX",
+      "BBWI",
+      "BURL",
+      "CRM",
+      "CRWD",
+      "DY",
+      "EOS",
+      "ETB",
+      "ETJ",
+      "ETV",
+      "FOCL",
+      "GAP",
+      "GASS",
+      "GHRS",
+      "GLMD",
+      "GMS",
+      "IREN",
+      "JBSS",
+      "KAYS",
+      "KC",
+      "LUCK",
+      "NAT",
+      "NMM",
+      "NVDA",
+      "OKTA",
+      "OLLI",
+      "PLTYF",
+      "PRZO",
+      "SNPS",
+      "SOGP",
+      "TOYO",
+      "TULP",
+      "ULTA",
+      "URBN",
+      "VIK",
+      "VSXY",
+      "VTGDF",
+      "WOOF"
+    ],
+    "2026-08-27": [
+      "ADSK",
+      "ARTV",
+      "AWF",
+      "BBY",
+      "BMRA",
+      "BULL",
+      "CASIF",
+      "CELU",
+      "CHA",
+      "CPB",
+      "CSIQ",
+      "CYTOF",
+      "DG",
+      "ENLV",
+      "ESTC",
+      "FLWS",
+      "GCO",
+      "GLGI",
+      "GOLD",
+      "GORO",
+      "HQY",
+      "HRL",
+      "IOT",
+      "KEN",
+      "LOT",
+      "MBUU",
+      "MCFT",
+      "MDB",
+      "MDBH",
+      "MEI",
+      "MRVL",
+      "NRT",
+      "OOMA",
+      "PD",
+      "PLAB",
+      "S",
+      "SIG",
+      "SOCA",
+      "STME",
+      "TITN",
+      "WDAY"
+    ],
+    "2026-08-28": [
+      "BABA",
+      "BLPG",
+      "FLNG",
+      "JG",
+      "UTSI"
+    ],
+    "2026-08-31": [
+      "AEO",
+      "AIJTY",
+      "ASO",
+      "BANL",
+      "CISS",
+      "FRO",
+      "GDEV",
+      "GEG",
+      "HEI",
+      "INTJ",
+      "JGH",
+      "JMM",
+      "JRS",
+      "KF",
+      "LDXC",
+      "NIO",
+      "NPCT",
+      "NSSC",
+      "PCN",
+      "PNBI",
+      "QQQX",
+      "RCS",
+      "RMM",
+      "SCGY",
+      "SPXX",
+      "WDSP",
+      "ZS"
+    ],
+    "2026-09-01": [
+      "ABLT",
+      "AMBA",
+      "ASAN",
+      "BASE",
+      "BOE",
+      "CHPT",
+      "CIK",
+      "COE",
+      "CRDO",
+      "CXM",
+      "DAVA",
+      "DLTR",
+      "ELMD",
+      "GGN",
+      "GGZ",
+      "GUT",
+      "HPE",
+      "HPQ",
+      "JILL",
+      "LDP",
+      "LQWC",
+      "M",
+      "MACT",
+      "MCN",
+      "MDT",
+      "MMED",
+      "MPLT",
+      "NCNO",
+      "PAII",
+      "PANW",
+      "PFN",
+      "PSEC",
+      "PSNY",
+      "RGS",
+      "RZLV",
+      "SAIL",
+      "STK",
+      "TLYS",
+      "TY",
+      "YQ"
+    ],
+    "2026-09-02": [
+      "AVGO",
+      "BBN",
+      "BCAT",
+      "BF.B",
+      "BGR",
+      "BGT",
+      "BGY",
+      "BIT",
+      "BKT",
+      "BME",
+      "BMEZ",
+      "BST",
+      "BSTZ",
+      "BTX",
+      "BZUN",
+      "CAL",
+      "CANG",
+      "CII",
+      "CPRT",
+      "CRWD",
+      "CULP",
+      "CURV",
+      "DAKT",
+      "DCI",
+      "DDC",
+      "DLTH",
+      "DSU",
+      "ECAT",
+      "FRA",
+      "GAB",
+      "GF",
+      "GGT",
+      "LULU",
+      "NTAP",
+      "NTNX",
+      "P",
+      "PAHC",
+      "PATH",
+      "PHR",
+      "PML",
+      "REX",
+      "RNP",
+      "SFIO",
+      "SHOE",
+      "SJM",
+      "SMTC",
+      "SNOW",
+      "SPWH",
+      "TSI",
+      "VEEV",
+      "VFS",
+      "VRA",
+      "ZUMZ"
+    ],
+    "2026-09-03": [
+      "AGX",
+      "AI",
+      "AOUT",
+      "ASG",
+      "BBCP",
+      "BRC",
+      "BRZE",
+      "CIEN",
+      "DELL",
+      "DOCU",
+      "EGAN",
+      "FIZZ",
+      "FOF",
+      "GIII",
+      "GLCP",
+      "GTIJF",
+      "GWRE",
+      "HOFT",
+      "HOV",
+      "IBIO",
+      "JCE",
+      "KEQU",
+      "KFY",
+      "LAKE",
+      "LOVE",
+      "NFE",
+      "NX",
+      "OPP",
+      "PCM",
+      "PCQ",
+      "PDI",
+      "PDO",
+      "PDX",
+      "PFL",
+      "PGP",
+      "PHK",
+      "PLCE",
+      "PNI",
+      "PSF",
+      "RFI",
+      "RQI",
+      "SAIC",
+      "SWBI",
+      "TTAN",
+      "TTC",
+      "USA",
+      "UTF",
+      "VIRC",
+      "WELNF",
+      "WLY",
+      "ZGN"
+    ],
+    "2026-09-04": [
+      "ABM",
+      "ARDC",
+      "BDJ",
+      "BYSI",
+      "HURC",
+      "PAXS"
+    ],
+    "2026-09-07": [
+      "ALMU",
+      "ALOT",
+      "AVAV",
+      "AVO",
+      "AXR",
+      "BNR",
+      "BWTL",
+      "CASY",
+      "CGNT",
+      "DBI",
+      "DLNG",
+      "FCEL",
+      "FFA",
+      "GLU",
+      "GME",
+      "GMHS",
+      "GROW",
+      "GTLB",
+      "IFN",
+      "IMPP",
+      "INNV",
+      "LAES",
+      "LE",
+      "LITB",
+      "LMNR",
+      "MAMA",
+      "MIND",
+      "MOMO",
+      "MPV",
+      "MTRX",
+      "NTRB",
+      "ORCL",
+      "PL",
+      "RBRK",
+      "RCG",
+      "SBOX",
+      "SKIL",
+      "SOR",
+      "SWVL",
+      "WDH",
+      "WLDS",
+      "WXM",
+      "YEXT",
+      "YYGH"
+    ],
+    "2026-09-08": [
+      "ADSE",
+      "AEF",
+      "AENT",
+      "ALZN",
+      "AMBR",
+      "ANIX",
+      "CHWY",
+      "HTOO",
+      "IFBD",
+      "LSAK",
+      "MLGO",
+      "OXM",
+      "PTIX",
+      "SHMP",
+      "TEN",
+      "VNCE"
+    ],
+    "2026-09-09": [
+      "BUKS",
+      "CMCM",
+      "COO",
+      "ENGN",
+      "EVI",
+      "FEIM",
+      "HIHO",
+      "IBEX",
+      "IDWM",
+      "KR",
+      "NB",
+      "OCC",
+      "ODD",
+      "RFIL",
+      "RH"
+    ],
+    "2026-09-10": [
+      "ADBE",
+      "BDRX",
+      "GWLL",
+      "HEOL",
+      "HUIZ",
+      "IHT",
+      "JVA",
+      "KXIN",
+      "LBSR",
+      "NOBH",
+      "OCCI",
+      "PRE",
+      "RSKIA",
+      "TBBA"
+    ],
+    "2026-09-11": [
+      "TMXN"
+    ],
+    "2026-09-12": [
+      "KMTS"
+    ],
+    "2026-09-14": [
+      "BRRE",
+      "CBRL",
+      "CODA",
+      "CSBR",
+      "EBZT",
+      "EPM",
+      "ESP",
+      "FLUX",
+      "GFAI",
+      "HYFT",
+      "HYSR",
+      "ISPR",
+      "IVDN",
+      "KARX",
+      "KAVL",
+      "KRKR",
+      "MSB",
+      "OPTT",
+      "PBSV",
+      "PLAY",
+      "PMCB",
+      "PPIH",
+      "RLGT",
+      "RSSS",
+      "SKKY",
+      "TC",
+      "USAU",
+      "VALU",
+      "YIBO",
+      "ZEOX"
+    ],
+    "2026-09-15": [
+      "DDDX",
+      "GIS",
+      "HERE",
+      "MANU",
+      "PLUR",
+      "RZLT",
+      "WYFI",
+      "YI"
+    ],
+    "2026-09-16": [
+      "ABAT",
+      "DRI",
+      "FDS",
+      "FDX",
+      "LEN",
+      "LGCY",
+      "SCHL",
+      "WDSP"
+    ],
+    "2026-09-17": [
+      "BIOQ",
+      "GFLT",
+      "GLBS",
+      "GWOX",
+      "HUHU",
+      "INTE",
+      "ITOX",
+      "JF",
+      "KFFB",
+      "MGLD",
+      "MNY",
+      "OWPC",
+      "TRT",
+      "WDSP"
+    ],
+    "2026-09-18": [
+      "UPXI"
+    ]
+  },
+  "by_ticker": {
+    "ABSI": [
+      {
+        "date": "2026-08-11",
+        "time": "amc"
+      }
+    ],
+    "ABVC": [
+      {
+        "date": "2026-08-11",
+        "time": "BMO"
+      }
+    ],
+    "ADCT": [
+      {
+        "date": "2026-08-11",
+        "time": "BMO"
+      }
+    ],
+    "ADIL": [
+      {
+        "date": "2026-08-11",
+        "time": "BMO"
+      }
+    ],
+    "AEMD": [
+      {
+        "date": "2026-08-11",
+        "time": "BMO"
+      }
+    ],
+    "AFJK": [
+      {
+        "date": "2026-08-11",
+        "time": "BMO"
+      }
+    ],
+    "AGRO": [
+      {
+        "date": "2026-08-11",
+        "time": "BMO"
+      }
+    ],
+    "AII": [
+      {
+        "date": "2026-08-11",
+        "time": "amc"
+      }
+    ],
+    "AIMD": [
+      {
+        "date": "2026-08-11",
+        "time": "BMO"
+      }
+    ],
+    "AMBQ": [
+      {
+        "date": "2026-08-11",
+        "time": "bmo"
+      }
+    ],
+    "ANSC": [
+      {
+        "date": "2026-08-11",
+        "time": "BMO"
+      }
+    ],
+    "AQST": [
+      {
+        "date": "2026-08-11",
+        "time": "amc"
+      }
+    ],
+    "ARMK": [
+      {
+        "date": "2026-08-11",
+        "time": "bmo"
+      }
+    ],
+    "ATER": [
+      {
+        "date": "2026-08-11",
+        "time": "BMO"
+      }
+    ],
+    "ATEX": [
+      {
+        "date": "2026-08-11",
+        "time": "amc"
+      }
+    ],
+    "ATPC": [
+      {
+        "date": "2026-08-11",
+        "time": "BMO"
+      }
+    ],
+    "ATRO": [
+      {
+        "date": "2026-08-11",
+        "time": "amc"
+      }
+    ],
+    "BCAX": [
+      {
+        "date": "2026-08-11",
+        "time": "BMO"
+      }
+    ],
+    "BEAM": [
+      {
+        "date": "2026-08-11",
+        "time": "BMO"
+      }
+    ],
+    "BEEP": [
+      {
+        "date": "2026-08-11",
+        "time": "amc"
+      }
+    ],
+    "BFRG": [
+      {
+        "date": "2026-08-11",
+        "time": "BMO"
+      }
+    ],
+    "BFRI": [
+      {
+        "date": "2026-08-11",
+        "time": "BMO"
+      }
+    ],
+    "BGMS": [
+      {
+        "date": "2026-08-11",
+        "time": "BMO"
+      }
+    ],
+    "BGS": [
+      {
+        "date": "2026-08-11",
+        "time": "amc"
+      }
+    ],
+    "BMR": [
+      {
+        "date": "2026-08-11",
+        "time": "BMO"
+      }
+    ],
+    "BOC": [
+      {
+        "date": "2026-08-11",
+        "time": "BMO"
+      }
+    ],
+    "BORR": [
+      {
+        "date": "2026-08-11",
+        "time": "amc"
+      }
+    ],
+    "BOXL": [
+      {
+        "date": "2026-08-11",
+        "time": "BMO"
+      }
+    ],
+    "BRCB": [
+      {
+        "date": "2026-08-11",
+        "time": "amc"
+      }
+    ],
+    "CAH": [
+      {
+        "date": "2026-08-11",
+        "time": "bmo"
+      }
+    ],
+    "CRWV": [
+      {
+        "date": "2026-08-11",
+        "time": "amc"
+      }
+    ],
+    "DRMA": [
+      {
+        "date": "2026-08-11",
+        "time": "BMO"
+      }
+    ],
+    "ABEO": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "ACRS": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "ADTX": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "AERT": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "AIXC": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "ALLO": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "ALLT": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "AMCR": [
+      {
+        "date": "2026-08-12",
+        "time": "amc"
+      }
+    ],
+    "AMPG": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "AMPY": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "ANDG": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "ANNA": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "AOSL": [
+      {
+        "date": "2026-08-12",
+        "time": "amc"
+      }
+    ],
+    "AP": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "ARTL": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "ASPI": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "ATYR": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "AUID": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "AZ": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "BAYA": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "BBLG": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "BCDA": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "BEAG": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "BETA": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "BGDE": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "BHF": [
+      {
+        "date": "2026-08-12",
+        "time": "amc"
+      }
+    ],
+    "BIOA": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "BNBX": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "BNKK": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "BNZI": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "BOLT": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "CAN": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "COHR": [
+      {
+        "date": "2026-08-12",
+        "time": "amc"
+      }
+    ],
+    "ENVX": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "GO": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "LWLG": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "NBIS": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "SPCE": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "SPIR": [
+      {
+        "date": "2026-08-12",
+        "time": "BMO"
+      }
+    ],
+    "STEM": [
+      {
+        "date": "2026-08-12",
+        "time": "amc"
+      }
+    ],
+    "ACOG": [
+      {
+        "date": "2026-08-13",
+        "time": "BMO"
+      }
+    ],
+    "AEBI": [
+      {
+        "date": "2026-08-13",
+        "time": "BMO"
+      }
+    ],
+    "AEYE": [
+      {
+        "date": "2026-08-13",
+        "time": "BMO"
+      }
+    ],
+    "AFCG": [
+      {
+        "date": "2026-08-13",
+        "time": "BMO"
+      }
+    ],
+    "AIRO": [
+      {
+        "date": "2026-08-13",
+        "time": "BMO"
+      }
+    ],
+    "AIT": [
+      {
+        "date": "2026-08-13",
+        "time": "bmo"
+      }
+    ],
+    "ALH": [
+      {
+        "date": "2026-08-13",
+        "time": "BMO"
+      }
+    ],
+    "AMAT": [
+      {
+        "date": "2026-08-13",
+        "time": "amc"
+      }
+    ],
+    "AMCI": [
+      {
+        "date": "2026-08-13",
+        "time": "BMO"
+      }
+    ],
+    "ARAI": [
+      {
+        "date": "2026-08-13",
+        "time": "BMO"
+      }
+    ],
+    "ARCO": [
+      {
+        "date": "2026-08-13",
+        "time": "BMO"
+      }
+    ],
+    "ARX": [
+      {
+        "date": "2026-08-13",
+        "time": "BMO"
+      }
+    ],
+    "AVAH": [
+      {
+        "date": "2026-08-13",
+        "time": "bmo"
+      }
+    ],
+    "AVX": [
+      {
+        "date": "2026-08-13",
+        "time": "BMO"
+      }
+    ],
+    "BAFN": [
+      {
+        "date": "2026-08-13",
+        "time": "amc"
+      }
+    ],
+    "BAP": [
+      {
+        "date": "2026-08-13",
+        "time": "BMO"
+      }
+    ],
+    "BEAT": [
+      {
+        "date": "2026-08-13",
+        "time": "BMO"
+      }
+    ],
+    "BIRK": [
+      {
+        "date": "2026-08-13",
+        "time": "BMO"
+      }
+    ],
+    "BIVI": [
+      {
+        "date": "2026-08-13",
+        "time": "amc"
+      }
+    ],
+    "BLIN": [
+      {
+        "date": "2026-08-13",
+        "time": "BMO"
+      }
+    ],
+    "BLNE": [
+      {
+        "date": "2026-08-13",
+        "time": "BMO"
+      }
+    ],
+    "BLSH": [
+      {
+        "date": "2026-08-13",
+        "time": "BMO"
+      }
+    ],
+    "BN": [
+      {
+        "date": "2026-08-13",
+        "time": "BMO"
+      }
+    ],
+    "BOF": [
+      {
+        "date": "2026-08-13",
+        "time": "BMO"
+      }
+    ],
+    "BTBT": [
+      {
+        "date": "2026-08-13",
+        "time": "BMO"
+      }
+    ],
+    "EVTL": [
+      {
+        "date": "2026-08-13",
+        "time": "BMO"
+      }
+    ],
+    "GLOB": [
+      {
+        "date": "2026-08-13",
+        "time": "amc"
+      }
+    ],
+    "LUNR": [
+      {
+        "date": "2026-08-13",
+        "time": "BMO"
+      }
+    ],
+    "NNE": [
+      {
+        "date": "2026-08-13",
+        "time": "BMO"
+      }
+    ],
+    "YETI": [
+      {
+        "date": "2026-08-13",
+        "time": "bmo"
+      }
+    ],
+    "ACTU": [
+      {
+        "date": "2026-08-14",
+        "time": "BMO"
+      }
+    ],
+    "ACXP": [
+      {
+        "date": "2026-08-14",
+        "time": "BMO"
+      }
+    ],
+    "AIRE": [
+      {
+        "date": "2026-08-14",
+        "time": "BMO"
+      }
+    ],
+    "BRFH": [
+      {
+        "date": "2026-08-14",
+        "time": "BMO"
+      }
+    ],
+    "ALLR": [
+      {
+        "date": "2026-08-15",
+        "time": "BMO"
+      }
+    ],
+    "ATHR": [
+      {
+        "date": "2026-08-15",
+        "time": "BMO"
+      }
+    ],
+    "ABOS": [
+      {
+        "date": "2026-08-17",
+        "time": "BMO"
+      }
+    ],
+    "AGPU": [
+      {
+        "date": "2026-08-17",
+        "time": "BMO"
+      }
+    ],
+    "AIHS": [
+      {
+        "date": "2026-08-17",
+        "time": "BMO"
+      }
+    ],
+    "ANNX": [
+      {
+        "date": "2026-08-17",
+        "time": "BMO"
+      }
+    ],
+    "AREC": [
+      {
+        "date": "2026-08-17",
+        "time": "BMO"
+      }
+    ],
+    "ARKR": [
+      {
+        "date": "2026-08-17",
+        "time": "BMO"
+      }
+    ],
+    "BBW": [
+      {
+        "date": "2026-08-17",
+        "time": "BMO"
+      }
+    ],
+    "BOLD": [
+      {
+        "date": "2026-08-17",
+        "time": "BMO"
+      }
+    ],
+    "DNMX": [
+      {
+        "date": "2026-08-17",
+        "time": "BMO"
+      }
+    ],
+    "ESOA": [
+      {
+        "date": "2026-08-17",
+        "time": "BMO"
+      }
+    ],
+    "FN": [
+      {
+        "date": "2026-08-17",
+        "time": "amc"
+      }
+    ],
+    "ANTA": [
+      {
+        "date": "2026-08-18",
+        "time": "BMO"
+      }
+    ],
+    "AS": [
+      {
+        "date": "2026-08-18",
+        "time": "bmo"
+      }
+    ],
+    "AUNA": [
+      {
+        "date": "2026-08-18",
+        "time": "BMO"
+      }
+    ],
+    "AVBP": [
+      {
+        "date": "2026-08-18",
+        "time": "BMO"
+      }
+    ],
+    "CALC": [
+      {
+        "date": "2026-08-18",
+        "time": "BMO"
+      }
+    ],
+    "HD": [
+      {
+        "date": "2026-08-18",
+        "time": "BMO"
+      }
+    ],
+    "KEYS": [
+      {
+        "date": "2026-08-18",
+        "time": "amc"
+      }
+    ],
+    "MRCY": [
+      {
+        "date": "2026-08-18",
+        "time": "amc"
+      }
+    ],
+    "NNDM": [
+      {
+        "date": "2026-08-18",
+        "time": "BMO"
+      }
+    ],
+    "TOL": [
+      {
+        "date": "2026-08-18",
+        "time": "amc"
+      }
+    ],
+    "AARD": [
+      {
+        "date": "2026-08-19",
+        "time": "BMO"
+      }
+    ],
+    "ACRV": [
+      {
+        "date": "2026-08-19",
+        "time": "BMO"
+      }
+    ],
+    "ADGM": [
+      {
+        "date": "2026-08-19",
+        "time": "BMO"
+      }
+    ],
+    "ADI": [
+      {
+        "date": "2026-08-19",
+        "time": "bmo"
+      }
+    ],
+    "AISP": [
+      {
+        "date": "2026-08-19",
+        "time": "BMO"
+      }
+    ],
+    "ALMS": [
+      {
+        "date": "2026-08-19",
+        "time": "BMO"
+      }
+    ],
+    "ALVO": [
+      {
+        "date": "2026-08-19",
+        "time": "BMO"
+      }
+    ],
+    "ARAY": [
+      {
+        "date": "2026-08-19",
+        "time": "amc"
+      }
+    ],
+    "BCG": [
+      {
+        "date": "2026-08-19",
+        "time": "BMO"
+      }
+    ],
+    "BEEM": [
+      {
+        "date": "2026-08-19",
+        "time": "BMO"
+      }
+    ],
+    "BIAF": [
+      {
+        "date": "2026-08-19",
+        "time": "BMO"
+      }
+    ],
+    "BILL": [
+      {
+        "date": "2026-08-19",
+        "time": "amc"
+      }
+    ],
+    "CSCO": [
+      {
+        "date": "2026-08-19",
+        "time": "amc"
+      }
+    ],
+    "EL": [
+      {
+        "date": "2026-08-19",
+        "time": "amc"
+      }
+    ],
+    "LOW": [
+      {
+        "date": "2026-08-19",
+        "time": "bmo"
+      }
+    ],
+    "POET": [
+      {
+        "date": "2026-08-19",
+        "time": "BMO"
+      }
+    ],
+    "ROST": [
+      {
+        "date": "2026-08-19",
+        "time": "BMO"
+      }
+    ],
+    "TGT": [
+      {
+        "date": "2026-08-19",
+        "time": "bmo"
+      }
+    ],
+    "TJX": [
+      {
+        "date": "2026-08-19",
+        "time": "BMO"
+      }
+    ],
+    "WOLF": [
+      {
+        "date": "2026-08-19",
+        "time": "amc"
+      }
+    ],
+    "AAP": [
+      {
+        "date": "2026-08-20",
+        "time": "BMO"
+      }
+    ],
+    "AFRM": [
+      {
+        "date": "2026-08-20",
+        "time": "amc"
+      }
+    ],
+    "BKE": [
+      {
+        "date": "2026-08-20",
+        "time": "BMO"
+      }
+    ],
+    "BOSC": [
+      {
+        "date": "2026-08-20",
+        "time": "BMO"
+      }
+    ],
+    "BRID": [
+      {
+        "date": "2026-08-20",
+        "time": "BMO"
+      }
+    ],
+    "DE": [
+      {
+        "date": "2026-08-20",
+        "time": "bmo"
+      }
+    ],
+    "WMT": [
+      {
+        "date": "2026-08-20",
+        "time": "BMO"
+      }
+    ],
+    "AIRJ": [
+      {
+        "date": "2026-08-21",
+        "time": "BMO"
+      }
+    ],
+    "BJ": [
+      {
+        "date": "2026-08-21",
+        "time": "BMO"
+      }
+    ],
+    "AMWD": [
+      {
+        "date": "2026-08-24",
+        "time": "BMO"
+      }
+    ],
+    "XPEV": [
+      {
+        "date": "2026-08-24",
+        "time": "BMO"
+      }
+    ],
+    "ANF": [
+      {
+        "date": "2026-08-25",
+        "time": "BMO"
+      }
+    ],
+    "BOX": [
+      {
+        "date": "2026-08-25",
+        "time": "BMO"
+      }
+    ],
+    "INTU": [
+      {
+        "date": "2026-08-25",
+        "time": "amc"
+      }
+    ],
+    "A": [
+      {
+        "date": "2026-08-26",
+        "time": "amc"
+      }
+    ],
+    "AFYA": [
+      {
+        "date": "2026-08-26",
+        "time": "BMO"
+      }
+    ],
+    "AVNW": [
+      {
+        "date": "2026-08-26",
+        "time": "BMO"
+      }
+    ],
+    "BANX": [
+      {
+        "date": "2026-08-26",
+        "time": "BMO"
+      }
+    ],
+    "BBWI": [
+      {
+        "date": "2026-08-26",
+        "time": "BMO"
+      }
+    ],
+    "CRM": [
+      {
+        "date": "2026-08-26",
+        "time": "amc"
+      }
+    ],
+    "CRWD": [
+      {
+        "date": "2026-08-26",
+        "time": "BMO"
+      },
+      {
+        "date": "2026-09-02",
+        "time": "BMO"
+      }
+    ],
+    "DY": [
+      {
+        "date": "2026-08-26",
+        "time": "bmo"
+      }
+    ],
+    "IREN": [
+      {
+        "date": "2026-08-26",
+        "time": "amc"
+      }
+    ],
+    "NVDA": [
+      {
+        "date": "2026-08-26",
+        "time": "amc"
+      }
+    ],
+    "OKTA": [
+      {
+        "date": "2026-08-26",
+        "time": "BMO"
+      }
+    ],
+    "SNPS": [
+      {
+        "date": "2026-08-26",
+        "time": "BMO"
+      }
+    ],
+    "ADSK": [
+      {
+        "date": "2026-08-27",
+        "time": "BMO"
+      }
+    ],
+    "ARTV": [
+      {
+        "date": "2026-08-27",
+        "time": "BMO"
+      }
+    ],
+    "BBY": [
+      {
+        "date": "2026-08-27",
+        "time": "BMO"
+      }
+    ],
+    "BMRA": [
+      {
+        "date": "2026-08-27",
+        "time": "BMO"
+      }
+    ],
+    "CPB": [
+      {
+        "date": "2026-08-27",
+        "time": "amc"
+      }
+    ],
+    "ESTC": [
+      {
+        "date": "2026-08-27",
+        "time": "BMO"
+      }
+    ],
+    "MDB": [
+      {
+        "date": "2026-08-27",
+        "time": "BMO"
+      }
+    ],
+    "MRVL": [
+      {
+        "date": "2026-08-27",
+        "time": "BMO"
+      }
+    ],
+    "PLAB": [
+      {
+        "date": "2026-08-27",
+        "time": "BMO"
+      }
+    ],
+    "S": [
+      {
+        "date": "2026-08-27",
+        "time": "BMO"
+      }
+    ],
+    "WDAY": [
+      {
+        "date": "2026-08-27",
+        "time": "amc"
+      }
+    ],
+    "FLNG": [
+      {
+        "date": "2026-08-28",
+        "time": "bmo"
+      }
+    ],
+    "AEO": [
+      {
+        "date": "2026-08-31",
+        "time": "BMO"
+      }
+    ],
+    "ASO": [
+      {
+        "date": "2026-08-31",
+        "time": "BMO"
+      }
+    ],
+    "BANL": [
+      {
+        "date": "2026-08-31",
+        "time": "BMO"
+      }
+    ],
+    "HEI": [
+      {
+        "date": "2026-08-31",
+        "time": "BMO"
+      }
+    ],
+    "ZS": [
+      {
+        "date": "2026-08-31",
+        "time": "amc"
+      }
+    ],
+    "AMBA": [
+      {
+        "date": "2026-09-01",
+        "time": "BMO"
+      }
+    ],
+    "ASAN": [
+      {
+        "date": "2026-09-01",
+        "time": "BMO"
+      }
+    ],
+    "CRDO": [
+      {
+        "date": "2026-09-01",
+        "time": "BMO"
+      }
+    ],
+    "HPE": [
+      {
+        "date": "2026-09-01",
+        "time": "amc"
+      }
+    ],
+    "HPQ": [
+      {
+        "date": "2026-09-01",
+        "time": "amc"
+      }
+    ],
+    "MDT": [
+      {
+        "date": "2026-09-01",
+        "time": "BMO"
+      }
+    ],
+    "PANW": [
+      {
+        "date": "2026-09-01",
+        "time": "amc"
+      }
+    ],
+    "AVGO": [
+      {
+        "date": "2026-09-02",
+        "time": "amc"
+      }
+    ],
+    "CAL": [
+      {
+        "date": "2026-09-02",
+        "time": "BMO"
+      }
+    ],
+    "CPRT": [
+      {
+        "date": "2026-09-02",
+        "time": "amc"
+      }
+    ],
+    "NTAP": [
+      {
+        "date": "2026-09-02",
+        "time": "BMO"
+      }
+    ],
+    "NTNX": [
+      {
+        "date": "2026-09-02",
+        "time": "amc"
+      }
+    ],
+    "PATH": [
+      {
+        "date": "2026-09-02",
+        "time": "amc"
+      }
+    ],
+    "SJM": [
+      {
+        "date": "2026-09-02",
+        "time": "BMO"
+      }
+    ],
+    "SMTC": [
+      {
+        "date": "2026-09-02",
+        "time": "BMO"
+      }
+    ],
+    "SNOW": [
+      {
+        "date": "2026-09-02",
+        "time": "amc"
+      }
+    ],
+    "VEEV": [
+      {
+        "date": "2026-09-02",
+        "time": "amc"
+      }
+    ],
+    "AGX": [
+      {
+        "date": "2026-09-03",
+        "time": "BMO"
+      }
+    ],
+    "AI": [
+      {
+        "date": "2026-09-03",
+        "time": "BMO"
+      }
+    ],
+    "AOUT": [
+      {
+        "date": "2026-09-03",
+        "time": "BMO"
+      }
+    ],
+    "BBCP": [
+      {
+        "date": "2026-09-03",
+        "time": "amc"
+      }
+    ],
+    "BRC": [
+      {
+        "date": "2026-09-03",
+        "time": "BMO"
+      }
+    ],
+    "CIEN": [
+      {
+        "date": "2026-09-03",
+        "time": "bmo"
+      }
+    ],
+    "DELL": [
+      {
+        "date": "2026-09-03",
+        "time": "BMO"
+      }
+    ],
+    "SAIC": [
+      {
+        "date": "2026-09-03",
+        "time": "BMO"
+      }
+    ],
+    "ABM": [
+      {
+        "date": "2026-09-04",
+        "time": "BMO"
+      }
+    ],
+    "ALMU": [
+      {
+        "date": "2026-09-07",
+        "time": "BMO"
+      }
+    ],
+    "ALOT": [
+      {
+        "date": "2026-09-07",
+        "time": "BMO"
+      }
+    ],
+    "AVAV": [
+      {
+        "date": "2026-09-07",
+        "time": "BMO"
+      }
+    ],
+    "AVO": [
+      {
+        "date": "2026-09-07",
+        "time": "BMO"
+      }
+    ],
+    "AXR": [
+      {
+        "date": "2026-09-07",
+        "time": "BMO"
+      }
+    ],
+    "FCEL": [
+      {
+        "date": "2026-09-07",
+        "time": "bmo"
+      }
+    ],
+    "GTLB": [
+      {
+        "date": "2026-09-07",
+        "time": "BMO"
+      }
+    ],
+    "ORCL": [
+      {
+        "date": "2026-09-07",
+        "time": "BMO"
+      }
+    ],
+    "PL": [
+      {
+        "date": "2026-09-07",
+        "time": "BMO"
+      }
+    ],
+    "ADSE": [
+      {
+        "date": "2026-09-08",
+        "time": "BMO"
+      }
+    ],
+    "AENT": [
+      {
+        "date": "2026-09-08",
+        "time": "BMO"
+      }
+    ],
+    "ALZN": [
+      {
+        "date": "2026-09-08",
+        "time": "BMO"
+      }
+    ],
+    "ANIX": [
+      {
+        "date": "2026-09-08",
+        "time": "BMO"
+      }
+    ],
+    "CHWY": [
+      {
+        "date": "2026-09-08",
+        "time": "BMO"
+      }
+    ],
+    "KR": [
+      {
+        "date": "2026-09-09",
+        "time": "BMO"
+      }
+    ],
+    "ADBE": [
+      {
+        "date": "2026-09-10",
+        "time": "amc"
+      }
+    ],
+    "GIS": [
+      {
+        "date": "2026-09-15",
+        "time": "BMO"
+      }
+    ],
+    "ABAT": [
+      {
+        "date": "2026-09-16",
+        "time": "BMO"
+      }
+    ],
+    "DRI": [
+      {
+        "date": "2026-09-16",
+        "time": "BMO"
+      }
+    ],
+    "FDS": [
+      {
+        "date": "2026-09-16",
+        "time": "amc"
+      }
+    ],
+    "FDX": [
+      {
+        "date": "2026-09-16",
+        "time": "BMO"
+      }
+    ],
+    "LEN": [
+      {
+        "date": "2026-09-16",
+        "time": "amc"
+      }
+    ]
+  }
+}

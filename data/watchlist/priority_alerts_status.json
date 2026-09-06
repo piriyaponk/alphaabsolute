@@ -1,0 +1,62 @@
+{
+  "date": "2026-07-02",
+  "setups_data_date": "2026-06-16",
+  "tickers": {
+    "MU": {
+      "triggered": false,
+      "source": null,
+      "detail": {
+        "status": "WATCHING",
+        "as_of": "2026-06-25",
+        "close": 1213.56,
+        "high_63d": 1213.56,
+        "high_126d": 1213.56,
+        "pct_from_63d_high": 0.0,
+        "vol_ratio_20d": 1.49
+      },
+      "in_curated_setups_today": true
+    },
+    "SNDK": {
+      "triggered": false,
+      "source": null,
+      "detail": {
+        "status": "WATCHING",
+        "as_of": "2026-06-25",
+        "close": 2335.0,
+        "high_63d": 2354.3899,
+        "high_126d": 2354.3899,
+        "pct_from_63d_high": -0.82,
+        "vol_ratio_20d": 1.39
+      },
+      "in_curated_setups_today": true
+    },
+    "OUST": {
+      "triggered": false,
+      "source": null,
+      "detail": {
+        "status": "WATCHING",
+        "as_of": "2026-06-25",
+        "close": 41.82,
+        "high_63d": 51.5,
+        "high_126d": 51.5,
+        "pct_from_63d_high": -18.8,
+        "vol_ratio_20d": 0.82
+      },
+      "in_curated_setups_today": false
+    },
+    "MRVL": {
+      "triggered": false,
+      "source": null,
+      "detail": {
+        "status": "WATCHING",
+        "as_of": "2026-06-25",
+        "close": 281.26,
+        "high_63d": 329.88,
+        "high_126d": 329.88,
+        "pct_from_63d_high": -14.74,
+        "vol_ratio_20d": 0.54
+      },
+      "in_curated_setups_today": true
+    }
+  }
+}

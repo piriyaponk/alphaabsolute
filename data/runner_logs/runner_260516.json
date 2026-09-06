@@ -1,0 +1,116 @@
+{
+  "date": "2026-05-16",
+  "run_at": "2026-05-16T21:07:41.213224",
+  "steps": [
+    {
+      "step": "m0",
+      "name": "M0 Market Regime Master",
+      "success": true,
+      "duration": 4.7,
+      "output": "data/market_regime/strategy_clearance.json",
+      "error": "",
+      "time": "21:06:34"
+    },
+    {
+      "step": "macro_snapshot",
+      "name": "Macro Learner \u2014 Daily Snapshot",
+      "success": true,
+      "duration": 0.0,
+      "output": "data/macro_learning/regime_snapshots.jsonl",
+      "error": "",
+      "time": "21:06:34"
+    },
+    {
+      "step": "canslim",
+      "name": "CANSLIM Scorer",
+      "success": true,
+      "duration": 26.0,
+      "output": "data/canslim_scores/_summary.json",
+      "error": "",
+      "time": "21:07:00"
+    },
+    {
+      "step": "base",
+      "name": "Base Watchdog (I4)",
+      "success": true,
+      "duration": 0.2,
+      "output": "data/base_watchdog/latest.json",
+      "error": "",
+      "time": "21:07:00"
+    },
+    {
+      "step": "rs",
+      "name": "RS Ranker (I1)",
+      "success": true,
+      "duration": 12.7,
+      "output": "data/rs_universe/latest.json",
+      "error": "",
+      "time": "21:07:13"
+    },
+    {
+      "step": "rs_theme",
+      "name": "RS Theme Ranker (I1b)",
+      "success": true,
+      "duration": 0.1,
+      "output": "data/rs_universe/theme_rs_latest.json",
+      "error": "",
+      "time": "21:07:13"
+    },
+    {
+      "step": "exhaustion",
+      "name": "Exhaustion Monitor (M2)",
+      "success": true,
+      "duration": 0.2,
+      "output": "data/exhaustion/latest.json",
+      "error": "",
+      "time": "21:07:13"
+    },
+    {
+      "step": "risk",
+      "name": "Risk Guardian (T3)",
+      "success": true,
+      "duration": 0.0,
+      "output": "data/risk_guardian/daily_report.json",
+      "error": "",
+      "time": "21:07:13"
+    },
+    {
+      "step": "inflection",
+      "name": "Earnings Inflection Detector (I2)",
+      "success": true,
+      "duration": 27.8,
+      "output": "data/earnings_inflection/latest.json",
+      "error": "",
+      "time": "21:07:41"
+    },
+    {
+      "step": "watchlist",
+      "name": "Smart Watchlist Engine (W1)",
+      "success": true,
+      "duration": 0.0,
+      "output": "data/watchlist/latest.json",
+      "error": "",
+      "time": "21:07:41"
+    },
+    {
+      "step": "postmortem",
+      "name": "Auto Post-Mortem (I8)",
+      "success": true,
+      "duration": 0.0,
+      "output": "data/postmortems/lessons.json",
+      "error": "",
+      "time": "21:07:41"
+    },
+    {
+      "step": "calibrate",
+      "name": "Framework Calibrator (I9)",
+      "success": true,
+      "duration": 0.0,
+      "output": "data/framework_calibrator/signal_weights.json",
+      "error": "",
+      "time": "21:07:41"
+    }
+  ],
+  "passed": 12,
+  "failed": 0
+}

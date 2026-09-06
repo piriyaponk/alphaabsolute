@@ -1,0 +1,23 @@
+{
+  "date": "2026-06-16",
+  "prev_date": "260615",
+  "n_universe": 1802,
+  "n_climbers": 0,
+  "n_droppers": 0,
+  "n_rev_inflections": 1,
+  "climbers": [],
+  "droppers": [],
+  "revenue_inflections": [
+    {
+      "ticker": "ACRS",
+      "event": "revenue_inflection",
+      "rev_q0": 37.2,
+      "rev_q1": -24.1,
+      "eps_q0": -25.0,
+      "rs_3m": 90.1,
+      "theme": "\u2014",
+      "note": "Rev inflection: Q-1=-24%\u2192Q0=37%"
+    }
+  ],
+  "generated_at": "21:25"
+}

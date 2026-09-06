@@ -345,28 +345,8 @@ STEPS: list[dict] = [
         "critical": False,
         "modes":    ["premarket"],
     },
-    {
-        "id":       "a09",
-        "layer":    "3-Execution",
-        "name":     "A09 Portfolio Manager (pre-market)",
-        "module":   "scripts.portfolio.portfolio_manager",
-        "func":     "run",
-        "output":   "data/portfolio/action_signals.json",
-        "desc":     "Position monitoring + stop checks + cash floor enforcement + paper auto-trade",
-        "critical": False,
-        "modes":    ["premarket"],
-    },
-    {
-        "id":       "a10_trader",
-        "layer":    "3-Execution",
-        "name":     "A10 Paper Trader (premarket)",
-        "module":   "scripts.paper_trading.auto_trader",
-        "func":     "run",
-        "output":   "data/portfolio/paper_portfolio_state.json",
-        "desc":     "Execute Grade A (always) + Grade B (Markup only) setups in paper portfolio",
-        "critical": False,
-        "modes":    ["premarket"],
-    },
+    # a09 + a10_trader removed — old NRGC/PRISM auto-trader archived to archive/v2_old_trading/
+    # System 4 (v4_paper_trader.py) runs on its own schedule (monthly rebalance)
     {
         "id":       "a10",
         "layer":    "3-Execution",
@@ -577,41 +557,8 @@ STEPS: list[dict] = [
         "critical": False,
         "modes":    ["eod"],
     },
-    {
-        "id":       "a12_postmortem",
-        "layer":    "4-Learning",
-        "name":     "A12 Auto Post-Mortem",
-        "module":   "scripts.pre_compute.auto_postmortem",
-        "func":     "run",
-        "output":   "data/postmortems/lessons.json",
-        "desc":     "Analyse closed trades → lesson extraction + signal scorecard",
-        "critical": False,
-        "modes":    ["eod"],
-    },
-    {
-        "id":       "a09_eod",
-        "layer":    "3-Execution",
-        "name":     "A09 Portfolio Manager (EOD update)",
-        "module":   "scripts.portfolio.portfolio_manager",
-        "func":     "run",
-        "kwargs":   {"mode": "eod"},
-        "output":   "data/portfolio/portfolio_state.json",
-        "desc":     "End-of-day price update + P&L recalculation for all positions",
-        "critical": False,
-        "modes":    ["eod"],
-    },
-    {
-        "id":       "a10_trader_eod",
-        "layer":    "3-Execution",
-        "name":     "A10 Paper Trader (EOD mark-to-market)",
-        "module":   "scripts.paper_trading.auto_trader",
-        "func":     "run",
-        "output":   "data/portfolio/paper_portfolio_state.json",
-        "desc":     "EOD mark-to-market for paper portfolio — checks exits, updates prices",
-        "critical": False,
-        "modes":    ["eod"],
-        "kwargs":   {"mode": "eod"},
-    },
+    # a12_postmortem, a09_eod, a10_trader_eod removed — archived to archive/v2_old_trading/
+    # System 4 EOD update: python scripts/paper_trading/v4_paper_trader.py --mode daily
 
     # ── Monthly Mode ─────────────────────────────────────────────────────────
     {

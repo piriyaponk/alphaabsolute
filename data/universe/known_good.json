@@ -1,0 +1,7671 @@
+{
+  "built_at": "2026-05-18T19:33:52.855618",
+  "note": "Tickers confirmed to have Polygon OHLCV data. Skip known_fail on next fetch.",
+  "n_good": 1273,
+  "n_fail": 1296,
+  "good": {
+    "A": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:21:09.920902"
+    },
+    "AA": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:21:15.323349"
+    },
+    "AACB": {
+      "n_bars": 127,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:21:15.868853"
+    },
+    "AACI": {
+      "n_bars": 93,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:21:16.419877"
+    },
+    "AAL": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:21:32.898504"
+    },
+    "AAME": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:21:46.383466"
+    },
+    "AAMI": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:21:59.869604"
+    },
+    "AAOI": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:22:09.199124"
+    },
+    "AAON": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:22:09.731722"
+    },
+    "AAP": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:22:10.274272"
+    },
+    "AAPL": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:22:10.793355"
+    },
+    "AARD": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:22:11.339510"
+    },
+    "AAT": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:22:24.846096"
+    },
+    "AAUC": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:22:38.365774"
+    },
+    "AB": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:22:51.873891"
+    },
+    "ABAT": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:23:05.055822"
+    },
+    "ABBV": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:23:11.914565"
+    },
+    "ABCB": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:23:12.446687"
+    },
+    "ABCL": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:23:12.974989"
+    },
+    "ABEO": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:23:13.501609"
+    },
+    "ABG": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:23:26.988493"
+    },
+    "ABLV": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:23:40.469024"
+    },
+    "ABM": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:23:53.946592"
+    },
+    "ABNB": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:24:07.483526"
+    },
+    "ABOS": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:24:08.008431"
+    },
+    "ABR": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:24:08.530659"
+    },
+    "ABSI": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:24:09.055459"
+    },
+    "ABT": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:24:09.586250"
+    },
+    "ABTC": {
+      "n_bars": 178,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:24:23.106551"
+    },
+    "ABTS": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:24:36.614354"
+    },
+    "ABUS": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:24:50.119075"
+    },
+    "ABVC": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:25:03.297325"
+    },
+    "ABVE": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:25:03.817264"
+    },
+    "ABX": {
+      "n_bars": 95,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:25:04.342732"
+    },
+    "ACA": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:25:04.888667"
+    },
+    "ACAD": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:25:18.912732"
+    },
+    "ACB": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:25:32.391023"
+    },
+    "ACCL": {
+      "n_bars": 145,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:25:45.895128"
+    },
+    "ACCO": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:25:59.390724"
+    },
+    "ACDC": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:26:10.738708"
+    },
+    "ACEL": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:26:11.262944"
+    },
+    "ACET": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:26:11.787019"
+    },
+    "ACFN": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:26:12.310812"
+    },
+    "ACGL": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:26:12.839120"
+    },
+    "ACGLN": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:26:26.312075"
+    },
+    "ACH": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:26:39.821291"
+    },
+    "ACHC": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:26:53.374436"
+    },
+    "ACHR": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:27:06.555518"
+    },
+    "ACHV": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:27:14.061882"
+    },
+    "ACI": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:27:14.589237"
+    },
+    "ACIC": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:27:15.121589"
+    },
+    "ACIU": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:27:15.661636"
+    },
+    "ACIW": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:27:30.779588"
+    },
+    "ACLS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:27:45.914313"
+    },
+    "ACM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:28:01.119822"
+    },
+    "ACMR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:28:11.167939"
+    },
+    "ACN": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:28:11.694873"
+    },
+    "ACNB": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:28:12.218021"
+    },
+    "ACNT": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:28:12.739636"
+    },
+    "ACOG": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:28:13.263131"
+    },
+    "ACON": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:28:28.344388"
+    },
+    "ACR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:28:43.632350"
+    },
+    "ACRE": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:28:58.690556"
+    },
+    "ACRS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:29:13.747224"
+    },
+    "ACRV": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:29:14.271268"
+    },
+    "ACT": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:29:14.803733"
+    },
+    "ACTG": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:29:15.335883"
+    },
+    "ACTU": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:29:15.863289"
+    },
+    "ACVA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:29:30.964231"
+    },
+    "ACXP": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:29:46.149839"
+    },
+    "AD": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:30:01.422306"
+    },
+    "ADAC": {
+      "n_bars": 68,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:30:08.304118"
+    },
+    "ADAM": {
+      "n_bars": 177,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:30:08.829753"
+    },
+    "ADAMG": {
+      "n_bars": 177,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:30:09.358885"
+    },
+    "ADAMH": {
+      "n_bars": 177,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:30:09.893546"
+    },
+    "ADAMI": {
+      "n_bars": 176,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:30:10.423935"
+    },
+    "ADAML": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:30:25.582187"
+    },
+    "ADAMO": {
+      "n_bars": 85,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:30:40.663487"
+    },
+    "ADAMZ": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:30:55.868974"
+    },
+    "ADBE": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:31:09.069510"
+    },
+    "ADC": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:31:09.605046"
+    },
+    "ADCT": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:31:10.156377"
+    },
+    "ADEA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:31:26.350543"
+    },
+    "ADGM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:31:41.508896"
+    },
+    "ADI": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:31:56.885833"
+    },
+    "ADIL": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:32:12.069719"
+    },
+    "ADM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:32:27.204421"
+    },
+    "ADMA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:32:42.347101"
+    },
+    "ADNT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:32:57.496523"
+    },
+    "ADP": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:33:12.887561"
+    },
+    "ADPT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:33:27.893691"
+    },
+    "ADSE": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:33:43.873328"
+    },
+    "ADSK": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:33:59.438376"
+    },
+    "ADT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:34:11.043567"
+    },
+    "ADTN": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:34:11.606363"
+    },
+    "ADTX": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:34:12.149604"
+    },
+    "ADUR": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:34:12.720734"
+    },
+    "ADUS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:34:27.792351"
+    },
+    "ADV": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:34:43.929188"
+    },
+    "ADVB": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:34:59.064615"
+    },
+    "AEAQ": {
+      "n_bars": 78,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:35:14.600751"
+    },
+    "AEBI": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:35:15.126717"
+    },
+    "AEC": {
+      "n_bars": 166,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:35:15.646711"
+    },
+    "AEE": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:35:16.161530"
+    },
+    "AEG": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:35:31.525311"
+    },
+    "AEHL": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:35:46.751350"
+    },
+    "AEHR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:36:02.039350"
+    },
+    "AEI": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:36:03.040068"
+    },
+    "AEIS": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:36:03.937158"
+    },
+    "AEM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:36:19.249488"
+    },
+    "AEMD": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:36:34.527992"
+    },
+    "AENT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:36:49.689422"
+    },
+    "AEO": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:37:02.893178"
+    },
+    "AEP": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:37:18.181342"
+    },
+    "AER": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:37:33.742866"
+    },
+    "AERT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:37:49.184853"
+    },
+    "AES": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:38:02.349480"
+    },
+    "AESI": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:38:17.944875"
+    },
+    "AEVA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:38:18.479010"
+    },
+    "AEXA": {
+      "n_bars": 160,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:38:33.622225"
+    },
+    "AEYE": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:38:49.344098"
+    },
+    "AFBI": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:39:04.498903"
+    },
+    "AFCG": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:39:05.042958"
+    },
+    "AFG": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:39:20.228222"
+    },
+    "AFJK": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:39:35.384674"
+    },
+    "AFL": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:39:50.723066"
+    },
+    "AFRI": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:40:05.784860"
+    },
+    "AFRM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:40:20.914143"
+    },
+    "AFYA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:40:36.390077"
+    },
+    "AG": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:40:51.855369"
+    },
+    "AGAE": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:41:06.917674"
+    },
+    "AGBK": {
+      "n_bars": 66,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:41:07.449584"
+    },
+    "AGCC": {
+      "n_bars": 142,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:41:22.623562"
+    },
+    "AGCO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:41:37.880217"
+    },
+    "AGEN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:41:53.572283"
+    },
+    "AGH": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:42:08.660024"
+    },
+    "AGI": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:42:09.184415"
+    },
+    "AGIO": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:42:09.711901"
+    },
+    "AGL": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:42:24.812643"
+    },
+    "AGM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:42:40.106461"
+    },
+    "AGMH": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:42:56.083106"
+    },
+    "AGNC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:43:11.769521"
+    },
+    "AGNCL": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:43:27.464028"
+    },
+    "AGNCO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:43:43.429363"
+    },
+    "AGNT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:43:58.517366"
+    },
+    "AGO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:44:13.715890"
+    },
+    "AGPU": {
+      "n_bars": 106,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:44:14.260822"
+    },
+    "AGRO": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:44:14.784492"
+    },
+    "AGRZ": {
+      "n_bars": 157,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:44:15.318318"
+    },
+    "AGX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:44:31.026578"
+    },
+    "AGYS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:44:46.199284"
+    },
+    "AHCO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:45:01.439341"
+    },
+    "AHMA": {
+      "n_bars": 143,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:45:02.359646"
+    },
+    "AHR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:45:17.528158"
+    },
+    "AHRT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:45:32.689781"
+    },
+    "AHT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:45:47.878932"
+    },
+    "AI": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:46:02.987928"
+    },
+    "AIDX": {
+      "n_bars": 61,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:46:35.791178"
+    },
+    "AIFC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:46:51.006654"
+    },
+    "AIFF": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:47:06.141436"
+    },
+    "AIFU": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:47:21.326411"
+    },
+    "AIG": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:47:36.493388"
+    },
+    "AIHS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:47:51.681852"
+    },
+    "AII": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:48:06.851874"
+    },
+    "AIIA": {
+      "n_bars": 97,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:48:07.401284"
+    },
+    "AIIO": {
+      "n_bars": 182,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:48:07.920520"
+    },
+    "AIMD": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:48:08.458220"
+    },
+    "AIN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:48:23.722788"
+    },
+    "AIOS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:48:38.942972"
+    },
+    "AIOT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:48:54.473278"
+    },
+    "AIP": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:49:09.756542"
+    },
+    "AIR": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:49:10.277713"
+    },
+    "AIRE": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:49:25.398139"
+    },
+    "AIRG": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:49:40.819448"
+    },
+    "AIRJ": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:49:56.315308"
+    },
+    "AIRO": {
+      "n_bars": 232,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:50:11.746538"
+    },
+    "AIRS": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:50:12.280432"
+    },
+    "AIRT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:50:27.433073"
+    },
+    "AISP": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:50:42.743895"
+    },
+    "AIT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:50:58.243341"
+    },
+    "AIV": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:51:13.798889"
+    },
+    "AIXC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:51:28.972713"
+    },
+    "AIZ": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:51:44.311181"
+    },
+    "AJG": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:51:59.467773"
+    },
+    "AKA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:52:06.557870"
+    },
+    "AKAM": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:52:07.102159"
+    },
+    "AKAN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:52:22.266318"
+    },
+    "AKBA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:52:37.431499"
+    },
+    "AKR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:52:52.555958"
+    },
+    "AKTS": {
+      "n_bars": 88,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:53:07.676651"
+    },
+    "ALAB": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:53:08.217418"
+    },
+    "ALB": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:53:23.813341"
+    },
+    "ALBT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:53:39.696656"
+    },
+    "ALC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:53:54.872174"
+    },
+    "ALCO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:54:11.466952"
+    },
+    "ALDF": {
+      "n_bars": 133,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:54:12.002513"
+    },
+    "ALDX": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:54:12.544103"
+    },
+    "ALEC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:54:27.653883"
+    },
+    "ALF": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:54:43.010554"
+    },
+    "ALG": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:54:58.962763"
+    },
+    "ALGM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:55:13.999296"
+    },
+    "ALGN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:55:29.453526"
+    },
+    "ALGS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:55:44.505603"
+    },
+    "ALGT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:55:59.788956"
+    },
+    "ALH": {
+      "n_bars": 151,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:56:00.630529"
+    },
+    "ALHC": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:56:01.470112"
+    },
+    "ALIS": {
+      "n_bars": 122,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:56:16.521242"
+    },
+    "ALIT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:56:31.751813"
+    },
+    "ALK": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:56:47.382293"
+    },
+    "ALKS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:57:02.070242"
+    },
+    "ALKT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:57:17.246085"
+    },
+    "ALL": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:57:32.390624"
+    },
+    "ALLE": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:57:47.478408"
+    },
+    "ALLO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:58:01.323709"
+    },
+    "ALLR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:58:16.478443"
+    },
+    "ALLT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:58:31.565781"
+    },
+    "ALLY": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:58:46.755133"
+    },
+    "ALM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:59:01.923692"
+    },
+    "ALMS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:59:17.629103"
+    },
+    "ALMU": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:59:32.896724"
+    },
+    "ALNT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T18:59:48.078556"
+    },
+    "ALNY": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:00:01.396904"
+    },
+    "ALOT": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:00:01.993287"
+    },
+    "ALOV": {
+      "n_bars": 44,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:00:15.526715"
+    },
+    "ALOY": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:00:29.255101"
+    },
+    "ALP": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:00:42.804083"
+    },
+    "ALPS": {
+      "n_bars": 135,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:00:56.318134"
+    },
+    "ALRM": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:01:09.814231"
+    },
+    "ALRS": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:01:23.339211"
+    },
+    "ALSN": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:01:36.861606"
+    },
+    "ALT": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:01:50.376277"
+    },
+    "ALTG": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:02:03.902988"
+    },
+    "ALTI": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:02:17.419647"
+    },
+    "ALTO": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:02:30.921032"
+    },
+    "ALUB": {
+      "n_bars": 91,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:02:44.415940"
+    },
+    "ALV": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:02:57.923868"
+    },
+    "ALVO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:03:13.271608"
+    },
+    "ALX": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:03:13.813605"
+    },
+    "ALXO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:03:29.961930"
+    },
+    "ALZN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:03:45.057604"
+    },
+    "AM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:04:00.460818"
+    },
+    "AMAL": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:04:00.976931"
+    },
+    "AMAT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:04:16.137450"
+    },
+    "AMBA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:04:31.786124"
+    },
+    "AMBP": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:04:32.310083"
+    },
+    "AMBQ": {
+      "n_bars": 201,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:04:47.375691"
+    },
+    "AMC": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:05:00.609138"
+    },
+    "AMCI": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:05:15.795843"
+    },
+    "AMCR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:05:31.190100"
+    },
+    "AMCX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:05:47.150781"
+    },
+    "AMD": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:06:01.660204"
+    },
+    "AME": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:06:02.190272"
+    },
+    "AMG": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:06:17.283403"
+    },
+    "AMGN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:06:32.489815"
+    },
+    "AMH": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:06:47.824813"
+    },
+    "AMIX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:07:04.220674"
+    },
+    "AMKR": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:07:04.738004"
+    },
+    "AMLX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:07:19.885829"
+    },
+    "AMN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:07:35.427344"
+    },
+    "AMOD": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:07:50.682952"
+    },
+    "AMP": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:08:05.810278"
+    },
+    "AMPG": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:08:20.958464"
+    },
+    "AMPH": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:08:36.204873"
+    },
+    "AMPL": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:08:51.246319"
+    },
+    "AMPX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:09:07.222573"
+    },
+    "AMPY": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:09:22.405802"
+    },
+    "AMR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:09:37.893570"
+    },
+    "AMRC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:09:53.324420"
+    },
+    "AMRX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:10:08.839035"
+    },
+    "AMRZ": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:10:09.367579"
+    },
+    "AMSC": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:10:09.899509"
+    },
+    "AMSF": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:10:25.159647"
+    },
+    "AMST": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:10:40.484697"
+    },
+    "AMT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:10:55.766049"
+    },
+    "AMTB": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:11:10.917923"
+    },
+    "AMTM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:11:26.056696"
+    },
+    "AMTX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:11:41.231234"
+    },
+    "AMWD": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:11:56.399383"
+    },
+    "AMWL": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:12:11.952182"
+    },
+    "AMZN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:12:27.151026"
+    },
+    "AN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:12:42.240387"
+    },
+    "ANAB": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:12:57.325183"
+    },
+    "ANDE": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:13:12.614177"
+    },
+    "ANDG": {
+      "n_bars": 103,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:13:28.324413"
+    },
+    "ANET": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:13:43.509952"
+    },
+    "ANF": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:13:58.568509"
+    },
+    "ANGH": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:14:13.926976"
+    },
+    "ANGI": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:14:29.077589"
+    },
+    "ANGO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:14:44.169118"
+    },
+    "ANGX": {
+      "n_bars": 171,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:14:59.582715"
+    },
+    "ANIK": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:15:09.539166"
+    },
+    "ANIP": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:15:10.066727"
+    },
+    "ANIX": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:15:10.596909"
+    },
+    "ANNA": {
+      "n_bars": 196,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:15:11.123168"
+    },
+    "ANNX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:15:26.498883"
+    },
+    "ANPA": {
+      "n_bars": 217,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:15:41.568851"
+    },
+    "ANRO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:15:57.562631"
+    },
+    "ANSC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:16:12.684227"
+    },
+    "ANSS": {
+      "n_bars": 66,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:18:09.041320"
+    },
+    "ANTA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:16:27.845541"
+    },
+    "ANTX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:16:43.438730"
+    },
+    "ANVS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:16:58.807550"
+    },
+    "ANY": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:17:13.998144"
+    },
+    "AOMR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:17:29.170414"
+    },
+    "AON": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:17:44.331239"
+    },
+    "AORT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:18:00.329933"
+    },
+    "AOS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:18:06.191316"
+    },
+    "AOSL": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:18:21.352710"
+    },
+    "AOUT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:18:36.687748"
+    },
+    "AP": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:18:51.845903"
+    },
+    "APA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:19:07.179828"
+    },
+    "APAC": {
+      "n_bars": 120,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:19:23.127501"
+    },
+    "APAM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:19:38.254417"
+    },
+    "APC": {
+      "n_bars": 65,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:19:53.290868"
+    },
+    "APD": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:20:08.496050"
+    },
+    "APEI": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:20:09.019491"
+    },
+    "APG": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:20:09.547388"
+    },
+    "APGE": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:20:24.673507"
+    },
+    "APH": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:20:39.850037"
+    },
+    "APLD": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:20:54.955689"
+    },
+    "APLE": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:21:10.171036"
+    },
+    "APLM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:21:25.241413"
+    },
+    "APM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:21:40.603082"
+    },
+    "APO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:21:55.848718"
+    },
+    "APOG": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:22:11.282113"
+    },
+    "APP": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:22:26.363779"
+    },
+    "APPF": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:22:41.905362"
+    },
+    "APPN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:22:57.017895"
+    },
+    "APPS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:23:12.540881"
+    },
+    "APRE": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:23:27.678085"
+    },
+    "APTV": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:23:42.734844"
+    },
+    "APVO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:23:58.085321"
+    },
+    "APWC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:24:13.620512"
+    },
+    "APXT": {
+      "n_bars": 124,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:24:29.295987"
+    },
+    "APYX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:24:44.354528"
+    },
+    "AQB": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:24:59.595888"
+    },
+    "AQMS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:25:04.807272"
+    },
+    "AQN": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:25:05.344716"
+    },
+    "AQST": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:25:21.281551"
+    },
+    "AR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:25:36.394852"
+    },
+    "ARAI": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:21:17.927843"
+    },
+    "ARAY": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:21:18.455218"
+    },
+    "ARBB": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:21:34.456594"
+    },
+    "ARBE": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:21:49.583433"
+    },
+    "ARCB": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:22:02.806211"
+    },
+    "ARCC": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:22:03.341411"
+    },
+    "ARCI": {
+      "n_bars": 37,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:22:03.870730"
+    },
+    "ARCO": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:22:04.407293"
+    },
+    "ARCT": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:22:04.938850"
+    },
+    "ARDT": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T18:39:00.381558"
+    },
+    "ARDX": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T18:39:01.625181"
+    },
+    "ARE": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:22:51.113069"
+    },
+    "AREC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:23:06.366280"
+    },
+    "ARES": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:23:06.910393"
+    },
+    "ARHS": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:23:07.451378"
+    },
+    "ARI": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:23:08.027023"
+    },
+    "ARIS": {
+      "n_bars": 114,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:23:08.560942"
+    },
+    "ARKO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:23:23.835595"
+    },
+    "ARKR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:23:38.975578"
+    },
+    "ARL": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:23:54.116832"
+    },
+    "ARLO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:24:09.313751"
+    },
+    "ARLP": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:24:09.879901"
+    },
+    "ARM": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:18:12.378188"
+    },
+    "ARMK": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:24:10.455022"
+    },
+    "AROC": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:24:11.025093"
+    },
+    "AROW": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:24:11.594756"
+    },
+    "ARQ": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:24:27.345288"
+    },
+    "ARQQ": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:25:36.930231"
+    },
+    "ARQT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:24:42.616947"
+    },
+    "ARR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:24:58.057764"
+    },
+    "ARRY": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:25:52.826644"
+    },
+    "ARTC": {
+      "n_bars": 55,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:25:13.527079"
+    },
+    "ARTL": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:25:14.066198"
+    },
+    "ARTNA": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T18:40:01.231547"
+    },
+    "ARTV": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:25:15.131604"
+    },
+    "ARTW": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:25:15.677142"
+    },
+    "ARVN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:25:30.910034"
+    },
+    "ARW": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:25:46.043928"
+    },
+    "ARWR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:26:08.412020"
+    },
+    "ARX": {
+      "n_bars": 205,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T18:40:00.713788"
+    },
+    "AS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:26:17.760398"
+    },
+    "ASAN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:26:32.902764"
+    },
+    "ASB": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:26:48.592455"
+    },
+    "ASBP": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:27:01.894044"
+    },
+    "ASC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:27:17.062399"
+    },
+    "ASH": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:27:17.590720"
+    },
+    "ASIC": {
+      "n_bars": 234,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:27:32.880603"
+    },
+    "ASIX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:27:48.051698"
+    },
+    "ASLE": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:28:01.249634"
+    },
+    "ASMB": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:28:01.787687"
+    },
+    "ASML": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:18:14.592533"
+    },
+    "ASND": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:28:02.325382"
+    },
+    "ASO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:28:17.547322"
+    },
+    "ASPC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:28:32.732234"
+    },
+    "ASPI": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:28:48.710271"
+    },
+    "ASPN": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:29:01.944092"
+    },
+    "ASPS": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:29:02.474293"
+    },
+    "ASRT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:29:17.737968"
+    },
+    "ASRV": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:29:32.898761"
+    },
+    "ASST": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:29:48.400851"
+    },
+    "ASTC": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:30:01.692084"
+    },
+    "ASTE": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:30:02.233525"
+    },
+    "ASTH": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:30:03.155568"
+    },
+    "ASTI": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:30:03.714659"
+    },
+    "ASTL": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:30:18.847404"
+    },
+    "ASTS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:26:23.490231"
+    },
+    "ASUR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:30:34.017644"
+    },
+    "ASYS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:30:49.610145"
+    },
+    "ATAI": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:31:04.766602"
+    },
+    "ATCX": {
+      "n_bars": 88,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:31:05.291373"
+    },
+    "ATEC": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:31:05.820989"
+    },
+    "ATEN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:31:21.010657"
+    },
+    "ATER": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:31:36.180476"
+    },
+    "ATEX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:31:51.824654"
+    },
+    "ATGL": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:32:06.919711"
+    },
+    "ATHR": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:32:07.452303"
+    },
+    "ATI": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:26:38.939963"
+    },
+    "ATII": {
+      "n_bars": 168,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:32:07.983940"
+    },
+    "ATKR": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:32:08.599649"
+    },
+    "ATLC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:32:23.896047"
+    },
+    "ATLCL": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:32:39.035900"
+    },
+    "ATLCZ": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:32:54.579962"
+    },
+    "ATLN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:33:09.716285"
+    },
+    "ATLO": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:33:10.230623"
+    },
+    "ATLX": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:33:10.774185"
+    },
+    "ATMU": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:33:25.875983"
+    },
+    "ATNI": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:26:54.062087"
+    },
+    "ATO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:33:41.674226"
+    },
+    "ATOM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:33:57.942530"
+    },
+    "ATOS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:34:13.488193"
+    },
+    "ATPC": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:34:14.053791"
+    },
+    "ATR": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:34:14.581894"
+    },
+    "ATRA": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:34:15.119869"
+    },
+    "ATRC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:34:30.298855"
+    },
+    "ATRO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:34:45.711140"
+    },
+    "ATS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:35:00.959425"
+    },
+    "ATXG": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:35:01.808772"
+    },
+    "ATYR": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:35:02.650961"
+    },
+    "AU": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:35:18.180649"
+    },
+    "AUB": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:35:33.365414"
+    },
+    "AUBN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:35:48.432380"
+    },
+    "AUDC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:35:48.975105"
+    },
+    "AUGO": {
+      "n_bars": 211,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:36:04.217437"
+    },
+    "AUID": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:36:04.743802"
+    },
+    "AUNA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:36:19.842446"
+    },
+    "AUPH": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:36:35.041890"
+    },
+    "AUR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:36:50.572779"
+    },
+    "AURA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:37:06.068535"
+    },
+    "AURE": {
+      "n_bars": 149,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:37:06.590477"
+    },
+    "AUUD": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:37:07.103540"
+    },
+    "AVA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:37:22.906825"
+    },
+    "AVAH": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:37:38.143630"
+    },
+    "AVAV": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:27:09.147944"
+    },
+    "AVB": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:37:53.292008"
+    },
+    "AVBC": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:38:08.473422"
+    },
+    "AVBH": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:38:08.998535"
+    },
+    "AVBP": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:38:24.196506"
+    },
+    "AVD": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:38:39.539644"
+    },
+    "AVGO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:27:24.366028"
+    },
+    "AVIR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:39:09.790613"
+    },
+    "AVNS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:39:26.741665"
+    },
+    "AVNT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:27:57.088421"
+    },
+    "AVNW": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:39:41.895036"
+    },
+    "AVO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:39:57.049636"
+    },
+    "AVPT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:40:12.181953"
+    },
+    "AVR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:40:27.942557"
+    },
+    "AVT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:40:43.169617"
+    },
+    "AVTR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:40:58.400400"
+    },
+    "AVTX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:41:13.489222"
+    },
+    "AVX": {
+      "n_bars": 126,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:41:14.031901"
+    },
+    "AVXL": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:41:14.567980"
+    },
+    "AVY": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:41:30.233200"
+    },
+    "AWI": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:41:45.487091"
+    },
+    "AWK": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:42:00.579812"
+    },
+    "AWR": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:42:01.420605"
+    },
+    "AWRE": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:42:16.603130"
+    },
+    "AX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:42:32.131321"
+    },
+    "AXG": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:42:47.580898"
+    },
+    "AXGN": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:43:00.784731"
+    },
+    "AXIN": {
+      "n_bars": 140,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:43:01.635525"
+    },
+    "AXON": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:28:12.189875"
+    },
+    "AXP": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:28:12.721890"
+    },
+    "AXR": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:43:02.482955"
+    },
+    "AXS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:43:17.597581"
+    },
+    "AXSM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:43:18.127777"
+    },
+    "AXTA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:43:33.401473"
+    },
+    "AXTI": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:43:49.069411"
+    },
+    "AYA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:44:04.155804"
+    },
+    "AYI": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:44:19.271093"
+    },
+    "AYTU": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:44:34.330216"
+    },
+    "AZ": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:44:49.856315"
+    },
+    "AZI": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:45:05.450583"
+    },
+    "AZN": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:45:05.975970"
+    },
+    "AZO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:28:28.051524"
+    },
+    "AZTA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:28:43.201452"
+    },
+    "AZZ": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:45:21.439199"
+    },
+    "B": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:45:37.210579"
+    },
+    "BA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:28:58.486024"
+    },
+    "BAC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:29:13.660566"
+    },
+    "BACC": {
+      "n_bars": 198,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:45:52.429628"
+    },
+    "BAER": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:46:07.456053"
+    },
+    "BAFN": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:46:08.034369"
+    },
+    "BAH": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:29:14.187629"
+    },
+    "BALL": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:46:08.560493"
+    },
+    "BALY": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:46:24.519600"
+    },
+    "BAM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:46:39.696096"
+    },
+    "BANC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:46:54.819075"
+    },
+    "BAND": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:29:14.710428"
+    },
+    "BANF": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:29:29.904750"
+    },
+    "BANL": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:47:10.038407"
+    },
+    "BANR": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:47:10.570207"
+    },
+    "BANX": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:47:11.102638"
+    },
+    "BAOS": {
+      "n_bars": 198,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:47:11.633993"
+    },
+    "BAP": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:47:12.153350"
+    },
+    "BARK": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:47:27.340186"
+    },
+    "BATRA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:47:42.505717"
+    },
+    "BATRK": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:47:57.964378"
+    },
+    "BAX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:29:45.063060"
+    },
+    "BAYA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:48:13.125285"
+    },
+    "BB": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:48:13.662514"
+    },
+    "BBAI": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:30:00.105808"
+    },
+    "BBBY": {
+      "n_bars": 179,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:48:14.205501"
+    },
+    "BBCP": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:48:14.738558"
+    },
+    "BBCQ": {
+      "n_bars": 74,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:48:15.275557"
+    },
+    "BBDC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:48:31.081325"
+    },
+    "BBGI": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:48:46.212307"
+    },
+    "BBIO": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:30:01.497501"
+    },
+    "BBLG": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:49:01.556004"
+    },
+    "BBNX": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:49:02.082093"
+    },
+    "BBOT": {
+      "n_bars": 192,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:49:02.607627"
+    },
+    "BBSI": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:49:03.137450"
+    },
+    "BBT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:49:18.666492"
+    },
+    "BBUC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:49:33.809734"
+    },
+    "BBW": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:49:49.065464"
+    },
+    "BBWI": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:50:02.257182"
+    },
+    "BBY": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:50:02.781517"
+    },
+    "BC": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:50:03.308953"
+    },
+    "BCAB": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:50:03.833625"
+    },
+    "BCAL": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:50:18.847717"
+    },
+    "BCAR": {
+      "n_bars": 186,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:50:34.156086"
+    },
+    "BCAX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:50:49.274455"
+    },
+    "BCBP": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:51:02.461529"
+    },
+    "BCC": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:51:02.993830"
+    },
+    "BCDA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:51:18.077608"
+    },
+    "BCE": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:51:33.240190"
+    },
+    "BCG": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:51:48.311093"
+    },
+    "BCIC": {
+      "n_bars": 183,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:52:01.499471"
+    },
+    "BCML": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:52:02.015255"
+    },
+    "BCO": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:52:02.558675"
+    },
+    "BCPC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:30:17.603069"
+    },
+    "BCRX": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:52:03.085360"
+    },
+    "BCSF": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:52:18.293604"
+    },
+    "BCSS": {
+      "n_bars": 121,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:52:33.475155"
+    },
+    "BCTX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:52:48.996398"
+    },
+    "BDC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:53:04.116307"
+    },
+    "BDCI": {
+      "n_bars": 138,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:53:04.635888"
+    },
+    "BDMD": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:53:19.919328"
+    },
+    "BDN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:53:36.387691"
+    },
+    "BDSX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:53:51.674876"
+    },
+    "BDTX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:54:06.821416"
+    },
+    "BDX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:30:32.797234"
+    },
+    "BE": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:54:07.351201"
+    },
+    "BEAG": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:54:07.879644"
+    },
+    "BEAM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:54:23.332365"
+    },
+    "BEAT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:54:38.432174"
+    },
+    "BEBE": {
+      "n_bars": 69,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:54:53.701336"
+    },
+    "BEEM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:55:08.843474"
+    },
+    "BEEP": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:55:09.375695"
+    },
+    "BELFA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:55:25.003261"
+    },
+    "BELFB": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:55:40.141640"
+    },
+    "BEN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:55:55.245066"
+    },
+    "BENF": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:56:10.374806"
+    },
+    "BEP": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:56:10.901905"
+    },
+    "BEPC": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:56:11.444387"
+    },
+    "BETA": {
+      "n_bars": 133,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:56:26.571482"
+    },
+    "BETR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:56:41.664384"
+    },
+    "BFAM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:56:56.727359"
+    },
+    "BFC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:57:11.929641"
+    },
+    "BFH": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:57:12.450912"
+    },
+    "BFLY": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:57:12.964462"
+    },
+    "BFRG": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:57:28.177605"
+    },
+    "BFRI": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:57:44.015573"
+    },
+    "BFS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:57:59.875937"
+    },
+    "BFST": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:58:00.735278"
+    },
+    "BG": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:58:01.596384"
+    },
+    "BGC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:58:16.756949"
+    },
+    "BGDE": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:58:31.810653"
+    },
+    "BGIN": {
+      "n_bars": 143,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:58:46.828829"
+    },
+    "BGL": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:59:00.945349"
+    },
+    "BGLC": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:59:01.802954"
+    },
+    "BGM": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:59:02.818858"
+    },
+    "BGMS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:59:18.419440"
+    },
+    "BGS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:59:33.692514"
+    },
+    "BGSF": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:59:49.133544"
+    },
+    "BGSI": {
+      "n_bars": 134,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:00:04.242705"
+    },
+    "BH": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:00:17.753547"
+    },
+    "BHC": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:00:44.756738"
+    },
+    "BHE": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:00:58.278218"
+    },
+    "BHF": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:01:11.773316"
+    },
+    "BHFAL": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:01:12.301259"
+    },
+    "BHFAM": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:01:25.840782"
+    },
+    "BHFAN": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:01:39.348329"
+    },
+    "BHFAO": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:01:52.846515"
+    },
+    "BHR": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:02:06.346271"
+    },
+    "BHRB": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:02:06.877382"
+    },
+    "BHST": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:02:20.416590"
+    },
+    "BHVN": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:02:33.949822"
+    },
+    "BIAF": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:02:47.483344"
+    },
+    "BIIB": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:30:48.093968"
+    },
+    "BIII": {
+      "n_bars": 50,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:03:00.722938"
+    },
+    "BILL": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:31:03.690533"
+    },
+    "BIO": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:03:01.579329"
+    },
+    "BIOA": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:03:02.450997"
+    },
+    "BIOX": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:03:03.345462"
+    },
+    "BIP": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:03:04.218167"
+    },
+    "BIPC": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:03:17.746363"
+    },
+    "BIRD": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:03:31.255898"
+    },
+    "BIRK": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:03:44.760920"
+    },
+    "BIVI": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:03:58.263655"
+    },
+    "BIXI": {
+      "n_bars": 103,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:04:11.737135"
+    },
+    "BIYA": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:04:12.277598"
+    },
+    "BJ": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:04:12.811869"
+    },
+    "BJDX": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:04:13.341178"
+    },
+    "BJRI": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:04:28.679527"
+    },
+    "BK": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:31:04.225951"
+    },
+    "BKD": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:04:44.053845"
+    },
+    "BKE": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:04:59.681271"
+    },
+    "BKH": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:05:00.529662"
+    },
+    "BKHA": {
+      "n_bars": 67,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:05:01.378856"
+    },
+    "BKKT": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:05:02.250352"
+    },
+    "BKNG": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:31:19.551908"
+    },
+    "BKR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:31:34.770810"
+    },
+    "BKSY": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:31:50.366990"
+    },
+    "BKU": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:05:03.133151"
+    },
+    "BKV": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:05:18.205317"
+    },
+    "BL": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:05:33.326707"
+    },
+    "BLBD": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:05:48.914778"
+    },
+    "BLCO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:06:03.991763"
+    },
+    "BLD": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:06:04.536601"
+    },
+    "BLDP": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:06:05.058700"
+    },
+    "BLDR": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:06:05.590216"
+    },
+    "BLFS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:06:20.683963"
+    },
+    "BLIN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:06:35.774419"
+    },
+    "BLIV": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:06:51.481882"
+    },
+    "BLK": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:32:05.597502"
+    },
+    "BLKB": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:07:06.756626"
+    },
+    "BLLN": {
+      "n_bars": 131,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:07:07.286160"
+    },
+    "BLMN": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:07:07.809734"
+    },
+    "BLND": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:07:08.338991"
+    },
+    "BLNE": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:07:08.860329"
+    },
+    "BLNK": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:07:09.382918"
+    },
+    "BLRK": {
+      "n_bars": 73,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:07:24.490642"
+    },
+    "BLSH": {
+      "n_bars": 191,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:07:39.727980"
+    },
+    "BLUW": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:07:54.857211"
+    },
+    "BLX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:08:10.049823"
+    },
+    "BLZE": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:08:10.578901"
+    },
+    "BLZR": {
+      "n_bars": 121,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:08:11.117191"
+    },
+    "BMBL": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:08:11.657709"
+    },
+    "BMEA": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:08:12.183636"
+    },
+    "BMGL": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:08:27.325777"
+    },
+    "BMHL": {
+      "n_bars": 214,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:08:42.523999"
+    },
+    "BMI": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:08:57.793432"
+    },
+    "BMM": {
+      "n_bars": 78,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:09:12.893843"
+    },
+    "BMNR": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:09:13.424651"
+    },
+    "BMO": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:09:13.961978"
+    },
+    "BMR": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:09:14.490251"
+    },
+    "BMRA": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:09:15.009512"
+    },
+    "BMRC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:09:30.114800"
+    },
+    "BMRN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:32:20.710949"
+    },
+    "BMY": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:32:36.055801"
+    },
+    "BN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:09:45.202514"
+    },
+    "BNAI": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:10:00.206134"
+    },
+    "BNBX": {
+      "n_bars": 153,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:10:01.989637"
+    },
+    "BNC": {
+      "n_bars": 196,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:10:02.833988"
+    },
+    "BNED": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:10:03.359892"
+    },
+    "BNGO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:10:18.607734"
+    },
+    "BNKK": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:10:33.758755"
+    },
+    "BNL": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:10:49.293296"
+    },
+    "BNRG": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:11:02.458168"
+    },
+    "BNS": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:11:02.996288"
+    },
+    "BNT": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:11:03.536769"
+    },
+    "BNTC": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:11:04.062485"
+    },
+    "BNZI": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:11:19.197391"
+    },
+    "BOBS": {
+      "n_bars": 70,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:11:34.353703"
+    },
+    "BOC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:11:49.460460"
+    },
+    "BODI": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:12:02.640614"
+    },
+    "BOF": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:12:03.152613"
+    },
+    "BOH": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:12:03.697467"
+    },
+    "BOKF": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:32:51.290970"
+    },
+    "BOLD": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:12:04.221361"
+    },
+    "BOLT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:12:19.474539"
+    },
+    "BON": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:12:35.016042"
+    },
+    "BOOM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:12:50.167914"
+    },
+    "BOOT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:13:05.231279"
+    },
+    "BORR": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:13:05.753418"
+    },
+    "BOSC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:13:20.931981"
+    },
+    "BOTJ": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:13:53.404544"
+    },
+    "BOW": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:14:08.651799"
+    },
+    "BOX": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:14:09.220273"
+    },
+    "BOXL": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:14:09.755186"
+    },
+    "BPAC": {
+      "n_bars": 44,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:14:10.300154"
+    },
+    "BPOP": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:14:25.474555"
+    },
+    "BPRE": {
+      "n_bars": 104,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:14:40.907393"
+    },
+    "BPRN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:14:56.019000"
+    },
+    "BPYPM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:15:11.163798"
+    },
+    "BPYPN": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:15:11.708636"
+    },
+    "BPYPO": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:15:12.245606"
+    },
+    "BR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:33:24.578523"
+    },
+    "BRAG": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:15:27.430406"
+    },
+    "BRAI": {
+      "n_bars": 65,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:15:42.570119"
+    },
+    "BRBR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:15:57.720464"
+    },
+    "BRC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:16:12.862457"
+    },
+    "BRCB": {
+      "n_bars": 170,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:16:13.414934"
+    },
+    "BRCC": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:16:13.962760"
+    },
+    "BRFH": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:16:29.545683"
+    },
+    "BRID": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:16:44.794350"
+    },
+    "BRK-B": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:18:31.906258"
+    },
+    "BRKR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-18T19:33:39.730612"
+    },
+    "BRLS": {
+      "n_bars": 199,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:17:02.587362"
+    },
+    "BRLT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:17:18.276763"
+    },
+    "BRO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:17:33.439756"
+    },
+    "BROS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:17:48.527471"
+    },
+    "BRR": {
+      "n_bars": 236,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:18:03.739527"
+    },
+    "BRSL": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T23:18:04.289711"
+    },
+    "BSX": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:18:33.013369"
+    },
+    "BTDR": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:18:33.541194"
+    },
+    "BTSG": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T18:45:00.169219"
+    },
+    "BTTC": {
+      "n_bars": 156,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T18:45:01.404105"
+    },
+    "BTU": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T18:45:02.648420"
+    },
+    "BWA": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:18:34.076718"
+    },
+    "BWXT": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:18:34.610125"
+    },
+    "BXSL": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T18:46:00.264342"
+    },
+    "BY": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T18:46:00.408631"
+    },
+    "BYAH": {
+      "n_bars": 138,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T18:46:00.401129"
+    },
+    "BYD": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T18:46:00.904101"
+    },
+    "C": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:18:35.124533"
+    },
+    "CABO": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:18:35.669178"
+    },
+    "CACI": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:18:36.269917"
+    },
+    "CAG": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:18:36.796854"
+    },
+    "CAH": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:18:37.322649"
+    },
+    "CAL": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T18:47:00.953940"
+    },
+    "CALC": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T18:47:02.945843"
+    },
+    "CALM": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T18:47:02.903707"
+    },
+    "CALX": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:18:37.879322"
+    },
+    "CAMT": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:18:38.439280"
+    },
+    "CAPL": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T18:47:02.203473"
+    },
+    "CAT": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:18:38.979328"
+    },
+    "CB": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:18:39.511200"
+    },
+    "CBOE": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:18:40.054097"
+    },
+    "CCI": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:18:40.595875"
+    },
+    "CCJ": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:18:41.134703"
+    },
+    "CCL": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:18:41.664026"
+    },
+    "CCOI": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:18:42.175710"
+    },
+    "CDNS": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:18:59.300809"
+    },
+    "CEG": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:18:59.814562"
+    },
+    "CELH": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:19:05.496647"
+    },
+    "CEVA": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:19:06.030374"
+    },
+    "CF": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:19:06.547231"
+    },
+    "CFG": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:19:07.082169"
+    },
+    "CGNX": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:19:11.754865"
+    },
+    "CHCT": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T18:51:00.238221"
+    },
+    "CHD": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T18:51:00.381251"
+    },
+    "CHDN": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T18:51:01.493506"
+    },
+    "CHEF": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:19:12.805902"
+    },
+    "CHRD": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:19:13.353799"
+    },
+    "CHTR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:19:13.905184"
+    },
+    "CHW": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T18:52:01.065354"
+    },
+    "CHWY": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T18:52:00.992302"
+    },
+    "CI": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:19:14.954437"
+    },
+    "CIEN": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:19:15.486318"
+    },
+    "CIFR": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:19:16.048015"
+    },
+    "CINF": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:19:31.255542"
+    },
+    "CL": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:20:02.416578"
+    },
+    "CLH": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:20:03.274729"
+    },
+    "CLPS": {
+      "n_bars": 206,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T18:53:00.717903"
+    },
+    "CLSK": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:20:04.126777"
+    },
+    "CLX": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:20:04.988975"
+    },
+    "CMC": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:20:05.885096"
+    },
+    "CMCSA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:20:21.143096"
+    },
+    "CME": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:20:36.546217"
+    },
+    "CMG": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:20:51.746616"
+    },
+    "CNC": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:21:04.943634"
+    },
+    "CNQ": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:21:05.846953"
+    },
+    "COF": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:21:26.451179"
+    },
+    "COHR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:21:41.708790"
+    },
+    "COHU": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:21:57.088771"
+    },
+    "COP": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:22:12.553526"
+    },
+    "CORZ": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:22:13.132328"
+    },
+    "COST": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:22:13.663769"
+    },
+    "CPB": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:22:14.198184"
+    },
+    "CPRT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:22:30.884335"
+    },
+    "CRC": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T18:57:00.406829"
+    },
+    "CRCL": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T18:57:00.454600"
+    },
+    "CRCT": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T18:57:00.424404"
+    },
+    "CRDF": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T18:57:00.916859"
+    },
+    "CRDO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:22:46.017241"
+    },
+    "CRL": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:23:01.230051"
+    },
+    "CRM": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:23:02.122663"
+    },
+    "CRNX": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:23:03.059667"
+    },
+    "CRSP": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T18:58:00.340866"
+    },
+    "CRSR": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T18:58:00.471102"
+    },
+    "CRUS": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:23:03.935637"
+    },
+    "CRWD": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:23:19.097553"
+    },
+    "CRWV": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:23:34.211909"
+    },
+    "CSCO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:23:49.373353"
+    },
+    "CSGP": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:24:02.579478"
+    },
+    "CSX": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:24:03.120779"
+    },
+    "CTAS": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:24:03.679133"
+    },
+    "CTMX": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T18:59:02.119008"
+    },
+    "CTSH": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:24:04.214893"
+    },
+    "CUBI": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:24:20.208005"
+    },
+    "CVBF": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:24:35.373555"
+    },
+    "CVS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:24:50.549547"
+    },
+    "CVX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:25:05.819238"
+    },
+    "CW": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:25:06.358508"
+    },
+    "CWST": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:25:06.912009"
+    },
+    "CZR": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:01:00.359757"
+    },
+    "CZWI": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:01:01.602884"
+    },
+    "D": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:25:08.011700"
+    },
+    "DDOG": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:25:24.669110"
+    },
+    "DE": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:25:40.011239"
+    },
+    "DELL": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:25:55.171019"
+    },
+    "DGX": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:26:13.643344"
+    },
+    "DHI": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:26:14.200052"
+    },
+    "DIOD": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:26:14.739294"
+    },
+    "DIS": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:26:15.272433"
+    },
+    "DLR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:26:30.488625"
+    },
+    "DNMX": {
+      "n_bars": 111,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:04:00.465824"
+    },
+    "DNN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:26:45.630070"
+    },
+    "DNOW": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:04:00.445629"
+    },
+    "DOCN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:27:01.414990"
+    },
+    "DOV": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:27:02.342615"
+    },
+    "DPZ": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:27:03.292642"
+    },
+    "DRI": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:05:00.208378"
+    },
+    "DRIO": {
+      "n_bars": 206,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:05:00.304342"
+    },
+    "DRMA": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:05:00.369208"
+    },
+    "DRS": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:27:05.240232"
+    },
+    "DSGX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:27:20.563320"
+    },
+    "DUK": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:27:35.734628"
+    },
+    "DUOL": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:27:50.870515"
+    },
+    "DVA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:27:51.414213"
+    },
+    "DVN": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:28:04.636300"
+    },
+    "DXCM": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:28:05.181273"
+    },
+    "DY": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:28:05.712739"
+    },
+    "EA": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:28:06.246180"
+    },
+    "EBAY": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:28:21.410685"
+    },
+    "ECL": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:28:36.979182"
+    },
+    "EL": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:28:52.761181"
+    },
+    "ELV": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:29:05.990135"
+    },
+    "EME": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:29:06.537328"
+    },
+    "EMR": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:09:00.198524"
+    },
+    "ENB": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:09:01.366944"
+    },
+    "EOG": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:29:07.607336"
+    },
+    "EPAM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:29:22.890743"
+    },
+    "EPD": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:29:38.731320"
+    },
+    "EPOW": {
+      "n_bars": 206,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:10:02.961743"
+    },
+    "EPR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:29:53.974385"
+    },
+    "EQIX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:30:10.587150"
+    },
+    "ERIC": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:30:11.117559"
+    },
+    "ESLT": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:11:01.422630"
+    },
+    "ESOA": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:11:01.274329"
+    },
+    "ESPR": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:11:01.398635"
+    },
+    "ESTC": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:11:01.424651"
+    },
+    "ET": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:30:12.187743"
+    },
+    "ETN": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:30:12.719271"
+    },
+    "ETSY": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:30:28.043337"
+    },
+    "EU": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:30:43.268814"
+    },
+    "EVEX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:30:58.412346"
+    },
+    "EVR": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:12:00.453588"
+    },
+    "EVRG": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:12:01.310115"
+    },
+    "EW": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:31:13.531269"
+    },
+    "EWBC": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:31:14.077433"
+    },
+    "EWTX": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:12:01.342921"
+    },
+    "EXC": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:31:31.813521"
+    },
+    "EXLS": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:31:32.358621"
+    },
+    "EXPO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:31:32.883647"
+    },
+    "F": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:31:48.962629"
+    },
+    "FAMI": {
+      "n_bars": 204,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:13:03.273870"
+    },
+    "FANG": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:32:02.261661"
+    },
+    "FAST": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:32:03.238910"
+    },
+    "FCX": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:32:04.263916"
+    },
+    "FDBC": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:14:05.658487"
+    },
+    "FDS": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:32:05.338567"
+    },
+    "FDX": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:32:06.209622"
+    },
+    "FFIV": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:32:21.427025"
+    },
+    "FIS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:32:36.909539"
+    },
+    "FISV": {
+      "n_bars": 250,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:32:52.083859"
+    },
+    "FITB": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:33:05.288787"
+    },
+    "FLNC": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:33:06.173331"
+    },
+    "FLNG": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:16:00.285018"
+    },
+    "FLUT": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:16:00.262220"
+    },
+    "FLUX": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:16:00.794970"
+    },
+    "FNWD": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:17:00.114738"
+    },
+    "FOA": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:17:00.551796"
+    },
+    "FORM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:33:27.758594"
+    },
+    "FORR": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:17:00.126780"
+    },
+    "FOSL": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:17:01.384282"
+    },
+    "FOUR": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:17:01.433280"
+    },
+    "FOXA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:33:44.121740"
+    },
+    "FRSH": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:34:00.025934"
+    },
+    "FRT": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:18:00.132097"
+    },
+    "FTI": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:34:00.903173"
+    },
+    "FTNT": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:34:01.818284"
+    },
+    "FTV": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:34:02.711876"
+    },
+    "FUND": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:19:00.952911"
+    },
+    "GD": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:34:03.610090"
+    },
+    "GDDY": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:34:04.517917"
+    },
+    "GE": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:34:19.834053"
+    },
+    "GEHC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:34:35.410696"
+    },
+    "GEV": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:34:51.694100"
+    },
+    "GILD": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:35:05.034255"
+    },
+    "GIS": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:35:05.910158"
+    },
+    "GL": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:35:06.787378"
+    },
+    "GLOB": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:35:41.119871"
+    },
+    "GM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:35:56.311935"
+    },
+    "GMED": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:23:00.090682"
+    },
+    "GMEX": {
+      "n_bars": 46,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:23:00.099682"
+    },
+    "GMHS": {
+      "n_bars": 206,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:23:00.521239"
+    },
+    "GNRC": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:36:13.760206"
+    },
+    "GO": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:36:14.326345"
+    },
+    "GOOG": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:36:14.856669"
+    },
+    "GOOGL": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:36:15.405428"
+    },
+    "GPC": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:36:15.925903"
+    },
+    "GPMT": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:24:00.131296"
+    },
+    "GPN": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:24:00.715341"
+    },
+    "GREE": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:36:31.124612"
+    },
+    "GS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:36:46.317370"
+    },
+    "GSAT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:37:01.417149"
+    },
+    "GSHD": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:37:01.961129"
+    },
+    "GSIT": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:25:00.111299"
+    },
+    "GTLB": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:37:02.501657"
+    },
+    "GWH": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:26:01.674674"
+    },
+    "HAE": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:37:03.037222"
+    },
+    "HAL": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:37:03.582854"
+    },
+    "HALO": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:37:04.115175"
+    },
+    "HBAN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:37:19.827424"
+    },
+    "HCA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:37:35.461966"
+    },
+    "HCC": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:27:00.241553"
+    },
+    "HCHL": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:27:00.208385"
+    },
+    "HD": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:37:50.660909"
+    },
+    "HDSN": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:38:03.871823"
+    },
+    "HEI": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:38:04.419310"
+    },
+    "HIFS": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:28:02.035480"
+    },
+    "HIG": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:28:02.092951"
+    },
+    "HLT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:38:37.368341"
+    },
+    "HON": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:39:08.917563"
+    },
+    "HPE": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:39:24.112908"
+    },
+    "HPQ": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:39:39.343145"
+    },
+    "HST": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:30:00.312660"
+    },
+    "HSTM": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:30:01.697360"
+    },
+    "HSY": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:39:54.520879"
+    },
+    "HUBS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:40:09.637927"
+    },
+    "HUM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:40:25.290124"
+    },
+    "HUN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:40:40.516233"
+    },
+    "HURC": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:31:00.678384"
+    },
+    "HURN": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:31:00.598597"
+    },
+    "HUT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:40:55.858157"
+    },
+    "HWM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:41:11.087982"
+    },
+    "IBM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:41:26.323566"
+    },
+    "ICE": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:41:42.295590"
+    },
+    "ICHR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:41:57.662131"
+    },
+    "IDT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:42:12.934817"
+    },
+    "IDXX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:42:28.024456"
+    },
+    "IESC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:42:43.100140"
+    },
+    "IGAC": {
+      "n_bars": 57,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:33:00.185461"
+    },
+    "IIIN": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:33:00.117703"
+    },
+    "IIIV": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:33:00.654295"
+    },
+    "IINN": {
+      "n_bars": 207,
+      "source": "polygon_fast",
+      "last_ok": "2026-05-18T19:33:00.693991"
+    },
+    "ILMN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:42:58.320476"
+    },
+    "INSP": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:43:30.315180"
+    },
+    "INTC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:43:45.658192"
+    },
+    "INTU": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:44:00.958519"
+    },
+    "INVA": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:44:01.834775"
+    },
+    "IONQ": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:44:02.710785"
+    },
+    "IP": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:44:03.564689"
+    },
+    "IPGP": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:44:19.203442"
+    },
+    "IQV": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:44:34.307688"
+    },
+    "IR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:45:06.128556"
+    },
+    "IRDM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:45:21.890804"
+    },
+    "IREN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:45:37.212221"
+    },
+    "ISRG": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:45:52.885187"
+    },
+    "IT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:46:08.551192"
+    },
+    "ITW": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:46:23.700839"
+    },
+    "IVZ": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:46:39.228972"
+    },
+    "JACK": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:46:54.486058"
+    },
+    "JBHT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:47:26.920623"
+    },
+    "JNJ": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:47:42.156181"
+    },
+    "JOBY": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:48:14.718680"
+    },
+    "JPM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:48:30.392498"
+    },
+    "KD": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:49:00.225626"
+    },
+    "KDP": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:49:01.108869"
+    },
+    "KEY": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:49:01.965308"
+    },
+    "KEYS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:49:17.170567"
+    },
+    "KFRC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:49:32.418658"
+    },
+    "KHC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:49:47.609188"
+    },
+    "KIM": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:50:00.828482"
+    },
+    "KLAC": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:50:01.784122"
+    },
+    "KLIC": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:50:02.679533"
+    },
+    "KMI": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:50:17.852291"
+    },
+    "KNX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:50:32.979417"
+    },
+    "KO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:50:48.114796"
+    },
+    "KR": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:51:01.313620"
+    },
+    "KRYS": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:51:02.183659"
+    },
+    "KSPI": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:51:03.043239"
+    },
+    "KTOS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:51:18.532632"
+    },
+    "L": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:51:33.921717"
+    },
+    "LDOS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:52:23.149718"
+    },
+    "LEA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:52:38.340487"
+    },
+    "LEN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:52:53.498682"
+    },
+    "LH": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:53:08.662370"
+    },
+    "LIN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:53:23.803415"
+    },
+    "LITE": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:53:39.868580"
+    },
+    "LLY": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:53:55.636067"
+    },
+    "LMT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:54:11.167959"
+    },
+    "LNC": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:54:11.682958"
+    },
+    "LNG": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:54:26.805973"
+    },
+    "LNTH": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:54:41.949003"
+    },
+    "LOW": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:54:57.167415"
+    },
+    "LPLA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:55:12.360565"
+    },
+    "LRCX": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:55:12.888491"
+    },
+    "LSCC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:55:28.366021"
+    },
+    "LTBR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:55:43.516974"
+    },
+    "LUMN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:55:59.005258"
+    },
+    "LUNA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:56:14.083337"
+    },
+    "LUNR": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:56:14.611758"
+    },
+    "LVS": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:56:15.137315"
+    },
+    "MA": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:56:15.666742"
+    },
+    "MAC": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:56:16.190302"
+    },
+    "MAR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:56:31.340612"
+    },
+    "MARA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:56:31.880415"
+    },
+    "MCD": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:56:47.114979"
+    },
+    "MCHP": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:57:00.305963"
+    },
+    "MCK": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:57:01.161710"
+    },
+    "MCO": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:57:02.047336"
+    },
+    "MDB": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:57:17.357180"
+    },
+    "MDLZ": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:57:50.219374"
+    },
+    "MDT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:58:05.411057"
+    },
+    "MELI": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:58:05.932075"
+    },
+    "MET": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:58:06.467052"
+    },
+    "META": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:58:21.585958"
+    },
+    "MGA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:58:36.765432"
+    },
+    "MGM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:58:51.927247"
+    },
+    "MKC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:59:07.169475"
+    },
+    "MKL": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:59:07.707784"
+    },
+    "MKSI": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:59:23.560087"
+    },
+    "MKTX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:59:39.398964"
+    },
+    "MMM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T21:59:54.623593"
+    },
+    "MNST": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:00:08.728795"
+    },
+    "MO": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:00:09.273326"
+    },
+    "MOH": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:00:22.820200"
+    },
+    "MOS": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:00:53.664335"
+    },
+    "MPC": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:01:06.895533"
+    },
+    "MPLX": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:01:07.812932"
+    },
+    "MPWR": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:01:08.743111"
+    },
+    "MRAM": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:01:22.330032"
+    },
+    "MRCY": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:01:35.903058"
+    },
+    "MRK": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:01:49.459914"
+    },
+    "MRNA": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:02:02.730724"
+    },
+    "MRVL": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:02:16.242752"
+    },
+    "MS": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:02:29.799994"
+    },
+    "MSCI": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:02:43.368254"
+    },
+    "MSFT": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:02:56.899338"
+    },
+    "MSI": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:03:10.455488"
+    },
+    "MTB": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:03:26.073802"
+    },
+    "MTCH": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:03:41.243905"
+    },
+    "MTD": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:03:56.702972"
+    },
+    "MTZ": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:04:11.851323"
+    },
+    "MU": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:04:27.341697"
+    },
+    "MVIS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:04:42.437519"
+    },
+    "NCLH": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:05:00.279111"
+    },
+    "NDAQ": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:05:05.792751"
+    },
+    "NEE": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:05:22.190803"
+    },
+    "NEM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:05:37.755047"
+    },
+    "NET": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:05:53.471966"
+    },
+    "NFLX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:06:08.682941"
+    },
+    "NKE": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:06:09.247120"
+    },
+    "NNDM": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:06:09.777355"
+    },
+    "NNE": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:06:10.300983"
+    },
+    "NOC": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:06:10.831411"
+    },
+    "NOG": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:06:25.973622"
+    },
+    "NOK": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:06:41.219872"
+    },
+    "NOV": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:06:56.471013"
+    },
+    "NOVT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:07:12.124352"
+    },
+    "NOW": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:07:12.654678"
+    },
+    "NRG": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:07:13.178625"
+    },
+    "NSC": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:07:13.712873"
+    },
+    "NTAP": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:07:14.241662"
+    },
+    "NTRA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:07:29.328331"
+    },
+    "NTRS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:07:46.472598"
+    },
+    "NUE": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:08:01.837124"
+    },
+    "NVCR": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:08:02.693383"
+    },
+    "NVDA": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:08:03.215533"
+    },
+    "NVR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:08:18.333960"
+    },
+    "NXE": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:08:33.957441"
+    },
+    "NXPI": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:08:49.578723"
+    },
+    "O": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:09:05.498623"
+    },
+    "ODFL": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:09:20.829805"
+    },
+    "OKE": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:09:36.254664"
+    },
+    "OKLO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:09:51.975234"
+    },
+    "OKTA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:10:07.139657"
+    },
+    "OLN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:10:22.528568"
+    },
+    "ON": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:10:57.757096"
+    },
+    "ONTO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:11:12.878437"
+    },
+    "ORCL": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:11:28.370958"
+    },
+    "ORLY": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:11:44.119470"
+    },
+    "OUST": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:11:59.281449"
+    },
+    "OXY": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:12:00.148068"
+    },
+    "PANW": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:12:01.009394"
+    },
+    "PAYC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:12:21.145815"
+    },
+    "PAYX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:12:36.898651"
+    },
+    "PCAR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:12:52.267304"
+    },
+    "PCG": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:13:07.538267"
+    },
+    "PCTY": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:13:22.713212"
+    },
+    "PEG": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:13:38.369165"
+    },
+    "PEP": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:13:53.815424"
+    },
+    "PFE": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:14:09.485346"
+    },
+    "PG": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:14:25.129314"
+    },
+    "PGR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:14:40.357228"
+    },
+    "PH": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:14:56.003931"
+    },
+    "PHM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:15:11.721099"
+    },
+    "PKG": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:15:27.451485"
+    },
+    "PL": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:15:42.678210"
+    },
+    "PLAB": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:15:57.790243"
+    },
+    "PLD": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:16:13.063242"
+    },
+    "PLTR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:16:28.265883"
+    },
+    "PLXS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:16:43.463761"
+    },
+    "PM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:16:59.210608"
+    },
+    "PNC": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:17:00.098421"
+    },
+    "PODD": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:17:00.997741"
+    },
+    "POWI": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:17:16.244735"
+    },
+    "PPG": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:17:31.825572"
+    },
+    "PR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:17:47.910391"
+    },
+    "PRCT": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:18:01.101852"
+    },
+    "PRGS": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:18:02.038335"
+    },
+    "PRU": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:18:02.910095"
+    },
+    "PSA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:18:18.362490"
+    },
+    "PSTG": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:18:33.442378"
+    },
+    "PSX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:18:48.885753"
+    },
+    "PTC": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:19:02.068900"
+    },
+    "PWR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:19:17.337137"
+    },
+    "PYPL": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:19:49.589860"
+    },
+    "QCOM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:20:05.689081"
+    },
+    "QLYS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:20:20.848535"
+    },
+    "QMCO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:20:36.020493"
+    },
+    "QQQ": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:20:36.553180"
+    },
+    "QRVO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:20:51.647150"
+    },
+    "QSR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:21:06.934015"
+    },
+    "QUBT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:21:22.056514"
+    },
+    "RAMP": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:21:37.473484"
+    },
+    "RBBN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:21:53.179285"
+    },
+    "RCAT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:22:09.231804"
+    },
+    "RCKT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:22:24.367832"
+    },
+    "RCL": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:22:39.975247"
+    },
+    "RDW": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:22:55.120076"
+    },
+    "REG": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:23:10.501316"
+    },
+    "REGN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:23:25.718389"
+    },
+    "RF": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:23:40.885890"
+    },
+    "RGTI": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:23:56.417160"
+    },
+    "RIOT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:24:11.642768"
+    },
+    "RJF": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:24:27.140063"
+    },
+    "RKLB": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:24:42.316375"
+    },
+    "RMD": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:24:57.765141"
+    },
+    "ROAD": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:25:13.424218"
+    },
+    "ROK": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:25:28.688073"
+    },
+    "ROP": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:25:44.154596"
+    },
+    "ROST": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:25:59.335061"
+    },
+    "RPM": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:26:00.209948"
+    },
+    "RS": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:26:01.099304"
+    },
+    "RSG": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:26:01.968081"
+    },
+    "RTX": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:26:02.866828"
+    },
+    "RXRX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:26:18.070351"
+    },
+    "S": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:26:33.320465"
+    },
+    "SAIA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:26:48.507137"
+    },
+    "SAIC": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:27:01.760644"
+    },
+    "SAP": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:27:02.635280"
+    },
+    "SATS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:27:17.717096"
+    },
+    "SBUX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:27:32.860037"
+    },
+    "SCHW": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:27:48.124395"
+    },
+    "SEIC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:28:20.894781"
+    },
+    "SFM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:28:36.054470"
+    },
+    "SHEN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:28:51.315931"
+    },
+    "SHW": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:29:07.054961"
+    },
+    "SIRI": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:29:07.585735"
+    },
+    "SITE": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:29:08.119117"
+    },
+    "SJM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:29:23.324950"
+    },
+    "SLB": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:29:57.330445"
+    },
+    "SM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:30:13.143734"
+    },
+    "SMCI": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:30:45.981171"
+    },
+    "SMR": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:31:01.696232"
+    },
+    "SMTC": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:31:02.248898"
+    },
+    "SNOW": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:31:02.796831"
+    },
+    "SNPS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:31:18.299035"
+    },
+    "SO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:31:33.522266"
+    },
+    "SOUN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:31:48.693793"
+    },
+    "SPG": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:32:01.894394"
+    },
+    "SPGI": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:32:17.334601"
+    },
+    "SRE": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:32:49.700752"
+    },
+    "STLD": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:33:05.426160"
+    },
+    "STT": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:33:05.956354"
+    },
+    "STX": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:33:06.482127"
+    },
+    "STZ": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:33:22.336815"
+    },
+    "SU": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:33:37.440924"
+    },
+    "SWKS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:33:52.513879"
+    },
+    "SYF": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:34:07.640329"
+    },
+    "SYK": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:34:08.177820"
+    },
+    "T": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:34:23.397089"
+    },
+    "TARS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:34:38.529041"
+    },
+    "TDG": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:34:53.679187"
+    },
+    "TEAM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:35:08.743317"
+    },
+    "TENB": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:35:09.275964"
+    },
+    "TER": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:35:24.840178"
+    },
+    "TFC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:35:40.026537"
+    },
+    "TGT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:35:55.237758"
+    },
+    "TGTX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:36:10.352154"
+    },
+    "THC": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:36:10.868206"
+    },
+    "TJX": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:36:11.397749"
+    },
+    "TMO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:36:26.574055"
+    },
+    "TMUS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:36:41.711867"
+    },
+    "TOL": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:36:56.827257"
+    },
+    "TPH": {
+      "n_bars": 249,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:37:11.907440"
+    },
+    "TREX": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:37:12.433080"
+    },
+    "TROW": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:37:12.963108"
+    },
+    "TRV": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:37:13.498690"
+    },
+    "TSLA": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:37:28.614683"
+    },
+    "TTD": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:37:43.751085"
+    },
+    "TTWO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:37:59.300459"
+    },
+    "TWLO": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:38:00.169951"
+    },
+    "TXN": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:38:01.040921"
+    },
+    "U": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:38:16.299497"
+    },
+    "UCTT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:38:31.426028"
+    },
+    "UEC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:38:46.520164"
+    },
+    "UHS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:39:01.705894"
+    },
+    "UNH": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:39:02.232008"
+    },
+    "UNM": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:39:02.757252"
+    },
+    "UNP": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:39:03.282154"
+    },
+    "UPS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:39:18.558234"
+    },
+    "UROY": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:39:33.694306"
+    },
+    "USB": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:39:48.833314"
+    },
+    "UUUU": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:40:01.999587"
+    },
+    "V": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:40:02.523008"
+    },
+    "VEEV": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:40:03.070737"
+    },
+    "VIAV": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:40:03.595045"
+    },
+    "VICI": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:40:18.781578"
+    },
+    "VLO": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:40:34.516876"
+    },
+    "VRNS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:40:49.615515"
+    },
+    "VRSK": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:41:06.925262"
+    },
+    "VRT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:41:21.994810"
+    },
+    "VRTX": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:41:37.142053"
+    },
+    "VSAT": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:41:52.405636"
+    },
+    "VSEC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:42:08.605847"
+    },
+    "VST": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:42:09.125768"
+    },
+    "VZ": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:42:26.931911"
+    },
+    "W": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:42:43.140996"
+    },
+    "WAB": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:42:58.377472"
+    },
+    "WBD": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:43:13.459237"
+    },
+    "WDAY": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:43:28.681356"
+    },
+    "WDC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:43:43.836549"
+    },
+    "WFC": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:43:58.979816"
+    },
+    "WLDN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:44:14.159260"
+    },
+    "WM": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:44:14.686434"
+    },
+    "WMB": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:44:15.296679"
+    },
+    "WMT": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:44:15.822274"
+    },
+    "WULF": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:44:30.953553"
+    },
+    "WYNN": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:44:46.094811"
+    },
+    "XEL": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:45:01.311502"
+    },
+    "XOM": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:45:01.839450"
+    },
+    "XPO": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:45:02.359676"
+    },
+    "XPOF": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:45:02.896850"
+    },
+    "XRAY": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:45:18.093981"
+    },
+    "YETI": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:45:33.187677"
+    },
+    "YUM": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:45:48.456323"
+    },
+    "ZBH": {
+      "n_bars": 200,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:46:01.675172"
+    },
+    "ZS": {
+      "n_bars": 251,
+      "source": "polygon",
+      "last_ok": "2026-05-17T22:46:21.482619"
+    }
+  },
+  "fail": [
+    "AACO",
+    "ACAA",
+    "AIAI",
+    "ALMR",
+    "ARXS",
+    "AVEX",
+    "AVLN",
+    "BHAV",
+    "BOT",
+    "BRKS",
+    "BRSP",
+    "BRT",
+    "BRTX",
+    "BRUN",
+    "BRX",
+    "BRZE",
+    "BSAA",
+    "BSBK",
+    "BSET",
+    "BSM",
+    "BSRR",
+    "BSVN",
+    "BSY",
+    "BTAI",
+    "BTBD",
+    "BTBT",
+    "BTCS",
+    "BTCT",
+    "BTE",
+    "BTGO",
+    "BTM",
+    "BTMD",
+    "BTOC",
+    "BTOG",
+    "BTQ",
+    "BULL",
+    "BUR",
+    "BURL",
+    "BUSE",
+    "BUUU",
+    "BV",
+    "BVC",
+    "BVFL",
+    "BVS",
+    "BW",
+    "BWB",
+    "BWBBP",
+    "BWEN",
+    "BWFG",
+    "BWIN",
+    "BWIV",
+    "BWLP",
+    "BWMN",
+    "BWMX",
+    "BX",
+    "BXC",
+    "BXDC",
+    "BXMT",
+    "BXP",
+    "BYFC",
+    "BYND",
+    "BYRN",
+    "BYSI",
+    "BZAI",
+    "BZFD",
+    "BZH",
+    "CAAP",
+    "CAAS",
+    "CABA",
+    "CABR",
+    "CAC",
+    "CACC",
+    "CADL",
+    "CAE",
+    "CAEP",
+    "CAI",
+    "CAKE",
+    "CALY",
+    "CAMP",
+    "CANG",
+    "CAPN",
+    "CAPR",
+    "CAPS",
+    "CAQ",
+    "CAR",
+    "CARE",
+    "CARG",
+    "CARL",
+    "CARR",
+    "CARS",
+    "CART",
+    "CASH",
+    "CASS",
+    "CAST",
+    "CASY",
+    "CATO",
+    "CATY",
+    "CAVA",
+    "CBAN",
+    "CBAT",
+    "CBC",
+    "CBFV",
+    "CBIO",
+    "CBK",
+    "CBL",
+    "CBLL",
+    "CBNA",
+    "CBNK",
+    "CBRE",
+    "CBRL",
+    "CBRS",
+    "CBSH",
+    "CBT",
+    "CBU",
+    "CBUS",
+    "CBZ",
+    "CC",
+    "CCAP",
+    "CCB",
+    "CCBG",
+    "CCC",
+    "CCCC",
+    "CCD",
+    "CCEC",
+    "CCEP",
+    "CCG",
+    "CCHH",
+    "CCII",
+    "CCIX",
+    "CCK",
+    "CCLD",
+    "CCNE",
+    "CCO",
+    "CCRN",
+    "CCS",
+    "CCSI",
+    "CCTG",
+    "CCXI",
+    "CD",
+    "CDE",
+    "CDIO",
+    "CDLX",
+    "CDNA",
+    "CDNL",
+    "CDP",
+    "CDRE",
+    "CDRO",
+    "CDT",
+    "CDTG",
+    "CDW",
+    "CDXS",
+    "CDZI",
+    "CE",
+    "CECO",
+    "CELC",
+    "CELU",
+    "CELZ",
+    "CENN",
+    "CENT",
+    "CENTA",
+    "CENX",
+    "CEPF",
+    "CEPO",
+    "CEPS",
+    "CEPT",
+    "CEPU",
+    "CEPV",
+    "CERS",
+    "CERT",
+    "CETX",
+    "CETY",
+    "CFBK",
+    "CFFI",
+    "CFFN",
+    "CFND",
+    "CFR",
+    "CG",
+    "CGABL",
+    "CGAU",
+    "CGBD",
+    "CGC",
+    "CGCT",
+    "CGEM",
+    "CGEN",
+    "CGNT",
+    "CGO",
+    "CGON",
+    "CGTL",
+    "CGTX",
+    "CHAI",
+    "CHAR",
+    "CHCI",
+    "CHCO",
+    "CHE",
+    "CHEC",
+    "CHGG",
+    "CHH",
+    "CHI",
+    "CHKP",
+    "CHMG",
+    "CHMI",
+    "CHNR",
+    "CHPG",
+    "CHPT",
+    "CHR",
+    "CHRN",
+    "CHRS",
+    "CHRW",
+    "CHSN",
+    "CHY",
+    "CHYM",
+    "CIA",
+    "CIGI",
+    "CIIT",
+    "CIM",
+    "CING",
+    "CINT",
+    "CION",
+    "CISO",
+    "CISS",
+    "CIVB",
+    "CJMB",
+    "CLAR",
+    "CLB",
+    "CLBK",
+    "CLBR",
+    "CLBT",
+    "CLDT",
+    "CLDX",
+    "CLF",
+    "CLFD",
+    "CLGN",
+    "CLIK",
+    "CLIR",
+    "CLMB",
+    "CLMT",
+    "CLNE",
+    "CLNN",
+    "CLOV",
+    "CLPR",
+    "CLPT",
+    "CLRB",
+    "CLRO",
+    "CLS",
+    "CLST",
+    "CLVT",
+    "CLW",
+    "CLWT",
+    "CLYM",
+    "CM",
+    "CMBT",
+    "CMCO",
+    "CMCT",
+    "CMDB",
+    "CMI",
+    "CMII",
+    "CMND",
+    "CMP",
+    "CMPR",
+    "CMPX",
+    "CMRC",
+    "CMRE",
+    "CMS",
+    "CMTG",
+    "CMTL",
+    "CMTV",
+    "CNA",
+    "CNCK",
+    "CNDT",
+    "CNET",
+    "CNEY",
+    "CNH",
+    "CNI",
+    "CNK",
+    "CNM",
+    "CNMD",
+    "CNNE",
+    "CNO",
+    "CNOB",
+    "CNOBP",
+    "CNP",
+    "CNR",
+    "CNS",
+    "CNSP",
+    "CNTB",
+    "CNTN",
+    "CNTX",
+    "CNTY",
+    "CNVS",
+    "CNX",
+    "CNXC",
+    "CNXN",
+    "COAG",
+    "COCH",
+    "COCO",
+    "COCP",
+    "CODA",
+    "CODI",
+    "CODX",
+    "COFS",
+    "COGT",
+    "COIN",
+    "COKE",
+    "COLA",
+    "COLB",
+    "COLD",
+    "COLL",
+    "COLM",
+    "COMP",
+    "CON",
+    "COO",
+    "COOK",
+    "COOT",
+    "COPL",
+    "COR",
+    "CORT",
+    "COSM",
+    "COSO",
+    "COTY",
+    "COUR",
+    "COYA",
+    "CP",
+    "CPA",
+    "CPAY",
+    "CPBI",
+    "CPF",
+    "CPHC",
+    "CPIX",
+    "CPK",
+    "CPNG",
+    "CPOP",
+    "CPRI",
+    "CPRX",
+    "CPS",
+    "CPSH",
+    "CPSS",
+    "CPT",
+    "CPZ",
+    "CQP",
+    "CR",
+    "CRAC",
+    "CRAI",
+    "CRAN",
+    "CRAQ",
+    "CRBG",
+    "CRBP",
+    "CRBU",
+    "CRDL",
+    "CRE",
+    "CREG",
+    "CREX",
+    "CRGO",
+    "CRGY",
+    "CRH",
+    "CRI",
+    "CRIS",
+    "CRK",
+    "CRMD",
+    "CRML",
+    "CRMT",
+    "CRNC",
+    "CRNT",
+    "CRON",
+    "CROX",
+    "CRS",
+    "CRT",
+    "CRVL",
+    "CRVO",
+    "CRVS",
+    "CRWS",
+    "CSAI",
+    "CSBR",
+    "CSHR",
+    "CSIQ",
+    "CSL",
+    "CSPI",
+    "CSQ",
+    "CSR",
+    "CSTE",
+    "CSTL",
+    "CSTM",
+    "CSV",
+    "CSW",
+    "CSWC",
+    "CTAA",
+    "CTBI",
+    "CTEV",
+    "CTKB",
+    "CTNM",
+    "CTNT",
+    "CTO",
+    "CTOR",
+    "CTOS",
+    "CTRE",
+    "CTRI",
+    "CTRM",
+    "CTRN",
+    "CTS",
+    "CTSO",
+    "CTVA",
+    "CTW",
+    "CTXR",
+    "CUB",
+    "CUBE",
+    "CUE",
+    "CULP",
+    "CUPR",
+    "CURB",
+    "CURI",
+    "CURR",
+    "CURV",
+    "CURX",
+    "CUZ",
+    "CV",
+    "CVCO",
+    "CVE",
+    "CVEO",
+    "CVGI",
+    "CVGW",
+    "CVI",
+    "CVKD",
+    "CVLG",
+    "CVLT",
+    "CVNA",
+    "CVRX",
+    "CVSA",
+    "CVV",
+    "CWAN",
+    "CWBC",
+    "CWCO",
+    "CWD",
+    "CWEN",
+    "CWH",
+    "CWK",
+    "CWT",
+    "CXAI",
+    "CXDO",
+    "CXM",
+    "CXT",
+    "CXW",
+    "CYAB",
+    "CYCN",
+    "CYCU",
+    "CYD",
+    "CYH",
+    "CYN",
+    "CYPH",
+    "CYRX",
+    "CYTK",
+    "CZFS",
+    "CZNC",
+    "DAAQ",
+    "DAC",
+    "DAIC",
+    "DAIO",
+    "DAKT",
+    "DAL",
+    "DAN",
+    "DAR",
+    "DARE",
+    "DASH",
+    "DAVE",
+    "DB",
+    "DBCA",
+    "DBD",
+    "DBGI",
+    "DBI",
+    "DBRG",
+    "DBVT",
+    "DBX",
+    "DCBO",
+    "DCGO",
+    "DCH",
+    "DCI",
+    "DCO",
+    "DCOM",
+    "DCOY",
+    "DCTH",
+    "DCX",
+    "DD",
+    "DDD",
+    "DDS",
+    "DEA",
+    "DEC",
+    "DECK",
+    "DEFT",
+    "DEI",
+    "DERM",
+    "DETX",
+    "DEVS",
+    "DFDV",
+    "DFH",
+    "DFIN",
+    "DFLI",
+    "DFNS",
+    "DFSC",
+    "DFTX",
+    "DG",
+    "DGICA",
+    "DGICB",
+    "DGII",
+    "DGNX",
+    "DGXX",
+    "DH",
+    "DHCNI",
+    "DHCNL",
+    "DHR",
+    "DHT",
+    "DHX",
+    "DIBS",
+    "DIN",
+    "DINO",
+    "DJCO",
+    "DJT",
+    "DK",
+    "DKI",
+    "DKL",
+    "DKNG",
+    "DKS",
+    "DLB",
+    "DLHC",
+    "DLNG",
+    "DLO",
+    "DLPN",
+    "DLTH",
+    "DLTR",
+    "DLX",
+    "DLXY",
+    "DMAA",
+    "DMAC",
+    "DMII",
+    "DMLP",
+    "DMRA",
+    "DMRC",
+    "DNA",
+    "DNLI",
+    "DNTH",
+    "DNUT",
+    "DOC",
+    "DOCS",
+    "DOCU",
+    "DOGZ",
+    "DOLE",
+    "DOMH",
+    "DOMO",
+    "DOO",
+    "DORM",
+    "DOUG",
+    "DOW",
+    "DOX",
+    "DPRO",
+    "DRCT",
+    "DRDB",
+    "DRH",
+    "DRTS",
+    "DRUG",
+    "DRVN",
+    "DSAC",
+    "DSGN",
+    "DSGR",
+    "DSP",
+    "DSWL",
+    "DSX",
+    "DSY",
+    "DT",
+    "DTCX",
+    "DTE",
+    "DTI",
+    "DTIL",
+    "DTM",
+    "DTSQ",
+    "DTSS",
+    "DTST",
+    "DUKR",
+    "DUO",
+    "DUOT",
+    "DV",
+    "DVLT",
+    "DWSN",
+    "DWTX",
+    "DX",
+    "DXC",
+    "DXLG",
+    "DXPE",
+    "DXR",
+    "DXST",
+    "DXYZ",
+    "DYAI",
+    "DYN",
+    "DYNC",
+    "DYOR",
+    "EAF",
+    "EARN",
+    "EAT",
+    "EBC",
+    "EBF",
+    "EBMT",
+    "EBON",
+    "EBS",
+    "ECBK",
+    "ECG",
+    "ECO",
+    "ECOR",
+    "ECPG",
+    "ECVT",
+    "ECX",
+    "ED",
+    "EDBL",
+    "EDHL",
+    "EDIT",
+    "EDRY",
+    "EDSA",
+    "EDTK",
+    "EDUC",
+    "EE",
+    "EEFT",
+    "EEIQ",
+    "EEX",
+    "EFC",
+    "EFOI",
+    "EFOR",
+    "EFSC",
+    "EFSI",
+    "EFTY",
+    "EFX",
+    "EFXT",
+    "EG",
+    "EGAN",
+    "EGBN",
+    "EGHA",
+    "EGHT",
+    "EGO",
+    "EGP",
+    "EGY",
+    "EHAB",
+    "EHC",
+    "EHGO",
+    "EHLD",
+    "EHTH",
+    "EIG",
+    "EIKN",
+    "EIX",
+    "EJH",
+    "ELAB",
+    "ELAN",
+    "ELBM",
+    "ELDN",
+    "ELE",
+    "ELF",
+    "ELME",
+    "ELMT",
+    "ELOG",
+    "ELPW",
+    "ELS",
+    "ELSE",
+    "ELTK",
+    "ELTX",
+    "ELUT",
+    "ELVA",
+    "ELVN",
+    "ELWT",
+    "EMA",
+    "EMAT",
+    "EMBC",
+    "EMIS",
+    "EML",
+    "EMN",
+    "EMP",
+    "EMPD",
+    "EMPG",
+    "ENGN",
+    "ENGS",
+    "ENHA",
+    "ENLT",
+    "ENLV",
+    "ENOV",
+    "ENPH",
+    "ENR",
+    "ENS",
+    "ENSC",
+    "ENSG",
+    "ENTA",
+    "ENTG",
+    "ENTX",
+    "ENVA",
+    "ENVB",
+    "ENVX",
+    "EOLS",
+    "EOSE",
+    "EPAC",
+    "EPC",
+    "EPRT",
+    "EPRX",
+    "EPSM",
+    "EPSN",
+    "EQ",
+    "EQBK",
+    "EQH",
+    "EQPT",
+    "EQR",
+    "EQS",
+    "EQT",
+    "ERAS",
+    "ERIE",
+    "ERII",
+    "ERNA",
+    "ERO",
+    "EROK",
+    "ES",
+    "ESAB",
+    "ESCA",
+    "ESE",
+    "ESEA",
+    "ESI",
+    "ESLA",
+    "ESNT",
+    "ESQ",
+    "ESRT",
+    "ESS",
+    "ESTA",
+    "ETD",
+    "ETON",
+    "ETOR",
+    "ETR",
+    "ETS",
+    "EUDA",
+    "EURK",
+    "EVAC",
+    "EVC",
+    "EVCM",
+    "EVER",
+    "EVGN",
+    "EVGO",
+    "EVH",
+    "EVLV",
+    "EVMN",
+    "EVOX",
+    "EVTC",
+    "EVTL",
+    "EVTV",
+    "EXE",
+    "EXEL",
+    "EXFY",
+    "EXK",
+    "EXOZ",
+    "EXP",
+    "EXPD",
+    "EXPE",
+    "EXR",
+    "EXTR",
+    "EXYN",
+    "EYE",
+    "EYPT",
+    "EZGO",
+    "EZPW",
+    "EZRA",
+    "FA",
+    "FABC",
+    "FACT",
+    "FAF",
+    "FATE",
+    "FATN",
+    "FBGL",
+    "FBIN",
+    "FBIO",
+    "FBIZ",
+    "FBK",
+    "FBLA",
+    "FBLG",
+    "FBNC",
+    "FBP",
+    "FBRT",
+    "FBRX",
+    "FBYD",
+    "FC",
+    "FCAP",
+    "FCBC",
+    "FCCO",
+    "FCEL",
+    "FCF",
+    "FCFS",
+    "FCHL",
+    "FCN",
+    "FCNCA",
+    "FCNCN",
+    "FCPT",
+    "FCRS",
+    "FCUV",
+    "FDMT",
+    "FDP",
+    "FDSB",
+    "FDUS",
+    "FE",
+    "FEAM",
+    "FEBO",
+    "FEED",
+    "FEIM",
+    "FELE",
+    "FEMY",
+    "FENC",
+    "FER",
+    "FERA",
+    "FERG",
+    "FET",
+    "FF",
+    "FFAI",
+    "FFBC",
+    "FFIC",
+    "FFIN",
+    "FG",
+    "FGBI",
+    "FGI",
+    "FGII",
+    "FGL",
+    "FGMC",
+    "FGNX",
+    "FHB",
+    "FHI",
+    "FHN",
+    "FHTX",
+    "FIBK",
+    "FICO",
+    "FIEE",
+    "FIG",
+    "FIGR",
+    "FIGS",
+    "FIGX",
+    "FINW",
+    "FIP",
+    "FISI",
+    "FITBM",
+    "FITBO",
+    "FIVE",
+    "FIVN",
+    "FIX",
+    "FIZZ",
+    "FKWL",
+    "FLD",
+    "FLEX",
+    "FLG",
+    "FLGT",
+    "FLL",
+    "FLNA",
+    "FLNT",
+    "FLO",
+    "FLOC",
+    "FLR",
+    "FLS",
+    "FLWS",
+    "FLXS",
+    "FLY",
+    "FLYE",
+    "FLYW",
+    "FMAO",
+    "FMBH",
+    "FMC",
+    "FMFC",
+    "FMNB",
+    "FMST",
+    "FN",
+    "FNB",
+    "FND",
+    "FNF",
+    "FNGR",
+    "FNKO",
+    "FNLC",
+    "FNRN",
+    "FNUC",
+    "FNV",
+    "FNWB",
+    "FOFO",
+    "FONR",
+    "FOR",
+    "FORA",
+    "FOX",
+    "FOXF",
+    "FOXX",
+    "FPH",
+    "FPI",
+    "FPS",
+    "FR",
+    "FRAF",
+    "FRBA",
+    "FRD",
+    "FRGT",
+    "FRHC",
+    "FRME",
+    "FRMEP",
+    "FRMI",
+    "FRMM",
+    "FRO",
+    "FROG",
+    "FRPH",
+    "FRPT",
+    "FRST",
+    "FRVO",
+    "FSBC",
+    "FSBW",
+    "FSCO",
+    "FSEA",
+    "FSHP",
+    "FSK",
+    "FSLR",
+    "FSLY",
+    "FSM",
+    "FSS",
+    "FSSL",
+    "FSTR",
+    "FSUN",
+    "FSV",
+    "FTAI",
+    "FTCI",
+    "FTDR",
+    "FTEK",
+    "FTFT",
+    "FTHM",
+    "FTK",
+    "FTLF",
+    "FTRE",
+    "FTRK",
+    "FTS",
+    "FTW",
+    "FUBO",
+    "FUFU",
+    "FUL",
+    "FULC",
+    "FULT",
+    "FULTP",
+    "FUN",
+    "FUNC",
+    "FUSB",
+    "FUSE",
+    "FVAV",
+    "FVCB",
+    "FVN",
+    "FVR",
+    "FVRR",
+    "FWDI",
+    "FWONA",
+    "FWONK",
+    "FWRD",
+    "FWRG",
+    "FXNC",
+    "G",
+    "GABC",
+    "GAIA",
+    "GAIN",
+    "GAING",
+    "GAINI",
+    "GAINZ",
+    "GALT",
+    "GAMB",
+    "GAME",
+    "GANX",
+    "GAP",
+    "GASS",
+    "GATX",
+    "GAUZ",
+    "GBCI",
+    "GBDC",
+    "GBFH",
+    "GBLI",
+    "GBTG",
+    "GBX",
+    "GCBC",
+    "GCL",
+    "GCMG",
+    "GCO",
+    "GCT",
+    "GCTK",
+    "GCTS",
+    "GDC",
+    "GDEV",
+    "GDHG",
+    "GDOT",
+    "GDRX",
+    "GDTC",
+    "GDYN",
+    "GECC",
+    "GECCG",
+    "GECCH",
+    "GECCI",
+    "GECCO",
+    "GEF",
+    "GEG",
+    "GEGGL",
+    "GEL",
+    "GELS",
+    "GEMI",
+    "GEN",
+    "GENB",
+    "GENI",
+    "GENK",
+    "GEO",
+    "GEOS",
+    "GERN",
+    "GETY",
+    "GEVO",
+    "GFAI",
+    "GFF",
+    "GFL",
+    "GFR",
+    "GFS",
+    "GGG",
+    "GGR",
+    "GGRP",
+    "GH",
+    "GHC",
+    "GHM",
+    "GHRS",
+    "GIB",
+    "GIBO",
+    "GIC",
+    "GIFT",
+    "GIG",
+    "GIGM",
+    "GIII",
+    "GIL",
+    "GILT",
+    "GIPR",
+    "GITS",
+    "GIW",
+    "GIX",
+    "GKOS",
+    "GLAD",
+    "GLBE",
+    "GLBS",
+    "GLDD",
+    "GLE",
+    "GLED",
+    "GLIBA",
+    "GLIBK",
+    "GLMD",
+    "GLND",
+    "GLNG",
+    "GLOO",
+    "GLP",
+    "GLPI",
+    "GLRE",
+    "GLSI",
+    "GLUE",
+    "GLW",
+    "GLXG",
+    "GLXY",
+    "GME",
+    "GMM",
+    "GMRS",
+    "GNE",
+    "GNK",
+    "GNL",
+    "GNLN",
+    "GNLX",
+    "GNPX",
+    "GNSS",
+    "GNTX",
+    "GNW",
+    "GOAI",
+    "GOCO",
+    "GOGO",
+    "GOLD",
+    "GOLF",
+    "GOOD",
+    "GOOS",
+    "GOSS",
+    "GOVX",
+    "GP",
+    "GPAC",
+    "GPAT",
+    "GPGI",
+    "GPI",
+    "GPK",
+    "GPOR",
+    "GPRE",
+    "GPRK",
+    "GPRO",
+    "GRAB",
+    "GRAL",
+    "GRAN",
+    "GRBK",
+    "GRC",
+    "GRCE",
+    "GRDN",
+    "GRDX",
+    "GREEL",
+    "GRI",
+    "GRML",
+    "GRMN",
+    "GRND",
+    "GRNQ",
+    "GRNT",
+    "GROV",
+    "GROW",
+    "GRPN",
+    "GRRR",
+    "GRWG",
+    "GSBC",
+    "GSBD",
+    "GSHR",
+    "GSIW",
+    "GSL",
+    "GSM",
+    "GSRF",
+    "GSUN",
+    "GT",
+    "GTBP",
+    "GTEC",
+    "GTEN",
+    "GTERA",
+    "GTES",
+    "GTIM",
+    "GTLS",
+    "GTM",
+    "GTN",
+    "GTX",
+    "GTY",
+    "GURE",
+    "GUTS",
+    "GV",
+    "GVA",
+    "GVH",
+    "GWAV",
+    "GWRE",
+    "GWRS",
+    "GWW",
+    "GXAI",
+    "GXO",
+    "GYRE",
+    "GYRO",
+    "H",
+    "HACQ",
+    "HAFC",
+    "HAFN",
+    "HAIN",
+    "HAO",
+    "HAS",
+    "HASI",
+    "HAVA",
+    "HAVAR",
+    "HAWK",
+    "HAYW",
+    "HBANL",
+    "HBANM",
+    "HBANZ",
+    "HBB",
+    "HBCP",
+    "HBIO",
+    "HBM",
+    "HBNB",
+    "HBNC",
+    "HBT",
+    "HCAC",
+    "HCAI",
+    "HCAT",
+    "HCI",
+    "HCIC",
+    "HCKT",
+    "HCMA",
+    "HCSG",
+    "HCTI",
+    "HCWB",
+    "HE",
+    "HELE",
+    "HELP",
+    "HERZ",
+    "HESM",
+    "HFBL",
+    "HFFG",
+    "HFWA",
+    "HG",
+    "HGBL",
+    "HGTY",
+    "HGV",
+    "HHH",
+    "HHS",
+    "HIHO",
+    "HII",
+    "HIMS",
+    "HIND",
+    "HIPO",
+    "HIT",
+    "HITI",
+    "HIVE",
+    "HIW",
+    "HKIT",
+    "HKPD",
+    "HL",
+    "HLF",
+    "HLI",
+    "HLIO",
+    "HLIT",
+    "HLLY",
+    "HLMN",
+    "HLNE",
+    "HLP",
+    "HLX",
+    "HLXC",
+    "HMH",
+    "HMN",
+    "HMR",
+    "HNGE",
+    "HNI",
+    "HNNA",
+    "HNNAZ",
+    "HNRG",
+    "HNST",
+    "HNVR",
+    "HOFT",
+    "HOG",
+    "HOLO",
+    "HOMB",
+    "HOOD",
+    "HOPE",
+    "HOTH",
+    "HOUR",
+    "HOV",
+    "HOVR",
+    "HOWL",
+    "HP",
+    "HPAI",
+    "HPK",
+    "HPP",
+    "HQ",
+    "HQI",
+    "HQY",
+    "HR",
+    "HRB",
+    "HRI",
+    "HRL",
+    "HRMY",
+    "HROW",
+    "HRTG",
+    "HRTX",
+    "HRZN",
+    "HSAI",
+    "HSCS",
+    "HSDT",
+    "HSHP",
+    "HSIC",
+    "HSPT",
+    "HTB",
+    "HTCO",
+    "HTCR",
+    "HTFL",
+    "HTGC",
+    "HTH",
+    "HTLD",
+    "HTLM",
+    "HTO",
+    "HTOO",
+    "HTZ",
+    "HUBB",
+    "HUBC",
+    "HUBG",
+    "HUDI",
+    "HUHU",
+    "HUMA",
+    "HURA",
+    "HVII",
+    "HVMC",
+    "HVT",
+    "HWBK",
+    "HWC",
+    "HWCPZ",
+    "HWH",
+    "HWKN",
+    "HXHX",
+    "HXL",
+    "HY",
+    "HYFM",
+    "HYFT",
+    "HYMC",
+    "HYNE",
+    "HYPD",
+    "HYPR",
+    "HZO",
+    "IAC",
+    "IACO",
+    "IAG",
+    "IART",
+    "IBAC",
+    "IBCP",
+    "IBEX",
+    "IBG",
+    "IBIO",
+    "IBKR",
+    "IBOC",
+    "IBP",
+    "IBRX",
+    "IBTA",
+    "ICCC",
+    "ICCM",
+    "ICFI",
+    "ICL",
+    "ICLR",
+    "ICMB",
+    "ICON"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": "2.0",
+  "created": "2026-05-22",
+  "last_updated": "2026-05-22",
+  "total_trades_analyzed": 0,
+  "signal_scorecard": {},
+  "error_types": {
+    "exit_too_early": 0,
+    "stop_too_tight": 0,
+    "bought_extended": 0,
+    "wrong_mode": 0,
+    "wrong_regime": 0,
+    "override_loss": 0
+  },
+  "lessons": [],
+  "note": "Populated automatically by auto_postmortem.py after each closed trade"
+}

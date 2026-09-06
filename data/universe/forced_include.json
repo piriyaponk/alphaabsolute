@@ -1,0 +1,32 @@
+{
+  "_note": "เพิ่ม ticker ที่นี่เพื่อบังคับรวมใน universe แม้จะ ADTV ต่ำหรือไม่อยู่ใน NYSE/NASDAQ หลัก",
+  "_usage": "แก้ไขไฟล์นี้ได้โดยตรง — ไม่ต้อง touch code. universe_builder อ่านไฟล์นี้ทุกครั้ง",
+  "tickers": [
+    "LWLG",
+    "POET",
+    "KEEL",
+    "NBIS",
+    "MRAM",
+    "AXTI",
+    "AIXI",
+    "AAOI",
+    "COHU",
+    "ACMR",
+    "LUNR",
+    "RKLB",
+    "RDW",
+    "BTBT",
+    "HUT"
+  ],
+  "notes": {
+    "LWLG": "Lightwave Logic — Photonics/electro-optic polymer, microcap monster candidate",
+    "POET": "POET Technologies — silicon photonics, NASDAQ CS",
+    "KEEL": "Keel Infrastructure — Space/satellite, NASDAQ CS",
+    "NBIS": "Nebius Group — AI Infrastructure NeoCloud, NASDAQ",
+    "MRAM": "Everspin Technologies — MRAM memory, HOT sector",
+    "AXTI": "AXT Inc — compound semiconductor substrate",
+    "AIXI": "XIAO-I Corporation — AI software, NASDAQ ADRC",
+    "AAOI": "Applied Optoelectronics — Photonics, proven runner",
+    "_note": "LVLG removed — not found on Polygon (may be OTC or wrong ticker)"
+  }
+}

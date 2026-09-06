@@ -1,0 +1,135 @@
+{
+  "date": "2026-06-16",
+  "computed_at": "2026-06-16T21:26:59.669222",
+  "nav": 105821.2,
+  "drawdown_pct": -0.0,
+  "peak_nav": 105821.2,
+  "peak_date": "2026-06-16",
+  "positions_checked": 13,
+  "flags_total": 7,
+  "immediate_count": 1,
+  "today_count": 2,
+  "review_count": 4,
+  "immediate": [
+    {
+      "ticker": "TLS",
+      "priority": "IMMEDIATE",
+      "rule": "STOP_PROXIMITY",
+      "detail": "Price $4.48 only 1.6% above stop $4.41",
+      "action": "WATCH TLS -- at stop risk. Consider early exit or tighten manually."
+    }
+  ],
+  "today": [
+    {
+      "ticker": "PORTFOLIO",
+      "priority": "TODAY",
+      "rule": "CASH_BELOW_TARGET",
+      "detail": "Cash 18.8% below M0 target 20% (Sideways)",
+      "action": "Raise cash to 20% -- trim smallest/weakest positions first"
+    },
+    {
+      "ticker": "PORTFOLIO",
+      "priority": "TODAY",
+      "rule": "MODE_B_BUCKET",
+      "detail": "Monster Scout bucket = 35.8% > 30% limit",
+      "action": "Reduce Monster Scout (Big Shot) positions to bring bucket below 30%"
+    }
+  ],
+  "review": [
+    {
+      "ticker": "SNDK",
+      "priority": "REVIEW",
+      "rule": "TRAIL_NOT_ACTIVE",
+      "detail": "Position up 34.9% but trailing stop not yet activated",
+      "action": "Activate trailing stop at -15% from peak on SNDK"
+    },
+    {
+      "ticker": "MU",
+      "priority": "REVIEW",
+      "rule": "TRAIL_NOT_ACTIVE",
+      "detail": "Position up 35.4% but trailing stop not yet activated",
+      "action": "Activate trailing stop at -15% from peak on MU"
+    },
+    {
+      "ticker": "W",
+      "priority": "REVIEW",
+      "rule": "RS_LAGGARD",
+      "detail": "RS composite rank=36th percentile (below 40th)",
+      "action": "Review W for exit -- leadership decaying"
+    },
+    {
+      "ticker": "PORTFOLIO",
+      "priority": "REVIEW",
+      "rule": "TOO_MANY_POSITIONS",
+      "detail": "13 positions > 10 max",
+      "action": "Review smallest/weakest positions for consolidation"
+    }
+  ],
+  "all_flags": [
+    {
+      "ticker": "TLS",
+      "priority": "IMMEDIATE",
+      "rule": "STOP_PROXIMITY",
+      "detail": "Price $4.48 only 1.6% above stop $4.41",
+      "action": "WATCH TLS -- at stop risk. Consider early exit or tighten manually."
+    },
+    {
+      "ticker": "PORTFOLIO",
+      "priority": "TODAY",
+      "rule": "CASH_BELOW_TARGET",
+      "detail": "Cash 18.8% below M0 target 20% (Sideways)",
+      "action": "Raise cash to 20% -- trim smallest/weakest positions first"
+    },
+    {
+      "ticker": "PORTFOLIO",
+      "priority": "TODAY",
+      "rule": "MODE_B_BUCKET",
+      "detail": "Monster Scout bucket = 35.8% > 30% limit",
+      "action": "Reduce Monster Scout (Big Shot) positions to bring bucket below 30%"
+    },
+    {
+      "ticker": "SNDK",
+      "priority": "REVIEW",
+      "rule": "TRAIL_NOT_ACTIVE",
+      "detail": "Position up 34.9% but trailing stop not yet activated",
+      "action": "Activate trailing stop at -15% from peak on SNDK"
+    },
+    {
+      "ticker": "MU",
+      "priority": "REVIEW",
+      "rule": "TRAIL_NOT_ACTIVE",
+      "detail": "Position up 35.4% but trailing stop not yet activated",
+      "action": "Activate trailing stop at -15% from peak on MU"
+    },
+    {
+      "ticker": "W",
+      "priority": "REVIEW",
+      "rule": "RS_LAGGARD",
+      "detail": "RS composite rank=36th percentile (below 40th)",
+      "action": "Review W for exit -- leadership decaying"
+    },
+    {
+      "ticker": "PORTFOLIO",
+      "priority": "REVIEW",
+      "rule": "TOO_MANY_POSITIONS",
+      "detail": "13 positions > 10 max",
+      "action": "Review smallest/weakest positions for consolidation"
+    }
+  ],
+  "risk_clear": false,
+  "qqq_benchmark": {
+    "inception_date": "2026-05-25",
+    "inception_regime": null,
+    "full_cycle_flag": false,
+    "context_note": "early data (5d) — too short to conclude",
+    "qqq_inception": 717.54,
+    "qqq_current": 744.0,
+    "nav_inception": 96012.97,
+    "nav_current": 105821.2,
+    "qqq_return_pct": 3.69,
+    "portfolio_return_pct": 10.22,
+    "alpha_pct": 6.53,
+    "outperforming": true,
+    "trading_days_tracked": 5
+  }
+}

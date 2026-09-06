@@ -1,0 +1,7 @@
+[2026-09-02 22:04:01] Already up to date.
+[2026-09-03 19:52:16] Already up to date.
+[2026-09-04 07:31:11] From https://github.com/piriyaponk/alphaabsolute    b21e36b..a69380a  main       -> origin/main Updating b21e36b..a69380a Fast-forward  data/paper_trading/state.json | 3 ++-  1 file changed, 2 insertions(+), 1 deletion(-)
+[2026-09-04 16:33:54] error: Your local changes to the following files would be overwritten by merge: 	data/paper_trading/state.json Please commit your changes or stash them before you merge. Aborting Updating e9c06f0..c7e0570
+[2026-09-05 08:42:36] From https://github.com/piriyaponk/alphaabsolute    c7e0570..da22028  main       -> origin/main error: Your local changes to the following files would be overwritten by merge: 	data/paper_trading/state.json Please commit your changes or stash them before you merge. Aborting Updating e9c06f0..da22028
+[2026-09-05 12:13:05] error: Your local changes to the following files would be overwritten by merge: 	data/paper_trading/state.json Please commit your changes or stash them before you merge. Aborting Updating e9c06f0..da22028
+[2026-09-06 09:32:08] From https://github.com/piriyaponk/alphaabsolute    f432c01..bbc488b  main       -> origin/main Updating f432c01..bbc488b Fast-forward  data/paper_trading/state.json | 10 ++++++----  1 file changed, 6 insertions(+), 4 deletions(-)

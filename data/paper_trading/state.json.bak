@@ -1,5 +1,5 @@
 {
-  "nav": 1000000.05,
+  "nav": 1017898.3,
   "cash": 0.0,
   "inception_nav": 1000000.0,
   "inception_date": "2026-09-02",
@@ -7,145 +7,151 @@
   "regime": "BULL",
   "positions": {
     "MRNA": {
-      "shares": 149.3103,
-      "cost_basis": 149.19,
-      "weight_target": 0.0223,
+      "shares": 153.2366,
+      "cost_basis": 146.75999450683594,
+      "weight_target": 0.0225,
       "entry_date": "2026-09-02",
-      "adtv_m": 1817.8,
+      "adtv_m": 1822.8,
       "rs_pct": 100.0,
       "beta": 1.76
     },
-    "TXG": {
-      "shares": 1063.0529,
-      "cost_basis": 61.11,
-      "weight_target": 0.065,
+    "SNDK": {
+      "shares": 24.3268,
+      "cost_basis": 1547.0,
+      "weight_target": 0.0376,
       "entry_date": "2026-09-02",
-      "adtv_m": 144.0,
+      "adtv_m": 22238.5,
+      "rs_pct": 99.9,
+      "beta": 2.75
+    },
+    "TXG": {
+      "shares": 1099.077,
+      "cost_basis": 59.689998626708984,
+      "weight_target": 0.0656,
+      "entry_date": "2026-09-02",
+      "adtv_m": 144.2,
       "rs_pct": 99.7,
-      "beta": 1.73
+      "beta": 1.72
     },
     "TWST": {
-      "shares": 390.4843,
-      "cost_basis": 133.3175,
-      "weight_target": 0.0521,
+      "shares": 410.5923,
+      "cost_basis": 127.43000030517578,
+      "weight_target": 0.0523,
       "entry_date": "2026-09-02",
-      "adtv_m": 180.6,
+      "adtv_m": 181.4,
       "rs_pct": 99.6,
-      "beta": 2.31
+      "beta": 2.29
     },
-    "ERAS": {
-      "shares": 4307.3142,
-      "cost_basis": 16.2,
-      "weight_target": 0.0698,
+    "DELL": {
+      "shares": 150.5554,
+      "cost_basis": 459.67999267578125,
+      "weight_target": 0.0692,
       "entry_date": "2026-09-02",
-      "adtv_m": 79.4,
-      "rs_pct": 99.6,
-      "beta": 1.44
+      "adtv_m": 3074.4,
+      "rs_pct": 99.2,
+      "beta": 1.28
     },
     "LITE": {
-      "shares": 60.8049,
-      "cost_basis": 855.17,
-      "weight_target": 0.052,
+      "shares": 61.113,
+      "cost_basis": 859.9149780273438,
+      "weight_target": 0.0526,
       "entry_date": "2026-09-02",
-      "adtv_m": 4143.9,
+      "adtv_m": 4150.0,
       "rs_pct": 99.1,
       "beta": 2.25
     },
-    "DELL": {
-      "shares": 158.1574,
-      "cost_basis": 440.95,
-      "weight_target": 0.0697,
-      "entry_date": "2026-09-02",
-      "adtv_m": 3042.9,
-      "rs_pct": 99.1,
-      "beta": 1.27
-    },
     "RVMD": {
-      "shares": 598.9137,
-      "cost_basis": 205.22,
-      "weight_target": 0.1229,
+      "shares": 601.4496,
+      "cost_basis": 207.75,
+      "weight_target": 0.125,
       "entry_date": "2026-09-02",
-      "adtv_m": 428.8,
+      "adtv_m": 429.5,
       "rs_pct": 99.0,
       "beta": 0.83
     },
-    "SYRE": {
-      "shares": 831.7141,
-      "cost_basis": 86.205,
-      "weight_target": 0.0717,
-      "entry_date": "2026-09-02",
-      "adtv_m": 122.0,
-      "rs_pct": 98.9,
-      "beta": 1.47
-    },
     "STX": {
-      "shares": 74.2626,
-      "cost_basis": 791.41,
-      "weight_target": 0.0588,
+      "shares": 74.5192,
+      "cost_basis": 797.719970703125,
+      "weight_target": 0.0594,
       "entry_date": "2026-09-02",
-      "adtv_m": 4171.4,
-      "rs_pct": 98.8,
+      "adtv_m": 4179.0,
+      "rs_pct": 98.9,
       "beta": 1.54
     },
-    "AAOI": {
-      "shares": 351.8656,
-      "cost_basis": 102.21,
-      "weight_target": 0.036,
+    "SYRE": {
+      "shares": 842.528,
+      "cost_basis": 85.90499877929688,
+      "weight_target": 0.0724,
       "entry_date": "2026-09-02",
-      "adtv_m": 1574.1,
+      "adtv_m": 122.3,
+      "rs_pct": 98.8,
+      "beta": 1.47
+    },
+    "AAOI": {
+      "shares": 356.6531,
+      "cost_basis": 101.87999725341797,
+      "weight_target": 0.0363,
+      "entry_date": "2026-09-02",
+      "adtv_m": 1574.9,
       "rs_pct": 98.8,
       "beta": 2.85
     },
     "WDC": {
-      "shares": 112.7738,
-      "cost_basis": 440.23,
-      "weight_target": 0.0496,
+      "shares": 112.637,
+      "cost_basis": 445.5899963378906,
+      "weight_target": 0.0502,
       "entry_date": "2026-09-02",
-      "adtv_m": 4677.3,
+      "adtv_m": 4681.2,
       "rs_pct": 98.7,
-      "beta": 1.97
+      "beta": 1.98
     },
     "ANDG": {
-      "shares": 1488.3215,
-      "cost_basis": 56.515,
-      "weight_target": 0.0841,
+      "shares": 1510.9533,
+      "cost_basis": 56.2599983215332,
+      "weight_target": 0.085,
       "entry_date": "2026-09-02",
       "adtv_m": 19.7,
       "rs_pct": 98.6,
       "beta": 0.55
     },
-    "MRVL": {
-      "shares": 239.6469,
-      "cost_basis": 205.4,
-      "weight_target": 0.0492,
+    "RNG": {
+      "shares": 1031.8399,
+      "cost_basis": 71.33499908447266,
+      "weight_target": 0.0736,
       "entry_date": "2026-09-02",
-      "adtv_m": 9407.8,
-      "rs_pct": 98.3,
-      "beta": 2.02
+      "adtv_m": 91.0,
+      "rs_pct": 98.6,
+      "beta": 0.41
     },
-    "PBF": {
-      "shares": 985.3756,
-      "cost_basis": 75.48,
-      "weight_target": 0.0744,
+    "TVTX": {
+      "shares": 1834.0437,
+      "cost_basis": 66.31999969482422,
+      "weight_target": 0.1216,
       "entry_date": "2026-09-02",
-      "adtv_m": 170.0,
+      "adtv_m": 101.1,
       "rs_pct": 98.2,
-      "beta": 0.3
+      "beta": 0.99
     },
-    "PACS": {
-      "shares": 2830.703,
-      "cost_basis": 43.27,
-      "weight_target": 0.1225,
+    "LQDA": {
+      "shares": 1124.8381,
+      "cost_basis": 68.13999938964844,
+      "weight_target": 0.0766,
       "entry_date": "2026-09-02",
-      "adtv_m": 37.1,
+      "adtv_m": 140.9,
       "rs_pct": 98.1,
-      "beta": 0.4
+      "beta": 0.88
     }
   },
   "nav_history": {
-    "2026-09-02": 1000000.05
+    "2026-09-02": 1000000.02,
+    "2026-09-03": 1000000.02,
+    "2026-09-04": 1017898.3
   },
-  "qqq_inception": 708.27001953125,
-  "qqq_nav_history": {},
-  "peak_nav": 1000000.05159525
+  "peak_nav": 1017898.2983637052,
+  "qqq_inception": 709.4400024414062,
+  "qqq_nav_history": {
+    "2026-09-02": 709.4400024414062,
+    "2026-09-04": 709.239990234375
+  },
+  "realized_pnl": []
 }

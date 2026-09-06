@@ -1,0 +1,13 @@
+{
+  "_meta": {
+    "version": "v2",
+    "started": "2026-05-17",
+    "note": "Fresh start \u2014 v1 positions cleared. v2 system begins from 100% cash.",
+    "benchmark": "QQQ"
+  },
+  "cash_pct": 1,
+  "deployed_pct": 0,
+  "total_positions": 0,
+  "positions": {},
+  "last_updated": "2026-06-16"
+}

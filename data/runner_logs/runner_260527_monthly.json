@@ -1,0 +1,37 @@
+{
+  "date": "2026-05-27",
+  "mode": "monthly",
+  "run_at": "2026-05-27T18:08:20.547807",
+  "steps": [
+    {
+      "step": "theme_mapper",
+      "name": "A05 Theme Mapper (auto-classify)",
+      "status": "ok",
+      "duration": 3.4,
+      "output": "data/themes/ticker_labels.json",
+      "error": "",
+      "time": "18:08:11"
+    },
+    {
+      "step": "a12_calibrate",
+      "name": "A12 Framework Calibrator (Bayesian)",
+      "status": "ok",
+      "duration": 0.1,
+      "output": "data/calibration/signal_weights.json",
+      "error": "",
+      "time": "18:08:12"
+    },
+    {
+      "step": "a12_performance",
+      "name": "A12 Performance Tracker (monthly report)",
+      "status": "ok",
+      "duration": 8.5,
+      "output": "output/",
+      "error": "",
+      "time": "18:08:20"
+    }
+  ],
+  "passed": 3,
+  "failed": 0,
+  "skipped": 0
+}

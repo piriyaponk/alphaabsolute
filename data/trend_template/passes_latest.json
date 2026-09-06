@@ -1,0 +1,5641 @@
+[
+  {
+    "ticker": "COHR",
+    "grade": "A",
+    "full_pass": true,
+    "gate_passes": 4,
+    "super_count": 2,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": true,
+    "fund_gate": true,
+    "tech_score": "5/6",
+    "rs_mkt_score": "3/3",
+    "rs_thm_score": "1/3",
+    "fund_score": "2/2",
+    "rs_3m": 93.6,
+    "rs_6m": 95.0,
+    "rs_mom_3m_6m": -1.4,
+    "rs_sector_3m": 50.0,
+    "rs_sector_6m": 25.0,
+    "rs_sec_mom": 25.0,
+    "pct_52w_high": -5.5,
+    "pct_52w_low": 405.7,
+    "pct_50d_ma": 28.3,
+    "pct_1_5y_h": -5.5,
+    "ma150_200": 15.3,
+    "adtv_m": 1533.5,
+    "eps_yoy": 120.5,
+    "rev_yoy": 25.9,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [
+      120.5,
+      -2000.0,
+      -510.3,
+      -71.1,
+      null
+    ],
+    "rev_yoy_5q": [
+      25.9,
+      25.0,
+      30.8,
+      32.4,
+      null
+    ],
+    "gm_5q": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "turnaround_label": "TURNAROUND",
+    "gm_expansion": null,
+    "eps_accelerating": true,
+    "setup_label": "S2-Turnaround",
+    "theme": "Photonics / Optical",
+    "theme_pct": 92.3,
+    "sl_score": 76.5,
+    "pulse_tier": "THEME_BONUS",
+    "nrgc_phase": 3,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": true,
+        "value": -5.5,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "PASS"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 405.7,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 28.3,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -5.5,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": 15.3,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "SUPERSTRONG"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 1533495744.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": true,
+        "value": 93.6,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_6m": {
+        "pass": true,
+        "value": 95.0,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_mom_3m_6m": {
+        "pass": true,
+        "value": -1.4,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "PASS"
+      },
+      "rs_sector_3m": {
+        "pass": false,
+        "value": 50.0,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_6m": {
+        "pass": false,
+        "value": 25.0,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_mom": {
+        "pass": true,
+        "value": 25.0,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "PASS"
+      },
+      "eps_yoy": {
+        "pass": true,
+        "value": 120.5,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "PASS"
+      },
+      "rev_yoy": {
+        "pass": true,
+        "value": 25.9,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "PASS"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  },
+  {
+    "ticker": "MU",
+    "grade": "A",
+    "full_pass": true,
+    "gate_passes": 4,
+    "super_count": 2,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": true,
+    "fund_gate": true,
+    "tech_score": "5/6",
+    "rs_mkt_score": "3/3",
+    "rs_thm_score": "2/3",
+    "fund_score": "2/2",
+    "rs_3m": 93.6,
+    "rs_6m": 96.5,
+    "rs_mom_3m_6m": -2.9,
+    "rs_sector_3m": 81.8,
+    "rs_sector_6m": 100.0,
+    "rs_sec_mom": -18.2,
+    "pct_52w_high": -9.8,
+    "pct_52w_low": 676.1,
+    "pct_50d_ma": 49.0,
+    "pct_1_5y_h": -9.8,
+    "ma150_200": 18.0,
+    "adtv_m": 15870.26,
+    "eps_yoy": 622.8,
+    "rev_yoy": 174.0,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [
+      622.8,
+      1433.3,
+      136.6,
+      -225.9,
+      null
+    ],
+    "rev_yoy_5q": [
+      174.0,
+      100.3,
+      59.7,
+      70.4,
+      null
+    ],
+    "gm_5q": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "turnaround_label": "TURNAROUND",
+    "gm_expansion": null,
+    "eps_accelerating": false,
+    "setup_label": "S2-Turnaround",
+    "theme": "Semiconductors (Broad)",
+    "theme_pct": 84.6,
+    "sl_score": 99.0,
+    "pulse_tier": "STRICT",
+    "nrgc_phase": 3,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": true,
+        "value": -9.8,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "PASS"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 676.1,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 49.0,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -9.8,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": 18.0,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "SUPERSTRONG"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 15870260011.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": true,
+        "value": 93.6,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_6m": {
+        "pass": true,
+        "value": 96.5,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_mom_3m_6m": {
+        "pass": true,
+        "value": -2.9,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "PASS"
+      },
+      "rs_sector_3m": {
+        "pass": true,
+        "value": 81.8,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "PASS"
+      },
+      "rs_sector_6m": {
+        "pass": true,
+        "value": 100.0,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "PASS"
+      },
+      "rs_sector_mom": {
+        "pass": false,
+        "value": -18.2,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "FAIL"
+      },
+      "eps_yoy": {
+        "pass": true,
+        "value": 622.8,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "PASS"
+      },
+      "rev_yoy": {
+        "pass": true,
+        "value": 174.0,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "PASS"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  },
+  {
+    "ticker": "WDC",
+    "grade": "A",
+    "full_pass": true,
+    "gate_passes": 4,
+    "super_count": 2,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": true,
+    "fund_gate": true,
+    "tech_score": "5/6",
+    "rs_mkt_score": "3/3",
+    "rs_thm_score": "3/3",
+    "fund_score": "2/2",
+    "rs_3m": 92.7,
+    "rs_6m": 96.4,
+    "rs_mom_3m_6m": -3.7,
+    "rs_sector_3m": 80.0,
+    "rs_sector_6m": 80.0,
+    "rs_sec_mom": 0.0,
+    "pct_52w_high": -6.5,
+    "pct_52w_low": 878.2,
+    "pct_50d_ma": 34.4,
+    "pct_1_5y_h": -6.5,
+    "ma150_200": 18.6,
+    "adtv_m": 2401.98,
+    "eps_yoy": 477.5,
+    "rev_yoy": 45.5,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [
+      477.5,
+      190.2,
+      127.4,
+      837.5,
+      null
+    ],
+    "rev_yoy_5q": [
+      45.5,
+      25.2,
+      27.4,
+      30.0,
+      null
+    ],
+    "gm_5q": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "turnaround_label": "ACCELERATING",
+    "gm_expansion": null,
+    "eps_accelerating": true,
+    "setup_label": "S1-Leader",
+    "theme": "Memory / HBM",
+    "theme_pct": 69.2,
+    "sl_score": 81.6,
+    "pulse_tier": "STRICT",
+    "nrgc_phase": 3,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": true,
+        "value": -6.5,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "PASS"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 878.2,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 34.4,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -6.5,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": 18.6,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "SUPERSTRONG"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 2401981567.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": true,
+        "value": 92.7,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_6m": {
+        "pass": true,
+        "value": 96.4,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_mom_3m_6m": {
+        "pass": true,
+        "value": -3.7,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "PASS"
+      },
+      "rs_sector_3m": {
+        "pass": true,
+        "value": 80.0,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "PASS"
+      },
+      "rs_sector_6m": {
+        "pass": true,
+        "value": 80.0,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "PASS"
+      },
+      "rs_sector_mom": {
+        "pass": true,
+        "value": 0.0,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "PASS"
+      },
+      "eps_yoy": {
+        "pass": true,
+        "value": 477.5,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "PASS"
+      },
+      "rev_yoy": {
+        "pass": true,
+        "value": 45.5,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "PASS"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  },
+  {
+    "ticker": "AAOI",
+    "grade": "B",
+    "full_pass": true,
+    "gate_passes": 3,
+    "super_count": 2,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": true,
+    "fund_gate": false,
+    "tech_score": "5/6",
+    "rs_mkt_score": "3/3",
+    "rs_thm_score": "3/3",
+    "fund_score": "0/0",
+    "rs_3m": 99.5,
+    "rs_6m": 99.5,
+    "rs_mom_3m_6m": 0.0,
+    "rs_sector_3m": 75.0,
+    "rs_sector_6m": 75.0,
+    "rs_sec_mom": 0.0,
+    "pct_52w_high": -14.7,
+    "pct_52w_low": 1134.5,
+    "pct_50d_ma": 40.5,
+    "pct_1_5y_h": -14.7,
+    "ma150_200": 18.9,
+    "adtv_m": 845.21,
+    "eps_yoy": null,
+    "rev_yoy": null,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [],
+    "rev_yoy_5q": [],
+    "gm_5q": [],
+    "turnaround_label": "NONE",
+    "gm_expansion": null,
+    "eps_accelerating": null,
+    "setup_label": "S1-Watchlist",
+    "theme": "Photonics / Optical",
+    "theme_pct": 92.3,
+    "sl_score": 75.9,
+    "pulse_tier": "THEME_CARRY",
+    "nrgc_phase": 4,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": true,
+        "value": -14.7,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "PASS"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 1134.5,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 40.5,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -14.7,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": 18.9,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "SUPERSTRONG"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 845208531.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": true,
+        "value": 99.5,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_6m": {
+        "pass": true,
+        "value": 99.5,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_mom_3m_6m": {
+        "pass": true,
+        "value": 0.0,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "PASS"
+      },
+      "rs_sector_3m": {
+        "pass": true,
+        "value": 75.0,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "PASS"
+      },
+      "rs_sector_6m": {
+        "pass": true,
+        "value": 75.0,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "PASS"
+      },
+      "rs_sector_mom": {
+        "pass": true,
+        "value": 0.0,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "PASS"
+      },
+      "eps_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "N/A"
+      },
+      "rev_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "N/A"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  },
+  {
+    "ticker": "AMAT",
+    "grade": "B",
+    "full_pass": true,
+    "gate_passes": 3,
+    "super_count": 2,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": true,
+    "fund_gate": false,
+    "tech_score": "5/6",
+    "rs_mkt_score": "2/3",
+    "rs_thm_score": "1/3",
+    "fund_score": "0/2",
+    "rs_3m": 79.9,
+    "rs_6m": 90.4,
+    "rs_mom_3m_6m": -10.5,
+    "rs_sector_3m": 18.2,
+    "rs_sector_6m": 72.7,
+    "rs_sec_mom": -54.5,
+    "pct_52w_high": -1.6,
+    "pct_52w_low": 179.4,
+    "pct_50d_ma": 14.7,
+    "pct_1_5y_h": -1.6,
+    "ma150_200": 11.7,
+    "adtv_m": 2424.6,
+    "eps_yoy": 23.9,
+    "rev_yoy": 3.5,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [
+      23.9,
+      7.8,
+      9.1,
+      -21.6,
+      null
+    ],
+    "rev_yoy_5q": [
+      3.5,
+      9.9,
+      5.9,
+      11.5,
+      null
+    ],
+    "gm_5q": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "turnaround_label": "EARLY",
+    "gm_expansion": null,
+    "eps_accelerating": true,
+    "setup_label": "S2-Early",
+    "theme": "Semiconductors (Broad)",
+    "theme_pct": 84.6,
+    "sl_score": 72.5,
+    "pulse_tier": "STRICT",
+    "nrgc_phase": 2,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": true,
+        "value": -1.6,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "PASS"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 179.4,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 14.7,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -1.6,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": 11.7,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "SUPERSTRONG"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 2424604841.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": true,
+        "value": 79.9,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_6m": {
+        "pass": true,
+        "value": 90.4,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_mom_3m_6m": {
+        "pass": false,
+        "value": -10.5,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "FAIL"
+      },
+      "rs_sector_3m": {
+        "pass": false,
+        "value": 18.2,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_6m": {
+        "pass": true,
+        "value": 72.7,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "PASS"
+      },
+      "rs_sector_mom": {
+        "pass": false,
+        "value": -54.5,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "FAIL"
+      },
+      "eps_yoy": {
+        "pass": false,
+        "value": 23.9,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "FAIL"
+      },
+      "rev_yoy": {
+        "pass": false,
+        "value": 3.5,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "FAIL"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  },
+  {
+    "ticker": "AMD",
+    "grade": "B",
+    "full_pass": true,
+    "gate_passes": 3,
+    "super_count": 2,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": true,
+    "fund_gate": false,
+    "tech_score": "5/6",
+    "rs_mkt_score": "3/3",
+    "rs_thm_score": "2/3",
+    "fund_score": "0/0",
+    "rs_3m": 96.7,
+    "rs_6m": 86.9,
+    "rs_mom_3m_6m": 9.8,
+    "rs_sector_3m": 90.9,
+    "rs_sector_6m": 54.5,
+    "rs_sec_mom": 36.4,
+    "pct_52w_high": -7.6,
+    "pct_52w_low": 284.5,
+    "pct_50d_ma": 51.9,
+    "pct_1_5y_h": -7.6,
+    "ma150_200": 8.1,
+    "adtv_m": 9507.58,
+    "eps_yoy": null,
+    "rev_yoy": null,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [],
+    "rev_yoy_5q": [],
+    "gm_5q": [],
+    "turnaround_label": "NONE",
+    "gm_expansion": null,
+    "eps_accelerating": null,
+    "setup_label": "S1-Watchlist",
+    "theme": "Semiconductors (Broad)",
+    "theme_pct": 84.6,
+    "sl_score": 91.8,
+    "pulse_tier": "STRICT",
+    "nrgc_phase": 0,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": true,
+        "value": -7.6,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "PASS"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 284.5,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 51.9,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -7.6,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": 8.1,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "SUPERSTRONG"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 9507578013.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": true,
+        "value": 96.7,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_6m": {
+        "pass": true,
+        "value": 86.9,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_mom_3m_6m": {
+        "pass": true,
+        "value": 9.8,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "PASS"
+      },
+      "rs_sector_3m": {
+        "pass": true,
+        "value": 90.9,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "PASS"
+      },
+      "rs_sector_6m": {
+        "pass": false,
+        "value": 54.5,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_mom": {
+        "pass": true,
+        "value": 36.4,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "PASS"
+      },
+      "eps_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "N/A"
+      },
+      "rev_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "N/A"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  },
+  {
+    "ticker": "AVGO",
+    "grade": "B",
+    "full_pass": true,
+    "gate_passes": 3,
+    "super_count": 2,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": true,
+    "fund_gate": false,
+    "tech_score": "5/6",
+    "rs_mkt_score": "3/3",
+    "rs_thm_score": "1/3",
+    "fund_score": "0/0",
+    "rs_3m": 83.2,
+    "rs_6m": 70.8,
+    "rs_mom_3m_6m": 12.4,
+    "rs_sector_3m": 45.5,
+    "rs_sector_6m": 18.2,
+    "rs_sec_mom": 27.3,
+    "pct_52w_high": -3.3,
+    "pct_52w_low": 86.0,
+    "pct_50d_ma": 15.1,
+    "pct_1_5y_h": -3.3,
+    "ma150_200": 2.4,
+    "adtv_m": 9656.72,
+    "eps_yoy": null,
+    "rev_yoy": null,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [],
+    "rev_yoy_5q": [],
+    "gm_5q": [],
+    "turnaround_label": "NONE",
+    "gm_expansion": null,
+    "eps_accelerating": null,
+    "setup_label": "S1-Watchlist",
+    "theme": "Semiconductors (Broad)",
+    "theme_pct": 84.6,
+    "sl_score": 43.9,
+    "pulse_tier": "THEME_CARRY",
+    "nrgc_phase": 0,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": true,
+        "value": -3.3,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "PASS"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 86.0,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 15.1,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -3.3,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": 2.4,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "SUPERSTRONG"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 9656719798.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": true,
+        "value": 83.2,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_6m": {
+        "pass": true,
+        "value": 70.8,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_mom_3m_6m": {
+        "pass": true,
+        "value": 12.4,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "PASS"
+      },
+      "rs_sector_3m": {
+        "pass": false,
+        "value": 45.5,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_6m": {
+        "pass": false,
+        "value": 18.2,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_mom": {
+        "pass": true,
+        "value": 27.3,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "PASS"
+      },
+      "eps_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "N/A"
+      },
+      "rev_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "N/A"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  },
+  {
+    "ticker": "CLSK",
+    "grade": "B",
+    "full_pass": true,
+    "gate_passes": 3,
+    "super_count": 2,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": true,
+    "fund_gate": false,
+    "tech_score": "4/6",
+    "rs_mkt_score": "2/3",
+    "rs_thm_score": "1/3",
+    "fund_score": "0/0",
+    "rs_3m": 84.2,
+    "rs_6m": 40.6,
+    "rs_mom_3m_6m": 43.6,
+    "rs_sector_3m": 66.7,
+    "rs_sector_6m": 33.3,
+    "rs_sec_mom": 33.4,
+    "pct_52w_high": -43.5,
+    "pct_52w_low": 60.3,
+    "pct_50d_ma": 18.9,
+    "pct_1_5y_h": -43.5,
+    "ma150_200": 1.6,
+    "adtv_m": 300.42,
+    "eps_yoy": null,
+    "rev_yoy": null,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [],
+    "rev_yoy_5q": [],
+    "gm_5q": [],
+    "turnaround_label": "NONE",
+    "gm_expansion": null,
+    "eps_accelerating": null,
+    "setup_label": "S1-Watchlist",
+    "theme": "NeoCloud / Compute",
+    "theme_pct": 46.2,
+    "sl_score": 66.3,
+    "pulse_tier": "STANDARD",
+    "nrgc_phase": 0,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": false,
+        "value": -43.5,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "FAIL"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 60.3,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 18.9,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -43.5,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": 1.6,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "SUPERSTRONG"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 300422478.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": true,
+        "value": 84.2,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_6m": {
+        "pass": false,
+        "value": 40.6,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "FAIL"
+      },
+      "rs_mom_3m_6m": {
+        "pass": true,
+        "value": 43.6,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "PASS"
+      },
+      "rs_sector_3m": {
+        "pass": false,
+        "value": 66.7,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_6m": {
+        "pass": false,
+        "value": 33.3,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_mom": {
+        "pass": true,
+        "value": 33.4,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "PASS"
+      },
+      "eps_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "N/A"
+      },
+      "rev_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "N/A"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  },
+  {
+    "ticker": "CORZ",
+    "grade": "B",
+    "full_pass": true,
+    "gate_passes": 3,
+    "super_count": 2,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": true,
+    "fund_gate": false,
+    "tech_score": "5/6",
+    "rs_mkt_score": "3/3",
+    "rs_thm_score": "3/3",
+    "fund_score": "0/2",
+    "rs_3m": 85.1,
+    "rs_6m": 83.7,
+    "rs_mom_3m_6m": 1.4,
+    "rs_sector_3m": 100.0,
+    "rs_sector_6m": 100.0,
+    "rs_sec_mom": 0.0,
+    "pct_52w_high": -2.9,
+    "pct_52w_low": 130.3,
+    "pct_50d_ma": 29.1,
+    "pct_1_5y_h": -2.9,
+    "ma150_200": 3.7,
+    "adtv_m": 223.95,
+    "eps_yoy": -9.4,
+    "rev_yoy": 20.9,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [
+      -9.4,
+      -89.8,
+      -105.1,
+      -1227.3,
+      null
+    ],
+    "rev_yoy_5q": [
+      20.9,
+      -42.5,
+      -56.1,
+      -29.6,
+      null
+    ],
+    "gm_5q": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "turnaround_label": "DECLINING",
+    "gm_expansion": null,
+    "eps_accelerating": true,
+    "setup_label": "S1-Watchlist",
+    "theme": "NeoCloud / Compute",
+    "theme_pct": 46.2,
+    "sl_score": 77.2,
+    "pulse_tier": "STRICT",
+    "nrgc_phase": 3,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": true,
+        "value": -2.9,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "PASS"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 130.3,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 29.1,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -2.9,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": 3.7,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "SUPERSTRONG"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 223948374.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": true,
+        "value": 85.1,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_6m": {
+        "pass": true,
+        "value": 83.7,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_mom_3m_6m": {
+        "pass": true,
+        "value": 1.4,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "PASS"
+      },
+      "rs_sector_3m": {
+        "pass": true,
+        "value": 100.0,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "PASS"
+      },
+      "rs_sector_6m": {
+        "pass": true,
+        "value": 100.0,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "PASS"
+      },
+      "rs_sector_mom": {
+        "pass": true,
+        "value": 0.0,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "PASS"
+      },
+      "eps_yoy": {
+        "pass": false,
+        "value": -9.4,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "FAIL"
+      },
+      "rev_yoy": {
+        "pass": false,
+        "value": 20.9,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "FAIL"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  },
+  {
+    "ticker": "DELL",
+    "grade": "B",
+    "full_pass": true,
+    "gate_passes": 3,
+    "super_count": 2,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": true,
+    "fund_gate": false,
+    "tech_score": "5/6",
+    "rs_mkt_score": "3/3",
+    "rs_thm_score": "3/3",
+    "fund_score": "0/0",
+    "rs_3m": 96.9,
+    "rs_6m": 88.3,
+    "rs_mom_3m_6m": 8.6,
+    "rs_sector_3m": 100.0,
+    "rs_sector_6m": 80.0,
+    "rs_sec_mom": 20.0,
+    "pct_52w_high": -7.1,
+    "pct_52w_low": 127.4,
+    "pct_50d_ma": 27.2,
+    "pct_1_5y_h": -7.1,
+    "ma150_200": 3.2,
+    "adtv_m": 1151.36,
+    "eps_yoy": null,
+    "rev_yoy": null,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [],
+    "rev_yoy_5q": [],
+    "gm_5q": [],
+    "turnaround_label": "NONE",
+    "gm_expansion": null,
+    "eps_accelerating": null,
+    "setup_label": "S1-Watchlist",
+    "theme": "AI Infrastructure",
+    "theme_pct": 76.9,
+    "sl_score": 71.8,
+    "pulse_tier": "THEME_BONUS",
+    "nrgc_phase": 0,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": true,
+        "value": -7.1,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "PASS"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 127.4,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 27.2,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -7.1,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": 3.2,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "SUPERSTRONG"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 1151361613.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": true,
+        "value": 96.9,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_6m": {
+        "pass": true,
+        "value": 88.3,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_mom_3m_6m": {
+        "pass": true,
+        "value": 8.6,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "PASS"
+      },
+      "rs_sector_3m": {
+        "pass": true,
+        "value": 100.0,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "PASS"
+      },
+      "rs_sector_6m": {
+        "pass": true,
+        "value": 80.0,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "PASS"
+      },
+      "rs_sector_mom": {
+        "pass": true,
+        "value": 20.0,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "PASS"
+      },
+      "eps_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "N/A"
+      },
+      "rev_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "N/A"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  },
+  {
+    "ticker": "EME",
+    "grade": "B",
+    "full_pass": true,
+    "gate_passes": 3,
+    "super_count": 2,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": true,
+    "fund_gate": false,
+    "tech_score": "5/6",
+    "rs_mkt_score": "3/3",
+    "rs_thm_score": "1/3",
+    "fund_score": "0/0",
+    "rs_3m": 73.6,
+    "rs_6m": 82.0,
+    "rs_mom_3m_6m": -8.4,
+    "rs_sector_3m": 40.0,
+    "rs_sector_6m": 40.0,
+    "rs_sec_mom": 0.0,
+    "pct_52w_high": -3.2,
+    "pct_52w_low": 99.6,
+    "pct_50d_ma": 12.8,
+    "pct_1_5y_h": -3.2,
+    "ma150_200": 3.3,
+    "adtv_m": 275.31,
+    "eps_yoy": null,
+    "rev_yoy": null,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [],
+    "rev_yoy_5q": [],
+    "gm_5q": [],
+    "turnaround_label": "NONE",
+    "gm_expansion": null,
+    "eps_accelerating": null,
+    "setup_label": "S1-Watchlist",
+    "theme": "AI Infrastructure",
+    "theme_pct": 76.9,
+    "sl_score": 73.1,
+    "pulse_tier": "STRICT",
+    "nrgc_phase": 0,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": true,
+        "value": -3.2,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "PASS"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 99.6,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 12.8,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -3.2,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": 3.3,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "SUPERSTRONG"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 275306494.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": true,
+        "value": 73.6,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_6m": {
+        "pass": true,
+        "value": 82.0,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_mom_3m_6m": {
+        "pass": true,
+        "value": -8.4,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "PASS"
+      },
+      "rs_sector_3m": {
+        "pass": false,
+        "value": 40.0,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_6m": {
+        "pass": false,
+        "value": 40.0,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_mom": {
+        "pass": true,
+        "value": 0.0,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "PASS"
+      },
+      "eps_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "N/A"
+      },
+      "rev_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "N/A"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  },
+  {
+    "ticker": "ERIC",
+    "grade": "B",
+    "full_pass": true,
+    "gate_passes": 3,
+    "super_count": 2,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": true,
+    "fund_gate": false,
+    "tech_score": "5/6",
+    "rs_mkt_score": "3/3",
+    "rs_thm_score": "1/3",
+    "fund_score": "0/0",
+    "rs_3m": 72.1,
+    "rs_6m": 74.7,
+    "rs_mom_3m_6m": -2.6,
+    "rs_sector_3m": 66.7,
+    "rs_sector_6m": 33.3,
+    "rs_sec_mom": 33.4,
+    "pct_52w_high": -1.3,
+    "pct_52w_low": 73.6,
+    "pct_50d_ma": 7.2,
+    "pct_1_5y_h": -1.3,
+    "ma150_200": 6.7,
+    "adtv_m": 102.83,
+    "eps_yoy": null,
+    "rev_yoy": null,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [],
+    "rev_yoy_5q": [],
+    "gm_5q": [],
+    "turnaround_label": "NONE",
+    "gm_expansion": null,
+    "eps_accelerating": null,
+    "setup_label": "S1-Watchlist",
+    "theme": "Connectivity / Satcom",
+    "theme_pct": 61.5,
+    "sl_score": 52.1,
+    "pulse_tier": "FAIL",
+    "nrgc_phase": 0,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": true,
+        "value": -1.3,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "PASS"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 73.6,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 7.2,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -1.3,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": 6.7,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "SUPERSTRONG"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 102828724.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": true,
+        "value": 72.1,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_6m": {
+        "pass": true,
+        "value": 74.7,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_mom_3m_6m": {
+        "pass": true,
+        "value": -2.6,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "PASS"
+      },
+      "rs_sector_3m": {
+        "pass": false,
+        "value": 66.7,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_6m": {
+        "pass": false,
+        "value": 33.3,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_mom": {
+        "pass": true,
+        "value": 33.4,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "PASS"
+      },
+      "eps_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "N/A"
+      },
+      "rev_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "N/A"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  },
+  {
+    "ticker": "KLAC",
+    "grade": "B",
+    "full_pass": true,
+    "gate_passes": 3,
+    "super_count": 2,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": true,
+    "fund_gate": false,
+    "tech_score": "5/6",
+    "rs_mkt_score": "3/3",
+    "rs_thm_score": "1/3",
+    "fund_score": "0/0",
+    "rs_3m": 80.1,
+    "rs_6m": 84.7,
+    "rs_mom_3m_6m": -4.6,
+    "rs_sector_3m": 36.4,
+    "rs_sector_6m": 36.4,
+    "rs_sec_mom": 0.0,
+    "pct_52w_high": -6.8,
+    "pct_52w_low": 138.4,
+    "pct_50d_ma": 9.1,
+    "pct_1_5y_h": -6.8,
+    "ma150_200": 8.8,
+    "adtv_m": 1521.9,
+    "eps_yoy": null,
+    "rev_yoy": null,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [],
+    "rev_yoy_5q": [],
+    "gm_5q": [],
+    "turnaround_label": "NONE",
+    "gm_expansion": null,
+    "eps_accelerating": null,
+    "setup_label": "S1-Watchlist",
+    "theme": "Semiconductors (Broad)",
+    "theme_pct": 84.6,
+    "sl_score": 38.8,
+    "pulse_tier": "THEME_CARRY",
+    "nrgc_phase": 0,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": true,
+        "value": -6.8,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "PASS"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 138.4,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 9.1,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -6.8,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": 8.8,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "SUPERSTRONG"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 1521903060.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": true,
+        "value": 80.1,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_6m": {
+        "pass": true,
+        "value": 84.7,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_mom_3m_6m": {
+        "pass": true,
+        "value": -4.6,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "PASS"
+      },
+      "rs_sector_3m": {
+        "pass": false,
+        "value": 36.4,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_6m": {
+        "pass": false,
+        "value": 36.4,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_mom": {
+        "pass": true,
+        "value": 0.0,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "PASS"
+      },
+      "eps_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "N/A"
+      },
+      "rev_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "N/A"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  },
+  {
+    "ticker": "LUNR",
+    "grade": "B",
+    "full_pass": true,
+    "gate_passes": 3,
+    "super_count": 2,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": true,
+    "fund_gate": false,
+    "tech_score": "5/6",
+    "rs_mkt_score": "3/3",
+    "rs_thm_score": "3/3",
+    "fund_score": "1/2",
+    "rs_3m": 97.2,
+    "rs_6m": 98.5,
+    "rs_mom_3m_6m": -1.3,
+    "rs_sector_3m": 100.0,
+    "rs_sector_6m": 100.0,
+    "rs_sec_mom": 0.0,
+    "pct_52w_high": -7.2,
+    "pct_52w_low": 321.0,
+    "pct_50d_ma": 43.6,
+    "pct_1_5y_h": -7.2,
+    "ma150_200": 12.4,
+    "adtv_m": 235.2,
+    "eps_yoy": -69.9,
+    "rev_yoy": 219.3,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [
+      -69.9,
+      -120.0,
+      -91.8,
+      -108.7,
+      null
+    ],
+    "rev_yoy_5q": [
+      219.3,
+      null,
+      null,
+      null,
+      null
+    ],
+    "gm_5q": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "turnaround_label": "DECLINING",
+    "gm_expansion": null,
+    "eps_accelerating": true,
+    "setup_label": "S1-Watchlist",
+    "theme": "Space",
+    "theme_pct": 100.0,
+    "sl_score": 75.8,
+    "pulse_tier": "THEME_BONUS",
+    "nrgc_phase": 3,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": true,
+        "value": -7.2,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "PASS"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 321.0,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 43.6,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -7.2,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": 12.4,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "SUPERSTRONG"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 235195949.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": true,
+        "value": 97.2,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_6m": {
+        "pass": true,
+        "value": 98.5,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_mom_3m_6m": {
+        "pass": true,
+        "value": -1.3,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "PASS"
+      },
+      "rs_sector_3m": {
+        "pass": true,
+        "value": 100.0,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "PASS"
+      },
+      "rs_sector_6m": {
+        "pass": true,
+        "value": 100.0,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "PASS"
+      },
+      "rs_sector_mom": {
+        "pass": true,
+        "value": 0.0,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "PASS"
+      },
+      "eps_yoy": {
+        "pass": false,
+        "value": -69.9,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "FAIL"
+      },
+      "rev_yoy": {
+        "pass": true,
+        "value": 219.3,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "PASS"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  },
+  {
+    "ticker": "MPWR",
+    "grade": "B",
+    "full_pass": true,
+    "gate_passes": 3,
+    "super_count": 2,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": true,
+    "fund_gate": false,
+    "tech_score": "5/6",
+    "rs_mkt_score": "3/3",
+    "rs_thm_score": "1/3",
+    "fund_score": "0/0",
+    "rs_3m": 83.9,
+    "rs_6m": 86.6,
+    "rs_mom_3m_6m": -2.7,
+    "rs_sector_3m": 54.5,
+    "rs_sector_6m": 45.5,
+    "rs_sec_mom": 9.0,
+    "pct_52w_high": -6.7,
+    "pct_52w_low": 135.9,
+    "pct_50d_ma": 16.8,
+    "pct_1_5y_h": -6.7,
+    "ma150_200": 6.2,
+    "adtv_m": 725.95,
+    "eps_yoy": null,
+    "rev_yoy": null,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [],
+    "rev_yoy_5q": [],
+    "gm_5q": [],
+    "turnaround_label": "NONE",
+    "gm_expansion": null,
+    "eps_accelerating": null,
+    "setup_label": "S1-Watchlist",
+    "theme": "Semiconductors (Broad)",
+    "theme_pct": 84.6,
+    "sl_score": 60.3,
+    "pulse_tier": "THEME_BONUS",
+    "nrgc_phase": 0,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": true,
+        "value": -6.7,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "PASS"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 135.9,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 16.8,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -6.7,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": 6.2,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "SUPERSTRONG"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 725948969.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": true,
+        "value": 83.9,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_6m": {
+        "pass": true,
+        "value": 86.6,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_mom_3m_6m": {
+        "pass": true,
+        "value": -2.7,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "PASS"
+      },
+      "rs_sector_3m": {
+        "pass": false,
+        "value": 54.5,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_6m": {
+        "pass": false,
+        "value": 45.5,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_mom": {
+        "pass": true,
+        "value": 9.0,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "PASS"
+      },
+      "eps_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "N/A"
+      },
+      "rev_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "N/A"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  },
+  {
+    "ticker": "MRAM",
+    "grade": "B",
+    "full_pass": true,
+    "gate_passes": 3,
+    "super_count": 2,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": true,
+    "fund_gate": false,
+    "tech_score": "5/6",
+    "rs_mkt_score": "3/3",
+    "rs_thm_score": "3/3",
+    "fund_score": "0/0",
+    "rs_3m": 99.5,
+    "rs_6m": 99.5,
+    "rs_mom_3m_6m": 0.0,
+    "rs_sector_3m": 100.0,
+    "rs_sector_6m": 100.0,
+    "rs_sec_mom": 0.0,
+    "pct_52w_high": -14.6,
+    "pct_52w_low": 580.6,
+    "pct_50d_ma": 152.2,
+    "pct_1_5y_h": -14.6,
+    "ma150_200": 10.4,
+    "adtv_m": 34.49,
+    "eps_yoy": null,
+    "rev_yoy": null,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [],
+    "rev_yoy_5q": [],
+    "gm_5q": [],
+    "turnaround_label": "NONE",
+    "gm_expansion": null,
+    "eps_accelerating": null,
+    "setup_label": "S1-Watchlist",
+    "theme": "Photonics / Optical",
+    "theme_pct": 92.3,
+    "sl_score": 97.5,
+    "pulse_tier": "STRICT",
+    "nrgc_phase": 4,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": true,
+        "value": -14.6,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "PASS"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 580.6,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 152.2,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -14.6,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": 10.4,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "SUPERSTRONG"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 34488241.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": true,
+        "value": 99.5,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_6m": {
+        "pass": true,
+        "value": 99.5,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_mom_3m_6m": {
+        "pass": true,
+        "value": 0.0,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "PASS"
+      },
+      "rs_sector_3m": {
+        "pass": true,
+        "value": 100.0,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "PASS"
+      },
+      "rs_sector_6m": {
+        "pass": true,
+        "value": 100.0,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "PASS"
+      },
+      "rs_sector_mom": {
+        "pass": true,
+        "value": 0.0,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "PASS"
+      },
+      "eps_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "N/A"
+      },
+      "rev_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "N/A"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  },
+  {
+    "ticker": "MRVL",
+    "grade": "B",
+    "full_pass": true,
+    "gate_passes": 3,
+    "super_count": 2,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": true,
+    "fund_gate": false,
+    "tech_score": "5/6",
+    "rs_mkt_score": "3/3",
+    "rs_thm_score": "3/3",
+    "fund_score": "0/0",
+    "rs_3m": 98.4,
+    "rs_6m": 91.1,
+    "rs_mom_3m_6m": 7.3,
+    "rs_sector_3m": 100.0,
+    "rs_sector_6m": 81.8,
+    "rs_sec_mom": 18.2,
+    "pct_52w_high": -3.1,
+    "pct_52w_low": 194.3,
+    "pct_50d_ma": 38.0,
+    "pct_1_5y_h": -3.1,
+    "ma150_200": 6.3,
+    "adtv_m": 2176.74,
+    "eps_yoy": null,
+    "rev_yoy": null,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [],
+    "rev_yoy_5q": [],
+    "gm_5q": [],
+    "turnaround_label": "NONE",
+    "gm_expansion": null,
+    "eps_accelerating": null,
+    "setup_label": "S1-Watchlist",
+    "theme": "Semiconductors (Broad)",
+    "theme_pct": 84.6,
+    "sl_score": 74.8,
+    "pulse_tier": "STRICT",
+    "nrgc_phase": 0,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": true,
+        "value": -3.1,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "PASS"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 194.3,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 38.0,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -3.1,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": 6.3,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "SUPERSTRONG"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 2176737075.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": true,
+        "value": 98.4,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_6m": {
+        "pass": true,
+        "value": 91.1,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_mom_3m_6m": {
+        "pass": true,
+        "value": 7.3,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "PASS"
+      },
+      "rs_sector_3m": {
+        "pass": true,
+        "value": 100.0,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "PASS"
+      },
+      "rs_sector_6m": {
+        "pass": true,
+        "value": 81.8,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "PASS"
+      },
+      "rs_sector_mom": {
+        "pass": true,
+        "value": 18.2,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "PASS"
+      },
+      "eps_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "N/A"
+      },
+      "rev_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "N/A"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  },
+  {
+    "ticker": "NOK",
+    "grade": "B",
+    "full_pass": true,
+    "gate_passes": 3,
+    "super_count": 2,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": true,
+    "fund_gate": false,
+    "tech_score": "5/6",
+    "rs_mkt_score": "3/3",
+    "rs_thm_score": "3/3",
+    "fund_score": "0/0",
+    "rs_3m": 96.3,
+    "rs_6m": 91.4,
+    "rs_mom_3m_6m": 4.9,
+    "rs_sector_3m": 100.0,
+    "rs_sector_6m": 100.0,
+    "rs_sec_mom": 0.0,
+    "pct_52w_high": -5.2,
+    "pct_52w_low": 249.3,
+    "pct_50d_ma": 37.5,
+    "pct_1_5y_h": -5.2,
+    "ma150_200": 12.1,
+    "adtv_m": 532.3,
+    "eps_yoy": null,
+    "rev_yoy": null,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [],
+    "rev_yoy_5q": [],
+    "gm_5q": [],
+    "turnaround_label": "NONE",
+    "gm_expansion": null,
+    "eps_accelerating": null,
+    "setup_label": "S1-Watchlist",
+    "theme": "Connectivity / Satcom",
+    "theme_pct": 61.5,
+    "sl_score": 84.8,
+    "pulse_tier": "STRICT",
+    "nrgc_phase": 0,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": true,
+        "value": -5.2,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "PASS"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 249.3,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 37.5,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -5.2,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": 12.1,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "SUPERSTRONG"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 532300273.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": true,
+        "value": 96.3,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_6m": {
+        "pass": true,
+        "value": 91.4,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_mom_3m_6m": {
+        "pass": true,
+        "value": 4.9,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "PASS"
+      },
+      "rs_sector_3m": {
+        "pass": true,
+        "value": 100.0,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "PASS"
+      },
+      "rs_sector_6m": {
+        "pass": true,
+        "value": 100.0,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "PASS"
+      },
+      "rs_sector_mom": {
+        "pass": true,
+        "value": 0.0,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "PASS"
+      },
+      "eps_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "N/A"
+      },
+      "rev_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "N/A"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  },
+  {
+    "ticker": "NVDA",
+    "grade": "B",
+    "full_pass": true,
+    "gate_passes": 3,
+    "super_count": 2,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": true,
+    "fund_gate": false,
+    "tech_score": "5/6",
+    "rs_mkt_score": "2/3",
+    "rs_thm_score": "1/3",
+    "fund_score": "0/0",
+    "rs_3m": 80.1,
+    "rs_6m": 66.7,
+    "rs_mom_3m_6m": 13.4,
+    "rs_sector_3m": 27.3,
+    "rs_sector_6m": 9.1,
+    "rs_sec_mom": 18.2,
+    "pct_52w_high": -4.4,
+    "pct_52w_low": 71.7,
+    "pct_50d_ma": 16.7,
+    "pct_1_5y_h": -4.4,
+    "ma150_200": 1.2,
+    "adtv_m": 32795.99,
+    "eps_yoy": null,
+    "rev_yoy": null,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [],
+    "rev_yoy_5q": [],
+    "gm_5q": [],
+    "turnaround_label": "NONE",
+    "gm_expansion": null,
+    "eps_accelerating": null,
+    "setup_label": "S1-Watchlist",
+    "theme": "Semiconductors (Broad)",
+    "theme_pct": 84.6,
+    "sl_score": 75.8,
+    "pulse_tier": "STRICT",
+    "nrgc_phase": 4,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": true,
+        "value": -4.4,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "PASS"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 71.7,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 16.7,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -4.4,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": 1.2,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "SUPERSTRONG"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 32795988564.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": true,
+        "value": 80.1,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_6m": {
+        "pass": false,
+        "value": 66.7,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "FAIL"
+      },
+      "rs_mom_3m_6m": {
+        "pass": true,
+        "value": 13.4,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "PASS"
+      },
+      "rs_sector_3m": {
+        "pass": false,
+        "value": 27.3,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_6m": {
+        "pass": false,
+        "value": 9.1,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_mom": {
+        "pass": true,
+        "value": 18.2,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "PASS"
+      },
+      "eps_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "N/A"
+      },
+      "rev_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "N/A"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  },
+  {
+    "ticker": "ON",
+    "grade": "B",
+    "full_pass": true,
+    "gate_passes": 3,
+    "super_count": 2,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": true,
+    "fund_gate": false,
+    "tech_score": "5/6",
+    "rs_mkt_score": "3/3",
+    "rs_thm_score": "2/3",
+    "fund_score": "0/0",
+    "rs_3m": 90.0,
+    "rs_6m": 93.9,
+    "rs_mom_3m_6m": -3.9,
+    "rs_sector_3m": 72.7,
+    "rs_sector_6m": 90.9,
+    "rs_sec_mom": -18.2,
+    "pct_52w_high": -4.4,
+    "pct_52w_low": 174.1,
+    "pct_50d_ma": 43.8,
+    "pct_1_5y_h": -4.4,
+    "ma150_200": 5.9,
+    "adtv_m": 671.33,
+    "eps_yoy": null,
+    "rev_yoy": null,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [],
+    "rev_yoy_5q": [],
+    "gm_5q": [],
+    "turnaround_label": "NONE",
+    "gm_expansion": null,
+    "eps_accelerating": null,
+    "setup_label": "S1-Watchlist",
+    "theme": "Semiconductors (Broad)",
+    "theme_pct": 84.6,
+    "sl_score": 85.8,
+    "pulse_tier": "STRICT",
+    "nrgc_phase": 0,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": true,
+        "value": -4.4,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "PASS"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 174.1,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 43.8,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -4.4,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": 5.9,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "SUPERSTRONG"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 671334101.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": true,
+        "value": 90.0,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_6m": {
+        "pass": true,
+        "value": 93.9,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_mom_3m_6m": {
+        "pass": true,
+        "value": -3.9,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "PASS"
+      },
+      "rs_sector_3m": {
+        "pass": true,
+        "value": 72.7,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "PASS"
+      },
+      "rs_sector_6m": {
+        "pass": true,
+        "value": 90.9,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "PASS"
+      },
+      "rs_sector_mom": {
+        "pass": false,
+        "value": -18.2,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "FAIL"
+      },
+      "eps_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "N/A"
+      },
+      "rev_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "N/A"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  },
+  {
+    "ticker": "PL",
+    "grade": "B",
+    "full_pass": true,
+    "gate_passes": 3,
+    "super_count": 2,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": true,
+    "fund_gate": false,
+    "tech_score": "5/6",
+    "rs_mkt_score": "3/3",
+    "rs_thm_score": "3/3",
+    "fund_score": "0/0",
+    "rs_3m": 95.2,
+    "rs_6m": 97.6,
+    "rs_mom_3m_6m": -2.4,
+    "rs_sector_3m": 75.0,
+    "rs_sector_6m": 75.0,
+    "rs_sec_mom": 0.0,
+    "pct_52w_high": -3.3,
+    "pct_52w_low": 1031.0,
+    "pct_50d_ma": 22.6,
+    "pct_1_5y_h": -3.3,
+    "ma150_200": 18.0,
+    "adtv_m": 334.9,
+    "eps_yoy": null,
+    "rev_yoy": null,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [],
+    "rev_yoy_5q": [],
+    "gm_5q": [],
+    "turnaround_label": "NONE",
+    "gm_expansion": null,
+    "eps_accelerating": null,
+    "setup_label": "S1-Watchlist",
+    "theme": "Space",
+    "theme_pct": 100.0,
+    "sl_score": 50.0,
+    "pulse_tier": "FAIL",
+    "nrgc_phase": 0,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": true,
+        "value": -3.3,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "PASS"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 1031.0,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 22.6,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -3.3,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": 18.0,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "SUPERSTRONG"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 334896306.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": true,
+        "value": 95.2,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_6m": {
+        "pass": true,
+        "value": 97.6,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_mom_3m_6m": {
+        "pass": true,
+        "value": -2.4,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "PASS"
+      },
+      "rs_sector_3m": {
+        "pass": true,
+        "value": 75.0,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "PASS"
+      },
+      "rs_sector_6m": {
+        "pass": true,
+        "value": 75.0,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "PASS"
+      },
+      "rs_sector_mom": {
+        "pass": true,
+        "value": 0.0,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "PASS"
+      },
+      "eps_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "N/A"
+      },
+      "rev_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "N/A"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  },
+  {
+    "ticker": "PWR",
+    "grade": "B",
+    "full_pass": true,
+    "gate_passes": 3,
+    "super_count": 2,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": true,
+    "fund_gate": false,
+    "tech_score": "5/6",
+    "rs_mkt_score": "3/3",
+    "rs_thm_score": "1/3",
+    "fund_score": "0/0",
+    "rs_3m": 87.8,
+    "rs_6m": 88.0,
+    "rs_mom_3m_6m": -0.2,
+    "rs_sector_3m": 60.0,
+    "rs_sector_6m": 60.0,
+    "rs_sec_mom": 0.0,
+    "pct_52w_high": -1.9,
+    "pct_52w_low": 133.0,
+    "pct_50d_ma": 23.4,
+    "pct_1_5y_h": -1.9,
+    "ma150_200": 6.5,
+    "adtv_m": 585.88,
+    "eps_yoy": null,
+    "rev_yoy": null,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [],
+    "rev_yoy_5q": [],
+    "gm_5q": [],
+    "turnaround_label": "NONE",
+    "gm_expansion": null,
+    "eps_accelerating": null,
+    "setup_label": "S1-Watchlist",
+    "theme": "AI Infrastructure",
+    "theme_pct": 76.9,
+    "sl_score": 96.6,
+    "pulse_tier": "STRICT",
+    "nrgc_phase": 0,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": true,
+        "value": -1.9,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "PASS"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 133.0,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 23.4,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -1.9,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": 6.5,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "SUPERSTRONG"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 585882953.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": true,
+        "value": 87.8,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_6m": {
+        "pass": true,
+        "value": 88.0,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_mom_3m_6m": {
+        "pass": true,
+        "value": -0.2,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "PASS"
+      },
+      "rs_sector_3m": {
+        "pass": false,
+        "value": 60.0,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_6m": {
+        "pass": false,
+        "value": 60.0,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_mom": {
+        "pass": true,
+        "value": 0.0,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "PASS"
+      },
+      "eps_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "N/A"
+      },
+      "rev_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "N/A"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  },
+  {
+    "ticker": "RKLB",
+    "grade": "B",
+    "full_pass": true,
+    "gate_passes": 3,
+    "super_count": 2,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": true,
+    "fund_gate": false,
+    "tech_score": "5/6",
+    "rs_mkt_score": "3/3",
+    "rs_thm_score": "1/3",
+    "fund_score": "0/0",
+    "rs_3m": 95.1,
+    "rs_6m": 95.2,
+    "rs_mom_3m_6m": -0.1,
+    "rs_sector_3m": 50.0,
+    "rs_sector_6m": 50.0,
+    "rs_sec_mom": 0.0,
+    "pct_52w_high": -5.9,
+    "pct_52w_low": 395.7,
+    "pct_50d_ma": 57.5,
+    "pct_1_5y_h": -5.9,
+    "ma150_200": 8.7,
+    "adtv_m": 1758.35,
+    "eps_yoy": null,
+    "rev_yoy": null,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [],
+    "rev_yoy_5q": [],
+    "gm_5q": [],
+    "turnaround_label": "NONE",
+    "gm_expansion": null,
+    "eps_accelerating": null,
+    "setup_label": "S1-Watchlist",
+    "theme": "Space",
+    "theme_pct": 100.0,
+    "sl_score": 99.0,
+    "pulse_tier": "STRICT",
+    "nrgc_phase": 4,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": true,
+        "value": -5.9,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "PASS"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 395.7,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 57.5,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -5.9,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": 8.7,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "SUPERSTRONG"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 1758348645.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": true,
+        "value": 95.1,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_6m": {
+        "pass": true,
+        "value": 95.2,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_mom_3m_6m": {
+        "pass": true,
+        "value": -0.1,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "PASS"
+      },
+      "rs_sector_3m": {
+        "pass": false,
+        "value": 50.0,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_6m": {
+        "pass": false,
+        "value": 50.0,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_mom": {
+        "pass": true,
+        "value": 0.0,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "PASS"
+      },
+      "eps_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "N/A"
+      },
+      "rev_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "N/A"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  },
+  {
+    "ticker": "VRT",
+    "grade": "B",
+    "full_pass": true,
+    "gate_passes": 3,
+    "super_count": 2,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": true,
+    "fund_gate": false,
+    "tech_score": "5/6",
+    "rs_mkt_score": "3/3",
+    "rs_thm_score": "2/3",
+    "fund_score": "0/0",
+    "rs_3m": 90.3,
+    "rs_6m": 92.5,
+    "rs_mom_3m_6m": -2.2,
+    "rs_sector_3m": 80.0,
+    "rs_sector_6m": 100.0,
+    "rs_sec_mom": -20.0,
+    "pct_52w_high": -1.4,
+    "pct_52w_low": 258.0,
+    "pct_50d_ma": 25.1,
+    "pct_1_5y_h": -1.4,
+    "ma150_200": 10.5,
+    "adtv_m": 1626.05,
+    "eps_yoy": null,
+    "rev_yoy": null,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [],
+    "rev_yoy_5q": [],
+    "gm_5q": [],
+    "turnaround_label": "NONE",
+    "gm_expansion": null,
+    "eps_accelerating": null,
+    "setup_label": "S1-Watchlist",
+    "theme": "AI Infrastructure",
+    "theme_pct": 76.9,
+    "sl_score": 82.0,
+    "pulse_tier": "STRICT",
+    "nrgc_phase": 0,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": true,
+        "value": -1.4,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "PASS"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 258.0,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 25.1,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -1.4,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": 10.5,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "SUPERSTRONG"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 1626051776.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": true,
+        "value": 90.3,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_6m": {
+        "pass": true,
+        "value": 92.5,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_mom_3m_6m": {
+        "pass": true,
+        "value": -2.2,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "PASS"
+      },
+      "rs_sector_3m": {
+        "pass": true,
+        "value": 80.0,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "PASS"
+      },
+      "rs_sector_6m": {
+        "pass": true,
+        "value": 100.0,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "PASS"
+      },
+      "rs_sector_mom": {
+        "pass": false,
+        "value": -20.0,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "FAIL"
+      },
+      "eps_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "N/A"
+      },
+      "rev_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "N/A"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  },
+  {
+    "ticker": "IONQ",
+    "grade": "B",
+    "full_pass": true,
+    "gate_passes": 3,
+    "super_count": 1,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": true,
+    "fund_gate": false,
+    "tech_score": "4/6",
+    "rs_mkt_score": "2/3",
+    "rs_thm_score": "3/3",
+    "fund_score": "1/2",
+    "rs_3m": 89.0,
+    "rs_6m": 46.7,
+    "rs_mom_3m_6m": 42.3,
+    "rs_sector_3m": 100.0,
+    "rs_sector_6m": 100.0,
+    "rs_sec_mom": 0.0,
+    "pct_52w_high": -36.7,
+    "pct_52w_low": 95.4,
+    "pct_50d_ma": 33.3,
+    "pct_1_5y_h": -36.7,
+    "ma150_200": -3.8,
+    "adtv_m": 1040.48,
+    "eps_yoy": -962.5,
+    "rev_yoy": 421.5,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [
+      -962.5,
+      1888.9,
+      268.4,
+      -36.4,
+      null
+    ],
+    "rev_yoy_5q": [
+      421.5,
+      250.3,
+      172.9,
+      23.3,
+      null
+    ],
+    "gm_5q": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "turnaround_label": "DECLINING",
+    "gm_expansion": null,
+    "eps_accelerating": false,
+    "setup_label": "S1-Watchlist",
+    "theme": "Quantum Computing",
+    "theme_pct": 38.5,
+    "sl_score": 72.8,
+    "pulse_tier": "STANDARD",
+    "nrgc_phase": 3,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": false,
+        "value": -36.7,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "FAIL"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 95.4,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 33.3,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -36.7,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": -3.8,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "PASS"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 1040483833.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": true,
+        "value": 89.0,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_6m": {
+        "pass": false,
+        "value": 46.7,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "FAIL"
+      },
+      "rs_mom_3m_6m": {
+        "pass": true,
+        "value": 42.3,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "PASS"
+      },
+      "rs_sector_3m": {
+        "pass": true,
+        "value": 100.0,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "PASS"
+      },
+      "rs_sector_6m": {
+        "pass": true,
+        "value": 100.0,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "PASS"
+      },
+      "rs_sector_mom": {
+        "pass": true,
+        "value": 0.0,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "PASS"
+      },
+      "eps_yoy": {
+        "pass": false,
+        "value": -962.5,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "FAIL"
+      },
+      "rev_yoy": {
+        "pass": true,
+        "value": 421.5,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "PASS"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  },
+  {
+    "ticker": "QCOM",
+    "grade": "B",
+    "full_pass": true,
+    "gate_passes": 3,
+    "super_count": 1,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": true,
+    "fund_gate": false,
+    "tech_score": "5/6",
+    "rs_mkt_score": "2/3",
+    "rs_thm_score": "1/3",
+    "fund_score": "0/0",
+    "rs_3m": 87.1,
+    "rs_6m": 65.6,
+    "rs_mom_3m_6m": 21.5,
+    "rs_sector_3m": 63.6,
+    "rs_sector_6m": 0.0,
+    "rs_sec_mom": 63.6,
+    "pct_52w_high": -15.2,
+    "pct_52w_low": 62.4,
+    "pct_50d_ma": 35.2,
+    "pct_1_5y_h": -15.2,
+    "ma150_200": -0.0,
+    "adtv_m": 2135.45,
+    "eps_yoy": null,
+    "rev_yoy": null,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [],
+    "rev_yoy_5q": [],
+    "gm_5q": [],
+    "turnaround_label": "NONE",
+    "gm_expansion": null,
+    "eps_accelerating": null,
+    "setup_label": "S1-Watchlist",
+    "theme": "Semiconductors (Broad)",
+    "theme_pct": 84.6,
+    "sl_score": 99.0,
+    "pulse_tier": "STRICT",
+    "nrgc_phase": 0,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": true,
+        "value": -15.2,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "PASS"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 62.4,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 35.2,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -15.2,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": -0.0,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "PASS"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 2135451013.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": true,
+        "value": 87.1,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_6m": {
+        "pass": false,
+        "value": 65.6,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "FAIL"
+      },
+      "rs_mom_3m_6m": {
+        "pass": true,
+        "value": 21.5,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "PASS"
+      },
+      "rs_sector_3m": {
+        "pass": false,
+        "value": 63.6,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_6m": {
+        "pass": false,
+        "value": 0.0,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_mom": {
+        "pass": true,
+        "value": 63.6,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "PASS"
+      },
+      "eps_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "N/A"
+      },
+      "rev_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "N/A"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  },
+  {
+    "ticker": "RDW",
+    "grade": "B",
+    "full_pass": true,
+    "gate_passes": 3,
+    "super_count": 1,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": true,
+    "fund_gate": false,
+    "tech_score": "4/6",
+    "rs_mkt_score": "3/3",
+    "rs_thm_score": "1/3",
+    "fund_score": "1/2",
+    "rs_3m": 93.5,
+    "rs_6m": 94.4,
+    "rs_mom_3m_6m": -0.9,
+    "rs_sector_3m": 25.0,
+    "rs_sector_6m": 25.0,
+    "rs_sec_mom": 0.0,
+    "pct_52w_high": -31.6,
+    "pct_52w_low": 177.9,
+    "pct_50d_ma": 43.2,
+    "pct_1_5y_h": -31.6,
+    "ma150_200": -2.0,
+    "adtv_m": 218.48,
+    "eps_yoy": 8.1,
+    "rev_yoy": 41.3,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [
+      8.1,
+      -31.0,
+      729.4,
+      -35.7,
+      null
+    ],
+    "rev_yoy_5q": [
+      41.3,
+      32.4,
+      -29.7,
+      -1.9,
+      null
+    ],
+    "gm_5q": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "turnaround_label": "EARLY",
+    "gm_expansion": null,
+    "eps_accelerating": true,
+    "setup_label": "S2-Early",
+    "theme": "Space",
+    "theme_pct": 100.0,
+    "sl_score": 91.4,
+    "pulse_tier": "STRICT",
+    "nrgc_phase": 2,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": false,
+        "value": -31.6,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "FAIL"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 177.9,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 43.2,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -31.6,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": -2.0,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "PASS"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 218483868.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": true,
+        "value": 93.5,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_6m": {
+        "pass": true,
+        "value": 94.4,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_mom_3m_6m": {
+        "pass": true,
+        "value": -0.9,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "PASS"
+      },
+      "rs_sector_3m": {
+        "pass": false,
+        "value": 25.0,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_6m": {
+        "pass": false,
+        "value": 25.0,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_mom": {
+        "pass": true,
+        "value": 0.0,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "PASS"
+      },
+      "eps_yoy": {
+        "pass": false,
+        "value": 8.1,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "FAIL"
+      },
+      "rev_yoy": {
+        "pass": true,
+        "value": 41.3,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "PASS"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  },
+  {
+    "ticker": "CIEN",
+    "grade": "C",
+    "full_pass": true,
+    "gate_passes": 2,
+    "super_count": 2,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": false,
+    "fund_gate": false,
+    "tech_score": "5/6",
+    "rs_mkt_score": "3/3",
+    "rs_thm_score": "0/2",
+    "fund_score": "0/0",
+    "rs_3m": 94.8,
+    "rs_6m": 95.6,
+    "rs_mom_3m_6m": -0.8,
+    "rs_sector_3m": 50.0,
+    "rs_sector_6m": 50.0,
+    "rs_sec_mom": null,
+    "pct_52w_high": -6.3,
+    "pct_52w_low": 668.4,
+    "pct_50d_ma": 20.3,
+    "pct_1_5y_h": -6.3,
+    "ma150_200": 18.4,
+    "adtv_m": 988.32,
+    "eps_yoy": null,
+    "rev_yoy": null,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [],
+    "rev_yoy_5q": [],
+    "gm_5q": [],
+    "turnaround_label": "NONE",
+    "gm_expansion": null,
+    "eps_accelerating": null,
+    "setup_label": "S1-Watchlist",
+    "theme": null,
+    "theme_pct": 50.0,
+    "sl_score": 75.6,
+    "pulse_tier": "FAIL",
+    "nrgc_phase": 0,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": true,
+        "value": -6.3,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "PASS"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 668.4,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 20.3,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -6.3,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": 18.4,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "SUPERSTRONG"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 988319918.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": true,
+        "value": 94.8,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_6m": {
+        "pass": true,
+        "value": 95.6,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_mom_3m_6m": {
+        "pass": true,
+        "value": -0.8,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "PASS"
+      },
+      "rs_sector_3m": {
+        "pass": false,
+        "value": 50.0,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_6m": {
+        "pass": false,
+        "value": 50.0,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_mom": {
+        "pass": null,
+        "value": null,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "N/A"
+      },
+      "eps_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "N/A"
+      },
+      "rev_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "N/A"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  },
+  {
+    "ticker": "EQIX",
+    "grade": "C",
+    "full_pass": true,
+    "gate_passes": 2,
+    "super_count": 2,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": false,
+    "fund_gate": false,
+    "tech_score": "5/6",
+    "rs_mkt_score": "2/3",
+    "rs_thm_score": "0/2",
+    "fund_score": "0/0",
+    "rs_3m": 69.1,
+    "rs_6m": 77.2,
+    "rs_mom_3m_6m": -8.1,
+    "rs_sector_3m": 50.0,
+    "rs_sector_6m": 50.0,
+    "rs_sec_mom": null,
+    "pct_52w_high": -5.0,
+    "pct_52w_low": 45.9,
+    "pct_50d_ma": 2.8,
+    "pct_1_5y_h": -5.0,
+    "ma150_200": 3.0,
+    "adtv_m": 540.27,
+    "eps_yoy": null,
+    "rev_yoy": null,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [],
+    "rev_yoy_5q": [],
+    "gm_5q": [],
+    "turnaround_label": "NONE",
+    "gm_expansion": null,
+    "eps_accelerating": null,
+    "setup_label": "S1-Watchlist",
+    "theme": null,
+    "theme_pct": 50.0,
+    "sl_score": 44.0,
+    "pulse_tier": "FAIL",
+    "nrgc_phase": 0,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": true,
+        "value": -5.0,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "PASS"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 45.9,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 2.8,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -5.0,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": 3.0,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "SUPERSTRONG"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 540265186.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": false,
+        "value": 69.1,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "FAIL"
+      },
+      "rs_6m": {
+        "pass": true,
+        "value": 77.2,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_mom_3m_6m": {
+        "pass": true,
+        "value": -8.1,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "PASS"
+      },
+      "rs_sector_3m": {
+        "pass": false,
+        "value": 50.0,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_6m": {
+        "pass": false,
+        "value": 50.0,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_mom": {
+        "pass": null,
+        "value": null,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "N/A"
+      },
+      "eps_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "N/A"
+      },
+      "rev_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "N/A"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  },
+  {
+    "ticker": "LITE",
+    "grade": "C",
+    "full_pass": true,
+    "gate_passes": 2,
+    "super_count": 2,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": false,
+    "fund_gate": false,
+    "tech_score": "5/6",
+    "rs_mkt_score": "3/3",
+    "rs_thm_score": "0/3",
+    "fund_score": "0/0",
+    "rs_3m": 93.0,
+    "rs_6m": 99.5,
+    "rs_mom_3m_6m": -6.5,
+    "rs_sector_3m": 25.0,
+    "rs_sector_6m": 50.0,
+    "rs_sec_mom": -25.0,
+    "pct_52w_high": -7.8,
+    "pct_52w_low": 1243.0,
+    "pct_50d_ma": 18.5,
+    "pct_1_5y_h": -7.8,
+    "ma150_200": 22.2,
+    "adtv_m": 3410.51,
+    "eps_yoy": null,
+    "rev_yoy": null,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [],
+    "rev_yoy_5q": [],
+    "gm_5q": [],
+    "turnaround_label": "NONE",
+    "gm_expansion": null,
+    "eps_accelerating": null,
+    "setup_label": "S1-Watchlist",
+    "theme": "Photonics / Optical",
+    "theme_pct": 92.3,
+    "sl_score": 57.4,
+    "pulse_tier": "THEME_CARRY",
+    "nrgc_phase": 4,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": true,
+        "value": -7.8,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "PASS"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 1243.0,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 18.5,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -7.8,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": 22.2,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "SUPERSTRONG"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 3410512665.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": true,
+        "value": 93.0,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_6m": {
+        "pass": true,
+        "value": 99.5,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_mom_3m_6m": {
+        "pass": true,
+        "value": -6.5,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "PASS"
+      },
+      "rs_sector_3m": {
+        "pass": false,
+        "value": 25.0,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_6m": {
+        "pass": false,
+        "value": 50.0,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_mom": {
+        "pass": false,
+        "value": -25.0,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "FAIL"
+      },
+      "eps_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "N/A"
+      },
+      "rev_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "N/A"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  },
+  {
+    "ticker": "LRCX",
+    "grade": "C",
+    "full_pass": true,
+    "gate_passes": 2,
+    "super_count": 2,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": false,
+    "fund_gate": false,
+    "tech_score": "5/6",
+    "rs_mkt_score": "2/3",
+    "rs_thm_score": "0/3",
+    "fund_score": "0/0",
+    "rs_3m": 78.7,
+    "rs_6m": 88.8,
+    "rs_mom_3m_6m": -10.1,
+    "rs_sector_3m": 9.1,
+    "rs_sector_6m": 63.6,
+    "rs_sec_mom": -54.5,
+    "pct_52w_high": -4.8,
+    "pct_52w_low": 255.0,
+    "pct_50d_ma": 14.9,
+    "pct_1_5y_h": -4.8,
+    "ma150_200": 12.7,
+    "adtv_m": 2359.8,
+    "eps_yoy": null,
+    "rev_yoy": null,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [],
+    "rev_yoy_5q": [],
+    "gm_5q": [],
+    "turnaround_label": "NONE",
+    "gm_expansion": null,
+    "eps_accelerating": null,
+    "setup_label": "S1-Watchlist",
+    "theme": "Semiconductors (Broad)",
+    "theme_pct": 84.6,
+    "sl_score": 65.8,
+    "pulse_tier": "THEME_BONUS",
+    "nrgc_phase": 0,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": true,
+        "value": -4.8,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "PASS"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 255.0,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 14.9,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -4.8,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": 12.7,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "SUPERSTRONG"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 2359803839.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": true,
+        "value": 78.7,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_6m": {
+        "pass": true,
+        "value": 88.8,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_mom_3m_6m": {
+        "pass": false,
+        "value": -10.1,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "FAIL"
+      },
+      "rs_sector_3m": {
+        "pass": false,
+        "value": 9.1,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_6m": {
+        "pass": false,
+        "value": 63.6,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_mom": {
+        "pass": false,
+        "value": -54.5,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "FAIL"
+      },
+      "eps_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "N/A"
+      },
+      "rev_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "N/A"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  },
+  {
+    "ticker": "STX",
+    "grade": "C",
+    "full_pass": true,
+    "gate_passes": 2,
+    "super_count": 2,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": false,
+    "fund_gate": false,
+    "tech_score": "5/6",
+    "rs_mkt_score": "3/3",
+    "rs_thm_score": "0/2",
+    "fund_score": "0/0",
+    "rs_3m": 95.3,
+    "rs_6m": 96.1,
+    "rs_mom_3m_6m": -0.8,
+    "rs_sector_3m": 50.0,
+    "rs_sector_6m": 50.0,
+    "rs_sec_mom": null,
+    "pct_52w_high": -4.6,
+    "pct_52w_low": 661.7,
+    "pct_50d_ma": 47.4,
+    "pct_1_5y_h": -4.6,
+    "ma150_200": 14.6,
+    "adtv_m": 1757.37,
+    "eps_yoy": null,
+    "rev_yoy": null,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [],
+    "rev_yoy_5q": [],
+    "gm_5q": [],
+    "turnaround_label": "NONE",
+    "gm_expansion": null,
+    "eps_accelerating": null,
+    "setup_label": "S1-Watchlist",
+    "theme": null,
+    "theme_pct": 50.0,
+    "sl_score": 96.3,
+    "pulse_tier": "STRICT",
+    "nrgc_phase": 0,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": true,
+        "value": -4.6,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "PASS"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 661.7,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 47.4,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -4.6,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": 14.6,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "SUPERSTRONG"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 1757372487.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": true,
+        "value": 95.3,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_6m": {
+        "pass": true,
+        "value": 96.1,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_mom_3m_6m": {
+        "pass": true,
+        "value": -0.8,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "PASS"
+      },
+      "rs_sector_3m": {
+        "pass": false,
+        "value": 50.0,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_6m": {
+        "pass": false,
+        "value": 50.0,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_mom": {
+        "pass": null,
+        "value": null,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "N/A"
+      },
+      "eps_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "N/A"
+      },
+      "rev_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "N/A"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  },
+  {
+    "ticker": "CRWV",
+    "grade": "C",
+    "full_pass": true,
+    "gate_passes": 2,
+    "super_count": 1,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": false,
+    "fund_gate": false,
+    "tech_score": "4/6",
+    "rs_mkt_score": "3/3",
+    "rs_thm_score": "0/3",
+    "fund_score": "0/0",
+    "rs_3m": 70.4,
+    "rs_6m": 74.9,
+    "rs_mom_3m_6m": -4.5,
+    "rs_sector_3m": 33.3,
+    "rs_sector_6m": 66.7,
+    "rs_sec_mom": -33.4,
+    "pct_52w_high": -41.5,
+    "pct_52w_low": 66.2,
+    "pct_50d_ma": 8.2,
+    "pct_1_5y_h": -41.5,
+    "ma150_200": -4.6,
+    "adtv_m": 2604.82,
+    "eps_yoy": null,
+    "rev_yoy": null,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [],
+    "rev_yoy_5q": [],
+    "gm_5q": [],
+    "turnaround_label": "NONE",
+    "gm_expansion": null,
+    "eps_accelerating": null,
+    "setup_label": "S1-Watchlist",
+    "theme": "NeoCloud / Compute",
+    "theme_pct": 46.2,
+    "sl_score": 7.0,
+    "pulse_tier": "FAIL",
+    "nrgc_phase": 4,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": false,
+        "value": -41.5,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "FAIL"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 66.2,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 8.2,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -41.5,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": -4.6,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "PASS"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 2604821393.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": true,
+        "value": 70.4,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_6m": {
+        "pass": true,
+        "value": 74.9,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_mom_3m_6m": {
+        "pass": true,
+        "value": -4.5,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "PASS"
+      },
+      "rs_sector_3m": {
+        "pass": false,
+        "value": 33.3,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_6m": {
+        "pass": false,
+        "value": 66.7,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_mom": {
+        "pass": false,
+        "value": -33.4,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "FAIL"
+      },
+      "eps_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "N/A"
+      },
+      "rev_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "N/A"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  },
+  {
+    "ticker": "NTAP",
+    "grade": "C",
+    "full_pass": true,
+    "gate_passes": 2,
+    "super_count": 1,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": false,
+    "fund_gate": false,
+    "tech_score": "5/6",
+    "rs_mkt_score": "2/3",
+    "rs_thm_score": "0/2",
+    "fund_score": "0/0",
+    "rs_3m": 76.6,
+    "rs_6m": 56.2,
+    "rs_mom_3m_6m": 20.4,
+    "rs_sector_3m": 50.0,
+    "rs_sector_6m": 50.0,
+    "rs_sec_mom": null,
+    "pct_52w_high": -3.7,
+    "pct_52w_low": 28.1,
+    "pct_50d_ma": 13.8,
+    "pct_1_5y_h": -3.7,
+    "ma150_200": -1.6,
+    "adtv_m": 238.08,
+    "eps_yoy": null,
+    "rev_yoy": null,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [],
+    "rev_yoy_5q": [],
+    "gm_5q": [],
+    "turnaround_label": "NONE",
+    "gm_expansion": null,
+    "eps_accelerating": null,
+    "setup_label": "S1-Watchlist",
+    "theme": null,
+    "theme_pct": 50.0,
+    "sl_score": 80.3,
+    "pulse_tier": "STANDARD",
+    "nrgc_phase": 0,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": true,
+        "value": -3.7,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "PASS"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 28.1,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 13.8,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -3.7,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": -1.6,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "PASS"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 238078221.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": true,
+        "value": 76.6,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_6m": {
+        "pass": false,
+        "value": 56.2,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "FAIL"
+      },
+      "rs_mom_3m_6m": {
+        "pass": true,
+        "value": 20.4,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "PASS"
+      },
+      "rs_sector_3m": {
+        "pass": false,
+        "value": 50.0,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_6m": {
+        "pass": false,
+        "value": 50.0,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_mom": {
+        "pass": null,
+        "value": null,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "N/A"
+      },
+      "eps_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "N/A"
+      },
+      "rev_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "N/A"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  },
+  {
+    "ticker": "NXPI",
+    "grade": "C",
+    "full_pass": true,
+    "gate_passes": 2,
+    "super_count": 1,
+    "tech_gate": true,
+    "rs_mkt_gate": true,
+    "rs_thm_gate": false,
+    "fund_gate": false,
+    "tech_score": "5/6",
+    "rs_mkt_score": "3/3",
+    "rs_thm_score": "0/3",
+    "fund_score": "0/0",
+    "rs_3m": 77.6,
+    "rs_6m": 82.3,
+    "rs_mom_3m_6m": -4.7,
+    "rs_sector_3m": 0.0,
+    "rs_sector_6m": 27.3,
+    "rs_sec_mom": -27.3,
+    "pct_52w_high": -4.7,
+    "pct_52w_low": 58.3,
+    "pct_50d_ma": 27.6,
+    "pct_1_5y_h": -4.7,
+    "ma150_200": -0.1,
+    "adtv_m": 720.51,
+    "eps_yoy": null,
+    "rev_yoy": null,
+    "gm_exp": null,
+    "nm_exp": null,
+    "eps_yoy_5q": [],
+    "rev_yoy_5q": [],
+    "gm_5q": [],
+    "turnaround_label": "NONE",
+    "gm_expansion": null,
+    "eps_accelerating": null,
+    "setup_label": "S1-Watchlist",
+    "theme": "Semiconductors (Broad)",
+    "theme_pct": 84.6,
+    "sl_score": 94.6,
+    "pulse_tier": "STRICT",
+    "nrgc_phase": 0,
+    "criteria": {
+      "pct_52w_high": {
+        "pass": true,
+        "value": -4.7,
+        "threshold": -20.0,
+        "label": "% to 52W high",
+        "strength": "PASS"
+      },
+      "pct_52w_low": {
+        "pass": true,
+        "value": 58.3,
+        "threshold": 10.0,
+        "label": "% from 52W low",
+        "strength": "SUPERSTRONG"
+      },
+      "pct_50d_ma": {
+        "pass": true,
+        "value": 27.6,
+        "threshold": -5.0,
+        "label": "% from 50D MA",
+        "strength": "PASS"
+      },
+      "pct_1_5y_high": {
+        "pass": false,
+        "value": -4.7,
+        "threshold": 0.0,
+        "label": "% from 1.5Y high",
+        "strength": "FAIL"
+      },
+      "ma150_vs_200": {
+        "pass": true,
+        "value": -0.1,
+        "threshold": -5.0,
+        "label": "150D/200D MA",
+        "strength": "PASS"
+      },
+      "adtv_6m": {
+        "pass": true,
+        "value": 720506537.0,
+        "threshold": 15000000.0,
+        "label": "6M ADTV USD",
+        "strength": "PASS"
+      },
+      "rs_3m": {
+        "pass": true,
+        "value": 77.6,
+        "threshold": 70.0,
+        "label": "3M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_6m": {
+        "pass": true,
+        "value": 82.3,
+        "threshold": 70.0,
+        "label": "6M RS vs Market",
+        "strength": "PASS"
+      },
+      "rs_mom_3m_6m": {
+        "pass": true,
+        "value": -4.7,
+        "threshold": -10.0,
+        "label": "RS chg (3M-6M)",
+        "strength": "PASS"
+      },
+      "rs_sector_3m": {
+        "pass": false,
+        "value": 0.0,
+        "threshold": 70.0,
+        "label": "3M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_6m": {
+        "pass": false,
+        "value": 27.3,
+        "threshold": 70.0,
+        "label": "6M RS sector",
+        "strength": "FAIL"
+      },
+      "rs_sector_mom": {
+        "pass": false,
+        "value": -27.3,
+        "threshold": -10.0,
+        "label": "RS sector chg",
+        "strength": "FAIL"
+      },
+      "eps_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY EPS growth",
+        "strength": "N/A"
+      },
+      "rev_yoy": {
+        "pass": null,
+        "value": null,
+        "threshold": 25.0,
+        "label": "YoY Rev growth",
+        "strength": "N/A"
+      },
+      "gm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "GM expansion",
+        "strength": "N/A"
+      },
+      "nm_exp": {
+        "pass": null,
+        "value": null,
+        "threshold": 0.0,
+        "label": "NM expansion",
+        "strength": "N/A"
+      }
+    }
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "regime": "R0_no_regime",
+  "universe": "S&P500+NDX100",
+  "rs_threshold": 75,
+  "vol_trend_min": 0.95,
+  "vol_contract_max": 1.0,
+  "base_tight_max": 1.1,
+  "adtv_min_m": 15,
+  "cap_pct": 0.18,
+  "weighting": "softmax_rs",
+  "softmax_alpha": 0.5,
+  "cost_bps_roundtrip": 14,
+  "wf2_excess": 32.36,
+  "full_excess": 28.91,
+  "full_sharpe": 1.52
+}

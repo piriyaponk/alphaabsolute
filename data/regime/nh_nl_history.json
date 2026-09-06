@@ -1,0 +1,164 @@
+{
+  "history": [
+    {
+      "date": "2026-05-24",
+      "nh_count": 3,
+      "nl_count": 0,
+      "universe_n": 853,
+      "nh_nl_ratio": 1.0,
+      "nh_nl_net_pct": 0.35
+    },
+    {
+      "date": "2026-05-25",
+      "nh_count": 3,
+      "nl_count": 0,
+      "universe_n": 853,
+      "nh_nl_ratio": 1.0,
+      "nh_nl_net_pct": 0.35
+    },
+    {
+      "date": "2026-05-26",
+      "nh_count": 3,
+      "nl_count": 0,
+      "universe_n": 853,
+      "nh_nl_ratio": 1.0,
+      "nh_nl_net_pct": 0.35
+    },
+    {
+      "date": "2026-05-27",
+      "nh_count": 42,
+      "nl_count": 1,
+      "universe_n": 853,
+      "nh_nl_ratio": 0.9767,
+      "nh_nl_net_pct": 4.81
+    },
+    {
+      "date": "2026-05-28",
+      "nh_count": 47,
+      "nl_count": 1,
+      "universe_n": 853,
+      "nh_nl_ratio": 0.9792,
+      "nh_nl_net_pct": 5.39
+    },
+    {
+      "date": "2026-06-01",
+      "nh_count": 38,
+      "nl_count": 9,
+      "universe_n": 1164,
+      "nh_nl_ratio": 0.8085,
+      "nh_nl_net_pct": 2.49
+    },
+    {
+      "date": "2026-06-02",
+      "nh_count": 73,
+      "nl_count": 20,
+      "universe_n": 1165,
+      "nh_nl_ratio": 0.7849,
+      "nh_nl_net_pct": 4.55
+    },
+    {
+      "date": "2026-06-03",
+      "nh_count": 104,
+      "nl_count": 27,
+      "universe_n": 1166,
+      "nh_nl_ratio": 0.7939,
+      "nh_nl_net_pct": 6.6
+    },
+    {
+      "date": "2026-06-12",
+      "nh_count": 106,
+      "nl_count": 38,
+      "universe_n": 1166,
+      "nh_nl_ratio": 0.7361,
+      "nh_nl_net_pct": 5.83
+    },
+    {
+      "date": "2026-06-14",
+      "nh_count": 68,
+      "nl_count": 56,
+      "universe_n": 1170,
+      "nh_nl_ratio": 0.5484,
+      "nh_nl_net_pct": 1.03
+    },
+    {
+      "date": "2026-06-15",
+      "nh_count": 68,
+      "nl_count": 56,
+      "universe_n": 1170,
+      "nh_nl_ratio": 0.5484,
+      "nh_nl_net_pct": 1.03
+    },
+    {
+      "date": "2026-06-16",
+      "nh_count": 156,
+      "nl_count": 62,
+      "universe_n": 1171,
+      "nh_nl_ratio": 0.7156,
+      "nh_nl_net_pct": 8.03
+    },
+    {
+      "date": "2026-06-26",
+      "nh_count": 145,
+      "nl_count": 61,
+      "universe_n": 1171,
+      "nh_nl_ratio": 0.7039,
+      "nh_nl_net_pct": 7.17
+    },
+    {
+      "date": "2026-07-10",
+      "nh_count": 178,
+      "nl_count": 108,
+      "universe_n": 1173,
+      "nh_nl_ratio": 0.6224,
+      "nh_nl_net_pct": 5.97
+    },
+    {
+      "date": "2026-07-24",
+      "nh_count": 205,
+      "nl_count": 86,
+      "universe_n": 1175,
+      "nh_nl_ratio": 0.7045,
+      "nh_nl_net_pct": 10.13
+    },
+    {
+      "date": "2026-07-31",
+      "nh_count": 198,
+      "nl_count": 124,
+      "universe_n": 1212,
+      "nh_nl_ratio": 0.6149,
+      "nh_nl_net_pct": 6.11
+    },
+    {
+      "date": "2026-08-07",
+      "nh_count": 320,
+      "nl_count": 126,
+      "universe_n": 1597,
+      "nh_nl_ratio": 0.7175,
+      "nh_nl_net_pct": 12.15
+    },
+    {
+      "date": "2026-08-14",
+      "nh_count": 299,
+      "nl_count": 131,
+      "universe_n": 1600,
+      "nh_nl_ratio": 0.6953,
+      "nh_nl_net_pct": 10.5
+    },
+    {
+      "date": "2026-08-21",
+      "nh_count": 369,
+      "nl_count": 142,
+      "universe_n": 1680,
+      "nh_nl_ratio": 0.7221,
+      "nh_nl_net_pct": 13.51
+    },
+    {
+      "date": "2026-09-04",
+      "nh_count": 319,
+      "nl_count": 149,
+      "universe_n": 1687,
+      "nh_nl_ratio": 0.6816,
+      "nh_nl_net_pct": 10.08
+    }
+  ]
+}

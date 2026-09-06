@@ -1,0 +1,317 @@
+Loading signals...
+  1,046,444 rows, 406 tickers
+
+Grid search: 300 trials (of 1,080,000 possible)
+[  1/300] rs=60 vt=0.85 lp=2.5 -> score=0.021 test_ex=+7.6% sharpe=0.72
+[  2/300] rs=70 vt=0.00 lp=1.0 -> score=-0.006 test_ex=+0.6% sharpe=0.78
+[  3/300] rs=60 vt=0.95 lp=1.0 -> score=-0.009 test_ex=+6.0% sharpe=0.82
+[  4/300] rs=65 vt=1.00 lp=2.5 -> score=0.008 test_ex=+2.6% sharpe=0.88
+[  5/300] rs=60 vt=1.00 lp=3.0 -> score=-0.252 test_ex=-5.7% sharpe=0.54
+[  6/300] rs=75 vt=0.90 lp=1.0 -> score=-0.000 test_ex=+4.3% sharpe=0.85
+[  7/300] rs=65 vt=0.95 lp=2.5 -> score=0.198 test_ex=+14.3% sharpe=0.75
+[  8/300] rs=70 vt=0.00 lp=2.0 -> score=-0.671 test_ex=-3.2% sharpe=0.52
+[  9/300] rs=60 vt=0.85 lp=2.5 -> score=-1.317 test_ex=-15.1% sharpe=0.14
+[ 10/300] rs=75 vt=1.00 lp=1.5 -> score=0.397 test_ex=+11.2% sharpe=1.16
+[ 11/300] rs=80 vt=0.00 lp=2.0 -> score=-0.991 test_ex=-10.9% sharpe=0.32
+[ 12/300] rs=70 vt=1.00 lp=1.5 -> score=0.027 test_ex=+2.2% sharpe=0.97
+[ 13/300] rs=60 vt=0.90 lp=2.0 -> score=-0.560 test_ex=+1.7% sharpe=0.54
+[ 14/300] rs=70 vt=0.85 lp=1.5 -> score=-0.816 test_ex=-11.7% sharpe=0.28
+[ 15/300] rs=65 vt=0.95 lp=2.5 -> score=-1.195 test_ex=-19.2% sharpe=-0.12
+[ 16/300] rs=60 vt=0.00 lp=1.5 -> score=-0.801 test_ex=-7.3% sharpe=0.41
+[ 17/300] rs=60 vt=0.90 lp=2.5 -> score=-1.425 test_ex=-19.9% sharpe=-0.15
+[ 18/300] rs=70 vt=0.95 lp=3.0 -> score=-0.611 test_ex=-4.0% sharpe=0.59
+[ 19/300] rs=70 vt=0.95 lp=1.5 -> score=-0.699 test_ex=-13.5% sharpe=0.21
+[ 20/300] rs=80 vt=0.00 lp=2.0 -> score=0.486 test_ex=+17.6% sharpe=0.97
+[ 21/300] rs=60 vt=1.00 lp=2.5 -> score=-0.245 test_ex=-2.6% sharpe=0.70
+[ 22/300] rs=80 vt=1.00 lp=1.5 -> score=-0.142 test_ex=-3.9% sharpe=0.78
+[ 23/300] rs=80 vt=0.90 lp=2.0 -> score=0.363 test_ex=+15.1% sharpe=0.79
+[ 24/300] rs=65 vt=0.90 lp=1.5 -> score=-1.143 test_ex=-8.6% sharpe=0.34
+[ 25/300] rs=75 vt=0.85 lp=1.0 -> score=-0.583 test_ex=-7.9% sharpe=0.50
+[ 26/300] rs=70 vt=0.95 lp=3.0 -> score=0.398 test_ex=+14.7% sharpe=0.75
+[ 27/300] rs=70 vt=0.95 lp=1.5 -> score=0.441 test_ex=+13.1% sharpe=0.92
+[ 28/300] rs=80 vt=0.85 lp=2.5 -> score=-0.385 test_ex=+3.1% sharpe=0.61
+[ 29/300] rs=80 vt=0.85 lp=3.0 -> score=0.744 test_ex=+30.4% sharpe=1.07
+[ 30/300] rs=75 vt=0.90 lp=2.0 -> score=-0.953 test_ex=-7.7% sharpe=0.42
+[ 31/300] rs=70 vt=0.90 lp=3.0 -> score=-0.567 test_ex=+3.9% sharpe=0.56
+[ 32/300] rs=70 vt=0.00 lp=1.0 -> score=-0.465 test_ex=-5.6% sharpe=0.60
+[ 33/300] rs=75 vt=0.00 lp=1.5 -> score=-0.707 test_ex=-8.3% sharpe=0.42
+[ 34/300] rs=80 vt=0.00 lp=2.0 -> score=-0.264 test_ex=+3.3% sharpe=0.66
+[ 35/300] rs=70 vt=0.95 lp=2.5 -> score=0.298 test_ex=+11.8% sharpe=0.70
+[ 36/300] rs=65 vt=0.95 lp=2.0 -> score=-0.751 test_ex=-13.3% sharpe=0.22
+[ 37/300] rs=60 vt=0.90 lp=3.0 -> score=-1.252 test_ex=-14.2% sharpe=0.23
+[ 38/300] rs=60 vt=0.00 lp=3.0 -> score=-1.215 test_ex=-8.3% sharpe=0.35
+[ 39/300] rs=75 vt=0.90 lp=2.5 -> score=-0.736 test_ex=-11.0% sharpe=0.31
+[ 40/300] rs=75 vt=0.85 lp=2.5 -> score=-0.879 test_ex=-15.0% sharpe=0.14
+[ 41/300] rs=65 vt=0.00 lp=1.5 -> score=-1.400 test_ex=-15.6% sharpe=0.12
+[ 42/300] rs=75 vt=0.95 lp=1.5 -> score=-0.130 test_ex=-0.9% sharpe=0.74
+[ 43/300] rs=75 vt=0.85 lp=1.0 -> score=0.255 test_ex=+9.1% sharpe=1.05
+[ 44/300] rs=75 vt=0.95 lp=1.0 -> score=0.688 test_ex=+18.7% sharpe=1.10
+[ 45/300] rs=75 vt=0.95 lp=1.5 -> score=0.601 test_ex=+20.2% sharpe=0.93
+[ 46/300] rs=80 vt=0.85 lp=1.0 -> score=0.772 test_ex=+19.8% sharpe=1.37
+[ 47/300] rs=60 vt=1.00 lp=2.0 -> score=0.001 test_ex=+3.5% sharpe=0.90
+[ 48/300] rs=70 vt=0.00 lp=3.0 -> score=-0.408 test_ex=-2.4% sharpe=0.51
+[ 49/300] rs=75 vt=0.85 lp=1.5 -> score=0.451 test_ex=+14.7% sharpe=1.04
+[ 50/300] rs=60 vt=0.95 lp=1.5 -> score=-0.412 test_ex=-5.3% sharpe=0.63
+[ 51/300] rs=80 vt=1.00 lp=3.0 -> score=-0.080 test_ex=-0.4% sharpe=0.76
+[ 52/300] rs=65 vt=0.85 lp=1.0 -> score=-0.736 test_ex=-10.7% sharpe=0.33
+[ 53/300] rs=60 vt=0.00 lp=1.5 -> score=-0.184 test_ex=+1.3% sharpe=0.71
+[ 54/300] rs=75 vt=0.00 lp=1.5 -> score=-0.049 test_ex=+1.1% sharpe=0.66
+[ 55/300] rs=60 vt=0.95 lp=1.0 -> score=0.155 test_ex=+5.6% sharpe=1.00
+[ 56/300] rs=70 vt=0.90 lp=2.0 -> score=-1.508 test_ex=-14.6% sharpe=0.17
+[ 57/300] rs=60 vt=0.90 lp=2.0 -> score=-0.826 test_ex=-14.0% sharpe=0.19
+[ 58/300] rs=75 vt=0.90 lp=3.0 -> score=-0.013 test_ex=+11.2% sharpe=0.70
+[ 59/300] rs=75 vt=0.90 lp=1.0 -> score=0.561 test_ex=+13.3% sharpe=1.19
+[ 60/300] rs=75 vt=0.95 lp=2.0 -> score=0.243 test_ex=+10.3% sharpe=0.69
+[ 61/300] rs=80 vt=0.00 lp=1.5 -> score=0.340 test_ex=+11.0% sharpe=0.92
+[ 62/300] rs=75 vt=0.95 lp=2.5 -> score=0.566 test_ex=+17.8% sharpe=0.81
+[ 63/300] rs=60 vt=1.00 lp=2.0 -> score=-0.029 test_ex=+1.2% sharpe=0.83
+[ 64/300] rs=75 vt=0.90 lp=3.0 -> score=0.004 test_ex=+10.8% sharpe=0.69
+[ 65/300] rs=65 vt=0.00 lp=2.0 -> score=-0.435 test_ex=-1.2% sharpe=0.55
+[ 66/300] rs=80 vt=0.95 lp=1.5 -> score=0.361 test_ex=+12.5% sharpe=0.77
+[ 67/300] rs=65 vt=0.90 lp=2.5 -> score=-1.189 test_ex=-17.6% sharpe=0.00
+[ 68/300] rs=60 vt=1.00 lp=3.0 -> score=0.728 test_ex=+19.2% sharpe=1.15
+[ 69/300] rs=75 vt=0.85 lp=2.5 -> score=-0.758 test_ex=-12.2% sharpe=0.26
+[ 70/300] rs=65 vt=0.85 lp=3.0 -> score=-1.074 test_ex=-15.2% sharpe=0.13
+[ 71/300] rs=65 vt=0.00 lp=1.5 -> score=-1.834 test_ex=-21.5% sharpe=-0.19
+[ 72/300] rs=65 vt=0.95 lp=3.0 -> score=-1.146 test_ex=-13.1% sharpe=0.23
+[ 73/300] rs=65 vt=0.95 lp=2.0 -> score=0.290 test_ex=+10.6% sharpe=0.70
+[ 74/300] rs=65 vt=0.95 lp=2.0 -> score=0.186 test_ex=+12.9% sharpe=0.74
+[ 75/300] rs=60 vt=0.85 lp=3.0 -> score=0.899 test_ex=+31.5% sharpe=1.05
+[ 76/300] rs=65 vt=0.85 lp=2.0 -> score=-1.170 test_ex=-11.7% sharpe=0.29
+[ 77/300] rs=65 vt=0.85 lp=1.5 -> score=-0.586 test_ex=-8.7% sharpe=0.47
+[ 78/300] rs=60 vt=0.85 lp=2.5 -> score=-0.063 test_ex=+6.0% sharpe=0.66
+[ 79/300] rs=80 vt=0.00 lp=3.0 -> score=-0.300 test_ex=+2.8% sharpe=0.62
+[ 80/300] rs=80 vt=0.00 lp=2.5 -> score=-0.495 test_ex=-6.7% sharpe=0.43
+[ 81/300] rs=70 vt=0.85 lp=1.5 -> score=-1.279 test_ex=-17.2% sharpe=0.01
+[ 82/300] rs=65 vt=0.90 lp=1.5 -> score=-0.832 test_ex=-14.4% sharpe=0.16
+[ 83/300] rs=60 vt=1.00 lp=2.5 -> score=-0.214 test_ex=-4.4% sharpe=0.61
+[ 84/300] rs=70 vt=1.00 lp=2.5 -> score=0.418 test_ex=+12.8% sharpe=1.05
+[ 85/300] rs=65 vt=0.85 lp=1.0 -> score=-0.030 test_ex=+0.5% sharpe=0.87
+[ 86/300] rs=75 vt=0.00 lp=1.5 -> score=0.427 test_ex=+13.4% sharpe=1.01
+[ 87/300] rs=60 vt=1.00 lp=2.5 -> score=0.057 test_ex=+3.8% sharpe=0.82
+[ 88/300] rs=80 vt=0.90 lp=3.0 -> score=-0.131 test_ex=+7.8% sharpe=0.62
+[ 89/300] rs=80 vt=1.00 lp=2.0 -> score=-0.197 test_ex=-2.0% sharpe=0.71
+[ 90/300] rs=60 vt=0.95 lp=3.0 -> score=0.366 test_ex=+17.1% sharpe=0.77
+[ 91/300] rs=65 vt=0.85 lp=3.0 -> score=0.105 test_ex=+10.2% sharpe=0.71
+[ 92/300] rs=75 vt=0.85 lp=2.0 -> score=-1.458 test_ex=-15.1% sharpe=0.15
+[ 93/300] rs=80 vt=0.95 lp=3.0 -> score=-0.214 test_ex=+8.3% sharpe=0.63
+[ 94/300] rs=80 vt=0.90 lp=2.5 -> score=-0.561 test_ex=+2.6% sharpe=0.54
+[ 95/300] rs=75 vt=0.95 lp=1.5 -> score=0.516 test_ex=+18.3% sharpe=0.92
+[ 96/300] rs=70 vt=0.90 lp=1.0 -> score=-0.792 test_ex=-13.3% sharpe=0.21
+[ 97/300] rs=80 vt=1.00 lp=2.0 -> score=-0.089 test_ex=-2.9% sharpe=0.82
+[ 98/300] rs=65 vt=0.95 lp=1.0 -> score=0.276 test_ex=+9.8% sharpe=0.95
+[ 99/300] rs=70 vt=0.95 lp=2.0 -> score=-0.282 test_ex=+5.0% sharpe=0.62
+[100/300] rs=60 vt=0.85 lp=2.0 -> score=-0.985 test_ex=-15.1% sharpe=0.13
+[101/300] rs=80 vt=0.90 lp=2.0 -> score=-0.882 test_ex=-7.0% sharpe=0.46
+[102/300] rs=70 vt=1.00 lp=2.0 -> score=0.249 test_ex=+8.0% sharpe=0.93
+[103/300] rs=65 vt=0.00 lp=1.0 -> score=-0.847 test_ex=-12.6% sharpe=0.27
+[104/300] rs=70 vt=0.90 lp=2.5 -> score=-0.397 test_ex=-4.3% sharpe=0.59
+[105/300] rs=80 vt=0.85 lp=3.0 -> score=0.866 test_ex=+31.5% sharpe=1.05
+[106/300] rs=80 vt=0.85 lp=2.0 -> score=-1.338 test_ex=-14.6% sharpe=0.17
+[107/300] rs=70 vt=1.00 lp=3.0 -> score=0.159 test_ex=+6.0% sharpe=0.92
+[108/300] rs=65 vt=0.85 lp=2.5 -> score=0.425 test_ex=+17.6% sharpe=0.87
+[109/300] rs=80 vt=0.90 lp=3.0 -> score=0.201 test_ex=+13.9% sharpe=0.71
+[110/300] rs=70 vt=0.85 lp=1.5 -> score=-0.380 test_ex=-5.1% sharpe=0.51
+[111/300] rs=65 vt=0.85 lp=1.5 -> score=-1.317 test_ex=-14.9% sharpe=0.14
+[112/300] rs=80 vt=0.95 lp=3.0 -> score=-0.060 test_ex=+0.4% sharpe=0.76
+[113/300] rs=75 vt=0.95 lp=1.5 -> score=-0.499 test_ex=-10.2% sharpe=0.37
+[114/300] rs=65 vt=0.90 lp=2.0 -> score=-0.123 test_ex=+2.3% sharpe=0.57
+[115/300] rs=70 vt=0.85 lp=1.0 -> score=-0.166 test_ex=-1.8% sharpe=0.79
+[116/300] rs=80 vt=0.90 lp=1.0 -> score=-0.240 test_ex=-3.6% sharpe=0.72
+[117/300] rs=75 vt=1.00 lp=2.5 -> score=0.525 test_ex=+13.9% sharpe=1.10
+[118/300] rs=60 vt=0.90 lp=1.0 -> score=-0.523 test_ex=-9.1% sharpe=0.45
+[119/300] rs=65 vt=0.00 lp=1.5 -> score=-0.756 test_ex=-11.3% sharpe=0.30
+[120/300] rs=70 vt=0.90 lp=2.0 -> score=-0.716 test_ex=-9.8% sharpe=0.39
+[121/300] rs=65 vt=0.00 lp=3.0 -> score=0.665 test_ex=+18.6% sharpe=1.03
+[122/300] rs=65 vt=0.00 lp=3.0 -> score=-1.247 test_ex=-14.5% sharpe=0.19
+[123/300] rs=60 vt=0.90 lp=1.5 -> score=-0.836 test_ex=-13.4% sharpe=0.21
+[124/300] rs=80 vt=0.90 lp=1.5 -> score=-0.585 test_ex=-11.6% sharpe=0.31
+[125/300] rs=75 vt=0.90 lp=1.5 -> score=-0.573 test_ex=-5.3% sharpe=0.54
+[126/300] rs=65 vt=0.95 lp=1.0 -> score=-0.922 test_ex=-16.9% sharpe=0.01
+[127/300] rs=75 vt=0.95 lp=2.5 -> score=0.353 test_ex=+14.3% sharpe=0.74
+[128/300] rs=75 vt=0.90 lp=1.5 -> score=-0.956 test_ex=-9.7% sharpe=0.38
+[129/300] rs=80 vt=0.90 lp=1.5 -> score=0.290 test_ex=+14.6% sharpe=0.82
+[130/300] rs=80 vt=1.00 lp=2.5 -> score=0.285 test_ex=+9.0% sharpe=1.00
+[131/300] rs=80 vt=0.95 lp=1.0 -> score=0.116 test_ex=+2.5% sharpe=1.11
+[132/300] rs=65 vt=1.00 lp=1.0 -> score=-0.208 test_ex=-2.0% sharpe=0.76
+[133/300] rs=75 vt=1.00 lp=1.5 -> score=-0.307 test_ex=-7.8% sharpe=0.59
+[134/300] rs=80 vt=0.90 lp=2.5 -> score=-0.940 test_ex=-7.9% sharpe=0.42
+[135/300] rs=80 vt=0.95 lp=2.0 -> score=0.638 test_ex=+22.5% sharpe=0.89
+[136/300] rs=80 vt=0.00 lp=3.0 -> score=0.301 test_ex=+12.9% sharpe=0.91
+[137/300] rs=75 vt=0.95 lp=1.5 -> score=-0.513 test_ex=-10.8% sharpe=0.35
+[138/300] rs=80 vt=0.90 lp=1.5 -> score=0.274 test_ex=+12.8% sharpe=0.83
+[139/300] rs=80 vt=0.90 lp=1.0 -> score=0.561 test_ex=+13.9% sharpe=1.16
+[140/300] rs=75 vt=0.90 lp=3.0 -> score=-0.563 test_ex=-5.1% sharpe=0.56
+[141/300] rs=60 vt=0.90 lp=2.5 -> score=-1.413 test_ex=-11.5% sharpe=0.28
+[142/300] rs=65 vt=0.95 lp=1.0 -> score=0.153 test_ex=+6.5% sharpe=0.82
+[143/300] rs=75 vt=0.95 lp=3.0 -> score=-0.374 test_ex=-4.1% sharpe=0.59
+[144/300] rs=80 vt=0.95 lp=1.5 -> score=-0.522 test_ex=-8.5% sharpe=0.43
+[145/300] rs=70 vt=0.85 lp=2.5 -> score=-0.853 test_ex=-10.6% sharpe=0.34
+[146/300] rs=80 vt=0.85 lp=2.5 -> score=-0.391 test_ex=+2.3% sharpe=0.57
+[147/300] rs=65 vt=0.95 lp=3.0 -> score=-1.184 test_ex=-11.8% sharpe=0.28
+[148/300] rs=80 vt=0.85 lp=2.0 -> score=-0.926 test_ex=-15.7% sharpe=0.10
+[149/300] rs=65 vt=1.00 lp=3.0 -> score=-0.521 test_ex=-11.1% sharpe=0.35
+[150/300] rs=80 vt=0.85 lp=2.5 -> score=-1.299 test_ex=-19.0% sharpe=-0.10
+[151/300] rs=65 vt=1.00 lp=1.0 -> score=0.251 test_ex=+7.4% sharpe=1.17
+[152/300] rs=70 vt=1.00 lp=3.0 -> score=0.808 test_ex=+22.4% sharpe=1.25
+[153/300] rs=75 vt=0.85 lp=3.0 -> score=0.573 test_ex=+25.5% sharpe=0.93
+[154/300] rs=80 vt=0.85 lp=1.5 -> score=-0.851 test_ex=-13.2% sharpe=0.22
+[155/300] rs=80 vt=1.00 lp=2.0 -> score=0.492 test_ex=+12.9% sharpe=1.23
+[156/300] rs=65 vt=0.90 lp=2.0 -> score=-1.775 test_ex=-17.9% sharpe=0.01
+[157/300] rs=70 vt=0.95 lp=1.5 -> score=0.348 test_ex=+13.0% sharpe=0.90
+[158/300] rs=70 vt=1.00 lp=2.0 -> score=-0.068 test_ex=+0.6% sharpe=0.84
+[159/300] rs=60 vt=0.90 lp=2.5 -> score=-0.542 test_ex=-3.4% sharpe=0.42
+[160/300] rs=70 vt=0.85 lp=2.5 -> score=-0.956 test_ex=-10.6% sharpe=0.31
+[161/300] rs=75 vt=0.95 lp=1.5 -> score=0.819 test_ex=+23.0% sharpe=1.13
+[162/300] rs=70 vt=0.90 lp=2.5 -> score=-1.616 test_ex=-22.2% sharpe=-0.24
+[163/300] rs=80 vt=1.00 lp=2.5 -> score=0.050 test_ex=+2.6% sharpe=0.88
+[164/300] rs=80 vt=0.85 lp=1.0 -> score=0.357 test_ex=+11.1% sharpe=1.13
+[165/300] rs=75 vt=0.90 lp=2.5 -> score=0.351 test_ex=+19.5% sharpe=0.82
+[166/300] rs=70 vt=0.00 lp=1.5 -> score=0.254 test_ex=+10.4% sharpe=0.98
+[167/300] rs=65 vt=0.90 lp=2.5 -> score=-1.417 test_ex=-15.3% sharpe=0.14
+[168/300] rs=75 vt=0.95 lp=2.5 -> score=-0.478 test_ex=-9.9% sharpe=0.38
+[169/300] rs=65 vt=0.95 lp=2.0 -> score=-0.784 test_ex=-14.1% sharpe=0.17
+[170/300] rs=70 vt=0.95 lp=3.0 -> score=-1.426 test_ex=-14.2% sharpe=0.18
+[171/300] rs=60 vt=0.85 lp=2.0 -> score=-1.243 test_ex=-19.9% sharpe=-0.11
+[172/300] rs=75 vt=1.00 lp=1.0 -> score=0.388 test_ex=+10.8% sharpe=1.17
+[173/300] rs=70 vt=0.00 lp=2.0 -> score=-0.474 test_ex=-4.8% sharpe=0.46
+[174/300] rs=80 vt=0.85 lp=2.5 -> score=0.251 test_ex=+18.5% sharpe=0.96
+[175/300] rs=65 vt=0.95 lp=2.5 -> score=-0.958 test_ex=-10.3% sharpe=0.35
+[176/300] rs=65 vt=0.90 lp=1.0 -> score=-0.554 test_ex=-8.4% sharpe=0.40
+[177/300] rs=65 vt=0.00 lp=1.5 -> score=-0.182 test_ex=-0.4% sharpe=0.65
+[178/300] rs=75 vt=0.90 lp=1.0 -> score=-0.219 test_ex=-2.9% sharpe=0.77
+[179/300] rs=65 vt=0.00 lp=3.0 -> score=-0.914 test_ex=-11.2% sharpe=0.29
+[180/300] rs=80 vt=0.85 lp=1.5 -> score=-0.935 test_ex=-15.5% sharpe=0.11
+[181/300] rs=65 vt=0.90 lp=2.5 -> score=-0.554 test_ex=-3.1% sharpe=0.43
+[182/300] rs=65 vt=0.90 lp=2.0 -> score=-0.460 test_ex=-1.3% sharpe=0.47
+[183/300] rs=70 vt=0.00 lp=1.5 -> score=0.648 test_ex=+16.4% sharpe=1.15
+[184/300] rs=80 vt=0.90 lp=1.0 -> score=0.429 test_ex=+14.0% sharpe=1.09
+[185/300] rs=60 vt=0.95 lp=2.5 -> score=-0.014 test_ex=+10.6% sharpe=0.69
+[186/300] rs=80 vt=0.90 lp=2.0 -> score=-1.188 test_ex=-10.6% sharpe=0.34
+[187/300] rs=80 vt=1.00 lp=3.0 -> score=-0.198 test_ex=-1.4% sharpe=0.68
+[188/300] rs=60 vt=0.95 lp=1.5 -> score=-0.767 test_ex=-12.8% sharpe=0.24
+[189/300] rs=65 vt=0.95 lp=1.5 -> score=-0.821 test_ex=-10.8% sharpe=0.34
+[190/300] rs=80 vt=1.00 lp=2.5 -> score=-0.166 test_ex=-2.5% sharpe=0.71
+[191/300] rs=70 vt=0.00 lp=1.0 -> score=0.203 test_ex=+4.1% sharpe=0.90
+[192/300] rs=60 vt=1.00 lp=3.0 -> score=0.054 test_ex=+3.7% sharpe=0.83
+[193/300] rs=80 vt=0.00 lp=1.0 -> score=-0.457 test_ex=-5.6% sharpe=0.55
+[194/300] rs=75 vt=0.95 lp=1.0 -> score=-0.535 test_ex=-9.9% sharpe=0.46
+[195/300] rs=70 vt=0.00 lp=2.0 -> score=0.316 test_ex=+12.6% sharpe=0.98
+[196/300] rs=80 vt=0.00 lp=1.5 -> score=-1.989 test_ex=-24.0% sharpe=-0.27
+[197/300] rs=70 vt=0.00 lp=1.0 -> score=0.494 test_ex=+12.3% sharpe=1.17
+[198/300] rs=60 vt=0.00 lp=1.5 -> score=0.019 test_ex=+0.2% sharpe=0.72
+[199/300] rs=65 vt=1.00 lp=2.0 -> score=-0.516 test_ex=-10.7% sharpe=0.38
+[200/300] rs=75 vt=0.90 lp=1.0 -> score=0.177 test_ex=+9.5% sharpe=0.84
+[201/300] rs=75 vt=0.95 lp=2.5 -> score=-1.330 test_ex=-12.0% sharpe=0.28
+[202/300] rs=70 vt=0.90 lp=2.5 -> score=-0.703 test_ex=-11.3% sharpe=0.29
+[203/300] rs=75 vt=0.85 lp=1.0 -> score=0.258 test_ex=+9.3% sharpe=1.05
+[204/300] rs=70 vt=0.90 lp=2.0 -> score=-0.873 test_ex=-14.4% sharpe=0.17
+[205/300] rs=75 vt=0.85 lp=2.5 -> score=0.325 test_ex=+18.3% sharpe=0.87
+[206/300] rs=60 vt=0.85 lp=3.0 -> score=-0.097 test_ex=+6.7% sharpe=0.65
+[207/300] rs=75 vt=1.00 lp=1.5 -> score=0.879 test_ex=+19.2% sharpe=1.47
+[208/300] rs=80 vt=0.85 lp=3.0 -> score=0.526 test_ex=+22.8% sharpe=0.92
+[209/300] rs=60 vt=0.95 lp=2.5 -> score=-1.199 test_ex=-12.9% sharpe=0.23
+[210/300] rs=80 vt=1.00 lp=1.5 -> score=1.289 test_ex=+31.6% sharpe=1.55
+[211/300] rs=60 vt=0.85 lp=2.0 -> score=-0.089 test_ex=+2.8% sharpe=0.76
+[212/300] rs=70 vt=0.95 lp=1.5 -> score=0.272 test_ex=+12.0% sharpe=0.88
+[213/300] rs=80 vt=1.00 lp=1.0 -> score=0.041 test_ex=+3.3% sharpe=0.91
+[214/300] rs=60 vt=0.95 lp=1.5 -> score=-0.706 test_ex=-8.9% sharpe=0.47
+[215/300] rs=65 vt=1.00 lp=2.0 -> score=-0.485 test_ex=-10.4% sharpe=0.41
+[216/300] rs=80 vt=0.85 lp=2.0 -> score=-0.331 test_ex=+0.6% sharpe=0.62
+[217/300] rs=60 vt=0.85 lp=2.5 -> score=0.051 test_ex=+11.5% sharpe=0.76
+[218/300] rs=65 vt=0.85 lp=3.0 -> score=-1.141 test_ex=-14.8% sharpe=0.15
+[219/300] rs=60 vt=0.90 lp=2.0 -> score=-0.963 test_ex=-17.1% sharpe=0.03
+[220/300] rs=75 vt=0.95 lp=2.5 -> score=-1.188 test_ex=-10.3% sharpe=0.35
+[221/300] rs=65 vt=0.90 lp=1.0 -> score=-0.533 test_ex=-8.5% sharpe=0.50
+[222/300] rs=75 vt=1.00 lp=3.0 -> score=0.002 test_ex=+0.4% sharpe=0.82
+[223/300] rs=75 vt=0.85 lp=2.5 -> score=-1.511 test_ex=-15.8% sharpe=0.12
+[224/300] rs=70 vt=0.85 lp=2.5 -> score=-1.029 test_ex=-10.9% sharpe=0.33
+[225/300] rs=80 vt=0.00 lp=2.0 -> score=0.248 test_ex=+10.7% sharpe=0.90
+[226/300] rs=80 vt=0.95 lp=1.0 -> score=-0.280 test_ex=-4.3% sharpe=0.72
+[227/300] rs=80 vt=0.85 lp=1.0 -> score=-0.440 test_ex=-6.5% sharpe=0.53
+[228/300] rs=60 vt=1.00 lp=1.0 -> score=0.282 test_ex=+6.7% sharpe=1.15
+[229/300] rs=80 vt=0.85 lp=2.5 -> score=-0.983 test_ex=-16.6% sharpe=0.06
+[230/300] rs=60 vt=0.85 lp=3.0 -> score=-1.728 test_ex=-17.3% sharpe=0.05
+[231/300] rs=80 vt=0.85 lp=1.0 -> score=-0.736 test_ex=-9.6% sharpe=0.42
+[232/300] rs=65 vt=0.00 lp=3.0 -> score=0.368 test_ex=+13.8% sharpe=0.87
+[233/300] rs=60 vt=1.00 lp=3.0 -> score=-0.477 test_ex=-10.2% sharpe=0.36
+[234/300] rs=70 vt=0.00 lp=2.0 -> score=0.465 test_ex=+14.7% sharpe=0.94
+[235/300] rs=60 vt=0.00 lp=2.5 -> score=-0.560 test_ex=-2.6% sharpe=0.53
+[236/300] rs=70 vt=0.85 lp=3.0 -> score=-0.565 test_ex=-3.7% sharpe=0.45
+[237/300] rs=60 vt=0.95 lp=2.0 -> score=0.354 test_ex=+13.6% sharpe=0.83
+[238/300] rs=80 vt=0.00 lp=3.0 -> score=-0.094 test_ex=+6.8% sharpe=0.63
+[239/300] rs=65 vt=0.00 lp=1.0 -> score=0.104 test_ex=+0.7% sharpe=0.88
+[240/300] rs=65 vt=0.85 lp=1.0 -> score=-0.127 test_ex=-0.4% sharpe=0.82
+[241/300] rs=75 vt=0.90 lp=1.5 -> score=-1.141 test_ex=-10.3% sharpe=0.36
+[242/300] rs=75 vt=1.00 lp=2.5 -> score=1.356 test_ex=+33.5% sharpe=1.46
+[243/300] rs=75 vt=0.95 lp=2.5 -> score=-0.738 test_ex=-5.6% sharpe=0.53
+[244/300] rs=75 vt=0.00 lp=1.5 -> score=0.519 test_ex=+13.1% sharpe=1.04
+[245/300] rs=60 vt=0.85 lp=3.0 -> score=-1.688 test_ex=-17.9% sharpe=0.01
+[246/300] rs=80 vt=0.90 lp=2.0 -> score=-0.342 test_ex=+6.2% sharpe=0.61
+[247/300] rs=80 vt=0.95 lp=2.5 -> score=-0.566 test_ex=-11.0% sharpe=0.33
+[248/300] rs=60 vt=0.90 lp=1.5 -> score=-1.037 test_ex=-11.8% sharpe=0.30
+[249/300] rs=80 vt=0.00 lp=3.0 -> score=-0.865 test_ex=-10.9% sharpe=0.31
+[250/300] rs=65 vt=0.00 lp=1.5 -> score=-0.081 test_ex=+1.4% sharpe=0.72
+[251/300] rs=70 vt=0.85 lp=1.5 -> score=-0.309 test_ex=+0.5% sharpe=0.74
+[252/300] rs=70 vt=0.00 lp=3.0 -> score=-1.706 test_ex=-21.5% sharpe=-0.05
+[253/300] rs=60 vt=1.00 lp=1.0 -> score=0.036 test_ex=+0.9% sharpe=0.96
+[254/300] rs=80 vt=0.00 lp=2.0 -> score=-0.323 test_ex=+0.5% sharpe=0.59
+[255/300] rs=75 vt=0.90 lp=1.5 -> score=0.015 test_ex=+9.3% sharpe=0.75
+[256/300] rs=65 vt=0.95 lp=3.0 -> score=-0.020 test_ex=+7.7% sharpe=0.63
+[257/300] rs=80 vt=0.90 lp=3.0 -> score=0.783 test_ex=+29.6% sharpe=0.96
+[258/300] rs=60 vt=1.00 lp=2.0 -> score=0.510 test_ex=+12.0% sharpe=1.25
+[259/300] rs=60 vt=0.00 lp=1.5 -> score=-1.861 test_ex=-24.6% sharpe=-0.36
+[260/300] rs=80 vt=1.00 lp=3.0 -> score=0.572 test_ex=+17.2% sharpe=1.24
+[261/300] rs=60 vt=0.85 lp=2.5 -> score=0.754 test_ex=+26.9% sharpe=1.06
+[262/300] rs=70 vt=0.90 lp=3.0 -> score=-0.079 test_ex=+9.3% sharpe=0.67
+[263/300] rs=60 vt=0.00 lp=1.5 -> score=0.488 test_ex=+13.8% sharpe=1.01
+[264/300] rs=80 vt=0.95 lp=1.0 -> score=-0.238 test_ex=-4.0% sharpe=0.75
+[265/300] rs=80 vt=0.85 lp=2.0 -> score=-0.518 test_ex=-2.0% sharpe=0.52
+[266/300] rs=80 vt=0.85 lp=1.0 -> score=0.578 test_ex=+15.3% sharpe=1.19
+[267/300] rs=60 vt=0.95 lp=1.5 -> score=0.052 test_ex=+4.6% sharpe=0.72
+[268/300] rs=75 vt=1.00 lp=2.5 -> score=0.413 test_ex=+14.1% sharpe=1.09
+[269/300] rs=60 vt=0.95 lp=2.0 -> score=-0.373 test_ex=+3.8% sharpe=0.58
+[270/300] rs=80 vt=0.00 lp=2.0 -> score=0.091 test_ex=+5.0% sharpe=0.75
+[271/300] rs=65 vt=1.00 lp=2.5 -> score=0.214 test_ex=+7.6% sharpe=0.91
+[272/300] rs=75 vt=0.85 lp=1.5 -> score=-0.475 test_ex=-4.7% sharpe=0.50
+[273/300] rs=65 vt=0.00 lp=1.5 -> score=-0.140 test_ex=+1.5% sharpe=0.71
+[274/300] rs=80 vt=0.90 lp=1.0 -> score=-0.189 test_ex=-2.1% sharpe=0.71
+[275/300] rs=80 vt=1.00 lp=1.0 -> score=-0.235 test_ex=-0.6% sharpe=0.75
+[276/300] rs=80 vt=1.00 lp=2.5 -> score=0.886 test_ex=+26.0% sharpe=1.34
+[277/300] rs=80 vt=0.90 lp=1.0 -> score=-0.353 test_ex=-4.4% sharpe=0.67
+[278/300] rs=70 vt=0.85 lp=1.5 -> score=0.067 test_ex=+6.5% sharpe=0.86
+[279/300] rs=80 vt=0.95 lp=1.0 -> score=-0.481 test_ex=-9.5% sharpe=0.48
+[280/300] rs=65 vt=1.00 lp=2.5 -> score=0.243 test_ex=+7.5% sharpe=1.00
+[281/300] rs=70 vt=0.00 lp=1.0 -> score=0.007 test_ex=+3.0% sharpe=0.89
+[282/300] rs=75 vt=0.00 lp=1.5 -> score=-0.753 test_ex=-8.3% sharpe=0.40
+[283/300] rs=65 vt=0.85 lp=3.0 -> score=0.044 test_ex=+10.9% sharpe=0.68
+[284/300] rs=70 vt=0.90 lp=1.5 -> score=-1.107 test_ex=-17.7% sharpe=-0.04
+[285/300] rs=70 vt=0.00 lp=2.5 -> score=-0.538 test_ex=-4.7% sharpe=0.44
+[286/300] rs=80 vt=0.95 lp=2.5 -> score=-0.548 test_ex=-9.4% sharpe=0.39
+[287/300] rs=80 vt=0.90 lp=2.5 -> score=-0.764 test_ex=-5.8% sharpe=0.50
+[288/300] rs=75 vt=1.00 lp=3.0 -> score=0.696 test_ex=+17.6% sharpe=1.10
+[289/300] rs=60 vt=0.00 lp=2.0 -> score=-0.814 test_ex=-11.8% sharpe=0.27
+[290/300] rs=75 vt=0.90 lp=1.5 -> score=-0.747 test_ex=-6.6% sharpe=0.50
+[291/300] rs=80 vt=0.00 lp=1.0 -> score=-0.363 test_ex=-4.2% sharpe=0.60
+[292/300] rs=60 vt=1.00 lp=3.0 -> score=-0.282 test_ex=-3.8% sharpe=0.59
+[293/300] rs=75 vt=0.00 lp=2.0 -> score=-0.529 test_ex=-6.6% sharpe=0.42
+[294/300] rs=65 vt=1.00 lp=1.5 -> score=-0.015 test_ex=+1.8% sharpe=0.90
+[295/300] rs=75 vt=0.85 lp=3.0 -> score=-1.038 test_ex=-10.7% sharpe=0.32
+[296/300] rs=70 vt=1.00 lp=2.0 -> score=-0.122 test_ex=-2.9% sharpe=0.67
+[297/300] rs=60 vt=0.85 lp=2.0 -> score=-1.205 test_ex=-19.1% sharpe=-0.08
+[298/300] rs=60 vt=0.90 lp=2.0 -> score=-1.216 test_ex=-10.5% sharpe=0.29
+[299/300] rs=65 vt=0.85 lp=2.0 -> score=-0.828 test_ex=-9.0% sharpe=0.33
+[300/300] rs=65 vt=0.00 lp=1.5 -> score=0.667 test_ex=+17.0% sharpe=1.18
+
+Grid done in 29.9m. Top 10:
+     score  train_excess  test_excess  test_mdd  bench_mdd  sharpe  calmar  turnover  holdings  rs_threshold  vol_trend_min  liquidity_power  cap_pct
+241  1.356         0.059        0.335    -0.145     -0.261   1.463   3.386     1.468    10.241            75          1.000            2.500    0.180
+209  1.289         0.006        0.316    -0.125     -0.261   1.553   3.776     1.469     6.370            80          1.000            1.500    0.250
+74   0.899         0.044        0.315    -0.344     -0.261   1.049   1.371     1.497    30.444            60          0.850            3.000    0.150
+275  0.886        -0.163        0.260    -0.182     -0.261   1.344   2.287     1.339     4.407            80          1.000            2.500    0.180
+206  0.879        -0.021        0.192    -0.147     -0.261   1.470   2.372     1.366     6.315            75          1.000            1.500    0.250
+104  0.866        -0.097        0.315    -0.266     -0.261   1.046   1.773     1.647     9.722            80          0.850            3.000    0.250
+160  0.819        -0.003        0.230    -0.113     -0.261   1.135   3.438     1.454    19.296            75          0.950            1.500    0.150
+151  0.808        -0.087        0.224    -0.170     -0.261   1.253   2.233     1.346     4.685            70          1.000            3.000    0.120
+256  0.783         0.042        0.296    -0.345     -0.261   0.965   1.312     1.539    18.037            80          0.900            3.000    0.120
+45   0.772        -0.063        0.198    -0.180     -0.261   1.368   1.970     1.473    14.056            80          0.850            1.000    0.200

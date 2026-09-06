@@ -1,0 +1,473 @@
+{
+  "_note": "Manual fundamental overrides for foreign private issuers (20-F / 6-K filers) and other non-EDGAR stocks. Updated by CIO when automatic fetch fails. Format matches data_engine.py get_fundamentals() output.",
+  "_last_updated": "2026-05-23",
+  "ARM": {
+    "ticker": "ARM",
+    "source": "edgar_6k",
+    "eps_yoy_pct": -12.5,
+    "rev_yoy_pct": 26.3,
+    "latest_eps": 0.21,
+    "latest_revenue": 1242000000,
+    "gm_trend": "Stable",
+    "acceleration_label": "DECELERATING",
+    "eps_history": [
+      {
+        "quarter": "2025Q4",
+        "eps": 0.21,
+        "yoy_growth": -12.5
+      },
+      {
+        "quarter": "2025Q3",
+        "eps": 0.22,
+        "yoy_growth": 120.0
+      },
+      {
+        "quarter": "2025Q2",
+        "eps": 0.12,
+        "yoy_growth": -42.9
+      },
+      {
+        "quarter": "2024Q4",
+        "eps": 0.24,
+        "yoy_growth": 200.0
+      },
+      {
+        "quarter": "2024Q3",
+        "eps": 0.1,
+        "yoy_growth": 190.9
+      }
+    ],
+    "revenue_history": [
+      {
+        "quarter": "2025Q4",
+        "revenue": 1242000000,
+        "yoy_growth": 26.3
+      },
+      {
+        "quarter": "2025Q3",
+        "revenue": 1135000000,
+        "yoy_growth": 34.5
+      },
+      {
+        "quarter": "2025Q2",
+        "revenue": 1053000000,
+        "yoy_growth": 12.1
+      },
+      {
+        "quarter": "2024Q4",
+        "revenue": 983000000,
+        "yoy_growth": 19.3
+      }
+    ],
+    "eps_5q_trend": [
+      -12.5,
+      120.0,
+      -42.9,
+      200.0,
+      190.9
+    ],
+    "rev_5q_trend": [
+      26.3,
+      34.5,
+      12.1,
+      19.3,
+      4.7
+    ],
+    "_note": "ARM (UK, CIK 0001973239) files 6-K quarterly. GAAP EPS is negative due to SBC from SoftBank acquisition. Mode A Gate 2 FAILS: GAAP EPS -12.5% < 25% minimum. edgar_6k path is PRIMARY — this entry is last-resort fallback only.",
+    "_verify_date": "2026-05-23"
+  },
+  "ASML": {
+    "ticker": "ASML",
+    "source": "manual_cio",
+    "eps_yoy_pct": 84.0,
+    "rev_yoy_pct": 46.0,
+    "latest_eps": 5.71,
+    "latest_revenue": 7740000000,
+    "gm_trend": "Expanding",
+    "acceleration_label": "ACCELERATING",
+    "eps_history": [
+      {
+        "quarter": "2025Q1",
+        "eps": 5.71,
+        "yoy_growth": 84.0
+      },
+      {
+        "quarter": "2024Q4",
+        "eps": 8.76,
+        "yoy_growth": 65.0
+      },
+      {
+        "quarter": "2024Q3",
+        "eps": 5.28,
+        "yoy_growth": 10.0
+      },
+      {
+        "quarter": "2024Q2",
+        "eps": 4.01,
+        "yoy_growth": 12.0
+      },
+      {
+        "quarter": "2024Q1",
+        "eps": 3.11,
+        "yoy_growth": 21.0
+      }
+    ],
+    "revenue_history": [
+      {
+        "quarter": "2025Q1",
+        "revenue": 7740000000,
+        "yoy_growth": 46.0
+      },
+      {
+        "quarter": "2024Q4",
+        "revenue": 9260000000,
+        "yoy_growth": 29.0
+      },
+      {
+        "quarter": "2024Q3",
+        "revenue": 7470000000,
+        "yoy_growth": 12.0
+      },
+      {
+        "quarter": "2024Q2",
+        "revenue": 6240000000,
+        "yoy_growth": 19.0
+      },
+      {
+        "quarter": "2024Q1",
+        "revenue": 5290000000,
+        "yoy_growth": 21.0
+      }
+    ],
+    "eps_5q_trend": [
+      84.0,
+      65.0,
+      10.0,
+      12.0,
+      21.0
+    ],
+    "rev_5q_trend": [
+      46.0,
+      29.0,
+      12.0,
+      19.0,
+      21.0
+    ],
+    "gross_margin_history": [
+      {
+        "quarter": "2025Q1",
+        "gross_margin": 54.0
+      },
+      {
+        "quarter": "2024Q4",
+        "gross_margin": 51.7
+      },
+      {
+        "quarter": "2024Q3",
+        "gross_margin": 50.8
+      },
+      {
+        "quarter": "2024Q2",
+        "gross_margin": 51.5
+      }
+    ],
+    "_note": "ASML (Netherlands). Files 20-F annual + 6-K quarterly. EDGAR CIK 0000937966. Q1 2025: Net sales EUR 7.74B ($8.42B) +46% YoY, EPS EUR 5.71 +84%. Gross margin 54%. Update from: https://www.asml.com/en/investors/financial-results. EDGAR 6-K uses ifrs-full namespace — handled by data_engine fallback.",
+    "_verify_date": "2026-05-23"
+  },
+  "UMC": {
+    "ticker": "UMC",
+    "source": "manual_cio",
+    "eps_yoy_pct": 8.0,
+    "rev_yoy_pct": 6.0,
+    "latest_eps": 0.18,
+    "latest_revenue": 1800000000,
+    "gm_trend": "Stable",
+    "acceleration_label": "STABLE",
+    "eps_history": [
+      {
+        "quarter": "2024Q4",
+        "eps": 0.18,
+        "yoy_growth": 8.0
+      },
+      {
+        "quarter": "2024Q3",
+        "eps": 0.17,
+        "yoy_growth": 6.0
+      },
+      {
+        "quarter": "2024Q2",
+        "eps": 0.16,
+        "yoy_growth": -5.0
+      },
+      {
+        "quarter": "2024Q1",
+        "eps": 0.16,
+        "yoy_growth": -8.0
+      }
+    ],
+    "revenue_history": [
+      {
+        "quarter": "2024Q4",
+        "revenue": 1800000000,
+        "yoy_growth": 6.0
+      },
+      {
+        "quarter": "2024Q3",
+        "revenue": 1750000000,
+        "yoy_growth": 3.0
+      },
+      {
+        "quarter": "2024Q2",
+        "revenue": 1720000000,
+        "yoy_growth": -1.0
+      },
+      {
+        "quarter": "2024Q1",
+        "revenue": 1680000000,
+        "yoy_growth": -3.0
+      }
+    ],
+    "eps_5q_trend": [
+      8.0,
+      6.0,
+      -5.0,
+      -8.0
+    ],
+    "rev_5q_trend": [
+      6.0,
+      3.0,
+      -1.0,
+      -3.0
+    ],
+    "gross_margin_history": [
+      {
+        "quarter": "2024Q4",
+        "gross_margin": 34.5
+      },
+      {
+        "quarter": "2024Q3",
+        "gross_margin": 35.1
+      },
+      {
+        "quarter": "2024Q2",
+        "gross_margin": 34.8
+      }
+    ],
+    "_note": "UMC (United Microelectronics, Taiwan). Files 20-F annual + 6-K quarterly. EDGAR CIK needed. Q4 2024: Revenue recovering from trough. EPS and rev growth turning positive. Data from UMC IR: https://ir.umc.com. NOTE: EPS growth barely >0 — will FAIL Gate 2 (needs >25%). Correct behavior — UMC is not a Mode A candidate in current cycle.",
+    "_verify_date": "2026-05-23"
+  },
+  "GFS": {
+    "ticker": "GFS",
+    "source": "manual_cio",
+    "eps_yoy_pct": -12.0,
+    "rev_yoy_pct": -1.0,
+    "latest_eps": 0.48,
+    "latest_revenue": 1830000000,
+    "gm_trend": "Contracting",
+    "acceleration_label": "DECELERATING",
+    "eps_history": [
+      {
+        "quarter": "2024Q4",
+        "eps": 0.48,
+        "yoy_growth": -12.0
+      },
+      {
+        "quarter": "2024Q3",
+        "eps": 0.52,
+        "yoy_growth": -24.0
+      },
+      {
+        "quarter": "2024Q2",
+        "eps": 0.62,
+        "yoy_growth": -20.0
+      },
+      {
+        "quarter": "2024Q1",
+        "eps": 0.75,
+        "yoy_growth": -8.0
+      }
+    ],
+    "revenue_history": [
+      {
+        "quarter": "2024Q4",
+        "revenue": 1830000000,
+        "yoy_growth": -1.0
+      },
+      {
+        "quarter": "2024Q3",
+        "revenue": 1737000000,
+        "yoy_growth": -6.0
+      },
+      {
+        "quarter": "2024Q2",
+        "revenue": 1632000000,
+        "yoy_growth": -12.0
+      },
+      {
+        "quarter": "2024Q1",
+        "revenue": 1549000000,
+        "yoy_growth": -12.0
+      }
+    ],
+    "eps_5q_trend": [
+      -12.0,
+      -24.0,
+      -20.0,
+      -8.0
+    ],
+    "rev_5q_trend": [
+      -1.0,
+      -6.0,
+      -12.0,
+      -12.0
+    ],
+    "gross_margin_history": [
+      {
+        "quarter": "2024Q4",
+        "gross_margin": 22.8
+      },
+      {
+        "quarter": "2024Q3",
+        "gross_margin": 23.5
+      },
+      {
+        "quarter": "2024Q2",
+        "gross_margin": 24.1
+      }
+    ],
+    "_note": "GlobalFoundries (USA, NYSE: GFS). Files 10-K/10-Q (US domestic). Should be reachable via EDGAR XBRL. Q4 2024: Rev $1.83B -1% YoY, EPS $0.48 -12%. Gross margin declining. Data from GFS IR: https://gf.com/investors. GFS will FAIL Gate 2 — correct. Not a Mode A candidate currently. EDGAR path should work — check if us-gaap namespace works.",
+    "_verify_date": "2026-05-23"
+  },
+  "STM": {
+    "ticker": "STM",
+    "source": "manual_cio",
+    "eps_yoy_pct": -45.0,
+    "rev_yoy_pct": -22.0,
+    "latest_eps": 0.28,
+    "latest_revenue": 3200000000,
+    "gm_trend": "Contracting",
+    "acceleration_label": "DECELERATING",
+    "eps_history": [
+      {
+        "quarter": "2024Q4",
+        "eps": 0.28,
+        "yoy_growth": -45.0
+      },
+      {
+        "quarter": "2024Q3",
+        "eps": 0.42,
+        "yoy_growth": -38.0
+      },
+      {
+        "quarter": "2024Q2",
+        "eps": 0.55,
+        "yoy_growth": -30.0
+      }
+    ],
+    "rev_5q_trend": [
+      -22.0,
+      -19.0,
+      -14.0
+    ],
+    "_note": "STMicroelectronics (Switzerland/Netherlands). Files 20-F. Automotive/industrial downcycle. Rev Q4 2024 ~$3.2B -22% YoY. Will FAIL Gate 2 — correct behavior. Update from STM IR: https://investors.st.com.",
+    "_verify_date": "2026-05-23"
+  },
+  "TSM": {
+    "ticker": "TSM",
+    "source": "manual_cio",
+    "eps_yoy_pct": 57.0,
+    "rev_yoy_pct": 39.0,
+    "latest_eps": 2.24,
+    "latest_revenue": 26884000000,
+    "gm_trend": "Expanding",
+    "acceleration_label": "ACCELERATING",
+    "eps_history": [
+      {
+        "quarter": "2025Q1",
+        "eps": 2.24,
+        "yoy_growth": 57.0
+      },
+      {
+        "quarter": "2024Q4",
+        "eps": 1.97,
+        "yoy_growth": 57.0
+      },
+      {
+        "quarter": "2024Q3",
+        "eps": 1.77,
+        "yoy_growth": 54.0
+      },
+      {
+        "quarter": "2024Q2",
+        "eps": 1.48,
+        "yoy_growth": 36.0
+      },
+      {
+        "quarter": "2024Q1",
+        "eps": 1.42,
+        "yoy_growth": 9.0
+      }
+    ],
+    "revenue_history": [
+      {
+        "quarter": "2025Q1",
+        "revenue": 26884000000,
+        "yoy_growth": 41.6
+      },
+      {
+        "quarter": "2024Q4",
+        "revenue": 26881000000,
+        "yoy_growth": 38.8
+      },
+      {
+        "quarter": "2024Q3",
+        "revenue": 23500000000,
+        "yoy_growth": 36.0
+      },
+      {
+        "quarter": "2024Q2",
+        "revenue": 20820000000,
+        "yoy_growth": 40.1
+      },
+      {
+        "quarter": "2024Q1",
+        "revenue": 18871000000,
+        "yoy_growth": 16.5
+      }
+    ],
+    "eps_5q_trend": [
+      57.0,
+      57.0,
+      54.0,
+      36.0,
+      9.0
+    ],
+    "rev_5q_trend": [
+      41.6,
+      38.8,
+      36.0,
+      40.1,
+      16.5
+    ],
+    "gross_margin_history": [
+      {
+        "quarter": "2025Q1",
+        "gross_margin": 58.8
+      },
+      {
+        "quarter": "2024Q4",
+        "gross_margin": 59.0
+      },
+      {
+        "quarter": "2024Q3",
+        "gross_margin": 57.8
+      },
+      {
+        "quarter": "2024Q2",
+        "gross_margin": 53.2
+      }
+    ],
+    "_note": "TSMC (Taiwan). Files 20-F annual + 6-K quarterly. Q1 2025: Rev NT$839.25B ($26.88B USD) +41.6%, EPS NT$13.94 ($2.24 ADS) +57%. Gross margin 58.8%. Update from: https://www.tsmc.com/english/ir/annualReports.htm",
+    "_verify_date": "2026-05-23"
+  }
+}

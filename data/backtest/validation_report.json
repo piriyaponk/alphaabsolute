@@ -1,0 +1,106 @@
+{
+  "overall": "PASS",
+  "fail_count": 0,
+  "warn_count": 1,
+  "checks": [
+    {
+      "check": "LOOKAHEAD",
+      "verdict": "PASS",
+      "details": [
+        "rs_pct (cross-sectional rank, no future dates used)",
+        "vol_contraction (backward rolling std)",
+        "base_tight (backward rolling range ratio)",
+        "adtv_63m (backward rolling dollar vol)",
+        "vol_trend (backward rolling volume avg)",
+        "up_vol_ratio (backward rolling up-day vol)",
+        "beta_252 (backward rolling cov/var)",
+        "trend_consistency (backward rolling pos-day pct)",
+        "sharpe_60d (backward rolling mean/std)",
+        "dd_recovery (backward rolling max price)"
+      ],
+      "warnings": [
+        "SURVIVORSHIP BIAS: Universe = current S&P500+Russell1000. Stocks delisted 2015-2026 excluded. Results are OPTIMISTIC by ~2-3%/yr vs live."
+      ]
+    },
+    {
+      "check": "TRAIN_TEST_GAP",
+      "verdict": "PASS",
+      "train_excess": 2.0,
+      "test_excess": 23.01,
+      "ratio": 11.51,
+      "detail": "test/train ratio = 11.51 (need >= 0.50)"
+    },
+    {
+      "check": "WALK_FORWARD",
+      "verdict": "WARN",
+      "windows": {
+        "WF1 COVID+recovery": {
+          "excess": 22.07,
+          "mdd": -12.4,
+          "sharpe": 1.72,
+          "calmar": 4.64,
+          "holdings": 10.0
+        },
+        "WF2 2022 bear": {
+          "excess": -4.63,
+          "mdd": -11.48,
+          "sharpe": 0.25,
+          "calmar": 0.21,
+          "holdings": 11.3
+        },
+        "WF3 AI bull": {
+          "excess": 59.67,
+          "mdd": -12.27,
+          "sharpe": 1.42,
+          "calmar": 6.66,
+          "holdings": 9.1
+        }
+      },
+      "issues": [
+        "FAIL: 2022 bear excess = -4.6% (need >= -3%)"
+      ]
+    },
+    {
+      "check": "SHARPE",
+      "verdict": "PASS",
+      "sharpe": 0.99,
+      "detail": "Sharpe = 0.99 (need >= 0.70)"
+    },
+    {
+      "check": "TURNOVER",
+      "verdict": "PASS",
+      "turnover_pct": 148.6,
+      "detail": "Avg turnover = 149%/mo (warn >150%, fail >250%)"
+    }
+  ],
+  "test_summary": {
+    "cagr": 38.69,
+    "excess": 23.01,
+    "mdd": -12.27,
+    "sharpe": 0.99,
+    "calmar": 3.15,
+    "holdings": 10.4,
+    "turnover": 148.6
+  },
+  "params": {
+    "rs_threshold": 80.0,
+    "vol_contract_max": 1.0,
+    "base_tight_max": 1.0,
+    "adtv_min_m": 15.0,
+    "rs_accel_min": -99.0,
+    "price_vs_ma50_min": -99.0,
+    "pct_from_52w_high_min": -99.0,
+    "vol_trend_min": 0.95,
+    "up_vol_ratio_min": 0.0,
+    "trend_consistency_min": 0.55,
+    "sharpe_60d_min": -99.0,
+    "beta_max": 99.0,
+    "liquidity_power": 1.5,
+    "cap_pct": 0.18,
+    "bull_exposure": 1.0,
+    "bear_exposure": 0.3,
+    "round_trip_cost": 0.0015,
+    "rs_exit_threshold": 0.0,
+    "vol_exit_threshold": 0.0
+  }
+}

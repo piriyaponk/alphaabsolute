@@ -1,0 +1,9 @@
+{
+  "rs_threshold": 80.0,
+  "vol_trend_min": 0.88,
+  "liquidity_power": 3.0,
+  "cap_pct": 0.25,
+  "bear_exposure": 0.3,
+  "sharpe_60d_min": 0.7,
+  "round_trip_cost": 0.0015
+}

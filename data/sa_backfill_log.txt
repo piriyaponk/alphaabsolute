@@ -1,0 +1,1173 @@
+
+==========================================================
+  StockAnalysis Fetcher  [2026-06-01]
+==========================================================
+  Mode: missing-only — 1139 tickers to fill
+  Remaining (checkpoint): 1139/1139
+  [   1/1139] A        | ETA 0s  [OK] GM=54.0% Rev=10.0%
+  [   2/1139] AA       | ETA 16m  [OK] GM=21.3% Rev=-5.2%
+  [   3/1139] AACB     | ETA 18m  [--] no data
+  [   4/1139] AACI     | ETA 19m  [--] no data
+  [   5/1139] AAL      | ETA 20m  [OK] GM=19.6% Rev=10.8%
+  [   6/1139] AAME     | ETA 22m  [OK] GM=— Rev=20.8%
+  [   7/1139] AAMI     | ETA 24m  [OK] GM=42.5% Rev=39.3%
+  [   8/1139] AAON     | ETA 24m  [OK] GM=25.1% Rev=54.3%
+  [   9/1139] AAP      | ETA 25m  [OK] GM=45.1% Rev=1.2%
+  [  10/1139] AARD     | ETA 26m  [--] no data
+  [  11/1139] AAT      | ETA 26m  [OK] GM=60.5% Rev=1.8%
+  [  12/1139] AAUC     | ETA 27m  [OK] GM=43.4% Rev=13.8%
+  [  13/1139] AB       | ETA 27m  [OK] GM=— Rev=—
+  [  14/1139] ABAT     | ETA 27m  [OK] GM=9.4% Rev=697.1%
+  [  15/1139] ABBV     | ETA 27m  [OK] GM=71.9% Rev=12.4%
+  [  16/1139] ABCB     | ETA 28m  [OK] GM=— Rev=12.8%
+  [  17/1139] ABCL     | ETA 28m  [OK] GM=100.0% Rev=96.3%
+  [  18/1139] ABEO     | ETA 28m  [OK] GM=69.1% Rev=—
+  [  19/1139] ABG      | ETA 28m  [OK] GM=17.7% Rev=-0.9%
+  [  20/1139] ABLV     | ETA 28m  [OK] GM=— Rev=-10.6%
+  [  21/1139] ABM      | ETA 28m  [OK] GM=100.0% Rev=6.1%
+  [  22/1139] ABNB     | ETA 29m  [OK] GM=78.3% Rev=17.9%
+  [  23/1139] ABOS     | ETA 29m  [--] no data
+  [  24/1139] ABR      | ETA 29m  [OK] GM=— Rev=-8.0%
+  [  25/1139] ABSI     | ETA 29m  [OK] GM=100.0% Rev=-81.8%
+  [  26/1139] ABT      | ETA 29m  [OK] GM=56.2% Rev=7.8%
+  [  27/1139] ABTS     | ETA 29m  [OK] GM=— Rev=68.8%
+  [  28/1139] ABUS     | ETA 28m  [OK] GM=100.0% Rev=10054.5%
+  [  29/1139] ABVC     | ETA 28m  [--] no data
+  [  30/1139] ABVE     | ETA 28m  [OK] GM=-4.9% Rev=-45.0%
+  [  31/1139] ABX      | ETA 28m  [OK] GM=89.4% Rev=34.5%
+  [  32/1139] ACA      | ETA 28m  [OK] GM=21.1% Rev=4.4%
+  [  33/1139] ACAD     | ETA 28m  [OK] GM=90.8% Rev=9.7%
+  [  34/1139] ACB      | ETA 28m  [OK] GM=49.0% Rev=6.8%
+  [  35/1139] ACCL     | ETA 28m  [OK] GM=— Rev=0.7%
+  [  36/1139] ACCO     | ETA 29m  [OK] GM=31.1% Rev=8.3%
+  [  37/1139] ACDC     | ETA 29m  [OK] GM=21.2% Rev=-25.1%
+  [  38/1139] ACEL     | ETA 29m  [OK] GM=31.1% Rev=8.5%
+  [  39/1139] ACET     | ETA 29m  [--] no data
+  [  40/1139] ACFN     | ETA 30m  [OK] GM=80.2% Rev=-28.1%
+  [  41/1139] ACGL     | ETA 30m  [OK] GM=— Rev=-3.2%
+  [  42/1139] ACGLN    | ETA 30m  [--] no data
+  [  43/1139] ACH      | ETA 30m  [OK] GM=44.3% Rev=-6.8%
+  [  44/1139] ACHC     | ETA 30m  [OK] GM=100.0% Rev=7.6%
+  [  45/1139] ACHR     | ETA 30m  [OK] GM=18.8% Rev=—
+  [  46/1139] ACHV     | ETA 30m  [--] no data
+  [  47/1139] ACI      | ETA 30m  [OK] GM=27.2% Rev=7.7%
+  [  48/1139] ACIC     | ETA 30m  [OK] GM=— Rev=-1.4%
+  [  49/1139] ACIU     | ETA 30m  [OK] GM=100.0% Rev=13.0%
+  [  50/1139] ACIW     | ETA 30m  [OK] GM=46.3% Rev=7.9%
+  [Checkpoint saved — 50/1139 done]
+  [  51/1139] ACM      | ETA 30m  [OK] GM=7.8% Rev=0.8%
+  [  52/1139] ACN      | ETA 30m  [OK] GM=30.3% Rev=8.3%
+  [  53/1139] ACNB     | ETA 30m  [OK] GM=— Rev=42.0%
+  [  54/1139] ACNT     | ETA 30m  [OK] GM=14.5% Rev=8.9%
+  [  55/1139] ACOG     | ETA 30m  [OK] GM=92.3% Rev=20.7%
+  [  56/1139] ACON     | ETA 30m  [OK] GM=17.7% Rev=11.3%
+  [  57/1139] ACR      | ETA 30m  [OK] GM=45.5% Rev=4.8%
+  [  58/1139] ACRE     | ETA 30m  [OK] GM=58.9% Rev=-10.0%
+  [  59/1139] ACRS     | ETA 30m  [OK] GM=80.2% Rev=37.2%
+  [  60/1139] ACRV     | ETA 30m  [--] no data
+  [  61/1139] ACT      | ETA 30m  [OK] GM=100.0% Rev=1.7%
+  [  62/1139] ACTG     | ETA 30m  [OK] GM=22.2% Rev=-56.4%
+  [  63/1139] ACTU     | ETA 30m  [--] no data
+  [  64/1139] ACVA     | ETA 30m  [OK] GM=51.6% Rev=11.8%
+  [  65/1139] ACXP     | ETA 30m  [--] no data
+  [  66/1139] AD       | ETA 30m  [OK] GM=58.5% Rev=92.8%
+  [  67/1139] ADAC     | ETA 30m  [--] no data
+  [  68/1139] ADAM     | ETA 30m  [OK] GM=— Rev=48.4%
+  [  69/1139] ADAMG    | ETA 30m  [--] no data
+  [  70/1139] ADAMH    | ETA 30m  [--] no data
+  [  71/1139] ADAMI    | ETA 30m  [--] no data
+  [  72/1139] ADAML    | ETA 29m  [--] no data
+  [  73/1139] ADAMO    | ETA 29m  [--] no data
+  [  74/1139] ADAMZ    | ETA 29m  [--] no data
+  [  75/1139] ADC      | ETA 29m  [OK] GM=87.6% Rev=18.7%
+  [  76/1139] ADCT     | ETA 29m  [OK] GM=82.7% Rev=-9.5%
+  [  77/1139] ADEA     | ETA 29m  [OK] GM=100.0% Rev=19.5%
+  [  78/1139] ADGM     | ETA 29m  [--] no data
+  [  79/1139] ADI      | ETA 29m  [OK] GM=67.3% Rev=37.2%
+  [  80/1139] ADIL     | ETA 29m  [--] no data
+  [  81/1139] ADM      | ETA 29m  [OK] GM=6.0% Rev=1.6%
+  [  82/1139] ADMA     | ETA 29m  [OK] GM=70.5% Rev=-0.3%
+  [  83/1139] ADNT     | ETA 29m  [OK] GM=6.7% Rev=7.0%
+  [  84/1139] ADP      | ETA 29m  [OK] GM=54.6% Rev=7.0%
+  [  85/1139] ADPT     | ETA 29m  [OK] GM=73.6% Rev=35.1%
+  [  86/1139] ADSE     | ETA 29m  [OK] GM=— Rev=-44.9%
+  [  87/1139] ADSK     | ETA 29m  [OK] GM=91.0% Rev=18.4%
+  [  88/1139] ADT      | ETA 28m  [OK] GM=81.0% Rev=0.9%
+  [  89/1139] ADTN     | ETA 28m  [OK] GM=39.5% Rev=15.5%
+  [  90/1139] ADTX     | ETA 28m  [OK] GM=23.6% Rev=1094.4%
+  [  91/1139] ADUR     | ETA 28m  [--] no data
+  [  92/1139] ADUS     | ETA 28m  [OK] GM=31.9% Rev=7.7%
+  [  93/1139] ADV      | ETA 28m  [OK] GM=12.4% Rev=5.8%
+  [  94/1139] ADVB     | ETA 28m  [--] no data
+  [  95/1139] AEAQ     | ETA 28m  [--] no data
+  [  96/1139] AEBI     | ETA 28m  [OK] GM=19.2% Rev=82.8%
+  [  97/1139] AEC      | ETA 28m  [--] no data
+  [  98/1139] AEE      | ETA 28m  [OK] GM=49.7% Rev=3.8%
+  [  99/1139] AEG      | ETA 28m  [OK] GM=— Rev=72.8%
+  [ 100/1139] AEHL     | ETA 28m  [OK] GM=— Rev=-5.7%
+  [Checkpoint saved — 100/1139 done]
+  [ 101/1139] AEI      | ETA 28m  [OK] GM=28.1% Rev=-8.2%
+  [ 102/1139] AEM      | ETA 28m  [OK] GM=76.7% Rev=66.1%
+  [ 103/1139] AEMD     | ETA 28m  [--] no data
+  [ 104/1139] AENT     | ETA 28m  [OK] GM=12.8% Rev=21.2%
+  [ 105/1139] AEO      | ETA 28m  [OK] GM=38.2% Rev=9.7%
+  [ 106/1139] AEP      | ETA 28m  [OK] GM=45.5% Rev=10.2%
+  [ 107/1139] AER      | ETA 28m  [OK] GM=— Rev=8.9%
+  [ 108/1139] AERT     | ETA 28m  [OK] GM=19.1% Rev=-0.8%
+  [ 109/1139] AES      | ETA 28m  [OK] GM=20.1% Rev=8.7%
+  [ 110/1139] AESI     | ETA 28m  [OK] GM=19.4% Rev=-10.8%
+  [ 111/1139] AEXA     | ETA 28m  [--] no data
+  [ 112/1139] AEYE     | ETA 28m  [OK] GM=78.2% Rev=8.4%
+  [ 113/1139] AFBI     | ETA 28m  [OK] GM=— Rev=5.8%
+  [ 114/1139] AFCG     | ETA 28m  [OK] GM=— Rev=21.5%
+  [ 115/1139] AFG      | ETA 28m  [OK] GM=— Rev=-0.1%
+  [ 116/1139] AFJK     | ETA 28m  [--] no data
+  [ 117/1139] AFL      | ETA 28m  [OK] GM=— Rev=27.9%
+  [ 118/1139] AFRI     | ETA 28m  [OK] GM=— Rev=-18.2%
+  [ 119/1139] AFRM     | ETA 27m  [OK] GM=— Rev=37.9%
+  [ 120/1139] AFYA     | ETA 27m  [OK] GM=68.9% Rev=8.2%
+  [ 121/1139] AG       | ETA 27m  [OK] GM=67.7% Rev=95.4%
+  [ 122/1139] AGAE     | ETA 27m  [OK] GM=47.2% Rev=-12.2%
+  [ 123/1139] AGBK     | ETA 27m  [--] no data
+  [ 124/1139] AGCC     | ETA 27m  [OK] GM=— Rev=274.1%
+  [ 125/1139] AGCO     | ETA 27m  [OK] GM=24.8% Rev=14.3%
+  [ 126/1139] AGEN     | ETA 27m  [OK] GM=100.0% Rev=40.2%
+  [ 127/1139] AGH      | ETA 27m  [OK] GM=91.3% Rev=1.1%
+  [ 128/1139] AGI      | ETA 27m  [OK] GM=65.6% Rev=79.2%
+  [ 129/1139] AGIO     | ETA 28m  [OK] GM=93.6% Rev=137.8%
+  [ 130/1139] AGL      | ETA 27m  [OK] GM=4.6% Rev=-7.3%
+  [ 131/1139] AGM      | ETA 27m  [OK] GM=— Rev=14.2%
+  [ 132/1139] AGMH     | ETA 27m  [OK] GM=— Rev=430.7%
+  [ 133/1139] AGNC     | ETA 27m  [--] no data
+  [ 134/1139] AGNCL    | ETA 28m  [--] no data
+  [ 135/1139] AGNCO    | ETA 27m  [--] no data
+  [ 136/1139] AGNT     | ETA 27m  [OK] GM=7.5% Rev=5.3%
+  [ 137/1139] AGO      | ETA 27m  [OK] GM=— Rev=-24.4%
+  [ 138/1139] AGPU     | ETA 27m  [OK] GM=80.8% Rev=-68.0%
+  [ 139/1139] AGRO     | ETA 27m  [OK] GM=28.3% Rev=19.7%
+  [ 140/1139] AGRZ     | ETA 27m  [OK] GM=— Rev=320.2%
+  [ 141/1139] AGX      | ETA 27m  [OK] GM=25.0% Rev=12.7%
+  [ 142/1139] AGYS     | ETA 27m  [OK] GM=64.4% Rev=11.7%
+  [ 143/1139] AHCO     | ETA 27m  [OK] GM=13.6% Rev=5.4%
+  [ 144/1139] AHMA     | ETA 27m  [OK] GM=— Rev=4.6%
+  [ 145/1139] AHR      | ETA 27m  [OK] GM=19.3% Rev=20.4%
+  [ 146/1139] AHRT     | ETA 27m  [OK] GM=— Rev=12.1%
+  [ 147/1139] AHT      | ETA 27m  [OK] GM=— Rev=-3.5%
+  [ 148/1139] AIDX     | ETA 27m      [AIDX] No tables found — parser may be broken
+[--] no data
+  [ 149/1139] AIFC     | ETA 27m  [OK] GM=75.8% Rev=-2.8%
+  [ 150/1139] AIFF     | ETA 27m  [OK] GM=45.6% Rev=1027.9%
+  [Checkpoint saved — 150/1139 done]
+  [ 151/1139] AIFU     | ETA 27m  [--] no data
+  [ 152/1139] AIG      | ETA 27m  [OK] GM=— Rev=-2.0%
+  [ 153/1139] AIHS     | ETA 27m  [OK] GM=29.3% Rev=25.5%
+  [ 154/1139] AII      | ETA 27m  [OK] GM=— Rev=26.5%
+  [ 155/1139] AIIA     | ETA 27m  [--] no data
+  [ 156/1139] AIIO     | ETA 27m  [OK] GM=— Rev=-98.2%
+  [ 157/1139] AIMD     | ETA 27m  [--] no data
+  [ 158/1139] AIN      | ETA 27m  [OK] GM=32.0% Rev=7.8%
+  [ 159/1139] AIOS     | ETA 27m  [--] no data
+  [ 160/1139] AIOT     | ETA 27m  [OK] GM=55.2% Rev=6.6%
+  [ 161/1139] AIP      | ETA 27m  [OK] GM=85.8% Rev=38.7%
+  [ 162/1139] AIR      | ETA 27m  [OK] GM=18.3% Rev=24.6%
+  [ 163/1139] AIRE     | ETA 27m  [OK] GM=65.7% Rev=-9.1%
+  [ 164/1139] AIRG     | ETA 27m  [OK] GM=43.2% Rev=-4.2%
+  [ 165/1139] AIRJ     | ETA 27m  [--] no data
+  [ 166/1139] AIRO     | ETA 27m  [OK] GM=26.6% Rev=-24.5%
+  [ 167/1139] AIRS     | ETA 27m  [OK] GM=60.4% Rev=0.1%
+  [ 168/1139] AIRT     | ETA 27m  [OK] GM=28.0% Rev=-8.7%
+  [ 169/1139] AIT      | ETA 27m  [OK] GM=30.4% Rev=7.3%
+  [ 170/1139] AIV      | ETA 26m  [--] no data
+  [ 171/1139] AIXC     | ETA 26m  [--] no data
+  [ 172/1139] AIZ      | ETA 26m  [OK] GM=— Rev=11.3%
+  [ 173/1139] AJG      | ETA 26m  [OK] GM=46.2% Rev=27.7%
+  [ 174/1139] AKA      | ETA 27m  [OK] GM=63.1% Rev=3.0%
+  [ 175/1139] AKAM     | ETA 27m  [OK] GM=56.1% Rev=5.8%
+  [ 176/1139] AKAN     | ETA 26m  [--] no data
+  [ 177/1139] AKBA     | ETA 26m  [OK] GM=77.0% Rev=-6.6%
+  [ 178/1139] AKR      | ETA 26m  [OK] GM=69.7% Rev=-1.3%
+  [ 179/1139] AKTS     | ETA 26m  [OK] GM=100.0% Rev=—
+  [ 180/1139] ALB      | ETA 26m  [OK] GM=35.1% Rev=32.7%
+  [ 181/1139] ALBT     | ETA 26m  [--] no data
+  [ 182/1139] ALC      | ETA 26m  [OK] GM=56.4% Rev=9.4%
+  [ 183/1139] ALCO     | ETA 26m  [OK] GM=-85.9% Rev=-70.3%
+  [ 184/1139] ALDF     | ETA 26m  [--] no data
+  [ 185/1139] ALDX     | ETA 26m  [--] no data
+  [ 186/1139] ALEC     | ETA 26m  [OK] GM=100.0% Rev=-71.5%
+  [ 187/1139] ALF      | ETA 26m  [--] no data
+  [ 188/1139] ALG      | ETA 26m  [OK] GM=25.1% Rev=6.7%
+  [ 189/1139] ALGM     | ETA 26m  [OK] GM=47.0% Rev=26.1%
+  [ 190/1139] ALGN     | ETA 26m  [OK] GM=70.8% Rev=6.2%
+  [ 191/1139] ALGS     | ETA 26m  [OK] GM=100.0% Rev=810.0%
+  [ 192/1139] ALGT     | ETA 26m  [OK] GM=100.0% Rev=4.8%
+  [ 193/1139] ALH      | ETA 26m  [OK] GM=36.8% Rev=9.6%
+  [ 194/1139] ALHC     | ETA 26m  [OK] GM=11.7% Rev=33.3%
+  [ 195/1139] ALIS     | ETA 26m  [--] no data
+  [ 196/1139] ALIT     | ETA 26m  [OK] GM=35.0% Rev=-2.6%
+  [ 197/1139] ALK      | ETA 26m  [OK] GM=11.0% Rev=5.2%
+  [ 198/1139] ALKS     | ETA 26m  [OK] GM=84.3% Rev=28.2%
+  [ 199/1139] ALKT     | ETA 26m  [OK] GM=58.6% Rev=28.9%
+  [ 200/1139] ALL      | ETA 26m  [OK] GM=— Rev=3.0%
+  [Checkpoint saved — 200/1139 done]
+  [ 201/1139] ALLE     | ETA 26m  [OK] GM=44.0% Rev=9.7%
+  [ 202/1139] ALLO     | ETA 26m  [--] no data
+  [ 203/1139] ALLR     | ETA 26m  [OK] GM=100.0% Rev=—
+  [ 204/1139] ALLT     | ETA 26m  [OK] GM=70.9% Rev=14.2%
+  [ 205/1139] ALLY     | ETA 26m  [OK] GM=— Rev=21.1%
+  [ 206/1139] ALM      | ETA 26m  [OK] GM=51.2% Rev=221.2%
+  [ 207/1139] ALMS     | ETA 26m  [OK] GM=100.0% Rev=-90.0%
+  [ 208/1139] ALNT     | ETA 26m  [OK] GM=32.7% Rev=4.6%
+  [ 209/1139] ALNY     | ETA 26m  [OK] GM=81.9% Rev=96.4%
+  [ 210/1139] ALOT     | ETA 26m  [OK] GM=24.4% Rev=0.5%
+  [ 211/1139] ALOV     | ETA 26m  [--] no data
+  [ 212/1139] ALOY     | ETA 25m  [OK] GM=57.6% Rev=—
+  [ 213/1139] ALP      | ETA 26m  [--] no data
+  [ 214/1139] ALPS     | ETA 26m  [OK] GM=— Rev=20.2%
+  [ 215/1139] ALRM     | ETA 25m  [OK] GM=65.9% Rev=11.0%
+  [ 216/1139] ALRS     | ETA 25m  [OK] GM=— Rev=1.8%
+  [ 217/1139] ALSN     | ETA 25m  [OK] GM=28.9% Rev=83.5%
+  [ 218/1139] ALT      | ETA 25m  [--] no data
+  [ 219/1139] ALTG     | ETA 25m  [OK] GM=26.6% Rev=-3.0%
+  [ 220/1139] ALTI     | ETA 25m  [OK] GM=100.0% Rev=28.1%
+  [ 221/1139] ALTO     | ETA 25m  [OK] GM=4.1% Rev=-0.8%
+  [ 222/1139] ALUB     | ETA 25m  [--] no data
+  [ 223/1139] ALV      | ETA 25m  [OK] GM=19.1% Rev=6.8%
+  [ 224/1139] ALVO     | ETA 25m  [OK] GM=56.5% Rev=-20.3%
+  [ 225/1139] ALX      | ETA 25m  [OK] GM=45.7% Rev=-2.7%
+  [ 226/1139] ALXO     | ETA 25m  [--] no data
+  [ 227/1139] ALZN     | ETA 25m  [--] no data
+  [ 228/1139] AM       | ETA 25m  [OK] GM=77.5% Rev=7.9%
+  [ 229/1139] AMAL     | ETA 25m  [OK] GM=— Rev=4.7%
+  [ 230/1139] AMBP     | ETA 25m  [OK] GM=11.8% Rev=18.6%
+  [ 231/1139] AMBQ     | ETA 25m  [OK] GM=43.5% Rev=59.3%
+  [ 232/1139] AMC      | ETA 25m  [OK] GM=69.2% Rev=21.2%
+  [ 233/1139] AMCI     | ETA 25m  [OK] GM=80.8% Rev=-41.0%
+  [ 234/1139] AMCR     | ETA 25m  [OK] GM=20.1% Rev=77.4%
+  [ 235/1139] AMCX     | ETA 25m  [OK] GM=100.0% Rev=-2.4%
+  [ 236/1139] AME      | ETA 25m  [OK] GM=37.2% Rev=11.3%
+  [ 237/1139] AMG      | ETA 25m  [OK] GM=47.3% Rev=9.7%
+  [ 238/1139] AMGN     | ETA 25m  [OK] GM=68.2% Rev=5.8%
+  [ 239/1139] AMH      | ETA 25m  [OK] GM=57.2% Rev=2.8%
+  [ 240/1139] AMIX     | ETA 25m  [--] no data
+  [ 241/1139] AMLX     | ETA 25m  [--] no data
+  [ 242/1139] AMN      | ETA 25m  [OK] GM=26.8% Rev=99.9%
+  [ 243/1139] AMOD     | ETA 25m  [--] no data
+  [ 244/1139] AMP      | ETA 25m  [OK] GM=— Rev=10.5%
+  [ 245/1139] AMPG     | ETA 25m  [OK] GM=48.0% Rev=48.6%
+  [ 246/1139] AMPH     | ETA 25m  [OK] GM=41.1% Rev=0.4%
+  [ 247/1139] AMPL     | ETA 25m  [OK] GM=73.0% Rev=16.9%
+  [ 248/1139] AMPX     | ETA 25m  [OK] GM=20.1% Rev=152.9%
+  [ 249/1139] AMPY     | ETA 25m  [OK] GM=32.6% Rev=-48.0%
+  [ 250/1139] AMR      | ETA 25m  [OK] GM=9.6% Rev=-1.3%
+  [Checkpoint saved — 250/1139 done]
+  [ 251/1139] AMRC     | ETA 25m  [OK] GM=14.1% Rev=13.8%
+  [ 252/1139] AMRX     | ETA 25m  [OK] GM=44.3% Rev=3.9%
+  [ 253/1139] AMRZ     | ETA 25m  [OK] GM=9.7% Rev=4.7%
+  [ 254/1139] AMSC     | ETA 25m  [OK] GM=27.3% Rev=29.6%
+  [ 255/1139] AMSF     | ETA 25m  [OK] GM=42.0% Rev=10.3%
+  [ 256/1139] AMST     | ETA 25m  [OK] GM=100.0% Rev=171.5%
+  [ 257/1139] AMT      | ETA 25m  [OK] GM=74.3% Rev=6.8%
+  [ 258/1139] AMTB     | ETA 25m  [OK] GM=— Rev=-1.6%
+  [ 259/1139] AMTX     | ETA 25m  [OK] GM=5.0% Rev=27.4%
+  [ 260/1139] AMWD     | ETA 25m  [OK] GM=11.6% Rev=-18.4%
+  [ 261/1139] AMWL     | ETA 25m  [OK] GM=51.0% Rev=-17.9%
+  [ 262/1139] AMZN     | ETA 25m  [OK] GM=51.8% Rev=16.6%
+  [ 263/1139] AN       | ETA 25m  [OK] GM=18.5% Rev=-2.1%
+  [ 264/1139] ANAB     | ETA 25m  [OK] GM=100.0% Rev=-8.0%
+  [ 265/1139] ANDE     | ETA 25m  [OK] GM=6.1% Rev=-1.2%
+  [ 266/1139] ANDG     | ETA 25m  [OK] GM=30.9% Rev=15.7%
+  [ 267/1139] ANF      | ETA 25m  [OK] GM=62.9% Rev=1.5%
+  [ 268/1139] ANGH     | ETA 25m  [OK] GM=— Rev=5.3%
+  [ 269/1139] ANGI     | ETA 25m  [OK] GM=95.9% Rev=-3.2%
+  [ 270/1139] ANGO     | ETA 24m  [OK] GM=52.9% Rev=8.9%
+  [ 271/1139] ANGX     | ETA 24m  [OK] GM=61.8% Rev=270.9%
+  [ 272/1139] ANIK     | ETA 24m  [OK] GM=64.2% Rev=13.2%
+  [ 273/1139] ANIP     | ETA 24m  [OK] GM=60.6% Rev=20.5%
+  [ 274/1139] ANIX     | ETA 24m  [--] no data
+  [ 275/1139] ANNA     | ETA 24m  [OK] GM=83.4% Rev=1349.5%
+  [ 276/1139] ANNX     | ETA 24m  [--] no data
+  [ 277/1139] ANPA     | ETA 24m  [OK] GM=— Rev=10.2%
+  [ 278/1139] ANRO     | ETA 24m  [--] no data
+  [ 279/1139] ANSC     | ETA 24m  [--] no data
+  [ 280/1139] ANSS     | ETA 24m  [OK] GM=85.6% Rev=8.2%
+  [ 281/1139] ANTA     | ETA 24m  [OK] GM=49.7% Rev=52.4%
+  [ 282/1139] ANTX     | ETA 24m  [--] no data
+  [ 283/1139] ANVS     | ETA 24m  [--] no data
+  [ 284/1139] AOMR     | ETA 24m  [--] no data
+  [ 285/1139] AON      | ETA 24m  [OK] GM=100.0% Rev=6.5%
+  [ 286/1139] AORT     | ETA 24m  [OK] GM=64.8% Rev=17.5%
+  [ 287/1139] AOS      | ETA 24m  [OK] GM=38.7% Rev=-1.9%
+  [ 288/1139] AOUT     | ETA 24m  [OK] GM=41.0% Rev=-3.3%
+  [ 289/1139] AP       | ETA 24m  [OK] GM=15.9% Rev=3.9%
+  [ 290/1139] APA      | ETA 24m  [OK] GM=77.3% Rev=-11.7%
+  [ 291/1139] APAC     | ETA 24m  [--] no data
+  [ 292/1139] APAM     | ETA 24m  [OK] GM=44.3% Rev=9.3%
+  [ 293/1139] APC      | ETA 24m  [OK] GM=3.5% Rev=-6.8%
+  [ 294/1139] APD      | ETA 24m  [OK] GM=31.1% Rev=8.8%
+  [ 295/1139] APEI     | ETA 24m  [OK] GM=57.3% Rev=6.2%
+  [ 296/1139] APG      | ETA 24m  [OK] GM=31.3% Rev=15.3%
+  [ 297/1139] APGE     | ETA 24m  [--] no data
+  [ 298/1139] APLD     | ETA 24m  [OK] GM=42.5% Rev=139.3%
+  [ 299/1139] APLE     | ETA 24m  [OK] GM=32.1% Rev=3.1%
+  [ 300/1139] APLM     | ETA 24m  [--] no data
+  [Checkpoint saved — 300/1139 done]
+  [ 301/1139] APM      | ETA 24m  [--] no data
+  [ 302/1139] APO      | ETA 24m  [OK] GM=29.5% Rev=-8.8%
+  [ 303/1139] APOG     | ETA 23m  [OK] GM=22.4% Rev=1.6%
+  [ 304/1139] APPF     | ETA 23m  [OK] GM=63.8% Rev=20.4%
+  [ 305/1139] APPN     | ETA 23m  [OK] GM=73.1% Rev=21.5%
+  [ 306/1139] APPS     | ETA 23m  [OK] GM=50.4% Rev=19.6%
+  [ 307/1139] APRE     | ETA 23m  [--] no data
+  [ 308/1139] APTV     | ETA 23m  [OK] GM=18.1% Rev=5.4%
+  [ 309/1139] APVO     | ETA 23m  [--] no data
+  [ 310/1139] APWC     | ETA 23m  [OK] GM=8.2% Rev=30.1%
+  [ 311/1139] APXT     | ETA 23m  [--] no data
+  [ 312/1139] APYX     | ETA 23m  [OK] GM=63.5% Rev=32.5%
+  [ 313/1139] AQB      | ETA 23m  [--] no data
+  [ 314/1139] AQMS     | ETA 23m  [--] no data
+  [ 315/1139] AQN      | ETA 23m  [OK] GM=67.1% Rev=14.4%
+  [ 316/1139] AQST     | ETA 23m  [OK] GM=76.0% Rev=65.7%
+  [ 317/1139] AR       | ETA 23m  [OK] GM=49.8% Rev=43.8%
+  [ 318/1139] ARAI     | ETA 23m  [OK] GM=100.0% Rev=—
+  [ 319/1139] ARAY     | ETA 23m  [OK] GM=24.1% Rev=-7.4%
+  [ 320/1139] ARBB     | ETA 23m  [OK] GM=— Rev=82.0%
+  [ 321/1139] ARBE     | ETA 23m  [OK] GM=-27.6% Rev=1052.5%
+  [ 322/1139] ARCB     | ETA 23m  [OK] GM=0.3% Rev=3.3%
+  [ 323/1139] ARCC     | ETA 23m  [OK] GM=— Rev=4.2%
+  [ 324/1139] ARCI     | ETA 23m  [--] no data
+  [ 325/1139] ARCO     | ETA 23m  [OK] GM=11.0% Rev=12.9%
+  [ 326/1139] ARCT     | ETA 23m  [OK] GM=100.0% Rev=-93.0%
+  [ 327/1139] ARDT     | ETA 23m  [OK] GM=22.1% Rev=7.0%
+  [ 328/1139] ARDX     | ETA 23m  [OK] GM=94.9% Rev=27.5%
+  [ 329/1139] ARE      | ETA 23m  [OK] GM=66.6% Rev=-11.5%
+  [ 330/1139] AREC     | ETA 23m  [OK] GM=100.0% Rev=—
+  [ 331/1139] ARES     | ETA 23m  [OK] GM=34.1% Rev=28.2%
+  [ 332/1139] ARHS     | ETA 23m  [OK] GM=36.4% Rev=0.9%
+  [ 333/1139] ARI      | ETA 23m  [OK] GM=— Rev=-10.9%
+  [ 334/1139] ARIS     | ETA 23m  [OK] GM=62.6% Rev=136.4%
+  [ 335/1139] ARKO     | ETA 23m  [OK] GM=15.2% Rev=-3.1%
+  [ 336/1139] ARKR     | ETA 23m  [OK] GM=71.6% Rev=-7.9%
+  [ 337/1139] ARL      | ETA 23m  [OK] GM=40.6% Rev=2.8%
+  [ 338/1139] ARLO     | ETA 23m  [OK] GM=48.3% Rev=26.3%
+  [ 339/1139] ARLP     | ETA 23m  [OK] GM=32.2% Rev=-17.5%
+  [ 340/1139] ARM      | ETA 23m  [OK] GM=97.8% Rev=20.1%
+  [ 341/1139] ARMK     | ETA 23m  [OK] GM=8.7% Rev=14.7%
+  [ 342/1139] AROC     | ETA 23m  [OK] GM=66.2% Rev=7.7%
+  [ 343/1139] AROW     | ETA 23m  [OK] GM=100.0% Rev=13.5%
+  [ 344/1139] ARQ      | ETA 23m  [OK] GM=62.4% Rev=6.6%
+  [ 345/1139] ARQQ     | ETA 23m  [OK] GM=— Rev=829.9%
+  [ 346/1139] ARQT     | ETA 23m  [OK] GM=90.7% Rev=60.1%
+  [ 347/1139] ARR      | ETA 23m  [OK] GM=100.0% Rev=94.6%
+  [ 348/1139] ARRY     | ETA 23m  [OK] GM=28.2% Rev=-26.1%
+  [ 349/1139] ARTC     | ETA 23m  [--] no data
+  [ 350/1139] ARTL     | ETA 23m  [--] no data
+  [Checkpoint saved — 350/1139 done]
+  [ 351/1139] ARTNA    | ETA 22m  [OK] GM=48.3% Rev=7.3%
+  [ 352/1139] ARTV     | ETA 22m  [--] no data
+  [ 353/1139] ARTW     | ETA 22m  [OK] GM=28.8% Rev=29.2%
+  [ 354/1139] ARVN     | ETA 22m  [OK] GM=100.0% Rev=-91.7%
+  [ 355/1139] ARW      | ETA 22m  [OK] GM=11.5% Rev=39.0%
+  [ 356/1139] ARWR     | ETA 22m  [OK] GM=100.0% Rev=-86.4%
+  [ 357/1139] ARX      | ETA 22m  [OK] GM=70.1% Rev=53.5%
+  [ 358/1139] AS       | ETA 22m  [OK] GM=59.9% Rev=32.1%
+  [ 359/1139] ASB      | ETA 22m  [OK] GM=— Rev=7.6%
+  [ 360/1139] ASBP     | ETA 22m  [OK] GM=20.3% Rev=—
+  [ 361/1139] ASC      | ETA 22m  [OK] GM=49.2% Rev=18.8%
+  [ 362/1139] ASH      | ETA 22m  [OK] GM=30.5% Rev=0.6%
+  [ 363/1139] ASIC     | ETA 22m  [OK] GM=— Rev=55.1%
+  [ 364/1139] ASIX     | ETA 22m  [OK] GM=0.9% Rev=7.0%
+  [ 365/1139] ASLE     | ETA 22m  [OK] GM=26.7% Rev=7.4%
+  [ 366/1139] ASMB     | ETA 22m  [OK] GM=100.0% Rev=-12.8%
+  [ 367/1139] ASML     | ETA 22m  [OK] GM=53.0% Rev=13.2%
+  [ 368/1139] ASND     | ETA 22m  [OK] GM=92.9% Rev=144.3%
+  [ 369/1139] ASO      | ETA 22m  [OK] GM=33.5% Rev=2.5%
+  [ 370/1139] ASPC     | ETA 22m  [--] no data
+  [ 371/1139] ASPN     | ETA 22m  [OK] GM=11.3% Rev=-51.9%
+  [ 372/1139] ASPS     | ETA 22m  [--] no data
+  [ 373/1139] ASRT     | ETA 22m  [OK] GM=72.7% Rev=-62.5%
+  [ 374/1139] ASRV     | ETA 22m  [OK] GM=— Rev=3.0%
+  [ 375/1139] ASST     | ETA 22m  [OK] GM=100.0% Rev=94.0%
+  [ 376/1139] ASTC     | ETA 22m  [OK] GM=19.5% Rev=-35.8%
+  [ 377/1139] ASTE     | ETA 22m  [OK] GM=25.0% Rev=20.3%
+  [ 378/1139] ASTH     | ETA 22m  [OK] GM=11.0% Rev=55.6%
+  [ 379/1139] ASTI     | ETA 22m  [OK] GM=-36.2% Rev=232.5%
+  [ 380/1139] ASTL     | ETA 22m  [OK] GM=-42.6% Rev=-42.6%
+  [ 381/1139] ASTS     | ETA 22m  [OK] GM=20.9% Rev=1952.2%
+  [ 382/1139] ASUR     | ETA 22m  [OK] GM=71.3% Rev=22.7%
+  [ 383/1139] ASX      | ETA 22m  [OK] GM=20.1% Rev=17.2%
+  [ 384/1139] ASYS     | ETA 22m  [OK] GM=47.7% Rev=31.4%
+  [ 385/1139] ATAI     | ETA 22m  [OK] GM=100.0% Rev=-38.6%
+  [ 386/1139] ATCX     | ETA 22m  [OK] GM=— Rev=-88.5%
+  [ 387/1139] ATEC     | ETA 21m  [OK] GM=71.0% Rev=13.6%
+  [ 388/1139] ATEN     | ETA 21m  [OK] GM=79.6% Rev=13.4%
+  [ 389/1139] ATER     | ETA 21m  [OK] GM=55.6% Rev=-71.4%
+  [ 390/1139] ATEX     | ETA 21m  [OK] GM=100.0% Rev=0.5%
+  [ 391/1139] ATGL     | ETA 21m  [OK] GM=— Rev=-31.4%
+  [ 392/1139] ATHR     | ETA 21m  [OK] GM=80.7% Rev=-1.7%
+  [ 393/1139] ATI      | ETA 21m  [OK] GM=22.8% Rev=0.6%
+  [ 394/1139] ATII     | ETA 21m  [--] no data
+  [ 395/1139] ATLC     | ETA 21m  [OK] GM=27.9% Rev=96.9%
+  [ 396/1139] ATLCL    | ETA 21m  [--] no data
+  [ 397/1139] ATLCZ    | ETA 21m  [--] no data
+  [ 398/1139] ATLN     | ETA 21m  [OK] GM=9.2% Rev=-7.3%
+  [ 399/1139] ATLO     | ETA 21m  [OK] GM=— Rev=28.0%
+  [ 400/1139] ATLX     | ETA 21m  [OK] GM=103.2% Rev=195.5%
+  [Checkpoint saved — 400/1139 done]
+  [ 401/1139] ATMU     | ETA 21m  [OK] GM=28.6% Rev=14.7%
+  [ 402/1139] ATNI     | ETA 21m  [OK] GM=57.5% Rev=1.6%
+  [ 403/1139] ATO      | ETA 21m  [OK] GM=56.0% Rev=0.6%
+  [ 404/1139] ATOS     | ETA 21m  [--] no data
+  [ 405/1139] ATPC     | ETA 21m  [OK] GM=58.2% Rev=-5.3%
+  [ 406/1139] ATR      | ETA 21m  [OK] GM=35.8% Rev=10.8%
+  [ 407/1139] ATRA     | ETA 21m  [OK] GM=76.0% Rev=-99.5%
+  [ 408/1139] ATRC     | ETA 21m  [OK] GM=77.4% Rev=14.3%
+  [ 409/1139] ATRO     | ETA 21m  [OK] GM=32.6% Rev=12.0%
+  [ 410/1139] ATS      | ETA 21m  [OK] GM=25.2% Rev=30.1%
+  [ 411/1139] ATXG     | ETA 21m  [OK] GM=30.2% Rev=12.8%
+  [ 412/1139] ATYR     | ETA 21m  [--] no data
+  [ 413/1139] AU       | ETA 21m  [OK] GM=60.0% Rev=64.8%
+  [ 414/1139] AUB      | ETA 21m  [OK] GM=— Rev=86.2%
+  [ 415/1139] AUBN     | ETA 21m  [OK] GM=— Rev=11.5%
+  [ 416/1139] AUDC     | ETA 21m  [OK] GM=66.2% Rev=2.9%
+  [ 417/1139] AUGO     | ETA 21m  [OK] GM=59.8% Rev=136.5%
+  [ 418/1139] AUID     | ETA 21m  [OK] GM=100.0% Rev=62.1%
+  [ 419/1139] AUNA     | ETA 21m  [OK] GM=36.6% Rev=13.0%
+  [ 420/1139] AUPH     | ETA 21m  [OK] GM=91.6% Rev=24.4%
+  [ 421/1139] AUR      | ETA 20m  [OK] GM=-500.0% Rev=—
+  [ 422/1139] AURA     | ETA 20m  [--] no data
+  [ 423/1139] AURE     | ETA 20m  [--] no data
+  [ 424/1139] AUUD     | ETA 20m  [--] no data
+  [ 425/1139] AVA      | ETA 20m  [OK] GM=41.4% Rev=-7.6%
+  [ 426/1139] AVAH     | ETA 20m  [OK] GM=31.7% Rev=15.9%
+  [ 427/1139] AVB      | ETA 20m  [OK] GM=62.5% Rev=3.3%
+  [ 428/1139] AVBC     | ETA 20m  [OK] GM=— Rev=410.7%
+  [ 429/1139] AVBH     | ETA 20m  [OK] GM=— Rev=29.2%
+  [ 430/1139] AVBP     | ETA 20m  [--] no data
+  [ 431/1139] AVD      | ETA 20m  [OK] GM=31.1% Rev=6.7%
+  [ 432/1139] AVIR     | ETA 20m  [--] no data
+  [ 433/1139] AVNS     | ETA 20m  [OK] GM=51.7% Rev=8.8%
+  [ 434/1139] AVNT     | ETA 20m  [OK] GM=32.2% Rev=2.5%
+  [ 435/1139] AVNW     | ETA 20m  [OK] GM=29.3% Rev=-11.2%
+  [ 436/1139] AVO      | ETA 20m  [OK] GM=11.3% Rev=-16.6%
+  [ 437/1139] AVPT     | ETA 20m  [OK] GM=72.8% Rev=26.0%
+  [ 438/1139] AVR      | ETA 20m  [OK] GM=76.9% Rev=-11.2%
+  [ 439/1139] AVT      | ETA 20m  [OK] GM=10.4% Rev=34.0%
+  [ 440/1139] AVTR     | ETA 20m  [OK] GM=31.7% Rev=—
+  [ 441/1139] AVTX     | ETA 20m  [--] no data
+  [ 442/1139] AVX      | ETA 20m  [OK] GM=52.3% Rev=819.8%
+  [ 443/1139] AVXL     | ETA 20m  [--] no data
+  [ 444/1139] AVY      | ETA 20m  [OK] GM=28.9% Rev=7.0%
+  [ 445/1139] AWI      | ETA 20m  [OK] GM=37.9% Rev=7.1%
+  [ 446/1139] AWK      | ETA 20m  [OK] GM=59.1% Rev=5.7%
+  [ 447/1139] AWR      | ETA 20m  [OK] GM=52.9% Rev=14.3%
+  [ 448/1139] AWRE     | ETA 20m  [OK] GM=90.1% Rev=-6.2%
+  [ 449/1139] AX       | ETA 20m  [OK] GM=— Rev=19.3%
+  [ 450/1139] AXG      | ETA 20m  [OK] GM=— Rev=453.7%
+  [Checkpoint saved — 450/1139 done]
+  [ 451/1139] AXGN     | ETA 20m  [OK] GM=75.2% Rev=26.6%
+  [ 452/1139] AXIN     | ETA 20m  [--] no data
+  [ 453/1139] AXP      | ETA 20m  [OK] GM=25.9% Rev=11.1%
+  [ 454/1139] AXR      | ETA 20m  [OK] GM=40.7% Rev=93.8%
+  [ 455/1139] AXS      | ETA 20m  [OK] GM=— Rev=8.0%
+  [ 456/1139] AXSM     | ETA 20m  [OK] GM=92.3% Rev=57.4%
+  [ 457/1139] AXTA     | ETA 19m  [OK] GM=33.2% Rev=-0.6%
+  [ 458/1139] AYA      | ETA 19m  [OK] GM=71.4% Rev=246.7%
+  [ 459/1139] AYI      | ETA 19m  [OK] GM=49.3% Rev=4.9%
+  [ 460/1139] AYTU     | ETA 19m  [OK] GM=61.2% Rev=-32.7%
+  [ 461/1139] AZ       | ETA 19m  [OK] GM=4.2% Rev=114.4%
+  [ 462/1139] AZI      | ETA 19m  [--] no data
+  [ 463/1139] AZN      | ETA 19m  [OK] GM=82.5% Rev=12.5%
+  [ 464/1139] AZO      | ETA 19m  [OK] GM=52.1% Rev=8.4%
+  [ 465/1139] AZZ      | ETA 19m  [OK] GM=22.8% Rev=9.4%
+  [ 466/1139] B        | ETA 19m  [OK] GM=59.8% Rev=66.7%
+  [ 467/1139] BAC      | ETA 19m  [OK] GM=— Rev=8.1%
+  [ 468/1139] BACC     | ETA 19m  [--] no data
+  [ 469/1139] BAFN     | ETA 19m  [OK] GM=— Rev=-52.7%
+  [ 470/1139] BALL     | ETA 19m  [OK] GM=17.9% Rev=16.3%
+  [ 471/1139] BALY     | ETA 19m  [OK] GM=52.8% Rev=28.3%
+  [ 472/1139] BAM      | ETA 19m  [OK] GM=38.0% Rev=23.8%
+  [ 473/1139] BANC     | ETA 19m  [OK] GM=— Rev=8.0%
+  [ 474/1139] BANF     | ETA 19m  [OK] GM=— Rev=8.3%
+  [ 475/1139] BANL     | ETA 19m  [OK] GM=— Rev=-13.3%
+  [ 476/1139] BANR     | ETA 19m  [OK] GM=— Rev=8.3%
+  [ 477/1139] BANX     | ETA 19m  [OK] GM=— Rev=-10.1%
+  [ 478/1139] BAOS     | ETA 19m  [OK] GM=— Rev=-50.5%
+  [ 479/1139] BAP      | ETA 19m  [OK] GM=— Rev=26.5%
+  [ 480/1139] BARK     | ETA 19m  [OK] GM=62.5% Rev=-22.1%
+  [ 481/1139] BATRA    | ETA 19m  [OK] GM=15.5% Rev=52.5%
+  [ 482/1139] BATRK    | ETA 19m  [OK] GM=31.2% Rev=7.2%
+  [ 483/1139] BAX      | ETA 19m  [OK] GM=33.0% Rev=2.9%
+  [ 484/1139] BAYA     | ETA 19m  [--] no data
+  [ 485/1139] BBBY     | ETA 19m  [OK] GM=23.9% Rev=6.9%
+  [ 486/1139] BBCP     | ETA 19m  [OK] GM=35.3% Rev=4.8%
+  [ 487/1139] BBCQ     | ETA 19m  [--] no data
+  [ 488/1139] BBDC     | ETA 19m  [OK] GM=— Rev=-22.6%
+  [ 489/1139] BBGI     | ETA 19m  [OK] GM=1.0% Rev=-12.9%
+  [ 490/1139] BBIO     | ETA 19m  [OK] GM=94.9% Rev=66.8%
+  [ 491/1139] BBLG     | ETA 19m  [--] no data
+  [ 492/1139] BBNX     | ETA 19m  [OK] GM=59.5% Rev=56.6%
+  [ 493/1139] BBOT     | ETA 19m  [--] no data
+  [ 494/1139] BBSI     | ETA 19m  [OK] GM=14.1% Rev=4.9%
+  [ 495/1139] BBT      | ETA 18m  [OK] GM=— Rev=134.7%
+  [ 496/1139] BBUC     | ETA 18m  [OK] GM=9.1% Rev=-24.7%
+  [ 497/1139] BBW      | ETA 18m  [OK] GM=63.8% Rev=-2.4%
+  [ 498/1139] BBWI     | ETA 18m  [OK] GM=42.6% Rev=-3.2%
+  [ 499/1139] BBY      | ETA 18m  [OK] GM=23.5% Rev=1.9%
+  [ 500/1139] BC       | ETA 18m  [OK] GM=24.9% Rev=12.8%
+  [Checkpoint saved — 500/1139 done]
+  [ 501/1139] BCAB     | ETA 18m  [--] no data
+  [ 502/1139] BCAL     | ETA 18m  [OK] GM=— Rev=-8.2%
+  [ 503/1139] BCAR     | ETA 18m  [--] no data
+  [ 504/1139] BCAX     | ETA 18m  [--] no data
+  [ 505/1139] BCBP     | ETA 18m  [OK] GM=— Rev=650.6%
+  [ 506/1139] BCC      | ETA 18m  [OK] GM=16.2% Rev=-2.5%
+  [ 507/1139] BCDA     | ETA 18m  [--] no data
+  [ 508/1139] BCE      | ETA 18m  [OK] GM=42.7% Rev=4.0%
+  [ 509/1139] BCG      | ETA 18m  [OK] GM=10.8% Rev=-0.5%
+  [ 510/1139] BCIC     | ETA 18m  [OK] GM=— Rev=-88.3%
+  [ 511/1139] BCML     | ETA 18m  [OK] GM=100.0% Rev=7.3%
+  [ 512/1139] BCO      | ETA 18m  [OK] GM=25.9% Rev=10.3%
+  [ 513/1139] BCPC     | ETA 18m  [OK] GM=37.3% Rev=8.1%
+  [ 514/1139] BCRX     | ETA 18m  [OK] GM=96.6% Rev=7.5%
+  [ 515/1139] BCSF     | ETA 18m  [OK] GM=— Rev=-33.3%
+  [ 516/1139] BCSS     | ETA 18m  [--] no data
+  [ 517/1139] BCTX     | ETA 18m  [--] no data
+  [ 518/1139] BDC      | ETA 18m  [OK] GM=37.1% Rev=11.4%
+  [ 519/1139] BDCI     | ETA 18m  [--] no data
+  [ 520/1139] BDMD     | ETA 18m  [OK] GM=— Rev=-39.0%
+  [ 521/1139] BDN      | ETA 18m  [OK] GM=59.0% Rev=4.5%
+  [ 522/1139] BDSX     | ETA 18m  [OK] GM=83.5% Rev=42.3%
+  [ 523/1139] BDTX     | ETA 18m  [--] no data
+  [ 524/1139] BDX      | ETA 18m  [OK] GM=45.7% Rev=5.2%
+  [ 525/1139] BE       | ETA 18m  [OK] GM=30.0% Rev=130.4%
+  [ 526/1139] BEAG     | ETA 18m  [--] no data
+  [ 527/1139] BEAM     | ETA 18m  [OK] GM=100.0% Rev=324.9%
+  [ 528/1139] BEAT     | ETA 18m  [--] no data
+  [ 529/1139] BEBE     | ETA 18m  [--] no data
+  [ 530/1139] BEEM     | ETA 17m  [OK] GM=-13.3% Rev=-50.5%
+  [ 531/1139] BEEP     | ETA 17m  [OK] GM=58.2% Rev=-3.7%
+  [ 532/1139] BELFA    | ETA 17m  [OK] GM=39.4% Rev=17.4%
+  [ 533/1139] BELFB    | ETA 17m  [OK] GM=39.0% Rev=17.2%
+  [ 534/1139] BEN      | ETA 17m  [OK] GM=100.0% Rev=8.6%
+  [ 535/1139] BENF     | ETA 17m  [OK] GM=100.0% Rev=322.5%
+  [ 536/1139] BEP      | ETA 17m  [OK] GM=43.7% Rev=-4.2%
+  [ 537/1139] BEPC     | ETA 17m  [OK] GM=47.8% Rev=-2.6%
+  [ 538/1139] BETA     | ETA 17m  [OK] GM=57.5% Rev=5.6%
+  [ 539/1139] BETR     | ETA 17m  [OK] GM=— Rev=51.6%
+  [ 540/1139] BFAM     | ETA 17m  [OK] GM=22.9% Rev=7.0%
+  [ 541/1139] BFC      | ETA 17m  [OK] GM=— Rev=49.2%
+  [ 542/1139] BFH      | ETA 17m  [OK] GM=— Rev=6.1%
+  [ 543/1139] BFLY     | ETA 17m  [OK] GM=68.9% Rev=25.0%
+  [ 544/1139] BFRG     | ETA 17m  [--] no data
+  [ 545/1139] BFRI     | ETA 17m  [OK] GM=79.0% Rev=17.4%
+  [ 546/1139] BFS      | ETA 17m  [OK] GM=69.1% Rev=8.9%
+  [ 547/1139] BFST     | ETA 17m  [OK] GM=— Rev=13.8%
+  [ 548/1139] BG       | ETA 17m  [OK] GM=3.5% Rev=87.8%
+  [ 549/1139] BGC      | ETA 17m  [OK] GM=41.5% Rev=43.9%
+  [ 550/1139] BGIN     | ETA 17m  [OK] GM=— Rev=-87.5%
+  [Checkpoint saved — 550/1139 done]
+  [ 551/1139] BGL      | ETA 17m  [--] no data
+  [ 552/1139] BGLC     | ETA 17m  [OK] GM=-3.5% Rev=-98.9%
+  [ 553/1139] BGM      | ETA 17m  [OK] GM=17.6% Rev=13.9%
+  [ 554/1139] BGMS     | ETA 17m  [OK] GM=18.4% Rev=—
+  [ 555/1139] BGS      | ETA 17m  [OK] GM=19.5% Rev=-3.9%
+  [ 556/1139] BGSF     | ETA 17m  [--] no data
+  [ 557/1139] BGSI     | ETA 17m  [OK] GM=46.5% Rev=28.1%
+  [ 558/1139] BH       | ETA 17m  [OK] GM=39.4% Rev=2.6%
+  [ 559/1139] BHC      | ETA 17m  [OK] GM=70.8% Rev=11.7%
+  [ 560/1139] BHE      | ETA 17m  [OK] GM=10.2% Rev=7.2%
+  [ 561/1139] BHF      | ETA 17m  [OK] GM=— Rev=-36.1%
+  [ 562/1139] BHFAL    | ETA 17m  [--] no data
+  [ 563/1139] BHFAM    | ETA 17m  [--] no data
+  [ 564/1139] BHFAN    | ETA 16m  [--] no data
+  [ 565/1139] BHFAO    | ETA 16m  [--] no data
+  [ 566/1139] BHR      | ETA 16m  [OK] GM=35.6% Rev=-3.2%
+  [ 567/1139] BHRB     | ETA 16m  [OK] GM=— Rev=2.6%
+  [ 568/1139] BHST     | ETA 16m  [OK] GM=59.2% Rev=8.2%
+  [ 569/1139] BHVN     | ETA 16m  [--] no data
+  [ 570/1139] BIAF     | ETA 16m  [OK] GM=31.3% Rev=-27.1%
+  [ 571/1139] BIIB     | ETA 16m  [OK] GM=73.3% Rev=1.9%
+  [ 572/1139] BIII     | ETA 16m  [--] no data
+  [ 573/1139] BIO      | ETA 16m  [OK] GM=52.2% Rev=1.1%
+  [ 574/1139] BIOA     | ETA 16m  [OK] GM=100.0% Rev=91.0%
+  [ 575/1139] BIOX     | ETA 16m  [OK] GM=32.2% Rev=-22.9%
+  [ 576/1139] BIP      | ETA 16m  [OK] GM=25.2% Rev=16.9%
+  [ 577/1139] BIPC     | ETA 16m  [OK] GM=61.0% Rev=-4.8%
+  [ 578/1139] BIRD     | ETA 16m  [OK] GM=27.8% Rev=-30.5%
+  [ 579/1139] BIRK     | ETA 16m  [OK] GM=53.9% Rev=7.7%
+  [ 580/1139] BITF     | ETA 16m  [OK] GM=-20.8% Rev=67.4%
+  [ 581/1139] BIVI     | ETA 16m  [--] no data
+  [ 582/1139] BIXI     | ETA 16m  [--] no data
+  [ 583/1139] BIYA     | ETA 16m  [OK] GM=— Rev=53.1%
+  [ 584/1139] BJ       | ETA 16m  [OK] GM=18.2% Rev=9.9%
+  [ 585/1139] BJDX     | ETA 16m  [--] no data
+  [ 586/1139] BJRI     | ETA 16m  [OK] GM=74.9% Rev=2.9%
+  [ 587/1139] BK       | ETA 16m  [OK] GM=— Rev=10.3%
+  [ 588/1139] BKD      | ETA 16m  [OK] GM=28.3% Rev=-6.0%
+  [ 589/1139] BKE      | ETA 16m  [OK] GM=52.6% Rev=5.3%
+  [ 590/1139] BKH      | ETA 16m  [OK] GM=37.8% Rev=-3.0%
+  [ 591/1139] BKHA     | ETA 16m  [--] no data
+  [ 592/1139] BKKT     | ETA 16m  [OK] GM=0.7% Rev=-77.1%
+  [ 593/1139] BKNG     | ETA 16m  [OK] GM=83.9% Rev=16.2%
+  [ 594/1139] BKR      | ETA 16m  [OK] GM=100.0% Rev=2.5%
+  [ 595/1139] BKSY     | ETA 16m  [OK] GM=64.7% Rev=-29.7%
+  [ 596/1139] BKU      | ETA 16m  [OK] GM=— Rev=3.7%
+  [ 597/1139] BKV      | ETA 16m  [OK] GM=75.9% Rev=145.8%
+  [ 598/1139] BL       | ETA 16m  [OK] GM=76.0% Rev=9.7%
+  [ 599/1139] BLBD     | ETA 16m  [OK] GM=20.0% Rev=-1.7%
+  [ 600/1139] BLCO     | ETA 16m  [OK] GM=61.2% Rev=9.4%
+  [Checkpoint saved — 600/1139 done]
+  [ 601/1139] BLD      | ETA 15m  [OK] GM=27.7% Rev=17.2%
+  [ 602/1139] BLDP     | ETA 15m  [OK] GM=14.2% Rev=26.2%
+  [ 603/1139] BLDR     | ETA 15m  [OK] GM=28.3% Rev=-10.1%
+  [ 604/1139] BLFS     | ETA 15m  [OK] GM=63.6% Rev=24.7%
+  [ 605/1139] BLIN     | ETA 15m  [OK] GM=64.3% Rev=1.1%
+  [ 606/1139] BLIV     | ETA 15m  [OK] GM=— Rev=—
+  [ 607/1139] BLK      | ETA 15m  [OK] GM=48.0% Rev=26.9%
+  [ 608/1139] BLKB     | ETA 15m  [OK] GM=59.2% Rev=4.2%
+  [ 609/1139] BLLN     | ETA 15m  [OK] GM=73.0% Rev=83.8%
+  [ 610/1139] BLMN     | ETA 15m  [OK] GM=15.4% Rev=1.0%
+  [ 611/1139] BLND     | ETA 15m  [OK] GM=75.8% Rev=14.9%
+  [ 612/1139] BLNE     | ETA 15m  [OK] GM=100.0% Rev=116.2%
+  [ 613/1139] BLNK     | ETA 15m  [OK] GM=37.7% Rev=0.3%
+  [ 614/1139] BLRK     | ETA 15m  [--] no data
+  [ 615/1139] BLSH     | ETA 15m  [OK] GM=0.1% Rev=-35.4%
+  [ 616/1139] BLUW     | ETA 15m  [--] no data
+  [ 617/1139] BLX      | ETA 15m  [OK] GM=— Rev=6.6%
+  [ 618/1139] BLZE     | ETA 15m  [OK] GM=60.9% Rev=11.7%
+  [ 619/1139] BLZR     | ETA 15m  [--] no data
+  [ 620/1139] BMBL     | ETA 15m  [OK] GM=74.2% Rev=-14.1%
+  [ 621/1139] BMEA     | ETA 15m  [--] no data
+  [ 622/1139] BMGL     | ETA 15m  [OK] GM=— Rev=26.7%
+  [ 623/1139] BMHL     | ETA 15m  [OK] GM=— Rev=160.4%
+  [ 624/1139] BMI      | ETA 15m  [OK] GM=41.7% Rev=-9.0%
+  [ 625/1139] BMM      | ETA 15m  [OK] GM=— Rev=—
+  [ 626/1139] BMNR     | ETA 15m  [OK] GM=87.1% Rev=627.8%
+  [ 627/1139] BMO      | ETA 15m  [OK] GM=— Rev=15.8%
+  [ 628/1139] BMR      | ETA 15m  [OK] GM=— Rev=-1.8%
+  [ 629/1139] BMRA     | ETA 15m  [OK] GM=-4.5% Rev=-11.8%
+  [ 630/1139] BMRC     | ETA 15m  [OK] GM=— Rev=26.8%
+  [ 631/1139] BMRN     | ETA 15m  [OK] GM=74.5% Rev=2.8%
+  [ 632/1139] BMY      | ETA 15m  [OK] GM=70.2% Rev=2.6%
+  [ 633/1139] BN       | ETA 15m  [OK] GM=23.9% Rev=7.2%
+  [ 634/1139] BNBX     | ETA 14m  [OK] GM=80.7% Rev=34.2%
+  [ 635/1139] BNC      | ETA 14m  [OK] GM=24.0% Rev=6.2%
+  [ 636/1139] BNED     | ETA 14m  [OK] GM=18.7% Rev=11.3%
+  [ 637/1139] BNGO     | ETA 14m  [OK] GM=48.6% Rev=3.6%
+  [ 638/1139] BNKK     | ETA 14m  [OK] GM=82.8% Rev=10201.6%
+  [ 639/1139] BNL      | ETA 14m  [OK] GM=94.9% Rev=11.7%
+  [ 640/1139] BNRG     | ETA 14m  [--] no data
+  [ 641/1139] BNS      | ETA 14m  [OK] GM=— Rev=12.2%
+  [ 642/1139] BNT      | ETA 14m  [OK] GM=— Rev=-36.8%
+  [ 643/1139] BNTC     | ETA 14m  [--] no data
+  [ 644/1139] BNZI     | ETA 14m  [OK] GM=80.7% Rev=-20.2%
+  [ 645/1139] BOBS     | ETA 14m  [OK] GM=44.4% Rev=—
+  [ 646/1139] BOC      | ETA 14m  [OK] GM=61.9% Rev=1.9%
+  [ 647/1139] BODI     | ETA 14m  [OK] GM=71.8% Rev=-25.0%
+  [ 648/1139] BOF      | ETA 14m  [OK] GM=15.4% Rev=-17.8%
+  [ 649/1139] BOH      | ETA 14m  [OK] GM=— Rev=14.4%
+  [ 650/1139] BOKF     | ETA 14m  [OK] GM=— Rev=10.3%
+  [Checkpoint saved — 650/1139 done]
+  [ 651/1139] BOLD     | ETA 14m  [--] no data
+  [ 652/1139] BOLT     | ETA 14m  [OK] GM=100.0% Rev=-97.9%
+  [ 653/1139] BON      | ETA 14m  [OK] GM=— Rev=-21.5%
+  [ 654/1139] BOOM     | ETA 14m  [OK] GM=18.8% Rev=-14.9%
+  [ 655/1139] BOOT     | ETA 14m  [OK] GM=36.3% Rev=18.7%
+  [ 656/1139] BORR     | ETA 14m  [OK] GM=41.4% Rev=14.0%
+  [ 657/1139] BOSC     | ETA 14m  [OK] GM=24.9% Rev=-24.2%
+  [ 658/1139] BOTJ     | ETA 14m  [OK] GM=— Rev=18.2%
+  [ 659/1139] BOW      | ETA 14m  [OK] GM=— Rev=26.9%
+  [ 660/1139] BOX      | ETA 14m  [OK] GM=79.5% Rev=10.7%
+  [ 661/1139] BOXL     | ETA 14m  [OK] GM=30.9% Rev=0.1%
+  [ 662/1139] BPAC     | ETA 14m  [--] no data
+  [ 663/1139] BPOP     | ETA 14m  [OK] GM=— Rev=9.1%
+  [ 664/1139] BPRE     | ETA 14m  [--] no data
+  [ 665/1139] BPRN     | ETA 14m  [OK] GM=— Rev=3.8%
+  [ 666/1139] BPYPM    | ETA 14m  [--] no data
+  [ 667/1139] BPYPN    | ETA 14m  [--] no data
+  [ 668/1139] BPYPO    | ETA 13m  [--] no data
+  [ 669/1139] BR       | ETA 13m  [OK] GM=32.1% Rev=7.8%
+  [ 670/1139] BRAG     | ETA 13m  [OK] GM=55.5% Rev=0.6%
+  [ 671/1139] BRAI     | ETA 13m  [--] no data
+  [ 672/1139] BRBR     | ETA 13m  [OK] GM=27.0% Rev=1.8%
+  [ 673/1139] BRC      | ETA 13m  [OK] GM=51.8% Rev=13.8%
+  [ 674/1139] BRCB     | ETA 13m  [OK] GM=29.7% Rev=23.7%
+  [ 675/1139] BRCC     | ETA 13m  [OK] GM=33.0% Rev=21.4%
+  [ 676/1139] BRFH     | ETA 13m  [--] no data
+  [ 677/1139] BRID     | ETA 13m  [OK] GM=24.2% Rev=5.3%
+  [ 678/1139] BRK-B    | ETA 13m  [--] no data
+  [ 679/1139] BRKR     | ETA 13m  [OK] GM=46.1% Rev=2.7%
+  [ 680/1139] BRLS     | ETA 13m  [OK] GM=14.7% Rev=-7.6%
+  [ 681/1139] BRLT     | ETA 13m  [OK] GM=54.3% Rev=6.0%
+  [ 682/1139] BRO      | ETA 13m  [OK] GM=52.3% Rev=35.4%
+  [ 683/1139] BROS     | ETA 13m  [OK] GM=23.1% Rev=30.8%
+  [ 684/1139] BRR      | ETA 13m  [OK] GM=100.0% Rev=—
+  [ 685/1139] BRSL     | ETA 13m  [OK] GM=46.7% Rev=0.7%
+  [ 686/1139] BSX      | ETA 13m  [OK] GM=69.5% Rev=11.6%
+  [ 687/1139] BTBT     | ETA 13m  [OK] GM=56.6% Rev=11.2%
+  [ 688/1139] BTDR     | ETA 13m  [OK] GM=-20.7% Rev=169.4%
+  [ 689/1139] BTSG     | ETA 13m  [OK] GM=13.3% Rev=25.6%
+  [ 690/1139] BTTC     | ETA 13m  [--] no data
+  [ 691/1139] BTU      | ETA 13m  [OK] GM=11.2% Rev=3.9%
+  [ 692/1139] BWA      | ETA 13m  [OK] GM=19.2% Rev=0.5%
+  [ 693/1139] BXSL     | ETA 13m  [OK] GM=— Rev=-39.2%
+  [ 694/1139] BY       | ETA 13m  [OK] GM=— Rev=13.8%
+  [ 695/1139] BYAH     | ETA 13m  [OK] GM=— Rev=-15.9%
+  [ 696/1139] BYD      | ETA 13m  [OK] GM=49.3% Rev=0.6%
+  [ 697/1139] C        | ETA 13m  [OK] GM=— Rev=15.7%
+  [ 698/1139] CABO     | ETA 13m  [OK] GM=73.4% Rev=-7.3%
+  [ 699/1139] CACI     | ETA 13m  [OK] GM=33.9% Rev=8.5%
+  [ 700/1139] CAG      | ETA 13m  [OK] GM=23.6% Rev=-1.9%
+  [Checkpoint saved — 700/1139 done]
+  [ 701/1139] CAH      | ETA 13m  [OK] GM=4.1% Rev=11.1%
+  [ 702/1139] CAL      | ETA 13m  [OK] GM=41.8% Rev=8.7%
+  [ 703/1139] CALC     | ETA 12m  [--] no data
+  [ 704/1139] CALM     | ETA 12m  [OK] GM=17.9% Rev=-53.0%
+  [ 705/1139] CAMT     | ETA 12m  [OK] GM=50.1% Rev=2.5%
+  [ 706/1139] CAN      | ETA 12m  [OK] GM=-36.5% Rev=-24.3%
+  [ 707/1139] CAPL     | ETA 12m  [OK] GM=11.6% Rev=-2.4%
+  [ 708/1139] CAT      | ETA 12m  [OK] GM=35.1% Rev=22.2%
+  [ 709/1139] CB       | ETA 12m  [OK] GM=— Rev=10.6%
+  [ 710/1139] CBOE     | ETA 12m  [OK] GM=57.3% Rev=6.5%
+  [ 711/1139] CCJ      | ETA 12m  [OK] GM=43.6% Rev=7.1%
+  [ 712/1139] CCL      | ETA 12m  [OK] GM=52.1% Rev=6.1%
+  [ 713/1139] CCOI     | ETA 12m  [OK] GM=100.0% Rev=-3.2%
+  [ 714/1139] CDNS     | ETA 12m  [OK] GM=85.5% Rev=18.7%
+  [ 715/1139] CEG      | ETA 12m  [OK] GM=26.9% Rev=63.9%
+  [ 716/1139] CELH     | ETA 12m  [OK] GM=48.3% Rev=137.7%
+  [ 717/1139] CEVA     | ETA 12m  [OK] GM=86.2% Rev=11.5%
+  [ 718/1139] CF       | ETA 12m  [OK] GM=37.6% Rev=19.4%
+  [ 719/1139] CFG      | ETA 12m  [OK] GM=— Rev=13.8%
+  [ 720/1139] CHCT     | ETA 12m  [OK] GM=79.8% Rev=4.8%
+  [ 721/1139] CHD      | ETA 12m  [OK] GM=46.4% Rev=0.1%
+  [ 722/1139] CHDN     | ETA 12m  [OK] GM=30.6% Rev=3.1%
+  [ 723/1139] CHEF     | ETA 12m  [OK] GM=24.3% Rev=11.4%
+  [ 724/1139] CHKP     | ETA 12m  [OK] GM=85.4% Rev=4.8%
+  [ 725/1139] CHRD     | ETA 12m  [OK] GM=45.5% Rev=37.1%
+  [ 726/1139] CHTR     | ETA 12m  [OK] GM=40.0% Rev=-1.0%
+  [ 727/1139] CHW      | ETA 12m  [OK] GM=— Rev=-27.4%
+  [ 728/1139] CHWY     | ETA 12m  [OK] GM=29.4% Rev=0.5%
+  [ 729/1139] CI       | ETA 12m  [OK] GM=3.4% Rev=4.6%
+  [ 730/1139] CINF     | ETA 12m  [OK] GM=— Rev=11.6%
+  [ 731/1139] CL       | ETA 12m  [OK] GM=60.6% Rev=8.4%
+  [ 732/1139] CLH      | ETA 12m  [OK] GM=30.5% Rev=1.9%
+  [ 733/1139] CLPS     | ETA 12m  [OK] GM=— Rev=2.8%
+  [ 734/1139] CLSK     | ETA 12m  [OK] GM=40.1% Rev=-24.9%
+  [ 735/1139] CLX      | ETA 12m  [OK] GM=43.2% Rev=0.1%
+  [ 736/1139] CMC      | ETA 12m  [OK] GM=18.2% Rev=21.5%
+  [ 737/1139] CMCSA    | ETA 12m  [OK] GM=65.4% Rev=5.2%
+  [ 738/1139] CME      | ETA 12m  [OK] GM=88.1% Rev=14.5%
+  [ 739/1139] CMG      | ETA 11m  [OK] GM=23.3% Rev=7.4%
+  [ 740/1139] CNC      | ETA 11m  [OK] GM=21.9% Rev=7.1%
+  [ 741/1139] CNQ      | ETA 11m  [OK] GM=50.4% Rev=-1.2%
+  [ 742/1139] COF      | ETA 11m  [OK] GM=— Rev=46.3%
+  [ 743/1139] COHU     | ETA 11m  [OK] GM=46.3% Rev=29.3%
+  [ 744/1139] COIN     | ETA 11m  [OK] GM=86.1% Rev=-30.5%
+  [ 745/1139] COMM     | ETA 11m  [OK] GM=43.1% Rev=36.2%
+  [ 746/1139] COP      | ETA 11m  [--] no data
+  [ 747/1139] COST     | ETA 11m  [OK] GM=12.8% Rev=11.6%
+  [ 748/1139] CPB      | ETA 11m  [OK] GM=28.0% Rev=-4.5%
+  [ 749/1139] CPRT     | ETA 11m  [OK] GM=46.3% Rev=2.1%
+  [ 750/1139] CRC      | ETA 11m  [OK] GM=-252.1% Rev=-87.0%
+  [Checkpoint saved — 750/1139 done]
+  [ 751/1139] CRCL     | ETA 11m  [OK] GM=41.4% Rev=20.0%
+  [ 752/1139] CRCT     | ETA 11m  [OK] GM=58.1% Rev=-1.9%
+  [ 753/1139] CRDF     | ETA 11m  [OK] GM=100.0% Rev=-62.4%
+  [ 754/1139] CRL      | ETA 11m  [OK] GM=29.6% Rev=1.2%
+  [ 755/1139] CRNX     | ETA 11m  [OK] GM=98.1% Rev=2873.4%
+  [ 756/1139] CRSP     | ETA 11m  [OK] GM=100.0% Rev=68.5%
+  [ 757/1139] CRSR     | ETA 11m  [OK] GM=32.7% Rev=-4.1%
+  [ 758/1139] CRUS     | ETA 11m  [OK] GM=53.0% Rev=5.7%
+  [ 759/1139] CRWD     | ETA 11m  [OK] GM=75.8% Rev=23.3%
+  [ 760/1139] CSGP     | ETA 11m  [OK] GM=78.2% Rev=22.5%
+  [ 761/1139] CSX      | ETA 11m  [OK] GM=47.9% Rev=1.7%
+  [ 762/1139] CTAS     | ETA 11m  [OK] GM=51.0% Rev=8.9%
+  [ 763/1139] CTMX     | ETA 11m  [OK] GM=100.0% Rev=-79.8%
+  [ 764/1139] CTSH     | ETA 11m  [OK] GM=32.8% Rev=5.8%
+  [ 765/1139] CUBI     | ETA 11m  [OK] GM=— Rev=76.4%
+  [ 766/1139] CVBF     | ETA 11m  [OK] GM=— Rev=0.3%
+  [ 767/1139] CVS      | ETA 11m  [OK] GM=15.6% Rev=6.2%
+  [ 768/1139] CVX      | ETA 11m  [OK] GM=40.6% Rev=3.2%
+  [ 769/1139] CWST     | ETA 11m  [OK] GM=32.5% Rev=9.6%
+  [ 770/1139] CZR      | ETA 11m  [OK] GM=50.3% Rev=2.7%
+  [ 771/1139] CZWI     | ETA 11m  [OK] GM=— Rev=6.4%
+  [ 772/1139] D        | ETA 11m  [OK] GM=44.1% Rev=23.1%
+  [ 773/1139] DCO      | ETA 11m  [OK] GM=26.9% Rev=8.6%
+  [ 774/1139] DE       | ETA 11m  [OK] GM=38.2% Rev=4.8%
+  [ 775/1139] DGX      | ETA 11m  [OK] GM=32.5% Rev=9.2%
+  [ 776/1139] DHI      | ETA 10m  [OK] GM=22.5% Rev=-2.3%
+  [ 777/1139] DIOD     | ETA 10m  [OK] GM=31.8% Rev=22.1%
+  [ 778/1139] DIS      | ETA 10m  [OK] GM=36.8% Rev=6.5%
+  [ 779/1139] DLR      | ETA 10m  [OK] GM=57.3% Rev=16.2%
+  [ 780/1139] DNMX     | ETA 10m  [--] no data
+  [ 781/1139] DNN      | ETA 10m  [OK] GM=100.0% Rev=-19.6%
+  [ 782/1139] DNOW     | ETA 10m  [OK] GM=16.3% Rev=97.5%
+  [ 783/1139] DOV      | ETA 10m  [OK] GM=38.9% Rev=10.1%
+  [ 784/1139] DPZ      | ETA 10m  [OK] GM=40.4% Rev=3.5%
+  [ 785/1139] DRI      | ETA 10m  [OK] GM=22.2% Rev=5.9%
+  [ 786/1139] DRIO     | ETA 10m  [OK] GM=57.3% Rev=-17.3%
+  [ 787/1139] DRMA     | ETA 10m  [--] no data
+  [ 788/1139] DSGX     | ETA 10m  [OK] GM=77.6% Rev=15.1%
+  [ 789/1139] DUK      | ETA 10m  [OK] GM=48.8% Rev=11.3%
+  [ 790/1139] DVA      | ETA 10m  [OK] GM=31.4% Rev=6.0%
+  [ 791/1139] DVN      | ETA 10m  [OK] GM=35.9% Rev=-14.5%
+  [ 792/1139] DXCM     | ETA 10m  [OK] GM=63.0% Rev=15.1%
+  [ 793/1139] DY       | ETA 10m  [OK] GM=19.7% Rev=56.1%
+  [ 794/1139] EA       | ETA 10m  [OK] GM=82.8% Rev=11.9%
+  [ 795/1139] EBAY     | ETA 10m  [OK] GM=74.0% Rev=19.5%
+  [ 796/1139] ECL      | ETA 10m  [OK] GM=43.5% Rev=10.0%
+  [ 797/1139] EH       | ETA 10m  [OK] GM=62.1% Rev=-99.8%
+  [ 798/1139] EL       | ETA 10m  [OK] GM=76.4% Rev=4.6%
+  [ 799/1139] ELV      | ETA 10m  [OK] GM=17.0% Rev=1.5%
+  [ 800/1139] ENB      | ETA 10m  [OK] GM=32.3% Rev=20.8%
+  [Checkpoint saved — 800/1139 done]
+  [ 801/1139] EOG      | ETA 10m  [OK] GM=83.9% Rev=22.1%
+  [ 802/1139] EPAM     | ETA 10m  [OK] GM=27.7% Rev=7.6%
+  [ 803/1139] EPD      | ETA 10m  [OK] GM=13.1% Rev=-6.7%
+  [ 804/1139] EPOW     | ETA 10m  [OK] GM=— Rev=-56.8%
+  [ 805/1139] EPR      | ETA 10m  [OK] GM=85.5% Rev=3.5%
+  [ 806/1139] EQIX     | ETA 10m  [OK] GM=51.5% Rev=9.8%
+  [ 807/1139] ERIC     | ETA 10m  [OK] GM=47.2% Rev=-10.3%
+  [ 808/1139] ESLT     | ETA 10m  [OK] GM=25.2% Rev=15.5%
+  [ 809/1139] ESOA     | ETA 10m  [OK] GM=11.0% Rev=21.5%
+  [ 810/1139] ESPR     | ETA 10m  [OK] GM=56.8% Rev=23.2%
+  [ 811/1139] ET       | ETA 10m  [OK] GM=23.8% Rev=32.1%
+  [ 812/1139] ETSY     | ETA 10m  [OK] GM=72.2% Rev=3.1%
+  [ 813/1139] EVEX     | ETA 10m  [--] no data
+  [ 814/1139] EVR      | ETA 10m  [OK] GM=35.2% Rev=100.3%
+  [ 815/1139] EVRG     | ETA 9m  [OK] GM=50.6% Rev=5.0%
+  [ 816/1139] EVTL     | ETA 9m  [--] no data
+  [ 817/1139] EW       | ETA 9m  [OK] GM=78.0% Rev=16.7%
+  [ 818/1139] EWBC     | ETA 9m  [OK] GM=— Rev=14.7%
+  [ 819/1139] EWTX     | ETA 9m  [--] no data
+  [ 820/1139] EXC      | ETA 9m  [OK] GM=41.4% Rev=7.9%
+  [ 821/1139] EXLS     | ETA 9m  [OK] GM=38.9% Rev=13.8%
+  [ 822/1139] EXPO     | ETA 9m  [OK] GM=100.0% Rev=14.3%
+  [ 823/1139] F        | ETA 9m  [OK] GM=18.4% Rev=6.4%
+  [ 824/1139] FAMI     | ETA 9m  [OK] GM=— Rev=-57.3%
+  [ 825/1139] FANG     | ETA 9m  [OK] GM=68.7% Rev=4.7%
+  [ 826/1139] FANUY    | ETA 9m  [--] no data
+  [ 827/1139] FAST     | ETA 9m  [OK] GM=44.6% Rev=12.4%
+  [ 828/1139] FCEL     | ETA 9m  [OK] GM=-19.2% Rev=60.7%
+  [ 829/1139] FCX      | ETA 9m  [OK] GM=26.6% Rev=8.8%
+  [ 830/1139] FDBC     | ETA 9m  [OK] GM=— Rev=9.2%
+  [ 831/1139] FDS      | ETA 9m  [OK] GM=51.4% Rev=7.1%
+  [ 832/1139] FDX      | ETA 9m  [OK] GM=26.0% Rev=8.3%
+  [ 833/1139] FIS      | ETA 9m  [OK] GM=33.6% Rev=30.1%
+  [ 834/1139] FISV     | ETA 9m  [OK] GM=54.1% Rev=-2.0%
+  [ 835/1139] FITB     | ETA 9m  [OK] GM=— Rev=33.0%
+  [ 836/1139] FLNG     | ETA 9m  [OK] GM=69.6% Rev=-9.0%
+  [ 837/1139] FOXA     | ETA 9m  [OK] GM=37.6% Rev=-8.6%
+  [ 838/1139] FRSH     | ETA 9m  [OK] GM=84.8% Rev=16.5%
+  [ 839/1139] FTI      | ETA 9m  [OK] GM=23.5% Rev=11.6%
+  [ 840/1139] FTV      | ETA 9m  [OK] GM=31.6% Rev=7.7%
+  [ 841/1139] GDDY     | ETA 9m  [OK] GM=63.8% Rev=6.1%
+  [ 842/1139] GE       | ETA 9m  [OK] GM=36.1% Rev=24.7%
+  [ 843/1139] GEHC     | ETA 9m  [OK] GM=38.5% Rev=7.4%
+  [ 844/1139] GFI      | ETA 9m  [OK] GM=— Rev=71.4%
+  [ 845/1139] GFS      | ETA 9m  [OK] GM=27.6% Rev=3.1%
+  [ 846/1139] GILD     | ETA 9m  [OK] GM=79.2% Rev=4.4%
+  [ 847/1139] GIS      | ETA 9m  [OK] GM=30.8% Rev=-8.4%
+  [ 848/1139] GL       | ETA 9m  [OK] GM=— Rev=5.3%
+  [ 849/1139] GLOB     | ETA 9m  [OK] GM=34.5% Rev=-0.7%
+  [ 850/1139] GM       | ETA 8m  [OK] GM=19.7% Rev=-0.9%
+  [Checkpoint saved — 850/1139 done]
+  [ 851/1139] GO       | ETA 8m  [OK] GM=29.6% Rev=3.6%
+  [ 852/1139] GPC      | ETA 8m  [OK] GM=37.3% Rev=6.8%
+  [ 853/1139] GREE     | ETA 8m  [OK] GM=— Rev=29.8%
+  [ 854/1139] GS       | ETA 8m  [OK] GM=54.0% Rev=14.4%
+  [ 855/1139] GSAT     | ETA 8m  [OK] GM=63.0% Rev=16.7%
+  [ 856/1139] GSHD     | ETA 8m  [OK] GM=100.0% Rev=23.1%
+  [ 857/1139] HAE      | ETA 8m  [OK] GM=57.2% Rev=4.8%
+  [ 858/1139] HAL      | ETA 8m  [OK] GM=14.5% Rev=-0.3%
+  [ 859/1139] HALO     | ETA 8m  [OK] GM=79.0% Rev=42.2%
+  [ 860/1139] HBAN     | ETA 8m  [OK] GM=— Rev=33.3%
+  [ 861/1139] HCA      | ETA 8m  [OK] GM=41.7% Rev=4.3%
+  [ 862/1139] HD       | ETA 8m  [OK] GM=33.0% Rev=4.8%
+  [ 863/1139] HDSN     | ETA 8m  [OK] GM=19.7% Rev=8.7%
+  [ 864/1139] HEI      | ETA 8m  [OK] GM=41.4% Rev=25.3%
+  [ 865/1139] HIG      | ETA 8m  [OK] GM=— Rev=6.1%
+  [ 866/1139] HIVE     | ETA 8m  [OK] GM=-27.1% Rev=218.6%
+  [ 867/1139] HLT      | ETA 8m  [OK] GM=29.0% Rev=9.0%
+  [ 868/1139] HOOD     | ETA 8m  [OK] GM=94.4% Rev=15.1%
+  [ 869/1139] HPE      | ETA 8m  [OK] GM=100.0% Rev=18.4%
+  [ 870/1139] HPQ      | ETA 8m  [OK] GM=20.9% Rev=9.0%
+  [ 871/1139] HSY      | ETA 8m  [OK] GM=39.4% Rev=10.7%
+  [ 872/1139] HUM      | ETA 8m  [OK] GM=— Rev=23.5%
+  [ 873/1139] HUN      | ETA 8m  [OK] GM=12.9% Rev=0.7%
+  [ 874/1139] HWM      | ETA 8m  [OK] GM=36.9% Rev=19.1%
+  [ 875/1139] ICE      | ETA 8m  [OK] GM=67.4% Rev=13.5%
+  [ 876/1139] IDT      | ETA 8m  [OK] GM=37.8% Rev=5.7%
+  [ 877/1139] IDXX     | ETA 8m  [OK] GM=63.4% Rev=14.3%
+  [ 878/1139] ILMN     | ETA 8m  [OK] GM=66.1% Rev=4.8%
+  [ 879/1139] IMOS     | ETA 8m  [OK] GM=13.8% Rev=25.4%
+  [ 880/1139] INSP     | ETA 8m  [OK] GM=86.5% Rev=1.6%
+  [ 881/1139] INTC     | ETA 8m  [OK] GM=39.4% Rev=7.2%
+  [ 882/1139] INTU     | ETA 8m  [OK] GM=84.5% Rev=10.4%
+  [ 883/1139] INVA     | ETA 8m  [OK] GM=84.1% Rev=10.6%
+  [ 884/1139] IP       | ETA 8m  [OK] GM=28.9% Rev=13.4%
+  [ 885/1139] IQV      | ETA 7m  [OK] GM=32.6% Rev=8.4%
+  [ 886/1139] IRDM     | ETA 7m  [OK] GM=71.4% Rev=1.9%
+  [ 887/1139] IT       | ETA 7m  [OK] GM=71.6% Rev=-1.5%
+  [ 888/1139] ITW      | ETA 7m  [OK] GM=43.8% Rev=4.6%
+  [ 889/1139] IVZ      | ETA 7m  [OK] GM=36.1% Rev=14.1%
+  [ 890/1139] JACK     | ETA 7m  [OK] GM=29.9% Rev=-4.3%
+  [ 891/1139] JBHT     | ETA 7m  [OK] GM=18.5% Rev=4.6%
+  [ 892/1139] JNJ      | ETA 7m  [OK] GM=66.3% Rev=9.9%
+  [ 893/1139] JOBY     | ETA 7m  [OK] GM=22.4% Rev=—
+  [ 894/1139] JPM      | ETA 7m  [OK] GM=— Rev=12.7%
+  [ 895/1139] KD       | ETA 7m  [OK] GM=22.5% Rev=-0.8%
+  [ 896/1139] KDP      | ETA 7m  [OK] GM=52.8% Rev=9.4%
+  [ 897/1139] KEY      | ETA 7m  [OK] GM=— Rev=11.7%
+  [ 898/1139] KEYS     | ETA 7m  [OK] GM=68.6% Rev=31.5%
+  [ 899/1139] KFRC     | ETA 7m  [OK] GM=27.3% Rev=0.1%
+  [ 900/1139] KHC      | ETA 7m  [OK] GM=36.7% Rev=0.8%
+  [Checkpoint saved — 900/1139 done]
+  [ 901/1139] KIM      | ETA 7m  [OK] GM=69.1% Rev=4.0%
+  [ 902/1139] KLAC     | ETA 7m  [OK] GM=61.1% Rev=11.5%
+  [ 903/1139] KMI      | ETA 7m  [OK] GM=63.8% Rev=13.8%
+  [ 904/1139] KNX      | ETA 7m  [OK] GM=21.6% Rev=1.4%
+  [ 905/1139] KO       | ETA 7m  [OK] GM=63.0% Rev=12.1%
+  [ 906/1139] KR       | ETA 7m  [OK] GM=100.0% Rev=1.2%
+  [ 907/1139] KRYS     | ETA 7m  [OK] GM=94.6% Rev=31.9%
+  [ 908/1139] KSPI     | ETA 7m  [OK] GM=70.2% Rev=31.5%
+  [ 909/1139] L        | ETA 7m  [OK] GM=44.4% Rev=1.4%
+  [ 910/1139] LDOS     | ETA 7m  [OK] GM=17.3% Rev=3.6%
+  [ 911/1139] LEA      | ETA 7m  [OK] GM=7.7% Rev=4.7%
+  [ 912/1139] LEN      | ETA 7m  [OK] GM=5.9% Rev=-13.3%
+  [ 913/1139] LH       | ETA 7m  [OK] GM=28.7% Rev=5.8%
+  [ 914/1139] LHX      | ETA 7m  [OK] GM=24.4% Rev=11.9%
+  [ 915/1139] LI       | ETA 7m  [OK] GM=7.9% Rev=-11.4%
+  [ 916/1139] LIN      | ETA 7m  [OK] GM=48.5% Rev=8.2%
+  [ 917/1139] LLY      | ETA 7m  [OK] GM=81.9% Rev=55.5%
+  [ 918/1139] LNC      | ETA 7m  [OK] GM=— Rev=13.1%
+  [ 919/1139] LNG      | ETA 7m  [OK] GM=-41.8% Rev=7.8%
+  [ 920/1139] LNTH     | ETA 7m  [OK] GM=61.2% Rev=1.2%
+  [ 921/1139] LOW      | ETA 6m  [OK] GM=32.7% Rev=10.3%
+  [ 922/1139] LPLA     | ETA 6m  [OK] GM=24.8% Rev=34.6%
+  [ 923/1139] LTBR     | ETA 6m  [--] no data
+  [ 924/1139] LUNA     | ETA 6m  [--] no data
+  [ 925/1139] LUNR     | ETA 6m  [OK] GM=16.1% Rev=198.7%
+  [ 926/1139] LVS      | ETA 6m  [OK] GM=48.8% Rev=25.3%
+  [ 927/1139] MA       | ETA 6m  [OK] GM=100.0% Rev=15.8%
+  [ 928/1139] MAC      | ETA 6m  [OK] GM=50.5% Rev=-3.1%
+  [ 929/1139] MAR      | ETA 6m  [OK] GM=20.1% Rev=6.2%
+  [ 930/1139] MARA     | ETA 6m  [OK] GM=16.7% Rev=-18.4%
+  [ 931/1139] MCD      | ETA 6m  [OK] GM=55.9% Rev=9.4%
+  [ 932/1139] MCHP     | ETA 6m  [OK] GM=61.0% Rev=35.1%
+  [ 933/1139] MCK      | ETA 6m  [OK] GM=4.2% Rev=6.0%
+  [ 934/1139] MCO      | ETA 6m  [OK] GM=74.5% Rev=8.1%
+  [ 935/1139] MDLZ     | ETA 6m  [OK] GM=27.8% Rev=8.2%
+  [ 936/1139] MDT      | ETA 6m  [OK] GM=63.8% Rev=8.7%
+  [ 937/1139] MELI     | ETA 6m  [OK] GM=43.7% Rev=49.0%
+  [ 938/1139] MET      | ETA 6m  [OK] GM=— Rev=2.7%
+  [ 939/1139] MGA      | ETA 6m  [OK] GM=13.7% Rev=3.1%
+  [ 940/1139] MGM      | ETA 6m  [OK] GM=44.7% Rev=4.2%
+  [ 941/1139] MKC      | ETA 6m  [OK] GM=37.8% Rev=16.7%
+  [ 942/1139] MKL      | ETA 6m  [OK] GM=— Rev=0.1%
+  [ 943/1139] MKSI     | ETA 6m  [OK] GM=47.0% Rev=15.2%
+  [ 944/1139] MKTX     | ETA 6m  [OK] GM=59.3% Rev=11.9%
+  [ 945/1139] MMM      | ETA 6m  [OK] GM=40.7% Rev=1.3%
+  [ 946/1139] MNST     | ETA 6m  [OK] GM=55.0% Rev=26.9%
+  [ 947/1139] MO       | ETA 6m  [OK] GM=73.7% Rev=5.3%
+  [ 948/1139] MOH      | ETA 6m  [OK] GM=14.1% Rev=-3.1%
+  [ 949/1139] MOS      | ETA 6m  [OK] GM=7.9% Rev=14.4%
+  [ 950/1139] MPC      | ETA 6m  [OK] GM=8.6% Rev=8.5%
+  [Checkpoint saved — 950/1139 done]
+  [ 951/1139] MPLX     | ETA 6m  [OK] GM=53.9% Rev=-2.8%
+  [ 952/1139] MRK      | ETA 6m  [OK] GM=74.2% Rev=4.9%
+  [ 953/1139] MRNA     | ETA 6m  [OK] GM=-145.5% Rev=260.2%
+  [ 954/1139] MS       | ETA 6m  [OK] GM=52.4% Rev=16.0%
+  [ 955/1139] MSCI     | ETA 5m  [OK] GM=83.3% Rev=14.1%
+  [ 956/1139] MSI      | ETA 5m  [OK] GM=50.2% Rev=7.4%
+  [ 957/1139] MTB      | ETA 5m  [OK] GM=— Rev=5.7%
+  [ 958/1139] MTCH     | ETA 5m  [OK] GM=75.6% Rev=3.9%
+  [ 959/1139] MTD      | ETA 5m  [OK] GM=58.7% Rev=7.2%
+  [ 960/1139] NBIS     | ETA 5m  [OK] GM=74.0% Rev=683.9%
+  [ 961/1139] NCLH     | ETA 5m  [OK] GM=40.9% Rev=9.6%
+  [ 962/1139] NDAQ     | ETA 5m  [OK] GM=65.8% Rev=2.0%
+  [ 963/1139] NEE      | ETA 5m  [OK] GM=59.0% Rev=7.3%
+  [ 964/1139] NEM      | ETA 5m  [OK] GM=73.5% Rev=45.9%
+  [ 965/1139] NFLX     | ETA 5m  [OK] GM=51.9% Rev=16.2%
+  [ 966/1139] NKE      | ETA 5m  [OK] GM=40.2% Rev=0.1%
+  [ 967/1139] NNDM     | ETA 5m  [OK] GM=40.8% Rev=106.4%
+  [ 968/1139] NNE      | ETA 5m  [--] no data
+  [ 969/1139] NOC      | ETA 5m  [OK] GM=19.8% Rev=4.4%
+  [ 970/1139] NOG      | ETA 5m  [OK] GM=100.0% Rev=-99.2%
+  [ 971/1139] NOK      | ETA 5m  [OK] GM=44.2% Rev=2.4%
+  [ 972/1139] NOV      | ETA 5m  [OK] GM=18.5% Rev=-2.4%
+  [ 973/1139] NRG      | ETA 5m  [OK] GM=7.8% Rev=19.5%
+  [ 974/1139] NSC      | ETA 5m  [OK] GM=43.1% Rev=0.2%
+  [ 975/1139] NTRA     | ETA 5m  [OK] GM=64.7% Rev=38.8%
+  [ 976/1139] NTRS     | ETA 5m  [OK] GM=— Rev=13.9%
+  [ 977/1139] NUE      | ETA 5m  [OK] GM=15.8% Rev=21.3%
+  [ 978/1139] NVCR     | ETA 5m  [OK] GM=77.6% Rev=12.3%
+  [ 979/1139] NVR      | ETA 5m  [OK] GM=21.7% Rev=-21.4%
+  [ 980/1139] NVTS     | ETA 5m  [OK] GM=37.6% Rev=-38.7%
+  [ 981/1139] NXE      | ETA 5m  [--] no data
+  [ 982/1139] O        | ETA 5m  [OK] GM=92.5% Rev=12.2%
+  [ 983/1139] ODFL     | ETA 5m  [OK] GM=39.1% Rev=-2.9%
+  [ 984/1139] OKE      | ETA 5m  [OK] GM=26.7% Rev=19.6%
+  [ 985/1139] OKLO     | ETA 5m  [--] no data
+  [ 986/1139] OLN      | ETA 5m  [OK] GM=4.8% Rev=-3.7%
+  [ 987/1139] ON       | ETA 5m  [OK] GM=38.5% Rev=4.7%
+  [ 988/1139] ORCL     | ETA 5m  [OK] GM=64.6% Rev=21.7%
+  [ 989/1139] ORLY     | ETA 4m  [OK] GM=51.5% Rev=10.2%
+  [ 990/1139] OXY      | ETA 4m  [OK] GM=69.9% Rev=-11.0%
+  [ 991/1139] PAYC     | ETA 4m  [OK] GM=89.0% Rev=7.8%
+  [ 992/1139] PAYX     | ETA 4m  [OK] GM=76.2% Rev=19.9%
+  [ 993/1139] PCAR     | ETA 4m  [OK] GM=17.4% Rev=-8.9%
+  [ 994/1139] PCG      | ETA 4m  [OK] GM=39.9% Rev=15.0%
+  [ 995/1139] PCTY     | ETA 4m  [OK] GM=72.3% Rev=10.5%
+  [ 996/1139] PEG      | ETA 4m  [OK] GM=36.5% Rev=19.4%
+  [ 997/1139] PEP      | ETA 4m  [OK] GM=55.2% Rev=8.5%
+  [ 998/1139] PFE      | ETA 4m  [OK] GM=75.5% Rev=5.4%
+  [ 999/1139] PG       | ETA 4m  [OK] GM=49.5% Rev=7.4%
+  [1000/1139] PGR      | ETA 4m  [OK] GM=— Rev=8.7%
+  [Checkpoint saved — 1000/1139 done]
+  [1001/1139] PH       | ETA 4m  [OK] GM=36.8% Rev=10.6%
+  [1002/1139] PHM      | ETA 4m  [OK] GM=24.1% Rev=-12.4%
+  [1003/1139] PKG      | ETA 4m  [OK] GM=19.1% Rev=10.6%
+  [1004/1139] PLD      | ETA 4m  [OK] GM=73.8% Rev=7.4%
+  [1005/1139] PLXS     | ETA 4m  [OK] GM=10.2% Rev=18.7%
+  [1006/1139] PM       | ETA 4m  [OK] GM=68.1% Rev=9.1%
+  [1007/1139] PNC      | ETA 4m  [OK] GM=— Rev=13.8%
+  [1008/1139] PODD     | ETA 4m  [OK] GM=69.5% Rev=33.9%
+  [1009/1139] POET     | ETA 4m  [OK] GM=100.0% Rev=201.9%
+  [1010/1139] POWI     | ETA 4m  [OK] GM=52.6% Rev=2.6%
+  [1011/1139] PPG      | ETA 4m  [OK] GM=42.1% Rev=6.7%
+  [1012/1139] PR       | ETA 4m  [OK] GM=75.2% Rev=0.8%
+  [1013/1139] PRGS     | ETA 4m  [OK] GM=82.3% Rev=4.1%
+  [1014/1139] PRU      | ETA 4m  [OK] GM=— Rev=15.3%
+  [1015/1139] PSA      | ETA 4m  [OK] GM=72.1% Rev=2.9%
+  [1016/1139] PSX      | ETA 4m  [--] no data
+  [1017/1139] PTC      | ETA 4m  [OK] GM=85.3% Rev=21.7%
+  [1018/1139] PYPL     | ETA 4m  [OK] GM=45.6% Rev=7.2%
+  [1019/1139] QCOM     | ETA 4m  [OK] GM=53.8% Rev=-3.5%
+  [1020/1139] QMCO     | ETA 4m  [OK] GM=38.8% Rev=8.6%
+  [1021/1139] QQQ      | ETA 4m  [--] no data
+  [1022/1139] QRVO     | ETA 4m  [OK] GM=48.9% Rev=-7.0%
+  [1023/1139] QSR      | ETA 3m  [OK] GM=33.7% Rev=7.3%
+  [1024/1139] RAMP     | ETA 3m  [OK] GM=70.6% Rev=9.2%
+  [1025/1139] RBBN     | ETA 3m  [OK] GM=42.9% Rev=-10.3%
+  [1026/1139] RCKT     | ETA 3m  [--] no data
+  [1027/1139] RCL      | ETA 3m  [OK] GM=49.5% Rev=11.3%
+  [1028/1139] RDWR     | ETA 3m  [OK] GM=81.1% Rev=10.7%
+  [1029/1139] REG      | ETA 3m  [OK] GM=69.8% Rev=8.3%
+  [1030/1139] REGN     | ETA 3m  [OK] GM=81.4% Rev=19.0%
+  [1031/1139] RF       | ETA 3m  [OK] GM=— Rev=7.3%
+  [1032/1139] RGTI     | ETA 3m  [OK] GM=31.3% Rev=198.9%
+  [1033/1139] RIOT     | ETA 3m  [OK] GM=18.9% Rev=3.6%
+  [1034/1139] RJF      | ETA 3m  [OK] GM=32.5% Rev=13.4%
+  [1035/1139] RMBS     | ETA 3m  [OK] GM=79.7% Rev=8.1%
+  [1036/1139] RMD      | ETA 3m  [OK] GM=62.2% Rev=10.8%
+  [1037/1139] ROAD     | ETA 3m  [OK] GM=12.8% Rev=34.6%
+  [1038/1139] ROP      | ETA 3m  [OK] GM=69.4% Rev=11.3%
+  [1039/1139] ROST     | ETA 3m  [OK] GM=29.6% Rev=20.6%
+  [1040/1139] RPM      | ETA 3m  [OK] GM=39.5% Rev=8.9%
+  [1041/1139] RS       | ETA 3m  [OK] GM=29.1% Rev=15.5%
+  [1042/1139] RSG      | ETA 3m  [OK] GM=42.5% Rev=2.6%
+  [1043/1139] RTX      | ETA 3m  [OK] GM=20.8% Rev=8.7%
+  [1044/1139] RXRX     | ETA 3m  [OK] GM=-93.0% Rev=-56.1%
+  [1045/1139] SAIA     | ETA 3m  [OK] GM=21.7% Rev=2.4%
+  [1046/1139] SAP      | ETA 3m  [OK] GM=73.0% Rev=6.0%
+  [1047/1139] SATL     | ETA 3m  [OK] GM=77.1% Rev=80.3%
+  [1048/1139] SATS     | ETA 3m  [OK] GM=30.9% Rev=-5.2%
+  [1049/1139] SBUX     | ETA 3m  [OK] GM=66.3% Rev=8.8%
+  [1050/1139] SCHW     | ETA 3m  [OK] GM=72.0% Rev=15.8%
+  [Checkpoint saved — 1050/1139 done]
+  [1051/1139] SEIC     | ETA 3m  [OK] GM=89.3% Rev=12.8%
+  [1052/1139] SFM      | ETA 3m  [OK] GM=39.4% Rev=4.2%
+  [1053/1139] SHEN     | ETA 3m  [OK] GM=65.5% Rev=4.8%
+  [1054/1139] SHW      | ETA 3m  [OK] GM=49.1% Rev=6.8%
+  [1055/1139] SIRI     | ETA 3m  [OK] GM=52.1% Rev=1.1%
+  [1056/1139] SITE     | ETA 2m  [OK] GM=33.9% Rev=0.1%
+  [1057/1139] SJM      | ETA 2m  [OK] GM=35.4% Rev=7.0%
+  [1058/1139] SLB      | ETA 2m  [OK] GM=15.3% Rev=2.7%
+  [1059/1139] SLDP     | ETA 2m  [OK] GM=-15.5% Rev=-48.9%
+  [1060/1139] SM       | ETA 2m  [OK] GM=71.1% Rev=75.0%
+  [1061/1139] SO       | ETA 2m  [OK] GM=— Rev=8.0%
+  [1062/1139] SOUN     | ETA 2m  [OK] GM=31.1% Rev=51.7%
+  [1063/1139] SPCE     | ETA 2m  [OK] GM=100.0% Rev=-50.8%
+  [1064/1139] SPG      | ETA 2m  [OK] GM=80.3% Rev=19.3%
+  [1065/1139] SPGI     | ETA 2m  [OK] GM=70.4% Rev=10.4%
+  [1066/1139] SPNS     | ETA 2m  [OK] GM=44.2% Rev=11.2%
+  [1067/1139] SRE      | ETA 2m  [OK] GM=86.5% Rev=-3.9%
+  [1068/1139] STLD     | ETA 2m  [OK] GM=14.7% Rev=19.1%
+  [1069/1139] STM      | ETA 2m  [OK] GM=33.8% Rev=23.0%
+  [1070/1139] STT      | ETA 2m  [OK] GM=54.6% Rev=15.6%
+  [1071/1139] STZ      | ETA 2m  [OK] GM=49.6% Rev=-11.3%
+  [1072/1139] SU       | ETA 2m  [OK] GM=60.1% Rev=17.5%
+  [1073/1139] SWKS     | ETA 2m  [OK] GM=40.8% Rev=-1.0%
+  [1074/1139] SYF      | ETA 2m  [OK] GM=— Rev=6.1%
+  [1075/1139] SYK      | ETA 2m  [OK] GM=63.3% Rev=2.6%
+  [1076/1139] T        | ETA 2m  [OK] GM=60.1% Rev=2.9%
+  [1077/1139] TARS     | ETA 2m  [OK] GM=94.2% Rev=106.9%
+  [1078/1139] TDG      | ETA 2m  [OK] GM=59.4% Rev=18.3%
+  [1079/1139] TDY      | ETA 2m  [OK] GM=43.2% Rev=7.6%
+  [1080/1139] TFC      | ETA 2m  [OK] GM=— Rev=5.2%
+  [1081/1139] TGT      | ETA 2m  [OK] GM=29.0% Rev=6.7%
+  [1082/1139] TGTX     | ETA 2m  [OK] GM=83.7% Rev=69.6%
+  [1083/1139] THC      | ETA 2m  [OK] GM=41.6% Rev=2.8%
+  [1084/1139] TJX      | ETA 2m  [OK] GM=31.3% Rev=9.2%
+  [1085/1139] TMO      | ETA 2m  [OK] GM=40.2% Rev=6.2%
+  [1086/1139] TMUS     | ETA 2m  [OK] GM=61.8% Rev=10.6%
+  [1087/1139] TOL      | ETA 2m  [OK] GM=23.9% Rev=-7.6%
+  [1088/1139] TPH      | ETA 2m  [OK] GM=18.7% Rev=-29.8%
+  [1089/1139] TREX     | ETA 2m  [OK] GM=40.5% Rev=1.0%
+  [1090/1139] TROW     | ETA 1m  [OK] GM=55.1% Rev=5.3%
+  [1091/1139] TRV      | ETA 1m  [OK] GM=— Rev=1.0%
+  [1092/1139] TSEM     | ETA 1m  [OK] GM=26.8% Rev=15.5%
+  [1093/1139] TSM      | ETA 1m  [OK] GM=66.2% Rev=35.1%
+  [1094/1139] TTWO     | ETA 1m  [OK] GM=55.9% Rev=6.2%
+  [1095/1139] TWLO     | ETA 1m  [OK] GM=48.6% Rev=20.0%
+  [1096/1139] TXN      | ETA 1m  [OK] GM=58.0% Rev=18.6%
+  [1097/1139] TXT      | ETA 1m  [OK] GM=18.2% Rev=11.8%
+  [1098/1139] U        | ETA 1m  [OK] GM=30.8% Rev=16.8%
+  [1099/1139] UEC      | ETA 1m  [OK] GM=49.6% Rev=-59.4%
+  [1100/1139] UHS      | ETA 1m  [OK] GM=11.2% Rev=9.7%
+  [Checkpoint saved — 1100/1139 done]
+  [1101/1139] UMC      | ETA 1m  [OK] GM=29.2% Rev=5.5%
+  [1102/1139] UNH      | ETA 1m  [OK] GM=— Rev=2.0%
+  [1103/1139] UNM      | ETA 1m  [OK] GM=— Rev=8.5%
+  [1104/1139] UNP      | ETA 1m  [OK] GM=55.6% Rev=3.1%
+  [1105/1139] UPS      | ETA 1m  [OK] GM=78.1% Rev=-1.6%
+  [1106/1139] UROY     | ETA 60s  [OK] GM=28.6% Rev=416400.0%
+  [1107/1139] USB      | ETA 58s  [OK] GM=— Rev=4.6%
+  [1108/1139] UUUU     | ETA 56s  [OK] GM=40.1% Rev=112.1%
+  [1109/1139] V        | ETA 55s  [OK] GM=97.7% Rev=17.1%
+  [1110/1139] VECO     | ETA 53s  [OK] GM=35.3% Rev=-5.3%
+  [1111/1139] VEEV     | ETA 51s  [OK] GM=68.3% Rev=16.0%
+  [1112/1139] VICI     | ETA 49s  [OK] GM=99.4% Rev=3.5%
+  [1113/1139] VLO      | ETA 47s  [OK] GM=14.2% Rev=7.0%
+  [1114/1139] VRNS     | ETA 46s  [OK] GM=76.0% Rev=26.9%
+  [1115/1139] VRSK     | ETA 44s  [OK] GM=69.8% Rev=3.9%
+  [1116/1139] VRTX     | ETA 42s  [OK] GM=86.8% Rev=7.8%
+  [1117/1139] VSAT     | ETA 40s  [OK] GM=30.8% Rev=2.1%
+  [1118/1139] VSEC     | ETA 38s  [OK] GM=14.8% Rev=26.8%
+  [1119/1139] VST      | ETA 37s  [OK] GM=35.2% Rev=43.4%
+  [1120/1139] VZ       | ETA 35s  [OK] GM=60.3% Rev=2.9%
+  [1121/1139] W        | ETA 33s  [OK] GM=30.0% Rev=7.4%
+  [1122/1139] WAB      | ETA 31s  [OK] GM=36.0% Rev=13.0%
+  [1123/1139] WBD      | ETA 29s  [OK] GM=47.8% Rev=-1.0%
+  [1124/1139] WDAY     | ETA 27s  [OK] GM=73.8% Rev=13.5%
+  [1125/1139] WFC      | ETA 26s  [OK] GM=— Rev=5.7%
+  [1126/1139] WLDN     | ETA 24s  [OK] GM=40.7% Rev=1.8%
+  [1127/1139] WM       | ETA 22s  [OK] GM=40.7% Rev=3.5%
+  [1128/1139] WMB      | ETA 20s  [OK] GM=62.9% Rev=-0.6%
+  [1129/1139] WMT      | ETA 18s  [OK] GM=25.1% Rev=7.3%
+  [1130/1139] WYNN     | ETA 16s  [OK] GM=40.2% Rev=9.2%
+  [1131/1139] XEL      | ETA 15s  [OK] GM=41.9% Rev=2.9%
+  [1132/1139] XOM      | ETA 13s  [OK] GM=24.9% Rev=2.6%
+  [1133/1139] XPEV     | ETA 11s  [OK] GM=20.6% Rev=-17.6%
+  [1134/1139] XPO      | ETA 9s  [OK] GM=17.6% Rev=7.3%
+  [1135/1139] XPOF     | ETA 7s  [OK] GM=88.7% Rev=-21.0%
+  [1136/1139] XRAY     | ETA 5s  [OK] GM=48.5% Rev=0.1%
+  [1137/1139] YETI     | ETA 4s  [OK] GM=55.3% Rev=8.3%
+  [1138/1139] YUM      | ETA 2s  [OK] GM=67.1% Rev=15.2%
+  [1139/1139] ZBH      | ETA 0s  [OK] GM=72.4% Rev=9.3%
+
+==========================================================
+  Done: fetched=1139 | filled=987 | failed=152
+  Runtime: 34.7 min
+==========================================================

@@ -1,0 +1,22 @@
+{
+  "date": "2026-09-04",
+  "rate_environment": "Restrictive",
+  "credit_stress": false,
+  "yield_curve": "Flat",
+  "macro_modifier": 0.9,
+  "macro_note": "Rates are restrictive \u2014 growth multiples under pressure. Credit markets calm \u2014 risk appetite intact.",
+  "modifier_note": "Restrictive: reduce all sizes 10%",
+  "environment_changed": true,
+  "yield_10y": 4.79,
+  "yield_2y": 4.39,
+  "yield_curve_val": 0.43,
+  "hy_spread_pct": 2.66,
+  "real_yield": 2.45,
+  "fed_funds": 3.63,
+  "cpi_yoy": 3.54,
+  "rate_notes": [
+    "10Y=4.79% (restrictive, squeezing valuation)",
+    "HY spread=2.66% (tight = risk-on)"
+  ],
+  "generated_at": "17:23"
+}

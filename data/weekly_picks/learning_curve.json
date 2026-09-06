@@ -1,0 +1,17 @@
+{
+  "weeks": [
+    {
+      "week_id": "2026-W24",
+      "scored_at": "2026-06-14",
+      "beat_count": 0,
+      "n_picks": 5,
+      "beat_rate": 0.0,
+      "avg_return_pct": 0.0,
+      "qqq_return_pct": 0.0,
+      "alpha_pct": 0.0
+    }
+  ],
+  "total_weeks": 1,
+  "cumul_beat_rate": 0.0,
+  "cumul_avg_alpha": 0.0
+}

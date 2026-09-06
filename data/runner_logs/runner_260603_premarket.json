@@ -1,0 +1,19 @@
+{
+  "date": "2026-06-03",
+  "mode": "premarket",
+  "run_at": "2026-06-03T21:04:45.573298",
+  "steps": [
+    {
+      "step": "a09",
+      "name": "A09 Portfolio Manager (pre-market)",
+      "status": "ok",
+      "duration": 279.8,
+      "output": "data/portfolio/action_signals.json",
+      "error": "",
+      "time": "21:04:45"
+    }
+  ],
+  "passed": 1,
+  "failed": 0,
+  "skipped": 0
+}

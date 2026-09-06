@@ -1,0 +1,37 @@
+
+=== Fill Missing Open/High/Low ===
+  Polygon tier: free (sleep=12.0s)
+  Tickers with NULL open: 574
+  Total rows to fill: 117,133
+  ETA: ~115 min
+
+      1/574 ACDC     filled   497/498 rows
+      2/574 ACLS     filled   497/498 rows
+      3/574 AEHR     filled   497/498 rows
+      4/574 AESI     filled     0/498 rows
+      5/574 AGL      filled     0/498 rows
+      6/574 AGX      filled     0/498 rows
+      7/574 AIP      filled   497/498 rows
+      8/574 AIRJ     filled     0/498 rows
+      9/574 AKAM     filled     0/498 rows
+     10/574 ALAB     filled   497/498 rows
+     11/574 AMN      filled     0/498 rows
+     12/574 AMPG     filled     0/498 rows
+     13/574 AMSC     filled     0/498 rows
+     14/574 APEI     filled     0/498 rows
+     15/574 APLD     filled     0/498 rows
+     16/574 ARW      filled     0/498 rows
+     17/574 ASRT     filled     0/498 rows
+     18/574 ASTH     filled     0/498 rows
+     19/574 ATOM     filled     0/498 rows
+     20/574 AXSM     filled     0/498 rows
+    [ERR] CEVA: HTTPSConnectionPool(host='api.polygon.io', port=443): Read timed out. (read timeout=30)
+    200/574 FAST     filled     0/200 rows
+    [ERR] MCK: HTTPSConnectionPool(host='api.polygon.io', port=443): Read timed out. (read timeout=30)
+    [ERR] MSCI: HTTPSConnectionPool(host='api.polygon.io', port=443): Read timed out. (read timeout=30)
+    400/574 ASX      filled     0/193 rows
+
+=== Done ===
+  Filled     : 4,426 rows
+  Failed     : 121 tickers
+  Still NULL : 115,904 rows

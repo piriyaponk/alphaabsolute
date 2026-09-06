@@ -1,0 +1,268 @@
+{
+  "history": [
+    {
+      "date": "2026-05-17",
+      "regime": "Distribution",
+      "score": 48,
+      "cash_floor": 0.4,
+      "warnings": 0
+    },
+    {
+      "date": "2026-05-18",
+      "regime": "Distribution",
+      "score": 48,
+      "cash_floor": 0.4,
+      "warnings": 0
+    },
+    {
+      "date": "2026-05-18",
+      "regime": "Distribution",
+      "score": 48,
+      "cash_floor": 0.4,
+      "warnings": 0
+    },
+    {
+      "date": "2026-05-18",
+      "regime": "Distribution",
+      "score": 48,
+      "cash_floor": 0.4,
+      "warnings": 0
+    },
+    {
+      "date": "2026-05-22",
+      "regime": "Distribution",
+      "score": 47,
+      "cash_floor": 0.4,
+      "warnings": 0
+    },
+    {
+      "date": "2026-05-22",
+      "regime": "Distribution",
+      "score": 47,
+      "cash_floor": 0.4,
+      "warnings": 0
+    },
+    {
+      "date": "2026-05-22",
+      "regime": "Distribution",
+      "score": 47,
+      "cash_floor": 0.4,
+      "warnings": 0
+    },
+    {
+      "date": "2026-05-22",
+      "regime": "Distribution",
+      "score": 47,
+      "cash_floor": 0.4,
+      "warnings": 0
+    },
+    {
+      "date": "2026-05-22",
+      "regime": "Distribution",
+      "score": 47,
+      "cash_floor": 0.4,
+      "warnings": 0
+    },
+    {
+      "date": "2026-05-22",
+      "regime": "Distribution",
+      "score": 47,
+      "cash_floor": 0.4,
+      "warnings": 0
+    },
+    {
+      "date": "2026-05-23",
+      "regime": "Distribution",
+      "score": 47,
+      "cash_floor": 0.4,
+      "warnings": 0
+    },
+    {
+      "date": "2026-05-23",
+      "regime": "Distribution",
+      "score": 46,
+      "cash_floor": 0.4,
+      "warnings": 0
+    },
+    {
+      "date": "2026-05-24",
+      "regime": "Distribution",
+      "score": 50,
+      "cash_floor": 0.4,
+      "warnings": 0,
+      "adv_ratio_ema10": 0.6103,
+      "nh_nl_ratio": 1.0
+    },
+    {
+      "date": "2026-05-25",
+      "regime": "Distribution",
+      "score": 50,
+      "cash_floor": 0.4,
+      "warnings": 0,
+      "adv_ratio_ema10": 0.6103,
+      "nh_nl_ratio": 1.0
+    },
+    {
+      "date": "2026-05-26",
+      "regime": "Distribution",
+      "score": 50,
+      "cash_floor": 0.4,
+      "warnings": 0,
+      "adv_ratio_ema10": 0.6103,
+      "nh_nl_ratio": 1.0
+    },
+    {
+      "date": "2026-05-27",
+      "regime": "Distribution",
+      "score": 50,
+      "cash_floor": 0.4,
+      "warnings": 0,
+      "adv_ratio_ema10": 0.6158,
+      "nh_nl_ratio": 0.9767
+    },
+    {
+      "date": "2026-05-28",
+      "regime": "Distribution",
+      "score": 50,
+      "cash_floor": 0.4,
+      "warnings": 0,
+      "adv_ratio_ema10": 0.615,
+      "nh_nl_ratio": 0.9792
+    },
+    {
+      "date": "2026-06-01",
+      "regime": "Sideways",
+      "score": 54,
+      "cash_floor": 0.2,
+      "warnings": 0,
+      "adv_ratio_ema10": 0.5735,
+      "nh_nl_ratio": 0.8085
+    },
+    {
+      "date": "2026-06-02",
+      "regime": "Sideways",
+      "score": 54,
+      "cash_floor": 0.2,
+      "warnings": 0,
+      "adv_ratio_ema10": 0.5834,
+      "nh_nl_ratio": 0.7849
+    },
+    {
+      "date": "2026-06-03",
+      "regime": "Sideways",
+      "score": 54,
+      "cash_floor": 0.2,
+      "warnings": 0,
+      "adv_ratio_ema10": 0.5886,
+      "nh_nl_ratio": 0.7939
+    },
+    {
+      "date": "2026-06-12",
+      "regime": "Sideways",
+      "score": 55,
+      "cash_floor": 0.2,
+      "warnings": 0,
+      "adv_ratio_ema10": 0.6243,
+      "nh_nl_ratio": 0.7361
+    },
+    {
+      "date": "2026-06-14",
+      "regime": "Distribution",
+      "score": 47,
+      "cash_floor": 0.4,
+      "warnings": 2,
+      "adv_ratio_ema10": 0.6124,
+      "nh_nl_ratio": 0.5484
+    },
+    {
+      "date": "2026-06-15",
+      "regime": "Sideways",
+      "score": 58,
+      "cash_floor": 0.2,
+      "warnings": 2,
+      "adv_ratio_ema10": 0.6124,
+      "nh_nl_ratio": 0.5484
+    },
+    {
+      "date": "2026-06-16",
+      "regime": "Sideways",
+      "score": 62,
+      "cash_floor": 0.2,
+      "warnings": 2,
+      "adv_ratio_ema10": 0.5959,
+      "nh_nl_ratio": 0.7156
+    },
+    {
+      "date": "2026-06-26",
+      "regime": "Sideways",
+      "score": 57,
+      "cash_floor": 0.2,
+      "warnings": 2,
+      "adv_ratio_ema10": 0.5812,
+      "nh_nl_ratio": 0.7039
+    },
+    {
+      "date": "2026-07-10",
+      "regime": "Distribution",
+      "score": 42,
+      "cash_floor": 0.4,
+      "warnings": 1,
+      "adv_ratio_ema10": 0.5907,
+      "nh_nl_ratio": 0.6224
+    },
+    {
+      "date": "2026-07-24",
+      "regime": "Distribution",
+      "score": 42,
+      "cash_floor": 0.4,
+      "warnings": 1,
+      "adv_ratio_ema10": 0.6189,
+      "nh_nl_ratio": 0.7045
+    },
+    {
+      "date": "2026-07-31",
+      "regime": "Markdown",
+      "score": 27,
+      "cash_floor": 0.75,
+      "warnings": 5,
+      "adv_ratio_ema10": 0.5624,
+      "nh_nl_ratio": 0.6149
+    },
+    {
+      "date": "2026-08-07",
+      "regime": "Sideways",
+      "score": 59,
+      "cash_floor": 0.2,
+      "warnings": 0,
+      "adv_ratio_ema10": 0.6323,
+      "nh_nl_ratio": 0.7175
+    },
+    {
+      "date": "2026-08-14",
+      "regime": "Distribution",
+      "score": 47,
+      "cash_floor": 0.4,
+      "warnings": 0,
+      "adv_ratio_ema10": 0.5779,
+      "nh_nl_ratio": 0.6953
+    },
+    {
+      "date": "2026-08-21",
+      "regime": "Markup",
+      "score": 70,
+      "cash_floor": 0.0,
+      "warnings": 0,
+      "adv_ratio_ema10": 0.6065,
+      "nh_nl_ratio": 0.7221
+    },
+    {
+      "date": "2026-09-04",
+      "regime": "Distribution",
+      "score": 45,
+      "cash_floor": 0.4,
+      "warnings": 2,
+      "adv_ratio_ema10": 0.5609,
+      "nh_nl_ratio": 0.6816
+    }
+  ]
+}

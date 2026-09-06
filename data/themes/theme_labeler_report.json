@@ -1,0 +1,13 @@
+{
+  "date": "2026-05-18",
+  "run_at": "2026-05-18T21:27:13.733627",
+  "n_tickers_checked": 1102,
+  "n_newly_labeled": 0,
+  "n_keyword_match": 0,
+  "n_sic_match": 0,
+  "n_no_match": 1102,
+  "n_cache_hits": 1099,
+  "n_api_fetches": 0,
+  "by_theme": {},
+  "examples": {}
+}

@@ -1,0 +1,2555 @@
+{
+  "last_updated": "2026-05-25",
+  "tickers": {
+    "NVDA": {
+      "fetched": "2026-05-25",
+      "q0": 85.2,
+      "q1": 62.5,
+      "q2": 55.6,
+      "q3": 69.2,
+      "label": "ACCELERATING_STRONG",
+      "two_q_accel": true,
+      "latest_period": "2026Q2"
+    },
+    "AAOI": {
+      "fetched": "2026-05-25",
+      "q0": 51.4,
+      "q1": 82.1,
+      "q2": 137.9,
+      "q3": 145.5,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "ABTC": {
+      "fetched": "2026-05-25",
+      "q0": 3887.0,
+      "q1": 1640.9,
+      "q2": -75.0,
+      "q3": -79.2,
+      "label": "FIRST_INFLECTION",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "ACHR": {
+      "fetched": "2026-05-25",
+      "q0": null,
+      "q1": null,
+      "q2": null,
+      "q3": null,
+      "label": "INSUFFICIENT_DATA",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "ACLS": {
+      "fetched": "2026-05-25",
+      "q0": 3.3,
+      "q1": -16.7,
+      "q2": -24.2,
+      "q3": -23.7,
+      "label": "TURNAROUND",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "ACMR": {
+      "fetched": "2026-05-25",
+      "q0": 34.2,
+      "q1": 32.0,
+      "q2": 6.4,
+      "q3": 13.2,
+      "label": "ACCELERATING_STRONG",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "ADBE": {
+      "fetched": "2026-05-25",
+      "q0": 12.0,
+      "q1": 10.7,
+      "q2": 10.6,
+      "q3": 10.3,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "AEHR": {
+      "fetched": "2026-05-25",
+      "q0": -43.7,
+      "q1": -26.5,
+      "q2": -16.4,
+      "q3": 142.1,
+      "label": "DECELERATING",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "AEIS": {
+      "fetched": "2026-05-25",
+      "q0": 26.3,
+      "q1": 23.8,
+      "q2": 21.0,
+      "q3": 23.5,
+      "label": "ACCELERATING_STRONG",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "AEVA": {
+      "fetched": "2026-05-25",
+      "q0": 85.9,
+      "q1": 59.1,
+      "q2": 173.9,
+      "q3": 59.8,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "AGPU": {
+      "fetched": "2026-05-25",
+      "q0": null,
+      "q1": null,
+      "q2": null,
+      "q3": null,
+      "label": "INSUFFICIENT_DATA",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "AI": {
+      "fetched": "2026-05-25",
+      "q0": -46.1,
+      "q1": -20.3,
+      "q2": -19.4,
+      "q3": 26.0,
+      "label": "DECELERATING",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "AISP": {
+      "fetched": "2026-05-25",
+      "q0": 15.5,
+      "q1": -58.9,
+      "q2": -66.5,
+      "q3": -48.0,
+      "label": "TURNAROUND",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "AKAM": {
+      "fetched": "2026-05-25",
+      "q0": 5.8,
+      "q1": 5.0,
+      "q2": 6.5,
+      "q3": 2.9,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "ALAB": {
+      "fetched": "2026-05-25",
+      "q0": 93.4,
+      "q1": 103.9,
+      "q2": 149.7,
+      "q3": 144.3,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "ALMU": {
+      "fetched": "2026-05-25",
+      "q0": -2.6,
+      "q1": -21.1,
+      "q2": 187.9,
+      "q3": 264.9,
+      "label": "DECELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "AMAT": {
+      "fetched": "2026-05-25",
+      "q0": 11.4,
+      "q1": -2.1,
+      "q2": 7.7,
+      "q3": 6.8,
+      "label": "TURNAROUND",
+      "two_q_accel": true,
+      "latest_period": "2026Q2"
+    },
+    "AMBA": {
+      "fetched": "2026-05-25",
+      "q0": 31.2,
+      "q1": 49.9,
+      "q2": 57.6,
+      "q3": 63.4,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": false,
+      "latest_period": "2025Q4"
+    },
+    "AMD": {
+      "fetched": "2026-05-25",
+      "q0": 37.8,
+      "q1": 35.6,
+      "q2": 31.7,
+      "q3": 35.9,
+      "label": "ACCELERATING_STRONG",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "AMKR": {
+      "fetched": "2026-05-25",
+      "q0": 27.5,
+      "q1": 6.7,
+      "q2": 3.4,
+      "q3": -3.2,
+      "label": "ACCELERATING_STRONG",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "AMT": {
+      "fetched": "2026-05-25",
+      "q0": 6.8,
+      "q1": 7.7,
+      "q2": 3.2,
+      "q3": 2.0,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "AMTM": {
+      "fetched": "2026-05-25",
+      "q0": -2.3,
+      "q1": -7.3,
+      "q2": 66.2,
+      "q3": 70.2,
+      "label": "DECELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q2"
+    },
+    "AMZN": {
+      "fetched": "2026-05-25",
+      "q0": 16.6,
+      "q1": 13.4,
+      "q2": 13.3,
+      "q3": 8.6,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "ANET": {
+      "fetched": "2026-05-25",
+      "q0": 35.1,
+      "q1": 27.5,
+      "q2": 30.4,
+      "q3": 27.6,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "ANY": {
+      "fetched": "2026-05-25",
+      "q0": -32.0,
+      "q1": 11.4,
+      "q2": -35.3,
+      "q3": -59.4,
+      "label": "DECELERATING",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "AOSL": {
+      "fetched": "2026-05-25",
+      "q0": -0.5,
+      "q1": -6.3,
+      "q2": 0.3,
+      "q3": 9.7,
+      "label": "DECELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "APH": {
+      "fetched": "2026-05-25",
+      "q0": 58.4,
+      "q1": 53.4,
+      "q2": 56.5,
+      "q3": 47.7,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "APLD": {
+      "fetched": "2026-05-25",
+      "q0": 139.3,
+      "q1": 250.1,
+      "q2": 84.3,
+      "q3": 22.1,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "APP": {
+      "fetched": "2026-05-25",
+      "q0": 59.0,
+      "q1": 68.2,
+      "q2": 77.0,
+      "q3": 9.5,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "ARBE": {
+      "fetched": "2026-05-25",
+      "q0": 362.6,
+      "q1": 106.5,
+      "q2": -33.0,
+      "q3": -70.8,
+      "label": "FIRST_INFLECTION",
+      "two_q_accel": true,
+      "latest_period": "2025Q4"
+    },
+    "ARM": {
+      "fetched": "2026-05-25",
+      "q0": 26.3,
+      "q1": 34.5,
+      "q2": 12.1,
+      "q3": 19.3,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": true,
+      "latest_period": "2025Q4"
+    },
+    "ASAN": {
+      "fetched": "2026-05-25",
+      "q0": 9.3,
+      "q1": 9.9,
+      "q2": 8.6,
+      "q3": 10.4,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": true,
+      "latest_period": "2025Q4"
+    },
+    "ASML": {
+      "fetched": "2026-05-25",
+      "q0": 15.6,
+      "q1": 2.6,
+      "q2": 30.2,
+      "q3": 13.8,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2025FY"
+    },
+    "ASPI": {
+      "fetched": "2026-05-25",
+      "q0": 279.3,
+      "q1": 349.5,
+      "q2": 17.2,
+      "q3": 31.1,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "ASTC": {
+      "fetched": "2026-05-25",
+      "q0": null,
+      "q1": null,
+      "q2": null,
+      "q3": null,
+      "label": "INSUFFICIENT_DATA",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "ATKR": {
+      "fetched": "2026-05-25",
+      "q0": 4.2,
+      "q1": -0.9,
+      "q2": -10.6,
+      "q3": -11.5,
+      "label": "TURNAROUND",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "ATOM": {
+      "fetched": "2026-05-25",
+      "q0": 175.0,
+      "q1": -50.0,
+      "q2": null,
+      "q3": -77.8,
+      "label": "TURNAROUND",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "AUR": {
+      "fetched": "2026-05-25",
+      "q0": null,
+      "q1": null,
+      "q2": null,
+      "q3": null,
+      "label": "INSUFFICIENT_DATA",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "AVAV": {
+      "fetched": "2026-05-25",
+      "q0": 143.4,
+      "q1": 150.7,
+      "q2": 140.0,
+      "q3": null,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "AVGO": {
+      "fetched": "2026-05-25",
+      "q0": 29.5,
+      "q1": 22.0,
+      "q2": 20.2,
+      "q3": 24.7,
+      "label": "ACCELERATING_STRONG",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "AXON": {
+      "fetched": "2026-05-25",
+      "q0": 33.7,
+      "q1": 30.6,
+      "q2": 32.8,
+      "q3": 31.3,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "AXTI": {
+      "fetched": "2026-05-25",
+      "q0": 39.1,
+      "q1": 18.2,
+      "q2": -35.6,
+      "q3": -14.7,
+      "label": "FIRST_INFLECTION",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "AZTA": {
+      "fetched": "2026-05-25",
+      "q0": 1.0,
+      "q1": 0.8,
+      "q2": 5.7,
+      "q3": -0.3,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "BA": {
+      "fetched": "2026-05-25",
+      "q0": 14.0,
+      "q1": 30.4,
+      "q2": 34.9,
+      "q3": 17.7,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "BAER": {
+      "fetched": "2026-05-25",
+      "q0": -45.6,
+      "q1": 5.2,
+      "q2": 136.3,
+      "q3": 184.1,
+      "label": "DECELERATING",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "BAH": {
+      "fetched": "2026-05-25",
+      "q0": -10.2,
+      "q1": -8.1,
+      "q2": -0.6,
+      "q3": 13.5,
+      "label": "DECELERATING",
+      "two_q_accel": false,
+      "latest_period": "2025Q4"
+    },
+    "BAND": {
+      "fetched": "2026-05-25",
+      "q0": 19.8,
+      "q1": -1.0,
+      "q2": 3.7,
+      "q3": 1.9,
+      "label": "TURNAROUND",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "BB": {
+      "fetched": "2026-05-25",
+      "q0": -1.3,
+      "q1": 2.7,
+      "q2": -1.4,
+      "q3": -5.5,
+      "label": "DECELERATING",
+      "two_q_accel": false,
+      "latest_period": "2025Q4"
+    },
+    "BBAI": {
+      "fetched": "2026-05-25",
+      "q0": -0.9,
+      "q1": -20.1,
+      "q2": -18.4,
+      "q3": 4.9,
+      "label": "DECELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "BGDE": {
+      "fetched": "2026-05-25",
+      "q0": -65.1,
+      "q1": 7.0,
+      "q2": -27.3,
+      "q3": -26.4,
+      "label": "DECELERATING",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "BILL": {
+      "fetched": "2026-05-25",
+      "q0": 13.5,
+      "q1": 14.4,
+      "q2": 10.4,
+      "q3": 10.9,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "BKSY": {
+      "fetched": "2026-05-25",
+      "q0": -29.7,
+      "q1": -13.0,
+      "q2": -11.0,
+      "q3": 21.9,
+      "label": "DECELERATING",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "BNAI": {
+      "fetched": "2026-05-25",
+      "q0": 943.1,
+      "q1": 20.2,
+      "q2": -79.9,
+      "q3": null,
+      "label": "FIRST_INFLECTION",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "BTBT": {
+      "fetched": "2026-05-25",
+      "q0": 11.2,
+      "q1": 33.4,
+      "q2": -11.7,
+      "q3": -17.4,
+      "label": "FIRST_INFLECTION",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "BWXT": {
+      "fetched": "2026-05-25",
+      "q0": 26.1,
+      "q1": 18.7,
+      "q2": 28.9,
+      "q3": 12.1,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "CACI": {
+      "fetched": "2026-05-25",
+      "q0": 8.5,
+      "q1": 5.7,
+      "q2": 11.2,
+      "q3": 11.8,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "CALX": {
+      "fetched": "2026-05-25",
+      "q0": 27.1,
+      "q1": 32.1,
+      "q2": 22.1,
+      "q3": -2.7,
+      "label": "DECELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "CAMT": {
+      "fetched": "2026-05-25",
+      "q0": 82.3,
+      "q1": 7.7,
+      "q2": 12.8,
+      "q3": 34.3,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2021Q2"
+    },
+    "CAT": {
+      "fetched": "2026-05-25",
+      "q0": 22.2,
+      "q1": 9.5,
+      "q2": -0.7,
+      "q3": -9.8,
+      "label": "FIRST_INFLECTION",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "CCI": {
+      "fetched": "2026-05-25",
+      "q0": -4.8,
+      "q1": -4.3,
+      "q2": -4.2,
+      "q3": -4.8,
+      "label": "DECELERATING",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "CCOI": {
+      "fetched": "2026-05-25",
+      "q0": null,
+      "q1": null,
+      "q2": null,
+      "q3": null,
+      "label": "INSUFFICIENT_DATA",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "CDNS": {
+      "fetched": "2026-05-25",
+      "q0": 18.7,
+      "q1": 10.1,
+      "q2": 20.2,
+      "q3": 23.1,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "CEG": {
+      "fetched": "2026-05-25",
+      "q0": 63.8,
+      "q1": 0.3,
+      "q2": 11.4,
+      "q3": 10.2,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "CFLT": {
+      "fetched": "2026-05-25",
+      "q0": 19.3,
+      "q1": -37.6,
+      "q2": null,
+      "q3": 25.0,
+      "label": "TURNAROUND",
+      "two_q_accel": true,
+      "latest_period": "2025Q3"
+    },
+    "CGNX": {
+      "fetched": "2026-05-25",
+      "q0": 7.8,
+      "q1": 18.0,
+      "q2": 4.1,
+      "q3": 2.5,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": true,
+      "latest_period": "2026Q2"
+    },
+    "CIEN": {
+      "fetched": "2026-05-25",
+      "q0": 33.1,
+      "q1": 29.4,
+      "q2": 23.6,
+      "q3": 3.3,
+      "label": "ACCELERATING_STRONG",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "CIFR": {
+      "fetched": "2026-05-25",
+      "q0": -28.8,
+      "q1": 197.5,
+      "q2": 18.4,
+      "q3": 1.7,
+      "label": "DECELERATING",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "CLS": {
+      "fetched": "2026-05-25",
+      "q0": 52.8,
+      "q1": 27.8,
+      "q2": 21.0,
+      "q3": 19.9,
+      "label": "ACCELERATING_STRONG",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "CLSK": {
+      "fetched": "2026-05-25",
+      "q0": 128.7,
+      "q1": 162.8,
+      "q2": 165.2,
+      "q3": 46.7,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": false,
+      "latest_period": "2024Q2"
+    },
+    "CMCSA": {
+      "fetched": "2026-05-25",
+      "q0": 5.3,
+      "q1": -2.7,
+      "q2": 2.1,
+      "q3": -0.6,
+      "label": "TURNAROUND",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "COHR": {
+      "fetched": "2026-05-25",
+      "q0": 20.5,
+      "q1": 17.5,
+      "q2": 17.3,
+      "q3": 23.9,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "COHU": {
+      "fetched": "2026-05-25",
+      "q0": 29.3,
+      "q1": 32.4,
+      "q2": 2.8,
+      "q3": -10.1,
+      "label": "DECELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "COIN": {
+      "fetched": "2026-05-25",
+      "q0": -30.5,
+      "q1": 55.1,
+      "q2": 3.3,
+      "q3": 24.2,
+      "label": "DECELERATING",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "COMM": {
+      "fetched": "2026-05-25",
+      "q0": -46.3,
+      "q1": null,
+      "q2": null,
+      "q3": 89.9,
+      "label": "INSUFFICIENT_DATA",
+      "two_q_accel": false,
+      "latest_period": "2025Q3"
+    },
+    "CORZ": {
+      "fetched": "2026-05-25",
+      "q0": 44.9,
+      "q1": -14.9,
+      "q2": -44.3,
+      "q3": -55.6,
+      "label": "TURNAROUND",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "CRDO": {
+      "fetched": "2026-05-25",
+      "q0": 201.5,
+      "q1": 272.1,
+      "q2": 273.6,
+      "q3": 154.4,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "CRM": {
+      "fetched": "2026-05-25",
+      "q0": 8.6,
+      "q1": 9.8,
+      "q2": 7.6,
+      "q3": 8.3,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": true,
+      "latest_period": "2025Q4"
+    },
+    "CRWD": {
+      "fetched": "2026-05-25",
+      "q0": 22.2,
+      "q1": 21.3,
+      "q2": 19.8,
+      "q3": 28.5,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2025Q4"
+    },
+    "CRWV": {
+      "fetched": "2026-05-25",
+      "q0": 111.6,
+      "q1": 133.7,
+      "q2": 206.7,
+      "q3": 420.4,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "CSCO": {
+      "fetched": "2026-05-25",
+      "q0": 12.0,
+      "q1": 9.7,
+      "q2": 7.5,
+      "q3": 11.4,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q2"
+    },
+    "CW": {
+      "fetched": "2026-05-25",
+      "q0": 13.4,
+      "q1": 8.8,
+      "q2": 11.7,
+      "q3": 13.0,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "DDOG": {
+      "fetched": "2026-05-25",
+      "q0": 32.2,
+      "q1": 28.4,
+      "q2": 28.1,
+      "q3": 24.6,
+      "label": "ACCELERATING_STRONG",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "DELL": {
+      "fetched": "2026-05-25",
+      "q0": 10.8,
+      "q1": 19.0,
+      "q2": 5.1,
+      "q3": 7.2,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": true,
+      "latest_period": "2025Q4"
+    },
+    "DLR": {
+      "fetched": "2026-05-25",
+      "q0": 16.2,
+      "q1": 10.2,
+      "q2": 10.1,
+      "q3": 5.7,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "DOCN": {
+      "fetched": "2026-05-25",
+      "q0": 22.4,
+      "q1": 15.7,
+      "q2": 13.6,
+      "q3": 14.1,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "DRS": {
+      "fetched": "2026-05-25",
+      "q0": 5.9,
+      "q1": 18.2,
+      "q2": 10.1,
+      "q3": 16.1,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "DUOL": {
+      "fetched": "2026-05-25",
+      "q0": 26.5,
+      "q1": 41.1,
+      "q2": 41.5,
+      "q3": 37.7,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "EME": {
+      "fetched": "2026-05-25",
+      "q0": 19.7,
+      "q1": 16.4,
+      "q2": 17.4,
+      "q3": 12.7,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "EMR": {
+      "fetched": "2026-05-25",
+      "q0": 2.9,
+      "q1": 4.1,
+      "q2": 5.1,
+      "q3": 3.9,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "ENVX": {
+      "fetched": "2026-05-25",
+      "q0": 1.8,
+      "q1": 85.1,
+      "q2": 98.2,
+      "q3": -3.3,
+      "label": "DECELERATING",
+      "two_q_accel": false,
+      "latest_period": "2026Q2"
+    },
+    "EOSE": {
+      "fetched": "2026-05-25",
+      "q0": 444.7,
+      "q1": 3472.8,
+      "q2": 1596.7,
+      "q3": 58.4,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "EQIX": {
+      "fetched": "2026-05-25",
+      "q0": 9.8,
+      "q1": 5.2,
+      "q2": 4.5,
+      "q3": 4.6,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "ESTC": {
+      "fetched": "2026-05-25",
+      "q0": 17.7,
+      "q1": 15.9,
+      "q2": 19.5,
+      "q3": 16.5,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "ETN": {
+      "fetched": "2026-05-25",
+      "q0": 16.8,
+      "q1": 10.1,
+      "q2": 10.7,
+      "q3": 7.3,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "EU": {
+      "fetched": "2026-05-25",
+      "q0": 0.3,
+      "q1": -4.1,
+      "q2": -31.1,
+      "q3": -40.0,
+      "label": "TURNAROUND",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "EVEX": {
+      "fetched": "2026-05-25",
+      "q0": null,
+      "q1": null,
+      "q2": null,
+      "q3": null,
+      "label": "INSUFFICIENT_DATA",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "EXTR": {
+      "fetched": "2026-05-25",
+      "q0": 11.4,
+      "q1": 13.8,
+      "q2": 15.2,
+      "q3": 34.8,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "FCEL": {
+      "fetched": "2026-05-25",
+      "q0": 60.7,
+      "q1": 97.3,
+      "q2": 66.8,
+      "q3": 13.8,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "FFIV": {
+      "fetched": "2026-05-25",
+      "q0": 11.0,
+      "q1": 7.3,
+      "q2": 12.2,
+      "q3": 7.3,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "FIX": {
+      "fetched": "2026-05-25",
+      "q0": 56.5,
+      "q1": 35.2,
+      "q2": 20.1,
+      "q3": 19.1,
+      "label": "ACCELERATING_STRONG",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "FLNC": {
+      "fetched": "2026-05-25",
+      "q0": 7.7,
+      "q1": 154.4,
+      "q2": 24.7,
+      "q3": -30.7,
+      "label": "DECELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "FLY": {
+      "fetched": "2026-05-25",
+      "q0": 44.8,
+      "q1": 37.6,
+      "q2": -26.2,
+      "q3": null,
+      "label": "FIRST_INFLECTION",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "FN": {
+      "fetched": "2026-05-25",
+      "q0": 39.3,
+      "q1": 35.9,
+      "q2": 21.6,
+      "q3": 19.2,
+      "label": "ACCELERATING_STRONG",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "FORM": {
+      "fetched": "2026-05-25",
+      "q0": 32.0,
+      "q1": -2.5,
+      "q2": -0.8,
+      "q3": 1.6,
+      "label": "TURNAROUND",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "FROG": {
+      "fetched": "2026-05-25",
+      "q0": 25.8,
+      "q1": 25.5,
+      "q2": 23.5,
+      "q3": 22.0,
+      "label": "ACCELERATING_STRONG",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "FTNT": {
+      "fetched": "2026-05-25",
+      "q0": 20.1,
+      "q1": 14.4,
+      "q2": 13.6,
+      "q3": 13.8,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "GD": {
+      "fetched": "2026-05-25",
+      "q0": 10.3,
+      "q1": 10.6,
+      "q2": 8.9,
+      "q3": 13.9,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "GE": {
+      "fetched": "2026-05-25",
+      "q0": 24.7,
+      "q1": 23.8,
+      "q2": 21.2,
+      "q3": 10.9,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "GEN": {
+      "fetched": "2026-05-25",
+      "q0": null,
+      "q1": 23.7,
+      "q2": 29.1,
+      "q3": 4.0,
+      "label": "INSUFFICIENT_DATA",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "GEV": {
+      "fetched": "2026-05-25",
+      "q0": 16.3,
+      "q1": 11.8,
+      "q2": 11.1,
+      "q3": 10.6,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "GNRC": {
+      "fetched": "2026-05-25",
+      "q0": 12.4,
+      "q1": -5.0,
+      "q2": 6.3,
+      "q3": 5.9,
+      "label": "TURNAROUND",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "GOOG": {
+      "fetched": "2026-05-25",
+      "q0": 21.8,
+      "q1": 15.9,
+      "q2": 13.8,
+      "q3": null,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "GOOGL": {
+      "fetched": "2026-05-25",
+      "q0": 21.8,
+      "q1": 15.9,
+      "q2": 13.8,
+      "q3": null,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "GREE": {
+      "fetched": "2026-05-25",
+      "q0": 8.3,
+      "q1": 23.2,
+      "q2": -1.5,
+      "q3": -0.5,
+      "label": "FIRST_INFLECTION",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "GSAT": {
+      "fetched": "2026-05-25",
+      "q0": 16.7,
+      "q1": 2.1,
+      "q2": 11.2,
+      "q3": 6.3,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "GTLB": {
+      "fetched": "2026-05-25",
+      "q0": 24.6,
+      "q1": 29.2,
+      "q2": 26.8,
+      "q3": 31.0,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": true,
+      "latest_period": "2025Q4"
+    },
+    "HIVE": {
+      "fetched": "2026-05-25",
+      "q0": 218.6,
+      "q1": 285.3,
+      "q2": 41.5,
+      "q3": null,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": true,
+      "latest_period": "2025Q4"
+    },
+    "HON": {
+      "fetched": "2026-05-25",
+      "q0": 2.4,
+      "q1": 6.4,
+      "q2": 7.0,
+      "q3": 8.7,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "HOOD": {
+      "fetched": "2026-05-25",
+      "q0": 15.1,
+      "q1": 100.0,
+      "q2": 45.0,
+      "q3": 50.0,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "HPE": {
+      "fetched": "2026-05-25",
+      "q0": 18.4,
+      "q1": 18.5,
+      "q2": 5.9,
+      "q3": 16.3,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "HUBB": {
+      "fetched": "2026-05-25",
+      "q0": 11.1,
+      "q1": 11.9,
+      "q2": 4.1,
+      "q3": 2.2,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "HUBS": {
+      "fetched": "2026-05-25",
+      "q0": 23.4,
+      "q1": 20.9,
+      "q2": 19.4,
+      "q3": 15.7,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "HUT": {
+      "fetched": "2026-05-25",
+      "q0": 225.5,
+      "q1": 90.9,
+      "q2": 17.3,
+      "q3": -57.8,
+      "label": "ACCELERATING_STRONG",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "IBM": {
+      "fetched": "2026-05-25",
+      "q0": 9.5,
+      "q1": 9.1,
+      "q2": 7.7,
+      "q3": 0.5,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "ICHR": {
+      "fetched": "2026-05-25",
+      "q0": 4.7,
+      "q1": 13.3,
+      "q2": 18.2,
+      "q3": 21.4,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "IESC": {
+      "fetched": "2026-05-25",
+      "q0": 16.8,
+      "q1": 16.2,
+      "q2": 15.8,
+      "q3": 18.2,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "IONQ": {
+      "fetched": "2026-05-25",
+      "q0": 754.7,
+      "q1": 221.5,
+      "q2": 81.8,
+      "q3": -0.2,
+      "label": "ACCELERATING_STRONG",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "IPGP": {
+      "fetched": "2026-05-25",
+      "q0": 16.6,
+      "q1": 7.6,
+      "q2": -2.7,
+      "q3": -9.6,
+      "label": "FIRST_INFLECTION",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "IR": {
+      "fetched": "2026-05-25",
+      "q0": 7.6,
+      "q1": 5.1,
+      "q2": 4.6,
+      "q3": 2.8,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "IRDM": {
+      "fetched": "2026-05-25",
+      "q0": 1.9,
+      "q1": 6.7,
+      "q2": 7.9,
+      "q3": 5.4,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "IREN": {
+      "fetched": "2026-05-25",
+      "q0": -0.0,
+      "q1": 59.0,
+      "q2": 355.4,
+      "q3": null,
+      "label": "DECELERATING",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "ISRG": {
+      "fetched": "2026-05-25",
+      "q0": 23.0,
+      "q1": 22.9,
+      "q2": 21.4,
+      "q3": 19.2,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "KLAC": {
+      "fetched": "2026-05-25",
+      "q0": 11.5,
+      "q1": 7.2,
+      "q2": 13.0,
+      "q3": 29.8,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "KLIC": {
+      "fetched": "2026-05-25",
+      "q0": 63.5,
+      "q1": 23.2,
+      "q2": -18.3,
+      "q3": -5.9,
+      "label": "FIRST_INFLECTION",
+      "two_q_accel": true,
+      "latest_period": "2026Q2"
+    },
+    "KRMN": {
+      "fetched": "2026-05-25",
+      "q0": 51.0,
+      "q1": 41.7,
+      "q2": 35.3,
+      "q3": 20.6,
+      "label": "ACCELERATING_STRONG",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "KTOS": {
+      "fetched": "2026-05-25",
+      "q0": 22.6,
+      "q1": 26.0,
+      "q2": 17.1,
+      "q3": 9.2,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "LDOS": {
+      "fetched": "2026-05-25",
+      "q0": 3.7,
+      "q1": null,
+      "q2": 1.5,
+      "q3": 2.7,
+      "label": "FIRST_INFLECTION",
+      "two_q_accel": true,
+      "latest_period": "2026Q2"
+    },
+    "LHX": {
+      "fetched": "2026-05-25",
+      "q0": 5.9,
+      "q1": 326.1,
+      "q2": null,
+      "q3": 2.4,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": false,
+      "latest_period": "2026Q2"
+    },
+    "LIDR": {
+      "fetched": "2026-05-25",
+      "q0": 57.8,
+      "q1": -51.9,
+      "q2": -31.2,
+      "q3": 220.0,
+      "label": "TURNAROUND",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "LITE": {
+      "fetched": "2026-05-25",
+      "q0": 90.1,
+      "q1": 65.5,
+      "q2": 58.4,
+      "q3": null,
+      "label": "ACCELERATING_STRONG",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "LMT": {
+      "fetched": "2026-05-25",
+      "q0": 0.3,
+      "q1": 8.8,
+      "q2": 0.2,
+      "q3": 4.5,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "LRCX": {
+      "fetched": "2026-05-25",
+      "q0": 23.8,
+      "q1": 22.1,
+      "q2": 27.7,
+      "q3": 24.4,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "LSCC": {
+      "fetched": "2026-05-25",
+      "q0": 37.9,
+      "q1": 4.9,
+      "q2": -0.1,
+      "q3": -14.7,
+      "label": "FIRST_INFLECTION",
+      "two_q_accel": true,
+      "latest_period": "2026Q2"
+    },
+    "LTBR": {
+      "fetched": "2026-05-25",
+      "q0": null,
+      "q1": null,
+      "q2": null,
+      "q3": null,
+      "label": "INSUFFICIENT_DATA",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "LUMN": {
+      "fetched": "2026-05-25",
+      "q0": -10.8,
+      "q1": -5.4,
+      "q2": -4.9,
+      "q3": -4.9,
+      "label": "DECELERATING",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "LUNR": {
+      "fetched": "2026-05-25",
+      "q0": 193.7,
+      "q1": -12.8,
+      "q2": 20.8,
+      "q3": -14.6,
+      "label": "TURNAROUND",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "LWLG": {
+      "fetched": "2026-05-25",
+      "q0": 27.3,
+      "q1": 27.3,
+      "q2": 32.3,
+      "q3": -24.7,
+      "label": "STABLE",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "MARA": {
+      "fetched": "2026-05-25",
+      "q0": -18.4,
+      "q1": 91.7,
+      "q2": 64.3,
+      "q3": 29.5,
+      "label": "DECELERATING",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "MBLY": {
+      "fetched": "2026-05-25",
+      "q0": 27.4,
+      "q1": 3.7,
+      "q2": 15.3,
+      "q3": 83.3,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "MDB": {
+      "fetched": "2026-05-25",
+      "q0": 18.7,
+      "q1": 23.7,
+      "q2": 21.9,
+      "q3": 22.3,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": true,
+      "latest_period": "2025Q4"
+    },
+    "META": {
+      "fetched": "2026-05-25",
+      "q0": 33.1,
+      "q1": 26.2,
+      "q2": 21.6,
+      "q3": 16.1,
+      "label": "ACCELERATING_STRONG",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "MOD": {
+      "fetched": "2026-05-25",
+      "q0": 30.5,
+      "q1": 12.3,
+      "q2": 3.2,
+      "q3": 9.9,
+      "label": "ACCELERATING_STRONG",
+      "two_q_accel": true,
+      "latest_period": "2025Q4"
+    },
+    "MPWR": {
+      "fetched": "2026-05-25",
+      "q0": 26.1,
+      "q1": 18.9,
+      "q2": 31.0,
+      "q3": 39.2,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "MRAM": {
+      "fetched": "2026-05-25",
+      "q0": 13.2,
+      "q1": 16.3,
+      "q2": 24.1,
+      "q3": -9.0,
+      "label": "DECELERATING",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "MRCY": {
+      "fetched": "2026-05-25",
+      "q0": 11.5,
+      "q1": 4.4,
+      "q2": 10.2,
+      "q3": 1.5,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "MRVL": {
+      "fetched": "2026-05-25",
+      "q0": 36.8,
+      "q1": 57.6,
+      "q2": 63.3,
+      "q3": 6.9,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": false,
+      "latest_period": "2025Q4"
+    },
+    "MSFT": {
+      "fetched": "2026-05-25",
+      "q0": 18.3,
+      "q1": 16.7,
+      "q2": 18.4,
+      "q3": 13.3,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "MSTR": {
+      "fetched": "2026-05-25",
+      "q0": 11.9,
+      "q1": 10.9,
+      "q2": 2.7,
+      "q3": -3.6,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "MTSI": {
+      "fetched": "2026-05-25",
+      "q0": 22.5,
+      "q1": 24.5,
+      "q2": null,
+      "q3": 23.8,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": false,
+      "latest_period": "2026Q2"
+    },
+    "MTZ": {
+      "fetched": "2026-05-25",
+      "q0": 34.5,
+      "q1": 22.0,
+      "q2": 19.7,
+      "q3": 6.0,
+      "label": "ACCELERATING_STRONG",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "MU": {
+      "fetched": "2026-05-25",
+      "q0": 196.3,
+      "q1": 56.7,
+      "q2": 36.6,
+      "q3": 38.3,
+      "label": "ACCELERATING_STRONG",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "MVIS": {
+      "fetched": "2026-05-25",
+      "q0": 58.7,
+      "q1": 26.8,
+      "q2": -91.8,
+      "q3": -38.4,
+      "label": "FIRST_INFLECTION",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "NET": {
+      "fetched": "2026-05-25",
+      "q0": 33.5,
+      "q1": 30.7,
+      "q2": 27.8,
+      "q3": 26.5,
+      "label": "ACCELERATING_STRONG",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "NNE": {
+      "fetched": "2026-05-25",
+      "q0": null,
+      "q1": null,
+      "q2": null,
+      "q3": null,
+      "label": "INSUFFICIENT_DATA",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "NOC": {
+      "fetched": "2026-05-25",
+      "q0": 4.4,
+      "q1": 4.3,
+      "q2": 1.3,
+      "q3": -6.6,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "NOVT": {
+      "fetched": "2026-05-25",
+      "q0": 6.9,
+      "q1": 1.4,
+      "q2": 2.2,
+      "q3": 1.1,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q2"
+    },
+    "NOW": {
+      "fetched": "2026-05-25",
+      "q0": 22.1,
+      "q1": 21.8,
+      "q2": 22.4,
+      "q3": 18.6,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "NTAP": {
+      "fetched": "2026-05-25",
+      "q0": 4.4,
+      "q1": 2.8,
+      "q2": 1.2,
+      "q3": 2.2,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "NTNX": {
+      "fetched": "2026-05-25",
+      "q0": 10.4,
+      "q1": 13.5,
+      "q2": 21.8,
+      "q3": 15.8,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "NVEC": {
+      "fetched": "2026-05-25",
+      "q0": 335.0,
+      "q1": -68.2,
+      "q2": 17.1,
+      "q3": -73.7,
+      "label": "TURNAROUND",
+      "two_q_accel": true,
+      "latest_period": "2025Q4"
+    },
+    "NVT": {
+      "fetched": "2026-05-25",
+      "q0": 53.5,
+      "q1": 34.8,
+      "q2": 9.4,
+      "q3": 10.5,
+      "label": "ACCELERATING_STRONG",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "NVTS": {
+      "fetched": "2026-05-25",
+      "q0": -38.7,
+      "q1": -53.4,
+      "q2": -29.2,
+      "q3": -39.5,
+      "label": "DECELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "NXPI": {
+      "fetched": "2026-05-25",
+      "q0": 12.2,
+      "q1": -2.4,
+      "q2": -6.4,
+      "q3": -9.3,
+      "label": "TURNAROUND",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "OKLO": {
+      "fetched": "2026-05-25",
+      "q0": null,
+      "q1": null,
+      "q2": null,
+      "q3": null,
+      "label": "INSUFFICIENT_DATA",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "OKTA": {
+      "fetched": "2026-05-25",
+      "q0": 11.6,
+      "q1": 12.7,
+      "q2": 11.5,
+      "q3": 13.9,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": true,
+      "latest_period": "2025Q4"
+    },
+    "ON": {
+      "fetched": "2026-05-25",
+      "q0": 4.7,
+      "q1": null,
+      "q2": -16.6,
+      "q3": -16.7,
+      "label": "FIRST_INFLECTION",
+      "two_q_accel": true,
+      "latest_period": "2026Q2"
+    },
+    "ONTO": {
+      "fetched": "2026-05-25",
+      "q0": 9.5,
+      "q1": -13.5,
+      "q2": 4.7,
+      "q3": 16.5,
+      "label": "TURNAROUND",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "ORCL": {
+      "fetched": "2026-05-25",
+      "q0": 21.7,
+      "q1": 14.2,
+      "q2": 12.2,
+      "q3": 6.4,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "OUST": {
+      "fetched": "2026-05-25",
+      "q0": 48.9,
+      "q1": 40.8,
+      "q2": 29.9,
+      "q3": 25.8,
+      "label": "ACCELERATING_STRONG",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "PANW": {
+      "fetched": "2026-05-25",
+      "q0": 14.9,
+      "q1": 15.7,
+      "q2": 15.3,
+      "q3": 14.3,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "PATH": {
+      "fetched": "2026-05-25",
+      "q0": 15.9,
+      "q1": 14.4,
+      "q2": 6.4,
+      "q3": 8.8,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2025Q4"
+    },
+    "PCOR": {
+      "fetched": "2026-05-25",
+      "q0": 15.7,
+      "q1": 14.5,
+      "q2": 13.9,
+      "q3": 15.3,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "PL": {
+      "fetched": "2026-05-25",
+      "q0": 32.6,
+      "q1": 20.1,
+      "q2": 9.6,
+      "q3": 10.6,
+      "label": "ACCELERATING_STRONG",
+      "two_q_accel": true,
+      "latest_period": "2025Q4"
+    },
+    "PLAB": {
+      "fetched": "2026-05-25",
+      "q0": 6.1,
+      "q1": -0.3,
+      "q2": -2.8,
+      "q3": -1.9,
+      "label": "TURNAROUND",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "PLTR": {
+      "fetched": "2026-05-25",
+      "q0": 84.7,
+      "q1": 62.8,
+      "q2": 48.0,
+      "q3": 39.3,
+      "label": "ACCELERATING_STRONG",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "POWL": {
+      "fetched": "2026-05-25",
+      "q0": 6.5,
+      "q1": 4.0,
+      "q2": null,
+      "q3": -0.7,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "PRCT": {
+      "fetched": "2026-05-25",
+      "q0": 20.2,
+      "q1": 42.8,
+      "q2": 48.4,
+      "q3": 55.3,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "PRIM": {
+      "fetched": "2026-05-25",
+      "q0": -5.4,
+      "q1": 6.7,
+      "q2": 32.1,
+      "q3": 20.9,
+      "label": "DECELERATING",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "PSTG": {
+      "fetched": "2026-05-25",
+      "q0": 16.0,
+      "q1": 12.7,
+      "q2": 12.3,
+      "q3": 8.9,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q3"
+    },
+    "PWR": {
+      "fetched": "2026-05-25",
+      "q0": 26.3,
+      "q1": 17.5,
+      "q2": 21.1,
+      "q3": 23.9,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "QBTS": {
+      "fetched": "2026-05-25",
+      "q0": -80.9,
+      "q1": 99.9,
+      "q2": 41.8,
+      "q3": 508.6,
+      "label": "DECELERATING",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "QLYS": {
+      "fetched": "2026-05-25",
+      "q0": 9.8,
+      "q1": 10.4,
+      "q2": 10.3,
+      "q3": 9.7,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "QUBT": {
+      "fetched": "2026-05-25",
+      "q0": 9364.1,
+      "q1": 280.2,
+      "q2": -66.7,
+      "q3": 44.4,
+      "label": "FIRST_INFLECTION",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "RCAT": {
+      "fetched": "2026-05-25",
+      "q0": 849.1,
+      "q1": 988.2,
+      "q2": -64.9,
+      "q3": null,
+      "label": "FIRST_INFLECTION",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "RDW": {
+      "fetched": "2026-05-25",
+      "q0": 57.9,
+      "q1": 50.7,
+      "q2": -20.9,
+      "q3": -30.1,
+      "label": "FIRST_INFLECTION",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "RGTI": {
+      "fetched": "2026-05-25",
+      "q0": null,
+      "q1": null,
+      "q2": null,
+      "q3": null,
+      "label": "INSUFFICIENT_DATA",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "RIOT": {
+      "fetched": "2026-05-25",
+      "q0": 3.6,
+      "q1": 112.6,
+      "q2": 118.5,
+      "q3": 103.5,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "RIVN": {
+      "fetched": "2026-05-25",
+      "q0": 11.4,
+      "q1": 78.3,
+      "q2": 12.5,
+      "q3": 3.0,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "RKLB": {
+      "fetched": "2026-05-25",
+      "q0": 63.5,
+      "q1": 48.0,
+      "q2": 36.0,
+      "q3": 32.1,
+      "label": "ACCELERATING_STRONG",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "RMBS": {
+      "fetched": "2026-05-25",
+      "q0": null,
+      "q1": null,
+      "q2": null,
+      "q3": null,
+      "label": "INSUFFICIENT_DATA",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "ROK": {
+      "fetched": "2026-05-25",
+      "q0": 11.9,
+      "q1": 11.9,
+      "q2": 4.5,
+      "q3": -5.9,
+      "label": "STABLE",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "RPD": {
+      "fetched": "2026-05-25",
+      "q0": -0.3,
+      "q1": 1.5,
+      "q2": 3.0,
+      "q3": 2.5,
+      "label": "DECELERATING",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "RTX": {
+      "fetched": "2026-05-25",
+      "q0": 8.7,
+      "q1": 11.9,
+      "q2": 9.4,
+      "q3": 5.2,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "S": {
+      "fetched": "2026-05-25",
+      "q0": 22.9,
+      "q1": 21.7,
+      "q2": 22.9,
+      "q3": 28.3,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2025Q4"
+    },
+    "SAIC": {
+      "fetched": "2026-05-25",
+      "q0": -5.6,
+      "q1": -2.7,
+      "q2": 1.6,
+      "q3": 4.3,
+      "label": "DECELERATING",
+      "two_q_accel": false,
+      "latest_period": "2025Q4"
+    },
+    "SATL": {
+      "fetched": "2026-05-25",
+      "q0": 80.3,
+      "q1": 29.0,
+      "q2": 26.8,
+      "q3": 1.8,
+      "label": "ACCELERATING_STRONG",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "SBAC": {
+      "fetched": "2026-05-25",
+      "q0": 5.9,
+      "q1": 3.7,
+      "q2": 9.7,
+      "q3": 5.8,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "SEDG": {
+      "fetched": "2026-05-25",
+      "q0": 41.5,
+      "q1": 44.5,
+      "q2": 9.1,
+      "q3": 7.4,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "SERV": {
+      "fetched": "2026-05-25",
+      "q0": 578.2,
+      "q1": 209.5,
+      "q2": 37.2,
+      "q3": -53.5,
+      "label": "ACCELERATING_STRONG",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "SHEN": {
+      "fetched": "2026-05-25",
+      "q0": 4.8,
+      "q1": 2.5,
+      "q2": 3.2,
+      "q3": 26.9,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "SITM": {
+      "fetched": "2026-05-25",
+      "q0": 88.3,
+      "q1": 44.8,
+      "q2": 58.4,
+      "q3": 82.6,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "SLDP": {
+      "fetched": "2026-05-25",
+      "q0": -48.9,
+      "q1": -2.0,
+      "q2": 48.6,
+      "q3": 1.1,
+      "label": "DECELERATING",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "SMCI": {
+      "fetched": "2026-05-25",
+      "q0": 122.7,
+      "q1": 123.4,
+      "q2": -15.5,
+      "q3": 19.5,
+      "label": "FIRST_INFLECTION",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "SMR": {
+      "fetched": "2026-05-25",
+      "q0": -95.8,
+      "q1": 1635.2,
+      "q2": 732.9,
+      "q3": 869.9,
+      "label": "DECELERATING",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "SMTC": {
+      "fetched": "2026-05-25",
+      "q0": 12.7,
+      "q1": 19.6,
+      "q2": 21.8,
+      "q3": 17.9,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": false,
+      "latest_period": "2025Q4"
+    },
+    "SNDK": {
+      "fetched": "2026-05-25",
+      "q0": null,
+      "q1": 78.5,
+      "q2": 23.0,
+      "q3": -0.6,
+      "label": "INSUFFICIENT_DATA",
+      "two_q_accel": false,
+      "latest_period": "2026Q2"
+    },
+    "SNOW": {
+      "fetched": "2026-05-25",
+      "q0": 28.7,
+      "q1": 31.8,
+      "q2": 25.7,
+      "q3": 28.3,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": true,
+      "latest_period": "2025Q4"
+    },
+    "SNPS": {
+      "fetched": "2026-05-25",
+      "q0": 65.5,
+      "q1": 14.0,
+      "q2": 10.3,
+      "q3": -3.7,
+      "label": "ACCELERATING_STRONG",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "SOUN": {
+      "fetched": "2026-05-25",
+      "q0": null,
+      "q1": null,
+      "q2": null,
+      "q3": null,
+      "label": "INSUFFICIENT_DATA",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "SPCE": {
+      "fetched": "2026-05-25",
+      "q0": -50.8,
+      "q1": -9.2,
+      "q2": -90.4,
+      "q3": -76.8,
+      "label": "DECELERATING",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "SPIR": {
+      "fetched": "2026-05-25",
+      "q0": -33.7,
+      "q1": -55.6,
+      "q2": -24.5,
+      "q3": -31.4,
+      "label": "DECELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "STEM": {
+      "fetched": "2026-05-25",
+      "q0": -10.8,
+      "q1": 30.5,
+      "q2": 12.9,
+      "q3": 27.7,
+      "label": "DECELERATING",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "STM": {
+      "fetched": "2026-05-25",
+      "q0": -11.1,
+      "q1": -23.2,
+      "q2": 7.2,
+      "q3": 26.4,
+      "label": "DECELERATING",
+      "two_q_accel": true,
+      "latest_period": "2025FY"
+    },
+    "STRL": {
+      "fetched": "2026-05-25",
+      "q0": 91.6,
+      "q1": 16.0,
+      "q2": 5.4,
+      "q3": -2.1,
+      "label": "ACCELERATING_STRONG",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "STX": {
+      "fetched": "2026-05-25",
+      "q0": null,
+      "q1": 30.8,
+      "q2": 13.1,
+      "q3": 30.5,
+      "label": "INSUFFICIENT_DATA",
+      "two_q_accel": false,
+      "latest_period": "2026Q2"
+    },
+    "SYM": {
+      "fetched": "2026-05-25",
+      "q0": 23.1,
+      "q1": 29.4,
+      "q2": 25.9,
+      "q3": 39.7,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "T": {
+      "fetched": "2026-05-25",
+      "q0": 2.9,
+      "q1": 1.6,
+      "q2": 3.5,
+      "q3": 2.0,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "TDY": {
+      "fetched": "2026-05-25",
+      "q0": 7.6,
+      "q1": 6.7,
+      "q2": 10.2,
+      "q3": 7.4,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "TEAM": {
+      "fetched": "2026-05-25",
+      "q0": 31.7,
+      "q1": 23.3,
+      "q2": 20.6,
+      "q3": 14.1,
+      "label": "ACCELERATING_STRONG",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "TENB": {
+      "fetched": "2026-05-25",
+      "q0": 9.6,
+      "q1": 11.2,
+      "q2": 11.8,
+      "q3": 10.7,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "TER": {
+      "fetched": "2026-05-25",
+      "q0": 87.0,
+      "q1": 4.3,
+      "q2": -10.7,
+      "q3": 14.3,
+      "label": "FIRST_INFLECTION",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "TLS": {
+      "fetched": "2026-05-25",
+      "q0": 55.9,
+      "q1": 116.3,
+      "q2": 26.2,
+      "q3": 3.4,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "TMUS": {
+      "fetched": "2026-05-25",
+      "q0": 10.6,
+      "q1": 8.9,
+      "q2": 6.9,
+      "q3": 6.6,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "TSLA": {
+      "fetched": "2026-05-25",
+      "q0": 15.8,
+      "q1": 11.6,
+      "q2": -11.8,
+      "q3": -9.2,
+      "label": "FIRST_INFLECTION",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "TSM": {
+      "fetched": "2026-05-25",
+      "q0": 25.0,
+      "q1": -4.2,
+      "q2": 28.7,
+      "q3": 20.0,
+      "label": "TURNAROUND",
+      "two_q_accel": true,
+      "latest_period": "2024FY"
+    },
+    "TTD": {
+      "fetched": "2026-05-25",
+      "q0": 11.8,
+      "q1": 17.7,
+      "q2": 18.7,
+      "q3": 25.4,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "TXT": {
+      "fetched": "2026-05-25",
+      "q0": -0.6,
+      "q1": 5.1,
+      "q2": 5.4,
+      "q3": 5.5,
+      "label": "DECELERATING",
+      "two_q_accel": false,
+      "latest_period": "2026Q2"
+    },
+    "UCTT": {
+      "fetched": "2026-05-25",
+      "q0": 2.9,
+      "q1": -5.6,
+      "q2": 0.5,
+      "q3": 8.6,
+      "label": "TURNAROUND",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "UEC": {
+      "fetched": "2026-05-25",
+      "q0": -59.4,
+      "q1": null,
+      "q2": null,
+      "q3": 42787.9,
+      "label": "INSUFFICIENT_DATA",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "URG": {
+      "fetched": "2026-05-25",
+      "q0": null,
+      "q1": -1.2,
+      "q2": 124.3,
+      "q3": null,
+      "label": "INSUFFICIENT_DATA",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "UUUU": {
+      "fetched": "2026-05-25",
+      "q0": 112.1,
+      "q1": 337.6,
+      "q2": -51.7,
+      "q3": -33.5,
+      "label": "FIRST_INFLECTION",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "VECO": {
+      "fetched": "2026-05-25",
+      "q0": null,
+      "q1": null,
+      "q2": null,
+      "q3": null,
+      "label": "INSUFFICIENT_DATA",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "VIAV": {
+      "fetched": "2026-05-25",
+      "q0": 42.8,
+      "q1": 36.4,
+      "q2": 25.6,
+      "q3": 15.8,
+      "label": "ACCELERATING_STRONG",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "VICR": {
+      "fetched": "2026-05-25",
+      "q0": 20.2,
+      "q1": 337.6,
+      "q2": 11.9,
+      "q3": 12.0,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "VOYG": {
+      "fetched": "2026-05-25",
+      "q0": 2.1,
+      "q1": -0.0,
+      "q2": 24.6,
+      "q3": null,
+      "label": "TURNAROUND",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "VRNS": {
+      "fetched": "2026-05-25",
+      "q0": null,
+      "q1": null,
+      "q2": null,
+      "q3": null,
+      "label": "INSUFFICIENT_DATA",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "VRT": {
+      "fetched": "2026-05-25",
+      "q0": 30.1,
+      "q1": 29.0,
+      "q2": 35.1,
+      "q3": 24.2,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "VST": {
+      "fetched": "2026-05-25",
+      "q0": 43.4,
+      "q1": -20.9,
+      "q2": 10.5,
+      "q3": 28.8,
+      "label": "TURNAROUND",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "VZ": {
+      "fetched": "2026-05-25",
+      "q0": 2.9,
+      "q1": 1.5,
+      "q2": 5.2,
+      "q3": 1.5,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    },
+    "WDAY": {
+      "fetched": "2026-05-25",
+      "q0": 13.5,
+      "q1": 12.6,
+      "q2": 12.6,
+      "q3": 12.6,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q2"
+    },
+    "WDC": {
+      "fetched": "2026-05-25",
+      "q0": 28.1,
+      "q1": 31.5,
+      "q2": 17.0,
+      "q3": 30.0,
+      "label": "SUSTAINED_GROWTH",
+      "two_q_accel": true,
+      "latest_period": "2026Q2"
+    },
+    "WOLF": {
+      "fetched": "2026-05-25",
+      "q0": -19.0,
+      "q1": -6.6,
+      "q2": 1.1,
+      "q3": -7.6,
+      "label": "DECELERATING",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "WULF": {
+      "fetched": "2026-05-25",
+      "q0": -62.2,
+      "q1": 60.3,
+      "q2": 33.9,
+      "q3": -18.9,
+      "label": "DECELERATING",
+      "two_q_accel": false,
+      "latest_period": "2026Q1"
+    },
+    "ZBRA": {
+      "fetched": "2026-05-25",
+      "q0": 15.6,
+      "q1": 5.2,
+      "q2": 6.2,
+      "q3": 11.3,
+      "label": "ACCELERATING",
+      "two_q_accel": true,
+      "latest_period": "2026Q2"
+    },
+    "ZS": {
+      "fetched": "2026-05-25",
+      "q0": 25.9,
+      "q1": 25.5,
+      "q2": 22.6,
+      "q3": 23.4,
+      "label": "ACCELERATING_STRONG",
+      "two_q_accel": true,
+      "latest_period": "2026Q1"
+    }
+  }
+}

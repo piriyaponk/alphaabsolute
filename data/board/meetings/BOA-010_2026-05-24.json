@@ -1,0 +1,173 @@
+{
+  "meeting_id": "BOA-010",
+  "date": "2026-05-24",
+  "agenda_item": "BOA-010: Monster of the Week — Automated Deep Research and Telegram Feature",
+  "status": "VOTE_COMPLETE",
+  "outcome": "CONDITIONAL_APPROVED",
+  "decision_record": "DEC-021",
+
+  "investment_wing": {
+    "fund_manager": {
+      "verdict": "CONDITIONAL APPROVE",
+      "cadence_recommendation": "Hybrid — event-driven in Markup (fires when ticker first appears in candidates[]), weekly Sunday prep brief in Distribution/Sideways/Markdown",
+      "essential_content": [
+        "Company one-liner + what they sell",
+        "Catalyst: what is changing NOW (the N in CAN SLIM)",
+        "Stage analysis: base number + distance from breakout",
+        "Bear case with specific price level where thesis is wrong",
+        "Path to 10x: specific milestones (not generic)"
+      ],
+      "nice_to_have_content": [
+        "TAM (one sentence sufficient)",
+        "Moat analysis (early-stage moat is thesis-based not proven)",
+        "Revenue inflection (ALREADY IN PIPELINE — just display it)",
+        "Historical precedent (valuable but requires judgment)"
+      ],
+      "format": "3-message Telegram thread maximum. Message 1: setup. Message 2: thesis. Message 3: risk. A 5-10 minute read is a newsletter format not a Telegram format — reduce to 3-minute read.",
+      "frameworks": "Primary: O'Neil N (what changed 6-18 months ago that institutions haven't priced in). Secondary: Druckenmiller asymmetry (max loss vs realistic upside). Supporting: Minervini base quality.",
+      "use_cases_ranked": [
+        "1. Conviction building before Mode B entry (prevents emotional stop-hit on first pullback)",
+        "2. Regime-change readiness (Distribution prep → act within hours when bigshot_ok flips True)",
+        "3. Watchlist prioritization (act of deep research implicitly deprioritizes other candidates)",
+        "4. Thesis tracking over time (institutional-quality research log, 52-week learning system)",
+        "5. Signal calibration education (reading own automated output teaches what system misses)"
+      ],
+      "max_damage_scenario": "Feature produces compelling brief for a Base 3 stock (heuristic estimation error). CIO places 5% Mode B entry. Stock fails at -10% stop. Damage: 0.5% of portfolio per event. Not catastrophic. Real risk: systematic over-weighting of narrative trains CIO to trust narrative over data. Guard: always display pipeline data as-is, not re-interpreted.",
+      "key_condition": "Pipeline data (RS, base, inflection) displayed as-is from system — research agent adds narrative, does NOT recalculate"
+    },
+    "research": {
+      "verdict": "APPROVE",
+      "simplicity_test": "PASS — one sentence: 'Every Sunday, AlphaAbsolute automatically picks the best Monster Scout candidate, researches it with web data, and sends a conviction brief to Telegram so the CIO is prepared to act if regime improves.'",
+      "practitioner_precedent": "IBD Stock Spotlight format (strongest precedent). Published daily. Company story in 3-4 paragraphs. Key data: EPS/Rev growth, RS Rating, Accumulation/Distribution, base type, buy point. Direct model for this feature.",
+      "secondary_precedent": "Minervini weekly chart analysis: Stage 2 + VCP base + volume. Very concise. O'Neil weekly Stock Spotlight: leadership in industry, new product, institutional support rising, base + buy point, stop loss level.",
+      "data_sources_available_now": [
+        "candidates.json: breakout type, base count, theme grade, ADTV, conviction score, RS context",
+        "earnings_inflection.json: inflection label, revenue trend Q0-Q3, trend_str",
+        "theme_rs_latest.json: theme grade HOT/WARM/WEAK",
+        "latest.json: rs_pct_1m/3m/6m, rs_phase",
+        "fundamentals_summary (SQLite): rev_yoy, eps_yoy, gm_trend",
+        "ticker_meta: last_close, adtv_6m_usd, pct_from_52w_high"
+      ],
+      "data_sources_needing_new_calls": [
+        "Company description: FMP /profile (1 call per ticker, free tier)",
+        "Earnings date: FMP /earning_calendar (1 call)",
+        "Recent news: Finnhub /company-news (already in .env)",
+        "TAM estimate: web search required (BigData MCP or WebSearch)",
+        "Moat analysis: Claude judgment from web context",
+        "Historical precedent: Claude judgment"
+      ],
+      "10x_research_protocol": {
+        "oneil": "Is there a New product/service with large TAM? Institutional sponsors accumulating? Industry in early S-curve? Company is the RS LEADER vs peers? Earnings acceleration confirmed (1-2 quarters)?",
+        "minervini": "Stage 2 with Trend Template? VCP/BKT base with volume dry-up? RS line at/near new highs? First 20-30% breakout from Base 1?",
+        "druckenmiller": "Macro tailwind identified? Probability-weighted 3-year return? Once-in-a-decade structural shift or cyclical? Price level where thesis is WRONG?",
+        "lynch_category": "Fast Grower (20-50% growth, small in large market) → 10-40x target. Turnaround (was losing, now positive) → 3-10x target."
+      }
+    }
+  },
+
+  "evidence_wing": {
+    "quant": {
+      "verdict": "CONDITIONAL APPROVE",
+      "score": "14/20",
+      "lead_time_quality": "7/10 — fires before entry (Sunday before Monday open). Weakness: in Distribution regime, no trade can be placed even after the brief.",
+      "evidence_strength": "7/10 — strong practitioner precedent (IBD, Minervini). No internal backtest possible (N=0 Mode B trades). The research protocol (O'Neil N + Druckenmiller asymmetry) is well-documented.",
+      "base_rate_literature": {
+        "minervini_vcp_hit_rate": "47-50% (multiple USIC interviews 2010-2014). BUT these are AFTER full Trend Template + VCP. Not just 3-month high.",
+        "oneil_pivot_success": "~30% produce 20%+ gains. ~50% fail and return to base within 8 weeks. 10x rate much lower.",
+        "bulkowski_3m_breakout": "~64% hit new 3M high within 3 months of breakout. ~25-35% fail within 5 weeks (Encyclopedia of Chart Patterns, 2005).",
+        "10x_specifically": "No published estimate for 3M high + Base 0-1 + thematic → 10x rate. 3-5% of top decile momentum stocks produce 5-10x over 5 years (AQR/Morningstar). Correct framing: how many Mode B candidates produce >50% gain in 12 months?"
+      },
+      "formula_flaw_identified": "ADTV rewards large-cap stocks which anti-correlate with 10x probability. LRCX ($2.4B/day ADTV, large cap) ranks above RGTI ($660M ADTV, small cap) despite RGTI having far higher asymmetric return potential.",
+      "formula_correction": "Separate select_for_research() function (not changes to score_candidate()). Add: market_cap < $2B → +5pts, $2B-$10B → +3pts, >$10B → 0pts. Reduce ADTV max from 5pts to 2pts.",
+      "additionality_verdict": "YES — candidates.json is quantitative screening. The brief provides qualitative conviction (WHY company could 10x, WHAT would prove thesis wrong, WHERE in discovery arc). Qualitatively different. Both serve different purposes.",
+      "backtest_gate": "No standard N>=20 gate — informational feature only. Track quality via post-mortem linkage after N=10 briefs + N=5 closed Mode B trades. Selection formula must be transparent and versioned.",
+      "selection_bias_note": "Highest conviction_score is NOT the same as best opportunity. The formula optimizes for breakout quality (correct for trading) but misaligned for 10x probability (which favors small caps, early stage, high asymmetry)."
+    },
+    "da": {
+      "verdict": "CONDITIONAL APPROVE",
+      "complexity_overall": "Medium",
+      "data_availability": {
+        "company_one_liner": "NEEDS NEW API CALL — FMP /profile (1 call, free tier)",
+        "tam_estimate": "NOT AVAILABLE — NEEDS WEB SEARCH (Claude + WebSearch or BigData MCP)",
+        "moat_analysis": "NOT AVAILABLE — NEEDS CLAUDE JUDGMENT from web search context",
+        "catalyst_timing": "PARTIALLY AVAILABLE (Finnhub news) + NEEDS WEB SEARCH for freshness",
+        "stage_analysis": "ALREADY IN PIPELINE — candidates.json base_count, breakout_type, pct_above_63d_low",
+        "revenue_inflection": "ALREADY IN PIPELINE — earnings_inflection.json inflection_label + trend_str",
+        "bear_case": "NOT AVAILABLE — NEEDS CLAUDE JUDGMENT",
+        "path_to_10x": "NOT AVAILABLE — NEEDS CLAUDE JUDGMENT",
+        "historical_precedent": "NOT AVAILABLE — NEEDS CLAUDE JUDGMENT",
+        "current_price_adtv_rs": "ALREADY IN PIPELINE — candidates.json + latest.json",
+        "earnings_date": "NEEDS NEW API CALL — FMP /earning_calendar (1 call)"
+      },
+      "pipeline_architecture": {
+        "step1_selector": "FEASIBLE — Easy. Read candidates.json, regime-aware logic, 50 lines. Edge: scores show 20.0 due to rs=0 bug (BOA-005-BUG-05 fixed, regenerates on next run). Interim: use raw components not total score.",
+        "step2_research_agent": "FEASIBLE — Medium. Claude Sonnet with web search. Cost ~$0.05-$0.15/week = $5-8/year. Prompt engineering required. Structured JSON output.",
+        "step3_telegram_formatter": "FEASIBLE — Easy. 2-3 messages (4096 char limit each). Reuse send_telegram() from report_writer.py.",
+        "step4_push": "ALREADY WORKING — send_telegram() in report_writer.py. No new script needed."
+      },
+      "component_complexity": {
+        "selector_script": "Easy — 50 lines max",
+        "research_agent": "Medium — 150-200 lines, prompt engineering, error handling",
+        "telegram_formatter": "Easy — 80 lines, Markdown formatting",
+        "scheduling": "Easy — day-of-week check inside existing runner (Option A recommended)",
+        "error_handling": "Medium — 5 failure modes, each needs graceful fallback"
+      },
+      "data_quality_issues": [
+        "candidates.json stale (2026-05-23) — resolves on next daily runner execution",
+        "rs_pct_3m=0 on watch_queue (BOA-005-BUG-05 fixed, regenerates on next run)",
+        "Distribution regime: candidates[] empty — selector must use watch_queue[], this is by design",
+        "Earnings gate check not in current pipeline — must be added to formatter (flag not block)"
+      ],
+      "edge_cases": {
+        "no_candidates_this_week": "Send 'Market Watch' brief — top 3 from watch_queue with regime note. Always useful.",
+        "earnings_in_3_days": "DO NOT block brief. Flag prominently: 'EARNINGS IN 3 DAYS — wait for print or size 2.5%.'",
+        "web_search_no_results": "Fallback to structured data only. Label: 'Research limited — manual review recommended.'",
+        "telegram_push_fails": "Write to data/bigshot/motw_[date].json anyway. Retry once after 60 seconds.",
+        "markdown_regime": "Run brief, label 'MARKDOWN REGIME — research only, no entries.'"
+      },
+      "scheduling_recommendation": "Option A — day-of-week check inside pre_market_runner.py. Sunday 6AM Bangkok = Saturday 23:00 UTC. MOTW step runs after A07 Monster Scout step, only when weekday()==6 OR (new_markup_candidate detected)."
+    }
+  },
+
+  "vote_summary": {
+    "fund_manager": "CONDITIONAL APPROVE",
+    "research": "APPROVE",
+    "quant": "CONDITIONAL APPROVE (14/20)",
+    "da": "CONDITIONAL APPROVE (Medium complexity)",
+    "result": "CONDITIONAL_APPROVED — 4/4",
+    "vote_type": "Standard signal vote (3/4 threshold). All 4 voted conditional approve. No wing vetoes triggered."
+  },
+
+  "conditions_summary": [
+    "1. Hybrid cadence: event-driven in Markup, weekly Sunday prep in Distribution/Sideways/Markdown",
+    "2. 3-message Telegram format (not 5-8). Message 1: setup. Message 2: thesis. Message 3: risk.",
+    "3. Pipeline data displayed as-is — research agent adds narrative, does NOT recalculate",
+    "4. Bear case must include specific price/fundamental triggers (not generic)",
+    "5. Separate select_for_research() with market cap inverse weighting (small cap bonus)",
+    "6. Regime-aware selector (watch_queue in Distribution, candidates[] in Markup)",
+    "7. Earnings flag in formatter if earnings within 7 days (flag not block)",
+    "8. Fallback mechanism if research agent or web search fails"
+  ],
+
+  "adjacent_signals_opened": [
+    {
+      "id": "BOA-011",
+      "title": "Mode B Conviction Score Formula — Separate select_for_research() from score_candidate()",
+      "reason": "Quant finding: ADTV anti-correlates with 10x probability. Market cap inverse weighting needed for research selection. Formal backtest after N>=20 Mode B trades.",
+      "status": "DEFERRED"
+    },
+    {
+      "id": "BOA-012",
+      "title": "MOTW Post-Mortem Linkage — Track Research Quality vs Actual Trade Outcomes",
+      "reason": "Quality audit mechanism for the research feature. After N=10 briefs + N=5 closed Mode B trades from MOTW candidates.",
+      "status": "DEFERRED"
+    }
+  ],
+
+  "action_items_assigned": [
+    "BOA-010-A1: monster_of_week_selector.py (Easy)",
+    "BOA-010-A2: monster_deep_research.py (Medium)",
+    "BOA-010-A3: monster_telegram_formatter.py (Easy)",
+    "BOA-010-A4: Wire into pre_market_runner.py Sunday scheduling (Easy)"
+  ]
+}

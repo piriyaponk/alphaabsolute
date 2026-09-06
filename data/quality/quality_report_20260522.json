@@ -1,0 +1,237 @@
+{
+  "date": "2026-05-22",
+  "generated_at": "2026-05-22T17:45:45.720192",
+  "summary": {
+    "ok": 11,
+    "warn": 4,
+    "fail": 0,
+    "skip": 0,
+    "overall": "ok"
+  },
+  "checks": [
+    {
+      "check": "date_formats",
+      "status": "ok",
+      "bad_rows": 0,
+      "total_rows": 479429,
+      "message": "All dates YYYY-MM-DD"
+    },
+    {
+      "check": "ticker_meta_dates",
+      "status": "ok",
+      "message": "All ticker_meta dates are YYYY-MM-DD"
+    },
+    {
+      "check": "volume_types",
+      "status": "ok",
+      "float_volumes": 0,
+      "zero_or_null_volumes": 2355,
+      "message": "All volumes INTEGER",
+      "warning": "2355 zero/null volumes"
+    },
+    {
+      "check": "ohlc_coverage",
+      "status": "warn",
+      "total_rows": 367639,
+      "rows_with_ohlc": 80696,
+      "rows_null_ohlc": 286943,
+      "pct_covered": 21.9,
+      "tickers_with_ohlc": 1321,
+      "universe_size": 1324,
+      "message": "OHLC 22%: 286,943 rows need fill_ohlc_gaps.py (run after backfill)"
+    },
+    {
+      "check": "ohlcv_data_quality",
+      "status": "ok",
+      "date_range": "2024-01-02 to 2026-05-21",
+      "total_tickers": 1815,
+      "qqq_bars": 599,
+      "qqq_years": 2.4,
+      "tickers_lt_20_bars": 0,
+      "tickers_no_ma200": 141,
+      "tickers_no_rs12m": 651,
+      "message": "QQQ has 599 bars (2.4yr) | No MA200: 141 | No RS12M: 651"
+    },
+    {
+      "check": "backfill_progress",
+      "status": "warn",
+      "earliest_date": "2024-01-02",
+      "tickers_1y_history": 1170,
+      "tickers_3y_history": 0,
+      "pct_1y": 64.5,
+      "pct_3y": 0.0,
+      "message": "Short history: earliest=2024-01-02, 1Y=64%, 3Y=0%"
+    },
+    {
+      "check": "stale_tickers",
+      "status": "ok",
+      "latest_date": "2026-05-21",
+      "cutoff_3td": "2026-05-15",
+      "stale_count": 4,
+      "priority_stale": [],
+      "stale_sample": [
+        [
+          "SPNS",
+          "2025-12-16"
+        ],
+        [
+          "COMM",
+          "2026-01-13"
+        ],
+        [
+          "CFLT",
+          "2026-03-16"
+        ],
+        [
+          "TPH",
+          "2026-05-13"
+        ]
+      ],
+      "message": "4 tickers stale (> 3td behind)"
+    },
+    {
+      "check": "missing_universe",
+      "status": "ok",
+      "universe_size": 1324,
+      "in_db": 1324,
+      "missing_count": 0,
+      "missing_sample": [],
+      "message": "All 1324 universe tickers in ohlcv"
+    },
+    {
+      "check": "orphan_tickers",
+      "status": "ok",
+      "total_in_db": 1815,
+      "universe_size": 1324,
+      "orphan_count": 491,
+      "message": "491 benchmark tickers in DB (not in universe \u2014 expected for RS percentile)"
+    },
+    {
+      "check": "rs_coverage",
+      "status": "ok",
+      "latest_rs_date": "2026-05-22",
+      "covered_total": 1325,
+      "covered_in_universe": 1323,
+      "universe_size": 1324,
+      "pct_covered": 99.9,
+      "message": "RS coverage: 1323/1324 (100%) for 2026-05-22"
+    },
+    {
+      "check": "rs_null_composite",
+      "status": "ok",
+      "count": 0,
+      "tickers": [],
+      "message": "All rs_composite populated for 2026-05-22"
+    },
+    {
+      "check": "screening_freshness",
+      "status": "ok",
+      "latest_screen_date": "2026-05-21",
+      "tickers": 3975,
+      "message": "screening_results is current: 2026-05-21 (3975 tickers)"
+    },
+    {
+      "check": "fundamental_coverage",
+      "status": "warn",
+      "rs_gate_pass": 263,
+      "has_fundamentals": 171,
+      "missing_fundamentals": 92,
+      "pct_covered": 65.0,
+      "missing_high_rs": [
+        {
+          "ticker": "AMBQ",
+          "label": "Semiconductor",
+          "rs_comp": 99.0
+        },
+        {
+          "ticker": "SNDK",
+          "label": "Memory_HBM",
+          "rs_comp": 98.0
+        },
+        {
+          "ticker": "AIP",
+          "label": "Semiconductor",
+          "rs_comp": 97.0
+        },
+        {
+          "ticker": "ARM",
+          "label": "AI_Related",
+          "rs_comp": 97.0
+        },
+        {
+          "ticker": "BLDP",
+          "label": "Energy_Renewable",
+          "rs_comp": 97.0
+        },
+        {
+          "ticker": "STX",
+          "label": "Memory_HBM",
+          "rs_comp": 97.0
+        },
+        {
+          "ticker": "NBIS",
+          "label": "AI_Related",
+          "rs_comp": 97.0
+        },
+        {
+          "ticker": "STM",
+          "label": "Memory_HBM",
+          "rs_comp": 96.0
+        },
+        {
+          "ticker": "TSEM",
+          "label": "Semiconductor",
+          "rs_comp": 96.0
+        },
+        {
+          "ticker": "BE",
+          "label": "Energy_Renewable",
+          "rs_comp": 96.0
+        },
+        {
+          "ticker": "CEVA",
+          "label": "Tech_Hardware",
+          "rs_comp": 96.0
+        },
+        {
+          "ticker": "BITF",
+          "label": "NeoCloud",
+          "rs_comp": 95.0
+        },
+        {
+          "ticker": "UMC",
+          "label": "Semiconductor",
+          "rs_comp": 95.0
+        },
+        {
+          "ticker": "GFS",
+          "label": "Semiconductor",
+          "rs_comp": 95.0
+        },
+        {
+          "ticker": "POET",
+          "label": "Photonics",
+          "rs_comp": 95.0
+        }
+      ],
+      "message": "Fundamentals: 171/263 RS-passing tickers covered (65%)"
+    },
+    {
+      "check": "earnings_calendar",
+      "status": "ok",
+      "upcoming_events": 583,
+      "last_fetched": "2026-05-22T13:39:47.181370",
+      "message": "583 upcoming earnings events loaded (fetched 0d ago)"
+    },
+    {
+      "check": "pipeline_runs",
+      "status": "warn",
+      "recent_runs": 6,
+      "recent_fails": 1,
+      "failed_steps": [
+        "pipeline_metrics"
+      ],
+      "message": "Last 6 runs: 1 failures"
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "date": "2026-09-04",
+  "regime": "Distribution",
+  "cash_floor": 0.4,
+  "max_deployed": 0.6,
+  "leaders_ok": true,
+  "bigshot_ok": false,
+  "spy_td_signal": "Neutral",
+  "qqq_td_signal": "Neutral",
+  "distribution_days": 6,
+  "distribution_day_dates": [
+    "2026-07-17",
+    "2026-07-23",
+    "2026-07-29",
+    "2026-08-17",
+    "2026-08-18",
+    "2026-08-20"
+  ],
+  "pct_above_50dma": 50.3,
+  "pct_above_200dma": 60.5,
+  "breadth_n_sample": 1304,
+  "breakout_failure_rate": 0.833,
+  "nh_count": 319,
+  "nl_count": 149,
+  "nh_nl_ratio": 0.6816,
+  "nh_nl_net_pct": 10.08,
+  "nh_acceleration": 0.1332,
+  "nh_nl_divergence": false,
+  "ad_line_today": 2817,
+  "ad_direction": "Up",
+  "ad_slope_20d": 2534,
+  "ad_slope_days_actual": 20,
+  "ad_divergence": false,
+  "ad_advances": 574,
+  "ad_declines": 1121,
+  "adv_ratio_today": 0.3386,
+  "adv_ratio_ema10": 0.5609,
+  "extreme_selling_breadth": false,
+  "breadth_expansion": false,
+  "zweig_breadth_thrust": false,
+  "bb_above_pct": 4.54,
+  "broad_breadth_expansion": false,
+  "bb_below_pct": 5.0,
+  "breadth_panic": false,
+  "distribution_breadth_pct": 3.45,
+  "breadth_health_score": 70.6,
+  "watch_for_ftd": false,
+  "ftd_rally_day": 0,
+  "ftd_triggered": false,
+  "ftd_low_date": null,
+  "spy_vs_50dma_pct": 0,
+  "concentration_flag": "NEUTRAL",
+  "rsp_spy_20d_roc_diff": 0.64,
+  "rsp_20d_roc": 3.94,
+  "spy_20d_roc": 3.31,
+  "cap_eq_div_50d": null,
+  "regime_note": "Score 45/85 \u2014 distribution/pressure. Mode A only, reduced size. No new Big Shot entries.",
+  "regime_score": 45,
+  "regime_trend": "DETERIORATING",
+  "prior_regime": "Markup",
+  "factor_scores": {
+    "A_structure": {
+      "score": 8,
+      "max": 25
+    },
+    "B_distribution": {
+      "score": 7,
+      "max": 20
+    },
+    "C_breadth": {
+      "score": 15,
+      "max": 20
+    },
+    "E_rs_leaders": {
+      "score": 7,
+      "max": 10
+    },
+    "F_intermarket": {
+      "score": 3,
+      "max": 5
+    },
+    "G_sentiment": {
+      "score": 5,
+      "max": 5
+    }
+  },
+  "early_warnings": [
+    "MOMENTUM_DIVERGENCE: Near ATH but momentum slowing",
+    "DISTRIBUTION_CLUSTER: 3 dist days in last 10 sessions"
+  ],
+  "early_warning_count": 2,
+  "macro": {
+    "yield_10y": 4.79,
+    "yield_curve": 0.43,
+    "hy_spread": 2.66,
+    "fed_funds": 3.63,
+    "real_yield": 2.45,
+    "cpi_yoy": 3.54
+  },
+  "liquidity_gate": "CAUTIOUS",
+  "liquidity_cautions": 1,
+  "liquidity_notes": [
+    "HY=2.66% tight (risk-on)",
+    "Curve=0.43% normal",
+    "YieldGap=-0.03% negative (bonds > equities)",
+    "CPI=3.5% elevated (watch)",
+    "ERP=2.31% healthy"
+  ],
+  "regime_challenge": {
+    "active": false,
+    "bull_count": 1,
+    "threshold": 4,
+    "bull_signals": [
+      "SPY +1.6% vs 50DMA \u2014 recapture likely"
+    ],
+    "message": "",
+    "in_cooldown": false,
+    "last_fired_date": ""
+  },
+  "generated_at": "2026-09-04T17:23:15"
+}

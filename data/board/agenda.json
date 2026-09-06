@@ -1,0 +1,28 @@
+[
+  {
+    "id": "BOA-024",
+    "date": "2026-06-15",
+    "status": "CLOSED",
+    "title": "Regime Factor Redesign — What Should A01 Actually Measure?",
+    "question": "A01 currently measures 6 factors (price structure, distribution days, breadth, RS leaders, intermarket, sentiment). BOA-023 showed distribution days have zero predictive value in rising trends (Bulkowski). The core question: what factors SHOULD market regime literally measure? Which current factors should stay, be replaced, or reweighted? Goal: a regime classification system grounded in what empirically predicts forward returns, not inherited assumptions.",
+    "type": "regime-critical",
+    "required_votes": "4/4",
+    "context": {
+      "current_factors": ["A: price_structure (QQQ vs 50/200DMA)", "B: distribution_days (BOA-023: zero predictive value in rising trends per Bulkowski)", "C: breadth (pct_above_50dma — internally derived threshold)", "E: rs_leaders_count", "F: intermarket (VIX, yield curve)", "G: sentiment (VIX level)"],
+      "approved_but_non_functional": ["AD line direction (BOA-001, 11 history entries vs 21 needed)", "NH/NL acceleration (BOA-001, indexing bug)"],
+      "practitioner_consensus_on_regime": ["Price trend vs key MAs", "Breadth thrust/deterioration (A-D line, NH-NL)", "Volume behavior at index level (Wyckoff/Lowry accumulation vs distribution)", "Credit & liquidity (HY spread, yield curve — Druckenmiller)"],
+      "not_yet_measured": ["A-D line rate of change", "Volume quality at index level (up-volume vs down-volume ratio)", "NH/NL ratio trend (not just level)"]
+    }
+  },
+  {
+    "id": "BOA-023",
+    "date": "2026-06-15",
+    "status": "CLOSED",
+    "title": "Distribution Regime Classification — Threshold Validation",
+    "question": "ระบบ A01 ใช้ pct_above_50dma > 60% และ distribution_days < 4 เป็นเงื่อนไข Markup — logic นี้ make sense มั้ย มาจากไหน calibrated จากข้อมูลจริงหรือเปล่า ควรแก้ยังไง",
+    "type": "regime-critical",
+    "required_votes": "4/4",
+    "result": "CONDITIONAL_APPROVED",
+    "decisions": ["DEC-027", "DEC-028", "DEC-029"]
+  }
+]

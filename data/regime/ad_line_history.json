@@ -1,0 +1,142 @@
+[
+  {
+    "date": "2026-09-04",
+    "advances": 574,
+    "declines": 1121,
+    "net": -547,
+    "cumulative": 2817
+  },
+  {
+    "date": "2026-08-21",
+    "advances": 999,
+    "declines": 696,
+    "net": 303,
+    "cumulative": 3364
+  },
+  {
+    "date": "2026-08-14",
+    "advances": 733,
+    "declines": 964,
+    "net": -231,
+    "cumulative": 3061
+  },
+  {
+    "date": "2026-08-07",
+    "advances": 1248,
+    "declines": 458,
+    "net": 790,
+    "cumulative": 3292
+  },
+  {
+    "date": "2026-07-31",
+    "advances": 591,
+    "declines": 1114,
+    "net": -523,
+    "cumulative": 2502
+  },
+  {
+    "date": "2026-07-24",
+    "advances": 1135,
+    "declines": 591,
+    "net": 544,
+    "cumulative": 3025
+  },
+  {
+    "date": "2026-07-10",
+    "advances": 861,
+    "declines": 853,
+    "net": 8,
+    "cumulative": 2481
+  },
+  {
+    "date": "2026-06-26",
+    "advances": 775,
+    "declines": 947,
+    "net": -172,
+    "cumulative": 2473
+  },
+  {
+    "date": "2026-06-16",
+    "advances": 916,
+    "declines": 809,
+    "net": 107,
+    "cumulative": 2645
+  },
+  {
+    "date": "2026-06-15",
+    "advances": 1075,
+    "declines": 654,
+    "net": 421,
+    "cumulative": 2538
+  },
+  {
+    "date": "2026-06-14",
+    "advances": 1075,
+    "declines": 654,
+    "net": 421,
+    "cumulative": 2117
+  },
+  {
+    "date": "2026-06-12",
+    "advances": 1177,
+    "declines": 536,
+    "net": 641,
+    "cumulative": 1696
+  },
+  {
+    "date": "2026-06-03",
+    "advances": 852,
+    "declines": 883,
+    "net": -31,
+    "cumulative": 1055
+  },
+  {
+    "date": "2026-06-02",
+    "advances": 817,
+    "declines": 949,
+    "net": -132,
+    "cumulative": 1086
+  },
+  {
+    "date": "2026-06-01",
+    "advances": 524,
+    "declines": 761,
+    "net": -237,
+    "cumulative": 1218
+  },
+  {
+    "date": "2026-05-28",
+    "advances": 820,
+    "declines": 469,
+    "net": 351,
+    "cumulative": 1455
+  },
+  {
+    "date": "2026-05-27",
+    "advances": 581,
+    "declines": 326,
+    "net": 255,
+    "cumulative": 1104
+  },
+  {
+    "date": "2026-05-26",
+    "advances": 783,
+    "declines": 500,
+    "net": 283,
+    "cumulative": 849
+  },
+  {
+    "date": "2026-05-25",
+    "advances": 783,
+    "declines": 500,
+    "net": 283,
+    "cumulative": 566
+  },
+  {
+    "date": "2026-05-24",
+    "advances": 783,
+    "declines": 500,
+    "net": 283,
+    "cumulative": 283
+  }
+]

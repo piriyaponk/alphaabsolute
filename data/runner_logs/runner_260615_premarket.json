@@ -1,0 +1,217 @@
+{
+  "date": "2026-06-15",
+  "mode": "premarket",
+  "run_at": "2026-06-15T18:44:41.956370",
+  "steps": [
+    {
+      "step": "health_check",
+      "name": "System Health Check",
+      "status": "ok",
+      "duration": 0.8,
+      "output": "data/health/health_report.json",
+      "error": "",
+      "time": "18:31:38"
+    },
+    {
+      "step": "ohlcv_update",
+      "name": "OHLCV Bulk Update (Polygon Grouped)",
+      "status": "ok",
+      "duration": 2.3,
+      "output": "data/ohlcv.db",
+      "error": "",
+      "time": "18:31:40"
+    },
+    {
+      "step": "fix_volumes",
+      "name": "Fix Float Volumes",
+      "status": "ok",
+      "duration": 1.8,
+      "output": "data/ohlcv.db",
+      "error": "",
+      "time": "18:31:42"
+    },
+    {
+      "step": "earnings_cal",
+      "name": "Earnings Calendar Fetch",
+      "status": "ok",
+      "duration": 279.7,
+      "output": "data/regime/earnings_next30.json",
+      "error": "",
+      "time": "18:36:21"
+    },
+    {
+      "step": "data_quality",
+      "name": "Data Quality Check",
+      "status": "ok",
+      "duration": 3.2,
+      "output": "data/quality/quality_latest.json",
+      "error": "",
+      "time": "18:36:25"
+    },
+    {
+      "step": "a01",
+      "name": "A01 Market Health Engine",
+      "status": "ok",
+      "duration": 18.6,
+      "output": "data/regime/market_health.json",
+      "error": "",
+      "time": "18:36:43"
+    },
+    {
+      "step": "a01b",
+      "name": "A01b Full-Market Breadth (Polygon)",
+      "status": "ok",
+      "duration": 0.0,
+      "output": "data/breadth/market_breadth_history.json",
+      "error": "",
+      "time": "18:36:43"
+    },
+    {
+      "step": "a02",
+      "name": "A02 Macro Monitor",
+      "status": "ok",
+      "duration": 4.3,
+      "output": "data/regime/macro_state.json",
+      "error": "",
+      "time": "18:36:47"
+    },
+    {
+      "step": "a03",
+      "name": "A03 RS Universe Ranker",
+      "status": "ok",
+      "duration": 75.5,
+      "output": "data/rs_universe/latest.json",
+      "error": "",
+      "time": "18:38:03"
+    },
+    {
+      "step": "a03c",
+      "name": "A03c RS Change Detector",
+      "status": "ok",
+      "duration": 67.3,
+      "output": "data/rs_universe/changes_today.json",
+      "error": "",
+      "time": "18:39:10"
+    },
+    {
+      "step": "a05",
+      "name": "A05 Theme Intelligence (RS Theme Ranker)",
+      "status": "ok",
+      "duration": 1.6,
+      "output": "data/rs_universe/theme_rs_latest.json",
+      "error": "",
+      "time": "18:39:12"
+    },
+    {
+      "step": "sa_fetcher",
+      "name": "StockAnalysis Fundamentals Fetcher",
+      "status": "ok",
+      "duration": 0.0,
+      "output": "data/sa_fetcher_checkpoint.json",
+      "error": "",
+      "time": "18:39:12"
+    },
+    {
+      "step": "finviz_fetcher",
+      "name": "Finviz Market Cap Fetcher",
+      "status": "ok",
+      "duration": 0.0,
+      "output": "data/finviz_fetcher_checkpoint.json",
+      "error": "",
+      "time": "18:39:12"
+    },
+    {
+      "step": "a06",
+      "name": "A06 Leadership Curator (Mode A)",
+      "status": "ok",
+      "duration": 101.3,
+      "output": "data/leadership/top30_watchlist.json",
+      "error": "",
+      "time": "18:40:53"
+    },
+    {
+      "step": "earnings_inflection",
+      "name": "Earnings Inflection Scout",
+      "status": "ok",
+      "duration": 0.1,
+      "output": "data/bigshot/earnings_inflection.json",
+      "error": "",
+      "time": "18:40:53"
+    },
+    {
+      "step": "a07",
+      "name": "A07 Monster Scout (Mode B)",
+      "status": "ok",
+      "duration": 0.1,
+      "output": "data/bigshot/candidates.json",
+      "error": "",
+      "time": "18:40:53"
+    },
+    {
+      "step": "a08",
+      "name": "A08 Setup Scanner",
+      "status": "ok",
+      "duration": 106.8,
+      "output": "data/setups/setups_today.json",
+      "error": "",
+      "time": "18:42:40"
+    },
+    {
+      "step": "a09",
+      "name": "A09 Portfolio Manager (pre-market)",
+      "status": "ok",
+      "duration": 99.0,
+      "output": "data/portfolio/action_signals.json",
+      "error": "",
+      "time": "18:44:19"
+    },
+    {
+      "step": "a10_trader",
+      "name": "A10 Paper Trader (premarket)",
+      "status": "ok",
+      "duration": 0.1,
+      "output": "data/portfolio/paper_portfolio_state.json",
+      "error": "",
+      "time": "18:44:19"
+    },
+    {
+      "step": "a10",
+      "name": "A10 Risk Guardian",
+      "status": "ok",
+      "duration": 11.4,
+      "output": "data/risk/risk_report.json",
+      "error": "",
+      "time": "18:44:31"
+    },
+    {
+      "step": "health_probe",
+      "name": "System Health Probe",
+      "status": "ok",
+      "duration": 0.1,
+      "output": "data/system_health/alerts.json",
+      "error": "",
+      "time": "18:44:31"
+    },
+    {
+      "step": "a11",
+      "name": "A11 Report Writer + Telegram",
+      "status": "ok",
+      "duration": 10.8,
+      "output": "output/",
+      "error": "",
+      "time": "18:44:41"
+    },
+    {
+      "step": "weekly_picker",
+      "name": "Weekly Top-5 Picker (Monday only)",
+      "status": "skipped",
+      "duration": 0.0,
+      "output": "data/weekly_picks/",
+      "error": "",
+      "time": "18:44:41"
+    }
+  ],
+  "passed": 22,
+  "failed": 0,
+  "skipped": 1
+}

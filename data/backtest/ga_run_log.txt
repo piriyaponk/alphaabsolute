@@ -1,0 +1,96 @@
+Loading dataloader from: signals_expanded.parquet
+Universe: 430 tickers
+SPY regime signals: 2678 days
+
+Search space: 180,000 combinations
+GA will evaluate: 1,500 individuals (50 pop x 30 gen)
+Estimated time: 12-25 min
+
+
+GA config: pop=50  gen=30  elite=5  crossover=0.7  mutation=0.2
+Search space: 38 total options across 8 params
+
+
+  Gen  1/30  eval   1/50
+  Gen  1/30  eval   2/50
+  Gen  1/30  eval   3/50
+  Gen  1/30  eval   4/50
+  Gen  1/30  eval   5/50
+  Gen  1/30  eval   6/50
+  Gen  1/30  eval   7/50
+  Gen  1/30  eval   8/50
+  Gen  1/30  eval   9/50
+  Gen  1/30  eval  10/50
+  Gen  1/30  eval  11/50
+  Gen  1/30  eval  12/50
+  Gen  1/30  eval  13/50
+  Gen  1/30  eval  14/50
+  Gen  1/30  eval  15/50
+  Gen  1/30  eval  16/50
+  Gen  1/30  eval  17/50
+  Gen  1/30  eval  18/50
+  Gen  1/30  eval  19/50
+  Gen  1/30  eval  20/50
+  Gen  1/30  eval  21/50
+  Gen  1/30  eval  22/50
+  Gen  1/30  eval  23/50
+  Gen  1/30  eval  24/50
+  Gen  1/30  eval  25/50
+  Gen  1/30  eval  26/50
+  Gen  1/30  eval  27/50
+  Gen  1/30  eval  28/50
+  Gen  1/30  eval  29/50
+  Gen  1/30  eval  30/50
+  Gen  1/30  eval  31/50
+  Gen  1/30  eval  32/50
+  Gen  1/30  eval  33/50
+  Gen  1/30  eval  34/50
+  Gen  1/30  eval  35/50
+  Gen  1/30  eval  36/50
+  Gen  1/30  eval  37/50
+  Gen  1/30  eval  38/50
+  Gen  1/30  eval  39/50
+  Gen  1/30  eval  40/50
+  Gen  1/30  eval  41/50
+  Gen  1/30  eval  42/50
+  Gen  1/30  eval  43/50
+  Gen  1/30  eval  44/50
+  Gen  1/30  eval  45/50
+  Gen  1/30  eval  46/50
+  Gen  1/30  eval  47/50
+  Gen  1/30  eval  48/50
+  Gen  1/30  eval  49/50
+  Gen  1/30  eval  50/50
+  Gen  1/30  best=+341.3  WF2=+34.8%  WF3=+101.1%  FULL=+44.4%  Sh=1.53  valid=34/50  4870s
+
+  Gen  2/30  eval   1/50
+  Gen  2/30  eval   2/50
+  Gen  2/30  eval   3/50
+  Gen  2/30  eval   4/50
+  Gen  2/30  eval   5/50
+  Gen  2/30  eval   6/50
+  Gen  2/30  eval   7/50
+  Gen  2/30  eval   8/50
+  Gen  2/30  eval   9/50
+  Gen  2/30  eval  10/50
+  Gen  2/30  eval  11/50
+  Gen  2/30  eval  12/50
+  Gen  2/30  eval  13/50
+  Gen  2/30  eval  14/50
+  Gen  2/30  eval  15/50
+  Gen  2/30  eval  16/50
+  Gen  2/30  eval  17/50
+  Gen  2/30  eval  18/50
+  Gen  2/30  eval  19/50
+  Gen  2/30  eval  20/50
+  Gen  2/30  eval  21/50
+  Gen  2/30  eval  22/50
+  Gen  2/30  eval  23/50
+  Gen  2/30  eval  24/50
+  Gen  2/30  eval  25/50
+  Gen  2/30  eval  26/50
+  Gen  2/30  eval  27/50
+  Gen  2/30  eval  28/50
+  Gen  2/30  eval  29/50
+  Gen  2/30  eval  30/50
+  Gen  2/30  eval  31/50

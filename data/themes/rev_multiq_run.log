@@ -1,0 +1,28 @@
+
+Revenue Multi-Quarter Fetch — 285 tickers
+Source: EDGAR XBRL (via data_engine, free)
+DB: C:\Users\Pizza\OneDrive\Desktop\AlphaAbsolute\data\ohlcv.db
+----------------------------------------------------------------------
+  [D5] WARN ABTC edgar: [WARN] ABTC [2026Q1] rev_yoy=3887.0 — Rev YoY=3887% — very large change, verify manually; [WARN] ABTC [2025Q3] rev_yoy=1640.9 — Rev YoY=1641% — very large change, verify manually; [WARN] ABTC [2025Q3] rev_qoq=4563.8 — Rev QoQ=4564% — unusually large sequential change
+  [Finnhub fundamentals] AEC: '>' not supported between instances of 'NoneType' and 'int'
+  [D5] WARN AEVA edgar: [WARN] AEVA [2024Q1] gross_margin=-66.07 — Gross margin=-66.1% outside [-50.0,100.0]; [WARN] AEVA [2023Q3] gross_margin=-211.73 — Gross margin=-211.7% outside [-50.0,100.0]
+  [10/285] AEVA     q0=  +85.9%  q1=  +59.1%  ACCELERATING
+  [D5] BLOCKED AGMH from edgar_6k: [BLOCK] AGMH [2021Q3] eps=202009.0 — EPS=202009.0 outside bounds [-5000.0,10000.0] — parse error; [BLOCK] AGMH [2020Q3] eps=-319942.0 — EPS=-319942.0 outside bounds [-5000.0,10000.0] — parse error
+  [D5] WARN ALMU edgar: [WARN] ALMU [2024Q3] rev_yoy=1384.6 — Rev YoY=1385% — very large change, verify manually
+  [20/285] AMAT     q0=  +11.4%  q1=   -2.1%  TURNAROUND
+  [Finnhub fundamentals] AMCI: '>' not supported between instances of 'NoneType' and 'int'
+  [30/285] AOSL     q0=   -0.5%  q1=   -6.3%  DECELERATING
+  [40/285] ASTC     q0=     N/A  q1=     N/A  INSUFFICIENT_DATA
+  [Finnhub fundamentals] ASTS: '>' not supported between instances of 'NoneType' and 'int'
+  [D5] WARN ATOM edgar: [WARN] ATOM [2026Q1] gross_margin=-1045.45 — Gross margin=-1045.5% outside [-50.0,100.0]; [WARN] ATOM [2025Q3] gross_margin=-1063.64 — Gross margin=-1063.6% outside [-50.0,100.0]; [WARN] ATOM [2024Q1] gross_margin=-83.33 — Gross margin=-83.3% outside [-50.0,100.0]
+  [D5] WARN AUR edgar: [WARN] AUR [2026Q1] gross_margin=-500.0 — Gross margin=-500.0% outside [-50.0,100.0]; [WARN] AUR [2025Q3] gross_margin=-500.0 — Gross margin=-500.0% outside [-50.0,100.0]; [WARN] AUR [2025Q2] gross_margin=-400.0 — Gross margin=-400.0% outside [-50.0,100.0]
+  [50/285] AZTA     q0=   +1.0%  q1=   +0.8%  ACCELERATING
+Traceback (most recent call last):
+  File "C:\Users\Pizza\OneDrive\Desktop\AlphaAbsolute\scripts\pre_compute\fetch_revenue_multiquarter.py", line 319, in <module>
+    main()
+  File "C:\Users\Pizza\OneDrive\Desktop\AlphaAbsolute\scripts\pre_compute\fetch_revenue_multiquarter.py", line 304, in main
+    stats = process_tickers(tickers)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pizza\OneDrive\Desktop\AlphaAbsolute\scripts\pre_compute\fetch_revenue_multiquarter.py", line 234, in process_tickers
+    conn.execute(
+sqlite3.OperationalError: database is locked

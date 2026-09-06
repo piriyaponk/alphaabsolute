@@ -1,0 +1,79 @@
+{
+  "meeting_id": "BOA-001",
+  "date": "2026-05-23",
+  "topic": "Market Direction Prediction — next-week and next-month signals",
+  "called_by": "CIO (Piriyapon)",
+  "attendees": ["Research", "Quant", "Board Secretary"],
+  "de_called": false,
+
+  "agenda_context": "CIO wants system to predict where market goes next week / next month (up/down/good/bad/full deployment opportunity). Previous direction engine proposal (10 signals, A01b separate engine) was rejected as unnecessary. New approach: identify what practitioners actually use, backtest, only add what clears evidence bar.",
+
+  "research_report": {
+    "key_finding": "No single signal has >65% hit rate at any horizon. Best practitioners don't predict direction — they identify conditions as PERMISSIVE vs HOSTILE. AlphaAbsolute philosophy is already correct.",
+    "next_week_leaders": [
+      "VIX/VIX3M term structure ratio (~60-62% hit rate, academic evidence)",
+      "Dealer GEX (65-70% for vol REGIME, not direction — different thing)"
+    ],
+    "next_month_leaders": [
+      "Leader stock breakout failure rate — O'Neil: led every major top by 4-6 weeks (12 of 13 major tops). Best documented practitioner signal.",
+      "HY spread 4W rate of change (not level) — Druckenmiller's #1 leading macro signal. BIS/NBER academic backing.",
+      "A-D Line divergence — Ned Davis Research, ~65-70% at identifying tops, 2-8 week lead."
+    ],
+    "what_practitioners_avoid": [
+      "Aggregate P/C ratio (contaminated by institutional hedges)",
+      "RSI/MACD at index level (coincident, not leading)",
+      "GDP/ISM/unemployment (6-9 month lag for equity direction)",
+      "VIX absolute level (direction and structure matter, not level)",
+      "AAII at non-extreme readings (too noisy)"
+    ]
+  },
+
+  "quant_report": {
+    "evidence_bar": "Combined score ≥12/20 (Lead Time Quality × Evidence Strength). Minimum OOS hit rate meaningful above 53% (random baseline 50%, momentum baseline 54%).",
+    "scores": {
+      "AD_Line_Direction": {"score": "14/20", "lead_time": 7, "evidence": 7, "verdict": "APPROVED"},
+      "Leader_Stocks_Topping": {"score": "14/20", "lead_time": 7, "evidence": 7, "verdict": "APPROVED"},
+      "NH_Count_Acceleration": {"score": "14/20", "lead_time": 7, "evidence": 7, "verdict": "APPROVED"},
+      "NAAIM_RoC": {"score": "12/20", "lead_time": 6, "evidence": 6, "verdict": "CONDITIONAL"},
+      "SPHB_SPLV": {"score": "11/20", "lead_time": 5, "evidence": 6, "verdict": "REJECTED as standalone"},
+      "COT": {"score": "9/20", "lead_time": 4, "evidence": 5, "verdict": "REJECTED for direction"},
+      "Dealer_GEX": {"score": "8/20", "lead_time": 5, "evidence": 3, "verdict": "REJECTED (vol regime only)"},
+      "TD_Weekly": {"score": "8/20", "lead_time": 4, "evidence": 4, "verdict": "REJECTED (size modifier only — already implemented)"},
+      "VIX_Term_Structure": {"score": "8/20", "lead_time": 4, "evidence": 4, "verdict": "REJECTED as direction, add as vol flag"},
+      "PC_OI_Ratio": {"score": "7/20", "lead_time": 4, "evidence": 3, "verdict": "REJECTED"}
+    },
+    "breadth_health_score_proposal": {
+      "description": "Consolidate 3 approved signals into single 0-100 score for A01",
+      "weights": {"NH_Acceleration": "40%", "AD_Line_Trend": "40%", "Leader_Internals": "20%"},
+      "thresholds": {
+        "above_70": "Markup confirmation — full deployment supported",
+        "40_to_70": "Neutral — regime per current A01 logic",
+        "below_40": "Distribution warning — cross-reference distribution day count"
+      }
+    }
+  },
+
+  "votes": {
+    "AD_Line_Direction": {"research": "YES", "quant": "YES", "result": "APPROVED"},
+    "Leader_Stocks_Topping": {"research": "YES", "quant": "YES", "result": "APPROVED"},
+    "NH_Count_Acceleration": {"research": "YES", "quant": "YES", "result": "APPROVED"},
+    "NAAIM_RoC": {"research": "YES (conditional)", "quant": "YES (conditional)", "result": "CONDITIONAL — re-entry timing only, not regime signal"},
+    "HY_Spread_4W_RoC": {"research": "YES (Druckenmiller-backed)", "quant": "NOT SCORED but mechanism sound", "result": "APPROVED for A02 only"},
+    "VIX_VXV_Ratio": {"research": "YES (vol regime)", "quant": "YES (vol regime, not direction)", "result": "APPROVED as vol flag in A02"}
+  },
+
+  "architecture_decision": "NOT a separate A01b engine. Enhance A01 + A02 directly. All 3 direction signals add as Breadth Health Score to A01 composite. HY ROC and VIX/VXV go to A02. No new scripts.",
+
+  "backtest_gate": "All fields start as HYPOTHESIS in signal_weights.json. Mechanical adjustment to regime thresholds requires N≥52 weekly observations. Current status: N=0, no observations yet.",
+
+  "action_items_assigned_to_DE": [
+    "BOA-001-A1: breakout_failure_rate in A01 (Easy)",
+    "BOA-001-A2: nh_count_acceleration in A01 (Easy)",
+    "BOA-001-A3: ad_line_divergence in A01 (Medium)",
+    "BOA-001-A4: hy_spread_4w_roc in A02 (Easy)",
+    "BOA-001-A5: VIX/VXV vol flag in A02 (Easy)",
+    "BOA-001-A6: Breadth Health Score composite in A01 (Easy)"
+  ],
+
+  "next_meeting_trigger": "After 52 weekly observations of Breadth Health Score — compare to regime transition accuracy. Estimated: 2026-Q4."
+}

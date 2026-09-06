@@ -1,0 +1,25 @@
+2026-05-18 20:08:56,570  INFO     ============================================================
+2026-05-18 20:08:56,571  INFO     AlphaAbsolute Theme Labeler starting
+2026-05-18 20:08:56,571  INFO       force=False  dry_run=False  limit=none
+2026-05-18 20:08:56,571  INFO     ============================================================
+2026-05-18 20:08:56,650  INFO     RS universe: 1246 tickers
+2026-05-18 20:08:56,666  INFO     Tickers in RS universe:   1246
+2026-05-18 20:08:56,667  INFO     Already labeled:          156 (154 manual)
+2026-05-18 20:08:56,668  INFO     To process:               1106
+2026-05-18 20:08:56,669  INFO       [1/1106] Processing AGL ...
+2026-05-18 20:08:56,702  INFO       [25/1106] Processing SM ...
+2026-05-18 20:09:32,801  WARNING  IESC: 429 rate limit — sleeping 30s
+2026-05-18 20:10:46,547  WARNING  ICHR: 429 rate limit — sleeping 30s
+2026-05-18 20:11:31,921  WARNING  AMSC: 429 rate limit — sleeping 30s
+2026-05-18 20:12:01,929  INFO       [50/1106] Processing BE ...
+2026-05-18 20:12:31,592  WARNING  BORR: 429 rate limit — sleeping 30s202026-05-18 20:13:31,382  WARNING  ASTH: 429 rate limit — sleeping 30s
+2026-05-18 20:14:31,142  WARNING  NOVT: 429 rate limit — sleeping 30s
+2026-05-18 20:15:30,931  WARNING  MTZ: 429 rate limit — sleeping 30s
+2026-05-18 20:16:16,366  WARNING  SU: 429 rate limit — sleeping 30s
+2026-05-18 20:16:47,662  WARNING  HAL: 429 rate limit — sleeping 30s
+2026-05-18 20:17:17,685  INFO       [75/1106] Processing UNH ...
+2026-05-18 20:17:33,055  WARNING  BB: 429 rate limit — sleeping 30s
+2026-05-18 20:18:32,807  WARNING  AMWL: 429 rate limit — sleeping 30s202026-05-18 20:19:32,653  WARNING  KRYS: 429 rate limit — sleeping 30s
+2026-05-18 20:20:18,178  WARNING  ALOT: 429 rate limit — sleeping 30s202026-05-18 20:20:49,349  WARNING  BLMN: 429 rate limit — sleeping 30s202026-05-18 20:21:34,798  WARNING  AIZ: 429 rate limit — sleeping 30s22026-05-18 20:22:04,799  INFO       [100/1106] Processing VLO ...
+0s
+2026-05-18 20:22:15,222  INFO       [100/1106] Processing VLO ...

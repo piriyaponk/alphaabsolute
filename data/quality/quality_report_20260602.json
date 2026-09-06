@@ -1,0 +1,243 @@
+{
+  "date": "2026-06-02",
+  "generated_at": "2026-06-02T19:16:08.409551",
+  "summary": {
+    "ok": 12,
+    "warn": 2,
+    "fail": 1,
+    "skip": 0,
+    "overall": "fail"
+  },
+  "checks": [
+    {
+      "check": "date_formats",
+      "status": "ok",
+      "bad_rows": 0,
+      "total_rows": 488298,
+      "message": "All dates YYYY-MM-DD"
+    },
+    {
+      "check": "ticker_meta_dates",
+      "status": "ok",
+      "message": "All ticker_meta dates are YYYY-MM-DD"
+    },
+    {
+      "check": "volume_types",
+      "status": "fail",
+      "float_volumes": 2159,
+      "zero_or_null_volumes": 2398,
+      "message": "2159 float volumes (run fix_dates_volumes.py)",
+      "warning": "2398 zero/null volumes"
+    },
+    {
+      "check": "ohlc_coverage",
+      "status": "ok",
+      "total_rows": 375785,
+      "rows_with_ohlc": 370232,
+      "rows_null_ohlc": 5553,
+      "pct_covered": 98.5,
+      "tickers_with_ohlc": 1324,
+      "universe_size": 1326,
+      "message": "OHLC 99%: 5,553 rows need fill_ohlc_gaps.py (run after backfill)"
+    },
+    {
+      "check": "ohlcv_data_quality",
+      "status": "ok",
+      "date_range": "2024-01-02 to 2026-06-01",
+      "total_tickers": 1815,
+      "qqq_bars": 605,
+      "qqq_years": 2.4,
+      "tickers_lt_20_bars": 0,
+      "tickers_no_ma200": 114,
+      "tickers_no_rs12m": 648,
+      "message": "QQQ has 605 bars (2.4yr) | No MA200: 114 | No RS12M: 648"
+    },
+    {
+      "check": "backfill_progress",
+      "status": "warn",
+      "earliest_date": "2024-01-02",
+      "tickers_1y_history": 1171,
+      "tickers_3y_history": 0,
+      "pct_1y": 64.5,
+      "pct_3y": 0.0,
+      "message": "Short history: earliest=2024-01-02, 1Y=65%, 3Y=0%"
+    },
+    {
+      "check": "stale_tickers",
+      "status": "ok",
+      "latest_date": "2026-06-01",
+      "cutoff_3td": "2026-05-26",
+      "stale_count": 6,
+      "priority_stale": [],
+      "stale_sample": [
+        [
+          "SPNS",
+          "2025-12-16"
+        ],
+        [
+          "COMM",
+          "2026-01-13"
+        ],
+        [
+          "CFLT",
+          "2026-03-16"
+        ],
+        [
+          "GLDD",
+          "2026-04-01"
+        ],
+        [
+          "TPH",
+          "2026-05-13"
+        ],
+        [
+          "ANSS",
+          "2026-05-15"
+        ]
+      ],
+      "message": "6 tickers stale (> 3td behind)"
+    },
+    {
+      "check": "missing_universe",
+      "status": "ok",
+      "universe_size": 1326,
+      "in_db": 1326,
+      "missing_count": 0,
+      "missing_sample": [],
+      "message": "All 1326 universe tickers in ohlcv"
+    },
+    {
+      "check": "orphan_tickers",
+      "status": "ok",
+      "total_in_db": 1815,
+      "universe_size": 1326,
+      "orphan_count": 489,
+      "message": "489 benchmark tickers in DB (not in universe \u2014 expected for RS percentile)"
+    },
+    {
+      "check": "rs_coverage",
+      "status": "ok",
+      "latest_rs_date": "2026-05-29",
+      "covered_total": 1805,
+      "covered_in_universe": 1326,
+      "universe_size": 1326,
+      "pct_covered": 100.0,
+      "message": "RS coverage: 1326/1326 (100%) for 2026-05-29"
+    },
+    {
+      "check": "rs_null_composite",
+      "status": "ok",
+      "count": 0,
+      "tickers": [],
+      "message": "All rs_composite populated for 2026-05-29"
+    },
+    {
+      "check": "screening_freshness",
+      "status": "warn",
+      "latest_screen_date": "2026-05-29",
+      "tickers": 8900,
+      "message": "screening_results is stale: last date 2026-05-29"
+    },
+    {
+      "check": "fundamental_coverage",
+      "status": "ok",
+      "rs_gate_pass": 274,
+      "has_fundamentals": 255,
+      "missing_fundamentals": 19,
+      "pct_covered": 93.1,
+      "missing_high_rs": [
+        {
+          "ticker": "BLDP",
+          "label": "Energy_Renewable",
+          "rs_comp": 98.0
+        },
+        {
+          "ticker": "BITF",
+          "label": "NeoCloud",
+          "rs_comp": 97.0
+        },
+        {
+          "ticker": "NBIS",
+          "label": "AI_Related",
+          "rs_comp": 97.0
+        },
+        {
+          "ticker": "POET",
+          "label": "Photonics",
+          "rs_comp": 96.0
+        },
+        {
+          "ticker": "HIVE",
+          "label": "NeoCloud",
+          "rs_comp": 94.0
+        },
+        {
+          "ticker": "BTDR",
+          "label": "NeoCloud",
+          "rs_comp": 93.0
+        },
+        {
+          "ticker": "ABLV",
+          "label": "AI_Related",
+          "rs_comp": 91.0
+        },
+        {
+          "ticker": "OKTA",
+          "label": "DefenseTech",
+          "rs_comp": 91.0
+        },
+        {
+          "ticker": "ASTS",
+          "label": "Space",
+          "rs_comp": 91.0
+        },
+        {
+          "ticker": "NOK",
+          "label": "Connectivity",
+          "rs_comp": 90.0
+        },
+        {
+          "ticker": "ADUR",
+          "label": "Energy_Renewable",
+          "rs_comp": 88.0
+        },
+        {
+          "ticker": "ASTI",
+          "label": "Drone_UAV",
+          "rs_comp": 87.0
+        },
+        {
+          "ticker": "ALLR",
+          "label": "Healthcare_Pharma",
+          "rs_comp": 85.0
+        },
+        {
+          "ticker": "CRCL",
+          "label": "Finance_Fintech",
+          "rs_comp": 83.0
+        },
+        {
+          "ticker": "ASTL",
+          "label": "Materials",
+          "rs_comp": 81.0
+        }
+      ],
+      "message": "Fundamentals: 255/274 RS-passing tickers covered (93%)"
+    },
+    {
+      "check": "earnings_calendar",
+      "status": "ok",
+      "upcoming_events": 999,
+      "last_fetched": "2026-06-02T19:11:16.984129",
+      "message": "999 upcoming earnings events loaded (fetched 0d ago)"
+    },
+    {
+      "check": "pipeline_runs",
+      "status": "ok",
+      "recent_runs": 14,
+      "recent_fails": 0,
+      "failed_steps": [],
+      "message": "Last 14 pipeline runs all OK"
+    }
+  ]
+}

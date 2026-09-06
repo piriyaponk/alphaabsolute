@@ -1,0 +1,191 @@
+{
+  "generated_at": "2026-09-04T17:23:21",
+  "overall": "FAIL",
+  "fail_count": 3,
+  "warn_count": 4,
+  "ok_count": 22,
+  "skip_count": 1,
+  "total_checks": 30,
+  "checks": [
+    {
+      "id": "ohlcv_fresh",
+      "status": "FAIL",
+      "value": "2026-08-20",
+      "msg": "10d old (last trading day=2026-09-03) — run EOD updater"
+    },
+    {
+      "id": "ohlcv_universe_count",
+      "status": "OK",
+      "value": "1,740 tickers",
+      "msg": ""
+    },
+    {
+      "id": "ohlcv_spy_qqq",
+      "status": "OK",
+      "value": "SPY+QQQ present on latest date",
+      "msg": ""
+    },
+    {
+      "id": "schema_ticker_meta",
+      "status": "OK",
+      "value": "all cols present | rs_line: 1,815 populated",
+      "msg": ""
+    },
+    {
+      "id": "schema_fundamentals",
+      "status": "OK",
+      "value": "all gate cols present | no sentinel bug",
+      "msg": ""
+    },
+    {
+      "id": "schema_screening",
+      "status": "OK",
+      "value": "all 7 gate columns present",
+      "msg": ""
+    },
+    {
+      "id": "schema_earnings",
+      "status": "OK",
+      "value": "96 earnings events in next 7 days",
+      "msg": ""
+    },
+    {
+      "id": "api_keys",
+      "status": "OK",
+      "value": "6/6 keys configured",
+      "msg": ""
+    },
+    {
+      "id": "python_imports",
+      "status": "OK",
+      "value": "11 modules syntax-OK",
+      "msg": ""
+    },
+    {
+      "id": "runner_log",
+      "status": "OK",
+      "value": "2026-06-16 — all steps passed",
+      "msg": ""
+    },
+    {
+      "id": "critical_files",
+      "status": "OK",
+      "value": "all 11 files present",
+      "msg": ""
+    },
+    {
+      "id": "breadth_fresh",
+      "status": "OK",
+      "value": "2026-09-03 | 292 entries | n=11,267",
+      "msg": ""
+    },
+    {
+      "id": "market_health",
+      "status": "OK",
+      "value": "2026-09-04",
+      "msg": ""
+    },
+    {
+      "id": "macro_fresh",
+      "status": "OK",
+      "value": "2026-09-04",
+      "msg": ""
+    },
+    {
+      "id": "watchlist_fresh",
+      "status": "WARN",
+      "value": "2026-06-16",
+      "msg": "55d old (30 stocks) — re-run trend_template_screener.py"
+    },
+    {
+      "id": "setups_fresh",
+      "status": "FAIL",
+      "value": "2026-06-16",
+      "msg": "55d old — re-run setup_scanner.py"
+    },
+    {
+      "id": "top10_fresh",
+      "status": "WARN",
+      "value": "2026-06-16",
+      "msg": "55d old (20 leaders) — re-run trend_template_screener.py"
+    },
+    {
+      "id": "screener_fresh",
+      "status": "WARN",
+      "value": "2026-06-16",
+      "msg": "55d old (n=1771) — re-run trend_template_screener.py"
+    },
+    {
+      "id": "bigshot_fresh",
+      "status": "FAIL",
+      "value": "2026-06-16",
+      "msg": "55d old — re-run monster_scout.py"
+    },
+    {
+      "id": "regime_ohlcv_consistency",
+      "status": "WARN",
+      "value": "regime=2026-09-04, ohlcv=2026-08-20",
+      "msg": "10d gap — regime may use stale prices; re-run market_regime.py after OHLCV update"
+    },
+    {
+      "id": "rs_distribution",
+      "status": "OK",
+      "value": "avg=53.8 | min=0.0 | max=99.5 | n=1,325 | clustered=10%",
+      "msg": ""
+    },
+    {
+      "id": "gate_unknown_rate",
+      "status": "OK",
+      "value": "eps_unk=12.6% | rev_unk=20.3% | n=1,325 [fundamentals_summary [2026-06-01]]",
+      "msg": ""
+    },
+    {
+      "id": "grade_a_sanity",
+      "status": "SKIP",
+      "value": "",
+      "msg": "screening_results is 2026-05-29 (stale) — re-check after A06 runs"
+    },
+    {
+      "id": "adtv_large_cap",
+      "status": "OK",
+      "value": "AAPL=$12.4B | MSFT=$13.9B | NVDA=$32.0B",
+      "msg": ""
+    },
+    {
+      "id": "screening_dedup",
+      "status": "OK",
+      "value": "no duplicate tickers",
+      "msg": ""
+    },
+    {
+      "id": "setup_integrity",
+      "status": "OK",
+      "value": "no context_only leaks",
+      "msg": ""
+    },
+    {
+      "id": "setup_stop_logic",
+      "status": "OK",
+      "value": "all 48 setups pass geometry check",
+      "msg": ""
+    },
+    {
+      "id": "setup_rr_variance",
+      "status": "OK",
+      "value": "48 setups | floor=45 | regime=Distribution",
+      "msg": ""
+    },
+    {
+      "id": "cross_file_rs",
+      "status": "OK",
+      "value": "all 20 top10 tickers in rs_universe | dates aligned",
+      "msg": ""
+    },
+    {
+      "id": "stage2_regime",
+      "status": "OK",
+      "value": "370 pass Stage2 | regime=Distribution",
+      "msg": ""
+    }
+  ]
+}

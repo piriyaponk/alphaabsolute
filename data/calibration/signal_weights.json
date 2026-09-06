@@ -1,0 +1,91 @@
+{
+  "signal_weights": {
+    "gate_rs_3m_70": {
+      "prior": 0.65,
+      "posterior": null,
+      "n_trades": 0,
+      "hit_rate": null
+    },
+    "gate_rs_6m_70": {
+      "prior": 0.65,
+      "posterior": null,
+      "n_trades": 0,
+      "hit_rate": null
+    },
+    "gate_stage2": {
+      "prior": 0.6,
+      "posterior": null,
+      "n_trades": 0,
+      "hit_rate": null
+    },
+    "gate_eps_25": {
+      "prior": 0.7,
+      "posterior": null,
+      "n_trades": 0,
+      "hit_rate": null
+    },
+    "gate_rev_25": {
+      "prior": 0.65,
+      "posterior": null,
+      "n_trades": 0,
+      "hit_rate": null
+    },
+    "gate_gm_stable": {
+      "prior": 0.6,
+      "posterior": null,
+      "n_trades": 0,
+      "hit_rate": null
+    },
+    "gate_adtv_10m": {
+      "prior": 0.55,
+      "posterior": null,
+      "n_trades": 0,
+      "hit_rate": null
+    },
+    "setup_vcp": {
+      "prior": 0.68,
+      "posterior": null,
+      "n_trades": 0,
+      "hit_rate": null
+    },
+    "setup_bkt": {
+      "prior": 0.65,
+      "posterior": null,
+      "n_trades": 0,
+      "hit_rate": null
+    },
+    "setup_ppt": {
+      "prior": 0.63,
+      "posterior": null,
+      "n_trades": 0,
+      "hit_rate": null
+    },
+    "setup_ema": {
+      "prior": 0.6,
+      "posterior": null,
+      "n_trades": 0,
+      "hit_rate": null
+    },
+    "hot_theme_bonus": {
+      "prior": 0.55,
+      "posterior": null,
+      "n_trades": 0,
+      "hit_rate": null
+    },
+    "regime_markup": {
+      "prior": 0.72,
+      "posterior": null,
+      "n_trades": 0,
+      "hit_rate": null
+    },
+    "regime_dist": {
+      "prior": 0.45,
+      "posterior": null,
+      "n_trades": 0,
+      "hit_rate": null
+    }
+  },
+  "last_updated": "2026-05-22",
+  "n_total_trades": 0,
+  "note": "Initialized 2026-05-22 \u2014 all posteriors NULL until N>=20 trades per signal. hot_theme_bonus: LOCKED until N>=20."
+}

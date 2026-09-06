@@ -1,0 +1,100 @@
+{
+  "date": "2026-05-22",
+  "mode": "eod",
+  "run_at": "2026-05-22T08:10:59.374155",
+  "steps": [
+    {
+      "step": "ohlcv_update",
+      "name": "OHLCV Daily Update",
+      "status": "ok",
+      "duration": 0.0,
+      "output": "data/ohlcv.db",
+      "error": "",
+      "time": "08:10:59"
+    },
+    {
+      "step": "rs_history",
+      "name": "RS History Backfill (rolling 30d)",
+      "status": "ok",
+      "duration": 0.0,
+      "output": "data/rs_universe/latest.json",
+      "error": "",
+      "time": "08:10:59"
+    },
+    {
+      "step": "pipeline_metrics",
+      "name": "Pipeline Metrics (full recompute)",
+      "status": "ok",
+      "duration": 0.0,
+      "output": "data/screening/mode_a_full_latest.json",
+      "error": "",
+      "time": "08:10:59"
+    },
+    {
+      "step": "fundamentals",
+      "name": "A04 Fundamentals Pipeline",
+      "status": "ok",
+      "duration": 0.0,
+      "output": "data/ohlcv.db",
+      "error": "",
+      "time": "08:10:59"
+    },
+    {
+      "step": "fill_ohlc",
+      "name": "Fill OHLC Gaps (open/high/low)",
+      "status": "ok",
+      "duration": 0.0,
+      "output": "data/quality/quality_latest.json",
+      "error": "",
+      "time": "08:10:59"
+    },
+    {
+      "step": "data_quality_eod",
+      "name": "Data Quality Check (EOD)",
+      "status": "ok",
+      "duration": 0.0,
+      "output": "data/quality/quality_latest.json",
+      "error": "",
+      "time": "08:10:59"
+    },
+    {
+      "step": "ohlcv_prefetch",
+      "name": "OHLCV Pre-fetch (600 tickers)",
+      "status": "ok",
+      "duration": 0.0,
+      "output": "data/ohlcv_cache/_manifest.json",
+      "error": "",
+      "time": "08:10:59"
+    },
+    {
+      "step": "a12_postmortem",
+      "name": "A12 Auto Post-Mortem",
+      "status": "ok",
+      "duration": 0.0,
+      "output": "data/postmortems/lessons.json",
+      "error": "",
+      "time": "08:10:59"
+    },
+    {
+      "step": "a09_eod",
+      "name": "A09 Portfolio Manager (EOD update)",
+      "status": "ok",
+      "duration": 0.0,
+      "output": "data/portfolio/portfolio_state.json",
+      "error": "",
+      "time": "08:10:59"
+    },
+    {
+      "step": "a10_trader_eod",
+      "name": "A10 Paper Trader (EOD mark-to-market)",
+      "status": "ok",
+      "duration": 0.0,
+      "output": "data/portfolio/paper_portfolio_state.json",
+      "error": "",
+      "time": "08:10:59"
+    }
+  ],
+  "passed": 10,
+  "failed": 0,
+  "skipped": 0
+}

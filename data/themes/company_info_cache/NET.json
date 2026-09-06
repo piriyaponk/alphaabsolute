@@ -1,0 +1,9 @@
+{
+  "name": "Cloudflare, Inc. Class A common stock, par value $0.001 per share",
+  "description": "Cloudflare is a software company based in San Francisco, California, that offers security and web performance offerings by utilizing a distributed, serverless content delivery network, or CDN. The firm's edge computing platform, Workers, builds on this infrastructure by enabling clients to deploy and run code without the need to manage or maintain servers.",
+  "sic_code": "7372",
+  "sic_description": "SERVICES-PREPACKAGED SOFTWARE",
+  "market_cap": 69830791757.32,
+  "primary_exchange": "XNYS",
+  "fetched": "2026-05-18T23:26:56.765241"
+}

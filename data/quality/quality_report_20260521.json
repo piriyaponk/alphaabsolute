@@ -1,0 +1,240 @@
+{
+  "date": "2026-05-21",
+  "generated_at": "2026-05-21T20:31:28.754200",
+  "summary": {
+    "ok": 7,
+    "warn": 8,
+    "fail": 0,
+    "skip": 0,
+    "overall": "ok"
+  },
+  "checks": [
+    {
+      "check": "date_formats",
+      "status": "ok",
+      "bad_rows": 0,
+      "total_rows": 424872,
+      "message": "All dates YYYY-MM-DD"
+    },
+    {
+      "check": "ticker_meta_dates",
+      "status": "ok",
+      "message": "All ticker_meta dates are YYYY-MM-DD"
+    },
+    {
+      "check": "volume_types",
+      "status": "ok",
+      "float_volumes": 0,
+      "zero_or_null_volumes": 2306,
+      "message": "All volumes INTEGER",
+      "warning": "2306 zero/null volumes"
+    },
+    {
+      "check": "ohlc_coverage",
+      "status": "warn",
+      "total_rows": 314819,
+      "rows_with_ohlc": 0,
+      "rows_null_ohlc": 314819,
+      "pct_covered": 0.0,
+      "tickers_with_ohlc": 0,
+      "universe_size": 1325,
+      "message": "OHLC 0%: 314,819 rows need fill_ohlc_gaps.py (run after backfill)"
+    },
+    {
+      "check": "ohlcv_data_quality",
+      "status": "warn",
+      "date_range": "2024-05-21 to 2026-05-19",
+      "total_tickers": 1813,
+      "qqq_bars": 200,
+      "qqq_years": 0.8,
+      "tickers_lt_20_bars": 0,
+      "tickers_no_ma200": 318,
+      "tickers_no_rs12m": 1716,
+      "message": "QQQ has 200 bars (0.8yr) | No MA200: 318 | No RS12M: 1716"
+    },
+    {
+      "check": "backfill_progress",
+      "status": "warn",
+      "earliest_date": "2024-05-21",
+      "tickers_1y_history": 1104,
+      "tickers_3y_history": 0,
+      "pct_1y": 60.9,
+      "pct_3y": 0.0,
+      "message": "Short history: earliest=2024-05-21, 1Y=61%, 3Y=0%"
+    },
+    {
+      "check": "stale_tickers",
+      "status": "ok",
+      "latest_date": "2026-05-15",
+      "cutoff_3td": "2026-05-13",
+      "stale_count": 3,
+      "priority_stale": [],
+      "stale_sample": [
+        [
+          "SPNS",
+          "2025-12-16"
+        ],
+        [
+          "COMM",
+          "2026-01-13"
+        ],
+        [
+          "CFLT",
+          "2026-03-16"
+        ]
+      ],
+      "message": "3 tickers stale (> 3td behind)"
+    },
+    {
+      "check": "missing_universe",
+      "status": "ok",
+      "universe_size": 1325,
+      "in_db": 1325,
+      "missing_count": 0,
+      "missing_sample": [],
+      "message": "All 1325 universe tickers in ohlcv"
+    },
+    {
+      "check": "orphan_tickers",
+      "status": "ok",
+      "total_in_db": 1813,
+      "universe_size": 1325,
+      "orphan_count": 488,
+      "message": "488 benchmark tickers in DB (not in universe \u2014 expected for RS percentile)"
+    },
+    {
+      "check": "rs_coverage",
+      "status": "ok",
+      "latest_rs_date": "2026-05-19",
+      "covered_total": 1325,
+      "covered_in_universe": 1325,
+      "universe_size": 1325,
+      "pct_covered": 100.0,
+      "message": "RS coverage: 1325/1325 (100%) for 2026-05-19"
+    },
+    {
+      "check": "rs_null_composite",
+      "status": "warn",
+      "count": 8,
+      "tickers": [
+        "ARCI",
+        "AXIN",
+        "BKHA",
+        "BPAC",
+        "CFLT",
+        "COMM",
+        "SPNS",
+        "TPH"
+      ],
+      "message": "rs_composite NULL for 8 tickers on 2026-05-19 (< 21 days history)"
+    },
+    {
+      "check": "screening_freshness",
+      "status": "warn",
+      "latest_screen_date": "2026-05-19",
+      "tickers": 1325,
+      "message": "screening_results is stale: last date 2026-05-19"
+    },
+    {
+      "check": "fundamental_coverage",
+      "status": "warn",
+      "rs_gate_pass": 271,
+      "has_fundamentals": 128,
+      "missing_fundamentals": 143,
+      "pct_covered": 47.2,
+      "missing_high_rs": [
+        {
+          "ticker": "AGL",
+          "label": "Healthcare_Services",
+          "rs_comp": 100.0
+        },
+        {
+          "ticker": "POET",
+          "label": "Photonics",
+          "rs_comp": 99.0
+        },
+        {
+          "ticker": "ANTX",
+          "label": "Healthcare_Biotech",
+          "rs_comp": 99.0
+        },
+        {
+          "ticker": "AMBQ",
+          "label": "Semiconductor",
+          "rs_comp": 98.0
+        },
+        {
+          "ticker": "SNDK",
+          "label": "Memory_HBM",
+          "rs_comp": 98.0
+        },
+        {
+          "ticker": "AIP",
+          "label": "Semiconductor",
+          "rs_comp": 97.0
+        },
+        {
+          "ticker": "STX",
+          "label": "Memory_HBM",
+          "rs_comp": 97.0
+        },
+        {
+          "ticker": "STM",
+          "label": "Memory_HBM",
+          "rs_comp": 96.0
+        },
+        {
+          "ticker": "NBIS",
+          "label": "AI_Related",
+          "rs_comp": 96.0
+        },
+        {
+          "ticker": "ATEX",
+          "label": "Telecom_Services",
+          "rs_comp": 96.0
+        },
+        {
+          "ticker": "ANAB",
+          "label": "Healthcare_Biotech",
+          "rs_comp": 96.0
+        },
+        {
+          "ticker": "TSEM",
+          "label": "Semiconductor",
+          "rs_comp": 95.0
+        },
+        {
+          "ticker": "UMC",
+          "label": "Semiconductor",
+          "rs_comp": 95.0
+        },
+        {
+          "ticker": "BE",
+          "label": "Energy_Renewable",
+          "rs_comp": 95.0
+        },
+        {
+          "ticker": "ASYS",
+          "label": "Industrials",
+          "rs_comp": 95.0
+        }
+      ],
+      "message": "Fundamentals: 128/271 RS-passing tickers covered (47%)"
+    },
+    {
+      "check": "earnings_calendar",
+      "status": "warn",
+      "message": "No upcoming earnings in calendar \u2014 run fetch_earnings_calendar.py"
+    },
+    {
+      "check": "pipeline_runs",
+      "status": "warn",
+      "recent_runs": 3,
+      "recent_fails": 1,
+      "failed_steps": [
+        "pipeline_metrics"
+      ],
+      "message": "Last 3 runs: 1 failures"
+    }
+  ]
+}

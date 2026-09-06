@@ -1,0 +1,367 @@
+{
+  "last_updated": "2026-05-24",
+  "source_doc": "memory/thematic_bottleneck_framework.md",
+  "description": "Stub",
+  "bottleneck_owners": [
+    {
+      "ticker": "ETN",
+      "company_name": "Eaton Corporation",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "VRT",
+      "company_name": "Vertiv Holdings",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "PWR",
+      "company_name": "Quanta Services",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "EME",
+      "company_name": "EMCOR Group",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "NVDA",
+      "company_name": "NVIDIA Corporation",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "PLTR",
+      "company_name": "Palantir Technologies",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "MU",
+      "company_name": "Micron Technology",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "AMAT",
+      "company_name": "Applied Materials",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "RKLB",
+      "company_name": "Rocket Lab USA",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "LUNR",
+      "company_name": "Intuitive Machines",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "IONQ",
+      "company_name": "IonQ Inc",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "LITE",
+      "company_name": "Lumentum Holdings",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "COHR",
+      "company_name": "Coherent Corp",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "AXON",
+      "company_name": "Axon Enterprise",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "CACI",
+      "company_name": "CACI International",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "EQIX",
+      "company_name": "Equinix Inc",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "CCJ",
+      "company_name": "Cameco Corporation",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "CEG",
+      "company_name": "Constellation Energy",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "LEU",
+      "company_name": "Centrus Energy",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "OKLO",
+      "company_name": "Oklo Inc",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "NNE",
+      "company_name": "Nano Nuclear Energy",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "CRWV",
+      "company_name": "CoreWeave Inc",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "SMCI",
+      "company_name": "Super Micro Computer",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "CORZ",
+      "company_name": "Core Scientific",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "ANET",
+      "company_name": "Arista Networks",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "APH",
+      "company_name": "Amphenol Corporation",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "AVAV",
+      "company_name": "AeroVironment Inc",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "ISRG",
+      "company_name": "Intuitive Surgical",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "TER",
+      "company_name": "Teradyne Inc",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "ASTS",
+      "company_name": "AST SpaceMobile",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "COHU",
+      "company_name": "Cohu Inc",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "PLAB",
+      "company_name": "Photronics Inc",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "CAMT",
+      "company_name": "Camtek Ltd",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "ACMR",
+      "company_name": "ACM Research",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "KLIC",
+      "company_name": "Kulicke and Soffa Industries",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "AEIS",
+      "company_name": "Advanced Energy Industries",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "ONTO",
+      "company_name": "Onto Innovation",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "ACLS",
+      "company_name": "Axcelis Technologies",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "FORM",
+      "company_name": "FormFactor Inc",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    },
+    {
+      "ticker": "MSFT",
+      "company_name": "Microsoft Corporation",
+      "bottleneck_description": "See thematic_bottleneck_framework.md",
+      "chain_position": "See source doc",
+      "pricing_power": "M",
+      "theme": "TBD",
+      "notes": "Stub entry"
+    }
+  ]
+}

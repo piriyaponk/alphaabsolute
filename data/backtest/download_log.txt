@@ -1,0 +1,9 @@
+S&P500 loaded: 503 tickers
+Existing data: 1,140,702 rows, 406 tickers
+Remaining: 0 tickers | threads: 5
+Crumb: none
+
+Done in 0.0m
+  Total rows : 1,140,702
+  Tickers    : 406
+  Date range : 2015-01-02 to 2026-08-28
