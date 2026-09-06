@@ -183,11 +183,15 @@ def compute_signals(data_dict, spy_close, iwm_close):
             rv = log_ret.rolling(63, min_periods=20).std().iloc[-1] * np.sqrt(252)
             realized_vol = max(float(rv) if pd.notna(rv) else 0.30, 0.01)
 
+            rv20 = log_ret.rolling(20, min_periods=10).std().iloc[-1] * np.sqrt(252)
+            vol_20d = max(float(rv20) if pd.notna(rv20) else 0.30, 0.01)
+
             rows.append({
                 'ticker': ticker, 'close': close,
                 'rs_raw': rs_raw, 'vol_trend': vol_trend,
                 'vs_ma200_pct': vs_ma200,
                 'beta': beta, 'realized_vol': realized_vol,
+                'vol_20d': vol_20d,
             })
         except Exception:
             continue
@@ -446,6 +450,7 @@ def run_rebalance(init=False):
             'adtv_m':        round(float(row['adtv_63m']), 1),
             'rs_pct':        round(float(row['rs_pct']), 1),
             'beta':          round(float(row['beta']), 2),
+            'vol_20d':       round(float(row['vol_20d']), 4),
         }
 
     # Record fully exited positions + trade_logger post-mortem
@@ -565,7 +570,7 @@ def run_rebalance(init=False):
         f'',
         f'NAV: <b>${new_nav:,.0f}</b> | Since inception: <b>{since_inc:+.1f}%</b>',
         f'CAGR: <b>{cagr_pct:+.1f}%</b> | QQQ: {qqq_ret:+.1f}% | Excess: <b>{since_inc-qqq_ret:+.1f}%</b>',
-        f'Sharpe: {sharpe:.2f} | MaxDD: {max_dd_pct:.1f}%',
+        f'{"Sharpe: " + f"{sharpe:.2f}" if sharpe is not None else "Sharpe: N/A (<63d)"} | MaxDD: {max_dd_pct:.1f}%',
         f'',
         f'<b>{"PORTFOLIO (" if init else "NEW PORTFOLIO ("}{len(new_positions)} stocks | {deployed*100:.0f}% deployed)</b>',
         f'{"Ticker":<7} {"Wt":>5}  {"Cost":>8}  {"P&L%":>6}',

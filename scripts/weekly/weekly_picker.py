@@ -105,9 +105,7 @@ _REFRESH_PIPELINE = [
     # Layer 1: RS Intelligence
     ("scripts.pre_compute.rs_ranker",               "run",       "RS Universe Ranker (A03)"),
     ("scripts.pre_compute.rs_theme_ranker",         "run",       "Theme RS Ranker (A05)"),
-    # Layer 2: Curation + Execution
-    ("scripts.pre_compute.trend_template_screener", "run",       "PRISM Screener (A06)"),
-    ("scripts.pre_compute.setup_scanner",           "run",       "Setup Scanner (A08)"),
+    # Layer 2: Curation (System 4 — trend_template_screener + setup_scanner removed BOA-022)
 ]
 
 
@@ -147,9 +145,8 @@ def _last_trading_day() -> str:
 def _data_is_fresh(last_trading_day: str) -> bool:
     """Quick check — are the key output files already dated to last trading day?"""
     key_files = [
-        ROOT / "data" / "setups"       / "setups_today.json",
+        # setups_today.json + top30_watchlist.json removed — not written by System 4 (BOA-022)
         ROOT / "data" / "rs_universe"  / "strong_leader_latest.json",
-        ROOT / "data" / "leadership"   / "top30_watchlist.json",
         ROOT / "data" / "regime"       / "market_health.json",
     ]
     for f in key_files:
