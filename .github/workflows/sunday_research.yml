@@ -46,6 +46,18 @@ jobs:
           TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python scripts/brain/performance_monitor.py --monthly
 
+      - name: System Audit — Self-healing integration check
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
+          POLYGON_API_KEY:    ${{ secrets.POLYGON_API_KEY }}
+          TIINGO_API_KEY:     ${{ secrets.TIINGO_API_KEY }}
+        run: |
+          python -X utf8 scripts/brain/system_audit.py \
+            --max-attempts 3 \
+            --telegram
+        # exits 0 if all pass, 1 if issues remain -- CI shows red X if unresolved
+
       - name: Commit any outputs
         run: |
           git config user.name  "AlphaAbsolute Bot"

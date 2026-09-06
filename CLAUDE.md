@@ -871,6 +871,32 @@ AlphaAbsolute/
 
 ---
 
+## Integration Protocol — When Building Any New Script
+
+**When you build a new script, you MUST complete all 4 steps before committing:**
+
+```
+[ ] 1. Test standalone:    python scripts/brain/xxx.py   (must exit 0)
+[ ] 2. Wire to session_start.py  (if output is useful every morning)
+[ ] 3. Wire to pre_market_runner.py  (if it is a pipeline computation step)
+[ ] 4. Wire to vault_init.py  (if it produces Obsidian notes)
+```
+
+**System Audit** (`scripts/brain/system_audit.py`) runs 8 integration checks and auto-fixes
+what it can. Run it after any major change:
+
+```bash
+python -X utf8 scripts/brain/system_audit.py --max-attempts 3
+```
+
+Runs automatically every Sunday via `.github/workflows/sunday_research.yml`.
+Sends Telegram summary: `[OK] ALL CLEAR` or `[WARN] N unresolved`.
+
+**The Obsidian trap**: scripts built but never wired = dead code. The audit catches this.
+Never ship a brain script without completing all 4 integration steps above.
+
+---
+
 ## Bug-Fix Philosophy — Root Cause Only, No Patches
 
 **Core principle: ถ้าแก้แล้วปัญหายังเกิดได้อีก = ยังไม่ได้แก้**

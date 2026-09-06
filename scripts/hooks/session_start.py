@@ -1110,6 +1110,14 @@ def session_start():
     except Exception as _e:
         lines.append(f"\n[A15] skipped ({type(_e).__name__}: {_e})")
 
+    # ── System Audit: lightweight check (no fixing -- just flags issues) ────────
+    try:
+        from scripts.brain.system_audit import get_audit_summary
+        audit = get_audit_summary()
+        lines.append(f"\n{audit}")
+    except Exception as _e:
+        pass  # non-critical
+
     # ── Current State Updater: sync Obsidian 99_Current_State/state.md ───────
     try:
         from scripts.brain.current_state_updater import run as run_cs
