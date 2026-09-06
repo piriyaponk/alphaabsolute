@@ -425,22 +425,6 @@ def run_rebalance(init=False):
             # Rebalance: pay half spread on new entry
             cost_basis = px if init else round(px * (1 + COST_HALF), 4)
             entry_date = today
-            # Log entry to Obsidian Decision Journal (best-effort)
-            if not init:
-                try:
-                    from scripts.brain.trade_logger import log_entry as _log_entry
-                    _log_entry(
-                        ticker=tkr, mode='S4', setup='rebalance',
-                        entry_price=cost_basis,
-                        stop_price=round(cost_basis * 0.90, 4),
-                        target=round(cost_basis * 1.30, 4),
-                        size_pct=round(float(row['weight']) * 100, 1),
-                        grade='A', regime=regime,
-                        rs_pct=float(row['rs_pct']),
-                        thesis=f'RS={row["rs_pct"]:.0f}th | vol_trend={row["vol_trend"]:.2f} | beta={row["beta"]:.2f}',
-                    )
-                except Exception:
-                    pass
 
         new_positions[tkr] = {
             'shares':        round(new_sh, 4),
@@ -453,17 +437,7 @@ def run_rebalance(init=False):
             'vol_20d':       round(float(row['vol_20d']), 4),
         }
 
-    # Record fully exited positions + trade_logger post-mortem
-    try:
-        import sys as _sys
-        _root = str(Path(__file__).resolve().parents[2])
-        if _root not in _sys.path:
-            _sys.path.insert(0, _root)
-        from scripts.brain.trade_logger import log_exit as _log_exit
-        _tl_available = True
-    except Exception:
-        _tl_available = False
-
+    # Record fully exited positions
     for tkr, prev in prev_positions.items():
         if tkr not in new_positions:
             td = data_dict.get(tkr)
@@ -483,21 +457,6 @@ def run_rebalance(init=False):
                     'realized_usd': realized, 'pnl_pct': pnl_pct,
                     'type': 'full_exit'
                 })
-            # Log to Obsidian post-mortem
-            if _tl_available:
-                try:
-                    _log_exit(
-                        ticker=tkr,
-                        entry_date=prev.get('entry_date', '?'),
-                        entry_price=old_cost,
-                        exit_price=round(exit_px, 4),
-                        exit_reason='rebalance_exit',
-                        regime_at_exit=regime,
-                        rs_at_exit=prev.get('rs_pct', 0),
-                        error_class='none',
-                    )
-                except Exception:
-                    pass
 
     # ── Recalculate NAV from new positions × current prices ───────────────────
     deployed = weights.sum()

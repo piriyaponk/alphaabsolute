@@ -140,7 +140,6 @@ def check_c02_session_wiring() -> CheckResult:
         return r.fail("session_start.py not found")
     content = SESSION_START.read_text(encoding="utf-8")
     required_imports = [
-        ("daily_insight",        "scripts.brain.daily_insight"),
         ("performance_monitor",  "scripts.brain.performance_monitor"),
         ("current_state_updater","scripts.brain.current_state_updater"),
     ]
@@ -225,26 +224,6 @@ def check_c07_playbooks() -> CheckResult:
         return r.fail(str(e))
 
 
-def check_c08_trade_logger_folders() -> CheckResult:
-    r = CheckResult("C08", "Trade logger 14_Post_Mortem/ folders")
-    try:
-        from scripts.brain.obsidian_writer_v2 import VAULT
-        required = [
-            "14_Post_Mortem/Winners",
-            "14_Post_Mortem/Losers",
-            "14_Post_Mortem/False_Negative",
-            "14_Post_Mortem/False_Positive",
-            "14_Post_Mortem/Process_Error",
-            "13_Decision_Journal",
-        ]
-        missing = [f for f in required if not (VAULT / f).exists()]
-        if missing:
-            return r.fail(f"Missing folders: {missing}")
-        return r.ok(f"All {len(required)} folders present")
-    except Exception as e:
-        return r.fail(str(e))
-
-
 ALL_CHECKS = [
     check_c01_vault,
     check_c02_session_wiring,
@@ -253,7 +232,6 @@ ALL_CHECKS = [
     check_c05_env_vars,
     check_c06_market_memory,
     check_c07_playbooks,
-    check_c08_trade_logger_folders,
 ]
 
 

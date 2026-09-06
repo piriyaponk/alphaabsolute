@@ -380,16 +380,6 @@ def session_start():
         if last_decision:
             lines.append(f"\n[Last Ops] {last_ops.name}: {last_decision[-1]}")
 
-    # ── Team K: Daily Research Digest ─────────────────────────────────────────
-    try:
-        if str(ROOT) not in sys.path:
-            sys.path.insert(0, str(ROOT))
-        from scripts.brain.daily_insight import run as run_daily_insight
-        insight = run_daily_insight(silent=True)
-        lines.append(f"\n{insight}")
-    except Exception as _e:
-        lines.append(f"\n[Team K] skipped ({type(_e).__name__}: {_e})")
-
     # ── A15: Performance Monitor ──────────────────────────────────────────────
     try:
         from scripts.brain.performance_monitor import run as run_perf
@@ -414,19 +404,6 @@ def session_start():
     except Exception as _e:
         lines.append(f"\n[CurrentState] skipped ({type(_e).__name__}: {_e})")
 
-    # ── Learning Loop Stats ───────────────────────────────────────────────────
-    try:
-        from scripts.brain.trade_logger import get_learning_stats
-        ls = get_learning_stats()
-        total = ls["total"]
-        if total > 0:
-            lines.append(
-                f"\n[Learning Loop] {total} post-mortems | "
-                f"W={ls['winners']} L={ls['losers']} "
-                f"FN={ls['false_neg']} (missed runs)"
-            )
-    except Exception as _e:
-        pass  # non-critical
 
     # ── Today's context reminder
     lines.append(f"\n[Context] Load mode: research.md / execution.md / review.md")
