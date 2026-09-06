@@ -585,18 +585,7 @@ STEPS: list[dict] = [
         "modes":           ["monthly"],
         "skip_if_missing": False,
     },
-    {
-        "id":              "a12_performance",
-        "layer":           "4-Learning",
-        "name":            "A12 Performance Tracker (monthly report)",
-        "module":          "scripts.portfolio.performance_tracker",
-        "func":            "run",
-        "output":          "output/",
-        "desc":            "Attribution + mistake classification + QQQ comparison (monthly)",
-        "critical":        False,
-        "modes":           ["monthly"],
-        "skip_if_missing": True,    # not yet built — skip silently
-    },
+    # a12_performance (scripts.portfolio.performance_tracker) removed — archived
 ]
 
 
