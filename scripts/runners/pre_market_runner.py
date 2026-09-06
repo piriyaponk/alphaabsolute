@@ -272,120 +272,13 @@ STEPS: list[dict] = [
         "modes":       ["premarket"],
     },
 
-    # ── Layer 2: Curation ─────────────────────────────────────────────────────
-    {
-        "id":       "a06",
-        "layer":    "2-Curation",
-        "name":     "A06 Leadership Curator (Mode A)",
-        "module":   "scripts.pre_compute.trend_template_screener",
-        "func":     "run",
-        "output":   "data/leadership/top30_watchlist.json",
-        "desc":     "Full Mode A 5-gate screen → Top 30 Watchlist + Top 10 Active Leaders",
-        "critical": False,
-        "modes":    ["premarket"],
-    },
-    {
-        "id":       "earnings_inflection",
-        "layer":    "2-Curation",
-        "name":     "Earnings Inflection Scout",
-        "module":   "scripts.pre_compute.earnings_inflection_scout",
-        "func":     "run",
-        "output":   "data/bigshot/earnings_inflection.json",
-        "desc":     "Revenue inflection scan — 270 themed tickers, FIRST_INFLECTION/TURNAROUND/ACCELERATING",
-        "critical": False,
-        "modes":    ["premarket"],
-    },
-    {
-        "id":       "a07",
-        "layer":    "2-Curation",
-        "name":     "A07 Monster Scout (Mode B)",
-        "module":   "scripts.pre_compute.monster_scout",
-        "func":     "run",
-        "output":   "data/bigshot/candidates.json",
-        "desc":     "Mode B screen → Big Shot breakout candidates (max 5, breakout ≥63D high, inflection bonus)",
-        "critical": False,
-        "modes":    ["premarket"],
-    },
-    {
-        "id":          "motw_selector",
-        "layer":       "2-Curation",
-        "name":        "Monster of the Week Selector",
-        "module":      "scripts.pre_compute.monster_of_week_selector",
-        "func":        "run",
-        "output":      "data/bigshot/motw_selection.json",
-        "desc":        "Phase 1 scoring (100 pts) → pick top Monster Scout candidate for deep research (Sundays)",
-        "critical":    False,
-        "modes":       ["premarket"],
-        "sunday_only": True,
-        "skip_if_missing": False,
-    },
-    {
-        "id":          "motw_research",
-        "layer":       "2-Curation",
-        "name":        "Monster Deep Research + Telegram",
-        "module":      "scripts.pre_compute.monster_deep_research",
-        "func":        "run",
-        "output":      "data/bigshot/",
-        "desc":        "Claude Haiku plain-language 10x thesis + 3-message Telegram brief (Sundays)",
-        "critical":    False,
-        "modes":       ["premarket"],
-        "sunday_only": True,
-        "skip_if_missing": False,
-    },
-
     # ── Layer 3: Execution ────────────────────────────────────────────────────
-    {
-        "id":       "a08",
-        "layer":    "3-Execution",
-        "name":     "A08 Setup Scanner",
-        "module":   "scripts.pre_compute.setup_scanner",
-        "func":     "run",
-        "output":   "data/setups/setups_today.json",
-        "desc":     "8 setup types (VCP/BKT/PPT/EMA/SPR/FIB) → entry/stop/target/RR for each candidate",
-        "critical": False,
-        "modes":    ["premarket"],
-    },
-    # a09 + a10_trader removed — old NRGC/PRISM auto-trader archived to archive/v2_old_trading/
-    # System 4 (v4_paper_trader.py) runs on its own schedule (monthly rebalance)
-    {
-        "id":       "a10",
-        "layer":    "3-Execution",
-        "name":     "A10 Risk Guardian",
-        "module":   "scripts.pre_compute.risk_guardian",
-        "func":     "run",
-        "output":   "data/risk/risk_report.json",
-        "desc":     "Portfolio-level hard limits + devil's advocate + entry approval/block",
-        "critical": False,
-        "modes":    ["premarket"],
-    },
+    # a06/a07/a08/a09/a10 removed — PRISM/Monster Scout/Setup Scanner archived to archive/v2_old_trading/
+    # System 4 (v4_paper_trader.py) is the ONE portfolio — runs on its own monthly rebalance schedule
 
-    # ── Weekly Data Enrichment (Fridays only, before Monster Scout) ─────────
-    {
-        "id":          "fetch_rev_multiq",
-        "layer":       "1-Intelligence",
-        "name":        "Revenue Multi-Quarter Fetcher",
-        "module":      "scripts.pre_compute.fetch_revenue_multiquarter",
-        "func":        "main",
-        "output":      "data/themes/revenue_multiquarter_cache.json",
-        "desc":        "Fetch 4Q revenue YoY trend from EDGAR for all theme tickers (Fridays only)",
-        "critical":    False,
-        "modes":       ["premarket"],
-        "friday_only": True,
-    },
-    {
-        "id":          "fetch_mktcap",
-        "layer":       "1-Intelligence",
-        "name":        "Market Cap Cache Builder",
-        "module":      "scripts.pre_compute.fetch_market_cap",
-        "func":        "main",
-        "output":      "data/themes/market_cap_cache.json",
-        "desc":        "Fetch market cap from Finnhub for all theme tickers — $20B gate (Fridays only)",
-        "critical":    False,
-        "modes":       ["premarket"],
-        "friday_only": True,
-    },
+    # fetch_rev_multiq + fetch_mktcap removed — PRISM theme-ticker enrichment, not used by System 4
 
-    # ── Weekly Forward-Test Snapshot (Fridays only, after A06) ──────────────
+    # ── Weekly Forward-Test Snapshot (Fridays only) ──────────────────────────
     {
         "id":          "fwd_snapshot",
         "layer":       "2-Curation",

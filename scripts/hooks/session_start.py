@@ -63,14 +63,7 @@ def _session_health_check() -> list[str]:
                 missing_cols = [c for c in ("rs_line_current", "rs_line_direction", "rs_line_near_high")
                                 if c not in pragma]
                 if missing_cols:
-                    issues.append(f"[FAIL] ticker_meta missing columns: {missing_cols} — run trend_template_screener.py")
-                else:
-                    # Check populated
-                    n_pop = conn.execute(
-                        "SELECT COUNT(*) FROM ticker_meta WHERE rs_line_current IS NOT NULL"
-                    ).fetchone()[0]
-                    if n_pop < 200:
-                        issues.append(f"[!]   rs_line mostly NULL ({n_pop} rows) — re-run trend_template_screener.py")
+                    pass  # rs_line columns optional — trend_template_screener removed
         except Exception as e:
             issues.append(f"[!]   OHLCV DB check error: {e}")
 
@@ -85,10 +78,8 @@ def _session_health_check() -> list[str]:
             if days > 5:
                 issues.append(f"[!]   Breadth {days}d old ({hist[-1].get('date')}) — run fetch_market_breadth.py")
 
-    # ── 3. Setups / Watchlist freshness ────────────────────────────────────
+    # ── 3. Regime freshness ─────────────────────────────────────────────────
     for fname, label, script in [
-        ("data/setups/setups_today.json",         "Setups",   "setup_scanner.py"),
-        ("data/leadership/top30_watchlist.json",   "Watchlist","trend_template_screener.py"),
         ("data/regime/market_health.json",         "Regime",   "market_regime.py"),
     ]:
         f = ROOT / fname
@@ -102,17 +93,7 @@ def _session_health_check() -> list[str]:
             if days > 5:
                 issues.append(f"[!]   {label} {days}d old ({date_str}) — re-run {script}")
 
-    # ── 4. Setup integrity: context_only / FIB must not be in actionable ──
-    setups_f = ROOT / "data" / "setups" / "setups_today.json"
-    if setups_f.exists():
-        s = load_json(setups_f, {})
-        leaks = [x.get("ticker","?") + "(" + x.get("setup_type","?") + ")"
-                 for x in s.get("setups", [])
-                 if x.get("context_only") or x.get("setup_type") in ("FIB", "EMA", "VPS")]
-        if leaks:
-            issues.append(f"[FAIL] Context-only setups in actionable list: {', '.join(leaks)} — fix setup_scanner.py filter")
-
-    # ── 5. Read cached health_report for slow checks (imports, runner log) ─
+    # ── 4. Read cached health_report for slow checks (imports, runner log) ─
     report_f = ROOT / "data" / "health" / "health_report.json"
     if report_f.exists():
         try:
@@ -230,8 +211,6 @@ def session_start():
             regime_score = m0.get("regime_score", 0)
             cash_floor   = m0.get("cash_floor", 0.0)
             max_deployed = m0.get("max_deployed", 1.0)
-            leaders_ok   = m0.get("leaders_ok", True)
-            bigshot_ok   = m0.get("bigshot_ok", False)
             spy_td       = m0.get("spy_td_signal", "Neutral")
             qqq_td       = m0.get("qqq_td_signal", "Neutral")
             pct_50       = m0.get("pct_above_50dma")
@@ -249,13 +228,12 @@ def session_start():
                 "Sideways":     "[!]",
                 "Markdown":     "[RED]",
             }
-            emoji    = REGIME_EMOJI.get(regime_name, "❓")
-            buy_mode = "A+B" if leaders_ok and bigshot_ok else ("A-only" if leaders_ok else "NO-BUY")
+            emoji = REGIME_EMOJI.get(regime_name, "❓")
 
             lines.append(
                 f"\n[M0 REGIME] {emoji} {regime_name} | Score={regime_score}/85"
                 f" | Cash>={cash_floor:.0%} | Deploy<={max_deployed:.0%}"
-                f" | Buys={buy_mode} | Data:{computed}"
+                f" | Data:{computed}"
             )
 
             # Breadth + TD
@@ -399,19 +377,6 @@ def session_start():
         except Exception:
             pass
 
-    # ── Earnings Inflection Alerts ────────────────────────────────────────────
-    infl_file = ROOT / "data/earnings_inflection/latest.json"
-    if infl_file.exists():
-        try:
-            infl = load_json(infl_file)
-            if infl.get("date") == date.today().isoformat() and infl.get("phase2_count", 0) > 0:
-                alerts = infl.get("phase2_alerts", [])
-                lines.append(f"\n[[HOT] I2 Inflection] {len(alerts)} Phase 2 EPS confirmed:")
-                for a in alerts[:3]:
-                    lines.append(f"  {a['ticker']}: EPS YoY={a.get('latest_eps_yoy',0):+.0f}% | "
-                                 f"Rev YoY={a.get('latest_rev_yoy',0):+.0f}% | {a.get('signals',[''])[0][:35]}")
-        except Exception:
-            pass
 
     # Trend Template, PULSE Backtest, I9 Learn removed — not part of System 4
 

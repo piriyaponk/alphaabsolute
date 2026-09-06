@@ -114,26 +114,23 @@ def _load_macro() -> dict:
 
 
 def _load_setups() -> list[dict]:
-    data = _load_json(ROOT / "data" / "setups" / "setups_today.json")
-    return data.get("setups", [])
+    return []  # setup_scanner removed — System 4 does not use PRISM setups
 
 
 def _load_signals() -> dict:
-    return _load_json(ROOT / "data" / "portfolio" / "action_signals.json")
+    return {}  # action_signals removed — System 4 manages exits internally
 
 
 def _load_portfolio() -> dict:
-    return _load_json(ROOT / "data" / "portfolio" / "portfolio_state.json")
+    return {}  # old portfolio_state removed — use System 4 state.json
 
 
 def _load_paper_portfolio() -> dict:
-    return _load_json(ROOT / "data" / "portfolio" / "paper_portfolio_state.json")
+    return _load_json(ROOT / "data" / "paper_trading" / "state.json")
 
 
 def _load_risk() -> dict:
-    # v2 canonical path: data/risk/risk_report.json (written by risk_guardian.py)
-    # data/risk_guardian/daily_report.json was a v1 path that no longer exists — removed
-    return _load_json(ROOT / "data" / "risk" / "risk_report.json")
+    return {}  # risk_guardian removed — System 4 enforces its own limits
 
 
 def _load_changes() -> dict:
@@ -141,8 +138,7 @@ def _load_changes() -> dict:
 
 
 def _load_top30() -> list:
-    data = _load_json(ROOT / "data" / "leadership" / "top30_watchlist.json")
-    return data.get("watchlist", data.get("stocks", []))
+    return []  # trend_template_screener removed — System 4 does not use PRISM watchlist
 
 
 def _load_rs_universe() -> dict:
@@ -877,107 +873,26 @@ def build_telegram_messages(health: dict, setups: list, signals: dict,
 
     messages.append("\n".join(header_lines))
 
-    # ── Split setups: Mode A (Minervini) vs Mode B (Monster Scout 10x) ──────────
-    context_types = {"EMA", "VPS", "FIB"}
-    bigshot_ok    = health.get("bigshot_ok", regime == "Markup")
+    # ── System 4 Portfolio ────────────────────────────────────────────────────
+    s4 = _load_paper_portfolio()
+    if s4:
+        s4_nav   = s4.get("nav", 0)
+        s4_inc   = s4.get("inception_nav", s4_nav)
+        s4_ret   = (s4_nav / max(s4_inc, 1) - 1) * 100
+        s4_pos   = s4.get("positions", {})
+        s4_cash  = s4.get("cash", 0)
+        s4_dep   = round((1 - s4_cash / max(s4_nav, 1)) * 100, 1)
+        s4_reg   = s4.get("regime", "?")
+        s4_lines = [
+            f"📈 *System 4 Portfolio* — {len(s4_pos)} pos | Deployed {s4_dep:.0f}% | "
+            f"NAV ${s4_nav:,.0f} ({s4_ret:+.1f}%) | S4 Regime: {s4_reg}"
+        ]
+        top5 = sorted(s4_pos.items(), key=lambda x: -x[1].get("weight_target", 0))[:5]
+        for tkr, p in top5:
+            s4_lines.append(f"  *{tkr}* {p['weight_target']*100:.1f}% | RS={p.get('rs_pct',0):.0f}")
+        messages.append("\n".join(s4_lines))
 
-    # Mode A: Minervini SEPA leaders — entry/stop/target/RR format
-    mode_a_a = [s for s in setups
-                if s.get("setup_grade") == "A"
-                and s.get("mode", "A") == "A"
-                and s.get("setup_type", "") not in context_types][:5]
-    mode_a_b = [s for s in setups
-                if s.get("setup_grade") == "B"
-                and s.get("mode", "A") == "A"
-                and s.get("setup_type", "") not in context_types]
-
-    # FIX: deduplicate Mode B — if a ticker already appears in Mode A (PRISM),
-    # skip it in Mode B to avoid sending the same stock twice on Telegram.
-    # PRISM takes precedence over Monster Scout for the same ticker.
-    mode_a_tickers = {s.get("ticker") for s in mode_a_a} | {s.get("ticker") for s in mode_a_b}
-
-    # Mode B: Monster Scout 10x candidates
-    mode_b_a = [s for s in setups
-                if s.get("setup_grade") == "A"
-                and s.get("mode", "A") == "B"
-                and s.get("setup_type", "") not in context_types
-                and s.get("ticker") not in mode_a_tickers][:3]   # FIX: exclude Mode A tickers
-    mode_b_b = [s for s in setups
-                if s.get("setup_grade") == "B"
-                and s.get("mode", "A") == "B"
-                and s.get("setup_type", "") not in context_types
-                and s.get("ticker") not in mode_a_tickers][:2]   # FIX: exclude Mode A tickers
-
-    # ── Mode A: Grade A cards ─────────────────────────────────────────────────
-    if mode_a_a:
-        for s in mode_a_a:
-            messages.append(_setup_card_full(s, rs_universe, "A"))
-    else:
-        messages.append("⭐ *No PRISM Grade A setups today — watchlist mode*")
-
-    # ── Mode A: Grade B compact list (Markup + Distribution) ─────────────────
-    if mode_a_b and regime in ("Markup", "Distribution"):
-        b_lines = ["✅ *PRISM Grade B — reduced size (5%), no pyramid:*"]
-        for s in mode_a_b[:4]:
-            ticker = s.get("ticker", "?")
-            stype  = _setup_full(s.get("setup_type", "?"))
-            pivot  = s.get("pivot", 0)
-            stop   = s.get("stop", 0)
-            t2b    = s.get("target_2", 0)
-            rr = s.get("rr_to_t2")
-            if rr is None and t2b and pivot and stop and pivot > stop:
-                rr = (t2b - pivot) / (pivot - stop)
-            rr   = rr if (rr and rr > 0) else s.get("rr_ratio", 0)
-            size = s.get("recommended_size_pct", 5)
-            b_lines.append(
-                f"  ✅ *{ticker}* — {stype} | {_dollar(pivot)} | Stop {_dollar(stop)} "
-                f"| RR {rr:.1f}x | {size:.0f}%"
-            )
-        messages.append("\n".join(b_lines))
-
-    # ── Mode B: Monster Scout 10x candidates ─────────────────────────────────
-    has_mode_b = mode_b_a or mode_b_b
-    if has_mode_b:
-        if bigshot_ok:
-            # Active regime — show as actionable
-            for s in mode_b_a:
-                messages.append(_setup_card_monster(s, rs_universe, "A"))
-            if mode_b_b:
-                bb_lines = ["🌱 *Monster Scout Grade B — 2.5% size, high risk:*"]
-                for s in mode_b_b:
-                    ticker     = s.get("ticker", "?")
-                    inflection = s.get("revenue_inflection") or s.get("inflection_label", "")
-                    stype      = s.get("setup_type", "")
-                    theme      = s.get("theme", "") or ""
-                    mkt        = s.get("market_cap")
-                    mkt_s      = f"${mkt/1e6:.0f}M" if mkt and mkt < 1e9 else (f"${mkt/1e9:.1f}B" if mkt else "")
-                    pivot      = s.get("pivot", 0)
-                    stop       = s.get("stop", 0)
-                    # FIX: show setup_type if inflection empty, show theme if mkt_cap empty
-                    label = inflection.replace("_", " ") if inflection else stype
-                    meta  = theme if (theme and theme not in ("—", "-")) else mkt_s
-                    bb_lines.append(
-                        f"  🌱 *{ticker}* | {label} | "
-                        f"{_dollar(pivot)} stop {_dollar(stop)} | {meta}"
-                    )
-                messages.append("\n".join(bb_lines))
-        else:
-            # Distribution/Markdown — show as watch-only (no entry)
-            watch_lines = [
-                f"👁 *Monster Scout — WATCH ONLY ({regime} regime, no entry)*",
-                "Preparing for regime change. Entry blocked until regime clears."
-            ]
-            for s in (mode_b_a + mode_b_b)[:4]:
-                ticker     = s.get("ticker", "?")
-                inflection = s.get("revenue_inflection") or s.get("inflection_label", "")
-                mkt        = s.get("market_cap")
-                mkt_s      = f"${mkt/1e6:.0f}M" if mkt and mkt < 1e9 else (f"${mkt/1e9:.1f}B" if mkt else "")
-                base_num   = s.get("base_number") or s.get("base_count", "")
-                base_s     = f"Base {base_num}" if base_num not in (None, "", 0) else ""
-                theme      = s.get("theme", "")
-                meta       = " | ".join(p for p in [inflection.replace("_", " "), base_s, mkt_s, theme] if p)
-                watch_lines.append(f"  👁 *{ticker}* — {meta}")
-            messages.append("\n".join(watch_lines))
+    # (PRISM setups removed — System 4 manages its own monthly rebalance)
 
     # ── Portfolio summary (always last) ───────────────────────────────────────
     real_pos   = portfolio.get("positions", {})
