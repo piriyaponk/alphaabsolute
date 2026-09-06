@@ -32,7 +32,7 @@ if hasattr(sys.stdout, "reconfigure"):
 
 BASE_DIR = Path(__file__).resolve().parents[2]
 DATA_DIR = BASE_DIR / "data" / "rs_universe"
-NRGC_DIR = BASE_DIR / "data" / "nrgc" / "state"
+NRGC_DIR = None  # NRGC removed — System 4 only
 PORT_FILE = BASE_DIR / "data" / "paper_trading" / "state.json"
 CANSLIM_DIR = BASE_DIR / "data" / "canslim_scores"
 ACTIVE_UNIVERSE_FILE = BASE_DIR / "data" / "universe" / "active_universe.json"
@@ -142,17 +142,6 @@ def get_tracked_universe() -> list:
                 tickers.add(t.upper())
         except Exception:
             pass
-
-    # From NRGC state files (add Phase 2/3/4 candidates)
-    if NRGC_DIR.exists():
-        for f in NRGC_DIR.glob("*.json"):
-            try:
-                d = json.loads(f.read_text(encoding="utf-8"))
-                ph = d.get("phase", 0)
-                if ph in (2, 3, 4):
-                    tickers.add(f.stem.upper())
-            except Exception:
-                pass
 
     # From portfolio positions (always track held stocks)
     if PORT_FILE.exists():
@@ -892,14 +881,7 @@ def run():
                                              ticker=ticker,
                                              theme_rs_data=theme_rs_for_gate)
 
-        # Load NRGC phase for context
-        nrgc_phase = None
-        nrgc_f = NRGC_DIR / f"{ticker}.json"
-        if nrgc_f.exists():
-            try:
-                nrgc_phase = json.loads(nrgc_f.read_text(encoding="utf-8")).get("phase")
-            except Exception:
-                pass
+        nrgc_phase = None  # NRGC removed
 
         rs_source = pcts.get("rs_source", "watchlist")
         entry = {

@@ -1,0 +1,108 @@
+[
+  {
+    "date": "2026-09-06",
+    "inception_date": "2026-09-02",
+    "nav": 1030020.58,
+    "inception_nav": 1000000.0,
+    "port_return_total_pct": 3.0,
+    "qqq_return_total_pct": 1.16,
+    "alpha_total_pct": 1.84,
+    "port_return_30d_pct": 3.0,
+    "qqq_return_30d_pct": 1.34,
+    "alpha_30d_pct": 1.66,
+    "n_positions": 15,
+    "realized_pnl": [],
+    "attribution": [
+      {
+        "ticker": "MRNA",
+        "weight_pct": 0,
+        "return_pct": 0.0,
+        "contribution_bps": 0.0
+      },
+      {
+        "ticker": "SNDK",
+        "weight_pct": 0,
+        "return_pct": 0.0,
+        "contribution_bps": 0.0
+      },
+      {
+        "ticker": "TXG",
+        "weight_pct": 0,
+        "return_pct": 0.0,
+        "contribution_bps": 0.0
+      },
+      {
+        "ticker": "TWST",
+        "weight_pct": 0,
+        "return_pct": 0.0,
+        "contribution_bps": 0.0
+      },
+      {
+        "ticker": "DELL",
+        "weight_pct": 0,
+        "return_pct": 0.0,
+        "contribution_bps": 0.0
+      },
+      {
+        "ticker": "LITE",
+        "weight_pct": 0,
+        "return_pct": 0.0,
+        "contribution_bps": 0.0
+      },
+      {
+        "ticker": "RVMD",
+        "weight_pct": 0,
+        "return_pct": 0.0,
+        "contribution_bps": 0.0
+      },
+      {
+        "ticker": "STX",
+        "weight_pct": 0,
+        "return_pct": 0.0,
+        "contribution_bps": 0.0
+      },
+      {
+        "ticker": "SYRE",
+        "weight_pct": 0,
+        "return_pct": 0.0,
+        "contribution_bps": 0.0
+      },
+      {
+        "ticker": "AAOI",
+        "weight_pct": 0,
+        "return_pct": 0.0,
+        "contribution_bps": 0.0
+      },
+      {
+        "ticker": "WDC",
+        "weight_pct": 0,
+        "return_pct": 0.0,
+        "contribution_bps": 0.0
+      },
+      {
+        "ticker": "ANDG",
+        "weight_pct": 0,
+        "return_pct": 0.0,
+        "contribution_bps": 0.0
+      },
+      {
+        "ticker": "RNG",
+        "weight_pct": 0,
+        "return_pct": 0.0,
+        "contribution_bps": 0.0
+      },
+      {
+        "ticker": "TVTX",
+        "weight_pct": 0,
+        "return_pct": 0.0,
+        "contribution_bps": 0.0
+      },
+      {
+        "ticker": "LQDA",
+        "weight_pct": 0,
+        "return_pct": 0.0,
+        "contribution_bps": 0.0
+      }
+    ]
+  }
+]

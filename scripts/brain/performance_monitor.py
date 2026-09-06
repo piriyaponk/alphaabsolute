@@ -141,8 +141,13 @@ def _format_terminal(state: Optional[dict], metrics: dict, alert: str) -> str:
 
     # NAV vs QQQ from state
     if state:
-        nav_pct = state.get("nav_return_pct", 0)
-        qqq_pct = state.get("qqq_return_pct", 0)
+        nav = state.get("nav", 0)
+        inc = state.get("inception_nav", nav or 1)
+        nav_pct = (nav - inc) / inc * 100 if inc else 0
+        qqq_h = state.get("qqq_nav_history", {})
+        qqq_inc = state.get("qqq_inception")
+        qqq_vals = [qqq_h[k] for k in sorted(qqq_h)] if isinstance(qqq_h, dict) and qqq_h else []
+        qqq_pct = (qqq_vals[-1] - float(qqq_inc)) / float(qqq_inc) * 100 if qqq_vals and qqq_inc else 0
         alpha   = nav_pct - qqq_pct
         alpha_str = f"+{alpha:.1f}%" if alpha >= 0 else f"{alpha:.1f}%"
         lines.append(f"  NAV={nav_pct:+.1f}% | QQQ={qqq_pct:+.1f}% | Alpha={alpha_str}")
@@ -155,8 +160,14 @@ def _write_obsidian_monthly(metrics: dict, state: Optional[dict]) -> bool:
     today = date.today()
     period = f"{today.year}-{today.month:02d}"
 
-    nav_pct = state.get("nav_return_pct", 0) if state else 0
-    qqq_pct = state.get("qqq_return_pct", 0) if state else 0
+    if state:
+        nav = state.get("nav", 0); inc = state.get("inception_nav", nav or 1)
+        nav_pct = (nav - inc) / inc * 100 if inc else 0
+        qqq_h = state.get("qqq_nav_history", {}); qqq_inc = state.get("qqq_inception")
+        qqq_vals = [qqq_h[k] for k in sorted(qqq_h)] if isinstance(qqq_h, dict) and qqq_h else []
+        qqq_pct = (qqq_vals[-1] - float(qqq_inc)) / float(qqq_inc) * 100 if qqq_vals and qqq_inc else 0
+    else:
+        nav_pct = 0; qqq_pct = 0
     alpha   = nav_pct - qqq_pct
 
     content = f"""\
