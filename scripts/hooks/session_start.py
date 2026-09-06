@@ -1110,6 +1110,28 @@ def session_start():
     except Exception as _e:
         lines.append(f"\n[A15] skipped ({type(_e).__name__}: {_e})")
 
+    # ── Current State Updater: sync Obsidian 99_Current_State/state.md ───────
+    try:
+        from scripts.brain.current_state_updater import run as run_cs
+        cs = run_cs()
+        lines.append(f"\n{cs}")
+    except Exception as _e:
+        lines.append(f"\n[CurrentState] skipped ({type(_e).__name__}: {_e})")
+
+    # ── Learning Loop Stats ───────────────────────────────────────────────────
+    try:
+        from scripts.brain.trade_logger import get_learning_stats
+        ls = get_learning_stats()
+        total = ls["total"]
+        if total > 0:
+            lines.append(
+                f"\n[Learning Loop] {total} post-mortems | "
+                f"W={ls['winners']} L={ls['losers']} "
+                f"FN={ls['false_neg']} (missed runs)"
+            )
+    except Exception as _e:
+        pass  # non-critical
+
     # ── Today's context reminder
     lines.append(f"\n[Context] Load mode: research.md / execution.md / review.md")
     lines.append(f"{'='*60}\n")

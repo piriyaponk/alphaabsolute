@@ -458,6 +458,19 @@ STEPS: list[dict] = [
         "modes":    ["premarket"],
     },
 
+    # ── Brain: Obsidian Investment OS sync ───────────────────────────────────
+    {
+        "id":       "brain_current_state",
+        "layer":    "4-Output",
+        "name":     "Brain: Sync Obsidian Current State",
+        "module":   "scripts.brain.current_state_updater",
+        "func":     "run",
+        "output":   "data/regime/market_health.json",
+        "desc":     "Writes live regime/portfolio data to Obsidian 99_Current_State/state.md",
+        "critical": False,
+        "modes":    ["premarket"],
+    },
+
     # ── Weekly Prediction System ──────────────────────────────────────────────
     {
         "id":       "weekly_picker",
