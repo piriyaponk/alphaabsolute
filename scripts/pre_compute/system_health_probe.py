@@ -377,13 +377,13 @@ def probe_foreign_filers() -> dict:
 # ─────────────────────────────────────────────────────────────────────────────
 
 def probe_paper_portfolio() -> dict:
-    """paper_portfolio_state.json must exist with valid structure.
+    """data/paper_trading/state.json (System 4 v4_paper_trader) must exist with valid structure.
     Each open position must have: ticker, entry_price, stop, size_pct, entry_date."""
-    path = DATA_DIR / "portfolio" / "paper_portfolio_state.json"
+    path = DATA_DIR / "paper_trading" / "state.json"
     data = _load_json(path)
     if data is None:
         return _probe("P7 Paper Portfolio", "WARN",
-                      "paper_portfolio_state.json missing. Paper trading not initialised.",
+                      "data/paper_trading/state.json missing. v4_paper_trader not initialised.",
                       None)
 
     required_pos_fields = {"ticker", "entry_price", "stop_price", "size_pct", "entry_date"}

@@ -46,13 +46,12 @@ SIGNALS = ["RS_gate", "Fundamental_gate", "Stage_gate", "Pattern_setup", "Regime
 
 
 def _load_state() -> dict:
-    for fname in ("paper_portfolio_state.json", "state.json"):
-        p = ROOT / "data" / "paper_trading" / fname
-        if p.exists():
-            try:
-                return json.loads(p.read_text(encoding="utf-8"))
-            except Exception:
-                pass
+    p = ROOT / "data" / "paper_trading" / "state.json"
+    if p.exists():
+        try:
+            return json.loads(p.read_text(encoding="utf-8"))
+        except Exception:
+            pass
     return {}
 
 
@@ -77,8 +76,8 @@ def _get_trade_from_state(ticker: str) -> Optional[dict]:
 
 def log_entry(
     ticker: str,
-    mode: str,          # "A" or "B"
-    setup: str,         # "VCP", "BKT", etc.
+    mode: str,          # "S4" for System 4
+    setup: str,         # "rebalance", etc.
     entry_price: float,
     stop_price: float,
     target: float,
@@ -108,7 +107,7 @@ def log_entry(
 ---
 type: decision
 ticker: {ticker}
-mode: {"A (PRISM Leader)" if mode == "A" else "B (Monster Scout)"}
+mode: {mode}
 setup: {setup}
 grade: {grade}
 entry_date: {TODAY}
@@ -128,7 +127,7 @@ status: open
 
 | Field | Value | Notes |
 |-------|-------|-------|
-| Mode | {mode} ({("PRISM Leader" if mode=="A" else "Monster Scout")}) | |
+| Mode | {mode} | |
 | Setup | {setup} | |
 | Grade | {grade} | |
 | Entry | ${entry_price} | |
@@ -143,8 +142,8 @@ status: open
 | Gate | Value | Pass? |
 |------|-------|-------|
 | RS percentile | {rs_pct:.0f}th | {'PASS' if rs_pct >= 70 else 'FAIL'} |
-| EPS YoY | {eps_yoy:+.0f}% | {'PASS' if eps_yoy >= 25 else 'FAIL' if mode == 'A' else 'N/A'} |
-| Revenue YoY | {rev_yoy:+.0f}% | {'PASS' if rev_yoy >= 25 else 'FAIL' if mode == 'A' else 'N/A'} |
+| EPS YoY | {eps_yoy:+.0f}% | {'N/A' if not eps_yoy else 'INFO'} |
+| Revenue YoY | {rev_yoy:+.0f}% | {'N/A' if not rev_yoy else 'INFO'} |
 | Theme | {theme} | {'HOT' if theme else 'N/A'} |
 | Regime | {regime} | {'PASS' if regime in ('Markup','Sideways') else 'CAUTION'} |
 

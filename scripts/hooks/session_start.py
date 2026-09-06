@@ -111,7 +111,6 @@ def _session_health_check() -> list[str]:
                 for c in report.get("checks", []):
                     if c["status"] == "FAIL" and c["id"] not in (
                         "ohlcv_fresh", "breadth_fresh", "market_health",
-                        "setups_fresh", "watchlist_fresh",  # already checked above
                     ):
                         msg = c.get("msg", "")[:80]
                         issues.append(f"[FAIL] {c['id']}: {msg} [from last deep scan]")
@@ -328,57 +327,7 @@ def session_start():
         except Exception:
             pass
 
-    # ── Smart Watchlist (W1) -- Priority Entries ───────────────────────────────
-    wl_file = ROOT / "data/watchlist/latest.json"
-    if wl_file.exists():
-        try:
-            wl = load_json(wl_file)
-            if wl.get("date") == date.today().isoformat():
-                imm  = wl.get("immediate_count", 0)
-                hot  = wl.get("hot_count", 0)
-                ph2  = wl.get("phase2_count", 0)
-                mon  = wl.get("monitoring_watch", [])
-                # ── Super High Conviction (PULSE Grade A + NRGC Ph2-3 STRONG) ──
-                super_entries = [r for r in wl.get("immediate", []) + wl.get("hot", [])
-                                 if r.get("super_conviction") or r.get("priority") == "SUPER_HIGH_CONVICTION"]
-                if super_entries:
-                    _sc_strs = []
-                    for _r in super_entries[:4]:
-                        _sig = _r.get("signals", [""])[0][:30] if _r.get("signals") else ""
-                        _sc_strs.append(f"{_r['ticker']}(TT={_r.get('pulse_grade','?')},Ph{_r.get('nrgc_phase',0)},{_sig})")
-                    lines.append(f"\n[⚡ W1 SUPER HIGH CONVICTION] PULSE+NRGC BOTH agree: {' | '.join(_sc_strs)}")
-                    lines.append(f"   -> Maximum position size. Do NOT exit on minor signals.")
-
-                if imm > 0:
-                    lines.append(f"\n[[HOT] W1 WATCHLIST] IMMEDIATE={imm} | HOT={hot} | PHASE2={ph2}")
-                    for r in wl.get("immediate", [])[:3]:
-                        sig = r.get("signals", [""])[0][:40] if r.get("signals") else ""
-                        pg  = r.get("pulse_grade", "?")
-                        lines.append(f"  [!] {r['ticker']}(TT={pg}): score={r['score']:.0f} | RS={r.get('rs_pct',0):.0f}th | {sig}")
-                elif hot > 0:
-                    lines.append(f"\n[W1 Watchlist] No immediate | HOT={hot} | PHASE2={ph2}")
-                    for r in wl.get("hot", [])[:3]:
-                        pg = r.get("pulse_grade", "?")
-                        lines.append(f"  [.] {r['ticker']}(TT={pg}): RS={r.get('rs_pct',0):.0f}th | {r.get('base_alert','')}")
-                elif ph2 > 0:
-                    lines.append(f"\n[W1 Watchlist] PHASE2 INFLECTIONS={ph2} -- early radar")
-                    for r in wl.get("phase2", [])[:3]:
-                        lines.append(f"  [~] {r['ticker']}: infl={r.get('inflection',0):.0f}")
-                else:
-                    lines.append(f"\n[W1 Watchlist] No setups today | Developing: {wl.get('watchlist_count',0)}")
-
-                # ── Monitoring Watch (shown during CORRECTION/BEAR — buy list for regime turn) ──
-                if mon and wl.get("m0_buys") == "BLOCKED":
-                    top_str = " | ".join(
-                        f"{r['ticker']}({r['nrgc_conviction'][:4]},RS={r['rs_pct']:.0f},{r['pulse_grade']})"
-                        for r in mon[:8]
-                    )
-                    lines.append(f"[Watch/Regime Turn] {top_str}")
-        except Exception:
-            pass
-
-
-    # Trend Template, PULSE Backtest, I9 Learn removed — not part of System 4
+    # Trend Template, PULSE, W1 Watchlist, NRGC removed — not part of System 4
 
     # ── Upcoming Earnings for Held Positions (Risk Gate Reminder) ────────────────
     if positions:

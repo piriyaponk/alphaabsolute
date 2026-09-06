@@ -376,16 +376,21 @@ def check_runner_log() -> list[dict]:
 CRITICAL_FILES = [
     ("data/regime/market_health.json",              "A01 regime output"),
     ("data/regime/macro_state.json",                "A02 macro output"),
-    ("data/setups/setups_today.json",               "A08 setup scanner"),
-    ("data/leadership/top30_watchlist.json",         "A06 watchlist"),
-    ("data/leadership/top10_active.json",           "A06 top10"),
     ("data/rs_universe/latest.json",                "A03 RS universe"),
     ("data/rs_universe/theme_rs_latest.json",       "A05 theme heatmap"),
-    ("data/trend_template/screener_latest.json",    "A06 full screener (A08 input)"),
-    ("data/bigshot/candidates.json",                "A07 Monster Scout"),
-    ("data/risk/risk_report.json",                  "A10 Risk Guardian"),
     (".env",                                         "API keys config"),
 ]
+
+# BOA-022 OPTION A: These files are produced by scripts NOT in the active runner
+# (trend_template_screener, monster_scout, setup_scanner, risk_guardian).
+# Removed from CRITICAL_FILES to stop false WARN/FAIL on every pipeline run.
+# Re-add when Option B is reactivated (N_closed_trades >= 20, est. Q1-Q2 2027).
+#   ("data/setups/setups_today.json",               "A08 setup scanner"),
+#   ("data/leadership/top30_watchlist.json",        "A06 watchlist"),
+#   ("data/leadership/top10_active.json",           "A06 top10"),
+#   ("data/trend_template/screener_latest.json",    "A06 full screener (A08 input)"),
+#   ("data/bigshot/candidates.json",                "A07 Monster Scout"),
+#   ("data/risk/risk_report.json",                  "A10 Risk Guardian"),
 
 def check_critical_files() -> list[dict]:
     """All 11 critical output files exist."""
@@ -450,58 +455,32 @@ def check_data_freshness() -> list[dict]:
     results.append(_freshness_check("macro_fresh",    "data/regime/macro_state.json",
         "date", "Macro State (A02)", "macro_monitor.py"))
 
-    # top30 watchlist — must come BEFORE setups_fresh so auto-heal runs
-    # trend_template_screener before setup_scanner (setup_scanner depends on watchlist)
+    # BOA-022 OPTION A: trend_template_screener, setup_scanner, monster_scout not in active runner.
+    # Skip freshness checks for their outputs — files are stale by design, not a pipeline error.
+    # Re-enable these blocks when Option B is reactivated (N_closed_trades >= 20, est. Q1-Q2 2027).
+
     w30 = ROOT / "data/leadership/top30_watchlist.json"
     if w30.exists():
         d30 = _load_json(w30, {})
-        days30 = _days_old(str(d30.get("date", ""))[:10])
         n30 = len(d30.get("watchlist", []))
-        if days30 > 3:
-            results.append(_warn("watchlist_fresh", d30.get("date"),
-                f"{days30}d old ({n30} stocks) — re-run trend_template_screener.py"))
-        else:
-            results.append(_ok("watchlist_fresh", f"{d30.get('date')} | {n30} stocks"))
+        results.append(_skip("watchlist_fresh",
+            f"BOA-022: trend_template_screener not in active runner — {n30} stocks cached"))
     else:
-        results.append(_warn("watchlist_fresh", msg="top30_watchlist.json missing — run trend_template_screener.py"))
+        results.append(_skip("watchlist_fresh",
+            "BOA-022: trend_template_screener not in active runner"))
 
-    results.append(_freshness_check("setups_fresh",   "data/setups/setups_today.json",
-        "date", "Setups (A08)", "setup_scanner.py"))
+    results.append(_skip("setups_fresh",
+        "BOA-022: setup_scanner not in active runner"))
 
-    # top10_active — key is "leaders" NOT "watchlist" (DE Critical Issue 3 fix)
     t10 = ROOT / "data/leadership/top10_active.json"
-    if t10.exists():
-        d10 = _load_json(t10, {})
-        days10 = _days_old(str(d10.get("date", ""))[:10])
-        n10 = len(d10.get("leaders", []))   # ← correct key
-        if days10 > 3:
-            results.append(_warn("top10_fresh", d10.get("date"),
-                f"{days10}d old ({n10} leaders) — re-run trend_template_screener.py"))
-        elif n10 == 0:
-            results.append(_warn("top10_fresh", d10.get("date"),
-                "0 leaders in top10_active — screener found nothing or wrong key"))
-        else:
-            results.append(_ok("top10_fresh", f"{d10.get('date')} | {n10} leaders"))
-    else:
-        results.append(_warn("top10_fresh", msg="top10_active.json missing — run trend_template_screener.py"))
+    results.append(_skip("top10_fresh",
+        "BOA-022: trend_template_screener not in active runner"))
 
-    # screener_latest.json — A08 reads this; if missing → 0 setups with no error
-    scr = ROOT / "data/trend_template/screener_latest.json"
-    if scr.exists():
-        ds = _load_json(scr, {})
-        days_s = _days_old(str(ds.get("date", ""))[:10])
-        n_univ = ds.get("n_universe", 0)
-        if days_s > 3:
-            results.append(_warn("screener_fresh", ds.get("date"),
-                f"{days_s}d old (n={n_univ}) — re-run trend_template_screener.py"))
-        else:
-            results.append(_ok("screener_fresh", f"{ds.get('date')} | universe={n_univ}"))
-    else:
-        results.append(_warn("screener_fresh", msg="screener_latest.json missing — run trend_template_screener.py"))
+    results.append(_skip("screener_fresh",
+        "BOA-022: trend_template_screener not in active runner"))
 
-    # bigshot
-    results.append(_freshness_check("bigshot_fresh", "data/bigshot/candidates.json",
-        "date", "BigShot (A07)", "monster_scout.py", warn_days=3, fail_days=7))
+    results.append(_skip("bigshot_fresh",
+        "BOA-022: monster_scout not in active runner"))
 
     return results
 

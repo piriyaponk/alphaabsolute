@@ -458,8 +458,8 @@ def run() -> dict:
     theme_raw  = _load_json(RS_DIR / "theme_rs_latest.json")
     theme_data = theme_raw.get("themes", {})
 
-    # Load portfolio (for held position context)
-    portfolio = _load_json(ROOT / "data" / "portfolio" / "portfolio_state.json")
+    # Load portfolio (for held position context) — System 4 v4_paper_trader canonical path
+    portfolio = _load_json(ROOT / "data" / "paper_trading" / "state.json")
 
     # Save today's snapshot BEFORE comparing (so we have it for tomorrow)
     _save_snapshot(today_u)

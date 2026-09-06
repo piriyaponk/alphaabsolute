@@ -6,7 +6,7 @@ Reads:
   data/regime/market_health.json   (A01 output)
   data/regime/macro_state.json     (A02 output)
   data/rs_universe/theme_rs_latest.json (A05 output)
-  data/portfolio/paper_portfolio_state.json (A09/A10 output)
+  data/paper_trading/state.json (System 4 v4_paper_trader output)
 
 Writes: Obsidian 99_Current_State/state.md
 
@@ -51,9 +51,7 @@ def build_state_note() -> str:
     mh    = _load(ROOT / "data/regime/market_health.json") or {}
     macro = _load(ROOT / "data/regime/macro_state.json") or {}
     theme = _load(ROOT / "data/rs_universe/theme_rs_latest.json") or {}
-    port  = _load(ROOT / "data/portfolio/paper_portfolio_state.json") or {}
-    port2 = _load(ROOT / "data/paper_trading/state.json") or {}
-    port  = port or port2
+    port  = _load(ROOT / "data/paper_trading/state.json") or {}
 
     regime = mh.get("regime", "Unknown")
     score  = mh.get("effective_score", mh.get("score", "?"))
@@ -154,8 +152,7 @@ max_deployed: {max_deployed}
 | Score | {score}/85 |
 | Cash floor | {int(float(cash_floor)*100) if cash_floor != '?' else '?'}% |
 | Max deployed | {int(float(max_deployed)*100) if max_deployed != '?' else '?'}% |
-| Mode A entries | {'YES' if str(mh.get('leaders_ok', True)).lower() == 'true' else 'NO'} |
-| Mode B entries | {'YES' if str(mh.get('bigshot_ok', False)).lower() == 'true' else 'NO'} |
+| New entries ok | {'YES' if str(mh.get('new_entries_ok', mh.get('leaders_ok', True))).lower() == 'true' else 'NO'} |
 | Dist days | {dist_days} |
 | % above 50DMA | {abv50}% |
 | % above 200DMA | {abv200}% |

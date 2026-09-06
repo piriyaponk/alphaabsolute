@@ -1,54 +1,18 @@
 """
-AlphaAbsolute v2 -- A11 Report Writer + Telegram
-==================================================
-Generates daily brief + pushes signals to Telegram before market open.
+AlphaAbsolute -- A11 Report Writer + Telegram
+=============================================
+Generates daily brief + pushes to Telegram before market open.
 
-Daily brief format:
-  ALPHAABSOLUTE DAILY BRIEF [DATE]
-  =================================
-  MARKET: [Regime] | Cash Floor: [X%] | TD: SPY [signal] QQQ [signal]
-  MACRO: [1-sentence state]
-  THEMES HOT: [...] | WARM: [...]
-
-  TOP SETUPS TODAY:
-  1. $TICKER — Mode A | VCP | Buy: $95.50 | Stop: $87.86 | RR: 3.4x
-     -> 1-line thesis
-
-  PORTFOLIO: [N] positions | Deployed: X% | Cash: Y%
-  [Positions with action signals]
-
-  RISK FLAGS: [from A10]
-
-Telegram format (mobile-optimized):
-
-  TWO-MODE SYSTEM:
-  ── PRISM (Minervini SEPA) — Confirmed leaders, 30-50% targets ──
-  ⭐ TICKER — Full Setup Name | PRISM | Grade A
-  Entry: $95.50 | Stop: $87.86 (7.5% risk)
-  Target: $116 | T2: $143 | RR 3.4x | Size: 10%
-  RS: 88/91/85 | 🔥 Photonics
-  📌 VCP 3-swing contraction, vol dried
-  ⛔ Invalid if EOD close < $87.86
-
-  ── Monster Scout — 10x candidates, 5% size ──
-  🚀 TICKER — Breakout | Monster Scout | Grade A
-  Entry: $15.20 | Stop: $13.60 (10.5% risk) | Size: 5%
-  📈 ACCELERATING STRONG | +30%→+50% | Base 1
-  RS: 72/68 | 🔥 Quantum Computing | $380M
-  📌 Only commercial InP substrate at scale
-  ⛔ Invalid if EOD close < $13.60
-
-  In Distribution: Monster Scout shown as 👁 WATCH ONLY (no entry)
+Brief format:
+  MARKET: Regime | Cash Floor | TD signals
+  MACRO: 1-sentence state
+  THEMES HOT/WARM
+  SYSTEM 4 PORTFOLIO: NAV | positions | deployed%
+  RS CLIMBERS / DROPPERS
 
 Output:
   output/daily_brief_YYMMDD.md
   Telegram push via bot
-
-Config in .env:
-  TELEGRAM_BOT_TOKEN=...
-  TELEGRAM_CHAT_ID=...
-
-Cost: $0 (Python only, Telegram free)
 """
 
 from __future__ import annotations
@@ -315,60 +279,12 @@ REGIME_EMOJI = {
 SETUP_EMOJI = {"A": "⭐", "B": "✅", "C": "📋"}
 
 
-# ── Format setup line ─────────────────────────────────────────────────────────
-
-def format_setup_line(setup: dict, index: int) -> str:
-    """One-line setup for the daily brief."""
-    ticker = setup.get("ticker", "?")
-    mode   = setup.get("mode", "A")
-    stype  = setup.get("setup_type", "?")
-    pivot  = setup.get("pivot", 0)
-    stop   = setup.get("stop", 0)
-    rr     = setup.get("rr_ratio", 0)
-    size   = setup.get("recommended_size_pct", 0)
-    grade  = setup.get("setup_grade", "B")
-    theme  = setup.get("theme", "")
-    td_sig = setup.get("td_signal", "Neutral")
-
-    td_note = f" [TD:{td_sig}]" if td_sig != "Neutral" else ""
-    theme_note = f" | {theme}" if theme else ""
-
-    mode_label = "PRISM" if mode == "A" else "Monster Scout"
-    return (
-        f"{index}. ${ticker} — {mode_label} | {stype} | "
-        f"Buy: ${pivot:.2f} | Stop: ${stop:.2f} | RR: {rr:.1f}x | "
-        f"Size: {size:.0f}%{td_note}{theme_note} | Grade: {grade}"
-    )
-
-
-def format_setup_thesis(setup: dict) -> str:
-    """One-line thesis for the setup."""
-    entry_note = setup.get("entry_note", "")
-    theme      = setup.get("theme", "")
-    rs_pct     = setup.get("rs_pct_3m")
-    mode       = setup.get("mode", "A")
-
-    parts = []
-    if entry_note:
-        parts.append(entry_note[:80].replace("_", " "))
-    if theme:
-        parts.append(f"Theme: {theme}")
-    if rs_pct and mode == "A":
-        parts.append(f"RS: {rs_pct:.0f}th")
-
-    return " | ".join(parts) if parts else "Setup confirmed by price action"
-
-
 # ── Build markdown brief ──────────────────────────────────────────────────────
 
 def build_brief(today: str) -> str:
     health    = _load_health()
     macro     = _load_macro()
-    setups    = _load_setups()
-    signals   = _load_signals()
-    portfolio = _load_portfolio()
     paper     = _load_paper_portfolio()
-    risk      = _load_risk()
     themes    = _load_themes()
     changes   = _load_changes()
 
@@ -423,29 +339,19 @@ def build_brief(today: str) -> str:
     lines.append(f"🌤 WARM: {warm_str}")
     lines.append("")
 
-    # Top Setups
-    lines.append("## TOP SETUPS TODAY")
-    if not setups:
-        lines.append("No Grade A/B setups today — wait for better conditions.")
-    else:
-        for i, setup in enumerate(setups[:8], 1):
-            lines.append(format_setup_line(setup, i))
-            lines.append(f"   → {format_setup_thesis(setup)}")
-            lines.append("")
+    # System 4 Portfolio
+    s4_nav   = paper.get("nav", 0)
+    s4_inc   = paper.get("inception_nav", s4_nav)
+    s4_ret   = (s4_nav / max(s4_inc, 1) - 1) * 100
+    s4_pos   = paper.get("positions", {})
+    s4_cash  = paper.get("cash", 0)
+    s4_dep   = round((1 - s4_cash / max(s4_nav, 1)) * 100, 1) if s4_nav else 0
 
-    # Portfolio
-    positions  = portfolio.get("positions", {})
-    deployed   = int(portfolio.get("deployed_pct", 0) * 100)
-    cash_pct   = int(portfolio.get("cash_pct", 1) * 100)
-    n_pos      = len(positions)
-
-    paper_val  = paper.get("portfolio_value", 100_000)
-    paper_cash = int(paper.get("cash_pct", 1) * 100)
-    paper_pos  = paper.get("total_positions", 0)
-
-    lines.append("## PORTFOLIO")
-    lines.append(f"**Real:** {n_pos} positions | Deployed: {deployed}% | Cash: {cash_pct}%")
-    lines.append(f"**Paper:** {paper_pos} positions | Value: ${paper_val:,.0f} | Cash: {paper_cash}%")
+    lines.append("## SYSTEM 4 PORTFOLIO")
+    lines.append(
+        f"**{len(s4_pos)} positions** | Deployed: {s4_dep:.0f}% | "
+        f"NAV: ${s4_nav:,.0f} ({s4_ret:+.1f}%)"
+    )
 
     # Expectancy / edge metrics (Minervini Lesson 7)
     exp = paper.get("expectancy", {})
@@ -464,22 +370,6 @@ def build_brief(today: str) -> str:
         )
     lines.append("")
 
-    # Action signals
-    sig_list = signals.get("signals", [])
-    imm  = [s for s in sig_list if s.get("priority") == "IMMEDIATE"]
-    today_sigs = [s for s in sig_list if s.get("priority") == "TODAY"]
-    rev  = [s for s in sig_list if s.get("priority") == "REVIEW"]
-
-    if imm or today_sigs:
-        lines.append("### Action Signals")
-        for s in imm:
-            lines.append(f"🚨 **IMMEDIATE** ${s['ticker']}: {s['action']} — {s['reason']}")
-        for s in today_sigs:
-            lines.append(f"⚠️ **TODAY** ${s['ticker']}: {s['action']} — {s['reason']}")
-        for s in rev:
-            lines.append(f"📋 **REVIEW** ${s['ticker']}: {s['action']}")
-        lines.append("")
-
     # Climbers & Droppers (from A03c RS Change Detector)
     climbers_section = _format_climbers_section(changes)
     droppers_section = _format_droppers_section(changes)
@@ -490,17 +380,6 @@ def build_brief(today: str) -> str:
     if not climbers_section and not droppers_section and changes:
         lines.append("## FOCUS LIST CHANGES")
         lines.append("No significant RS movement vs yesterday.")
-        lines.append("")
-
-    # Risk flags
-    risk_flags = risk.get("flags", [])
-    devil = risk.get("devil_advocate", "")
-    if risk_flags or devil:
-        lines.append("## RISK FLAGS")
-        for flag in risk_flags[:5]:
-            lines.append(f"⛔ {flag}")
-        if devil:
-            lines.append(f"🔍 Devil's advocate: *{devil}*")
         lines.append("")
 
     # Early warnings
@@ -627,166 +506,6 @@ def _hot_themes_str() -> str:
     return " | ".join(h[1] for h in hot[:5]) if hot else "—"
 
 
-# ── Build setup card (full verbose format) ───────────────────────────────────
-
-def _setup_card_full(s: dict, rs_universe: dict, grade: str) -> str:
-    """
-    Full verbose setup card (old format with improvements):
-    Line 1: ⭐ TICKER — Full Setup Name | Mode A | Grade A
-    Line 2: Entry: $XX.XX | Stop: $XX.XX (X.X% risk)
-    Line 3: Target: $XX | T2: $XX | RR X.Xx | Size: 10%
-    Line 4: RS: 1M/3M/6M | 🔥 Theme
-    Line 5: 📌 why now (entry_note)
-    Line 6: ⛔ Invalid if EOD close < $XX.XX
-    """
-    ticker  = s.get("ticker", "?")
-    mode    = s.get("mode", "A")
-    stype   = _setup_full(s.get("setup_type", "?"))
-    pivot   = s.get("pivot", 0)
-    stop    = s.get("stop", 0)
-    t1      = s.get("target_1", 0)
-    t2      = s.get("target_2", 0)
-    size    = s.get("recommended_size_pct", 10)
-    _note   = (s.get("entry_note", "") or "").strip()
-    # Remove trailing "| No recognized setup pattern" artifact (old setups.json cleanup)
-    _note   = _note.replace(" | No recognized setup pattern", "").replace("No recognized setup pattern | ", "").strip(" |")
-    # FIX: old [:85].rsplit truncated at word boundary but often mid-arrow (→).
-    # New: truncate at 100 chars, prefer pipe separator as natural break point.
-    if len(_note) > 100:
-        # Try to cut at last pipe within 100 chars
-        cut = _note[:100].rfind(" | ")
-        why = _note[:cut] if cut > 20 else _note[:100]
-    else:
-        why = _note
-    why = why.replace("_", " ")  # underscore in Markdown V1 = italic tag → 400 Bad Request
-    risk_pct = s.get("risk_pct", abs(pivot - stop) / pivot * 100 if pivot else 0)
-
-    # RR: use rr_to_t2 for display (realistic extended target).
-    # If rr_to_t2 not saved (older setups.json), compute from target_2 / pivot / stop.
-    rr_to_t2 = s.get("rr_to_t2")
-    if rr_to_t2 is None and t2 and pivot and stop and pivot > stop:
-        risk_val = pivot - stop
-        rr_to_t2 = (t2 - pivot) / risk_val if risk_val > 0 else 0
-    rr_display = rr_to_t2 if (rr_to_t2 and rr_to_t2 > 0) else s.get("rr_ratio", 0)
-    rr_method  = s.get("rr_method", "")
-    rr_note    = ""
-    if rr_method in ("fallback_ath", "fallback_nodata"):
-        rr_note = " (implied)"  # ATH breakout — target projected above prior high
-
-    # RS from rs_universe if available, else from setup dict
-    rs_e = rs_universe.get(ticker, s)
-    r1 = rs_e.get("rs_1m_pct") or rs_e.get("rs_pct_1m") or s.get("rs_pct_1m")
-    r3 = rs_e.get("rs_3m_pct") or rs_e.get("rs_pct_3m") or s.get("rs_pct_3m")
-    r6 = rs_e.get("rs_6m_pct") or rs_e.get("rs_pct_6m") or s.get("rs_pct_6m")
-    rs_parts = [str(int(r)) for r in [r1, r3, r6] if r is not None]
-    rs_str = "RS: " + "/".join(rs_parts) if rs_parts else ""
-
-    # Theme (HOT = fire emoji)
-    # FIX: theme can be "—" (dash string from A06 when theme not labeled) — treat as empty
-    theme   = s.get("theme", "") or ""
-    theme_s = f"🔥 {theme}" if (theme and theme not in ("—", "-", "None", "null")) else ""
-
-    rs_theme = " | ".join(x for x in [rs_str, theme_s] if x)
-
-    grade_e = "⭐" if grade == "A" else "✅"
-
-    lines = [
-        f"{grade_e} *{ticker}* — {stype} | PRISM | Grade {grade}",
-        f"Entry: *{_dollar(pivot)}* | Stop: {_dollar(stop)} ({risk_pct:.1f}% risk)",
-        f"Target: {_dollar(t1)} | T2: {_dollar(t2)} | RR {rr_display:.1f}x{rr_note} | Size: {size:.0f}%",
-    ]
-    if rs_theme:
-        lines.append(rs_theme)
-    if why:
-        lines.append(f"📌 {why}")
-    lines.append(f"⛔ Invalid if EOD close < {_dollar(stop)}")
-
-    return "\n".join(lines)
-
-
-def _setup_card_monster(s: dict, rs_universe: dict, grade: str) -> str:
-    """
-    Mode B (Monster Scout 10x) setup card — different emphasis from Mode A.
-
-    Line 1: 🚀 TICKER — Full Setup Name | Mode B (10x) | Grade A/B
-    Line 2: Entry: $XX.XX | Stop: $XX.XX (-10% risk) | Size: 5%
-    Line 3: Rev: INFLECTION_LABEL | Trend: +30%→+50% | Base 1
-    Line 4: RS: 1M/3M | 🔥 Theme | Mkt Cap: $XXM
-    Line 5: 📌 Bottleneck/why now
-    Line 6: ⛔ Invalid if EOD close < $XX.XX
-    """
-    ticker  = s.get("ticker", "?")
-    stype   = _setup_full(s.get("setup_type", "?"))
-    pivot   = s.get("pivot", 0)
-    stop    = s.get("stop", 0)
-    size    = s.get("recommended_size_pct", 5)
-    _note   = (s.get("entry_note", "") or "").strip()
-    _note   = _note.replace(" | No recognized setup pattern", "").replace("No recognized setup pattern | ", "").strip(" |")
-    if len(_note) > 100:
-        cut = _note[:100].rfind(" | ")
-        why = _note[:cut] if cut > 20 else _note[:100]
-    else:
-        why = _note
-    why = why.replace("_", " ")  # underscore in Markdown V1 = italic tag → 400 Bad Request
-    risk_pct = abs(pivot - stop) / pivot * 100 if pivot else 10.0
-
-    # Revenue inflection info
-    inflection  = s.get("revenue_inflection") or s.get("inflection_label", "")
-    trend_str   = s.get("trend_str", "")
-    base_num    = s.get("base_number") or s.get("base_count", "")
-    base_s      = f"Base {base_num}" if base_num not in (None, "", 0) else ""
-
-    # Market cap formatting
-    mkt_cap = s.get("market_cap") or s.get("mkt_cap")
-    if mkt_cap:
-        if mkt_cap < 1e9:
-            mkt_cap_s = f"${mkt_cap/1e6:.0f}M"
-        else:
-            mkt_cap_s = f"${mkt_cap/1e9:.1f}B"
-    else:
-        mkt_cap_s = ""
-
-    # RS from universe
-    rs_e = rs_universe.get(ticker, s)
-    r1 = rs_e.get("rs_1m_pct") or rs_e.get("rs_pct_1m") or s.get("rs_pct_1m")
-    r3 = rs_e.get("rs_3m_pct") or rs_e.get("rs_pct_3m") or s.get("rs_pct_3m")
-    rs_parts = [str(int(r)) for r in [r1, r3] if r is not None]
-    rs_str   = "RS: " + "/".join(rs_parts) if rs_parts else ""
-
-    theme   = s.get("theme", "")
-    theme_s = f"🔥 {theme}" if theme else ""
-
-    grade_e = "🚀" if grade == "A" else "🌱"
-
-    # Inflection line
-    inflection_parts = []
-    if inflection and inflection not in ("NONE", ""):
-        inflection_parts.append(inflection.replace("_", " "))
-    if trend_str and trend_str != "N/A":
-        inflection_parts.append(trend_str)
-    if base_s:
-        inflection_parts.append(base_s)
-    inflection_line = " | ".join(inflection_parts) if inflection_parts else ""
-
-    # RS + theme + market cap line
-    meta_parts = [p for p in [rs_str, theme_s, mkt_cap_s] if p]
-    meta_line  = " | ".join(meta_parts) if meta_parts else ""
-
-    lines = [
-        f"{grade_e} *{ticker}* — {stype} | Monster Scout | Grade {grade}",
-        f"Entry: *{_dollar(pivot)}* | Stop: {_dollar(stop)} ({risk_pct:.1f}% risk) | Size: {size:.0f}%",
-    ]
-    if inflection_line:
-        lines.append(f"📈 {inflection_line}")
-    if meta_line:
-        lines.append(meta_line)
-    if why:
-        lines.append(f"📌 {why}")
-    lines.append(f"⛔ Invalid if EOD close < {_dollar(stop)}")
-
-    return "\n".join(lines)
-
-
 def build_telegram_messages(health: dict, setups: list, signals: dict,
                               portfolio: dict, paper: dict,
                               changes: Optional[dict] = None) -> list[str]:
@@ -823,13 +542,13 @@ def build_telegram_messages(health: dict, setups: list, signals: dict,
     # ── MSG 1: Regime header ──────────────────────────────────────────────────
     # Entry rule line
     if regime == "Markup":
-        entry_rule = "Full size | PRISM + Monster Scout ✅"
+        entry_rule = "System 4 fully deployed ✅"
     elif regime == "Sideways":
-        entry_rule = "PRISM only | Selective"
+        entry_rule = "System 4 selective | 20-40% cash"
     elif regime == "Distribution":
-        entry_rule = "PRISM only | No Monster Scout entries"
+        entry_rule = "System 4 defensive | 40-60% cash"
     else:
-        entry_rule = "No new entries — cash priority"
+        entry_rule = "System 4 cash priority | 75-100% cash"
 
     # Breadth with explanation
     breadth_s = _breadth_context(pct_50dma)
@@ -895,48 +614,21 @@ def build_telegram_messages(health: dict, setups: list, signals: dict,
     # (PRISM setups removed — System 4 manages its own monthly rebalance)
 
     # ── Portfolio summary (always last) ───────────────────────────────────────
-    real_pos   = portfolio.get("positions", {})
-    paper_pos  = paper.get("positions", {})
-    real_cash  = portfolio.get("cash_pct", 100)
-    paper_val  = paper.get("total_value", paper.get("portfolio_value", 100_000))
-    paper_cash = paper.get("cash_pct", 100)
-    n_real     = len(real_pos)
-    n_paper    = len(paper_pos)
+    # System 4 is the ONE active portfolio — read from state.json loaded above as `s4`
+    s4_held_tickers = set(s4_pos.keys()) if s4 else set()
+    droppers        = (changes or {}).get("droppers", [])
+    held_drops      = [d for d in droppers if d.get("ticker") in s4_held_tickers]
 
-    sig_list   = signals.get("signals", [])
-    imm        = [s for s in sig_list if s.get("priority") == "IMMEDIATE"]
-    today_sigs = [s for s in sig_list if s.get("priority") == "TODAY"]
-
-    # RS drops on HELD positions only (not new watchlist entries)
-    held_tickers = set(real_pos.keys()) | set(paper_pos.keys())
-    droppers     = (changes or {}).get("droppers", [])
-    held_drops   = [d for d in droppers if d.get("ticker") in held_tickers]
-
-    port_lines = ["💼 *Portfolio*"]
-    if n_real == 0:
-        deployed_paper = max(0, 100 - paper_cash)
-        port_lines.append(
-            f"Real: Cash only\n"
-            f"Paper: {n_paper} pos | ${paper_val:,.0f} | Deployed {deployed_paper:.0f}%"
-        )
+    port_lines = ["💼 *System 4 Portfolio*"]
+    if not s4 or not s4_pos:
+        port_lines.append("No open positions | fully in cash")
     else:
-        deployed = max(0, 100 - real_cash)
-        port_lines.append(f"Real: {n_real} pos | Deployed {deployed:.0f}% | Cash {real_cash:.0f}%")
-        for ticker, pos in list(real_pos.items())[:5]:
-            pnl   = pos.get("unrealized_pct", 0) or 0
+        for tkr, p in sorted(s4_pos.items(), key=lambda x: -x[1].get("weight_target", 0))[:5]:
+            pnl   = p.get("unrealized_pct", 0) or 0
             pnl_s = f"+{pnl:.1f}%" if pnl >= 0 else f"{pnl:.1f}%"
-            stp   = pos.get("stop_price", 0)
-            port_lines.append(f"  *{ticker}* {pnl_s} | stop {_dollar(stp)}")
+            stp   = p.get("stop_price", 0)
+            port_lines.append(f"  *{tkr}* {pnl_s} | stop {_dollar(stp)}")
 
-    if imm:
-        port_lines.append("")
-        port_lines.append("🚨 *IMMEDIATE:*")
-        for s in imm[:4]:
-            port_lines.append(f"  🚨 *{s['ticker']}*: {s['action']} — {s.get('reason','')[:55]}")
-    if today_sigs:
-        port_lines.append("⚠️ *Today:*")
-        for s in today_sigs[:3]:
-            port_lines.append(f"  • {s['ticker']}: {s.get('reason','')[:55]}")
     if held_drops:
         port_lines.append("📉 *RS drops (held):*")
         for d in held_drops[:3]:
@@ -998,13 +690,10 @@ def run() -> dict:
 
     # Build Telegram messages
     health    = _load_health()
-    setups    = _load_setups()
-    signals   = _load_signals()
-    portfolio = _load_portfolio()
     paper     = _load_paper_portfolio()
     changes   = _load_changes()
 
-    messages = build_telegram_messages(health, setups, signals, portfolio, paper, changes)
+    messages = build_telegram_messages(health, [], {}, {}, paper, changes)
 
     # Send to Telegram
     sent = 0
@@ -1031,7 +720,7 @@ def run() -> dict:
         "brief_file":   str(brief_file),
         "telegram_sent": sent,
         "messages":     len(messages),
-        "setups_in_brief": len(setups),
+        "setups_in_brief": 0,
         "status":       "ok",
     }
 
