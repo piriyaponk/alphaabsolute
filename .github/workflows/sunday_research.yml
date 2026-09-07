@@ -1,11 +1,10 @@
-name: AlphaAbsolute Sunday Research Deep Dive
+name: AlphaAbsolute Sunday Research — System 4
 
 # Sunday 07:00 Bangkok (ICT) = Sunday 00:00 UTC
-# Team K: weekly research summary → Telegram
-# A15: performance attribution → Obsidian
+# S4 research loop: optimizer + hypothesis tester + chief quant
 on:
   schedule:
-    - cron: '0 0 * * 0'     # Sunday 00:00 UTC = 07:00 BKK
+    - cron: '0 0 * * 0'
   workflow_dispatch:
 
 jobs:
@@ -30,33 +29,43 @@ jobs:
 
       - name: Create required directories
         run: |
-          mkdir -p data/postmortems \
-                   data/paper_trading \
+          mkdir -p data/paper_trading \
+                   data/research \
+                   data/board \
+                   data/rs_universe \
                    output
 
-      - name: Team K — Weekly research digest + Telegram
+      - name: Research Hunter — fetch papers from arXiv, SSRN, AQR
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python scripts/brain/weekly_research_push.py
+        run: python scripts/brain/research_hunter.py
+        continue-on-error: true
 
-      - name: A15 — Performance monitor check
-        env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python scripts/brain/performance_monitor.py --monthly
+      - name: Signal Extractor — extract hypotheses from notes
+        run: python scripts/brain/signal_extractor.py
+        continue-on-error: true
 
-      - name: System Audit — Self-healing integration check
+      - name: System Optimizer — grid search configs beating S4 baseline
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
-          POLYGON_API_KEY:    ${{ secrets.POLYGON_API_KEY }}
-          TIINGO_API_KEY:     ${{ secrets.TIINGO_API_KEY }}
-        run: |
-          python -X utf8 scripts/brain/system_audit.py \
-            --max-attempts 3 \
-            --telegram
-        # exits 0 if all pass, 1 if issues remain -- CI shows red X if unresolved
+        run: python scripts/brain/system_optimizer.py 50
+        continue-on-error: true
+
+      - name: Hypothesis Tester — backtest pending hypotheses vs S4 baseline
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python scripts/brain/hypothesis_tester.py
+        continue-on-error: true
+
+      - name: Chief Quant — cross-signal synthesis, propose improvements
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python scripts/brain/chief_quant.py
+        continue-on-error: true
 
       - name: Commit any outputs
         run: |

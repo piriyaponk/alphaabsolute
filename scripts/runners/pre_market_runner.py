@@ -1,33 +1,23 @@
 """
-AlphaAbsolute v2 -- Master Daily Runner
-========================================
-Chains all 12 agents in the correct dependency order per CLAUDE.md schedule.
+AlphaAbsolute — System 4 Daily Runner
+=======================================
+Runs the data pipeline that supports System 4 RS-momentum paper trading.
 
 Modes:
-  premarket  (default)  6:00-9:00 AM -- Foundation → Intelligence → Curation → Execution → Output
-  eod                   4:30 PM     -- Post-mortem + EOD price update
-  monthly               1st of month -- Bayesian calibration + performance report
+  premarket  (default)  Morning — OHLCV update + RS ranking
+  eod                   Evening — OHLCV gap fill + data quality
 
 Usage:
-  python scripts/runners/pre_market_runner.py                    # full premarket run
-  python scripts/runners/pre_market_runner.py --mode eod         # EOD update only
-  python scripts/runners/pre_market_runner.py --mode monthly     # monthly reports
-  python scripts/runners/pre_market_runner.py --step a01         # single step
-  python scripts/runners/pre_market_runner.py --dry-run          # check deps only
+  python scripts/runners/pre_market_runner.py                 # morning run
+  python scripts/runners/pre_market_runner.py --mode eod      # EOD update
+  python scripts/runners/pre_market_runner.py --step a03      # single step
+  python scripts/runners/pre_market_runner.py --dry-run       # check deps only
 
-Dependency order (CLAUDE.md §Daily Automation Schedule):
-  PRE-MARKET (6:00 AM)   A01 market_regime.py → A02 macro_monitor.py
-  MORNING    (7:00 AM)   A03 rs_benchmark.py [Fri] → rs_ranker.py → rs_theme_ranker.py
-                              prewarm_analyst_cache.py [Tue]
-  CURATION   (8:00 AM)   A06 trend_template_screener.py → A07 monster_scout.py
-  EXECUTION  (8:30 AM)   A08 setup_scanner.py → A09 portfolio_manager.py → A10 risk_guardian.py
-  OUTPUT     (9:00 AM)   A11 report_writer.py
-  EOD        (4:30 PM)   A12 auto_postmortem.py → A09 portfolio_manager.py --mode eod
-  MONTHLY    (1st)       A12 framework_calibrator.py → A12 performance_tracker.py
-
-Windows Task Scheduler:
-  Action: python C:\\...\\AlphaAbsolute\\scripts\\runners\\pre_market_runner.py
-  Trigger: Daily at 6:00 AM (premarket) + 4:30 PM (--mode eod)
+Pipeline steps:
+  PREMARKET: health_check → ohlcv_update → fix_volumes → earnings_cal
+             → data_quality → a03_bench [Fri] → a03 → a03c
+  EOD:       ohlcv_update → fix_volumes → fill_ohlc → data_quality_eod
+             → ohlcv_prefetch
 """
 
 from __future__ import annotations
@@ -84,33 +74,28 @@ _load_env()
 #   kwargs          extra keyword args to pass (step must accept **kwargs)
 
 STEPS: list[dict] = [
-    # ── Step 0: System Health Check (always first — surfaces problems early) ──
+    # ── Diagnostics ──────────────────────────────────────────────────────────
     {
         "id":       "health_check",
         "layer":    "0-Diagnostics",
         "name":     "System Health Check",
         "module":   "scripts.diagnostics.health_check",
-        "func":     "run_with_heal",         # auto-heal: silent fix → re-check → print once
+        "func":     "run_with_heal",
         "output":   "data/health/health_report.json",
-        "desc":     "Full pipeline diagnostic + auto-heal: data freshness, DB schema, API keys, imports",
-        "critical": False,   # warn but don't abort if check finds issues
+        "desc":     "Data freshness, DB schema, API keys",
+        "critical": False,
         "modes":    ["premarket", "eod"],
     },
 
-    # ── OHLCV Update — MUST run FIRST so all downstream agents see fresh prices ──
-    # Premarket (6 AM Bangkok = 11 PM UTC): fetches YESTERDAY's data (US closed 2h ago)
-    # EOD (5 PM Bangkok = 10 AM UTC): catches any gaps; skips today (market still open)
-    # critical=False: an OHLCV failure should NOT abort the entire pipeline — better to run
-    # regime/RS/screener on yesterday's prices than to skip the brief entirely.
-    # Telegram alert still fires on any step failure (see _send_pipeline_alert).
+    # ── OHLCV ────────────────────────────────────────────────────────────────
     {
         "id":       "ohlcv_update",
         "layer":    "0-Data",
-        "name":     "OHLCV Bulk Update (Polygon Grouped)",
+        "name":     "OHLCV Bulk Update",
         "module":   "scripts.pre_compute.update_ohlcv_bulk",
         "func":     "run",
         "output":   "data/ohlcv.db",
-        "desc":     "1 Polygon grouped call → ALL tickers in <10s. Premarket=fresh data for analysis; EOD=gap fill.",
+        "desc":     "Polygon grouped → all tickers",
         "critical": False,
         "modes":    ["premarket", "eod"],
     },
@@ -121,20 +106,18 @@ STEPS: list[dict] = [
         "module":   "scripts.pre_compute.fix_dates_volumes",
         "func":     "run",
         "output":   "data/ohlcv.db",
-        "desc":     "Convert float volumes to INTEGER in ohlcv.db after Polygon grouped insert",
+        "desc":     "Cast float volumes to INTEGER",
         "critical": False,
         "modes":    ["premarket", "eod"],
     },
-
-    # ── Pre-Market Data Prep ──────────────────────────────────────────────────
     {
         "id":       "earnings_cal",
         "layer":    "0-Data",
-        "name":     "Earnings Calendar Fetch",
+        "name":     "Earnings Calendar",
         "module":   "scripts.pre_compute.fetch_earnings_calendar",
         "func":     "run",
         "output":   "data/regime/earnings_next30.json",
-        "desc":     "FMP bulk earnings calendar -> earnings_calendar table + within_5td gate file",
+        "desc":     "FMP earnings calendar — S4 uses 5-day earnings gate",
         "critical": False,
         "modes":    ["premarket"],
     },
@@ -145,274 +128,56 @@ STEPS: list[dict] = [
         "module":   "scripts.pre_compute.data_quality",
         "func":     "run",
         "output":   "data/quality/quality_latest.json",
-        "desc":     "10-check data health audit: dates, volumes, coverage, freshness",
+        "desc":     "OHLCV health audit",
         "critical": False,
         "modes":    ["premarket"],
     },
 
-    # ── Layer 0: Foundation ───────────────────────────────────────────────────
-    {
-        "id":       "a01",
-        "layer":    "0-Foundation",
-        "name":     "A01 Market Health Engine",
-        "module":   "scripts.pre_compute.market_regime",
-        "func":     "run",
-        "output":   "data/regime/market_health.json",
-        "desc":     "4-state regime + cash floor + TD signals — gates all downstream agents",
-        "critical": True,
-        "modes":    ["premarket"],
-    },
-    {
-        "id":       "a01b",
-        "layer":    "0-Foundation",
-        "name":     "A01b Full-Market Breadth (Polygon)",
-        "module":   "scripts.pre_compute.fetch_market_breadth",
-        "func":     "run",
-        "output":   "data/breadth/market_breadth_history.json",
-        "desc":     "BOA-004-A7: fetch yesterday full-market NH/NL from Polygon grouped daily (~15s)",
-        "critical": False,
-        "modes":    ["premarket"],
-    },
-    {
-        "id":       "a02",
-        "layer":    "0-Foundation",
-        "name":     "A02 Macro Monitor",
-        "module":   "scripts.pre_compute.macro_monitor",
-        "func":     "run",
-        "output":   "data/regime/macro_state.json",
-        "desc":     "FRED yields + credit spread + yield curve → macro_modifier",
-        "critical": False,
-        "modes":    ["premarket"],
-    },
-
-    # ── Layer 1: Intelligence ─────────────────────────────────────────────────
+    # ── RS Ranking (S4 uses RS percentiles to select top stocks) ─────────────
     {
         "id":          "a03_bench",
-        "layer":       "1-Intelligence",
-        "name":        "A03 RS Benchmark Builder",
+        "layer":       "1-RS",
+        "name":        "RS Benchmark Builder",
         "module":      "scripts.pre_compute.rs_benchmark",
         "func":        "build",
         "output":      "data/rs_universe/benchmark_distribution.json",
-        "desc":        "Build S&P+Nasdaq market-wide RS distribution (Fridays only — ~5 min)",
+        "desc":        "S&P+Nasdaq RS distribution (Fridays only)",
         "critical":    False,
         "modes":       ["premarket"],
         "friday_only": True,
     },
     {
         "id":       "a03",
-        "layer":    "1-Intelligence",
-        "name":     "A03 RS Universe Ranker",
+        "layer":    "1-RS",
+        "name":     "RS Universe Ranker",
         "module":   "scripts.pre_compute.rs_ranker",
         "func":     "run",
         "output":   "data/rs_universe/latest.json",
-        "desc":     "RS percentile 1M/3M/6M/12M for 500+ tickers — foundation of Mode A screen",
+        "desc":     "RS percentile 1M/3M/6M/12M — S4 selects top RS stocks",
         "critical": False,
         "modes":    ["premarket"],
     },
     {
         "id":       "a03c",
-        "layer":    "1-Intelligence",
-        "name":     "A03c RS Change Detector",
+        "layer":    "1-RS",
+        "name":     "RS Change Detector",
         "module":   "scripts.pre_compute.rs_change_detector",
         "func":     "run",
         "output":   "data/rs_universe/changes_today.json",
-        "desc":     "Daily RS snapshot diff → Climbers (new leaders/breakouts) + Droppers (fallen/MA50 breaks)",
-        "critical": False,
-        "modes":    ["premarket"],
-    },
-    {
-        "id":       "a05",
-        "layer":    "1-Intelligence",
-        "name":     "A05 Theme Intelligence (RS Theme Ranker)",
-        "module":   "scripts.pre_compute.rs_theme_ranker",
-        "func":     "run",
-        "output":   "data/rs_universe/theme_rs_latest.json",
-        "desc":     "14-theme HOT/WARM/WEAK heatmap + Strong Leader Scores",
-        "critical": False,
-        "modes":    ["premarket"],
-    },
-    {
-        "id":              "a04_prewarm",
-        "layer":           "1-Intelligence",
-        "name":            "A04 Analyst Cache Pre-Warm",
-        "module":          "scripts.pre_compute.prewarm_analyst_cache",
-        "func":            "run",
-        "output":          "data/fundamentals/analyst_cache/",
-        "desc":            "Batch-fetch analyst coverage counts for Discovery Index (Tuesdays only)",
-        "critical":        False,
-        "modes":           [],      # DISABLED: HTTP 402 on every request — API plan doesn't support endpoint. Re-enable when API upgraded.
-        "tuesday_only":    True,
-        "skip_if_missing": False,
-    },
-
-    # ── Data Enrichment (weekly scrapers — 7-day TTL, near-zero daily cost) ─────
-    {
-        "id":          "sa_fetcher",
-        "layer":       "1-Intelligence",
-        "name":        "StockAnalysis Fundamentals Fetcher",
-        "module":      "scripts.pre_compute.stockanalysis_fetcher",
-        "func":        "run",
-        # FIX: use checkpoint file not ohlcv.db — ohlcv.db always exists so success was always
-        # reported even on total failure. The fetcher writes this checkpoint on every run.
-        "output":      "data/sa_fetcher_checkpoint.json",
-        "desc":        "StockAnalysis.com: fill missing gm_latest, rev_yoy_q1, eps_yoy_pct (7-day TTL, skips fresh)",
-        "critical":    False,
-        "modes":       ["premarket"],
-    },
-    {
-        "id":          "finviz_fetcher",
-        "layer":       "1-Intelligence",
-        "name":        "Finviz Market Cap Fetcher",
-        "module":      "scripts.pre_compute.finviz_fetcher",
-        "func":        "run",
-        # FIX: use checkpoint file not ohlcv.db — same silent-success issue
-        "output":      "data/finviz_fetcher_checkpoint.json",
-        "desc":        "Finviz: fill missing ticker_meta.market_cap (7-day TTL, skips fresh)",
-        "critical":    False,
-        "modes":       ["premarket"],
-    },
-
-    # ── Layer 3: Execution ────────────────────────────────────────────────────
-    # a06/a07/a08/a09/a10 removed — PRISM/Monster Scout/Setup Scanner archived to archive/v2_old_trading/
-    # System 4 (v4_paper_trader.py) is the ONE portfolio — runs on its own monthly rebalance schedule
-
-    # fetch_rev_multiq + fetch_mktcap removed — PRISM theme-ticker enrichment, not used by System 4
-
-    # ── Weekly Forward-Test Snapshot (Fridays only) ──────────────────────────
-    {
-        "id":          "fwd_snapshot",
-        "layer":       "2-Curation",
-        "name":        "Weekly Forward-Test Snapshot",
-        "module":      "scripts.pre_compute.weekly_snapshot",
-        "func":        "run",
-        "output":      "data/ohlcv.db",
-        "desc":        "Capture Friday cohort for 4W/8W/13W learning loop (Fridays only)",
-        "critical":    False,
-        "modes":       ["premarket"],
-        "friday_only": True,
-    },
-    # ── Forward Test Report (Fridays, before A11) ─────────────────────────
-    {
-        "id":          "fwd_report",
-        "layer":       "4-Output",
-        "name":        "Forward Test Attribution Report",
-        "module":      "scripts.output.fwd_report",
-        "func":        "run",
-        "output":      "output/",
-        "desc":        "Gate attribution: which gates predict 4W/8W/13W excess returns (Fridays only)",
-        "critical":    False,
-        "modes":       ["premarket"],
-        "friday_only": True,
-    },
-
-    # ── System Health Probe (runs after risk, before report) ─────────────────
-    {
-        "id":       "health_probe",
-        "layer":    "3-Execution",
-        "name":     "System Health Probe",
-        "module":   "scripts.pre_compute.system_health_probe",
-        "func":     "run",
-        "output":   "data/system_health/alerts.json",
-        "desc":     "7-probe pipeline health check — PASS/WARN/FAIL. FAILs surfaced in daily brief.",
+        "desc":     "Daily RS diff — climbers and droppers",
         "critical": False,
         "modes":    ["premarket"],
     },
 
-    # ── Layer 4: Output ───────────────────────────────────────────────────────
-    {
-        "id":       "a11",
-        "layer":    "4-Output",
-        "name":     "A11 Report Writer + Telegram",
-        "module":   "scripts.output.report_writer",
-        "func":     "run",
-        "output":   "output/",
-        "desc":     "Daily brief markdown + Telegram push before market open",
-        "critical": False,
-        "modes":    ["premarket"],
-    },
-
-    # ── Brain: Obsidian Investment OS sync ───────────────────────────────────
-    {
-        "id":       "brain_current_state",
-        "layer":    "4-Output",
-        "name":     "Brain: Sync Obsidian Current State",
-        "module":   "scripts.brain.current_state_updater",
-        "func":     "run",
-        "output":   "data/regime/market_health.json",
-        "desc":     "Writes live regime/portfolio data to Obsidian 99_Current_State/state.md",
-        "critical": False,
-        "modes":    ["premarket"],
-    },
-
-    # ── Weekly Prediction System ──────────────────────────────────────────────
-    {
-        "id":       "weekly_picker",
-        "layer":    "4-Output",
-        "name":     "Weekly Top-5 Picker (Monday only)",
-        "module":   "scripts.weekly.weekly_picker",
-        "func":     "run",
-        "output":   "data/weekly_picks/",
-        "desc":     "Picks top 5 setups for the week, sends Telegram. Runs Sunday only.",
-        "critical": False,
-        "modes":    ["premarket"],
-        "day_filter": [6],  # Sunday = 6
-    },
-    {
-        "id":       "weekly_scorer",
-        "layer":    "4-Output",
-        "name":     "Weekly Scorer (Friday only)",
-        "module":   "scripts.weekly.weekly_scorer",
-        "func":     "run",
-        "output":   "data/weekly_picks/learning_curve.json",
-        "desc":     "Scores this week's picks vs QQQ, updates learning curve, sends Telegram. Runs Saturday only.",
-        "critical": False,
-        "modes":    ["eod"],
-        "day_filter": [5],  # Saturday = 5
-    },
-
-    # ── EOD Mode (post-market analysis) ───────────────────────────────────────
-    {
-        "id":       "rs_history",
-        "layer":    "1-Intelligence",
-        "name":     "RS History Backfill (rolling 30d)",
-        "module":   "scripts.pre_compute.pipeline_rs_history",
-        "func":     "run",
-        "output":   "data/rs_universe/latest.json",
-        "desc":     "Backfill rs_daily for last 30 trading dates (keeps history current after gaps)",
-        "critical": False,
-        "modes":    ["eod"],
-        "skip_if_missing": True,
-    },
-    {
-        "id":       "pipeline_metrics",
-        "layer":    "1-Intelligence",
-        "name":     "Pipeline Metrics (full recompute)",
-        "module":   "scripts.pre_compute.pipeline_metrics",
-        "func":     "main",
-        "output":   "data/screening/mode_a_full_latest.json",
-        "desc":     "ADTV + 52W + MAs + Stage2 + RS percentiles + screening + history append",
-        "critical": False,
-        "modes":    ["eod"],
-    },
-    {
-        "id":       "fundamentals",
-        "layer":    "1-Intelligence",
-        "name":     "A04 Fundamentals Pipeline",
-        "module":   "scripts.pre_compute.pipeline_fundamentals",
-        "func":     "main",
-        "output":   "data/ohlcv.db",
-        "desc":     "EDGAR+FMP EPS/Rev/GM fetch → fundamentals_summary + gate_eps/gate_rev/gate_gm (top candidates first)",
-        "critical": False,
-        "modes":    ["eod"],
-    },
+    # ── EOD ──────────────────────────────────────────────────────────────────
     {
         "id":              "fill_ohlc",
         "layer":           "0-Data",
-        "name":            "Fill OHLC Gaps (open/high/low)",
+        "name":            "Fill OHLC Gaps",
         "module":          "scripts.pre_compute.fill_ohlc_gaps",
         "func":            "run",
         "output":          "data/quality/quality_latest.json",
-        "desc":            "Update NULL open/high/low for existing rows via Polygon (run until coverage=100%)",
+        "desc":            "Fill NULL open/high/low via Polygon",
         "critical":        False,
         "modes":           ["eod"],
         "skip_if_missing": True,
@@ -424,61 +189,33 @@ STEPS: list[dict] = [
         "module":   "scripts.pre_compute.data_quality",
         "func":     "run",
         "output":   "data/quality/quality_latest.json",
-        "desc":     "EOD data health audit after OHLCV update",
+        "desc":     "EOD health audit after OHLCV update",
         "critical": False,
         "modes":    ["eod"],
     },
     {
         "id":       "ohlcv_prefetch",
         "layer":    "0-Data",
-        "name":     "OHLCV Pre-fetch (600 tickers)",
+        "name":     "OHLCV Pre-fetch",
         "module":   "scripts.pre_compute.ohlcv_prefetch",
         "func":     "run",
         "output":   "data/ohlcv_cache/_manifest.json",
-        "desc":     "Download 290d OHLCV for all 600 benchmark tickers → disk cache → full universe tomorrow",
+        "desc":     "290d OHLCV for benchmark tickers → disk cache",
         "critical": False,
         "modes":    ["eod"],
     },
     {
-        "id":       "fwd_fill",
-        "layer":    "4-Learning",
-        "name":     "Forward Return Filler",
-        "module":   "scripts.pre_compute.fwd_fill",
+        "id":       "rs_history",
+        "layer":    "1-RS",
+        "name":     "RS History Backfill",
+        "module":   "scripts.pre_compute.pipeline_rs_history",
         "func":     "run",
-        "output":   "data/ohlcv.db",
-        "desc":     "Fill 4W/8W/13W forward returns for cohorts whose window has elapsed",
+        "output":   "data/rs_universe/latest.json",
+        "desc":     "Backfill rs_daily for last 30 trading dates",
         "critical": False,
         "modes":    ["eod"],
+        "skip_if_missing": True,
     },
-    # a12_postmortem, a09_eod, a10_trader_eod removed — archived to archive/v2_old_trading/
-    # System 4 EOD update: python scripts/paper_trading/v4_paper_trader.py --mode daily
-
-    # ── Monthly Mode ─────────────────────────────────────────────────────────
-    {
-        "id":              "theme_mapper",
-        "layer":           "1-Intelligence",
-        "name":            "A05 Theme Mapper (auto-classify)",
-        "module":          "scripts.pre_compute.theme_mapper",
-        "func":            "run",
-        "output":          "data/themes/ticker_labels.json",
-        "desc":            "Tier 2 keyword + Tier 3 SIC → auto-label tickers into 14 themes (monthly)",
-        "critical":        False,
-        "modes":           ["monthly"],
-        "skip_if_missing": False,
-    },
-    {
-        "id":              "a12_calibrate",
-        "layer":           "4-Learning",
-        "name":            "A12 Framework Calibrator (Bayesian)",
-        "module":          "scripts.pre_compute.framework_calibrator",
-        "func":            "calibrate",
-        "output":          "data/calibration/signal_weights.json",
-        "desc":            "Bayesian signal weight update from all closed trades (monthly)",
-        "critical":        False,
-        "modes":           ["monthly"],
-        "skip_if_missing": False,
-    },
-    # a12_performance (scripts.portfolio.performance_tracker) removed — archived
 ]
 
 
@@ -687,17 +424,9 @@ def _cleanup_stale_pkl_cache() -> None:
 # no-ops (exist_ok=True on an existing dir is always safe, no PermissionError).
 _REQUIRED_DIRS = [
     "data/regime", "data/rs_universe", "data/rs_universe/snapshots",
-    "data/themes", "data/leadership", "data/bigshot",
-    "data/setups", "data/portfolio", "data/risk",
-    "data/postmortems", "data/calibration", "data/runner_logs",
-    "data/health", "data/breadth", "data/board", "data/quality",
-    "data/system_health", "data/weekly_picks", "data/weekly_picks",
-    "data/fundamentals", "data/fundamentals/analyst_cache",
-    "data/fundamentals/company_names", "data/macro",
-    "data/weekly_picks", "data/nrgc", "data/nrgc/state", "data/nrgc/weekly",
-    "data/insights", "data/paper_trading",
-    "output", "output/postmortems",
-    "data/ohlcv_cache",
+    "data/runner_logs", "data/health", "data/quality",
+    "data/paper_trading", "data/ohlcv_cache",
+    "output",
 ]
 
 
@@ -781,8 +510,6 @@ def run_pipeline(mode: str = "premarket", step_filter: str | None = None,
 
     # Always send a pipeline status alert to Telegram
     _send_pipeline_alert(summary, mode, aborted)
-
-    _print_regime_summary()
     return summary
 
 
@@ -852,50 +579,6 @@ def _send_pipeline_alert(summary: dict, mode: str, aborted: bool) -> None:
 
 # ── Regime Summary ────────────────────────────────────────────────────────────
 
-def _print_regime_summary() -> None:
-    """Print compact v2 regime + macro summary after pipeline completes."""
-    health_file = BASE_DIR / "data/regime/market_health.json"
-    macro_file  = BASE_DIR / "data/regime/macro_state.json"
-
-    try:
-        if health_file.exists():
-            h = json.loads(health_file.read_text(encoding="utf-8"))
-            regime     = h.get("regime", "?")
-            cash_floor = h.get("cash_floor", 0.0)
-            max_dep    = h.get("max_deployed", 1.0)
-            leaders_ok = h.get("leaders_ok", True)
-            bigshot_ok = h.get("bigshot_ok", True)
-            spy_td     = h.get("spy_td_signal", "Neutral")
-            qqq_td     = h.get("qqq_td_signal", "Neutral")
-            note       = h.get("regime_note", "")
-
-            emoji = {"Markup": "[+]", "Sideways": "[~]",
-                     "Distribution": "[!]", "Markdown": "[-]"}.get(regime, "[?]")
-
-            print(f"  {emoji} REGIME: {regime}")
-            print(f"     Cash floor: {cash_floor:.0%} | Max deployed: {max_dep:.0%}")
-            print(f"     Leaders OK: {'Yes' if leaders_ok else 'NO'} | "
-                  f"Big Shot OK: {'Yes' if bigshot_ok else 'NO'}")
-            print(f"     SPY TD: {spy_td} | QQQ TD: {qqq_td}")
-            if note:
-                print(f"     Note: {note}")
-
-        if macro_file.exists():
-            m = json.loads(macro_file.read_text(encoding="utf-8"))
-            rate_env  = m.get("rate_environment", "?")
-            modifier  = m.get("macro_modifier", 1.0)
-            credit    = m.get("credit_stress", False)
-            yc        = m.get("yield_curve", "?")
-            mnote     = m.get("macro_note", "")
-            print(f"\n  [MACRO] {rate_env} | Modifier: {modifier:.2f}x | "
-                  f"Credit stress: {'YES' if credit else 'No'} | Curve: {yc}")
-            if mnote:
-                print(f"     {mnote}")
-        print()
-    except Exception:
-        pass
-
-
 # ── Entry Point ───────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
@@ -904,20 +587,20 @@ if __name__ == "__main__":
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Modes:
-  premarket   Full pre-market pipeline (default) — runs all agents in order
-  eod         End-of-day: post-mortem + price update only
-  monthly     Monthly: Bayesian calibration + performance report
+  premarket   Morning pipeline (default): OHLCV + RS ranking
+  eod         Evening: OHLCV gap fill + data quality
 
 Examples:
   python scripts/runners/pre_market_runner.py
   python scripts/runners/pre_market_runner.py --mode eod
-  python scripts/runners/pre_market_runner.py --step a07
+  python scripts/runners/pre_market_runner.py --step a03
   python scripts/runners/pre_market_runner.py --dry-run
 
-Available step IDs:
-  Premarket: ohlcv_update earnings_cal data_quality a01 a02 a03_bench a03 a03c a05 a04_prewarm a06 a07 motw_selector motw_research [Sun] fwd_snapshot fwd_report a08 a09 a10_trader a10 health_probe a11
-  EOD:       ohlcv_update rs_history pipeline_metrics fundamentals fill_ohlc data_quality_eod ohlcv_prefetch fwd_fill a12_postmortem a09_eod a10_trader_eod
-  Monthly:   theme_mapper a12_calibrate a12_performance
+Step IDs:
+  Premarket: health_check ohlcv_update fix_volumes earnings_cal data_quality
+             a03_bench [Fri] a03 a03c
+  EOD:       health_check ohlcv_update fix_volumes fill_ohlc data_quality_eod
+             ohlcv_prefetch rs_history
         """,
     )
     parser.add_argument(

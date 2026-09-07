@@ -11,7 +11,7 @@ def set_user_env(name, value):
     winreg.SetValueEx(key, name, 0, winreg.REG_EXPAND_SZ, value)
     winreg.CloseKey(key)
 
-print("AlphaPULSE — API Key Setup")
+print("AlphaAbsolute — API Key Setup")
 print("=" * 40)
 print()
 
