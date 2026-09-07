@@ -42,10 +42,8 @@ def _load_regime() -> dict:
     """Read System 4 regime state (BULL/BEAR from IWM MA200 gate)."""
     s4 = _read_json(ROOT / "data" / "paper_trading" / "state.json", {})
     regime = s4.get("regime", "BULL")
-    # Map S4 regime to field names chief_quant uses for hypothesis generation
     return {
-        "regime": "Markup" if regime == "BULL" else "Markdown",
-        "regime_s4": regime,
+        "regime": regime,
         "regime_score": 75 if regime == "BULL" else 25,
     }
 
@@ -108,18 +106,18 @@ def _analyze_model_reality_gap(
 
     alpha = nav_pct - qqq_pct
 
-    # If losing to QQQ AND regime is Markup → regime gate may be too restrictive
+    # If losing to QQQ AND regime is BULL → regime gate may be too restrictive
     regime_name = regime.get("regime", "")
-    if alpha < -5 and regime_name == "Markup":
+    if alpha < -5 and regime_name == "BULL":
         ideas.append(dict(
-            title="No regime gate when losing to QQQ in Markup",
+            title="No regime gate when losing to QQQ in BULL regime",
             hypothesis=(
                 f"Live portfolio alpha vs QQQ = {alpha:.1f}% in {regime_name} regime. "
                 "Regime gate (IWM 200MA) may be blocking entries in confirmed bull. "
-                "Test: remove regime gate entirely during Markup."
+                "Test: remove regime gate entirely during BULL regime."
             ),
             param={"param": "regime_ticker", "value": "none", "baseline": "IWM"},
-            rationale="Model-reality gap: backtest says IWM gate helps but live alpha is negative in Markup.",
+            rationale="Model-reality gap: backtest says IWM gate helps but live alpha is negative in BULL regime.",
         ))
 
     # If winning QQQ significantly → current config is working, test concentration
@@ -290,14 +288,14 @@ def _analyze_parameter_sensitivity(leaderboard: list) -> list[dict]:
 def _analyze_regime_conditional(regime: dict, leaderboard: list) -> list[dict]:
     """
     Lens 4: Current regime should inform which params to prioritize.
-    In Distribution regime → DD matters more than CAGR → propose DD-minimizing configs.
+    In BEAR regime → DD matters more than CAGR → propose DD-minimizing configs.
     """
     ideas = []
-    regime_name = regime.get("regime", "Markup")
+    regime_name = regime.get("regime", "BULL")
     score = regime.get("effective_score", regime.get("score", 50))
 
-    if regime_name == "Distribution":
-        # In Distribution: find leaderboard entries with lowest DD even if lower CAGR
+    if regime_name == "BEAR":
+        # In BEAR: find leaderboard entries with lowest DD even if lower CAGR
         low_dd_entries = sorted(
             [e for e in leaderboard if not e.get("is_baseline") and e.get("max_dd_pct")],
             key=lambda x: x.get("max_dd_pct", 999)
@@ -307,10 +305,10 @@ def _analyze_regime_conditional(regime: dict, leaderboard: list) -> list[dict]:
             best_dd_entry = low_dd_entries[0]
             bp = best_dd_entry.get("params", {})
             ideas.append(dict(
-                title=f"Distribution regime: use lowest-DD config (DD={best_dd_entry.get('max_dd_pct')}%)",
+                title=f"BEAR regime: use lowest-DD config (DD={best_dd_entry.get('max_dd_pct')}%)",
                 hypothesis=(
                     f"Current regime = {regime_name} (score={score}). "
-                    f"In Distribution, capital preservation > CAGR. "
+                    f"In BEAR regime, capital preservation > CAGR. "
                     f"Config with DD={best_dd_entry.get('max_dd_pct')}% "
                     f"(regime={bp.get('regime_ticker')}, top_n={bp.get('top_n')}, "
                     f"sizing={bp.get('sizing_method')}) may be better suited to current conditions."
@@ -318,16 +316,16 @@ def _analyze_regime_conditional(regime: dict, leaderboard: list) -> list[dict]:
                 param={"param": "top_n", "value": bp.get("top_n", 10), "baseline": 15},
                 rationale=(
                     "Regime-conditional parameter selection: optimal config is not static. "
-                    "Distribution regime rewards lower beta, tighter concentration, stronger regime gate."
+                    "BEAR regime rewards lower beta, tighter concentration, stronger regime gate."
                 ),
             ))
 
-    elif regime_name == "Markup" and score >= 70:
-        # Strong Markup: test more aggressive configs
+    elif regime_name == "BULL" and score >= 70:
+        # Strong BULL: test more aggressive configs
         ideas.append(dict(
-            title="Strong Markup: test aggressive top=20 with no regime gate",
+            title="Strong BULL regime: test aggressive top=20 with no regime gate",
             hypothesis=(
-                f"Regime score = {score}/85 — strong Markup. All stocks rising. "
+                f"Regime score = {score}/85 — strong BULL. All stocks rising. "
                 "Regime gate may be suppressing gains unnecessarily. "
                 "Test top=20 + no gate to maximize participation."
             ),
@@ -388,7 +386,7 @@ def _analyze_research_gaps(leaderboard: list) -> list[dict]:
             hypothesis=(
                 "21d and 42d rebalance tested. "
                 "14d rebalance may capture faster RS momentum shifts, "
-                "especially in Distribution regime when leaders rotate quickly."
+                "especially in BEAR regime when leaders rotate quickly."
             ),
             param={"param": "rebalance_days", "value": 14, "baseline": 21},
             rationale="Faster rebalance = faster reaction to regime shifts. Cost: higher turnover. Net effect unknown.",
@@ -488,9 +486,7 @@ def _write_obsidian_synthesis(ideas: list, regime: dict, leaderboard: list, cham
             "> Chief Quant proposes. CIO decides. System never self-modifies.",
             "",
             "## Market Context",
-            f"- Regime: **{regime.get('regime', 'unknown')}** (score={regime.get('effective_score', regime.get('score', '?'))}/85)",
-            f"- Distribution days: {regime.get('distribution_days', '?')}",
-            f"- Breadth above 50DMA: {regime.get('pct_above_50dma', '?')}%",
+            f"- Regime: **{regime.get('regime', 'unknown')}** (score={regime.get('regime_score', '?')})",
             "",
             "## Current Champion",
             f"- AlphaScore: **{champ_score}**",

@@ -1,6 +1,6 @@
 """
-AlphaAbsolute v2 -- RS Change Detector  (A03c)
-===============================================
+AlphaAbsolute v2 -- RS Change Detector
+=======================================
 Compares today's RS universe snapshot with yesterday's to detect:
 
   CLIMBERS (Add to Focus List):
@@ -19,7 +19,7 @@ Compares today's RS universe snapshot with yesterday's to detect:
   • Trim / Remove signal — stop hit OR 3 consecutive RS drops
 
 Output:  data/rs_universe/changes_today.json
-Run:     Daily after rs_ranker.py + rs_theme_ranker.py (Step A03c in pipeline)
+Run:     Daily after rs_ranker.py + rs_theme_ranker.py
 
 Cost: $0 (reads local JSON files only — no API calls)
 """
@@ -437,7 +437,7 @@ def run() -> dict:
     today_str = _today_str()
 
     print(f"\n{'='*55}")
-    print(f"  A03c RS Change Detector  [{today}]")
+    print(f"  RS Change Detector  [{today}]")
     print(f"{'='*55}")
 
     # Load today's RS universe — prefer SQLite (pipeline_metrics output), fallback to JSON

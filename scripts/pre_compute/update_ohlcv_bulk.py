@@ -49,8 +49,8 @@ LABELS_PATH = BASE_DIR / "data" / "themes" / "ticker_labels.json"
 POLYGON_KEY = os.getenv("POLYGON_API_KEY", "")
 SLEEP_BETWEEN_DATES = 13   # seconds between grouped calls (free: 5/min = 12s gap)
 
-# Always include these benchmark tickers (not in ticker_labels but needed by A01)
-# RSP = S&P 500 Equal Weight ETF — required for concentration signal in A01
+# Always include these benchmark tickers (not in ticker_labels but needed by market regime)
+# RSP = S&P 500 Equal Weight ETF — required for concentration signal
 BENCHMARK_TICKERS = ["SPY", "QQQ", "IWM", "VIX", "RSP"]
 
 

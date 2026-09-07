@@ -32,7 +32,6 @@ if hasattr(sys.stdout, "reconfigure"):
 
 BASE_DIR = Path(__file__).resolve().parents[2]
 DATA_DIR = BASE_DIR / "data" / "rs_universe"
-NRGC_DIR = None  # NRGC removed — System 4 only
 PORT_FILE = BASE_DIR / "data" / "paper_trading" / "state.json"
 CANSLIM_DIR = BASE_DIR / "data" / "canslim_scores"
 ACTIVE_UNIVERSE_FILE = BASE_DIR / "data" / "universe" / "active_universe.json"
@@ -55,7 +54,7 @@ _load_env()
 
 # ─── Reporting Universe (hardcoded base) ─────────────────────────────────────
 # ALL stocks that appear in the daily report or any AlphaAbsolute output.
-# rs_ranker ALWAYS computes market-relative RS for these, regardless of NRGC phase.
+# rs_ranker ALWAYS computes market-relative RS for these tickers.
 # Add new names here when adding to daily_report.py WATCHLIST or _build_report.py lists.
 REPORTING_UNIVERSE = sorted(set([
     # ── Theme 1: AI-Related ─────────────────────────────────────────────────────
@@ -98,10 +97,10 @@ def get_tracked_universe() -> list:
     """
     Build tracked universe:
       Base: REPORTING_UNIVERSE (all stocks in daily report + theme watchlist) — always included
-      +Full S&P+NASDAQ: BENCHMARK_TICKERS from rs_benchmark.py (~480 tickers) — the PRISM screen
-         runs on the FULL benchmark universe so no Grade A leader is missed
-      +Dynamic: NRGC Phase 2-3-4 + held positions + CANSLIM scored tickers
-    This ensures trend_template_screener.py covers the full S&P+NASDAQ, not just the curated list.
+      +Full S&P+NASDAQ: BENCHMARK_TICKERS from rs_benchmark.py (~480 tickers) — the full
+         benchmark universe so no top RS stock is missed
+      +Dynamic: held positions + CANSLIM scored tickers
+    This ensures full S&P+NASDAQ coverage, not just the curated list.
     """
     tickers = set(REPORTING_UNIVERSE)   # start with reporting base
 
@@ -109,7 +108,7 @@ def get_tracked_universe() -> list:
     # Import BENCHMARK_TICKERS from rs_benchmark.py — this is the full ~480-ticker
     # market-representative universe (S&P 500 + Nasdaq 100 + AlphaAbsolute themes).
     # trend_template_screener.py uses rs_universe.keys() so this is the ONLY place
-    # needed to expand PRISM coverage to full S&P+NASDAQ as user requested.
+    # needed to expand coverage to full S&P+NASDAQ as user requested.
     try:
         import importlib.util as _ilu
         _spec = _ilu.spec_from_file_location(
@@ -210,7 +209,7 @@ def fetch_ohlcv(ticker: str, period_days: int = 280) -> dict:
     # ── Priority 3: live fetch via data_engine ────────────────────────────────
     # SKIP for rs_ranker: if SQLite (ohlcv.db) has no data for this ticker, it is
     # likely delisted or never in our universe. Live API fetch for 38+ dead tickers
-    # causes Tiingo 429 rate-limit sleeps and adds 30+ minutes to A03 runtime.
+    # causes Tiingo 429 rate-limit sleeps and adds 30+ minutes to rs_ranker runtime.
     # The percentile calculation is not materially affected by skipping ghost tickers.
     return {}
 
@@ -528,192 +527,6 @@ def detect_rs_inflection(ticker: str, current_pct: dict, history_file: Path) -> 
     return result
 
 
-# ─── PRISM RS Gate Check (3-Layer) ────────────────────────────────────────────
-
-def check_prism_rs_gate(pcts: dict, momentum: dict,
-                        ticker: str = None, theme_rs_data: dict = None) -> dict:
-    """
-    3-Layer PRISM RS Gate — Market RS + Theme RS + Momentum (1M-3M, 3M-6M).
-
-    LEADERSHIP RULE (permanent, never bypass):
-      >70th percentile = STRONG LEADER (both market AND within-theme)
-      1M > 3M percentile = ACCELERATING (positive signal)
-      1M - 3M < -15pp = DECELERATING (reduce tier)
-      1M - 3M < -25pp = SHARP DECEL (FAIL regardless of level)
-
-    Gate Tiers:
-      STRICT      : 1M≥72 + 3M≥65 + 6M≥65 + mom_1m3m≥-10 + mom_3m6m≥-10
-                    [OR: 1M≥72 + theme_within_1m≥70 + mom_1m3m≥-10]
-      STANDARD    : composite≥65 + at most 1 TF weak + mom_1m3m≥-15
-      THEME_BONUS : hot theme (theme_vs_themes≥70) + market≥57 + mom_1m3m≥-15
-      THEME_CARRY : hot theme + market≥50 + no sharp decel  → 50% size
-      FAIL        : everything else / sharp decel (mom_1m3m < -25)
-
-    Theme data sourced from strong_leader_latest.json (rs_theme_ranker output).
-    Returns gate dict: pass, tier, size_modifier, theme_bonus, fails, notes, momentum fields.
-    """
-    PRISM_RS_LEADER   = 70    # >70th = strong leader (hard rule)
-    PRISM_RS_STRICT   = 72    # Minervini standard (primary TF)
-    PRISM_RS_STANDARD = 65    # STANDARD gate threshold (true market %)
-    PRISM_MOM_PRIMARY = -10.0 # rs_mom_1m_3m threshold (1M vs 3M)
-    PRISM_MOM_WARN    = -15.0 # STANDARD/THEME_BONUS soft limit
-    PRISM_MOM_FAIL    = -25.0 # HARD FAIL regardless of level
-
-    gate = {
-        "pass":          False,
-        "tier":          "FAIL",
-        "score":         0,
-        "theme_bonus":   False,
-        "fails":         [],
-        "notes":         "",
-        # Momentum fields passed through for display
-        "mom_1m_3m":     momentum.get("rs_mom_1m_3m"),
-        "mom_3m_6m":     momentum.get("rs_mom_3m_6m"),
-    }
-
-    # ── Layer 1: Stock vs Market (primary: 1M, secondary: 3M + 6M) ───────────
-    rs_1m  = pcts.get("rs_1m_pct")
-    rs_3m  = pcts.get("rs_3m_pct")
-    rs_6m  = pcts.get("rs_6m_pct")
-    composite = pcts.get("rs_composite_pct") or rs_1m
-    gate["score"] = composite or 0
-
-    # ── Layer 2: Theme RS data (from strong_leader_latest.json) ──────────────
-    theme_vs_themes  = None
-    within_theme_1m  = None   # within-theme rank by 1M RS (most recent)
-    within_theme_3m  = None
-    within_theme_6m  = None
-    theme_mom_1m_3m  = None   # within-theme momentum 1M-3M
-    theme_mom_3m_6m  = None
-    theme_phase      = None
-    theme_name       = None
-
-    if theme_rs_data and ticker:
-        sl_file = DATA_DIR / "strong_leader_latest.json"
-        if sl_file.exists():
-            try:
-                sl = json.loads(sl_file.read_text(encoding="utf-8"))
-                stock_sl = sl.get("stocks", {}).get(ticker, {})
-                theme_vs_themes = stock_sl.get("theme_vs_themes_pct")
-                within_theme_1m = stock_sl.get("within_theme_1m_pct")
-                within_theme_3m = stock_sl.get("within_theme_3m_pct")
-                within_theme_6m = stock_sl.get("within_theme_6m_pct")
-                theme_mom_1m_3m = stock_sl.get("theme_mom_1m_3m")
-                theme_mom_3m_6m = stock_sl.get("theme_mom_3m_6m")
-                theme_name      = stock_sl.get("best_theme")
-                # Get theme phase
-                if theme_name:
-                    for tid, td in theme_rs_data.items():
-                        if isinstance(td, dict) and td.get("name") == theme_name:
-                            theme_phase = td.get("phase")
-                            break
-            except Exception:
-                pass
-
-    hot_theme = (
-        theme_vs_themes is not None and theme_vs_themes >= 70 and
-        theme_phase in ("HOT", "WARM", "EMERGING")
-    )
-    gate["theme_bonus"]          = hot_theme
-    gate["theme_vs_themes_pct"]  = theme_vs_themes
-    gate["within_theme_pct"]     = within_theme_1m   # primary = 1M
-    gate["within_theme_1m_pct"]  = within_theme_1m
-    gate["within_theme_3m_pct"]  = within_theme_3m
-    gate["within_theme_6m_pct"]  = within_theme_6m
-    gate["theme_mom_1m_3m"]      = theme_mom_1m_3m
-    gate["theme_mom_3m_6m"]      = theme_mom_3m_6m
-    gate["theme_name"]           = theme_name
-
-    # ── Momentum checks (PERMANENT — always enforced) ─────────────────────────
-    mom_1m_3m = momentum.get("rs_mom_1m_3m")  # PRIMARY: 1M rank - 3M rank
-    mom_3m_6m = momentum.get("rs_mom_3m_6m")  # CONFIRM: 3M rank - 6M rank
-
-    # Sharp deceleration = HARD FAIL regardless of level
-    sharp_decel = (mom_1m_3m is not None and mom_1m_3m < PRISM_MOM_FAIL)
-
-    mom_primary_fail = (mom_1m_3m is not None and mom_1m_3m < PRISM_MOM_PRIMARY)
-    mom_warn_fail    = (mom_1m_3m is not None and mom_1m_3m < PRISM_MOM_WARN)
-
-    # Theme momentum check (secondary)
-    theme_mom_ok = (theme_mom_1m_3m is None or theme_mom_1m_3m >= PRISM_MOM_WARN)
-
-    if sharp_decel:
-        gate["fails"].append(f"SHARP DECEL: mom_1m_3m={mom_1m_3m:.1f}pp (<{PRISM_MOM_FAIL})")
-    elif mom_primary_fail:
-        gate["fails"].append(f"mom_1m_3m={mom_1m_3m:.1f}pp (<{PRISM_MOM_PRIMARY})")
-    if mom_3m_6m is not None and mom_3m_6m < PRISM_MOM_PRIMARY:
-        gate["fails"].append(f"mom_3m_6m={mom_3m_6m:.1f}pp")
-
-    # ── Market TF threshold checks ────────────────────────────────────────────
-    # How many of the 3 TFs are above STANDARD minimum?
-    effective_min = PRISM_RS_STANDARD - (8 if hot_theme else 0)  # 65 → 57 if HOT theme
-    tf_fails = 0
-    for tf_val, tf_nm in [(rs_1m, "rs_1m"), (rs_3m, "rs_3m"), (rs_6m, "rs_6m")]:
-        if tf_val is not None and tf_val < effective_min:
-            tf_fails += 1
-            gate["fails"].append(f"{tf_nm}={tf_val:.0f}<{effective_min}")
-
-    # ── Final verdict ─────────────────────────────────────────────────────────
-    if composite is None:
-        gate["tier"]  = "FAIL"
-        gate["notes"] = "[X] No RS data"
-
-    elif sharp_decel:
-        gate["tier"]  = "FAIL"
-        gate["notes"] = f"[X] SHARP DECELERATION: 1M-3M={mom_1m_3m:.1f}pp -- exit not entry"
-
-    elif (rs_1m is not None and rs_1m >= PRISM_RS_STRICT and
-          tf_fails == 0 and not mom_primary_fail):
-        # STRICT: 1M ≥72 + all TF ≥65 + no primary mom fail
-        gate["pass"]  = True
-        gate["tier"]  = "STRICT"
-        mom_s = f"D1m-3m={mom_1m_3m:+.0f}" if mom_1m_3m is not None else ""
-        thm_s = f" | Thm={theme_vs_themes:.0f}th[{theme_name}]" if theme_vs_themes else ""
-        gate["notes"] = f"[OK] STRICT: 1M={rs_1m:.0f}th 3M={rs_3m or 0:.0f}th {mom_s}{thm_s}"
-
-    elif composite >= effective_min and tf_fails <= 1 and not mom_warn_fail:
-        # STANDARD or THEME_BONUS (if hot theme lowered threshold)
-        gate["pass"] = True
-        if hot_theme:
-            gate["tier"] = "THEME_BONUS"
-            gate["notes"] = (f"[OK] THEME_BONUS: {theme_name}={theme_vs_themes:.0f}th"
-                             f" | Mkt={composite:.0f}th")
-        else:
-            gate["tier"] = "STANDARD"
-            gate["notes"] = f"[OK] STANDARD: composite={composite:.0f}th"
-
-    elif hot_theme and composite >= 50 and not sharp_decel:
-        # Theme carries — HOT theme + market ≥50th + no sharp decel
-        gate["pass"]  = True
-        gate["tier"]  = "THEME_CARRY"
-        gate["notes"] = (f"[OK] THEME_CARRY: {theme_name}={theme_vs_themes:.0f}th "
-                         f"Mkt={composite:.0f}th [50% size]")
-    else:
-        gate["tier"]  = "FAIL"
-        gate["notes"] = f"[X] FAIL: {'; '.join(gate['fails'][:4])}"
-
-    gate["size_modifier"] = {
-        "STRICT":       1.0,
-        "STANDARD":     0.8,
-        "THEME_BONUS":  0.9,
-        "THEME_CARRY":  0.5,
-        "FAIL":         0.0,
-    }.get(gate["tier"], 0.0)
-
-    return gate
-
-
-def _load_theme_rs_for_gate() -> dict:
-    """Quick-load theme RS data for use in PRISM gate."""
-    theme_file = DATA_DIR / "theme_rs_latest.json"
-    if not theme_file.exists():
-        return {}
-    try:
-        d = json.loads(theme_file.read_text(encoding="utf-8"))
-        return d.get("themes", {})
-    except Exception:
-        return {}
-
 
 # ─── History Persistence ──────────────────────────────────────────────────────
 
@@ -780,7 +593,7 @@ def run():
     # 2. Build universe
     universe = get_tracked_universe()
     if not universe:
-        print("[RS Ranker] WARNING: Universe is empty -- add tickers to NRGC/portfolio.")
+        print("[RS Ranker] WARNING: Universe is empty -- add tickers to portfolio or universe files.")
         return
 
     print(f"[RS Ranker] Universe: {len(universe)} tickers -- {', '.join(universe[:10])}{'...' if len(universe) > 10 else ''}")
@@ -844,12 +657,9 @@ def run():
     # 4. Compute percentile ranks
     pct_ranks = rank_universe(raw_data)
 
-    # 5. Detect inflections + PRISM gate for each ticker
+    # 5. Detect inflections for each ticker
     inflections    = []
     full_universe  = {}
-
-    # Load theme RS data once (for 3-layer PRISM gate)
-    theme_rs_for_gate = _load_theme_rs_for_gate()
 
     for ticker in sorted(raw_data.keys()):
         tf_data = raw_data[ticker]
@@ -858,9 +668,9 @@ def run():
 
         # Momentum = percentile-point differences (shorter TF pct - longer TF pct)
         # Positive = recent rank BETTER than longer-term rank = ACCELERATING (good)
-        # < -10pp = deceleration warning | < -20pp = sharp decel = FAIL
+        # < -10pp = deceleration warning | < -20pp = sharp decel warning
         #
-        # KEY SIGNALS (per PRISM spec "RS momentum (2W vs 1M, 3M vs 6M) > -10%"):
+        # KEY SIGNALS (RS momentum):
         #   rs_mom_1m_3m  = rs_1m_pct - rs_3m_pct  → PRIMARY: is 1M rank > 3M rank?
         #   rs_mom_3m_6m  = rs_3m_pct - rs_6m_pct  → CONFIRM: is 3M rank > 6M rank?
         p2w  = pcts.get("rs_2w_pct")
@@ -877,11 +687,6 @@ def run():
         }
 
         inflection_sig = detect_rs_inflection(ticker, pcts, hist_f)
-        prism_gate     = check_prism_rs_gate(pcts, momentum,
-                                             ticker=ticker,
-                                             theme_rs_data=theme_rs_for_gate)
-
-        nrgc_phase = None  # NRGC removed
 
         rs_source = pcts.get("rs_source", "watchlist")
         entry = {
@@ -899,15 +704,12 @@ def run():
             "rs_6m_excess":     tf_data.get("rs_6m"),
             # Momentum = PERCENTILE-POINT differences (shorter minus longer)
             # Positive = recent rank BETTER than longer-term = ACCELERATING
-            # rs_mom_1m_3m PRIMARY: is 1M rank > 3M rank? (user framework core signal)
+            # rs_mom_1m_3m PRIMARY: is 1M rank > 3M rank?
             # rs_mom_3m_6m CONFIRM: is 3M rank > 6M rank?
             "rs_mom_1m_3m":     momentum.get("rs_mom_1m_3m"),   # PRIMARY
             "rs_mom_3m_6m":     momentum.get("rs_mom_3m_6m"),   # CONFIRM
             "rs_mom_6m_12m":    momentum.get("rs_mom_6m_12m"),
             "rs_mom_2w_1m":     momentum.get("rs_mom_2w_1m"),   # SHORT TERM
-            # Theme momentum (from gate -- populated after rs_theme_ranker runs)
-            "theme_mom_1m_3m":  prism_gate.get("theme_mom_1m_3m"),
-            "theme_mom_3m_6m":  prism_gate.get("theme_mom_3m_6m"),
             # ── Trend Template Price Fields (Minervini SEPA criteria) ─────
             "pct_from_52w_high":  tf_data.get("pct_from_52w_high"),   # > -20%
             "pct_from_52w_low":   tf_data.get("pct_from_52w_low"),    # > +10% (>15% superstrong)
@@ -916,21 +718,10 @@ def run():
             "ma150_vs_ma200_pct": tf_data.get("ma150_vs_ma200_pct"), # > -5% (>0% superstrong)
             "adtv_6m_usd":        tf_data.get("adtv_6m_usd"),        # > $15M
             "adtv_6m_m":          tf_data.get("adtv_6m_m"),
-            # 3-Layer PRISM RS Gate
-            "prism_rs_gate":        prism_gate["pass"],
-            "prism_rs_tier":        prism_gate["tier"],           # STRICT/STANDARD/THEME_BONUS/THEME_CARRY/FAIL
-            "prism_rs_size_mod":    prism_gate["size_modifier"],  # 0.0-1.0 position size multiplier
-            "prism_rs_theme_bonus": prism_gate["theme_bonus"],    # True if hot theme lowered threshold
-            "prism_rs_theme_name":  prism_gate.get("theme_name"), # Theme that triggered bonus
-            "prism_rs_theme_pct":   prism_gate.get("theme_vs_themes_pct"),  # Theme percentile vs all 14 themes
-            "prism_rs_within_pct":  prism_gate.get("within_theme_pct"),     # Stock rank within theme
-            "prism_rs_notes":       prism_gate["notes"],
             "inflection":       inflection_sig["is_inflection"],
             "inflection_type":  inflection_sig.get("inflection_type"),
             "inflection_strength": inflection_sig.get("strength", "NONE"),
             "inflection_notes": inflection_sig.get("notes", ""),
-            # Context
-            "nrgc_phase":       nrgc_phase,
             "price_last":       tf_data.get("_close_last", 0),
             "rs_source":        rs_source,  # "market" or "watchlist"
             "computed_at":      datetime.now().isoformat(),
@@ -994,23 +785,19 @@ def run():
                 "rs_composite_pct": data.get("rs_composite_pct"),
                 "rs_1m_pct":  data.get("rs_1m_pct"),
                 "rs_3m_pct":  data.get("rs_3m_pct"),
-                "prism_rs_gate": data.get("prism_rs_gate"),
-                "nrgc_phase": data.get("nrgc_phase"),
                 "inflection": data.get("inflection"),
             }
             for i, (ticker, data) in enumerate(ranked_list[:10])
         ],
-        # Bottom 5 (RS laggards in portfolio -- sell candidates)
+        # Bottom 5 (RS laggards — sell candidates)
         "rs_laggards": [
             {
                 "rank": len(ranked_list) - i,
                 "ticker": ticker,
                 "rs_composite_pct": data.get("rs_composite_pct"),
-                "nrgc_phase": data.get("nrgc_phase"),
                 "warning": "RS LAGGARD -- review for exit",
             }
             for i, (ticker, data) in enumerate(reversed(ranked_list[-5:]))
-            if data.get("nrgc_phase") in (3, 4)   # only flag held/near-hold positions
         ],
         # Full ranked universe
         "universe": {ticker: data for ticker, data in ranked_list},
@@ -1074,7 +861,8 @@ def run():
     print(f"\n[RS Ranker] Complete -- {len(full_universe)} tickers ranked")
     print(f"  Top 5 RS Leaders:")
     for i, (t, d) in enumerate(ranked_list[:5], 1):
-        gate = "[OK]" if d.get("prism_rs_gate") else "[X]"
+        rs_ok = (d.get("rs_composite_pct") or 0) >= 70
+        gate = "[OK]" if rs_ok else "[--]"
         inf  = "[RED] INFLECTION" if d.get("inflection") else ""
         print(f"    #{i} {t:<6} RS={d.get('rs_composite_pct',0):.0f}th | "
               f"1M={d.get('rs_1m_pct',0):.0f}th | "

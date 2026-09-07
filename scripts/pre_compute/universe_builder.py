@@ -407,23 +407,7 @@ def _build_active_universe_v1(full_universe: list[str]) -> list[str]:
         except Exception as e:
             print(f"  [WARN] TT file error: {e}")
 
-    # Tier 4: NRGC Phase 2-4 from existing data (known candidates)
-    nrgc_summary = ROOT / "data" / "nrgc" / "summary.json"
-    if nrgc_summary.exists():
-        try:
-            nrgc_data = json.loads(nrgc_summary.read_text(encoding="utf-8"))
-            nrgc_candidates = [
-                t for t, d in nrgc_data.get("by_ticker", {}).items()
-                if d.get("phase", 0) in (2, 3, 4)
-                and t in full_universe
-            ]
-            for t in nrgc_candidates:
-                active.add(t)
-            print(f"  + NRGC Ph2-4: {len(nrgc_candidates)} tickers")
-        except Exception:
-            pass
-
-    # Tier 5: Top S&P sectors (always include sector leaders for macro context)
+    # Tier 4: Top S&P sectors (always include sector leaders for macro context)
     SECTOR_LEADERS = [
         "AAPL","MSFT","NVDA","AMZN","META","GOOGL","TSLA",  # Mega cap
         "JPM","V","MA","BAC","GS",                           # Financials

@@ -299,7 +299,7 @@ def _execute_step_once(step: dict, full_path) -> tuple[bool, float, str]:
             if output_p.exists() and step["id"] == "a11":
                 brief = output_p / f"daily_brief_{today_str}.md"
                 if not brief.exists():
-                    return False, duration, f"A11: daily_brief_{today_str}.md not written"
+                    return False, duration, f"report_writer: daily_brief_{today_str}.md not written"
         else:
             if not output_p.exists():
                 return False, duration, "Output file not written"

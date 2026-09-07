@@ -358,8 +358,8 @@ def seed_initial_ideas() -> None:
             title="Wider portfolio (top 20) in high-breadth regimes",
             hypothesis="When breadth is strong (>70% above 50DMA), widening to top 20 captures more of the rising tide",
             param={"param": "top_n", "value": 20, "baseline": 15},
-            rationale="In Markup regime with strong breadth, more stocks participate. Concentration less important.",
-            source="market_health.json regime analysis",
+            rationale="In BULL regime with strong breadth, more stocks participate. Concentration less important.",
+            source="s4_state.json regime",
         ),
         # a03-rs-ranker: RS signal ideas
         dict(
