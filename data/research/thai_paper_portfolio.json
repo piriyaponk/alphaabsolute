@@ -1,0 +1,22 @@
+{
+  "nav": 1000000.0,
+  "set_nav": 1000000.0,
+  "holdings": [],
+  "entry_prices": {},
+  "last_rebal": 0,
+  "inception": "2026-09-12",
+  "last_update": "2026-09-11",
+  "trade_count": 0,
+  "daily_log": [
+    {
+      "date": "2026-09-11",
+      "nav": 1000000.0,
+      "set_nav": 1000000.0,
+      "daily_ret": 0.0,
+      "set_daily": 0.0,
+      "holdings": [],
+      "sells": [],
+      "buys": []
+    }
+  ]
+}

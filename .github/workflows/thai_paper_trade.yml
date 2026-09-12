@@ -1,0 +1,56 @@
+name: AlphaModel-TH Paper Trade
+
+on:
+  schedule:
+    # 09:30 UTC = 16:30 ICT (after SET close)
+    - cron: '30 9 * * 1-5'
+  workflow_dispatch:   # manual trigger
+
+jobs:
+  paper-trade:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install pandas numpy requests
+
+      - name: Pull latest DB & state
+        run: git pull --rebase origin main || true
+
+      - name: Update thai_ohlcv.db
+        env:
+          PYTHONIOENCODING: utf-8
+        run: |
+          python -X utf8 scripts/research/thai_data_layer.py --update 2>&1 | tail -30
+
+      - name: Run paper trader
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
+          PYTHONIOENCODING:   utf-8
+        run: |
+          python -X utf8 scripts/research/thai_paper_trader.py 2>&1
+
+      - name: Commit updated state
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/research/thai_paper_portfolio.json \
+                  data/research/thai_paper_log.json \
+                  data/research/thai_ohlcv.db || true
+          git diff --staged --quiet || \
+            git commit -m "th-paper: daily update $(date -u +%Y-%m-%d)"
+          git push || true
