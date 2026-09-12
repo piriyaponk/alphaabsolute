@@ -355,7 +355,14 @@ def run_daily():
 
 
 def compute_focus_list(prices, volumes, today, top_n=15):
-    """Rank eligible universe by COMBINED RS signal using yesterday's close."""
+    """Rank eligible universe by COMBINED RS signal.
+
+    Uses the latest available close in the DB (= today after update step).
+    Handles weekends/holidays automatically — avail_dates[-1] is always a
+    real trading day regardless of calendar date.
+    Returns list of dicts including price_date so caller can show which
+    date's price was used.
+    """
     rs_days = COMBINED["rs_days"]
     rs_type = COMBINED["rs_type"]
 
@@ -363,13 +370,13 @@ def compute_focus_list(prices, volumes, today, top_n=15):
     if today not in prices.index:
         return []
     i = trading_dates.index(today)
-    # Use yesterday's close as the price reference
-    prev = trading_dates[i - 1] if i > 0 else today
+    # Use the latest available close (= today in DB after update).
+    # If DB hasn't been updated yet, today is still the most recent real bar.
+    price_date = today
+    t_lb = trading_dates[max(0, i - rs_days)]
 
-    eligible = eligible_universe(prices, volumes, prev)  # filter on prev day
-    t_lb     = trading_dates[max(0, i - rs_days)]
-
-    px_now = prices.loc[prev, list(eligible)].dropna()
+    eligible = eligible_universe(prices, volumes, price_date)
+    px_now = prices.loc[price_date, list(eligible)].dropna()
     px_lb  = prices.loc[t_lb, list(eligible)].dropna()
     common = px_now.index.intersection(px_lb.index)
     if len(common) < 5:
@@ -380,7 +387,7 @@ def compute_focus_list(prices, volumes, today, top_n=15):
     if rs_type == "vol_weight":
         c_clean = [c for c in common if c + "_vol" in volumes.columns]
         if len(c_clean) >= 5:
-            avg_vol   = volumes[[c + "_vol" for c in c_clean]].loc[:prev].tail(21).mean()
+            avg_vol   = volumes[[c + "_vol" for c in c_clean]].loc[:price_date].tail(21).mean()
             vol_ratio = (avg_vol / avg_vol.mean()).clip(0.1, 5.0)
             vol_ratio.index = [x.replace("_vol", "") for x in vol_ratio.index]
             rs = rs_raw.copy()
@@ -391,21 +398,18 @@ def compute_focus_list(prices, volumes, today, top_n=15):
     else:
         rs = rs_raw
 
+    # Convert raw RS scores to percentile within the full eligible universe
+    rs_pct = rs.rank(pct=True) * 100  # 0–100 percentile
+
     top = rs.nlargest(top_n)
     result = []
     for tkr, score in top.items():
-        px   = prices.loc[prev, tkr] if tkr in prices.columns else None
-        # 21d ADTV
-        vol_col = tkr + "_vol"
-        if vol_col in volumes.columns and px:
-            adtv = (prices.loc[:prev, tkr].tail(21) * volumes.loc[:prev, vol_col].tail(21)).mean()
-        else:
-            adtv = 0
+        px = prices.loc[price_date, tkr] if tkr in prices.columns else None
         result.append({
-            "ticker": tkr,
-            "rs":     round(score * 100, 1),   # % RS over lookback
-            "price":  round(float(px), 2) if px else None,
-            "adtv_m": round(adtv / 1_000_000, 1),  # ADTV in M THB
+            "ticker":     tkr,
+            "rs_pct":     round(float(rs_pct[tkr]), 1),  # percentile rank
+            "price":      round(float(px), 2) if px else None,
+            "price_date": str(price_date.date()),
         })
     return result
 
@@ -413,18 +417,19 @@ def compute_focus_list(prices, volumes, today, top_n=15):
 def _send_focus_list(*, today, focus: list, holdings: set):
     if not focus:
         return
-    lines = [f"<b>[TH] Focus List  |  {today}</b>  (ราคาปิดเมื่อวาน)"]
-    lines.append(f"{'#':<3} {'Ticker':<12} {'RS%':>6}  {'Price':>7}  {'ADTV':>6}")
-    lines.append("─" * 42)
+    price_date = focus[0].get("price_date", str(today)) if focus else str(today)
+    lines = [f"<b>[TH] Focus List  |  {today}</b>"]
+    lines.append(f"ราคาปิด {price_date}")
+    lines.append(f"{'#':<3} {'Ticker':<14} {'RS':>4}  {'Price':>8}")
+    lines.append("─" * 36)
     for rank, item in enumerate(focus, 1):
-        tkr      = item["ticker"]
-        rs       = item["rs"]
-        px       = f"฿{item['price']:,.1f}" if item["price"] else "N/A"
-        adtv     = f"{item['adtv_m']:.0f}M"
-        in_port  = " ●" if tkr in holdings else ""
-        lines.append(f"{rank:<3} {tkr:<12} {rs:>+5.1f}%  {px:>7}  {adtv:>5}{in_port}")
+        tkr     = item["ticker"]
+        rs      = item["rs_pct"]
+        px      = f"฿{item['price']:,.1f}" if item["price"] else "N/A"
+        in_port = " ●" if tkr in holdings else ""
+        lines.append(f"{rank:<3} {tkr:<14} {rs:>4.0f}  {px:>8}{in_port}")
     lines.append("")
-    lines.append("● = currently in portfolio")
+    lines.append("RS = percentile rank  ● = in portfolio")
     _tg("\n".join(lines))
 
 
