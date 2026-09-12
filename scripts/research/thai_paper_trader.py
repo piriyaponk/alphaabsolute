@@ -339,6 +339,9 @@ def run_daily():
     if buys:
         print(f"  BOUGHT   : {', '.join(sorted(buys))}")
 
+    # ── Focus list (always — even in bear) using yesterday's close ────────
+    focus = compute_focus_list(prices, volumes, today)
+
     # ── Telegram ──────────────────────────────────────────────────────────
     _send_telegram(
         today=today.date(), nav=nav, nav_ret=nav_ret, set_ret_cum=set_ret_cum,
@@ -346,8 +349,83 @@ def run_daily():
         holdings=new_holdings, sells=sells, buys=buys, bull=bool(new_holdings),
         inception=inception, pos_pnl=pos_pnl,
     )
+    _send_focus_list(today=today.date(), focus=focus, holdings=set(new_holdings))
 
     print(f"\n[DONE] State saved → {STATE_PATH.name}")
+
+
+def compute_focus_list(prices, volumes, today, top_n=15):
+    """Rank eligible universe by COMBINED RS signal using yesterday's close."""
+    rs_days = COMBINED["rs_days"]
+    rs_type = COMBINED["rs_type"]
+
+    trading_dates = prices.index.tolist()
+    if today not in prices.index:
+        return []
+    i = trading_dates.index(today)
+    # Use yesterday's close as the price reference
+    prev = trading_dates[i - 1] if i > 0 else today
+
+    eligible = eligible_universe(prices, volumes, prev)  # filter on prev day
+    t_lb     = trading_dates[max(0, i - rs_days)]
+
+    px_now = prices.loc[prev, list(eligible)].dropna()
+    px_lb  = prices.loc[t_lb, list(eligible)].dropna()
+    common = px_now.index.intersection(px_lb.index)
+    if len(common) < 5:
+        return []
+
+    rs_raw = px_now[common] / px_lb[common] - 1
+
+    if rs_type == "vol_weight":
+        c_clean = [c for c in common if c + "_vol" in volumes.columns]
+        if len(c_clean) >= 5:
+            avg_vol   = volumes[[c + "_vol" for c in c_clean]].loc[:prev].tail(21).mean()
+            vol_ratio = (avg_vol / avg_vol.mean()).clip(0.1, 5.0)
+            vol_ratio.index = [x.replace("_vol", "") for x in vol_ratio.index]
+            rs = rs_raw.copy()
+            vw = rs_raw.index.intersection(vol_ratio.index)
+            rs[vw] = rs_raw[vw] * vol_ratio[vw]
+        else:
+            rs = rs_raw
+    else:
+        rs = rs_raw
+
+    top = rs.nlargest(top_n)
+    result = []
+    for tkr, score in top.items():
+        px   = prices.loc[prev, tkr] if tkr in prices.columns else None
+        # 21d ADTV
+        vol_col = tkr + "_vol"
+        if vol_col in volumes.columns and px:
+            adtv = (prices.loc[:prev, tkr].tail(21) * volumes.loc[:prev, vol_col].tail(21)).mean()
+        else:
+            adtv = 0
+        result.append({
+            "ticker": tkr,
+            "rs":     round(score * 100, 1),   # % RS over lookback
+            "price":  round(float(px), 2) if px else None,
+            "adtv_m": round(adtv / 1_000_000, 1),  # ADTV in M THB
+        })
+    return result
+
+
+def _send_focus_list(*, today, focus: list, holdings: set):
+    if not focus:
+        return
+    lines = [f"<b>[TH] Focus List  |  {today}</b>  (ราคาปิดเมื่อวาน)"]
+    lines.append(f"{'#':<3} {'Ticker':<12} {'RS%':>6}  {'Price':>7}  {'ADTV':>6}")
+    lines.append("─" * 42)
+    for rank, item in enumerate(focus, 1):
+        tkr      = item["ticker"]
+        rs       = item["rs"]
+        px       = f"฿{item['price']:,.1f}" if item["price"] else "N/A"
+        adtv     = f"{item['adtv_m']:.0f}M"
+        in_port  = " ●" if tkr in holdings else ""
+        lines.append(f"{rank:<3} {tkr:<12} {rs:>+5.1f}%  {px:>7}  {adtv:>5}{in_port}")
+    lines.append("")
+    lines.append("● = currently in portfolio")
+    _tg("\n".join(lines))
 
 
 def _send_telegram(*, today, nav, nav_ret, set_ret_cum, excess, daily_ret,
