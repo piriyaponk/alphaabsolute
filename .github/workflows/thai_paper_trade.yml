@@ -2,8 +2,8 @@ name: AlphaAbsolute-TH Paper Trade
 
 on:
   schedule:
-    # 09:30 UTC = 16:30 ICT (after SET close)
-    - cron: '30 9 * * 1-5'
+    # 10:30 UTC = 17:30 ICT (1 hr after SET close — Yahoo EOD is reliably available)
+    - cron: '30 10 * * 1-5'
   workflow_dispatch:   # manual trigger
 
 jobs:

@@ -228,12 +228,27 @@ def run_daily():
         return
 
     today_ts = pd.Timestamp(today_str)
-    # Use latest available date (may be yesterday if today's data not in yet)
+    # Use latest available date in DB
     avail_dates = [d for d in trading_dates if d <= today_ts]
     if not avail_dates:
         print("[ERROR] No trading dates available")
         return
     today = avail_dates[-1]
+
+    # Staleness check — warn if DB is behind today's calendar date
+    # (skips weekends/holidays: only warn on weekdays)
+    import datetime as _dt
+    cal_today = _dt.date.today()
+    db_date   = today.date()
+    is_weekday = cal_today.weekday() < 5  # Mon-Fri
+    if is_weekday and db_date < cal_today:
+        lag = (cal_today - db_date).days
+        msg = (f"[TH] ⚠️ ราคาเก่า {lag} วัน\n"
+               f"DB ล่าสุด: {db_date}  (วันนี้: {cal_today})\n"
+               f"Yahoo อาจยัง update ไม่ทัน — focus list ใช้ราคา {db_date}")
+        print(msg)
+        _tg(msg)
+        # Continue running — use latest available data, don't abort
 
     if state.get("last_update") == str(today.date()):
         print(f"[SKIP] Already updated for {today.date()}")
