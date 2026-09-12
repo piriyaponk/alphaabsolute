@@ -566,7 +566,7 @@ def run_rebalance(init=False):
         lines.append(f'Cumulative realized: <b>{s}${total_realized:,.0f}</b>')
 
     lines.append(f'\nNext rebalance: <b>{next_me}</b>')
-    lines.append(f'\n─ AlphaAbsolute-US (System 4) ─')
+    lines.append(f'\n─ AlphaAbsolute-US ─')
     tg_send('\n'.join(lines))
     print(f'=== Rebalance complete. NAV=${new_nav:,.0f} ===')
     return new_state
@@ -758,7 +758,7 @@ def run_daily():
         lines.append(f'\n<b>Rebalance on {me_date} ({days_left}d)</b>')
     else:
         lines.append(f'\nNext rebalance: {me_date}')
-    lines.append(f'\n─ AlphaAbsolute-US (System 4) ─')
+    lines.append(f'\n─ AlphaAbsolute-US ─')
 
     tg_send('\n'.join(lines))
     sh_str   = f'{sharpe:.2f}' if sharpe is not None else 'N/A'

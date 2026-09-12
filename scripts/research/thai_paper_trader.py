@@ -394,7 +394,7 @@ def _send_telegram(*, today, nav, nav_ret, set_ret_cum, excess, daily_ret,
         lines.append("🛡 All cash — SET below MA50")
 
     lines.append("")
-    lines.append("─ AlphaAbsolute-TH (RESEARCH) ─")
+    lines.append("─ AlphaAbsolute-TH ─")
 
     _tg("\n".join(lines))
 
