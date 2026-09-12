@@ -215,7 +215,7 @@ def compute_signal(prices, volumes, today, state):
 def run_daily():
     today_str = str(date.today())
     print(f"\n{'='*60}")
-    print(f"AlphaModel-TH Paper Trader  |  {today_str}")
+    print(f"AlphaAbsolute-TH Paper Trader  |  {today_str}")
     print(f"{'='*60}")
 
     prices, volumes = load_prices()
@@ -357,7 +357,7 @@ def _send_telegram(*, today, nav, nav_ret, set_ret_cum, excess, daily_ret,
 
     # Header
     regime = "🟢 BULL" if bull else "🔴 CASH"
-    lines.append(f"<b>[TH] AlphaModel-TH  |  {today}</b>")
+    lines.append(f"<b>[TH] AlphaAbsolute-TH  |  {today}</b>")
     lines.append(f"Regime: {regime}")
     lines.append("")
 
@@ -394,7 +394,7 @@ def _send_telegram(*, today, nav, nav_ret, set_ret_cum, excess, daily_ret,
         lines.append("🛡 All cash — SET below MA50")
 
     lines.append("")
-    lines.append("─ AlphaModel-TH (RESEARCH) ─")
+    lines.append("─ AlphaAbsolute-TH (RESEARCH) ─")
 
     _tg("\n".join(lines))
 
@@ -443,6 +443,7 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--summary", action="store_true", help="Show portfolio summary only")
     ap.add_argument("--reset",   action="store_true", help="Reset portfolio to starting NAV")
+    ap.add_argument("--alert-fail", metavar="STEP", help="Send pipeline failure alert (called by GitHub Actions on error)")
     args = ap.parse_args()
 
     if args.reset:
@@ -451,5 +452,9 @@ if __name__ == "__main__":
         print(f"[RESET] Portfolio reset. Starting NAV: ฿{STARTING_NAV:,.0f}")
     elif args.summary:
         print_summary()
+    elif args.alert_fail:
+        _tg(f"<b>[TH] [WARN] PIPELINE FAILED | {args.alert_fail} | {date.today()}</b>\n"
+            f"AlphaAbsolute-TH daily run failed.\nCheck GitHub Actions log.")
+        print(f"[ALERT] Sent failure alert for step: {args.alert_fail}")
     else:
         run_daily()

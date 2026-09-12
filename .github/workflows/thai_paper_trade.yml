@@ -1,4 +1,4 @@
-name: AlphaModel-TH Paper Trade
+name: AlphaAbsolute-TH Paper Trade
 
 on:
   schedule:
@@ -31,18 +31,38 @@ jobs:
         run: git pull --rebase origin main || true
 
       - name: Update thai_ohlcv.db
+        id: update_db
         env:
           PYTHONIOENCODING: utf-8
         run: |
           python -X utf8 scripts/research/thai_data_layer.py --update 2>&1 | tail -30
 
+      - name: Alert on DB update failure
+        if: failure() && steps.update_db.outcome == 'failure'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
+          PYTHONIOENCODING:   utf-8
+        run: |
+          python -X utf8 scripts/research/thai_paper_trader.py --alert-fail "update_db" || true
+
       - name: Run paper trader
+        id: paper_trader
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
           PYTHONIOENCODING:   utf-8
         run: |
           python -X utf8 scripts/research/thai_paper_trader.py 2>&1
+
+      - name: Alert on paper trader failure
+        if: failure() && steps.paper_trader.outcome == 'failure'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
+          PYTHONIOENCODING:   utf-8
+        run: |
+          python -X utf8 scripts/research/thai_paper_trader.py --alert-fail "paper_trader" || true
 
       - name: Commit updated state
         run: |
