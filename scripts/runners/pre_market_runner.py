@@ -216,6 +216,32 @@ STEPS: list[dict] = [
         "modes":    ["eod"],
         "skip_if_missing": True,
     },
+
+    # ── S4 Brain (Obsidian sync — runs daily after RS) ───────────────────────
+    {
+        "id":       "s4_brain",
+        "layer":    "2-Brain",
+        "name":     "S4 Brain — Obsidian Sync",
+        "module":   "scripts.brain.s4_obsidian_writer",
+        "func":     "run",
+        "output":   None,
+        "desc":     "Trade log + signal calibration → Obsidian vault",
+        "critical": False,
+        "modes":    ["premarket"],
+    },
+    # Post-mortem: 1st of each month only
+    {
+        "id":          "s4_postmortem",
+        "layer":       "2-Brain",
+        "name":        "S4 Post-Mortem",
+        "module":      "scripts.brain.s4_postmortem_compute",
+        "func":        "run",
+        "output":      None,
+        "desc":        "Monthly: missed leaders + big losers → Obsidian",
+        "critical":    False,
+        "modes":       ["premarket"],
+        "first_of_month": True,
+    },
 ]
 
 
@@ -266,8 +292,10 @@ class RunnerLog:
 
 # ── Step Runner ───────────────────────────────────────────────────────────────
 
-def _resolve_output(step: dict) -> Path:
-    """Return the output path — handle both files and directories."""
+def _resolve_output(step: dict) -> Path | None:
+    """Return the output path — handle both files and directories. None = no output file."""
+    if not step.get("output"):
+        return None
     p = BASE_DIR / step["output"]
     return p
 
@@ -292,17 +320,18 @@ def _execute_step_once(step: dict, full_path) -> tuple[bool, float, str]:
         func(**kw) if kw else func()
         duration = time.time() - t0
 
-        # Verify output exists
+        # Verify output exists (skip if step has no output file)
         output_p = _resolve_output(step)
-        if step["output"].endswith("/"):
-            today_str = date.today().strftime("%y%m%d")
-            if output_p.exists() and step["id"] == "a11":
-                brief = output_p / f"daily_brief_{today_str}.md"
-                if not brief.exists():
-                    return False, duration, f"report_writer: daily_brief_{today_str}.md not written"
-        else:
-            if not output_p.exists():
-                return False, duration, "Output file not written"
+        if output_p is not None:
+            if step["output"].endswith("/"):
+                today_str = date.today().strftime("%y%m%d")
+                if output_p.exists() and step["id"] == "a11":
+                    brief = output_p / f"daily_brief_{today_str}.md"
+                    if not brief.exists():
+                        return False, duration, f"report_writer: daily_brief_{today_str}.md not written"
+            else:
+                if not output_p.exists():
+                    return False, duration, "Output file not written"
 
         return True, duration, ""
 
@@ -354,11 +383,10 @@ def run_step(step: dict, dry_run: bool = False) -> tuple[bool, float, str, bool]
 
     if dry_run:
         output_p = _resolve_output(step)
+        if output_p is None:
+            return True, 0.0, "", False   # no output to check
         if step["output"].endswith("/"):
             # Directory outputs: dry-run always passes — the script creates the dir on first run.
-            # FIX: old code returned FAIL when analyst_cache/ didn't exist yet, causing
-            # "PARTIAL FAILURE | Failed: 0 step(s)" Telegram (alert fired but step list
-            # was inconsistent due to the directory-output special handling).
             return True, 0.0, "", False
         exists = output_p.exists()
         return exists, 0.0, "" if exists else f"Output missing: {step['output']}", False
@@ -471,12 +499,14 @@ def run_pipeline(mode: str = "premarket", step_filter: str | None = None,
             print(f"  Available: {', '.join(s['id'] for s in STEPS)}")
             return {}
     else:
+        is_first_of_month = (date.today().day == 1)
         steps_to_run = [
             s for s in STEPS
             if mode in s.get("modes", ["premarket"])
-            and not (s.get("friday_only")  and not is_friday)
-            and not (s.get("tuesday_only") and not is_tuesday)
-            and not (s.get("sunday_only")  and not is_sunday)
+            and not (s.get("friday_only")      and not is_friday)
+            and not (s.get("tuesday_only")     and not is_tuesday)
+            and not (s.get("sunday_only")      and not is_sunday)
+            and not (s.get("first_of_month")   and not is_first_of_month)
         ]
 
     log = RunnerLog(mode)
@@ -508,17 +538,16 @@ def run_pipeline(mode: str = "premarket", step_filter: str | None = None,
     print(f"  Log: {log.log_file.name}")
     print(f"{'='*62}\n")
 
-    # Always send a pipeline status alert to Telegram
+    # Send Telegram alert only on failures — skip if ALL PASS
     _send_pipeline_alert(summary, mode, aborted)
     return summary
 
 
 def _send_pipeline_alert(summary: dict, mode: str, aborted: bool) -> None:
     """
-    Send a Telegram pipeline status alert.
-    - ALL PASS  → green check, step counts, no failures listed
+    Send a Telegram pipeline status alert ONLY when there are failures.
+    - ALL PASS  → silent (no message sent)
     - PARTIAL FAILURE / ABORT → warning with failed step names
-    Always fires (not just on failure) so the user can confirm the pipeline ran.
     Silent if Telegram not configured.
     """
     import os, requests as _req
@@ -528,6 +557,11 @@ def _send_pipeline_alert(summary: dict, mode: str, aborted: bool) -> None:
         return
 
     failed_count = summary.get("failed", 0)
+
+    # Silent on ALL PASS — only alert when something is wrong
+    if not aborted and failed_count == 0:
+        print("  [Alert] Pipeline OK — no Telegram alert sent (all pass)")
+        return
     passed_count = summary.get("passed", 0)
     skipped_count = summary.get("skipped", 0)
     run_date = summary.get("date", date.today().isoformat())
@@ -547,12 +581,12 @@ def _send_pipeline_alert(summary: dict, mode: str, aborted: bool) -> None:
              and "Pipeline aborted by critical failure" not in s.get("error", "")),
             "unknown step"
         )
-        status_line = f"[ABORT] PIPELINE ABORTED | {mode.upper()} | {run_date}"
+        status_line = f"[US] [ABORT] PIPELINE ABORTED | {mode.upper()} | {run_date}"
         detail = f"Failed: {display_count} step(s)\nAborted at: {aborted_step} — downstream skipped"
         if failed_steps:
             detail += "\nFailed steps: " + ", ".join(failed_steps[:5])
     elif failed_count > 0:
-        status_line = f"[WARN] PARTIAL FAILURE | {mode.upper()} | {run_date}"
+        status_line = f"[US] [WARN] PARTIAL FAILURE | {mode.upper()} | {run_date}"
         detail = f"Failed: {display_count} step(s) | Passed: {passed_count} | Skipped: {skipped_count}"
         if failed_steps:
             detail += "\nFailed: " + ", ".join(failed_steps[:5])

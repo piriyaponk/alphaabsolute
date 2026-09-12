@@ -522,7 +522,7 @@ def run_rebalance(init=False):
     ny = datetime.now(BKK).year + (1 if datetime.now(BKK).month == 12 else 0)
     next_me = datetime(ny, nm, calendar.monthrange(ny, nm)[1]).strftime('%d %b %Y')
 
-    header = 'AlphaAbsolute v4.0 — พอร์ตเริ่มต้น' if init else 'AlphaAbsolute v4.0 — Monthly Rebalance'
+    header = '[US] AlphaAbsolute-US — พอร์ตเริ่มต้น' if init else '[US] AlphaAbsolute-US — Monthly Rebalance'
     lines = [
         f'<b>{header}</b>',
         f'<b>{bkk_now}</b> | Regime: <b>{regime}</b>',
@@ -566,6 +566,7 @@ def run_rebalance(init=False):
         lines.append(f'Cumulative realized: <b>{s}${total_realized:,.0f}</b>')
 
     lines.append(f'\nNext rebalance: <b>{next_me}</b>')
+    lines.append(f'\n─ AlphaAbsolute-US (System 4) ─')
     tg_send('\n'.join(lines))
     print(f'=== Rebalance complete. NAV=${new_nav:,.0f} ===')
     return new_state
@@ -725,7 +726,7 @@ def run_daily():
     sharpe_str = f'Sharpe: {sharpe:.2f}' if sharpe is not None else 'Sharpe: N/A (&lt;63d)'
 
     lines = [
-        f'<b>AlphaAbsolute v4.0 | {bkk_now} BKK</b>',
+        f'<b>[US] AlphaAbsolute-US | {bkk_now} BKK</b>',
         f'Regime: <b>{regime_str}</b> | Cash: {cash_pct:.0f}%',
         f'',
         f'<b>NAV: ${nav:,.0f}</b>  ({daily_chg:+.1f}% today)',
@@ -757,6 +758,7 @@ def run_daily():
         lines.append(f'\n<b>Rebalance on {me_date} ({days_left}d)</b>')
     else:
         lines.append(f'\nNext rebalance: {me_date}')
+    lines.append(f'\n─ AlphaAbsolute-US (System 4) ─')
 
     tg_send('\n'.join(lines))
     sh_str   = f'{sharpe:.2f}' if sharpe is not None else 'N/A'
