@@ -542,7 +542,7 @@ def _send_focus_list(*, today, focus: list, holdings: set):
     has_pulse = any(item.get("breadth_pct", 0.0) > 0 for item in focus)
 
     if has_pulse:
-        lines.append(f"{'#':<3} {'Ticker':<12} {'RS':>4}  {'Price':>8}  {'HR':>5} {'Breadth':>7}")
+        lines.append(f"{'#':<3} {'Ticker':<12} {'RS':>4}  {'Price':>8}  {'HR':>5} {'Brd':>5}")
         lines.append("─" * 50)
     else:
         lines.append(f"{'#':<3} {'Ticker':<12} {'RS':>4}  {'Price':>8}")
@@ -564,7 +564,7 @@ def _send_focus_list(*, today, focus: list, holdings: set):
                 icon = "🟠"
             else:
                 icon = "🟡"
-            pulse_str = f"  {icon}HR{h3:.0f}% Breadth{bp:.0f}%"
+            pulse_str = f"  {icon}HR{h3:.0f}% Brd{bp:.0f}%"
         else:
             pulse_str = ""
 
@@ -598,7 +598,7 @@ def _send_pulse_top5(*, today, prices):
         h3 = sc["avg_h3"]
         bd = sc["breadth"]
         bp = round(bd / n_quality * 100, 1) if n_quality > 0 else 0.0
-        if bd == 0:
+        if h3 < 62.0:
             continue
         # Composite score: weight HR more than breadth
         composite = h3 * 0.7 + bp * 0.3
@@ -620,7 +620,7 @@ def _send_pulse_top5(*, today, prices):
 
     lines = [f"<b>[TH] PULSE-TH Top 5  |  {today}</b>"]
     lines.append("rank by HR × Breadth — independent of RS")
-    lines.append(f"{'#':<3} {'Ticker':<12} {'Price':>8}  {'HR':>5} {'Breadth':>7}")
+    lines.append(f"{'#':<3} {'Ticker':<12} {'Price':>8}  {'HR':>5} {'Brd':>5}")
     lines.append("─" * 44)
     for i, r in enumerate(top5, 1):
         px_str = f"฿{r['price']:,.1f}" if r["price"] else "N/A"
@@ -630,7 +630,7 @@ def _send_pulse_top5(*, today, prices):
             icon = "🟠"
         else:
             icon = "🟡"
-        lines.append(f"{i:<3} {r['ticker']:<12} {px_str:>8}  {icon}HR{r['h3']:.0f}% Breadth{r['bp']:.0f}%")
+        lines.append(f"{i:<3} {r['ticker']:<12} {px_str:>8}  {icon}HR{r['h3']:.0f}% Brd{r['bp']:.0f}%")
     lines.append("")
     lines.append("* HR = avg top-3 signal hitrate")
     lines.append("* Breadth = % ของ signals คุณภาพสูง (h3>70%) ที่ fire พร้อมกัน")
