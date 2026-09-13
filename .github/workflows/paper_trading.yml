@@ -1,4 +1,4 @@
-name: AlphaAbsolute v4.0 Paper Trading
+name: AlphaAbsolute-US — Manual Run
 
 on:
   workflow_dispatch:

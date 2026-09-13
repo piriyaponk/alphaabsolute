@@ -1,4 +1,4 @@
-name: AlphaAbsolute v4.0 Paper Trading — Daily
+name: AlphaAbsolute-US — Daily
 
 # Triggered by cron-job.org at 00:00 UTC = 07:00 Bangkok every day.
 # Do NOT use GH Actions schedule: — free tier delays cron jobs 1-3 hours.

@@ -726,7 +726,7 @@ def run_daily():
     sharpe_str = f'Sharpe: {sharpe:.2f}' if sharpe is not None else 'Sharpe: N/A (&lt;63d)'
 
     lines = [
-        f'<b>[US] AlphaAbsolute-US | {bkk_now} BKK</b>',
+        f'<b>[US] AlphaAbsolute-US  |  {bkk_now}</b>',
         f'Regime: <b>{regime_str}</b> | Cash: {cash_pct:.0f}%',
         f'',
         f'<b>NAV: ${nav:,.0f}</b>  ({daily_chg:+.1f}% today)',
