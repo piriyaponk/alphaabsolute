@@ -365,6 +365,7 @@ def run_daily():
         inception=inception, pos_pnl=pos_pnl,
     )
     _send_focus_list(today=today.date(), focus=focus, holdings=set(new_holdings))
+    _send_pulse_top5(today=today.date(), prices=prices)
 
     print(f"\n[DONE] State saved → {STATE_PATH.name}")
 
@@ -576,6 +577,63 @@ def _send_focus_list(*, today, focus: list, holdings: set):
         lines.append("🔴HR≥75%+Breadth≥20% STRONG  🟠HR≥65% or Breadth≥10% WATCH  ●=port")
     else:
         lines.append("* RS = percentile rank ใน SET universe  ● = in portfolio")
+    _tg("\n".join(lines))
+
+
+def _send_pulse_top5(*, today, prices):
+    """Send top 5 PULSE-TH stocks ranked purely by PULSE score (independent of RS)."""
+    pulse_data = _load_pulse_map()
+    if not pulse_data:
+        return
+
+    today_ts   = pd.Timestamp(today)
+    n_quality  = pulse_data.get("n_quality", 1)
+    score_map  = pulse_data.get("score_map", {})
+    latest_sc  = pulse_data.get("latest_score", {})
+
+    # Build ranked list: prefer today's score, fallback to latest
+    rows = []
+    for tkr, ls in latest_sc.items():
+        sc = score_map.get((today_ts, tkr), ls)
+        h3 = sc["avg_h3"]
+        bd = sc["breadth"]
+        bp = round(bd / n_quality * 100, 1) if n_quality > 0 else 0.0
+        if bd == 0:
+            continue
+        # Composite score: weight HR more than breadth
+        composite = h3 * 0.7 + bp * 0.3
+        px = None
+        if tkr in prices.columns and today_ts in prices.index:
+            v = prices.loc[today_ts, tkr]
+            if pd.notna(v):
+                px = round(float(v), 2)
+        elif tkr in prices.columns:
+            v = prices[tkr].dropna()
+            if len(v):
+                px = round(float(v.iloc[-1]), 2)
+        rows.append({"ticker": tkr, "h3": h3, "bp": bp, "composite": composite, "price": px})
+
+    if not rows:
+        return
+
+    top5 = sorted(rows, key=lambda x: -x["composite"])[:5]
+
+    lines = [f"<b>[TH] PULSE-TH Top 5  |  {today}</b>"]
+    lines.append("rank by HR × Breadth — independent of RS")
+    lines.append(f"{'#':<3} {'Ticker':<12} {'Price':>8}  {'HR':>5} {'Breadth':>7}")
+    lines.append("─" * 44)
+    for i, r in enumerate(top5, 1):
+        px_str = f"฿{r['price']:,.1f}" if r["price"] else "N/A"
+        if r["h3"] >= 75 and r["bp"] >= 20:
+            icon = "🔴"
+        elif r["h3"] >= 65 or r["bp"] >= 10:
+            icon = "🟠"
+        else:
+            icon = "🟡"
+        lines.append(f"{i:<3} {r['ticker']:<12} {px_str:>8}  {icon}HR{r['h3']:.0f}% Breadth{r['bp']:.0f}%")
+    lines.append("")
+    lines.append("* HR = avg top-3 signal hitrate")
+    lines.append("* Breadth = % ของ signals คุณภาพสูง (h3>70%) ที่ fire พร้อมกัน")
     _tg("\n".join(lines))
 
 
