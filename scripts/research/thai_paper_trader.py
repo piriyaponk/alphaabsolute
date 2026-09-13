@@ -355,7 +355,7 @@ def run_daily():
         print(f"  BOUGHT   : {', '.join(sorted(buys))}")
 
     # ── Focus list (always — even in bear) using yesterday's close ────────
-    focus = compute_focus_list(prices, volumes, today)
+    focus = compute_focus_list(prices, volumes, today, top_n=25)
 
     # ── Telegram ──────────────────────────────────────────────────────────
     _send_telegram(
@@ -367,6 +367,84 @@ def run_daily():
     _send_focus_list(today=today.date(), focus=focus, holdings=set(new_holdings))
 
     print(f"\n[DONE] State saved → {STATE_PATH.name}")
+
+
+def _load_pulse_map() -> dict:
+    """Load PULSE-TH signals with per-signal hit rates.
+
+    Returns per-ticker PULSE score:
+      avg_h3  = average fwd3 hit rate of signals that fired (quality)
+      breadth = number of signals that fired (conviction)
+    Only uses signals with h3 >= 55% (removes noise signals).
+    """
+    csv_path = ROOT / "data" / "research" / "thai_entry_screen_results.csv"
+    if not csv_path.exists():
+        return {}
+    try:
+        df = pd.read_csv(csv_path, low_memory=False)
+        df["date"] = pd.to_datetime(df["date"])
+        q_cols = [c for c in df.columns if c.startswith("Q") and len(c) > 1 and c[1].isdigit()]
+        for col in q_cols:
+            df[col] = pd.to_numeric(df[col], errors="coerce").fillna(0).astype(int)
+
+        # ── Vectorized per-signal hit rate (fast) ────────────────────────
+        q_arr = df[q_cols].values  # (N_rows, N_signals)
+        import numpy as np
+
+        if "fwd3" in df.columns:
+            fwd = df["fwd3"].values
+            hit = (fwd > 0).astype(float)
+            hit[np.isnan(fwd)] = np.nan
+            sig_h3_arr = np.full(len(q_cols), np.nan)
+            for j in range(len(q_cols)):
+                mask = q_arr[:, j] == 1
+                if mask.sum() >= 15:
+                    sig_h3_arr[j] = np.nanmean(hit[mask])
+        else:
+            sig_h3_arr = np.full(len(q_cols), 0.60)
+
+        # Breadth: % of signals with h3>70% that fired  (numerator = fired, denom = total h3>70%)
+        breadth_mask = (sig_h3_arr > 0.70) & (~np.isnan(sig_h3_arr))
+        q_breadth    = q_arr[:, breadth_mask]                  # (N_rows, N_breadth_signals)
+        n_breadth    = int(breadth_mask.sum())
+
+        # HR: average h3 of top-3 fired signals per row (vectorized)
+        # sig_h3_arr broadcast: multiply q_arr by h3 values, keep top-3 per row
+        # q_arr * sig_h3_arr → h3 of fired signals, 0 for unfired
+        h3_fired = q_arr * np.where(np.isnan(sig_h3_arr), 0, sig_h3_arr)  # (N_rows, N_sigs)
+        # Sort each row descending, take top-3
+        top3_h3 = np.sort(h3_fired, axis=1)[:, ::-1][:, :3]               # (N_rows, 3)
+        top3_nonzero = (top3_h3 > 0).sum(axis=1)                           # how many non-zero
+        top3_sum = top3_h3.sum(axis=1)
+        avg_h3_arr   = np.where(top3_nonzero > 0, top3_sum / top3_nonzero, 0.0)
+        fired_counts = q_breadth.sum(axis=1).astype(int)                   # h3>70% count
+
+        # Build score_map {(date, ticker): {avg_h3, breadth}}
+        score_map = {}
+        latest_score = {}
+        dates   = df["date"].values
+        tickers = df["ticker"].values
+        # sort by date ascending so latest overwrites in latest_score
+        sort_idx = np.argsort(dates)
+        for idx in sort_idx:
+            key = (dates[idx], tickers[idx])
+            sc  = {"avg_h3": round(float(avg_h3_arr[idx]) * 100, 1),
+                   "breadth": int(fired_counts[idx])}
+            score_map[key] = sc
+            latest_score[tickers[idx]] = sc
+
+        # Convert date keys to pd.Timestamp for lookup compatibility
+        score_map_ts = {(pd.Timestamp(d), t): v for (d, t), v in score_map.items()}
+
+        return {
+            "score_map":    score_map_ts,
+            "latest_score": latest_score,
+            "n_signals":    len(q_cols),
+            "n_quality":    n_breadth,   # signals with h3>70% = breadth universe
+        }
+    except Exception as e:
+        print(f"[PULSE] load error: {e}")
+        return {}
 
 
 def compute_focus_list(prices, volumes, today, top_n=15):
@@ -385,8 +463,6 @@ def compute_focus_list(prices, volumes, today, top_n=15):
     if today not in prices.index:
         return []
     i = trading_dates.index(today)
-    # Use the latest available close (= today in DB after update).
-    # If DB hasn't been updated yet, today is still the most recent real bar.
     price_date = today
     t_lb = trading_dates[max(0, i - rs_days)]
 
@@ -413,18 +489,39 @@ def compute_focus_list(prices, volumes, today, top_n=15):
     else:
         rs = rs_raw
 
-    # Convert raw RS scores to percentile within the full eligible universe
-    rs_pct = rs.rank(pct=True) * 100  # 0–100 percentile
+    # RS percentile within full eligible universe
+    rs_pct = rs.rank(pct=True) * 100
+
+    # PULSE-TH information layer
+    pulse_data = _load_pulse_map()
+    today_ts   = pd.Timestamp(today)
 
     top = rs.nlargest(top_n)
     result = []
     for tkr, score in top.items():
         px = prices.loc[price_date, tkr] if tkr in prices.columns else None
+        # Prefer today's score, fallback to latest available
+        if pulse_data:
+            score_key = (today_ts, tkr)
+            if score_key in pulse_data.get("score_map", {}):
+                ps = pulse_data["score_map"][score_key]
+            else:
+                ps = pulse_data.get("latest_score", {}).get(tkr, {"avg_h3": 0.0, "breadth": 0})
+        else:
+            ps = {"avg_h3": 0.0, "breadth": 0}
+
+        # Breadth %: breadth / n_quality * 100
+        n_quality = pulse_data.get("n_quality", 1) if pulse_data else 1
+        breadth_pct = round(ps["breadth"] / n_quality * 100, 1) if n_quality > 0 else 0.0
+
         result.append({
-            "ticker":     tkr,
-            "rs_pct":     round(float(rs_pct[tkr]), 1),  # percentile rank
-            "price":      round(float(px), 2) if px else None,
-            "price_date": str(price_date.date()),
+            "ticker":      tkr,
+            "rs_pct":      round(float(rs_pct[tkr]), 1),
+            "price":       round(float(px), 2) if px else None,
+            "price_date":  str(price_date.date()),
+            "avg_h3":      ps["avg_h3"],
+            "breadth_pct": breadth_pct,
+            "breadth_n":   ps["breadth"],
         })
     return result
 
@@ -433,18 +530,52 @@ def _send_focus_list(*, today, focus: list, holdings: set):
     if not focus:
         return
     price_date = focus[0].get("price_date", str(today)) if focus else str(today)
+
+    # Keep RS rank order (focus list is already sorted by RS descending)
+    focus_sorted = focus
+
     lines = [f"<b>[TH] Focus List  |  {today}</b>"]
     lines.append(f"ราคาปิด {price_date}")
-    lines.append(f"{'#':<3} {'Ticker':<14} {'RS':>4}  {'Price':>8}")
-    lines.append("─" * 36)
-    for rank, item in enumerate(focus, 1):
-        tkr     = item["ticker"]
-        rs      = item["rs_pct"]
-        px      = f"฿{item['price']:,.1f}" if item["price"] else "N/A"
+
+    # Check if any PULSE signals exist
+    has_pulse = any(item.get("breadth_pct", 0.0) > 0 for item in focus)
+
+    if has_pulse:
+        lines.append(f"{'#':<3} {'Ticker':<12} {'RS':>4}  {'Price':>8}  {'HR':>5} {'Breadth':>7}")
+        lines.append("─" * 50)
+    else:
+        lines.append(f"{'#':<3} {'Ticker':<12} {'RS':>4}  {'Price':>8}")
+        lines.append("─" * 38)
+
+    for rank, item in enumerate(focus_sorted, 1):
+        tkr  = item["ticker"]
+        rs   = item["rs_pct"]
+        px   = f"฿{item['price']:,.1f}" if item["price"] else "N/A"
+        h3   = item.get("avg_h3", 0.0)
+        bp   = item.get("breadth_pct", 0.0)
         in_port = " ●" if tkr in holdings else ""
-        lines.append(f"{rank:<3} {tkr:<14} {rs:>4.0f}  {px:>8}{in_port}")
+
+        if bp > 0:
+            # PULSE suffix with icon
+            if h3 >= 75 and bp >= 20:
+                icon = "🔴"
+            elif h3 >= 65 or bp >= 10:
+                icon = "🟠"
+            else:
+                icon = "🟡"
+            pulse_str = f"  {icon}HR{h3:.0f}% Breadth{bp:.0f}%"
+        else:
+            pulse_str = ""
+
+        lines.append(f"{rank:<3} {tkr:<12} {rs:>4.0f}  {px:>8}{pulse_str}{in_port}")
+
     lines.append("")
-    lines.append("RS = percentile rank  ● = in portfolio")
+    if has_pulse:
+        lines.append("* HR = avg hitrate ของ top-3 signals ที่ดีที่สุดที่ fire วันนี้")
+        lines.append("* Breadth = % ของ signals คุณภาพสูง (h3>70%) ที่ fire พร้อมกัน")
+        lines.append("🔴HR≥75%+Breadth≥20% STRONG  🟠HR≥65% or Breadth≥10% WATCH  ●=port")
+    else:
+        lines.append("* RS = percentile rank ใน SET universe  ● = in portfolio")
     _tg("\n".join(lines))
 
 
