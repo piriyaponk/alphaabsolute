@@ -15,7 +15,7 @@ on:
 jobs:
   paper-trade:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
 
     steps:
       - name: Checkout
@@ -33,8 +33,23 @@ jobs:
       - name: Install dependencies
         run: pip install pandas numpy requests
 
-      - name: Pull latest DB & state
+      - name: Pull latest state
         run: git pull --rebase origin main || true
+
+      - name: Restore thai_ohlcv.db from cache
+        id: cache_db
+        uses: actions/cache@v4
+        with:
+          path: data/research/thai_ohlcv.db
+          key: thai-ohlcv-db-${{ runner.os }}
+
+      - name: Init thai_ohlcv.db (first time only — cache miss)
+        if: steps.cache_db.outputs.cache-hit != 'true'
+        env:
+          PYTHONIOENCODING: utf-8
+        run: |
+          echo "Cache miss — running --init (first time, ~20 min)"
+          python -X utf8 scripts/research/thai_data_layer.py --init 2>&1 | tail -50
 
       - name: Update thai_ohlcv.db
         id: update_db
@@ -83,7 +98,6 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/research/thai_paper_portfolio.json \
                   data/research/thai_paper_log.json \
-                  data/research/thai_ohlcv.db \
                   data/research/thai_entry_screen_results.csv \
                   data/research/thai_entry_screen_summary.csv || true
           git diff --staged --quiet || \
