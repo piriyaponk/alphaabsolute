@@ -2,8 +2,9 @@ name: AlphaAbsolute-TH Paper Trade
 
 on:
   schedule:
-    # 12:00 UTC = 19:00 ICT (2.5 hrs after SET close — Yahoo EOD reliably available)
-    - cron: '0 12 * * 1-5'
+    # 00:00 UTC = 07:00 ICT — runs same time as AlphaAbsolute-US daily
+    # Uses previous trading day's closing prices (SET closed ~14.5hrs ago)
+    - cron: '0 0 * * 1-5'
   workflow_dispatch:   # manual trigger
 
 jobs:
