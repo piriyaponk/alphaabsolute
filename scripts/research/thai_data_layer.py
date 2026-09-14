@@ -42,54 +42,54 @@ SET_ALL_TICKERS = [
     "KBANK.BK","BBL.BK","SCB.BK","KTB.BK","BAY.BK","TISCO.BK","KKP.BK","CIMBT.BK",
     # Energy / Petrochem
     "PTT.BK","PTTEP.BK","PTTGC.BK","TOP.BK","IRPC.BK","BCP.BK","BAFS.BK","SPRC.BK",
-    "ESSO.BK","SUSCO.BK",
+    "SUSCO.BK",
     # Telecom
-    "ADVANC.BK","INTUCH.BK","TRUE.BK","DTAC.BK","JAS.BK",
+    "ADVANC.BK","TRUE.BK","JAS.BK",
     # Consumer / Retail
-    "CPALL.BK","CPN.BK","HMPRO.BK","COM7.BK","BJC.BK","MAKRO.BK","ROBINS.BK",
+    "CPALL.BK","CPN.BK","HMPRO.BK","COM7.BK","BJC.BK",
     # Utilities / Renewables
     "GULF.BK","GPSC.BK","RATCH.BK","EGCO.BK","EA.BK","BGRIM.BK","TPIPP.BK",
     "CKP.BK","BCPG.BK","SPCG.BK","SUPER.BK","ACE.BK","WHA.BK",
     # Transport
     "AOT.BK","BEM.BK","BTS.BK","THAI.BK","AAV.BK","BA.BK","NOK.BK",
     # Healthcare
-    "BDMS.BK","BH.BK","BCH.BK","CHG.BK","PR9.BK","RJH.BK","SVH.BK",
-    "PRINC.BK","VIBHA.BK","NHC.BK","SKR.BK","RAM.BK","AHC.BK",
+    "BDMS.BK","BH.BK","BCH.BK","CHG.BK","PR9.BK","RJH.BK",
+    "PRINC.BK","VIBHA.BK","SKR.BK","RAM.BK","AHC.BK",
     # Industrial / Packaging
     "SCC.BK","SCGP.BK","IVL.BK","INOX.BK","STGT.BK","TPBI.BK",
     "PYLON.BK","TASCO.BK","TIPCO.BK",
     # Electronics / HDD / PCB
-    "HANA.BK","KCE.BK","DELTA.BK","SVI.BK","CCET.BK","SMT.BK","SNC.BK",
+    "HANA.BK","KCE.BK","DELTA.BK","CCET.BK","SMT.BK","SNC.BK",
     "TCC.BK","SYNTEC.BK","AJ.BK",
     # Finance / Leasing
-    "MTC.BK","SAWAD.BK","TIDLOR.BK","AEONTH.BK","ASK.BK","TMB.BK",
-    "THCOM.BK","GL.BK","SINGER.BK","BFIT.BK",
+    "MTC.BK","SAWAD.BK","TIDLOR.BK","ASK.BK",
+    "THCOM.BK","SINGER.BK",
     # Real Estate
     "AP.BK","LH.BK","QH.BK","SIRI.BK","SPALI.BK","SC.BK","ORI.BK","PS.BK",
     "LPN.BK","NOBLE.BK","EVER.BK","LALIN.BK","RML.BK","MJD.BK","ANAN.BK",
-    "AMATA.BK","ROJNA.BK","HEMRAJ.BK","TPARK.BK",
+    "AMATA.BK","ROJNA.BK",
     # Food / Agro
     "CPF.BK","TFG.BK","GFPT.BK","TU.BK","CBG.BK","OSP.BK","TVO.BK",
     "ASIAN.BK","NRF.BK","MALEE.BK","STA.BK","SORKON.BK","NWR.BK",
     # Media / Entertainment
-    "BEC.BK","WORK.BK","GMM.BK","RS.BK","MCOT.BK","MAJOR.BK",
+    "BEC.BK","WORK.BK","RS.BK","MCOT.BK","MAJOR.BK",
     # Insurance
-    "BLA.BK","THRE.BK","TQM.BK","BKI.BK",
+    "BLA.BK","THRE.BK","TQM.BK",
     # Hospitality / Tourism
     "MINT.BK","CENTEL.BK","ERW.BK","DUSIT.BK","AWC.BK",
     # Mining / Natural Resources
-    "BANPU.BK","LANNA.BK","THL.BK","TMILL.BK",
+    "BANPU.BK","LANNA.BK","TMILL.BK",
     # Tech / IT Services
     "MFEC.BK","SIS.BK","SVOA.BK","CSL.BK","INET.BK","ITEL.BK","DDD.BK",
-    "PCSGH.BK","LEA.BK",
+    "PCSGH.BK",
 
     # ── Mid Cap / SET100 ──────────────────────────────────────────────────────
     "JMART.BK","JMT.BK","AU.BK","BEAUTY.BK","SYNEX.BK","DOHOME.BK","TKN.BK",
     "TNP.BK","MEGA.BK","GLOBAL.BK","SAPPE.BK","SEAFCO.BK",
-    "TTA.BK","PSL.BK","TGR.BK","LEO.BK",
-    "COTTO.BK","TRC.BK","M.BK","MACO.BK","ITD.BK","SPA.BK",
+    "TTA.BK","PSL.BK","LEO.BK",
+    "TRC.BK","M.BK","ITD.BK","SPA.BK",
     "WICE.BK","SAAM.BK","NTV.BK","HYDRO.BK","PTL.BK",
-    "TH.BK","PTTMEP.BK","KAMART.BK","MOSHI.BK",
+    "TH.BK","KAMART.BK","MOSHI.BK",
 
     # ── sSET / Smaller SET ────────────────────────────────────────────────────
     "YUASA.BK","STANLY.BK","IRCP.BK",
@@ -98,23 +98,23 @@ SET_ALL_TICKERS = [
     "DIMET.BK","TOPP.BK",
     "PRG.BK","BSBM.BK","TRUBB.BK",
     "UPOIC.BK","KASET.BK","TRT.BK",
-    "NSI.BK","SMPC.BK","TFD.BK",
+    "SMPC.BK","TFD.BK",
     "BMCL.BK","NNCL.BK","EASTW.BK",
-    "TTW.BK","JWD.BK","WHAUP.BK","WHABT.BK",
-    "TPIPL.BK","TPIPM.BK",
-    "VGI.BK","PLANB.BK","MOGA.BK",
+    "TTW.BK","WHAUP.BK","WHABT.BK",
+    "TPIPL.BK",
+    "VGI.BK","PLANB.BK",
     "CI.BK","CSC.BK","ALUCON.BK",
     "NFC.BK","BIG.BK","CMO.BK","UV.BK",
 
     # ── MAI Market ────────────────────────────────────────────────────────────
-    "MOANA.BK","AYUD.BK","LIT.BK","SOLAR.BK",
+    "AYUD.BK","LIT.BK","SOLAR.BK",
     "AIMIRT.BK","TMI.BK","ICC.BK",
     "BBGI.BK","GUNKUL.BK","DEMCO.BK","SKN.BK",
-    "KOOL.BK","BTW.BK","NUSA.BK","PLAT.BK",
-    "SENA.BK","PROUD.BK","PKORP.BK",
-    "EKH.BK","MEDEZE.BK","GJS.BK","BMH.BK",
+    "KOOL.BK","BTW.BK","PLAT.BK",
+    "SENA.BK","PROUD.BK",
+    "EKH.BK","MEDEZE.BK","GJS.BK",
     "KUN.BK","PATO.BK","TIGER.BK",
-    "FORTH.BK","MLINK.BK","NETBAY.BK",
+    "FORTH.BK","NETBAY.BK",
     "WINNER.BK","HUMAN.BK","FVC.BK",
     "BGC.BK","SCCC.BK","CRANE.BK",
 ]
