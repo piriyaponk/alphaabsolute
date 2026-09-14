@@ -200,6 +200,8 @@ def fetch_yahoo(ticker: str, start: str, end: str) -> pd.DataFrame:
             with urllib.request.urlopen(req, context=ctx, timeout=20) as resp:
                 d = json.loads(resp.read())
             res = d["chart"]["result"][0]
+            if "timestamp" not in res:
+                return pd.DataFrame()  # no data for requested range
             # C3: convert to ICT (UTC+7) before dropping tz
             ts  = (pd.to_datetime(res["timestamp"], unit="s", utc=True)
                      .tz_convert("Asia/Bangkok")
