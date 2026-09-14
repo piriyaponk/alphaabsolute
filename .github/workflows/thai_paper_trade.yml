@@ -41,7 +41,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: data/research/thai_ohlcv.db
-          key: thai-ohlcv-db-${{ runner.os }}
+          key: thai-ohlcv-db-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: |
+            thai-ohlcv-db-${{ runner.os }}-
 
       - name: Init thai_ohlcv.db (first time only — cache miss)
         if: steps.cache_db.outputs.cache-hit != 'true'

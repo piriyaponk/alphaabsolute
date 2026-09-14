@@ -250,8 +250,8 @@ def run_daily():
         _tg(msg)
         # Continue running — use latest available data, don't abort
 
-    if state.get("last_update") == str(today.date()):
-        print(f"[SKIP] Already updated for {today.date()}")
+    if state.get("last_update") == today_str:
+        print(f"[SKIP] Already updated for {today_str}")
         return
 
     prev_date = avail_dates[-2] if len(avail_dates) >= 2 else None
@@ -301,7 +301,7 @@ def run_daily():
             state["nav"] *= (1 - TCOST_BUY * len(buys) / top_n)
 
     state["holdings"]    = new_holdings
-    state["last_update"] = str(today.date())
+    state["last_update"] = today_str  # calendar date of this run (not DB date)
     state["trade_count"] = state.get("trade_count", 0) + len(sells) + len(buys)
 
     # Entry prices for new buys
