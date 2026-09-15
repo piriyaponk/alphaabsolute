@@ -1,9 +1,11 @@
 # ── Secrets — NEVER commit ────────────────────────────────────────────────────
 .env
 
-# ── SQLite databases — stored in GitHub Actions Cache, not git ────────────────
-# (too large / binary — ohlcv.db ~80 MB, breadth_prices.db ~350 MB)
+# ── SQLite databases ──────────────────────────────────────────────────────────
+# thai_ohlcv.db is committed to git (71 MB seed for GitHub Actions)
+# All other DBs are too large / local only
 *.db
+!data/research/thai_ohlcv.db
 *.sqlite
 *.sqlite3
 data/state/http_cache.sqlite

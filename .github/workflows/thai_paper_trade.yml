@@ -45,14 +45,6 @@ jobs:
           restore-keys: |
             thai-ohlcv-db-${{ runner.os }}-
 
-      - name: Init thai_ohlcv.db (first time only — cache miss)
-        if: steps.cache_db.outputs.cache-hit != 'true'
-        env:
-          PYTHONIOENCODING: utf-8
-        run: |
-          echo "Cache miss — running --init (first time, ~20 min)"
-          python -X utf8 scripts/research/thai_data_layer.py --init 2>&1 | tail -50
-
       - name: Update thai_ohlcv.db
         id: update_db
         env:
