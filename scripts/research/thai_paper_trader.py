@@ -354,11 +354,14 @@ def run_daily():
     focus = compute_focus_list(prices, volumes, today, top_n=25)
 
     # ── Telegram ──────────────────────────────────────────────────────────
+    ep  = state.get("entry_prices", {})
+    cps = {t: float(prices.loc[today, t]) for t in new_holdings
+           if t in prices.columns and pd.notna(prices.loc[today, t])}
     _send_telegram(
         today=today.date(), nav=nav, nav_ret=nav_ret, set_ret_cum=set_ret_cum,
         excess=excess, daily_ret=daily_ret_pct, set_daily=set_daily_pct,
         holdings=new_holdings, sells=sells, buys=buys, bull=bool(new_holdings),
-        inception=inception, pos_pnl=pos_pnl,
+        inception=inception, entry_prices=ep, cur_prices=cps,
     )
     _send_focus_list(today=today.date(), focus=focus, holdings=set(new_holdings))
     _send_pulse_top5(today=today.date(), prices=prices)
@@ -634,47 +637,59 @@ def _send_pulse_top5(*, today, prices):
 
 
 def _send_telegram(*, today, nav, nav_ret, set_ret_cum, excess, daily_ret,
-                   set_daily, holdings, sells, buys, bull, inception, pos_pnl):
-    sign  = lambda x: f"+{x:.1f}%" if x >= 0 else f"{x:.1f}%"
-    lines = []
+                   set_daily, holdings, sells, buys, bull, inception,
+                   entry_prices, cur_prices):
+    s    = lambda x, fmt=".1f": (f"+{x:{fmt}}%" if x >= 0 else f"{x:{fmt}}%")
+    cash = 0 if bull else 100
+    regime_str = "BULL" if bull else "CASH"
 
-    # Header
-    regime = "🟢 BULL" if bull else "🔴 CASH"
-    lines.append(f"<b>[TH] AlphaAbsolute-TH  |  {today}</b>")
-    lines.append(f"Regime: {regime}")
-    lines.append("")
+    lines = [
+        f"<b>[TH] AlphaAbsolute-TH  |  {today}</b>",
+        f"Regime: <b>{regime_str}</b> | Cash: {cash}%",
+        "",
+        f"<b>NAV: ฿{nav:,.0f}</b>  ({daily_ret:+.1f}% today)",
+        f"Since {inception}: <b>{nav_ret:+.1f}%</b>",
+        f"vs SET: {set_ret_cum:+.1f}% | Excess: <b>{excess:+.1f}%</b>",
+    ]
 
-    # Portfolio summary
-    lines.append(f"💰 NAV: ฿{nav:,.0f}  ({sign(nav_ret)} vs inception {inception})")
-    lines.append(f"📊 SET: {sign(set_ret_cum)}  |  Alpha: <b>{sign(excess)}</b>")
-    lines.append(f"📅 Today: TH {sign(daily_ret)}  |  SET {sign(set_daily)}")
-
-    # Trades
-    if sells:
-        lines.append("")
-        lines.append(f"🔴 SOLD: {', '.join(sorted(sells))}")
-    if buys:
-        lines.append("")
-        lines.append(f"🟢 BOUGHT: {', '.join(sorted(buys))}")
-
-    # Holdings
+    # Holdings table
     if holdings:
+        n = len(holdings)
+        wt = 100.0 / n
         lines.append("")
-        lines.append(f"📋 Holdings ({len(holdings)}):")
-        # show top 5 with daily P&L
-        shown = 0
-        for h in holdings:
-            if shown >= 5:
-                break
-            pnl = pos_pnl.get(h)
-            pnl_str = f" ({sign(pnl)})" if pnl is not None else ""
-            lines.append(f"  • {h}{pnl_str}")
-            shown += 1
-        if len(holdings) > 5:
-            lines.append(f"  • … +{len(holdings)-5} more")
+        lines.append(f"<b>Holdings ({n} stocks)</b>")
+        lines.append(f'{"Ticker":<8} {"Wt%":>4}  {"฿Entry→฿Now":>18}  {"P&L%":>6}')
+        lines.append("─" * 46)
+        total_pnl_thb = 0.0
+        for tkr in holdings:
+            ep  = entry_prices.get(tkr)
+            cp  = cur_prices.get(tkr)
+            if ep and cp and ep > 0:
+                pnl_pct = (cp / ep - 1) * 100
+                # position size in ฿ (equal weight)
+                pos_val  = nav * wt / 100
+                cost_thb = pos_val / (1 + (cp - ep) / ep) if ep > 0 else pos_val
+                pnl_thb  = pos_val - cost_thb
+                total_pnl_thb += pnl_thb
+                icon = "" if pnl_pct >= 0 else ""
+                price_str = f"฿{ep:,.1f}→฿{cp:,.1f}"
+                lines.append(f"{icon}{tkr:<7} {wt:>4.1f}%  {price_str:>18}  {pnl_pct:>+5.1f}%")
+            else:
+                lines.append(f"{tkr:<8} {wt:>4.1f}%  {'N/A':>18}  {'N/A':>6}")
+        lines.append("─" * 46)
+        pnl_s = "+" if total_pnl_thb >= 0 else ""
+        lines.append(f"<b>Total P&amp;L: {pnl_s}฿{total_pnl_thb:,.0f}</b>")
     else:
         lines.append("")
-        lines.append("🛡 All cash — SET below MA50")
+        lines.append("All cash — SET below MA50")
+
+    # Trades (below holdings, no emoji clutter)
+    if sells:
+        lines.append("")
+        lines.append(f"SOLD: {', '.join(sorted(sells))}")
+    if buys:
+        lines.append("")
+        lines.append(f"BOUGHT: {', '.join(sorted(buys))}")
 
     lines.append("")
     lines.append("─ AlphaAbsolute-TH ─")
