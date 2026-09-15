@@ -243,11 +243,7 @@ def run_daily():
     is_weekday = cal_today.weekday() < 5  # Mon-Fri
     if is_weekday and db_date < cal_today:
         lag = (cal_today - db_date).days
-        msg = (f"[TH] ⚠️ ราคาเก่า {lag} วัน\n"
-               f"DB ล่าสุด: {db_date}  (วันนี้: {cal_today})\n"
-               f"Yahoo อาจยัง update ไม่ทัน — focus list ใช้ราคา {db_date}")
-        print(msg)
-        _tg(msg)
+        print(f"[TH] DB ล่าสุด: {db_date} (วันนี้: {cal_today}, lag={lag}d)")
         # Continue running — use latest available data, don't abort
 
     if state.get("last_update") == today_str:
