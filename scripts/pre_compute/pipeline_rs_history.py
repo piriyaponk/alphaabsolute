@@ -287,5 +287,7 @@ def main():
     print("  Now run pipeline_metrics.py to update screening_results with RS change columns.")
 
 
+run = main   # alias for pre_market_runner.py (func: "run")
+
 if __name__ == "__main__":
     main()
