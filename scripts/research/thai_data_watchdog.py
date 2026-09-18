@@ -479,10 +479,70 @@ def run(full: bool = False):
         print(f"[DONE] All OK — no Telegram sent")
 
 
+# Thai public holidays (SET closed) — update each year as needed
+# Source: SET Exchange Calendar
+_SET_HOLIDAYS_2026 = {
+    "2026-01-01",  # New Year's Day
+    "2026-02-11",  # Makha Bucha (substitute)
+    "2026-04-06",  # Chakri Day (substitute)
+    "2026-04-13",  # Songkran
+    "2026-04-14",  # Songkran
+    "2026-04-15",  # Songkran
+    "2026-05-01",  # Labour Day
+    "2026-05-04",  # Coronation Day (substitute)
+    "2026-05-11",  # Visakha Bucha
+    "2026-06-03",  # Queen's Birthday
+    "2026-07-13",  # Asalha Bucha (substitute)
+    "2026-07-28",  # King's Birthday
+    "2026-08-12",  # Mother's Day
+    "2026-10-13",  # Passing of King Rama IX
+    "2026-10-23",  # Chulalongkorn Day
+    "2026-12-05",  # Father's Day
+    "2026-12-10",  # Constitution Day
+    "2026-12-31",  # New Year's Eve
+}
+
+_SET_HOLIDAYS_2027 = {
+    "2027-01-01",  # New Year's Day
+    "2027-03-01",  # Makha Bucha
+    "2027-04-06",  # Chakri Day
+    "2027-04-13",  # Songkran
+    "2027-04-14",  # Songkran
+    "2027-04-15",  # Songkran
+    "2027-05-03",  # Coronation Day
+    "2027-05-01",  # Labour Day
+    "2027-07-28",  # King's Birthday
+    "2027-08-12",  # Mother's Day
+    "2027-10-13",  # Passing of King Rama IX
+    "2027-10-23",  # Chulalongkorn Day
+    "2027-12-05",  # Father's Day
+    "2027-12-10",  # Constitution Day
+    "2027-12-31",  # New Year's Eve
+}
+
+
+def is_set_trading_day(d: date | None = None) -> bool:
+    """Return False if today is a weekend or SET public holiday."""
+    if d is None:
+        d = date.today()
+    if d.weekday() >= 5:  # Saturday=5, Sunday=6
+        return False
+    ds = d.strftime("%Y-%m-%d")
+    all_holidays = _SET_HOLIDAYS_2026 | _SET_HOLIDAYS_2027
+    return ds not in all_holidays
+
+
 def main():
     parser = argparse.ArgumentParser(description="AlphaModel-TH Data Watchdog")
     parser.add_argument("--full", action="store_true", help="Check all tickers (slower)")
+    parser.add_argument("--force", action="store_true", help="Run even on holidays/weekends")
     args = parser.parse_args()
+
+    if not args.force and not is_set_trading_day():
+        day_name = date.today().strftime("%A %Y-%m-%d")
+        print(f"[SKIP] {day_name} — SET holiday or weekend, no watchdog run")
+        return
+
     run(full=args.full)
 
 
