@@ -138,12 +138,24 @@ def compute_signal(prices, volumes, today, state):
 
     i = trading_dates.index(today)
 
-    # Regime check
+    # Regime check — hysteresis band prevents whipsaw near MA50
+    # Enter BULL: SET > MA50 × 1.005  (+0.5% above)
+    # Exit CASH:  SET < MA50 × 0.995  (-0.5% below)
+    # Dead zone [0.995–1.005]: stay in previous regime, no trade
     set_idx   = prices[SET_INDEX].dropna()
     set_ma    = set_idx.rolling(regime_ma, min_periods=int(regime_ma * 0.75)).mean()
     set_today = set_idx.get(today, np.nan)
     ma_today  = set_ma.get(today, np.nan)
-    bull      = bool(pd.notna(set_today) and pd.notna(ma_today) and set_today > ma_today)
+
+    prev_bull = bool(state.get("holdings"))   # True if currently invested
+    if pd.isna(set_today) or pd.isna(ma_today):
+        bull = False
+    elif set_today > ma_today * 1.005:        # clearly above → BULL
+        bull = True
+    elif set_today < ma_today * 0.995:        # clearly below → CASH
+        bull = False
+    else:                                      # dead zone → hold previous state
+        bull = prev_bull
 
     if not bull:
         return [], True, []   # exit all
