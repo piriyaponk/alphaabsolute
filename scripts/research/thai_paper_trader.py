@@ -30,7 +30,7 @@ STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
 # ── Config ─────────────────────────────────────────────────────────────────
 COMBINED = dict(rs_days=21, top_n=10, rebal_days=5, regime_ma=50, rs_type="vol_weight")
 STARTING_NAV   = 1_000_000.0   # ฿1,000,000
-SET_INDEX      = "^SET.BK"
+SET_INDEX      = "TDEX.BK"    # TDEX.BK = SET ETF proxy (^SET.BK has Yahoo data gaps)
 TCOST_BUY      = 0.0015
 TCOST_SELL     = 0.0015
 ADTV_MIN_THB   = 20_000_000
@@ -73,7 +73,7 @@ def load_prices():
 
 
 def eligible_universe(prices, volumes, today, lookback=126):
-    hard_exclude = {SET_INDEX, "^SET.BK"}
+    hard_exclude = {SET_INDEX, "^SET.BK", "TDEX.BK"}
     eligible = set()
     idx_pos = prices.index.get_loc(today)
     lb_pos  = max(0, idx_pos - lookback)
@@ -150,6 +150,10 @@ def compute_signal(prices, volumes, today, state):
     prev_bull = bool(state.get("holdings"))   # True if currently invested
     if pd.isna(set_today) or pd.isna(ma_today):
         bull = False
+        # Alert: regime forced to CASH due to missing index data (data issue, not market signal)
+        _tg(f"<b>[TH] ⚠️ DATA ALERT | {today.date()}</b>\n"
+            f"{SET_INDEX} ข้อมูลขาดสำหรับวันนี้ — บังคับ CASH\n"
+            f"ตรวจสอบ: python scripts/research/thai_data_layer.py --update")
     elif set_today > ma_today * 1.005:        # clearly above → BULL
         bull = True
     elif set_today < ma_today * 0.995:        # clearly below → CASH

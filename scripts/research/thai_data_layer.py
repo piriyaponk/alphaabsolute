@@ -34,8 +34,9 @@ ADTV_MIN_THB = 20_000_000   # 20M THB avg daily turnover (6-month lookback)
 # Sorted roughly by market cap descending
 # ─────────────────────────────────────────────────────────────────────────────
 SET_ALL_TICKERS = [
-    # SET Index (benchmark — kept for regime gate, exclude from stock screens)
+    # SET Index & ETF proxy (TDEX.BK = primary regime signal; ^SET.BK = historical reference)
     "^SET.BK",
+    "TDEX.BK",    # iShares SET ETF — Yahoo Finance has reliable history; used as regime proxy
 
     # ── Large Cap / SET50 ─────────────────────────────────────────────────────
     # Banks
