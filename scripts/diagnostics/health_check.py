@@ -56,7 +56,7 @@ def _check_rs():
     if not f.exists():
         return {"id": "rs_fresh", "status": "WARN", "msg": "RS data missing — run pre_market_runner.py"}
     rs = _load_json(f)
-    run_date = rs.get("run_date", "")
+    run_date = rs.get("run_date") or rs.get("date", "")
     days = _days_old(run_date) if run_date else 999
     if days > 3:
         return {"id": "rs_fresh", "status": "WARN", "msg": f"RS data {days}d old ({run_date})"}
