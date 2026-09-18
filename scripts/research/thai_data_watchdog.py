@@ -471,8 +471,12 @@ def run(full: bool = False):
             msg += f"\n{w}"
 
     print(f"\n[RESULT] {level}")
-    _tg(msg)
-    print(f"[DONE] Telegram sent")
+    # Only send Telegram when there's an actual problem — silent if all OK
+    if issues or warns:
+        _tg(msg)
+        print(f"[DONE] Telegram sent ({level})")
+    else:
+        print(f"[DONE] All OK — no Telegram sent")
 
 
 def main():
