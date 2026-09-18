@@ -5,9 +5,16 @@ SQLite storage for full SET universe price history.
 Mirrors the US ohlcv.db architecture.
 
 Schema: thai_ohlcv (ticker, date, open, high, low, close, volume)
-Source: Yahoo Finance query2 (.BK tickers) — free, no API key needed
+Source: Yahoo Finance query2/.query1 (.BK tickers) — free, no API key needed
 
 ADTV filter (applied at backtest time): avg 6-month daily turnover >= 20M THB
+
+Resilience architecture:
+  - Primary fetch: query2.finance.yahoo.com
+  - Fallback fetch: query1.finance.yahoo.com (older endpoint)
+  - SET regime proxy: TDEX.BK (only SET ETF on Yahoo Finance; all others 404)
+  - Synthetic fallback: ADVANC+PTT+KBANK equal-weight if TDEX gaps
+  - Staleness alert: Telegram if TDEX.BK is >2 trading days stale after update
 
 Commands:
   python scripts/research/thai_data_layer.py --init      # first-time bulk download (~20 min)
@@ -15,7 +22,7 @@ Commands:
   python scripts/research/thai_data_layer.py --status    # show coverage stats
 """
 
-import sys, ssl, urllib.request, json, time, warnings, argparse, sqlite3
+import sys, ssl, urllib.request, json, time, warnings, argparse, sqlite3, os
 import pandas as pd
 from datetime import datetime, date, timedelta
 from pathlib import Path
@@ -28,6 +35,44 @@ START_HIST = "2015-01-01"   # 10yr history for backtest + MA200 warmup
 
 # ADTV threshold for investable universe (applied at backtest/screen time, not here)
 ADTV_MIN_THB = 20_000_000   # 20M THB avg daily turnover (6-month lookback)
+
+# SET regime proxy hierarchy:
+#   TDEX.BK = iShares SET ETF (only SET ETF available on Yahoo Finance; all other SET ETFs 404)
+#   Synthetic proxy = equal-weight ADVANC+PTT+KBANK — used if TDEX gaps
+#   ^SET.BK = returns today only (no historical data via Yahoo Finance API; index ticker limitation)
+SET_REGIME_PRIMARY   = "TDEX.BK"
+SET_REGIME_SYNTHETIC = ["ADVANC.BK", "PTT.BK", "KBANK.BK"]  # fallback if TDEX gaps
+
+# Telegram alert (loaded from env at runtime — optional; silent if not set)
+def _tg_alert(msg: str):
+    """Send Telegram alert — silently no-op if env keys not set."""
+    token = os.environ.get("TELEGRAM_BOT_TOKEN", "")
+    chat  = os.environ.get("TELEGRAM_CHAT_ID", "")
+    if not token or not chat:
+        # Try loading from .env file next to project root
+        env_path = Path(__file__).resolve().parents[2] / ".env"
+        if env_path.exists():
+            for line in env_path.read_text(encoding="utf-8").splitlines():
+                if "=" in line and not line.startswith("#"):
+                    k, v = line.split("=", 1)
+                    k, v = k.strip(), v.strip()
+                    if k == "TELEGRAM_BOT_TOKEN": token = v
+                    elif k == "TELEGRAM_CHAT_ID": chat = v
+    if not token or not chat:
+        return
+    try:
+        payload = json.dumps({"chat_id": chat, "text": msg, "parse_mode": "HTML"}).encode()
+        ctx = ssl.create_default_context()
+        ctx.check_hostname = False
+        ctx.verify_mode    = ssl.CERT_NONE
+        req = urllib.request.Request(
+            f"https://api.telegram.org/bot{token}/sendMessage",
+            data=payload,
+            headers={"Content-Type": "application/json"},
+        )
+        urllib.request.urlopen(req, context=ctx, timeout=10)
+    except Exception:
+        pass  # alert failure must never crash the data layer
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Full SET universe — ~260 tickers covering SET + MAI + sSET
@@ -185,45 +230,59 @@ def upsert_bars(conn: sqlite3.Connection, ticker: str, df: pd.DataFrame) -> int:
 # Yahoo Finance fetch  (W1: 1 retry on transient errors)
 # ─────────────────────────────────────────────────────────────────────────────
 
-def fetch_yahoo(ticker: str, start: str, end: str) -> pd.DataFrame:
+def _fetch_yahoo_url(ticker: str, start: str, end: str, host: str = "query2") -> pd.DataFrame:
+    """Fetch from one Yahoo Finance host (query1 or query2)."""
     s = int(datetime.strptime(start, "%Y-%m-%d").timestamp())
     e = int(datetime.strptime(end,   "%Y-%m-%d").timestamp())
-    url = (f"https://query2.finance.yahoo.com/v8/finance/chart/{ticker}"
+    url = (f"https://{host}.finance.yahoo.com/v8/finance/chart/{ticker}"
            f"?interval=1d&period1={s}&period2={e}")
     req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
     ctx = ssl.create_default_context()
     ctx.check_hostname = False
     ctx.verify_mode    = ssl.CERT_NONE
+    with urllib.request.urlopen(req, context=ctx, timeout=20) as resp:
+        d = json.loads(resp.read())
+    res = d["chart"]["result"][0]
+    if "timestamp" not in res:
+        return pd.DataFrame()
+    # C3: convert to ICT (UTC+7) before dropping tz
+    ts = (pd.to_datetime(res["timestamp"], unit="s", utc=True)
+            .tz_convert("Asia/Bangkok")
+            .tz_localize(None))
+    q  = res["indicators"]["quote"][0]
+    df = pd.DataFrame({
+        "open":   q.get("open",   [None]*len(ts)),
+        "high":   q.get("high",   [None]*len(ts)),
+        "low":    q.get("low",    [None]*len(ts)),
+        "close":  q.get("close",  [None]*len(ts)),
+        "volume": q.get("volume", [None]*len(ts)),
+    }, index=ts)
+    return df.dropna(subset=["close"])
 
+
+def fetch_yahoo(ticker: str, start: str, end: str) -> pd.DataFrame:
+    """Fetch OHLCV from Yahoo Finance with query2→query1 fallback and exponential backoff.
+
+    Fallback chain:
+      1. query2.finance.yahoo.com  (primary, modern)
+      2. query1.finance.yahoo.com  (older endpoint — survives query2 outages)
+    Each host gets up to 3 attempts with 2s/4s/8s backoff.
+    Permanent failures (404, 400) are raised immediately without fallback.
+    """
     last_exc = None
-    for attempt in range(2):   # W1: retry once on transient failure
-        try:
-            with urllib.request.urlopen(req, context=ctx, timeout=20) as resp:
-                d = json.loads(resp.read())
-            res = d["chart"]["result"][0]
-            if "timestamp" not in res:
-                return pd.DataFrame()  # no data for requested range
-            # C3: convert to ICT (UTC+7) before dropping tz
-            ts  = (pd.to_datetime(res["timestamp"], unit="s", utc=True)
-                     .tz_convert("Asia/Bangkok")
-                     .tz_localize(None))
-            q   = res["indicators"]["quote"][0]
-            df  = pd.DataFrame({
-                "open":   q.get("open",   [None]*len(ts)),
-                "high":   q.get("high",   [None]*len(ts)),
-                "low":    q.get("low",    [None]*len(ts)),
-                "close":  q.get("close",  [None]*len(ts)),
-                "volume": q.get("volume", [None]*len(ts)),
-            }, index=ts)
-            return df.dropna(subset=["close"])
-        except urllib.error.HTTPError as ex:
-            if ex.code in (404, 400):
-                raise   # permanent — don't retry
-            last_exc = ex
-            time.sleep(2)
-        except (urllib.error.URLError, TimeoutError) as ex:
-            last_exc = ex
-            time.sleep(2)
+    for host in ("query2", "query1"):
+        for attempt in range(3):
+            try:
+                return _fetch_yahoo_url(ticker, start, end, host)
+            except urllib.error.HTTPError as ex:
+                if ex.code in (404, 400):
+                    raise  # permanent — ticker doesn't exist, no point retrying
+                last_exc = ex
+                time.sleep(2 ** attempt)  # 1s, 2s, 4s
+            except (urllib.error.URLError, TimeoutError, OSError) as ex:
+                last_exc = ex
+                time.sleep(2 ** attempt)
+        # query2 failed all 3 attempts — try query1
     raise last_exc
 
 
@@ -321,6 +380,29 @@ def cmd_update(tickers: list[str]):
 
     conn.close()
     print(f"[thai_data_layer] update done  new={ok}  up_to_date={up2date}  fail={fail}")
+
+    # ── Staleness check: TDEX.BK must be current ─────────────────────────────
+    conn3 = sqlite3.connect(DB_PATH)
+    tdex_last = last_date(conn3, SET_REGIME_PRIMARY)
+    conn3.close()
+    today_dt  = date.today()
+    # Allow up to 3 calendar days (covers weekends + 1 trading holiday)
+    stale_threshold = (today_dt - timedelta(days=3)).strftime("%Y-%m-%d")
+    if tdex_last is None or tdex_last < stale_threshold:
+        msg = (f"<b>[TH] ⚠️ DATA STALE | {today_dt}</b>\n"
+               f"{SET_REGIME_PRIMARY} last date: {tdex_last} — regime signal at risk!\n"
+               f"Fallback: synthetic proxy from {', '.join(SET_REGIME_SYNTHETIC)}\n"
+               f"Fix: python scripts/research/thai_data_layer.py --update")
+        print(f"[thai_data_layer] STALE ALERT: {SET_REGIME_PRIMARY} last={tdex_last}")
+        _tg_alert(msg)
+    elif fail > 0:
+        # Alert only for meaningful failure counts (>10% of tickers)
+        if fail > len(tickers) * 0.10:
+            msg = (f"<b>[TH] ⚠️ DATA WARN | {today_dt}</b>\n"
+                   f"{fail}/{len(tickers)} tickers failed to update\n"
+                   f"Check: python scripts/research/thai_data_layer.py --update")
+            _tg_alert(msg)
+
     if split_flags:
         print(f"\n[SPLIT AUTO-FIX] {len(split_flags)} ticker(s) detected — re-fetching full history...")
         conn2 = sqlite3.connect(DB_PATH)

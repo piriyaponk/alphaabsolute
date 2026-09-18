@@ -148,11 +148,35 @@ def compute_signal(prices, volumes, today, state):
     ma_today  = set_ma.get(today, np.nan)
 
     prev_bull = bool(state.get("holdings"))   # True if currently invested
+
+    # Synthetic proxy fallback: if TDEX.BK gaps, use equal-weight ADVANC+PTT+KBANK
+    # (All are large-cap SET50 constituents with high correlation to SET index)
+    _SYNTHETIC_TICKERS = ["ADVANC.BK", "PTT.BK", "KBANK.BK"]
+    if pd.isna(set_today) or pd.isna(ma_today):
+        synth_avail = [t for t in _SYNTHETIC_TICKERS if t in prices.columns]
+        if synth_avail:
+            # Build equal-weight synthetic index from available large-caps
+            synth_prices = prices[synth_avail].dropna(how="all")
+            if len(synth_prices) > 0:
+                # Normalize each to 1.0 at earliest common date, then average
+                synth_norm = synth_prices.div(synth_prices.iloc[0])
+                synth_idx  = synth_norm.mean(axis=1)
+                synth_ma   = synth_idx.rolling(regime_ma, min_periods=int(regime_ma * 0.75)).mean()
+                synth_today = synth_idx.get(today, np.nan)
+                synth_ma_today = synth_ma.get(today, np.nan)
+                if not pd.isna(synth_today) and not pd.isna(synth_ma_today):
+                    set_today = synth_today
+                    ma_today  = synth_ma_today
+                    _tg(f"<b>[TH] ⚠️ PROXY FALLBACK | {today.date()}</b>\n"
+                        f"{SET_INDEX} ข้อมูลขาด — ใช้ synthetic proxy ({', '.join(synth_avail)})\n"
+                        f"Proxy signal: {'BULL' if synth_today > synth_ma_today * 1.005 else 'BEAR'}\n"
+                        f"ตรวจสอบ: python scripts/research/thai_data_layer.py --update")
+
     if pd.isna(set_today) or pd.isna(ma_today):
         bull = False
-        # Alert: regime forced to CASH due to missing index data (data issue, not market signal)
+        # Alert: all proxies failed, forced to CASH as last resort
         _tg(f"<b>[TH] ⚠️ DATA ALERT | {today.date()}</b>\n"
-            f"{SET_INDEX} ข้อมูลขาดสำหรับวันนี้ — บังคับ CASH\n"
+            f"{SET_INDEX} และ synthetic proxy ขาดทุกตัว — บังคับ CASH\n"
             f"ตรวจสอบ: python scripts/research/thai_data_layer.py --update")
     elif set_today > ma_today * 1.005:        # clearly above → BULL
         bull = True
