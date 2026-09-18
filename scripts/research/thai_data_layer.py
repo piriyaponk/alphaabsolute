@@ -10,11 +10,16 @@ Source: Yahoo Finance query2/.query1 (.BK tickers) — free, no API key needed
 ADTV filter (applied at backtest time): avg 6-month daily turnover >= 20M THB
 
 Resilience architecture:
-  - Primary fetch: query2.finance.yahoo.com
-  - Fallback fetch: query1.finance.yahoo.com (older endpoint)
-  - SET regime proxy: TDEX.BK (only SET ETF on Yahoo Finance; all others 404)
-  - Synthetic fallback: ADVANC+PTT+KBANK equal-weight if TDEX gaps
-  - Staleness alert: Telegram if TDEX.BK is >2 trading days stale after update
+  Source 1  — Yahoo Finance TDEX.BK   : iShares SET ETF stored in DB; primary regime signal
+  Source 2  — Investing.com (SET)     : direct SET index via HistoricalDataAjax POST
+                                        curr_id=45425; ~180 rows/year; no session required
+                                        Note: price scale ~130 (normalized, not 1500-level SET)
+                                        Used only for regime detection (price vs MA50 ratio)
+  Source 3  — Synthetic proxy         : equal-weight ADVANC+PTT+KBANK from DB
+  Fallback  — query1.finance.yahoo.com: older Yahoo host survives query2 outages
+
+  fetch_set_direct(start, end) → DataFrame — calls Source 2 directly, used by paper_trader
+  Staleness alert: Telegram if TDEX.BK is >2 trading days stale after update
 
 Commands:
   python scripts/research/thai_data_layer.py --init      # first-time bulk download (~20 min)
@@ -22,7 +27,7 @@ Commands:
   python scripts/research/thai_data_layer.py --status    # show coverage stats
 """
 
-import sys, ssl, urllib.request, json, time, warnings, argparse, sqlite3, os
+import sys, ssl, urllib.request, urllib.parse, http.cookiejar, json, time, warnings, argparse, sqlite3, os, re
 import pandas as pd
 from datetime import datetime, date, timedelta
 from pathlib import Path
@@ -284,6 +289,110 @@ def fetch_yahoo(ticker: str, start: str, end: str) -> pd.DataFrame:
                 time.sleep(2 ** attempt)
         # query2 failed all 3 attempts — try query1
     raise last_exc
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Source 2: Investing.com — direct SET index history (no API key, no session)
+# ─────────────────────────────────────────────────────────────────────────────
+# Instrument: SET General (curr_id=45425, smlID=1171442)
+# Price scale: ~130 (normalized; NOT the 1500-level SET composite)
+# Use ONLY for regime detection (price/MA50 ratio) — not for absolute levels
+# Confirmed: returns ~180 rows/year; POST HistoricalDataAjax endpoint.
+
+_INV_CURR_ID = "45425"
+_INV_SML_ID  = "1171442"
+
+
+def fetch_set_direct(start: str, end: str) -> pd.DataFrame:
+    """Fetch SET index history from Investing.com (Source 2).
+
+    Returns a DataFrame with columns: open, high, low, close, volume
+    indexed by date (datetime, no timezone).  Returns empty DataFrame on any
+    failure so callers can fall through to Source 3.
+
+    Price scale is ~130 (normalized base), consistent over time — valid for
+    regime signal (price vs MA50 ratio) but not for absolute-level display.
+    """
+    try:
+        ctx = ssl.create_default_context()
+        ctx.check_hostname = False
+        ctx.verify_mode    = ssl.CERT_NONE
+
+        jar    = http.cookiejar.CookieJar()
+        opener = urllib.request.build_opener(
+            urllib.request.HTTPSHandler(context=ctx),
+            urllib.request.HTTPCookieProcessor(jar),
+        )
+
+        start_dt = datetime.strptime(start, "%Y-%m-%d")
+        end_dt   = datetime.strptime(end,   "%Y-%m-%d")
+
+        payload = urllib.parse.urlencode({
+            "curr_id":     _INV_CURR_ID,
+            "smlID":       _INV_SML_ID,
+            "header":      "SET Historical Data",
+            "st_date":     start_dt.strftime("%m/%d/%Y"),
+            "end_date":    end_dt.strftime("%m/%d/%Y"),
+            "interval_sec":"Daily",
+            "sort_col":    "date",
+            "sort_ord":    "ASC",
+            "action":      "historical_data",
+        }).encode()
+
+        hdrs = {
+            "User-Agent":      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/128",
+            "Accept":          "text/plain, */*; q=0.01",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Referer":         "https://www.investing.com/indices/set-general",
+            "X-Requested-With":"XMLHttpRequest",
+            "Content-Type":    "application/x-www-form-urlencoded",
+            "Origin":          "https://www.investing.com",
+        }
+        req = urllib.request.Request(
+            "https://www.investing.com/instruments/HistoricalDataAjax",
+            data=payload, headers=hdrs, method="POST",
+        )
+        with opener.open(req, timeout=25) as resp:
+            html = resp.read().decode("utf-8", errors="replace")
+
+        rows_html = re.findall(r"<tr[^>]*>(.*?)</tr>", html, re.DOTALL)
+        if len(rows_html) < 2:
+            return pd.DataFrame()
+
+        records = []
+        for row in rows_html[1:]:
+            cells = re.findall(r"<td[^>]*>(.*?)</td>", row, re.DOTALL)
+            clean = [re.sub(r"<[^>]+>", "", c).replace(",", "").strip() for c in cells]
+            # Columns: Date, Price(close), Open, High, Low, Vol, Change%
+            if len(clean) < 5:
+                continue
+            try:
+                dt   = datetime.strptime(clean[0], "%b %d %Y")
+                clos = float(clean[1])
+                opn  = float(clean[2])
+                hi   = float(clean[3])
+                lo   = float(clean[4])
+                # Volume: "8.88K" → 8880; "1.23M" → 1230000
+                vol_str = clean[5] if len(clean) > 5 else ""
+                vol = 0
+                if vol_str.endswith("K"):
+                    vol = int(float(vol_str[:-1]) * 1_000)
+                elif vol_str.endswith("M"):
+                    vol = int(float(vol_str[:-1]) * 1_000_000)
+                elif vol_str.replace(".", "").isdigit():
+                    vol = int(float(vol_str))
+                records.append({"date": dt, "open": opn, "high": hi, "low": lo, "close": clos, "volume": vol})
+            except (ValueError, IndexError):
+                continue
+
+        if not records:
+            return pd.DataFrame()
+
+        df = pd.DataFrame(records).set_index("date").sort_index()
+        return df
+
+    except Exception:
+        return pd.DataFrame()
 
 
 # ─────────────────────────────────────────────────────────────────────────────

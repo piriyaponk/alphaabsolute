@@ -16,6 +16,13 @@ import pandas as pd
 from pathlib import Path
 from datetime import date, datetime
 
+# Source 2: Investing.com SET direct fetch (imported from data layer)
+sys.path.insert(0, str(Path(__file__).resolve().parents[0]))
+try:
+    from thai_data_layer import fetch_set_direct as _fetch_set_direct
+except Exception:
+    _fetch_set_direct = None
+
 warnings.filterwarnings("ignore")
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
@@ -138,27 +145,57 @@ def compute_signal(prices, volumes, today, state):
 
     i = trading_dates.index(today)
 
-    # Regime check — hysteresis band prevents whipsaw near MA50
+    # ── Regime check — 3-source fallback chain ────────────────────────────────
     # Enter BULL: SET > MA50 × 1.005  (+0.5% above)
     # Exit CASH:  SET < MA50 × 0.995  (-0.5% below)
     # Dead zone [0.995–1.005]: stay in previous regime, no trade
-    set_idx   = prices[SET_INDEX].dropna()
-    set_ma    = set_idx.rolling(regime_ma, min_periods=int(regime_ma * 0.75)).mean()
-    set_today = set_idx.get(today, np.nan)
-    ma_today  = set_ma.get(today, np.nan)
+    #
+    # Source 1: Investing.com SET direct (curr_id=45425, no API key)
+    # Source 2: TDEX.BK via Yahoo Finance (ETF proxy from DB)
+    # Source 3: Synthetic equal-weight ADVANC+PTT+KBANK from DB
 
+    set_today = np.nan
+    ma_today  = np.nan
     prev_bull = bool(state.get("holdings"))   # True if currently invested
 
-    # Synthetic proxy fallback: if TDEX.BK gaps, use equal-weight ADVANC+PTT+KBANK
-    # (All are large-cap SET50 constituents with high correlation to SET index)
+    # ── Source 1: Investing.com SET direct (primary) ──────────────────────────
+    if _fetch_set_direct is not None:
+        try:
+            start_str = prices.index[0].strftime("%Y-%m-%d")
+            end_str   = today.strftime("%Y-%m-%d")
+            inv_df = _fetch_set_direct(start_str, end_str)
+            if len(inv_df) >= 50:
+                inv_idx = inv_df["close"].reindex(prices.index, method="ffill")
+                inv_ma  = inv_idx.rolling(regime_ma, min_periods=int(regime_ma * 0.75)).mean()
+                inv_today    = inv_idx.get(today, np.nan)
+                inv_ma_today = inv_ma.get(today, np.nan)
+                if not pd.isna(inv_today) and not pd.isna(inv_ma_today):
+                    set_today = inv_today
+                    ma_today  = inv_ma_today
+        except Exception:
+            pass
+
+    # ── Source 2: TDEX.BK from DB (fallback if Investing.com fails) ───────────
+    if pd.isna(set_today) or pd.isna(ma_today):
+        if SET_INDEX in prices.columns:
+            set_idx   = prices[SET_INDEX].dropna()
+            set_ma    = set_idx.rolling(regime_ma, min_periods=int(regime_ma * 0.75)).mean()
+            src2_today    = set_idx.get(today, np.nan)
+            src2_ma_today = set_ma.get(today, np.nan)
+            if not pd.isna(src2_today) and not pd.isna(src2_ma_today):
+                set_today = src2_today
+                ma_today  = src2_ma_today
+                _tg(f"<b>[TH] ⚠️ SOURCE 2 TDEX | {today.date()}</b>\n"
+                    f"Investing.com ไม่ตอบสนอง — ใช้ TDEX.BK ETF proxy\n"
+                    f"Signal: {'BULL' if src2_today > src2_ma_today * 1.005 else 'BEAR'}")
+
+    # ── Source 3: Synthetic proxy — equal-weight ADVANC+PTT+KBANK ────────────
     _SYNTHETIC_TICKERS = ["ADVANC.BK", "PTT.BK", "KBANK.BK"]
     if pd.isna(set_today) or pd.isna(ma_today):
         synth_avail = [t for t in _SYNTHETIC_TICKERS if t in prices.columns]
         if synth_avail:
-            # Build equal-weight synthetic index from available large-caps
             synth_prices = prices[synth_avail].dropna(how="all")
             if len(synth_prices) > 0:
-                # Normalize each to 1.0 at earliest common date, then average
                 synth_norm = synth_prices.div(synth_prices.iloc[0])
                 synth_idx  = synth_norm.mean(axis=1)
                 synth_ma   = synth_idx.rolling(regime_ma, min_periods=int(regime_ma * 0.75)).mean()
@@ -167,8 +204,8 @@ def compute_signal(prices, volumes, today, state):
                 if not pd.isna(synth_today) and not pd.isna(synth_ma_today):
                     set_today = synth_today
                     ma_today  = synth_ma_today
-                    _tg(f"<b>[TH] ⚠️ PROXY FALLBACK | {today.date()}</b>\n"
-                        f"{SET_INDEX} ข้อมูลขาด — ใช้ synthetic proxy ({', '.join(synth_avail)})\n"
+                    _tg(f"<b>[TH] ⚠️ SOURCE 3 SYNTHETIC | {today.date()}</b>\n"
+                        f"Investing.com + TDEX.BK ขาด — ใช้ synthetic proxy ({', '.join(synth_avail)})\n"
                         f"Proxy signal: {'BULL' if synth_today > synth_ma_today * 1.005 else 'BEAR'}\n"
                         f"ตรวจสอบ: python scripts/research/thai_data_layer.py --update")
 
