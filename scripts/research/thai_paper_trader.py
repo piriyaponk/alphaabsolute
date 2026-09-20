@@ -99,6 +99,34 @@ def eligible_universe(prices, volumes, today, lookback=126):
     return eligible
 
 
+# ── SET benchmark helpers ─────────────────────────────────────────────────
+def _get_tdex_latest_price() -> float | None:
+    """Read latest TDEX.BK close from local DB."""
+    import sqlite3 as _sqlite3
+    db = ROOT / "data" / "research" / "thai_ohlcv.db"
+    if not db.exists():
+        return None
+    try:
+        conn = _sqlite3.connect(str(db))
+        row = conn.execute(
+            "SELECT close FROM thai_ohlcv WHERE ticker='TDEX.BK' ORDER BY date DESC LIMIT 1"
+        ).fetchone()
+        conn.close()
+        return float(row[0]) if row and row[0] else None
+    except Exception:
+        return None
+
+
+def _calc_set_ret_cum(state: dict, set_nav: float) -> float:
+    """Return cumulative SET return (%) anchored to inception date."""
+    set_inc_px = state.get("set_inception_price")
+    if set_inc_px and set_inc_px > 0:
+        latest = _get_tdex_latest_price()
+        if latest:
+            return (latest / set_inc_px - 1) * 100
+    return (set_nav / STARTING_NAV - 1) * 100
+
+
 # ── State I/O ─────────────────────────────────────────────────────────────
 def load_state() -> dict:
     if STATE_PATH.exists():
@@ -348,12 +376,16 @@ def run_daily():
 
     state["nav"] *= (1 + port_ret)
 
-    # SET benchmark
+    # SET benchmark — anchored to inception price (same start date as portfolio)
     set_idx  = prices[SET_INDEX].dropna()
     set_p0   = set_idx.get(prev_date) if prev_date else None
     set_p1   = set_idx.get(today)
     set_ret  = (set_p1 / set_p0 - 1) if (set_p0 and set_p1 and set_p0 > 0) else 0.0
     state["set_nav"] = state.get("set_nav", STARTING_NAV) * (1 + set_ret)
+
+    # Store inception price of SET index (first time we have a price on/after inception)
+    if "set_inception_price" not in state and set_p1:
+        state["set_inception_price"] = float(set_p1)
 
     # ── Signal for today ──────────────────────────────────────────────────
     new_holdings, rebal, new_buys = compute_signal(prices, volumes, today, state)
@@ -391,7 +423,7 @@ def run_daily():
     nav          = state["nav"]
     set_nav      = state["set_nav"]
     nav_ret      = (nav / STARTING_NAV - 1) * 100
-    set_ret_cum  = (set_nav / STARTING_NAV - 1) * 100
+    set_ret_cum  = _calc_set_ret_cum(state, set_nav)
     excess       = nav_ret - set_ret_cum
     inception    = state.get("inception", today_str)
 
@@ -785,7 +817,7 @@ def print_summary():
     inception   = state.get("inception", "?")
     last_update = state.get("last_update", "?")
     nav_ret     = (nav / STARTING_NAV - 1) * 100
-    set_ret     = (set_nav / STARTING_NAV - 1) * 100
+    set_ret     = _calc_set_ret_cum(state, set_nav)
     excess      = nav_ret - set_ret
     holdings    = state.get("holdings", [])
     trades      = state.get("trade_count", 0)

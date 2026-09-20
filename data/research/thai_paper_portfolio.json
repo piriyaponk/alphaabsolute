@@ -1,10 +1,11 @@
 {
   "nav": 1000000.0,
   "set_nav": 1008555.0565586863,
+  "set_inception_price": 10.46,
   "holdings": [],
   "entry_prices": {},
   "last_rebal": 0,
-  "inception": "2026-09-18",
+  "inception": "2026-09-02",
   "last_update": "2026-09-18",
   "trade_count": 0,
   "daily_log": [
