@@ -12,6 +12,9 @@ name: AlphaAbsolute-TH Paper Trade
 on:
   workflow_dispatch:   # triggered by cron-job.org + manual
 
+permissions:
+  contents: write
+
 jobs:
   paper-trade:
     runs-on: ubuntu-latest
