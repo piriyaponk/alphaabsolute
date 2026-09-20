@@ -104,11 +104,15 @@ _SET_SYNTHETIC = ["ADVANC.BK", "PTT.BK", "KBANK.BK"]  # fallback if TDEX stale
 _MAX_STALE_DAYS = 3  # calendar days before falling back to synthetic
 
 
-def _get_tdex_latest_price() -> tuple[float | None, str]:
-    """Read latest TDEX.BK close from DB with staleness check.
+def _get_set_latest_price() -> tuple[float | None, str]:
+    """Read latest SET index close with staleness check.
 
-    Returns (price, source) where source is 'tdex', 'synthetic', or 'none'.
-    Falls back to equal-weight ADVANC+PTT+KBANK if TDEX is stale (>3 calendar days).
+    Fallback chain:
+      1. set_index_history table — real SET level from Settrade/Investing.com
+      2. TDEX.BK from thai_ohlcv — SET50 ETF proxy (tracking error ~0.3%)
+      3. Synthetic ADVANC+PTT+KBANK — last resort
+
+    Returns (price, source).
     """
     import sqlite3 as _sqlite3
     from datetime import date as _date, timedelta as _td
@@ -122,7 +126,15 @@ def _get_tdex_latest_price() -> tuple[float | None, str]:
     try:
         conn = _sqlite3.connect(str(db))
 
-        # Primary: TDEX.BK — only use if date is fresh
+        # Primary: real SET index from set_index_history
+        row = conn.execute(
+            "SELECT date, close FROM set_index_history ORDER BY date DESC LIMIT 1"
+        ).fetchone()
+        if row and row[0] and row[1] and row[0] >= stale_cutoff:
+            conn.close()
+            return float(row[1]), "set_index"
+
+        # Fallback 1: TDEX.BK (SET50 ETF)
         row = conn.execute(
             "SELECT date, close FROM thai_ohlcv WHERE ticker='TDEX.BK' ORDER BY date DESC LIMIT 1"
         ).fetchone()
@@ -130,23 +142,8 @@ def _get_tdex_latest_price() -> tuple[float | None, str]:
             conn.close()
             return float(row[1]), "tdex"
 
-        # Fallback: synthetic proxy — equal-weight ADVANC + PTT + KBANK
-        prices = []
-        for tkr in _SET_SYNTHETIC:
-            r = conn.execute(
-                "SELECT date, close FROM thai_ohlcv WHERE ticker=? ORDER BY date DESC LIMIT 1",
-                (tkr,)
-            ).fetchone()
-            if r and r[1] and r[0] >= stale_cutoff:
-                prices.append(float(r[1]))
+        # Fallback 2: synthetic proxy availability check (handled by _get_synthetic_ratio)
         conn.close()
-
-        if prices:
-            # Normalise: return ratio from their own inception prices stored in state
-            # (we can't easily access state here, so just log that synthetic was used)
-            # The synthetic proxy is used as-is for staleness detection, not absolute level —
-            # _calc_set_ret_cum handles the ratio calculation externally
-            return None, "synthetic_available"
 
     except Exception:
         pass
@@ -197,7 +194,7 @@ def _calc_set_ret_cum(state: dict, set_nav: float) -> float:
     """
     set_inc_px = state.get("set_inception_price")
     if set_inc_px and set_inc_px > 0:
-        px, source = _get_tdex_latest_price()
+        px, source = _get_set_latest_price()
         if px:
             return (px / set_inc_px - 1) * 100
         # Fallback to synthetic
