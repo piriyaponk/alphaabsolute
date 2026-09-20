@@ -2,6 +2,7 @@
   "nav": 1000000.0,
   "set_nav": 1008555.0565586863,
   "set_inception_price": 10.46,
+  "set_synthetic_inception": {"ADVANC.BK": 349.0, "PTT.BK": 41.0, "KBANK.BK": 248.0},
   "holdings": [],
   "entry_prices": {},
   "last_rebal": 0,

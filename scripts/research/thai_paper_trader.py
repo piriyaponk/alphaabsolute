@@ -100,30 +100,110 @@ def eligible_universe(prices, volumes, today, lookback=126):
 
 
 # ── SET benchmark helpers ─────────────────────────────────────────────────
-def _get_tdex_latest_price() -> float | None:
-    """Read latest TDEX.BK close from local DB."""
+_SET_SYNTHETIC = ["ADVANC.BK", "PTT.BK", "KBANK.BK"]  # fallback if TDEX stale
+_MAX_STALE_DAYS = 3  # calendar days before falling back to synthetic
+
+
+def _get_tdex_latest_price() -> tuple[float | None, str]:
+    """Read latest TDEX.BK close from DB with staleness check.
+
+    Returns (price, source) where source is 'tdex', 'synthetic', or 'none'.
+    Falls back to equal-weight ADVANC+PTT+KBANK if TDEX is stale (>3 calendar days).
+    """
     import sqlite3 as _sqlite3
+    from datetime import date as _date, timedelta as _td
+
+    db = ROOT / "data" / "research" / "thai_ohlcv.db"
+    if not db.exists():
+        return None, "none"
+
+    stale_cutoff = (_date.today() - _td(days=_MAX_STALE_DAYS)).strftime("%Y-%m-%d")
+
+    try:
+        conn = _sqlite3.connect(str(db))
+
+        # Primary: TDEX.BK — only use if date is fresh
+        row = conn.execute(
+            "SELECT date, close FROM thai_ohlcv WHERE ticker='TDEX.BK' ORDER BY date DESC LIMIT 1"
+        ).fetchone()
+        if row and row[0] and row[1] and row[0] >= stale_cutoff:
+            conn.close()
+            return float(row[1]), "tdex"
+
+        # Fallback: synthetic proxy — equal-weight ADVANC + PTT + KBANK
+        prices = []
+        for tkr in _SET_SYNTHETIC:
+            r = conn.execute(
+                "SELECT date, close FROM thai_ohlcv WHERE ticker=? ORDER BY date DESC LIMIT 1",
+                (tkr,)
+            ).fetchone()
+            if r and r[1] and r[0] >= stale_cutoff:
+                prices.append(float(r[1]))
+        conn.close()
+
+        if prices:
+            # Normalise: return ratio from their own inception prices stored in state
+            # (we can't easily access state here, so just log that synthetic was used)
+            # The synthetic proxy is used as-is for staleness detection, not absolute level —
+            # _calc_set_ret_cum handles the ratio calculation externally
+            return None, "synthetic_available"
+
+    except Exception:
+        pass
+
+    return None, "none"
+
+
+def _get_synthetic_ratio(state: dict) -> float | None:
+    """Compute synthetic SET return using ADVANC+PTT+KBANK vs their inception prices."""
+    import sqlite3 as _sqlite3
+    from datetime import date as _date, timedelta as _td
+
+    inc_prices = state.get("set_synthetic_inception")  # {ticker: price}
+    if not inc_prices:
+        return None
+
     db = ROOT / "data" / "research" / "thai_ohlcv.db"
     if not db.exists():
         return None
+
+    stale_cutoff = (_date.today() - _td(days=_MAX_STALE_DAYS)).strftime("%Y-%m-%d")
     try:
         conn = _sqlite3.connect(str(db))
-        row = conn.execute(
-            "SELECT close FROM thai_ohlcv WHERE ticker='TDEX.BK' ORDER BY date DESC LIMIT 1"
-        ).fetchone()
+        ratios = []
+        for tkr in _SET_SYNTHETIC:
+            r = conn.execute(
+                "SELECT date, close FROM thai_ohlcv WHERE ticker=? ORDER BY date DESC LIMIT 1",
+                (tkr,)
+            ).fetchone()
+            inc = inc_prices.get(tkr)
+            if r and r[1] and r[0] >= stale_cutoff and inc and inc > 0:
+                ratios.append(float(r[1]) / inc)
         conn.close()
-        return float(row[0]) if row and row[0] else None
+        if ratios:
+            return (sum(ratios) / len(ratios) - 1) * 100  # equal-weight avg return %
     except Exception:
-        return None
+        pass
+    return None
 
 
 def _calc_set_ret_cum(state: dict, set_nav: float) -> float:
-    """Return cumulative SET return (%) anchored to inception date."""
+    """Return cumulative SET return (%) anchored to inception date.
+
+    Fallback chain:
+      1. TDEX.BK from DB (fresh ≤3 days)
+      2. Synthetic proxy: ADVANC+PTT+KBANK from DB
+      3. set_nav accumulation (legacy)
+    """
     set_inc_px = state.get("set_inception_price")
     if set_inc_px and set_inc_px > 0:
-        latest = _get_tdex_latest_price()
-        if latest:
-            return (latest / set_inc_px - 1) * 100
+        px, source = _get_tdex_latest_price()
+        if px:
+            return (px / set_inc_px - 1) * 100
+        # Fallback to synthetic
+        syn = _get_synthetic_ratio(state)
+        if syn is not None:
+            return syn
     return (set_nav / STARTING_NAV - 1) * 100
 
 
@@ -383,9 +463,18 @@ def run_daily():
     set_ret  = (set_p1 / set_p0 - 1) if (set_p0 and set_p1 and set_p0 > 0) else 0.0
     state["set_nav"] = state.get("set_nav", STARTING_NAV) * (1 + set_ret)
 
-    # Store inception price of SET index (first time we have a price on/after inception)
+    # Store inception prices (first time only — never overwrite)
     if "set_inception_price" not in state and set_p1:
         state["set_inception_price"] = float(set_p1)
+    if "set_synthetic_inception" not in state:
+        syn_inc = {}
+        for tkr in _SET_SYNTHETIC:
+            if tkr in prices.columns:
+                px = prices.loc[today, tkr] if today in prices.index else None
+                if px and not pd.isna(px):
+                    syn_inc[tkr] = float(px)
+        if syn_inc:
+            state["set_synthetic_inception"] = syn_inc
 
     # ── Signal for today ──────────────────────────────────────────────────
     new_holdings, rebal, new_buys = compute_signal(prices, volumes, today, state)
