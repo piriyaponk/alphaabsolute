@@ -5,20 +5,22 @@ SQLite storage for full SET universe price history.
 Mirrors the US ohlcv.db architecture.
 
 Schema: thai_ohlcv (ticker, date, open, high, low, close, volume)
-Source: Yahoo Finance query2/.query1 (.BK tickers) — free, no API key needed
+Source: Yahoo Finance query2/.query1 (.BK tickers) with Settrade API fallback
 
 ADTV filter (applied at backtest time): avg 6-month daily turnover >= 20M THB
 
-Resilience architecture:
-  Source 1  — Yahoo Finance TDEX.BK   : iShares SET ETF stored in DB; primary regime signal
-  Source 2  — Investing.com (SET)     : direct SET index via HistoricalDataAjax POST
-                                        curr_id=45425; ~180 rows/year; no session required
-                                        Note: price scale ~130 (normalized, not 1500-level SET)
-                                        Used only for regime detection (price vs MA50 ratio)
-  Source 3  — Synthetic proxy         : equal-weight ADVANC+PTT+KBANK from DB
-  Fallback  — query1.finance.yahoo.com: older Yahoo host survives query2 outages
+Stock price source (only viable free option for .BK tickers):
+  Source 1  — Yahoo Finance query2    : primary; full history since 2015
+  Source 2  — Yahoo Finance query1    : older endpoint; survives query2 outages
+  Note: Stooq requires JS challenge; Settrade has no public stock history API;
+        Bisnews and SET Smart require auth. Yahoo is the only option.
 
-  fetch_set_direct(start, end) → DataFrame — calls Source 2 directly, used by paper_trader
+SET index sources:
+  Source 1  — Settrade market API     : today's real SET level (~1584); no history
+  Source 2  — Investing.com           : normalized ~130 scale; converted via ratio
+  Source 3  — Synthetic proxy         : equal-weight ADVANC+PTT+KBANK
+
+  fetch_set_direct(start, end) → DataFrame — calls Investing.com directly, used by paper_trader
   Staleness alert: Telegram if TDEX.BK is >2 trading days stale after update
 
 Commands:
@@ -102,7 +104,8 @@ SET_ALL_TICKERS = [
     "GULF.BK","GPSC.BK","RATCH.BK","EGCO.BK","EA.BK","BGRIM.BK","TPIPP.BK",
     "CKP.BK","BCPG.BK","SPCG.BK","SUPER.BK","ACE.BK","WHA.BK",
     # Transport
-    "AOT.BK","BEM.BK","BTS.BK","THAI.BK","AAV.BK","BA.BK","NOK.BK",
+    "AOT.BK","BEM.BK","BTS.BK","THAI.BK","AAV.BK","BA.BK",
+    # NOK.BK removed — 404 on Yahoo Finance (Nok Air restructuring; no reliable data)
     # Healthcare
     "BDMS.BK","BH.BK","BCH.BK","CHG.BK","PR9.BK","RJH.BK",
     "PRINC.BK","VIBHA.BK","SKR.BK","RAM.BK","AHC.BK",
@@ -115,8 +118,8 @@ SET_ALL_TICKERS = [
     # Finance / Leasing
     "MTC.BK","SAWAD.BK","TIDLOR.BK","ASK.BK",
     "THCOM.BK","SINGER.BK",
-    # Real Estate
-    "AP.BK","LH.BK","QH.BK","SIRI.BK","SPALI.BK","SC.BK","ORI.BK","PS.BK",
+    # Real Estate  (PS.BK removed — 404 on Yahoo Finance)
+    "AP.BK","LH.BK","QH.BK","SIRI.BK","SPALI.BK","SC.BK","ORI.BK",
     "LPN.BK","NOBLE.BK","EVER.BK","LALIN.BK","RML.BK","MJD.BK","ANAN.BK",
     "AMATA.BK","ROJNA.BK",
     # Food / Agro
@@ -131,8 +134,9 @@ SET_ALL_TICKERS = [
     # Mining / Natural Resources
     "BANPU.BK","LANNA.BK","TMILL.BK",
     # Tech / IT Services
-    "MFEC.BK","SIS.BK","SVOA.BK","CSL.BK","INET.BK","ITEL.BK","DDD.BK",
+    "MFEC.BK","SIS.BK","SVOA.BK","INET.BK","ITEL.BK","DDD.BK",
     "PCSGH.BK",
+    # CSL.BK removed — 404 on Yahoo Finance (CS LoxInfo; no reliable data)
 
     # ── Mid Cap / SET100 ──────────────────────────────────────────────────────
     "JMART.BK","JMT.BK","AU.BK","BEAUTY.BK","SYNEX.BK","DOHOME.BK","TKN.BK",
@@ -149,8 +153,10 @@ SET_ALL_TICKERS = [
     "DIMET.BK","TOPP.BK",
     "PRG.BK","BSBM.BK","TRUBB.BK",
     "UPOIC.BK","KASET.BK","TRT.BK",
-    "SMPC.BK","TFD.BK",
-    "BMCL.BK","NNCL.BK","EASTW.BK",
+    "SMPC.BK",
+    # TFD.BK removed — 404 on Yahoo Finance
+    # BMCL.BK removed — merged into BEM.BK (2022); delisted
+    "NNCL.BK","EASTW.BK",
     "TTW.BK","WHAUP.BK","WHABT.BK",
     "TPIPL.BK",
     "VGI.BK","PLANB.BK",
@@ -299,6 +305,19 @@ def fetch_yahoo(ticker: str, start: str, end: str) -> pd.DataFrame:
                 time.sleep(2 ** attempt)
         # query2 failed all 3 attempts — try query1
     raise last_exc
+
+
+def fetch_stock(ticker: str, start: str, end: str) -> pd.DataFrame:
+    """Fetch OHLCV — thin wrapper over fetch_yahoo for forward-compatibility.
+
+    Yahoo Finance (query2 → query1) is the only free programmatic source
+    for Thai .BK tickers with full history.  Stooq requires JS challenge;
+    Settrade has no public historical stock endpoint; Bisnews requires auth.
+
+    Raises HTTPError(404/400) for permanently dead tickers so callers can
+    remove them from the universe rather than retrying indefinitely.
+    """
+    return fetch_yahoo(ticker, start, end)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -556,7 +575,7 @@ def cmd_init(tickers: list[str]):
         start = (datetime.strptime(ld, "%Y-%m-%d") + timedelta(days=1)).strftime("%Y-%m-%d") \
                 if ld else START_HIST
         try:
-            df = fetch_yahoo(tkr, start, today)
+            df = fetch_stock(tkr, start, today)
             if len(df) == 0:
                 fail += 1
                 fail_log.append(f"{tkr}: empty response")
@@ -603,7 +622,7 @@ def cmd_update(tickers: list[str]):
         start = (datetime.strptime(ld, "%Y-%m-%d") + timedelta(days=1)).strftime("%Y-%m-%d") \
                 if ld else START_HIST
         try:
-            df = fetch_yahoo(tkr, start, today)
+            df = fetch_stock(tkr, start, today)
             if len(df) > 0:
                 # Split validation: check new bars against last stored close
                 if ld:
@@ -656,7 +675,7 @@ def cmd_update(tickers: list[str]):
         for line in split_flags:
             tkr2 = line.split(":")[0]
             try:
-                df2 = fetch_yahoo(tkr2, START_HIST, today2)
+                df2 = fetch_stock(tkr2, START_HIST, today2)
                 if len(df2) >= 100:
                     conn2.execute("DELETE FROM thai_ohlcv WHERE ticker=?", (tkr2,))
                     rows2 = []
