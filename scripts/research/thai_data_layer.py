@@ -9,11 +9,11 @@ Source: Yahoo Finance query2/.query1 (.BK tickers) with Settrade API fallback
 
 ADTV filter (applied at backtest time): avg 6-month daily turnover >= 20M THB
 
-Stock price source (only viable free option for .BK tickers):
-  Source 1  — Yahoo Finance query2    : primary; full history since 2015
+Stock price source:
+  Source 1  — Yahoo Finance query2    : primary; full history since 2015; no key
   Source 2  — Yahoo Finance query1    : older endpoint; survives query2 outages
-  Note: Stooq requires JS challenge; Settrade has no public stock history API;
-        Bisnews and SET Smart require auth. Yahoo is the only option.
+  Note: Stooq=JS challenge; Settrade=no stock API; set.or.th=blocks non-TH IPs;
+        Twelve Data free tier = US only (SET requires paid plan ~$8/mo)
 
 SET index sources:
   Source 1  — Settrade market API     : today's real SET level (~1584); no history
@@ -308,14 +308,11 @@ def fetch_yahoo(ticker: str, start: str, end: str) -> pd.DataFrame:
 
 
 def fetch_stock(ticker: str, start: str, end: str) -> pd.DataFrame:
-    """Fetch OHLCV — thin wrapper over fetch_yahoo for forward-compatibility.
+    """Fetch OHLCV — wrapper over fetch_yahoo.
 
-    Yahoo Finance (query2 → query1) is the only free programmatic source
-    for Thai .BK tickers with full history.  Stooq requires JS challenge;
-    Settrade has no public historical stock endpoint; Bisnews requires auth.
-
-    Raises HTTPError(404/400) for permanently dead tickers so callers can
-    remove them from the universe rather than retrying indefinitely.
+    Yahoo Finance (query2 → query1) is the only viable free source for
+    Thai .BK tickers with full history.
+    Raises HTTPError(404/400) for permanently dead tickers.
     """
     return fetch_yahoo(ticker, start, end)
 
