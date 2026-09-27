@@ -12,7 +12,9 @@ name: AlphaAbsolute-TH Watchdog
 # The watchdog script itself skips SET holidays — no alert fired on those days.
 
 on:
-  workflow_dispatch:   # triggered by cron-job.org + manual run
+  schedule:
+    - cron: '30 9 * * 1-5'   # 09:30 UTC Mon-Fri = 16:30 ICT after SET close (may delay 1-2hr)
+  workflow_dispatch:            # cron-job.org backup + manual run
 
 jobs:
   watchdog:

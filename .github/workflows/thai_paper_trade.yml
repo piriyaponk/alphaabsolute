@@ -10,7 +10,9 @@ name: AlphaAbsolute-TH Paper Trade
 #   Body: {"ref":"main"}
 
 on:
-  workflow_dispatch:   # triggered by cron-job.org + manual
+  schedule:
+    - cron: '0 0 * * 1-5'    # 00:00 UTC Mon-Fri = 07:00 ICT (GH free tier may delay 1-2hr)
+  workflow_dispatch:            # cron-job.org backup + manual
 
 permissions:
   contents: write
