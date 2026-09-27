@@ -458,7 +458,9 @@ def run() -> dict:
         "note": "All proposals pending CIO approval. Nothing deployed.",
     }
 
-    _send_telegram(summary, all_ideas)
+    # Telegram push — only when there are ideas to propose
+    if all_ideas:
+        _send_telegram(summary, all_ideas)
     log.info("=== Chief Quant DONE ===")
     return summary
 
