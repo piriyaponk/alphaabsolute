@@ -290,9 +290,7 @@ def compute_signal(prices, volumes, today, state):
             if not pd.isna(src2_today) and not pd.isna(src2_ma_today):
                 set_today = src2_today
                 ma_today  = src2_ma_today
-                _tg(f"<b>[TH] ⚠️ SOURCE 2 TDEX | {today.date()}</b>\n"
-                    f"Investing.com ไม่ตอบสนอง — ใช้ TDEX.BK ETF proxy\n"
-                    f"Signal: {'BULL' if src2_today > src2_ma_today * 1.005 else 'BEAR'}")
+                print(f"[regime] Investing.com unavailable — using TDEX.BK proxy (normal fallback)")
 
     # ── Source 3: Synthetic proxy — equal-weight ADVANC+PTT+KBANK ────────────
     _SYNTHETIC_TICKERS = ["ADVANC.BK", "PTT.BK", "KBANK.BK"]
