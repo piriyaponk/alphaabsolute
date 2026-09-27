@@ -424,6 +424,10 @@ def run_daily():
     if is_weekday and db_date < cal_today:
         lag = (cal_today - db_date).days
         print(f"[TH] DB ล่าสุด: {db_date} (วันนี้: {cal_today}, lag={lag}d)")
+        if lag > 3:
+            _tg(f"<b>[TH] ⚠️ STALE DATA | {cal_today}</b>\n"
+                f"DB date={db_date} — lag={lag}d — ราคาเก่า\n"
+                f"ผลการวิเคราะห์วันนี้ไม่น่าเชื่อถือ")
         # Continue running — use latest available data, don't abort
 
     if state.get("last_update") == today_str:
