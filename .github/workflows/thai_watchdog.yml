@@ -53,3 +53,13 @@ jobs:
           PYTHONIOENCODING:   utf-8
         run: |
           python -X utf8 scripts/research/thai_data_watchdog.py 2>&1
+
+      - name: Commit updated DB (EOD prices)
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull --rebase origin main || true
+          git add data/research/thai_ohlcv.db || true
+          git diff --staged --quiet || \
+            git commit -m "th-db: EOD price update $(date -u +%Y-%m-%d)"
+          git push || true
