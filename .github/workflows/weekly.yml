@@ -71,6 +71,24 @@ jobs:
           FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
         run: python scripts/runners/pre_market_runner.py --step a05
 
+      - name: Alert on failure
+        if: failure()
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python -c "
+import os, json, ssl, urllib.request
+token = os.environ.get('TELEGRAM_BOT_TOKEN','')
+chat  = os.environ.get('TELEGRAM_CHAT_ID','')
+if not token or not chat: exit()
+msg = '[WEEKLY] FAIL — universe_builder.py failed\nRS benchmark NOT rebuilt this week.\nRS data will go stale.\nCheck: https://github.com/piriyaponk/alphaabsolute/actions/workflows/weekly.yml'
+ctx = ssl.create_default_context(); ctx.check_hostname=False; ctx.verify_mode=ssl.CERT_NONE
+payload = json.dumps({'chat_id': chat, 'text': msg}).encode()
+req = urllib.request.Request(f'https://api.telegram.org/bot{token}/sendMessage', data=payload, headers={'Content-Type':'application/json'})
+urllib.request.urlopen(req, context=ctx, timeout=10)
+" || true
+
       - name: Commit rebuilt artifacts to repo
         run: |
           git config user.name  "AlphaAbsolute Bot"
