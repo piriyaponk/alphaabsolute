@@ -765,6 +765,7 @@ def run():
 
     output = {
         "date":           date.today().isoformat(),
+        "run_date":       date.today().isoformat(),
         "computed_at":    datetime.now().isoformat(),
         "rs_source":      sample_source,   # "market" or "watchlist"
         "index": "QQQ",
@@ -864,9 +865,9 @@ def run():
         rs_ok = (d.get("rs_composite_pct") or 0) >= 70
         gate = "[OK]" if rs_ok else "[--]"
         inf  = "[RED] INFLECTION" if d.get("inflection") else ""
-        print(f"    #{i} {t:<6} RS={d.get('rs_composite_pct',0):.0f}th | "
-              f"1M={d.get('rs_1m_pct',0):.0f}th | "
-              f"3M={d.get('rs_3m_pct',0):.0f}th | {gate} {inf}")
+        print(f"    #{i} {t:<6} RS={d.get('rs_composite_pct') or 0:.0f}th | "
+              f"1M={d.get('rs_1m_pct') or 0:.0f}th | "
+              f"3M={d.get('rs_3m_pct') or 0:.0f}th | {gate} {inf}")
 
     if not inflections:
         print("  No RS inflections today.")

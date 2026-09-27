@@ -492,4 +492,13 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--force", action="store_true")
     args = parser.parse_args()
-    run(force=args.force)
+    try:
+        result = run(force=args.force)
+        n = len(result.get("tickers", []))
+        if n < 500:
+            print(f"[FAIL] Universe too small: {n} tickers (expected >500). Polygon may be down.")
+            sys.exit(1)
+    except Exception as e:
+        print(f"[FAIL] universe_builder crashed: {e}")
+        import traceback; traceback.print_exc()
+        sys.exit(1)
