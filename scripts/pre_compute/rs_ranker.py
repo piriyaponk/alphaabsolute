@@ -739,6 +739,40 @@ def run():
         }
         _append_history(ticker, history_record)
 
+    # 7a. Optional: enrich with tvremix US pre-screen signals (1 call, graceful degradation)
+    tv_index = {}
+    tv_prescreen_file = BASE_DIR / "data" / "rs_universe" / "tvremix_us_prescreen.json"
+    if tv_prescreen_file.exists():
+        try:
+            tv_data = json.loads(tv_prescreen_file.read_text(encoding="utf-8"))
+            # Accept if from today or yesterday (avoid stale data beyond 1 day)
+            from datetime import timedelta
+            tv_date = tv_data.get("date", "")
+            if tv_date >= (date.today() - timedelta(days=1)).isoformat():
+                tv_index = tv_data.get("ticker_index", {})
+                print(f"  [tvremix] Loaded pre-screen: {len(tv_index)} tickers ({tv_date})")
+            else:
+                print(f"  [tvremix] Pre-screen stale ({tv_date}) — skipping enrichment")
+        except Exception as _e:
+            print(f"  [tvremix] Pre-screen load failed ({_e}) — skipping enrichment")
+
+    if tv_index:
+        tv_enriched = 0
+        for ticker, entry in full_universe.items():
+            tv = tv_index.get(ticker)
+            if tv:
+                entry["tv_rank"]         = tv.get("tv_rank")
+                entry["tv_perf_3m"]      = tv.get("perf_3m")
+                entry["tv_rsi"]          = tv.get("rsi")
+                entry["tv_above_ema200"] = tv.get("tv_above_ema200")
+                entry["tv_above_ema50"]  = tv.get("tv_above_ema50")
+                entry["tv_rs_positive"]  = tv.get("tv_rs_positive")
+                entry["tv_in_range"]     = tv.get("tv_in_range")
+                entry["tv_recommendation"] = tv.get("tv_recommendation")
+                entry["days_to_earnings"] = tv.get("days_to_earnings")
+                tv_enriched += 1
+        print(f"  [tvremix] Enriched {tv_enriched}/{len(full_universe)} tickers")
+
     # 7. Sort by composite RS percentile (highest first)
     ranked_list = sorted(
         full_universe.items(),

@@ -158,6 +158,17 @@ STEPS: list[dict] = [
         "modes":    ["premarket"],
     },
     {
+        "id":       "tvremix_us",
+        "layer":    "1-RS",
+        "name":     "tvremix US Pre-Screen",
+        "module":   "scripts.pre_compute.tvremix_us_prescreen",
+        "func":     "run",
+        "output":   "data/rs_universe/tvremix_us_prescreen.json",
+        "desc":     "TradingView top-500 US momentum stocks — 1 API call, enriches rs_ranker",
+        "critical": False,
+        "modes":    ["premarket"],
+    },
+    {
         "id":       "a03c",
         "layer":    "1-RS",
         "name":     "RS Change Detector",
