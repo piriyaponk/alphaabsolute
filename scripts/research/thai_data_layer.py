@@ -308,12 +308,25 @@ def fetch_yahoo(ticker: str, start: str, end: str) -> pd.DataFrame:
 
 
 def fetch_stock(ticker: str, start: str, end: str) -> pd.DataFrame:
-    """Fetch OHLCV — wrapper over fetch_yahoo.
+    """Fetch OHLCV — tvremix primary, Yahoo Finance fallback.
 
-    Yahoo Finance (query2 → query1) is the only viable free source for
-    Thai .BK tickers with full history.
-    Raises HTTPError(404/400) for permanently dead tickers.
+    Source 1: tvremix.xyz (TradingView WebSocket feed) — reliable, no auth issues
+    Source 2: Yahoo Finance query2 → query1 — fallback when tvremix unavailable
     """
+    # Try tvremix first
+    try:
+        import sys as _sys
+        _sys.path.insert(0, str(Path(__file__).resolve().parent))
+        from tvremix_client import fetch_tvremix, TvremixError
+        df = fetch_tvremix(ticker, start, end)
+        if len(df) > 0:
+            return df
+        # Empty result → fall through to Yahoo
+    except Exception as _tvr_err:
+        # tvremix unavailable or key not set → silent fallback
+        pass
+
+    # Fallback: Yahoo Finance
     return fetch_yahoo(ticker, start, end)
 
 

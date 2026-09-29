@@ -263,8 +263,26 @@ def compute_signal(prices, volumes, today, state):
     ma_today  = np.nan
     prev_bull = bool(state.get("holdings"))   # True if currently invested
 
-    # ── Source 1: Investing.com SET direct (primary) ──────────────────────────
-    if _fetch_set_direct is not None:
+    # ── Source 0: tvremix SET:SET (real SET composite, most reliable) ─────────
+    try:
+        import sys as _sys
+        _sys.path.insert(0, str(Path(__file__).resolve().parent))
+        from tvremix_client import fetch_set_index_tvremix, TvremixError
+        tv_df = fetch_set_index_tvremix(lookback_days=120)
+        if len(tv_df) >= 50:
+            tv_idx = tv_df["close"].reindex(prices.index, method="ffill")
+            tv_ma  = tv_idx.rolling(regime_ma, min_periods=int(regime_ma * 0.75)).mean()
+            tv_today    = tv_idx.get(today, np.nan)
+            tv_ma_today = tv_ma.get(today, np.nan)
+            if not pd.isna(tv_today) and not pd.isna(tv_ma_today):
+                set_today = tv_today
+                ma_today  = tv_ma_today
+                print(f"[regime] tvremix SET:SET  index={tv_today:.1f}  MA{regime_ma}={tv_ma_today:.1f}")
+    except Exception as _tvr_exc:
+        print(f"[regime] tvremix unavailable ({_tvr_exc}) — trying Investing.com")
+
+    # ── Source 1: Investing.com SET direct (fallback) ─────────────────────────
+    if (pd.isna(set_today) or pd.isna(ma_today)) and _fetch_set_direct is not None:
         try:
             start_str = prices.index[0].strftime("%Y-%m-%d")
             end_str   = today.strftime("%Y-%m-%d")
