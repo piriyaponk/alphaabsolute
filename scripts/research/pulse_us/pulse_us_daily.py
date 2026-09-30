@@ -581,7 +581,10 @@ def run_screen(quality_sigs, target_date=None):
 # ─────────────────────────────────────────────
 
 def _pulse_icon(h3, bp):
-    if h3 >= 75 and bp >= 20:
+    # US-calibrated thresholds (from distribution analysis 2026-09-30):
+    # breadth>=10% = 2+ independent families fire (top 11% of bull rows) — meaningful for US
+    # breadth>=20% (PULSE-TH threshold) is near-zero in US data, not usable
+    if h3 >= 75 and bp >= 10:
         return "🔴"
     elif h3 >= 65 or bp >= 10:
         return "🟠"
