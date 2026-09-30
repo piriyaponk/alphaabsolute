@@ -338,27 +338,47 @@ SIGNALS = [
 
 
 # ─────────────────────────────────────────────
-# Breadth computation
+# Breadth computation (PULSE-TH formula)
 # ─────────────────────────────────────────────
 
-def compute_breadth(target_date=None):
-    """Compute market breadth: % RS>=70, avg RS, RS95 count."""
+# n_quality = number of signals with h3 > 70% (all 6 qualify)
+N_QUALITY = sum(1 for s in SIGNALS if s['h3'] > 70.0)  # = 6
+
+
+def compute_market_context():
+    """Market-level RS counts (context only — not the main breadth metric)."""
     try:
-        rs_df = load_rs_universe()
+        rs_df   = load_rs_universe()
         n_total = len(rs_df)
-        n_rs70  = (rs_df['rs_pct'] >= 70).sum()
-        n_rs90  = (rs_df['rs_pct'] >= 90).sum()
-        n_rs95  = (rs_df['rs_pct'] >= 95).sum()
-        pct70   = n_rs70 / n_total * 100 if n_total > 0 else 0
-        return {
-            'n_universe': n_total,
-            'n_rs70':  int(n_rs70),
-            'n_rs90':  int(n_rs90),
-            'n_rs95':  int(n_rs95),
-            'pct_rs70': round(pct70, 1),
+        n_rs70  = int((rs_df['rs_pct'] >= 70).sum())
+        n_rs95  = int((rs_df['rs_pct'] >= 95).sum())
+        pct70   = round(n_rs70 / n_total * 100, 1) if n_total > 0 else 0.0
+        return {'n_universe': n_total, 'n_rs70': n_rs70, 'n_rs95': n_rs95, 'pct_rs70': pct70}
+    except Exception:
+        return {'n_universe': 0, 'n_rs70': 0, 'n_rs95': 0, 'pct_rs70': 0.0}
+
+
+def calc_pulse_scores(ticker_hits):
+    """
+    PULSE-TH breadth formula applied to PULSE-US:
+      breadth     = number of signals (h3>70%) that fired for this ticker
+      breadth_pct = breadth / N_QUALITY * 100
+      avg_h3      = average h3 of top-3 fired signals (same as PULSE-TH)
+    """
+    sig_h3 = {s['id']: s['h3'] for s in SIGNALS}
+    scores = {}
+    for ticker, fired_ids in ticker_hits.items():
+        breadth = len(fired_ids)
+        breadth_pct = round(breadth / N_QUALITY * 100, 1) if N_QUALITY > 0 else 0.0
+        # avg_h3: top-3 h3 values of fired signals
+        h3_vals = sorted([sig_h3[sid] for sid in fired_ids], reverse=True)[:3]
+        avg_h3  = round(sum(h3_vals) / len(h3_vals), 1) if h3_vals else 0.0
+        scores[ticker] = {
+            'breadth':     breadth,
+            'breadth_pct': breadth_pct,
+            'avg_h3':      avg_h3,
         }
-    except Exception as e:
-        return {'n_universe': 0, 'n_rs70': 0, 'n_rs90': 0, 'n_rs95': 0, 'pct_rs70': 0.0}
+    return scores
 
 
 # ─────────────────────────────────────────────
@@ -443,92 +463,103 @@ def run_screen(target_date=None):
         results[sig['id']] = hits
         print(f"  {sig['id']} ({sig['family']}): {len(hits)} hits")
 
-    return results, ticker_hits, fact_df
+    # Compute PULSE-TH style per-ticker scores
+    pulse_scores = calc_pulse_scores(ticker_hits)
+
+    return results, ticker_hits, fact_df, pulse_scores
 
 
 # ─────────────────────────────────────────────
-# Telegram formatting (PULSE-TH style)
+# Telegram formatting (PULSE-TH formula)
 # ─────────────────────────────────────────────
 
-def format_telegram(results, ticker_hits, breadth, run_date):
-    """Format multi-message Telegram output in PULSE-TH style."""
-    date_str = run_date.strftime('%Y-%m-%d')
-    total_hits = sum(len(v) for v in results.values())
+def format_telegram(results, ticker_hits, pulse_scores, mkt, run_date):
+    """
+    PULSE-TH style Telegram output.
+      - Header: date + market context (RS≥95 count, RS≥70%)
+      - Per ticker: breadth_pct% | avg_h3% | signals fired
+      - Sorted by breadth_pct desc, then avg_h3 desc
+    """
+    date_str       = run_date.strftime('%Y-%m-%d')
     unique_tickers = len(ticker_hits)
 
-    # Message 1: Header + Breadth
+    # ── MSG 1: Header + signal count ──────────────
     lines = [
         f"[US] PULSE-US Daily  |  {date_str}",
         f"{'─'*38}",
-        f"Breadth: {breadth['n_universe']} tickers total",
-        f"RS≥70: {breadth['n_rs70']} ({breadth['pct_rs70']:.0f}%)  |  RS≥95: {breadth['n_rs95']}",
-        f"",
-        f"Signals fired: {total_hits} ({unique_tickers} unique tickers)",
+        f"Universe: {mkt['n_universe']}  RS≥95: {mkt['n_rs95']}  RS≥70: {mkt['pct_rs70']:.0f}%",
+        f"n_quality signals: {N_QUALITY}  |  tickers hit: {unique_tickers}",
         f"{'─'*38}",
     ]
-
-    # Signal summary
     for sig in SIGNALS:
         n = len(results.get(sig['id'], []))
         lines.append(f"{sig['id']} ({sig['family']}) h3={sig['h3']}%  →  {n} hits")
-
     msg1 = "\n".join(lines)
 
-    # Message 2: Focus List
     if not ticker_hits:
         return [msg1]
 
-    # Sort: multi-signal hits first, then by RS
+    # Build flat ticker table with pulse scores
     all_hits_flat = {}
     for sig_id, hits in results.items():
         for h in hits:
             tk = h['ticker']
             if tk not in all_hits_flat:
-                all_hits_flat[tk] = h
-            all_hits_flat[tk]['sigs'] = ticker_hits[tk]
+                all_hits_flat[tk] = dict(h)
+    for tk, row in all_hits_flat.items():
+        row['sigs']        = ticker_hits[tk]
+        row['breadth']     = pulse_scores[tk]['breadth']
+        row['breadth_pct'] = pulse_scores[tk]['breadth_pct']
+        row['avg_h3']      = pulse_scores[tk]['avg_h3']
 
+    # Sort: breadth_pct desc → avg_h3 desc → rs_pct desc (PULSE-TH order)
     ranked = sorted(
         all_hits_flat.values(),
-        key=lambda x: (-len(x['sigs']), -x['rs_pct'])
+        key=lambda x: (-x['breadth_pct'], -x['avg_h3'], -x['rs_pct'])
     )
 
+    # ── MSG 2: Focus List ─────────────────────────
     lines2 = [
         f"FOCUS LIST  |  {date_str}",
         f"{'─'*38}",
+        f"{'Ticker':<8}  {'Brdth':>5}  {'AvgHR':>6}  {'RS':>4}  {'ATH%':>6}",
+        f"{'─'*38}",
     ]
-    for i, row in enumerate(ranked[:10]):
-        sigs_str = '+'.join(row['sigs'])
-        n_sigs   = len(row['sigs'])
-        star     = '★' if n_sigs >= 3 else ('◆' if n_sigs >= 2 else '·')
+    for row in ranked[:10]:
+        star = ('★' if row['breadth_pct'] >= 66 else
+                '◆' if row['breadth_pct'] >= 33 else '·')
         lines2.append(
-            f"{star} ${row['ticker']:<8} RS={int(row['rs_pct'])}  "
-            f"ATH:{row['pct_from_52w_high']:+.1f}%  "
-            f"[{sigs_str}]"
+            f"{star} ${row['ticker']:<7} "
+            f"{row['breadth_pct']:>4.0f}%  "
+            f"{row['avg_h3']:>5.1f}%  "
+            f"RS{int(row['rs_pct']):>3}  "
+            f"{row['pct_from_52w_high']:>+5.1f}%"
         )
-
-    lines2.append(f"")
-    lines2.append(f"HR key: SIG1=83% SIG2=83% SIG3=81% SIG4=80%")
-    lines2.append(f"★=3+ signals  ◆=2 signals  ·=1 signal")
-
+    lines2 += [
+        f"",
+        f"Brdth = signals fired / {N_QUALITY} (h3>70%)",
+        f"AvgHR = avg h3 of top-3 fired signals",
+        f"★≥66%  ◆≥33%  ·<33%",
+    ]
     msg2 = "\n".join(lines2)
 
     messages = [msg1, msg2]
 
-    # Message 3: Signal detail cards (for multi-signal tickers only)
-    multi = [r for r in ranked if len(r['sigs']) >= 2]
-    if multi:
-        for row in multi[:5]:
-            sigs_str = ' | '.join(
-                f"{s}(h3={next((x['h3'] for x in SIGNALS if x['id']==s), 0):.0f}%)"
-                for s in row['sigs']
-            )
-            card = [
-                f"${row['ticker']}  RS={int(row['rs_pct'])}  ${row['price']:.2f}",
-                f"ATH: {row['pct_from_52w_high']:+.1f}%  MA50: {row['price_vs_ma50_pct']:+.1f}%",
-                f"DDR: {row['dd_recovery']:.2f}x  BT: {row['base_tight']:.3f}  PP: {row['pocket_pivot']:.2f}",
-                f"Signals: {sigs_str}",
-            ]
-            messages.append("\n".join(card))
+    # ── MSG 3: Detail cards for high-breadth tickers ──
+    top_cards = [r for r in ranked if r['breadth_pct'] >= 33][:5]
+    for row in top_cards:
+        sigs_str = '  '.join(
+            f"{s}({next(x['h3'] for x in SIGNALS if x['id']==s):.0f}%)"
+            for s in row['sigs']
+        )
+        card = [
+            f"${row['ticker']}  RS={int(row['rs_pct'])}  ${row['price']:.2f}",
+            f"Breadth: {row['breadth_pct']:.0f}% ({row['breadth']}/{N_QUALITY})  AvgHR: {row['avg_h3']:.1f}%",
+            f"ATH: {row['pct_from_52w_high']:+.1f}%  MA50: {row['price_vs_ma50_pct']:+.1f}%",
+            f"DDR: {row['dd_recovery']:.2f}x  BT: {row['base_tight']:.3f}",
+            f"{sigs_str}",
+        ]
+        messages.append("\n".join(card))
 
     return messages
 
@@ -563,32 +594,33 @@ def main():
     print(f"PULSE-US Daily Screen — {run_date.date()}")
     print("=" * 60)
 
-    breadth = compute_breadth(args.date)
-    print(f"Breadth: {breadth}")
+    mkt = compute_market_context()
+    print(f"Market context: {mkt}")
 
     screen_result = run_screen(args.date)
     if not screen_result:
         print("No results.")
-        results, ticker_hits, fact_df = {}, {}, pd.DataFrame()
+        results, ticker_hits, fact_df, pulse_scores = {}, {}, pd.DataFrame(), {}
     else:
-        results, ticker_hits, fact_df = screen_result
+        results, ticker_hits, fact_df, pulse_scores = screen_result
 
     total_hits = sum(len(v) for v in results.values())
     print(f"\nTotal signal hits: {total_hits} across {len(ticker_hits)} tickers")
+    if pulse_scores:
+        print("Per-ticker PULSE scores:")
+        for tk, sc in sorted(pulse_scores.items(), key=lambda x: -x[1]['breadth_pct']):
+            print(f"  {tk}: breadth={sc['breadth']}/{N_QUALITY} ({sc['breadth_pct']:.0f}%)  avg_h3={sc['avg_h3']:.1f}%")
 
     # Save output
     Path(OUT_PATH).parent.mkdir(parents=True, exist_ok=True)
     out = {
-        'date':         run_date.strftime('%Y-%m-%d'),
-        'breadth':      breadth,
-        'total_hits':   total_hits,
-        'unique_tickers': len(ticker_hits),
-        'signals': {
-            sig_id: hits for sig_id, hits in results.items()
-        },
-        'ticker_hits':  {t: v for t, v in sorted(
-            ticker_hits.items(), key=lambda x: -len(x[1])
-        )},
+        'date':            run_date.strftime('%Y-%m-%d'),
+        'market_context':  mkt,
+        'n_quality':       N_QUALITY,
+        'total_hits':      total_hits,
+        'unique_tickers':  len(ticker_hits),
+        'pulse_scores':    pulse_scores,
+        'signals': {sig_id: hits for sig_id, hits in results.items()},
     }
     with open(OUT_PATH, 'w') as f:
         json.dump(out, f, indent=2, default=str)
@@ -598,7 +630,7 @@ def main():
     token   = os.getenv('TELEGRAM_BOT_TOKEN')
     chat_id = os.getenv('TELEGRAM_CHAT_ID')
 
-    messages = format_telegram(results, ticker_hits, breadth, run_date)
+    messages = format_telegram(results, ticker_hits, pulse_scores, mkt, run_date)
 
     if args.no_telegram or not token or not chat_id:
         print("\n--- TELEGRAM PREVIEW ---")

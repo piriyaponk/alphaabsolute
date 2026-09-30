@@ -1,14 +1,21 @@
 {
   "date": "2026-09-30",
-  "breadth": {
+  "market_context": {
     "n_universe": 5094,
     "n_rs70": 552,
-    "n_rs90": 128,
     "n_rs95": 62,
     "pct_rs70": 10.8
   },
+  "n_quality": 6,
   "total_hits": 1,
   "unique_tickers": 1,
+  "pulse_scores": {
+    "AOUT": {
+      "breadth": 1,
+      "breadth_pct": 16.7,
+      "avg_h3": 80.0
+    }
+  },
   "signals": {
     "SIG1": [],
     "SIG2": [],
@@ -31,10 +38,5 @@
     ],
     "SIG5": [],
     "SIG6": []
-  },
-  "ticker_hits": {
-    "AOUT": [
-      "SIG4"
-    ]
   }
 }
