@@ -581,12 +581,12 @@ def run_screen(quality_sigs, target_date=None):
 # ─────────────────────────────────────────────
 
 def _pulse_icon(h3, bp):
-    # US-calibrated thresholds (from distribution analysis 2026-09-30):
-    # breadth>=10% = 2+ independent families fire (top 11% of bull rows) — meaningful for US
-    # breadth>=20% (PULSE-TH threshold) is near-zero in US data, not usable
-    if h3 >= 75 and bp >= 10:
+    # Icon = h3 (hit rate) only — breadth is NOT a gate, only a ranking tiebreaker
+    # Distribution analysis 2026-09-30: breadth has no predictive power for fwd3 in US
+    # breadth is shown in display but does not change the icon tier
+    if h3 >= 80:
         return "🔴"
-    elif h3 >= 65 or bp >= 10:
+    elif h3 >= 75:
         return "🟠"
     return "🟡"
 
@@ -643,11 +643,12 @@ def format_telegram(result, mkt, run_date):
     lines2.append("")
     lines2.append("* HR = avg hitrate ของ top-3 signals ที่ดีที่สุดที่ fire วันนี้")
     lines2.append(f"* Breadth = families (/{n_quality_families}) ที่มี signal h3>70% fire พร้อมกัน")
-    lines2.append("🔴HR≥75%+Brd≥20% STRONG  🟠HR≥65% or Brd≥10% WATCH")
+    lines2.append("🔴HR>=80% STRONG  🟠HR>=75% WATCH  Brd=tiebreaker")
     messages.append("\n".join(lines2))
 
-    # ── MSG 3: PULSE Top 5 (mirrors _send_pulse_top5 exactly) ─────────
-    # composite = h3 * 0.7 + bp * 0.3  — same weighting as PULSE-TH
+    # ── MSG 3: PULSE Top 5 ────────────────────────────────────────────
+    # Sort: h3 (hit rate) PRIMARY, breadth_pct as tiebreaker
+    # breadth is informational — not a gate, not a primary rank signal
     rows = []
     for ticker, sc in pulse_scores.items():
         if ticker not in ticker_hits:
@@ -656,7 +657,7 @@ def format_telegram(result, mkt, run_date):
         bp = sc['breadth_pct']
         if h3 < 62.0:
             continue
-        composite = h3 * 0.7 + bp * 0.3
+        composite = h3 * 1000 + bp  # h3 strictly primary, bp breaks ties
         fac = ticker_factors[ticker]
         rows.append({'ticker': ticker, 'h3': h3, 'bp': bp,
                      'composite': composite, 'price': fac['price'],
@@ -665,7 +666,7 @@ def format_telegram(result, mkt, run_date):
     if rows:
         top5 = sorted(rows, key=lambda x: -x['composite'])[:5]
         lines3 = [f"<b>[US] PULSE-US Top 5  |  {date_str}</b>"]
-        lines3.append("rank by HR × Breadth — independent of RS")
+        lines3.append("rank by HR (primary), Breadth (tiebreaker)")
         lines3.append(f"{'#':<3} {'Ticker':<10} {'Price':>8}  {'HR':>5} {'Brd':>5}")
         lines3.append("─" * 44)
         for i, r in enumerate(top5, 1):
