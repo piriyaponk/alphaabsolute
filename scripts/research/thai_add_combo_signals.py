@@ -181,6 +181,26 @@ def main():
         new_df = pd.DataFrame(new_df_parts, index=df.index)
         df = pd.concat([df, new_df], axis=1)
 
+    # ── Save combo definitions JSON for incremental fill ──────────
+    import json as _json
+    defs_path = ROOT / "data" / "research" / "thai_combo_definitions.json"
+    existing_defs = {}
+    if defs_path.exists():
+        try:
+            existing_defs = _json.loads(defs_path.read_text())
+        except Exception:
+            pass
+    for col_name, (_, h, n, base) in new_cols_a.items():
+        # Find feature: col = Q_CMB_{base_short}_{feat}
+        base_short = base[:30].rstrip("_")
+        feat = col_name[len(f"Q_CMB_{base_short}_"):]
+        existing_defs[col_name] = {"type": "A", "sources": [base, feat], "h5": h, "n": n}
+    for col_name, (_, h, n, base) in new_cols_b.items():
+        q1, q2 = base.split("+")
+        existing_defs[col_name] = {"type": "B", "sources": [q1, q2], "h5": h, "n": n}
+    defs_path.write_text(_json.dumps(existing_defs, indent=2))
+    print(f"  Saved {len(existing_defs)} combo definitions → {defs_path.name}")
+
     # ── Final quality summary ─────────────────────────────────────
     print("\n[6] Final quality summary on fwd5...")
     all_q = [c for c in df.columns if c.startswith("Q") and len(c) > 1]

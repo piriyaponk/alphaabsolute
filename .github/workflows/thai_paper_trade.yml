@@ -73,6 +73,12 @@ jobs:
         run: |
           python -X utf8 scripts/research/thai_entry_screen.py 2>&1 | tail -20
 
+      - name: Fill combo columns for new rows
+        env:
+          PYTHONIOENCODING: utf-8
+        run: |
+          python -X utf8 scripts/research/thai_fill_combo_columns.py 2>&1 | tail -10
+
       - name: Run paper trader
         id: paper_trader
         env:
