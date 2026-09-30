@@ -51,10 +51,24 @@ jobs:
           python scripts/paper_trading/v4_paper_trader.py \
             --mode ${{ github.event.inputs.mode || 'daily' }}
 
+      - name: Run PULSE-US Best Final screen
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python scripts/research/pulse_us/pulse_us_best_final.py || true
+
+      - name: Run PULSE-US Daily (multi-signal)
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python scripts/research/pulse_us/pulse_us_daily.py || true
+
       - name: Commit state update
         run: |
           git config user.name "AlphaAbsolute Bot"
           git config user.email "bot@alphaabsolute.local"
-          git add data/paper_trading/state.json
+          git add data/paper_trading/state.json data/research/pulse_us/pulse_us_best_final_signals.json data/research/pulse_us/pulse_us_daily_signals.json
           git diff --staged --quiet || git commit -m "paper: state $(date -u +%Y-%m-%d)"
           git push

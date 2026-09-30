@@ -1,0 +1,40 @@
+{
+  "date": "2026-09-30",
+  "breadth": {
+    "n_universe": 5094,
+    "n_rs70": 552,
+    "n_rs90": 128,
+    "n_rs95": 62,
+    "pct_rs70": 10.8
+  },
+  "total_hits": 1,
+  "unique_tickers": 1,
+  "signals": {
+    "SIG1": [],
+    "SIG2": [],
+    "SIG3": [],
+    "SIG4": [
+      {
+        "ticker": "AOUT",
+        "price": 17.08,
+        "rs_pct": 95.5,
+        "pct_from_52w_high": -2.7,
+        "price_vs_ma50_pct": 29.7,
+        "dd_recovery": 1.72,
+        "vol_trend": -0.037,
+        "vol_contraction": 0.37,
+        "base_tight": 0.056,
+        "pocket_pivot": 0.0,
+        "trend_consistency": 70.0,
+        "sharpe_60d": 1.08
+      }
+    ],
+    "SIG5": [],
+    "SIG6": []
+  },
+  "ticker_hits": {
+    "AOUT": [
+      "SIG4"
+    ]
+  }
+}
