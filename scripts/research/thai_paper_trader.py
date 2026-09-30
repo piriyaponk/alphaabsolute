@@ -588,9 +588,15 @@ def _load_pulse_map() -> dict:
     """Load PULSE-TH signals with per-signal hit rates.
 
     Returns per-ticker PULSE score:
-      avg_h3  = average fwd3 hit rate of signals that fired (quality)
-      breadth = number of signals that fired (conviction)
-    Only uses signals with h3 >= 55% (removes noise signals).
+      avg_h3  = average fwd3 hit rate of top-3 quality signals that fired
+      breadth = % of quality FAMILIES that fired (family-dedup, same as PULSE-US)
+
+    Improvements vs original (2026-09-30):
+      1. Threshold raised h3>55% → h3>63%  (cuts noise, 284→~50 quality signals)
+      2. Family-level breadth dedup (first token of Q-name = family)
+         e.g. Q813_i9_i8_fvg8 → family=i9, Q837_f5_k4_q2 → family=f5
+         breadth = families fired / total quality families (not raw signal count)
+      3. breadth is ranking tiebreaker only — icon uses h3 solely
     """
     csv_path = ROOT / "data" / "research" / "thai_entry_screen_results.csv"
     if not csv_path.exists():
@@ -602,7 +608,7 @@ def _load_pulse_map() -> dict:
         for col in q_cols:
             df[col] = pd.to_numeric(df[col], errors="coerce").fillna(0).astype(int)
 
-        # ── Vectorized per-signal hit rate (fast) ────────────────────────
+        # ── Vectorized per-signal hit rate ────────────────────────────────
         q_arr = df[q_cols].values  # (N_rows, N_signals)
         import numpy as np
 
@@ -618,44 +624,72 @@ def _load_pulse_map() -> dict:
         else:
             sig_h3_arr = np.full(len(q_cols), 0.60)
 
-        # Breadth: % of signals with h3>70% that fired  (numerator = fired, denom = total h3>70%)
-        breadth_mask = (sig_h3_arr > 0.70) & (~np.isnan(sig_h3_arr))
-        q_breadth    = q_arr[:, breadth_mask]                  # (N_rows, N_breadth_signals)
-        n_breadth    = int(breadth_mask.sum())
+        # ── Step 1: Raise quality threshold h3>55% → h3>63% ─────────────
+        # Empirical: baseline h3=53%, threshold at 63% = +10pp lift minimum
+        # Cuts noise signals (284 → ~50 quality), makes breadth meaningful
+        quality_mask = (sig_h3_arr > 0.63) & (~np.isnan(sig_h3_arr))
 
-        # HR: average h3 of top-3 fired signals per row (vectorized)
-        # sig_h3_arr broadcast: multiply q_arr by h3 values, keep top-3 per row
-        # q_arr * sig_h3_arr → h3 of fired signals, 0 for unfired
-        h3_fired = q_arr * np.where(np.isnan(sig_h3_arr), 0, sig_h3_arr)  # (N_rows, N_sigs)
-        # Sort each row descending, take top-3
-        top3_h3 = np.sort(h3_fired, axis=1)[:, ::-1][:, :3]               # (N_rows, 3)
-        top3_nonzero = (top3_h3 > 0).sum(axis=1)                           # how many non-zero
-        top3_sum = top3_h3.sum(axis=1)
+        # ── Step 2: Family-level breadth dedup ───────────────────────────
+        # Q813_i9_i8_fvg8 → family = "i9"  (first token after Q-number)
+        # Mirrors PULSE-US family-dedup: prevents correlated variants from
+        # inflating breadth (e.g. i9_i8_fvg3 / i9_i8_fvg5 / i9_i8_fvg8
+        # are all "i9 family" — count once)
+        sig_families = []
+        for col in q_cols:
+            parts = col.split("_")
+            sig_families.append(parts[1] if len(parts) >= 2 else "other")
+        sig_families_arr = np.array(sig_families)
+
+        # quality families = families that have at least one h3>63% signal
+        quality_fam_set = set(sig_families_arr[quality_mask])
+        n_quality_families = max(len(quality_fam_set), 1)
+
+        # Per-row family breadth: distinct quality families that fired
+        # For each row: fired_q = quality signals that fired → unique families
+        q_quality = q_arr[:, quality_mask]                  # (N_rows, N_quality_sigs)
+        quality_families_arr = sig_families_arr[quality_mask]
+        unique_fams = sorted(quality_fam_set)
+        fam_cols = []
+        for fam in unique_fams:
+            fam_idx = np.where(quality_families_arr == fam)[0]
+            fam_fired = q_quality[:, fam_idx].any(axis=1)  # True if any sig in family fired
+            fam_cols.append(fam_fired)
+        if fam_cols:
+            fam_matrix = np.column_stack(fam_cols)          # (N_rows, N_families)
+            fired_fam_counts = fam_matrix.sum(axis=1).astype(int)
+        else:
+            fired_fam_counts = np.zeros(len(df), dtype=int)
+
+        # ── HR: avg h3 of top-3 quality signals that fired ───────────────
+        h3_fired = q_arr * np.where(np.isnan(sig_h3_arr), 0, sig_h3_arr)
+        top3_h3      = np.sort(h3_fired, axis=1)[:, ::-1][:, :3]
+        top3_nonzero = (top3_h3 > 0).sum(axis=1)
+        top3_sum     = top3_h3.sum(axis=1)
         avg_h3_arr   = np.where(top3_nonzero > 0, top3_sum / top3_nonzero, 0.0)
-        fired_counts = q_breadth.sum(axis=1).astype(int)                   # h3>70% count
 
-        # Build score_map {(date, ticker): {avg_h3, breadth}}
+        # ── Build score_map {(date, ticker): {avg_h3, breadth, breadth_pct}} ──
         score_map = {}
         latest_score = {}
         dates   = df["date"].values
         tickers = df["ticker"].values
-        # sort by date ascending so latest overwrites in latest_score
         sort_idx = np.argsort(dates)
         for idx in sort_idx:
             key = (dates[idx], tickers[idx])
-            sc  = {"avg_h3": round(float(avg_h3_arr[idx]) * 100, 1),
-                   "breadth": int(fired_counts[idx])}
+            bp  = round(fired_fam_counts[idx] / n_quality_families * 100, 1)
+            sc  = {"avg_h3":     round(float(avg_h3_arr[idx]) * 100, 1),
+                   "breadth":    int(fired_fam_counts[idx]),
+                   "breadth_pct": bp}
             score_map[key] = sc
             latest_score[tickers[idx]] = sc
 
-        # Convert date keys to pd.Timestamp for lookup compatibility
         score_map_ts = {(pd.Timestamp(d), t): v for (d, t), v in score_map.items()}
 
         return {
-            "score_map":    score_map_ts,
-            "latest_score": latest_score,
-            "n_signals":    len(q_cols),
-            "n_quality":    n_breadth,   # signals with h3>70% = breadth universe
+            "score_map":          score_map_ts,
+            "latest_score":       latest_score,
+            "n_signals":          len(q_cols),
+            "n_quality":          n_quality_families,   # family count (breadth denom)
+            "n_quality_signals":  int(quality_mask.sum()),
         }
     except Exception as e:
         print(f"[PULSE] load error: {e}")
@@ -771,10 +805,10 @@ def _send_focus_list(*, today, focus: list, holdings: set):
         in_port = " ●" if tkr in holdings else ""
 
         if bp > 0:
-            # PULSE suffix with icon
-            if h3 >= 75 and bp >= 20:
+            # Icon = h3 (hit rate) only — breadth is tiebreaker, not gate (matches PULSE-US)
+            if h3 >= 80:
                 icon = "🔴"
-            elif h3 >= 65 or bp >= 10:
+            elif h3 >= 75:
                 icon = "🟠"
             else:
                 icon = "🟡"
@@ -787,8 +821,8 @@ def _send_focus_list(*, today, focus: list, holdings: set):
     lines.append("")
     if has_pulse:
         lines.append("* HR = avg hitrate ของ top-3 signals ที่ดีที่สุดที่ fire วันนี้")
-        lines.append("* Breadth = % ของ signals คุณภาพสูง (h3>70%) ที่ fire พร้อมกัน")
-        lines.append("🔴HR≥75%+Breadth≥20% STRONG  🟠HR≥65% or Breadth≥10% WATCH  ●=port")
+        lines.append("* Breadth = % ของ quality FAMILIES (h3>63%) ที่ fire — family-dedup")
+        lines.append("🔴HR>=80% STRONG  🟠HR>=75% WATCH  Brd=tiebreaker  ●=port")
     else:
         lines.append("* RS = percentile rank ใน SET universe  ● = in portfolio")
     _tg("\n".join(lines))
@@ -814,8 +848,8 @@ def _send_pulse_top5(*, today, prices):
         bp = round(bd / n_quality * 100, 1) if n_quality > 0 else 0.0
         if h3 < 62.0:
             continue
-        # Composite score: weight HR more than breadth
-        composite = h3 * 0.7 + bp * 0.3
+        # Composite: h3 strictly primary, breadth breaks ties (matches PULSE-US)
+        composite = h3 * 1000 + bp
         px = None
         if tkr in prices.columns and today_ts in prices.index:
             v = prices.loc[today_ts, tkr]
@@ -838,16 +872,16 @@ def _send_pulse_top5(*, today, prices):
     lines.append("─" * 44)
     for i, r in enumerate(top5, 1):
         px_str = f"฿{r['price']:,.1f}" if r["price"] else "N/A"
-        if r["h3"] >= 75 and r["bp"] >= 20:
+        if r["h3"] >= 80:
             icon = "🔴"
-        elif r["h3"] >= 65 or r["bp"] >= 10:
+        elif r["h3"] >= 75:
             icon = "🟠"
         else:
             icon = "🟡"
         lines.append(f"{i:<3} {r['ticker']:<12} {px_str:>8}  {icon}HR{r['h3']:.0f}% Brd{r['bp']:.0f}%")
     lines.append("")
-    lines.append("* HR = avg top-3 signal hitrate")
-    lines.append("* Breadth = % ของ signals คุณภาพสูง (h3>70%) ที่ fire พร้อมกัน")
+    lines.append("* HR = avg top-3 signal hitrate | rank by HR (primary), Breadth (tiebreaker)")
+    lines.append("* Breadth = % ของ quality FAMILIES (h3>63%) ที่ fire — family-dedup")
     _tg("\n".join(lines))
 
 
