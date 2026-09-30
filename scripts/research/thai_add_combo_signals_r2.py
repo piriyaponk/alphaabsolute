@@ -246,7 +246,7 @@ def main():
     for col_name, (_, h, n, base) in new_cols_c.items():
         srcs = base.split("+")
         existing_defs[col_name] = {"type": "C", "sources": srcs, "h5": h, "n": n}
-    defs_path.write_text(_json.dumps(existing_defs, indent=2))
+    defs_path.write_text(_json.dumps(existing_defs, indent=2, default=lambda x: int(x) if hasattr(x, '__int__') else float(x)))
     print(f"  Saved {len(existing_defs)} combo definitions → {defs_path.name}")
 
     # ── Final quality summary ─────────────────────────────────────
