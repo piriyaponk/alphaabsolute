@@ -588,15 +588,16 @@ def _load_pulse_map() -> dict:
     """Load PULSE-TH signals with per-signal hit rates.
 
     Returns per-ticker PULSE score:
-      avg_h3  = average fwd3 hit rate of top-3 quality signals that fired
+      avg_h3  = average fwd5 hit rate of top-3 quality signals that fired
       breadth = % of quality FAMILIES that fired (family-dedup, same as PULSE-US)
 
-    Improvements vs original (2026-09-30):
-      1. Threshold raised h3>55% → h3>63%  (cuts noise, 284→~50 quality signals)
-      2. Family-level breadth dedup (first token of Q-name = family)
+    Improvements (2026-09-30):
+      1. fwd5 instead of fwd3 — SET market needs 5-day window (fwd3 baseline=44%,
+         fwd5 baseline=46%, quality signals jump from 6 → 38+ at h>=63%)
+      2. Threshold h3>63% (38 quality signals on fwd5 vs 6 on fwd3)
+      3. Family-level breadth dedup (first token of Q-name = family)
          e.g. Q813_i9_i8_fvg8 → family=i9, Q837_f5_k4_q2 → family=f5
-         breadth = families fired / total quality families (not raw signal count)
-      3. breadth is ranking tiebreaker only — icon uses h3 solely
+      4. breadth is ranking tiebreaker only — icon uses h5 solely
     """
     csv_path = ROOT / "data" / "research" / "thai_entry_screen_results.csv"
     if not csv_path.exists():
@@ -612,8 +613,11 @@ def _load_pulse_map() -> dict:
         q_arr = df[q_cols].values  # (N_rows, N_signals)
         import numpy as np
 
-        if "fwd3" in df.columns:
-            fwd = df["fwd3"].values
+        # Use fwd5: SET market needs 5-day window for signal to resolve
+        # fwd5 quality signals: 38 at h>=63% vs only 6 on fwd3
+        fwd_col = "fwd5" if "fwd5" in df.columns else "fwd3"
+        if fwd_col in df.columns:
+            fwd = df[fwd_col].values
             hit = (fwd > 0).astype(float)
             hit[np.isnan(fwd)] = np.nan
             sig_h3_arr = np.full(len(q_cols), np.nan)
@@ -624,9 +628,8 @@ def _load_pulse_map() -> dict:
         else:
             sig_h3_arr = np.full(len(q_cols), 0.60)
 
-        # ── Step 1: Raise quality threshold h3>55% → h3>63% ─────────────
-        # Empirical: baseline h3=53%, threshold at 63% = +10pp lift minimum
-        # Cuts noise signals (284 → ~50 quality), makes breadth meaningful
+        # ── Step 1: Quality threshold h3>63% (calibrated on fwd5) ────────
+        # fwd5 baseline=45.7%, 63% = +17pp lift, cuts noise to ~38 quality signals
         quality_mask = (sig_h3_arr > 0.63) & (~np.isnan(sig_h3_arr))
 
         # ── Step 2: Family-level breadth dedup ───────────────────────────
