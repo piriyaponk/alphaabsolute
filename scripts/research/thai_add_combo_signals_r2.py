@@ -28,7 +28,7 @@ BACK_PATH= ROOT / "data" / "research" / "thai_entry_screen_results_r2.bak.csv"
 
 MIN_N_QUALITY = 15
 MIN_H5_QUALITY = 0.63
-MIN_N_COMBO    = 12    # slightly lower for 3-way intersections
+MIN_N_COMBO    = 20    # raised from 12: N=12-13 triples are overfit (e.g. 11/13=84.6%)
 MIN_H5_LIFT    = 0.01  # +1pp minimum lift
 
 def main():
