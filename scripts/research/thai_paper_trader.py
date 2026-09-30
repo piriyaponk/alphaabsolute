@@ -599,13 +599,26 @@ def _load_pulse_map() -> dict:
          e.g. Q813_i9_i8_fvg8 → family=i9, Q837_f5_k4_q2 → family=f5
       4. breadth is ranking tiebreaker only — icon uses h5 solely
     """
-    csv_path = ROOT / "data" / "research" / "thai_entry_screen_results.csv"
+    csv_path  = ROOT / "data" / "research" / "thai_entry_screen_results.csv"
+    cache_path = ROOT / "data" / "research" / "thai_pulse_cache.pkl"
     if not csv_path.exists():
         return {}
+
+    # Cache: re-compute only when CSV is newer than cache
+    import pickle, os
+    csv_mtime = os.path.getmtime(csv_path)
+    if cache_path.exists() and os.path.getmtime(cache_path) >= csv_mtime:
+        try:
+            with open(cache_path, "rb") as f:
+                return pickle.load(f)
+        except Exception:
+            pass  # corrupt cache → rebuild
+
     try:
         df = pd.read_csv(csv_path, low_memory=False)
         df["date"] = pd.to_datetime(df["date"])
-        q_cols = [c for c in df.columns if c.startswith("Q") and len(c) > 1 and c[1].isdigit()]
+        q_cols = [c for c in df.columns if c.startswith("Q") and len(c) > 1
+                  and (c[1].isdigit() or c.startswith("Q_CMB"))]
         for col in q_cols:
             df[col] = pd.to_numeric(df[col], errors="coerce").fillna(0).astype(int)
 
@@ -698,13 +711,19 @@ def _load_pulse_map() -> dict:
 
         score_map_ts = {(pd.Timestamp(d), t): v for (d, t), v in score_map.items()}
 
-        return {
+        result = {
             "score_map":          score_map_ts,
             "latest_score":       latest_score,
             "n_signals":          len(q_cols),
             "n_quality":          n_quality_families,   # family count (breadth denom)
             "n_quality_signals":  int(quality_mask.sum()),
         }
+        try:
+            with open(cache_path, "wb") as f:
+                pickle.dump(result, f)
+        except Exception:
+            pass  # cache write failure is non-fatal
+        return result
     except Exception as e:
         print(f"[PULSE] load error: {e}")
         return {}
