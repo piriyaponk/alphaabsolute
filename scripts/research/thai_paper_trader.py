@@ -637,10 +637,21 @@ def _load_pulse_map() -> dict:
         # Mirrors PULSE-US family-dedup: prevents correlated variants from
         # inflating breadth (e.g. i9_i8_fvg3 / i9_i8_fvg5 / i9_i8_fvg8
         # are all "i9 family" — count once)
-        sig_families = []
-        for col in q_cols:
+        def _col_family(col: str) -> str:
+            """Extract signal family from Q-column name.
+            Q813_i9_i8_fvg8          → "i9"   (parts[1])
+            Q_CMB_Q670_j3_f1_E4_pb   → "j3"   (parts[4], first token of base signal)
+            Q_CMB2_Q813_i9_Q670_j3   → "i9"   (parts[4], first token of first base)
+            """
             parts = col.split("_")
-            sig_families.append(parts[1] if len(parts) >= 2 else "other")
+            if len(parts) < 2:
+                return "other"
+            if parts[1] in ("CMB", "CMB2"):
+                # Q_CMB_Q{num}_fam_... → parts[3] is Q-num, parts[4] is family token
+                return parts[4] if len(parts) >= 5 else parts[1]
+            return parts[1]
+
+        sig_families = [_col_family(c) for c in q_cols]
         sig_families_arr = np.array(sig_families)
 
         # quality families = families that have at least one h3>63% signal
