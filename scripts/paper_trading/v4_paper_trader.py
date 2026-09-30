@@ -116,6 +116,7 @@ def fetch_from_db(tickers, days=310, min_len=20):
     Returns {ticker: (close_series, vol_series)} — same format as fetch_many.
     Falls back to Yahoo for any ticker missing from DB."""
     if not Path(OHLCV_DB).exists():
+        print(f'[DB] WARNING: {OHLCV_DB} not found — falling back to Yahoo for all tickers')
         return {}
     cutoff = (datetime.now(timezone.utc) - timedelta(days=days)).strftime('%Y-%m-%d')
     results = {}
@@ -330,8 +331,17 @@ def tg_send(text):
     try:
         r = requests.post(url, json={
             'chat_id': TELEGRAM_CHAT, 'text': text, 'parse_mode': 'HTML'
-        }, timeout=10)
-        print('[Telegram] Sent OK' if r.ok else f'[Telegram] Error: {r.text}')
+        }, verify=False, timeout=10)
+        if r.ok:
+            print('[Telegram] Sent OK')
+        elif r.status_code == 400:
+            # HTML parse error — retry as plain text (unescaped chars safe in plain mode)
+            r2 = requests.post(url, json={
+                'chat_id': TELEGRAM_CHAT, 'text': text
+            }, verify=False, timeout=10)
+            print('[Telegram] Sent (plain fallback)' if r2.ok else f'[Telegram] Error (plain): {r2.text}')
+        else:
+            print(f'[Telegram] Error {r.status_code}: {r.text}')
     except Exception as e:
         print(f'[Telegram] Exception: {e}')
 
@@ -664,15 +674,21 @@ def run_daily():
         print(f'  Yahoo fallback for: {missing}')
         data_dict = fetch_many(missing, days=10, threads=8, min_len=2)
 
-    # IWM regime (use Tiingo price; MA200 from Yahoo full-history fetch)
+    # IWM regime — read MA200 from ohlcv.db (no network required on Actions)
     iwm_px = tiingo_prices.get('IWM')
     if iwm_px:
-        iwm_full_data = fetch_many(['IWM'], days=300)
-        if 'IWM' in iwm_full_data:
-            iwm_full = iwm_full_data['IWM'][0]
+        iwm_db = fetch_from_db(['IWM'], days=300)
+        if 'IWM' in iwm_db:
+            iwm_full = iwm_db['IWM'][0]
             bull = bool(iwm_full.iloc[-1] > iwm_full.rolling(200, min_periods=150).mean().iloc[-1])
         else:
-            bull = state.get('regime', 'BULL') == 'BULL'
+            # fallback: try Yahoo, then prior state
+            iwm_full_data = fetch_many(['IWM'], days=300)
+            if 'IWM' in iwm_full_data:
+                iwm_full = iwm_full_data['IWM'][0]
+                bull = bool(iwm_full.iloc[-1] > iwm_full.rolling(200, min_periods=150).mean().iloc[-1])
+            else:
+                bull = state.get('regime', 'BULL') == 'BULL'
     else:
         bull = state.get('regime', 'BULL') == 'BULL'
 
