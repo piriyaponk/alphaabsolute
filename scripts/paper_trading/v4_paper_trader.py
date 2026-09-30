@@ -18,7 +18,7 @@ Modes:
 
 State: data/paper_trading/state.json
 """
-import sys, os, json, time, argparse, calendar, shutil
+import sys, os, json, time, argparse, calendar, shutil, sqlite3
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
@@ -49,6 +49,7 @@ BETA_CAP      = 0.12
 FETCH_THREADS = 8
 CANDIDATE_POOL = TOP_N * 5   # fetch ADTV for top-75 RS candidates
 BKK           = timezone(timedelta(hours=7))
+OHLCV_DB      = 'data/ohlcv.db'
 
 TELEGRAM_TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN', '')
 TELEGRAM_CHAT  = os.environ.get('TELEGRAM_CHAT_ID', '')
@@ -107,6 +108,37 @@ def fetch_many(tickers, days=300, threads=8, min_len=20):
             c, v = f.result()
             if c is not None and len(c) >= min_len:
                 results[t] = (c, v)
+    return results
+
+
+def fetch_from_db(tickers, days=310, min_len=20):
+    """Read OHLCV from ohlcv.db (Polygon-sourced, always available on Actions).
+    Returns {ticker: (close_series, vol_series)} — same format as fetch_many.
+    Falls back to Yahoo for any ticker missing from DB."""
+    if not Path(OHLCV_DB).exists():
+        return {}
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=days)).strftime('%Y-%m-%d')
+    results = {}
+    try:
+        conn = sqlite3.connect(OHLCV_DB)
+        placeholders = ','.join('?' * len(tickers))
+        rows = conn.execute(
+            f"SELECT ticker, date, close, volume FROM ohlcv "
+            f"WHERE ticker IN ({placeholders}) AND date >= ? AND close IS NOT NULL "
+            f"ORDER BY ticker, date",
+            tickers + [cutoff]
+        ).fetchall()
+        conn.close()
+        df = pd.DataFrame(rows, columns=['ticker', 'date', 'close', 'volume'])
+        df['date'] = pd.to_datetime(df['date'])
+        for tkr, grp in df.groupby('ticker'):
+            grp = grp.set_index('date').sort_index()
+            close_s = grp['close'].dropna().astype(float)
+            vol_s   = grp['volume'].dropna().astype(float)
+            if len(close_s) >= min_len:
+                results[tkr] = (close_s, vol_s)
+    except Exception as e:
+        print(f'[DB] fetch_from_db error: {e}')
     return results
 
 
@@ -204,7 +236,24 @@ def compute_signals(data_dict, spy_close, iwm_close):
 
 
 def fetch_adtv(ticker, days=63):
-    """ADTV in $M for ADTV gate filtering."""
+    """ADTV in $M. Reads from ohlcv.db first; falls back to Yahoo."""
+    if Path(OHLCV_DB).exists():
+        try:
+            cutoff = (datetime.now(timezone.utc) - timedelta(days=days * 2)).strftime('%Y-%m-%d')
+            conn = sqlite3.connect(OHLCV_DB)
+            rows = conn.execute(
+                "SELECT close, volume FROM ohlcv WHERE ticker=? AND date>=? "
+                "AND close IS NOT NULL AND volume IS NOT NULL ORDER BY date",
+                (ticker, cutoff)
+            ).fetchall()
+            conn.close()
+            if rows:
+                df = pd.DataFrame(rows, columns=['close', 'volume'])
+                adtv = (df['close'] * df['volume']).tail(days).mean() / 1e6
+                return float(adtv) if pd.notna(adtv) else 0.0
+        except Exception:
+            pass
+    # Yahoo fallback
     end   = int(time.time())
     start = end - days * 86400 * 2
     url   = (f'https://query2.finance.yahoo.com/v8/finance/chart/{ticker}'
@@ -315,10 +364,21 @@ def run_init():
 # ── MODE: REBALANCE ───────────────────────────────────────────────────────────
 def run_rebalance(init=False):
     tickers = load_tickers()
-    print(f'Downloading prices for {len(tickers)} tickers (+SPY+IWM+QQQ)...')
-
     all_tickers = ['SPY', 'IWM', 'QQQ'] + tickers
-    data_dict   = fetch_many(all_tickers, days=310, threads=FETCH_THREADS)
+
+    # Primary: read from ohlcv.db (no network, always available on Actions)
+    print(f'Loading prices from ohlcv.db for {len(all_tickers)} tickers...')
+    data_dict = fetch_from_db(all_tickers, days=310)
+    db_count  = len(data_dict)
+    print(f'  DB: {db_count}/{len(all_tickers)} tickers loaded')
+
+    # Fallback: Yahoo fetch for any tickers missing from DB (SPY/IWM/QQQ must succeed)
+    missing = [t for t in all_tickers if t not in data_dict]
+    if missing:
+        print(f'  Yahoo fallback for {len(missing)} missing tickers...')
+        fallback = fetch_many(missing, days=310, threads=FETCH_THREADS)
+        data_dict.update(fallback)
+        print(f'  Yahoo: {len(fallback)}/{len(missing)} tickers loaded')
 
     spy_data = data_dict.get('SPY')
     iwm_data = data_dict.get('IWM')
