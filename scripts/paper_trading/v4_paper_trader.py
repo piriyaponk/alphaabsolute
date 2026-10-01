@@ -52,6 +52,18 @@ RF_ANNUAL     = 0.04375      # ~4.375% Fed Funds rate (update annually)
 BKK           = timezone(timedelta(hours=7))
 OHLCV_DB      = 'data/ohlcv.db'
 
+# DEC-032 (BOA-025, 2026-10-01): Hard block — therapeutics-stage stocks
+# Definition: companies whose PRIMARY valuation driver is Phase 2/3 clinical pipeline outcome.
+# Excludes tools (TWST/TXG), approved commercial platforms (MRNA), diagnostics, medical devices.
+# SIC backfill task (BOA-027) will replace this list with automated SIC classification.
+THERAPEUTICS_STAGE_BLOCK = {
+    'LQDA',   # Liquidia — Phase 3 pulmonary arterial hypertension (PDUFA 2026)
+    'RVMD',   # Relay Therapeutics — Phase 2/3 oncology, clinical-stage
+    'SYRE',   # Syros Pharmaceuticals — Phase 2 clinical stage
+    'TVTX',   # Travere Therapeutics — rare kidney disease, Phase 3 pipeline primary driver
+    'IBRX',   # ImmunityBio — Phase 3 immunotherapy, clinical-stage primary driver
+}
+
 TELEGRAM_TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN', '')
 TELEGRAM_CHAT  = os.environ.get('TELEGRAM_CHAT_ID', '')
 
@@ -466,7 +478,14 @@ def run_rebalance(init=False):
         time.sleep(0.08)
     passed = passed.copy()
     passed['adtv_63m'] = passed['ticker'].map(adtvs)
-    passed = passed[passed['adtv_63m'] >= ADTV_MIN].nlargest(TOP_N, 'rs_pct').copy()
+    passed = passed[passed['adtv_63m'] >= ADTV_MIN]
+
+    # DEC-032: Hard block therapeutics-stage stocks (binary event risk bypasses stop-loss)
+    blocked = passed[passed['ticker'].isin(THERAPEUTICS_STAGE_BLOCK)]
+    if not blocked.empty:
+        print(f'[DEC-032] Blocked therapeutics-stage: {blocked["ticker"].tolist()}')
+    passed = passed[~passed['ticker'].isin(THERAPEUTICS_STAGE_BLOCK)]
+    passed = passed.nlargest(TOP_N, 'rs_pct').copy()
 
     if len(passed) == 0:
         print('ERROR: No stocks passed all screens'); return None

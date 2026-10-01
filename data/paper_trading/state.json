@@ -1,15 +1,15 @@
 {
-  "nav": 1082990.95,
-  "cash": -0.0,
+  "nav": 1082990.97,
+  "cash": 0.0,
   "inception_nav": 1000000.0,
   "inception_date": "2026-09-02",
   "last_rebalance": "2026-10-01",
   "regime": "BULL",
   "positions": {
     "MRNA": {
-      "shares": 479.4692,
-      "cost_basis": 178.0276,
-      "weight_target": 0.0853,
+      "shares": 422.4775,
+      "cost_basis": 176.0463,
+      "weight_target": 0.0751,
       "entry_date": "2026-09-02",
       "adtv_m": 2318.1,
       "rs_pct": 100.0,
@@ -17,9 +17,9 @@
       "vol_20d": 0.6032
     },
     "MXL": {
-      "shares": 800.8332,
+      "shares": 705.6428,
       "cost_basis": 90.3777,
-      "weight_target": 0.0668,
+      "weight_target": 0.0588,
       "entry_date": "2026-10-01",
       "adtv_m": 236.8,
       "rs_pct": 99.9,
@@ -47,9 +47,9 @@
       "vol_20d": 0.5596
     },
     "DELL": {
-      "shares": 249.5316,
-      "cost_basis": 490.8857,
-      "weight_target": 0.1239,
+      "shares": 219.8712,
+      "cost_basis": 484.4823,
+      "weight_target": 0.1092,
       "entry_date": "2026-09-02",
       "adtv_m": 3553.3,
       "rs_pct": 99.5,
@@ -97,9 +97,9 @@
       "vol_20d": 0.4941
     },
     "SIMO": {
-      "shares": 463.8861,
+      "shares": 408.7467,
       "cost_basis": 280.21,
-      "weight_target": 0.1199,
+      "weight_target": 0.1057,
       "entry_date": "2026-10-01",
       "adtv_m": 243.7,
       "rs_pct": 99.1,
@@ -146,15 +146,15 @@
       "beta": 1.59,
       "vol_20d": 0.6532
     },
-    "IBRX": {
-      "shares": 7638.6682,
-      "cost_basis": 9.4471,
-      "weight_target": 0.0666,
+    "UMC": {
+      "shares": 5025.5378,
+      "cost_basis": 24.5084,
+      "weight_target": 0.1136,
       "entry_date": "2026-10-01",
-      "adtv_m": 79.4,
-      "rs_pct": 98.7,
-      "beta": 1.8,
-      "vol_20d": 0.6669
+      "adtv_m": 285.6,
+      "rs_pct": 98.6,
+      "beta": 1.23,
+      "vol_20d": 0.5149
     }
   },
   "nav_history": {
@@ -186,7 +186,7 @@
     "2026-09-27": 1081295.92,
     "2026-09-28": 1081295.92,
     "2026-09-29": 1082991.0,
-    "2026-10-01": 1082990.95
+    "2026-10-01": 1082990.97
   },
   "peak_nav": 1082990.9995810203,
   "qqq_inception": 709.4400024414062,
@@ -218,7 +218,7 @@
     "2026-09-27": 744.5,
     "2026-09-28": 744.5,
     "2026-09-29": 736.530029296875,
-    "2026-10-01": 739.77001953125
+    "2026-10-01": 739.77
   },
   "realized_pnl": [
     {

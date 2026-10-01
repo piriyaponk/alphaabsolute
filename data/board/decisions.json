@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-13T00:00",
+  "last_updated": "2026-10-01",
   "decisions": [
     {
       "id": "DEC-031",
@@ -7,7 +7,12 @@
       "date": "2026-06-15",
       "topic": "BOA-024 Backtest Review — Full Committee Vote on Regime Factor Redesign",
       "outcome": "CONDITIONAL_APPROVED",
-      "vote": {"fund_manager": "CONDITIONAL Y", "research": "CONDITIONAL Y", "quant": "CONDITIONAL Y", "da": "APPROVE"},
+      "vote": {
+        "fund_manager": "CONDITIONAL Y",
+        "research": "CONDITIONAL Y",
+        "quant": "CONDITIONAL Y",
+        "da": "APPROVE"
+      },
       "outcome_rationale": "Full 4-member committee reviewed backtest results (N=544 days, 2024-03-14 to 2026-05-14). Key finding: old dist_days>=5 clamp is directionally INVERTED (p=0.001). New up-vol ratio: near-zero overall correlation (Spearman r=+0.015) but directionally correct in bear period (N=82, p=0.246). KL divergence declined OLD=11.04 vs NEW=7.11 — noted. Full Factor B: constant during crash (ConstantInputWarning) under old system; new system r=-0.540 p=0.004 in bear period. New system called Markdown 4 days BEFORE crash bottom (old: 6 days AFTER). Recovery signal 7 trading days faster. Regime call today Sideways (58/85) confirmed correct vs old clamped Distribution (39/85) given rising AD line, broadening breadth, up-vol 55.3%.",
       "confirmed_decisions": [
         "DEC-030 clamp removal: ACTIVATE unconditionally. Evidence conclusive (p=0.001, structural defect — Factor B was constant during crash, zero variance when it mattered most). Remove dist_days>=5 clamp permanently.",
@@ -41,7 +46,12 @@
       "date": "2026-06-15",
       "topic": "Regime Factor Redesign — Replace Distribution Days Primary with Volume Quality (Lowry Up-Vol Ratio)",
       "outcome": "APPROVED",
-      "vote": {"fund_manager": "Y", "research": "Y", "quant": "Y", "da": "Y"},
+      "vote": {
+        "fund_manager": "Y",
+        "research": "Y",
+        "quant": "Y",
+        "da": "Y"
+      },
       "outcome_rationale": "Four changes implemented: (1) Factor B replaced — distribution day count as primary signal removed. New primary: Lowry/Wyckoff up-volume ratio over 15 days (% of index volume on up-close sessions). >= 62% = accumulation = 20 pts. < 42% = distribution = 0 pts. Distribution day count retained as context/audit field only — not deducted from score (up-vol ratio already captures the same signal). (2) Factor C expanded — SPY vs IWM spread removed (measures concentration, not breadth). Added pct_above_200dma (6 pts) and AD line direction (6 pts). pct_above_50dma reduced from 10 to 8 pts. Total C unchanged at 20 pts. (3) AD line threshold lowered from 21 to 10 entries — fires usefully with current 11 history entries. (4) Score clamp removed — 'dist_days >= 5 → clamp to 39' deleted. Volume quality factor carries the signal directly; no external clamp needed. Soft warn_count cap retained for leading indicator clusters. Effect: Distribution → Sideways (39 → 58/85). Regime correctly reflects current conditions: breadth BROADENING, AD line rising, up-vol 55.3% slightly accumulative despite 6 distribution days.",
       "regime_effect": "2026-06-15: Distribution (39/85 clamped) → Sideways (58/85). Sideways: cash_floor=20%, max_deployed=80%, Grade A+B OK, both modes active.",
       "hypothesis_tags": [
@@ -56,7 +66,12 @@
       "date": "2026-06-15",
       "topic": "Distribution Day Volume Threshold — Change from Prior-Day to 50-Day Average Volume",
       "outcome": "APPROVED",
-      "vote": {"fund_manager": "Y", "research": "Y", "quant": "Y", "da": "Y"},
+      "vote": {
+        "fund_manager": "Y",
+        "research": "Y",
+        "quant": "Y",
+        "da": "Y"
+      },
       "outcome_rationale": "Current implementation: distribution day fires when volume > prior_day_volume. IBD's published standard: volume > 50-day average volume. The prior-day comparison misfires on days following unusually low-volume sessions (appears as distribution when it isn't) and misses true distribution on days following high-volume accumulation. DA confirmed: ohlcv.db has sufficient history for 50-day avg computation. No data source change needed. This makes distribution day detection more consistent with the original IBD framework.",
       "implementation": "market_regime.py count_distribution_days(): change `bars[i]['volume'] > bars[i-1]['volume']` to `bars[i]['volume'] > avg_volume_50d[i]` where avg_volume_50d is pre-computed as 50-bar rolling average. Require at least 30 bars to compute avg (else fall back to prior-day). Update CLAUDE.md.",
       "backtest_gate": "No gate required — this is a methodology correction to match IBD standard, not a threshold change.",
@@ -68,7 +83,12 @@
       "date": "2026-06-15",
       "topic": "Factor B Score Floor — Minimum 2 Points to Prevent Complete Clamp Override",
       "outcome": "APPROVED",
-      "vote": {"fund_manager": "Y", "research": "Y", "quant": "Y", "da": "Y"},
+      "vote": {
+        "fund_manager": "Y",
+        "research": "Y",
+        "quant": "Y",
+        "da": "Y"
+      },
       "outcome_rationale": "Confirmed double-penalty bug: when dist_days >= 5, Factor B scores 0/20 AND the score clamp forces effective_score <= 39 (Distribution). Today's example: without clamp, effective_score = 47 (Sideways). With clamp = 39 (Distribution). The clamp's intent is a safety override — keeping it is correct. But Factor B scoring 0 becomes irrelevant once the clamp activates, and 0 pts on a 20-pt factor leaves no room for improving breadth to move the score. Fix: floor Factor B at 2 pts (dist_days >= 6) and 5 pts (dist_days = 5). The clamp still enforces Distribution at 5+ dist days — the floor only ensures other factors can nudge toward the Sideways border as conditions improve.",
       "implementation": "market_regime.py score_distribution(): change the `else: pts = 0` branch to:\n  if dist_count >= 6: pts = 2\n  elif dist_count >= 5: pts = 5\n  (4 dist days stays at 8 pts per current logic)\nThe classify_v2_regime() clamp `min(total_score, 39)` stays unchanged — it is the safety override.",
       "backtest_gate": "HYPOTHESIS — monitor whether Sideways regime appears more frequently after this change vs before. If Sideways count increases >50% in next 30 days, review to ensure we're not de-sensitizing Distribution detection.",
@@ -80,7 +100,12 @@
       "date": "2026-06-15",
       "topic": "pct_above_50dma 60% Threshold — LOG as Internally Derived, No Change, Re-Evaluate at N≥200 Days",
       "outcome": "DEFERRED",
-      "vote": {"fund_manager": "CONDITIONAL — lower to 50%", "research": "CONDITIONAL — 55-60% defensible but above 50% standard", "quant": "BLOCK — insufficient data (112 days)", "da": "N/A — implementation review only"},
+      "vote": {
+        "fund_manager": "CONDITIONAL — lower to 50%",
+        "research": "CONDITIONAL — 55-60% defensible but above 50% standard",
+        "quant": "BLOCK — insufficient data (112 days)",
+        "da": "N/A — implementation review only"
+      },
       "outcome_rationale": "QUANT BLOCKS change: N=112 trading days is insufficient to recalibrate a regime-critical threshold. Precision/recall profile (0.94/0.82) at 60% is acceptable. Fund Manager wants 50%, Research says 55-60% defensible, but without forward-return data by regime day, any change is arbitrary. Confirmed key finding: 60% threshold does NOT appear in any published practitioner source. IBD, Minervini, O'Neil, Zweig — none use a specific pct_above_50dma threshold. The 60% was an internally-derived round number at system design. This must be documented as such. DECISION: keep 60% threshold. Log pct_above_50dma daily in market_health.json (already happening). Add regime_day_log to accumulate forward returns by regime classification. Re-test at N≥200 trading days (estimated end-2026).",
       "hypothesis_tags": [
         "H1 (ROC_5d): Add 5-day rate-of-change on pct_above_50dma as leading indicator. Log only, zero regime weight. Activate as soft flag at N≥10 confirmed turning points.",
@@ -101,7 +126,12 @@
       "date": "2026-06-13",
       "topic": "fwd_ret Fill Job — Mandatory Weekly SQL UPDATE for screening_history",
       "outcome": "APPROVED",
-      "vote": {"fund_manager": "Y", "research": "Y", "quant": "Y", "da": "Y"},
+      "vote": {
+        "fund_manager": "Y",
+        "research": "Y",
+        "quant": "Y",
+        "da": "Y"
+      },
       "outcome_rationale": "screening_history has 7,094 rows with fwd_ret_4w/8w/13w all NULL — training data disappearing every day. Add weekly SQL UPDATE script that fills forward returns for rows older than 4/8/13 weeks. Not Option B complexity — single SQL UPDATE script. Highest-priority learning infrastructure action.",
       "implementation": "Add scripts/pre_compute/fill_fwd_returns.py — runs weekly (Fridays), fills screening_history WHERE date <= today-28 AND fwd_ret_4w IS NULL. Use ohlcv.db price on target date."
     },
@@ -111,7 +141,12 @@
       "date": "2026-06-13",
       "topic": "Architecture Decision — Option A Active, Option B Deferred with Reactivation Trigger",
       "outcome": "APPROVED",
-      "vote": {"fund_manager": "Y", "research": "Y", "quant": "Y", "da": "Y"},
+      "vote": {
+        "fund_manager": "Y",
+        "research": "Y",
+        "quant": "Y",
+        "da": "Y"
+      },
       "outcome_rationale": "Option A (Screening Only) APPROVED as production mode. Option B (Full Fund Simulation) DEFERRED. Option B score 11/20 vs Option A 14/20 at current N=0 closed trades. Paper trading loop stopped 2026-06-01, stops not firing, portfolio state stale 10 days — Option B currently producing incorrect results. Reactivation trigger: N_closed_trades >= 20 AND regimes_represented >= 2. Scripts to archive (not delete): auto_postmortem.py, framework_calibrator.py, portfolio_manager.py, auto_trader.py, performance_tracker.py, risk_guardian.py.",
       "reactivation_trigger": "N_closed_trades >= 20 AND regimes_represented >= 2 (estimated Q1-Q2 2027)",
       "hypothesis_status": "All stop thresholds (-12% Markup, -8% Distribution) remain HYPOTHESIS. N=23 in 1 regime does not meet N>=50 across 3 regimes standard."
@@ -122,7 +157,12 @@
       "date": "2026-06-13",
       "topic": "Storage Cleanup Policy — ohlcv_cache PKL Retention + breadth_prices.db",
       "outcome": "APPROVED",
-      "vote": {"fund_manager": "Y", "research": "Y", "quant": "Y", "da": "Y"},
+      "vote": {
+        "fund_manager": "Y",
+        "research": "Y",
+        "quant": "Y",
+        "da": "Y"
+      },
       "outcome_rationale": "ohlcv_cache PKL files: delete all files NOT dated today at start of each runner run. Old-date PKLs have zero readers — 100% safe to delete. Saves ~290 MB immediately, prevents ~20 MB/day compounding growth. breadth_prices.db: NO ACTION — _prune_old() already runs automatically, keeps 270-day window, steady-state 346 MB is irreducible minimum for 52-week NH/NL on 12,200-ticker universe. ohlcv_cache JSON files: NO ACTION — self-managing via 20h freshness.",
       "implementation": "Add cleanup loop to pre_market_runner.py before pipeline starts: delete data/ohlcv_cache/*.pkl where filename date != today. One glob+unlink loop, <5 lines."
     },
@@ -642,6 +682,42 @@
         "BOA-022: PPT Volume Threshold Review",
         "BOA-023: Morning Star in Distribution regime — exit signal potential"
       ]
+    },
+    {
+      "id": "DEC-032",
+      "boa": "BOA-025",
+      "date": "2026-10-01",
+      "title": "Pharma Hard Block — Therapeutics-Stage Stocks Banned from Entry",
+      "status": "HARD_BLOCK_ACTIVE",
+      "hypothesis": true,
+      "hypothesis_condition": "N>=20 pharma entries with forward-return data",
+      "rule": "Therapeutics-stage stocks are HARD BLOCKED from any new entry. Not sized down — excluded entirely. The stop-loss is structurally blind to overnight binary events (FDA/PDUFA/Phase 3 results). A -55% gap cannot be managed with a -12% stop.",
+      "upgraded_from": "5% cap (CONDITIONAL_APPROVED) → hard block (CIO override 2026-10-01 after LQDA -55.6% loss, backtest benefit ratio 21.5x vs opportunity cost)",
+      "definition": "NARROW — therapeutics-stage only: companies whose PRIMARY valuation driver is Phase 2/3 clinical pipeline outcome",
+      "excluded_from_rule": [
+        "TWST (synthetic DNA tools — SIC 2836 but tools company, +51.5% winner)",
+        "TXG (life science instruments — SIC 2836 but instruments, +51.3% winner)",
+        "MRNA (approved commercial mRNA platform — multiple approved products, not purely clinical-stage)",
+        "diagnostics",
+        "medical devices",
+        "CROs"
+      ],
+      "blocklist": ["LQDA", "RVMD", "SYRE", "TVTX", "IBRX"],
+      "blocklist_note": "Hardcoded pending BOA-027 SIC backfill DE task. Replace with automated SIC 2830/2834/2835/2836/8731 classification when >80% coverage achieved.",
+      "backtest_findings": {
+        "hard_block_benefit": "+$55,409 (LQDA -55.6% avoided)",
+        "opportunity_cost": "-$2,577 (SYRE +8.4% foregone)",
+        "benefit_ratio": "21.5x",
+        "n_events": 5,
+        "periods_tested": 1
+      },
+      "portfolio_action": {
+        "IBRX": "BLOCKED from Oct 1 rebalance — was CONDITIONALLY entered under old rule. Hard block applied retroactively on re-run 2026-10-01."
+      },
+      "sic_codes_for_block": [2830, 2834, 2835, 2836, 8731],
+      "activation_date": "2026-10-01",
+      "upgraded_date": "2026-10-01",
+      "cio_note": "Upgraded from 5% cap to hard block. Re-ran Oct 1 rebalance with block applied. IBRX excluded, capital reallocated to next-best non-therapeutics candidate."
     }
   ]
 }
