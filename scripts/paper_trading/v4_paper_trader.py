@@ -736,8 +736,10 @@ def run_daily():
             td = data_dict.get(tkr)
             raw_prices[tkr] = float(td[0].iloc[-1]) if td else None
 
-    # Step 2: sanity check — flag tickers with |pnl| > 40% as suspicious
-    PNL_SANITY = 40.0   # percent threshold to trigger TV cross-check
+    # Step 2: sanity check — flag tickers with pnl < -40% as suspicious
+    # Only negative extremes are suspect (stale/wrong price from API).
+    # Large positive gains (e.g. +50% since inception) are legitimate.
+    PNL_SANITY = -40.0  # negative threshold only
     suspicious = []
     for tkr, pos in positions.items():
         px = raw_prices.get(tkr)
@@ -746,7 +748,7 @@ def run_daily():
             continue
         cost = float(pos['cost_basis'])
         pnl  = (px / cost - 1) * 100 if cost > 0 else 0
-        if abs(pnl) > PNL_SANITY:
+        if pnl < PNL_SANITY:
             suspicious.append(tkr)
 
     # Step 3: TradingView fallback for suspicious tickers
@@ -928,13 +930,23 @@ if __name__ == '__main__':
     elif args.mode == 'daily':
         state   = load_state()
         bkk_dt  = datetime.now(BKK)
-        last_day = calendar.monthrange(bkk_dt.year, bkk_dt.month)[1]
-        is_month_end = (bkk_dt.day == last_day or
-                        (bkk_dt.day >= last_day - 1 and bkk_dt.weekday() == 4))
+        # Rebalance on the 1st trading day of the new month (day=1, or day=2/3 if Mon/Tue
+        # after a weekend). This ensures ohlcv.db has prior month-end close available.
+        # Running on last day of month (old logic) used T-1 close → cost_basis was off by 1 day.
+        last_rebalance = (state or {}).get('last_rebalance', '')
+        last_reb_month = last_rebalance[:7] if last_rebalance else ''   # 'YYYY-MM'
+        this_month     = bkk_dt.strftime('%Y-%m')
+        prev_month     = (bkk_dt.replace(day=1) - timedelta(days=1)).strftime('%Y-%m')
+        # Fire if: day <= 3 AND we haven't rebalanced this month yet AND it's a weekday
+        is_first_trading_day = (
+            bkk_dt.day <= 3 and
+            bkk_dt.weekday() < 5 and          # Mon–Fri
+            last_reb_month == prev_month       # haven't done this month yet
+        )
         if state is None:
             run_init()
-        elif is_month_end:
-            print('Month-end — running rebalance...')
+        elif is_first_trading_day:
+            print(f'First trading day of {this_month} — running rebalance (using {prev_month} closes)...')
             run_rebalance()
         else:
             run_daily()
