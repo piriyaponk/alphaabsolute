@@ -3,123 +3,123 @@
   "results": [
     {
       "ticker": "MRNA",
-      "tiingo": 192.57,
+      "tiingo": null,
       "tv": 192.57,
-      "diff_pct": 0.0,
+      "diff_pct": null,
       "cost_basis": 181.4616,
-      "status": "OK"
+      "status": "TIINGO_FAIL"
     },
     {
       "ticker": "MXL",
-      "tiingo": 90.31,
+      "tiingo": null,
       "tv": 90.31,
-      "diff_pct": 0.0,
+      "diff_pct": null,
       "cost_basis": 92.7895,
-      "status": "OK"
+      "status": "TIINGO_FAIL"
     },
     {
       "ticker": "TWST",
-      "tiingo": 193.24,
+      "tiingo": null,
       "tv": 193.24,
-      "diff_pct": 0.0,
+      "diff_pct": null,
       "cost_basis": 127.43000030517578,
-      "status": "OK"
+      "status": "TIINGO_FAIL"
     },
     {
       "ticker": "TXG",
-      "tiingo": 90.36,
+      "tiingo": null,
       "tv": 90.36,
-      "diff_pct": 0.0,
+      "diff_pct": null,
       "cost_basis": 59.689998626708984,
-      "status": "OK"
+      "status": "TIINGO_FAIL"
     },
     {
       "ticker": "DELL",
-      "tiingo": 537.95,
+      "tiingo": null,
       "tv": 537.95,
-      "diff_pct": 0.0,
+      "diff_pct": null,
       "cost_basis": 482.8762,
-      "status": "OK"
+      "status": "TIINGO_FAIL"
     },
     {
       "ticker": "BE",
-      "tiingo": 276.98,
+      "tiingo": null,
       "tv": 276.98,
-      "diff_pct": 0.0,
+      "diff_pct": null,
       "cost_basis": 291.4684,
-      "status": "OK"
+      "status": "TIINGO_FAIL"
     },
     {
       "ticker": "MRVL",
-      "tiingo": 264.21,
+      "tiingo": null,
       "tv": 264.21,
-      "diff_pct": 0.0,
+      "diff_pct": null,
       "cost_basis": 263.4674,
-      "status": "OK"
+      "status": "TIINGO_FAIL"
     },
     {
       "ticker": "VICR",
-      "tiingo": 288.94,
+      "tiingo": null,
       "tv": 288.94,
-      "diff_pct": 0.0,
+      "diff_pct": null,
       "cost_basis": 290.898,
-      "status": "OK"
+      "status": "TIINGO_FAIL"
     },
     {
       "ticker": "ALAB",
-      "tiingo": 355.97,
+      "tiingo": null,
       "tv": 355.97,
-      "diff_pct": 0.0,
+      "diff_pct": null,
       "cost_basis": 358.1084,
-      "status": "OK"
+      "status": "TIINGO_FAIL"
     },
     {
       "ticker": "SIMO",
-      "tiingo": 280.0,
+      "tiingo": null,
       "tv": 280.0,
-      "diff_pct": 0.0,
+      "diff_pct": null,
       "cost_basis": 276.3671,
-      "status": "OK"
+      "status": "TIINGO_FAIL"
     },
     {
       "ticker": "INTC",
-      "tiingo": 120.23,
+      "tiingo": null,
       "tv": 120.23,
-      "diff_pct": 0.0,
+      "diff_pct": null,
       "cost_basis": 116.0169,
-      "status": "OK"
+      "status": "TIINGO_FAIL"
     },
     {
       "ticker": "STX",
-      "tiingo": 922.34,
+      "tiingo": null,
       "tv": 922.34,
-      "diff_pct": 0.0,
+      "diff_pct": null,
       "cost_basis": 819.6365,
-      "status": "OK"
+      "status": "TIINGO_FAIL"
     },
     {
       "ticker": "UMC",
-      "tiingo": 24.49,
+      "tiingo": null,
       "tv": 24.49,
-      "diff_pct": 0.0,
+      "diff_pct": null,
       "cost_basis": 24.7385,
-      "status": "OK"
+      "status": "TIINGO_FAIL"
     },
     {
       "ticker": "SMTC",
-      "tiingo": 178.35,
+      "tiingo": null,
       "tv": 178.35,
-      "diff_pct": 0.0,
+      "diff_pct": null,
       "cost_basis": 180.2351,
-      "status": "OK"
+      "status": "TIINGO_FAIL"
     },
     {
       "ticker": "AMD",
-      "tiingo": 611.76,
+      "tiingo": null,
       "tv": 611.76,
-      "diff_pct": 0.0,
+      "diff_pct": null,
       "cost_basis": 608.0257,
-      "status": "OK"
+      "status": "TIINGO_FAIL"
     }
   ],
   "alerts": 0,
