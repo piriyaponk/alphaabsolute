@@ -608,9 +608,14 @@ def run_rebalance(init=False):
     metrics      = compute_metrics(nav_history, float(new_state['inception_nav']),
                                    new_state['inception_date'])
     since_inc    = 0.0 if init else (new_nav / float(new_state['inception_nav']) - 1) * 100
-    cagr_pct     = metrics['cagr'] * 100
+    cagr_raw     = metrics['cagr']
     sharpe       = metrics['sharpe']
     max_dd_pct   = metrics['max_dd'] * 100
+
+    n_cal_days_reb = (datetime.strptime(today, '%Y-%m-%d') -
+                      datetime.strptime(new_state['inception_date'], '%Y-%m-%d')).days
+    show_cagr_reb  = cagr_raw is not None and n_cal_days_reb >= 90
+    cagr_pct       = cagr_raw * 100 if cagr_raw is not None else 0.0
 
     qqq_inc  = float(new_state['qqq_inception'])
     qqq_now  = float(qqq_close.iloc[-1]) if qqq_close is not None else qqq_inc
@@ -627,16 +632,18 @@ def run_rebalance(init=False):
     next_me = datetime(ny, nm, calendar.monthrange(ny, nm)[1]).strftime('%d %b %Y')
 
     header = '[US] AlphaAbsolute-US — พอร์ตเริ่มต้น' if init else '[US] AlphaAbsolute-US — Monthly Rebalance'
+    cagr_line  = f'CAGR: <b>{cagr_pct:+.1f}%</b>' if show_cagr_reb else 'CAGR: <b>N/A (&lt;90d)</b>'
+    sharpe_line = f'Sharpe: {sharpe:.2f}' if sharpe is not None else 'Sharpe: N/A (&lt;63d)'
     lines = [
         f'<b>{header}</b>',
         f'<b>{bkk_now}</b> | Regime: <b>{regime}</b>',
         f'',
         f'NAV: <b>${new_nav:,.0f}</b> | Since inception: <b>{since_inc:+.1f}%</b>',
-        f'CAGR: <b>{cagr_pct:+.1f}%</b> | QQQ: {qqq_ret:+.1f}% | Excess: <b>{since_inc-qqq_ret:+.1f}%</b>',
-        f'{"Sharpe: " + f"{sharpe:.2f}" if sharpe is not None else "Sharpe: N/A (<63d)"} | MaxDD: {max_dd_pct:.1f}%',
+        f'{cagr_line} | QQQ: {qqq_ret:+.1f}% | Excess: <b>{since_inc-qqq_ret:+.1f}%</b>',
+        f'{sharpe_line} | MaxDD: {max_dd_pct:.1f}%',
         f'',
         f'<b>{"PORTFOLIO (" if init else "NEW PORTFOLIO ("}{len(new_positions)} stocks | {deployed*100:.0f}% deployed)</b>',
-        f'{"Ticker":<7} {"Wt":>5}  {"Cost":>8}  {"P&L%":>6}',
+        f'{"Ticker":<7} {"Wt":>5}  {"Cost":>8}  {"P&amp;L%":>6}',
     ]
     for _, row in passed.sort_values('weight', ascending=False).iterrows():
         tkr  = row['ticker']
@@ -885,7 +892,7 @@ def run_daily():
         f'vs QQQ: {qqq_ret:+.1f}% | Excess: <b>{excess_ret:+.1f}%</b>',
         f'',
         f'<b>Holdings ({len(pos_rows)} stocks)</b>',
-        f'{"Ticker":<7} {"Wt%":>4}  {"Cost":>7}  {"Price":>7}  {"P&L%":>6}',
+        f'{"Ticker":<7} {"Wt%":>4}  {"Cost":>7}  {"Price":>7}  {"P&amp;L%":>6}',
         f'{"─"*46}',
     ]
     for r in pos_rows:
