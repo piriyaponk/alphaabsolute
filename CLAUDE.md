@@ -19,68 +19,6 @@ The system does NOT try to predict markets. It identifies whether conditions are
 
 ---
 
-## Two Investment Modes
-
-Every position falls into exactly one of these modes. Never mix criteria.
-
-### PRISM — Confirmed Leaders (Price · RS · Inflection · Structure · Megatrend)
-*"Buy the strongest stocks in the strongest market."*
-
-These are the confirmed leaders — stocks where institutions are already accumulating, fundamentals are accelerating, and the chart is acting right. The highest-probability setup in any bull market.
-
-**PRISM Entry criteria (ALL must pass — no exceptions):**
-- RS percentile vs S&P+Nasdaq benchmark: **> 70th** (3M and 6M both)
-- Revenue YoY growth (latest quarter): **> 25%**
-- EPS YoY growth (latest quarter): **> 25%** (or clear acceleration trend)
-- Gross margin trend: **stable or expanding** (not contracting)
-- Price structure: Stage 2 only — Minervini SEPA Trend Template (ALL 8 conditions):
-  - S1: price > MA200 | S2: MA200 trending up | S3: price > MA150
-  - S4: MA150 within **-3%** of MA200 *(stop-hunt tolerance — brief institutional shakeouts)*
-  - S5: MA50 > MA150 | S6: price within **-5%** of MA50 *(stop-hunt tolerance)*
-  - S7: price within 25% of 52W high (Gate 4 enforces -20%, stricter)
-  - S8: price ≥ 20% above 52W low *(BOA-005 DEC-013, 2026-05-24: raised from 10% → 20%. HYPOTHESIS. Minervini exact = 30%.)*
-- Chart pattern: must be forming or breaking from a recognized base
-- % from 52-week high: **> -20%** (not extended down)
-- 6M ADTV: **> $15M USD** (DOCX Section 5.3 — hard minimum liquidity gate)
-
-**Position sizing:**
-- Full initial position: **10% of portfolio**
-- Maximum 10 Leaders simultaneously → 100% invested at full bull market
-- Can pyramid up to **15%** on confirmed leaders (price extended, volume confirmed)
-- Reduce to 5% on any Leader that drops from top-quartile RS
-
-**Stop loss:** Regime-calibrated (A12 backtest 2026-05-23, N=23, one Markup period):
-- **Markup regime:** -12% from entry (break-even threshold — tighter stops cause excessive false exits)
-- **Distribution/Sideways regime:** -8% from entry (capital preservation priority)
-- **Markdown regime:** -8% from entry (no new entries in Markdown anyway)
-- Hard rule: If Stage 3/4 detected → immediate review regardless of stop level
-
----
-
-### Monster Scout — 10x Before The Supercycle
-*"Find the next 10-bagger before the crowd sees it."*
-
-These are early-stage, narrative-driven, asymmetric opportunities. They may not yet have strong RS (it's early), but they have a structural growth driver and the chart is giving a clear entry signal via breakout.
-
-**Entry criteria (ALL must pass):**
-- **Breakout required — no exceptions.** Price must be at a minimum **3-month high** (63-day high). Preferred: 6-month high (126-day high) or all-time high. No buying into consolidations that haven't resolved.
-- Strong narrative backing: must fit one of the 14 official themes with clear TAM and catalyst
-- Base structure: Base 0 or Base 1 ONLY (no late-stage entries)
-- Price structure: Early stage — either pre-discovery or entering early institutional phase
-- No RS floor: RS can be anywhere. Revenue can be pre-revenue or early. What matters is trajectory and narrative, not current numbers.
-- 6M ADTV: **> $3M USD** (smaller names acceptable, but must have some liquidity)
-
-**Position sizing:**
-- Initial position: **5% of portfolio** (always — regardless of conviction)
-- Pyramid only after price action confirms (second breakout, pocket pivot): up to **10%**
-- Hard cap per stock: **30% of portfolio** (only for super-confirmed monsters after multi-year hold)
-- **Total Monster Scout bucket: ≤ 30% of portfolio at any time**
-- This means: max ~3-6 Big Shot positions at 5-10% each while keeping Leaders full
-
-**Stop loss:** -10% from breakout pivot (wider because early stage, lower liquidity).
-
----
-
 ## Market Regime & Cash Rules
 
 **Cash is the most important position.** The regime determines how much of the portfolio is deployed. This is non-negotiable.
@@ -89,12 +27,12 @@ These are early-stage, narrative-driven, asymmetric opportunities. They may not 
 
 | State | SPY/QQQ Signal | Required Cash | New Entries |
 |-------|---------------|--------------|-------------|
-| **Markup** (bull) | Price rising, above 50DMA, breadth strong | 0-10% | Full size, both modes |
-| **Distribution** (topping) | Heavy sell volume, breadth weakening, leaders fading | 40-60% | Reduce size, PRISM only |
+| **Markup** (bull) | Price rising, above 50DMA, breadth strong | 0-10% | Full size |
+| **Distribution** (topping) | Heavy sell volume, breadth weakening, leaders fading | 40-60% | Reduce size, high conviction only |
 | **Sideways/Choppy** | No clear direction, range-bound | 20-40% | Small size, high conviction only |
 | **Markdown** (bear) | Price below 200DMA, breadth collapsed | 75-100% | ONLY if something passes full screen — otherwise 100% cash |
 
-**Key rule:** In Markdown regime — if no stock passes the full PRISM or Monster Scout screen, the answer is 100% cash. Do not force positions.
+**Key rule:** In Markdown regime — if no stock passes the full screen, the answer is 100% cash. Do not force positions.
 
 **Cash enforcement mechanism:**
 - A01 Market Health Engine outputs `cash_floor` and `max_deployed` each morning
@@ -139,13 +77,13 @@ Every entry must be classified as one of these. No entry without a named setup.
 | **Context** | **VPS** | Volume Pocket Support | Price lands in High Volume Node from Volume Profile | Observe for adds — **not a new-entry signal** | ❌ No entry |
 | ~~**Context**~~ | ~~**FIB**~~ | ~~Fibonacci Retracement~~ | ~~38.2% or 50% retracement with confluence~~ | **REMOVED as entry signal.** If Fib level coincides with VCP/BKT pivot, label as VCP/BKT instead. | ❌ Removed |
 
-**Grade A requires: Tier 1 setup + all 5 PRISM gates + R:R ≥ 3.5x (extended to target_2)**
+**Grade A requires: Tier 1 setup + all screening gates + R:R ≥ 3.5x (extended to target_2)**
 **Grade B: Tier 1 with R:R 3.0-3.5x, OR Tier 2 with R:R > 3.0x**
 **Context setups (EMA/VPS): recommended_size_pct = 0 — observation only, used for pyramiding decisions**
 
 **Minimum R:R for any actionable entry: 3:1**
 - 7% stop requires ≥ 21% expected upside
-- 10% stop (Big Shot) requires ≥ 30% expected upside
+- 10% stop requires ≥ 30% expected upside
 - If R:R < 3:1 → wait for better entry or skip
 
 ---
@@ -156,8 +94,7 @@ Every entry must be classified as one of these. No entry without a named setup.
 - **Rule:** Only add to WINNING positions. Never average down.
 - Add at: +5% from entry (first add), +15% from entry (second add)
 - Each add: 50% of original position size
-- Total max: initial 10% → add 5% → max 15% for one Leader (A10 hard cap — no exceptions)
-- For Big Shot: initial 5% → add 3% → max 8% before full confirmation
+- Total max: initial 10% → add 5% → max 15% per position (A10 hard cap — no exceptions)
 
 ### Selling Rules (Priority Order)
 
@@ -170,7 +107,7 @@ Every entry must be classified as one of these. No entry without a named setup.
 **IMMEDIATE — Exit today, no debate:**
 - Hard stop triggered: EOD close < stop_price (see stop levels above)
 - EPS guidance cut by management
-- Revenue deceleration 3 consecutive quarters (PRISM only)
+- Revenue deceleration 3 consecutive quarters
 - Gap down -10% on earnings miss
 - Wyckoff Distribution Phase confirmed (Stage 3 or 4)
 - Market enters Markdown regime AND stock shows relative weakness
@@ -204,7 +141,7 @@ Every entry must be classified as one of these. No entry without a named setup.
 - Let final 25-50% run (trailing stop at 10-week MA)
 - TD Countdown 13 on WEEKLY chart → exit 75%
 
-*Monster Scout (Big Shot) — Mechanical Ladder always* (shorter expected hold, earlier stage)
+*Early-stage positions — Mechanical Ladder always* (shorter expected hold, earlier stage)
 
 **8-WEEK HOLD RULE EXCEPTION (BOA-005 DEC-011, 2026-05-24 — APPROVED 4/4):**
 - If stock gains ≥ 20% in first 3 weeks (21 trading days) from entry → DO NOT take profit
@@ -212,14 +149,14 @@ Every entry must be classified as one of these. No entry without a named setup.
 - During 8-week hold: suppress ALL profit ladder signals AND behavior-based exits 1-4 above
 - Only IMMEDIATE exits (hard stop, gap-down, Stage 3/4) override the hold window
 - At end of 8 weeks: resume profit ladder from current price (not entry price)
-- PRISM only. Monster Scout: maintain normal exit logic
+- Applies to confirmed leader positions only. Early-stage positions: maintain normal exit logic
 - Rationale: +20% in 3 weeks = top 1-2% momentum outcomes → these stocks often go 100%+ (Minervini: "Never sell a stock in the first 8 weeks unless it is giving you real trouble")
 - HYPOTHESIS until N≥10 qualifying events
 
 **POSITION COUNT (BOA-006 DEC-016, 2026-05-24):**
 - Maximum: 10 positions (hard cap, A10 enforces)
 - **10 is NOT a target.** Hold as many positions as Grade A setups exist — if 3 pass today, hold 3. Never force entries to fill slots.
-- Quality gates (Grade A required in Distribution, Grade A/B in Markup) act as the natural concentration mechanism
+- Quality gates act as the natural concentration mechanism — Grade A required in Distribution, Grade A/B in Markup
 
 ---
 
@@ -234,8 +171,8 @@ Every entry must be classified as one of these. No entry without a named setup.
 | A03 | RS Universe Ranker | 1 — Intelligence | Daily RS percentile for 500+ stocks |
 | A04 | Fundamental Engine | 1 — Intelligence | EDGAR XBRL, EPS/Rev acceleration |
 | A05 | Theme Intelligence | 1 — Intelligence | 14 themes, HOT/WARM/WEAK heatmap |
-| A06 | Leadership Curator | 2 — Curation | PRISM screen → Top 30 watchlist + Top 10 active |
-| A07 | Monster Scout | 2 — Curation | Monster Scout screen → Big Shot candidates |
+| A06 | Leadership Curator | 2 — Curation | RS+Fundamental screen → Top 30 watchlist + Top 10 active |
+| A07 | Early-Stage Scout | 2 — Curation | Breakout screen → Early-stage candidates |
 | A08 | Setup Scanner | 3 — Execution | 8 setup types, entry/stop/RR for each |
 | A09 | Portfolio Manager | 3 — Execution | Position monitoring, exits, cash management |
 | A10 | Risk Guardian | 3 — Execution | Portfolio risk, concentration, regime enforcement |
@@ -299,7 +236,7 @@ Every entry must be classified as one of these. No entry without a named setup.
 - **Factor B up-volume ratio thresholds (≥62=20pts, ≥57=16pts, ≥52=12pts, ≥47=7pts, ≥42=3pts) = INTERNALLY DERIVED** — NOT canonical Lowry methodology. Lowry's published signal uses discrete 90% Up-Volume day clusters. The 15-day rolling ratio is an engineering approximation of Lowry's Buying Power principle, calibrated on 1 bear episode (April 2025, N=82 days). **HYPOTHESIS — recalibrate at N≥3 distinct bear episodes.** Do not represent these thresholds as "Lowry methodology."
 - **Factor B overall Spearman r = +0.015 (near-zero across all conditions)** — predictive content is regime-conditional: strong in bear periods (r=-0.540, p=0.004, N=82) and near-zero in bull/sideways. Expected behavior for a defensive signal. Disclosed per DEC-031.
 - **90% Up-Volume day (canonical Lowry signal)**: logged as audit context in market_health.json when index up-volume ≥ 90% of total. Not scored — informational until N≥5 cluster events (clusters of 2+ within 10 sessions = historical bull market confirmation per Desmond/Lowry 1938-2024).
-- **Mode B (Monster Scout) in Sideways regime: Grade A setups ONLY** (BOA-024 DEC-031). Grade B Monster Scout entries in Sideways prohibited — maximum damage scenario if regime is actually Distribution. PRISM entries in Sideways remain Grade A+B eligible.
+- **Early-stage entries in Sideways regime: Grade A setups ONLY** (BOA-024 DEC-031). Grade B early-stage entries in Sideways prohibited — maximum damage scenario if regime is actually Distribution. Confirmed leader entries in Sideways remain Grade A+B eligible.
 
 **Cash floor by regime:**
 - Markup: cash_floor = 0.00 (max_deployed = 1.00)
@@ -342,7 +279,7 @@ Every entry must be classified as one of these. No entry without a named setup.
 ### Layer 1: Intelligence — Runs Daily, After Market Close
 
 #### A03 — RS Universe Ranker
-**Purpose:** Rank every S&P+Nasdaq stock by relative strength. Foundation of PRISM screening.
+**Purpose:** Rank every S&P+Nasdaq stock by relative strength. Foundation of leadership screening.
 
 **Outputs:**
 - `data/rs_universe/latest.json` — full ranked list with RS percentile at 1M/3M/6M/12M
@@ -405,7 +342,7 @@ Every entry must be classified as one of these. No entry without a named setup.
 - WARM: theme RS 50th–75th percentile
 - WEAK: theme RS < 50th percentile or deteriorating
 
-**HOT theme bonus in A06:** ~~Lower Mode A RS threshold from 70th to 60th percentile for stocks in HOT themes.~~ **REJECTED by backtest (2026-05-23).** RS >60% group underperformed RS >70% group by 3.9 percentage points in the only testable period (Mar–May 2026, Markup regime). RS threshold stays at 70th percentile. Do NOT implement this rule without N≥50 new data points across at least 3 regimes.
+**HOT theme bonus in A06:** ~~Lower RS threshold from 70th to 60th percentile for stocks in HOT themes.~~ **REJECTED by backtest (2026-05-23).** RS >60% group underperformed RS >70% group by 3.9 percentage points in the only testable period (Mar–May 2026, Markup regime). RS threshold stays at 70th percentile. Do NOT implement this rule without N≥50 new data points across at least 3 regimes.
 
 **14 Official Themes:** AI-Related, Memory/HBM, Space, Quantum Computing, Photonics, DefenseTech, Data Center, Nuclear/SMR, NeoCloud, AI Infrastructure, Data Center Infra, Drone/UAV, Robotics, Connectivity
 
@@ -413,8 +350,8 @@ Every entry must be classified as one of these. No entry without a named setup.
 
 ### Layer 2: Curation — Runs Daily, After Layer 1
 
-#### A06 — Leadership Curator (Mode A)
-**Purpose:** Run the full PRISM screen. Output: Top 30 Watchlist + Top 10 Active Leaders.
+#### A06 — Leadership Curator
+**Purpose:** Run the full RS+Fundamental screen. Output: Top 30 Watchlist + Top 10 Active Leaders.
 
 **Decision logic:**
 ```
@@ -449,8 +386,8 @@ FOR each ticker in universe:
 
 ---
 
-#### A07 — Monster Scout (Mode B)
-**Purpose:** Find early-stage Big Shot candidates breaking out before institutional discovery.
+#### A07 — Early-Stage Scout
+**Purpose:** Find early-stage breakout candidates before institutional discovery.
 
 **Screen logic:**
 ```
@@ -459,7 +396,7 @@ FOR each ticker in thematic watchlist:
   [Narrative Gate] must be in 1 of 14 themes with clear catalyst
   [Stage Gate]     Base 0 or Base 1 only
 
-  → Flag as BIG_SHOT_CANDIDATE if all gates pass
+  → Flag as candidate if all gates pass
   → Rank by: breakout strength × narrative freshness × base number
   → Max 5 candidates per day
 ```
@@ -479,7 +416,6 @@ FOR each ticker in thematic watchlist:
 ```json
 {
   "ticker": "COHR",
-  "mode": "A",
   "setup_type": "VCP",
   "pivot": 95.50,
   "buy_zone": [95.50, 98.27],
@@ -496,7 +432,7 @@ FOR each ticker in thematic watchlist:
 ```
 
 **Setup grading:**
-- Grade A: All 5 PRISM gates + setup BKT/VCP/CWH + R:R > 4:1
+- Grade A: All screening gates + setup BKT/VCP/CWH + R:R > 4:1
 - Grade B: 4+ gates + any setup + R:R > 3:1
 - Grade C: Monitor only — not ready for entry
 
@@ -539,7 +475,7 @@ IF deployed > max_deployed (from A01):
 
 **Hard limits enforced:**
 - Max single position: 15% of portfolio
-- Max Monster Scout bucket total: 30% of portfolio
+- Max early-stage bucket total: 30% of portfolio
 - Max one theme: 40% of portfolio
 - Min R:R before entry: 3:1
 - No new entry if earnings within 5 trading days
@@ -570,7 +506,7 @@ MACRO: [1-sentence state]
 THEMES HOT: [...] | WARM: [...]
 
 TOP SETUPS TODAY:
-1. $[TICKER] — Mode [A/B] | [Setup] | Buy: $[pivot] | Stop: $[stop] | RR: [X]x
+1. $[TICKER] — [Setup] | Buy: $[pivot] | Stop: $[stop] | RR: [X]x
    → [1-line thesis]
 2. ...
 
@@ -583,7 +519,7 @@ RISK FLAGS: [from A10 — including devil's advocate]
 **Telegram format (mobile-optimized):**
 ```
 🟢 SETUP: $COHR
-PRISM | VCP | Pivot $95.50
+VCP | Pivot $95.50
 Stop: $87.86 | Target: $116 | RR: 3.4x
 Size: 10% (full) | Grade: A
 ⚡ Photonics HOT + RS #88
@@ -613,11 +549,11 @@ Size: 10% (full) | Grade: A
 - Calculate hit rate per signal from all closed trades
 - Bayesian update: blend prior (theory-based) with posterior (empirical)
 - Guardrail: no signal can change by more than 20% in a single month
-- Output: `data/calibration/signal_weights.json` (read by A06/A08 for sizing)
+- Output: `data/calibration/signal_weights.json` (read by A06/A08 for calibration)
 
 **3. Monthly Performance Report**
 - Attribution: which positions drove alpha vs QQQ
-- Mistake classification: exit too early, stop too tight, bought extended, wrong mode, wrong regime
+- Mistake classification: exit too early, stop too tight, bought extended, wrong regime
 - Top 3 recurring mistakes with $ impact
 - Output: `output/performance_YYMMDD.md`
 
@@ -628,7 +564,7 @@ Size: 10% (full) | Grade: A
 - Output: `output/backtest_[RULENAME]_YYMMDD.md`
 
 **Backtest Findings as of 2026-05-23 (da-quant, N=23, 1 Markup regime, 38 trading days):**
-- Full PRISM 5-gate screen: +23.6% excess return vs QQQ, 78% hit rate → direction confirmed
+- Full 5-gate screen: +23.6% excess return vs QQQ, 78% hit rate → direction confirmed
 - Revenue gate (>25%) is the single most powerful gate (+21% lift on top of RS alone)
 - EPS gate (+8.6% lift) — both retained
 - RS >70% is near-optimal — DO NOT lower to 60% for HOT themes (tested, rejected)
@@ -664,7 +600,7 @@ Size: 10% (full) | Grade: A
 These rules encode bugs found in production. When fixing pipeline errors, apply these patterns before investigating further.
 
 ### HEAL_MAP — Lightweight Scripts Only
-**Rule:** `health_check.py` HEAL_MAP must ONLY contain lightweight prerequisite scripts (market_regime, macro_monitor, fetch_market_breadth, fetch_earnings_calendar, update_ohlcv_daily, pipeline_metrics). Heavy curation scripts (trend_template_screener, monster_scout, setup_scanner) are NOT in HEAL_MAP — they run as proper pipeline steps a06/a07/a08. Running them via importlib in the heal phase buffers stdout and hangs the pipeline for 20+ minutes with no output.
+**Rule:** `health_check.py` HEAL_MAP must ONLY contain lightweight prerequisite scripts (market_regime, macro_monitor, fetch_market_breadth, fetch_earnings_calendar, update_ohlcv_daily, pipeline_metrics). Heavy curation scripts (trend_template_screener, setup_scanner, and early-stage scout) are NOT in HEAL_MAP — they run as proper pipeline steps a06/a07/a08. Running them via importlib in the heal phase buffers stdout and hangs the pipeline for 20+ minutes with no output.
 
 ### Tiingo 429 Sleep — 5 Seconds, Not 60
 **Rule:** When Tiingo returns HTTP 429 (rate limit), sleep 5 seconds not 60. Tiingo free plan enforces per-minute limits, not hourly. 60s sleep × 38 tickers = 38-minute A03 runtime. File: `scripts/utils/data_engine.py`.
@@ -751,7 +687,7 @@ MORNING COMPUTATION (7:00 AM):
 
 CURATION (8:00 AM):
   7. trend_template_screener.py → A06 leadership screen
-  8. monster_scout.py           → A07 Big Shot candidates
+  8. monster_scout.py           → A07 early-stage candidates
 
 EXECUTION (8:30 AM):
   9. setup_scanner.py           → A08 entry/stop/RR
@@ -816,7 +752,7 @@ AlphaAbsolute/
 │   │   ├── rs_benchmark.py             ← A03 (v1 reuse)
 │   │   ├── rs_ranker.py                ← A03 (v1 reuse)
 │   │   ├── rs_theme_ranker.py          ← A05 (v1 reuse)
-│   │   ├── trend_template_screener.py  ← A06 (v1 extend to full PRISM screen)
+│   │   ├── trend_template_screener.py  ← A06 (v1 extend to full leadership screen)
 │   │   ├── monster_scout.py            ← A07 (new)
 │   │   ├── setup_scanner.py            ← A08 (new)
 │   │   ├── risk_guardian.py            ← A10 (v1 extend)
@@ -977,8 +913,8 @@ Not "it passed this time." Not "it should be fine now." Confirmed 0 failures on 
 |---------|--------|
 | `run daily brief` | Full pipeline → brief + Telegram |
 | `analyse [TICKER]` | A03 + A04 + A08 → full analysis with entry/stop/RR |
-| `screen leaders` | A06 → run full PRISM screen, output top 30 |
-| `find big shots` | A07 → run Monster Scout screen, output candidates |
+| `screen leaders` | A06 → run full leadership screen, output top 30 |
+| `find early stage` | A07 → run early-stage breakout screen, output candidates |
 | `update portfolio` | A09 → review all positions, cash check, action signals |
 | `risk check` | A10 → full portfolio risk assessment |
 | `post-mortem [TICKER]` | A12 → write lesson learned for closed trade |
@@ -1009,4 +945,4 @@ Not "it passed this time." Not "it should be fine now." Confirmed 0 failures on 
 
 ---
 
-*v2 built on v1 research — EDGAR cache, RS benchmark, RS theme ranker, data_engine multi-source, framework calibrator, auto_postmortem all carry forward. New in v2: Two-mode investment system (Leader + Monster), Monster Scout, Setup Scanner, Portfolio Manager, Report Writer with Telegram, 4-state regime with hard cash floors, TD as size modifier not gate, 3:1 minimum R:R hard rule.*
+*v2 built on v1 research — EDGAR cache, RS benchmark, RS theme ranker, data_engine multi-source, framework calibrator, auto_postmortem all carry forward. New in v2: Leadership screen + Early-stage breakout screen, Setup Scanner, Portfolio Manager, Report Writer with Telegram, 4-state regime with hard cash floors, TD as size modifier not gate, 3:1 minimum R:R hard rule.*

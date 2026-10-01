@@ -125,7 +125,7 @@ def run():
 
         ticker = _to_ticker(symbol)
 
-        # Map to PRISM gate signals
+        # Map screening gate signals
         pct_ema200 = r.get("price_vs_ema200_pct")  # >0 = above MA200 (S1 proxy)
         pct_ema50  = r.get("price_vs_ema50_pct")   # >-5% = near MA50 (S6 proxy)
         pct_3m_high = r.get("pct_from_high_3m")    # >-20% = not extended down
