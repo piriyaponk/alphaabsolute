@@ -550,8 +550,12 @@ def run_rebalance(init=False):
         else:
             # New position
             # Init: no spread (backtest doesn't charge inception entry cost)
-            # Rebalance: pay half spread on new entry
-            cost_basis = px if init else round(px * (1 + COST_HALF), 4)
+            # Rebalance: pay half spread → fewer shares so NAV reflects cost
+            if init:
+                cost_basis = px
+            else:
+                cost_basis = round(px * (1 + COST_HALF), 4)
+                new_sh = round(alloc / cost_basis, 4)  # shares bought at spread price
             entry_date = today
 
         new_positions[tkr] = {
@@ -824,7 +828,7 @@ def run_daily():
         nav       = inc_nav          # $1,000,000 exactly
         daily_chg = 0.0
         since_inc = 0.0
-        # Unrealized still shows spread cost (-$750) from cost_basis vs market price
+        # NAV locked to inception on day 0; unrealized spread cost is now consistent with NAV
     else:
         prev_dates = [d for d in sorted(nav_history.keys()) if d < today]
         if prev_dates:

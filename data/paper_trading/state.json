@@ -1,5 +1,5 @@
 {
-  "nav": 1082990.97,
+  "nav": 1082898.53,
   "cash": 0.0,
   "inception_nav": 1000000.0,
   "inception_date": "2026-09-02",
@@ -8,7 +8,7 @@
   "positions": {
     "MRNA": {
       "shares": 422.4775,
-      "cost_basis": 176.0463,
+      "cost_basis": 178.0276,
       "weight_target": 0.0751,
       "entry_date": "2026-09-02",
       "adtv_m": 2318.1,
@@ -21,7 +21,7 @@
       "cost_basis": 90.3777,
       "weight_target": 0.0588,
       "entry_date": "2026-10-01",
-      "adtv_m": 236.8,
+      "adtv_m": 229.7,
       "rs_pct": 99.9,
       "beta": 2.37,
       "vol_20d": 0.9018
@@ -31,24 +31,24 @@
       "cost_basis": 127.43000030517578,
       "weight_target": 0.0544,
       "entry_date": "2026-09-02",
-      "adtv_m": 232.9,
+      "adtv_m": 230.9,
       "rs_pct": 99.9,
       "beta": 2.21,
       "vol_20d": 0.723
     },
     "TXG": {
       "shares": 850.6245,
-      "cost_basis": 59.689998626708984,
+      "cost_basis": 59.69,
       "weight_target": 0.071,
       "entry_date": "2026-09-02",
-      "adtv_m": 180.1,
+      "adtv_m": 178.9,
       "rs_pct": 99.7,
       "beta": 1.69,
       "vol_20d": 0.5596
     },
     "DELL": {
       "shares": 219.8712,
-      "cost_basis": 484.4823,
+      "cost_basis": 490.8857,
       "weight_target": 0.1092,
       "entry_date": "2026-09-02",
       "adtv_m": 3553.3,
@@ -67,7 +67,7 @@
       "vol_20d": 0.7048
     },
     "INTC": {
-      "shares": 484.853,
+      "shares": 484.8529,
       "cost_basis": 120.3202,
       "weight_target": 0.0538,
       "entry_date": "2026-10-01",
@@ -87,7 +87,7 @@
       "vol_20d": 0.9695
     },
     "MRVL": {
-      "shares": 229.4535,
+      "shares": 229.4534,
       "cost_basis": 264.4082,
       "weight_target": 0.056,
       "entry_date": "2026-10-01",
@@ -101,7 +101,7 @@
       "cost_basis": 280.21,
       "weight_target": 0.1057,
       "entry_date": "2026-10-01",
-      "adtv_m": 243.7,
+      "adtv_m": 240.3,
       "rs_pct": 99.1,
       "beta": 1.32,
       "vol_20d": 0.9137
@@ -147,7 +147,7 @@
       "vol_20d": 0.6532
     },
     "UMC": {
-      "shares": 5025.5378,
+      "shares": 5021.7648,
       "cost_basis": 24.5084,
       "weight_target": 0.1136,
       "entry_date": "2026-10-01",
@@ -186,7 +186,7 @@
     "2026-09-27": 1081295.92,
     "2026-09-28": 1081295.92,
     "2026-09-29": 1082991.0,
-    "2026-10-01": 1082990.97
+    "2026-10-01": 1082898.53
   },
   "peak_nav": 1082990.9995810203,
   "qqq_inception": 709.4400024414062,
@@ -339,6 +339,96 @@
       "exit_px": 30.2373,
       "realized_usd": -42634.39,
       "pnl_pct": -55.62,
+      "type": "full_exit"
+    },
+    {
+      "date": "2026-10-01",
+      "ticker": "MRNA",
+      "shares_sold": 56.9917,
+      "cost": 178.0276,
+      "exit_px": 192.4256,
+      "realized_usd": 820.57,
+      "pnl_pct": 8.09,
+      "type": "partial_sell"
+    },
+    {
+      "date": "2026-10-01",
+      "ticker": "MXL",
+      "shares_sold": 95.1904,
+      "cost": 90.3777,
+      "exit_px": 90.2423,
+      "realized_usd": -12.89,
+      "pnl_pct": -0.15,
+      "type": "partial_sell"
+    },
+    {
+      "date": "2026-10-01",
+      "ticker": "DELL",
+      "shares_sold": 29.6604,
+      "cost": 490.8857,
+      "exit_px": 537.5465,
+      "realized_usd": 1383.98,
+      "pnl_pct": 9.51,
+      "type": "partial_sell"
+    },
+    {
+      "date": "2026-10-01",
+      "ticker": "NBIS",
+      "shares_sold": 0.0,
+      "cost": 236.0569,
+      "exit_px": 235.7031,
+      "realized_usd": -0.0,
+      "pnl_pct": -0.15,
+      "type": "partial_sell"
+    },
+    {
+      "date": "2026-10-01",
+      "ticker": "INTC",
+      "shares_sold": 0.0001,
+      "cost": 120.3202,
+      "exit_px": 120.1398,
+      "realized_usd": -0.0,
+      "pnl_pct": -0.15,
+      "type": "partial_sell"
+    },
+    {
+      "date": "2026-10-01",
+      "ticker": "ALAB",
+      "shares_sold": 0.0,
+      "cost": 356.237,
+      "exit_px": 355.703,
+      "realized_usd": -0.0,
+      "pnl_pct": -0.15,
+      "type": "partial_sell"
+    },
+    {
+      "date": "2026-10-01",
+      "ticker": "MRVL",
+      "shares_sold": 0.0001,
+      "cost": 264.4082,
+      "exit_px": 264.0118,
+      "realized_usd": -0.0,
+      "pnl_pct": -0.15,
+      "type": "partial_sell"
+    },
+    {
+      "date": "2026-10-01",
+      "ticker": "SIMO",
+      "shares_sold": 55.1394,
+      "cost": 280.21,
+      "exit_px": 279.79,
+      "realized_usd": -23.16,
+      "pnl_pct": -0.15,
+      "type": "partial_sell"
+    },
+    {
+      "date": "2026-10-01",
+      "ticker": "IBRX",
+      "shares_sold": 7638.6682,
+      "cost": 9.4471,
+      "exit_px": 9.318,
+      "realized_usd": -986.11,
+      "pnl_pct": -1.37,
       "type": "full_exit"
     }
   ]
