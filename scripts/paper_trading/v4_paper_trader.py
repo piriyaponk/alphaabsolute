@@ -648,6 +648,22 @@ def run_rebalance(init=False):
     qqq_inc  = float(new_state['qqq_inception'])
     qqq_now  = float(qqq_close.iloc[-1]) if qqq_close is not None else qqq_inc
     qqq_ret  = (qqq_now / qqq_inc - 1) * 100 if qqq_inc > 0 else 0
+    excess_inc = since_inc - qqq_ret
+
+    # MTD
+    cur_month_prefix_reb = today[:7]
+    mtd_dates_reb = sorted(d for d in nav_history if d.startswith(cur_month_prefix_reb) and d <= today)
+    if len(mtd_dates_reb) >= 2:
+        mtd_port_reb = (new_nav / nav_history[mtd_dates_reb[0]] - 1) * 100
+    else:
+        mtd_port_reb = since_inc
+    qqq_nav_hist_reb = new_state.get('qqq_nav_history', {})
+    mtd_qqq_dates_reb = sorted(d for d in qqq_nav_hist_reb if d.startswith(cur_month_prefix_reb) and d <= today)
+    if len(mtd_qqq_dates_reb) >= 2 and qqq_now:
+        mtd_qqq_reb = (qqq_now / qqq_nav_hist_reb[mtd_qqq_dates_reb[0]] - 1) * 100
+    else:
+        mtd_qqq_reb = qqq_ret
+    mtd_excess_reb = mtd_port_reb - mtd_qqq_reb
 
     total_realized  = sum(r['realized_usd'] for r in realized_log)
     this_exits      = [r for r in realized_log
@@ -666,9 +682,9 @@ def run_rebalance(init=False):
         f'<b>{header}</b>',
         f'<b>{bkk_now}</b> | Regime: <b>{regime}</b>',
         f'',
-        f'NAV: <b>${new_nav:,.0f}</b> | Since inception: <b>{since_inc:+.1f}%</b>',
-        f'{cagr_line} | QQQ: {qqq_ret:+.1f}% | Excess: <b>{since_inc-qqq_ret:+.1f}%</b>',
-        f'{sharpe_line} | MaxDD: {max_dd_pct:.1f}%',
+        f'NAV: <b>${new_nav:,.0f}</b> | Since inception: <b>{since_inc:+.1f}%</b>  |  MTD: <b>{mtd_port_reb:+.1f}%</b>',
+        f'Excess vs QQQ — MTD: <b>{mtd_excess_reb:+.1f}%</b>  |  All-time: <b>{excess_inc:+.1f}%</b>',
+        f'{cagr_line} | {sharpe_line} | MaxDD: {max_dd_pct:.1f}%',
         f'',
         f'<b>{"PORTFOLIO (" if init else "NEW PORTFOLIO ("}{len(new_positions)} stocks | {deployed*100:.0f}% deployed)</b>',
         f'{"Ticker":<7} {"Wt":>5}  {"Cost":>8}  {"P&amp;L%":>6}',
@@ -858,6 +874,27 @@ def run_daily():
     # since_inc = NAV vs inception cash (includes all spread costs paid at rebalances)
     excess_ret = since_inc - qqq_ret  # honest excess: portfolio paid spread, QQQ did not
 
+    # MTD: portfolio return from first trading day of current month
+    cur_month_prefix = today[:7]  # 'YYYY-MM'
+    mtd_dates = sorted(d for d in nav_history if d.startswith(cur_month_prefix) and d <= today)
+    if len(mtd_dates) >= 2:
+        mtd_nav_start = nav_history[mtd_dates[0]]
+        mtd_port = (nav / mtd_nav_start - 1) * 100
+    elif mtd_dates:
+        mtd_port = 0.0  # only one day this month
+    else:
+        mtd_port = since_inc  # fallback: use since inception
+    qqq_nav_history = state.get('qqq_nav_history', {})
+    mtd_qqq_dates = sorted(d for d in qqq_nav_history if d.startswith(cur_month_prefix) and d <= today)
+    if len(mtd_qqq_dates) >= 2 and qqq_now:
+        mtd_qqq_start = qqq_nav_history[mtd_qqq_dates[0]]
+        mtd_qqq = (qqq_now / mtd_qqq_start - 1) * 100
+    elif qqq_now and qqq_inc > 0:
+        mtd_qqq = qqq_ret  # fallback
+    else:
+        mtd_qqq = 0.0
+    mtd_excess = mtd_port - mtd_qqq
+
     # Suppress CAGR < 90 calendar days (institutional standard)
     n_trading_days = len([d for d in nav_history if d <= today])
     n_cal_days     = (datetime.strptime(today, '%Y-%m-%d') -
@@ -893,9 +930,9 @@ def run_daily():
         f'Regime: <b>{regime_str}</b> | Cash: {cash_pct:.0f}%',
         f'',
         f'<b>NAV: ${nav:,.0f}</b>  ({daily_chg:+.1f}% today)',
-        f'Since {inc_date}: <b>{pnl_sign}{since_inc:.1f}%</b>',
+        f'Since {inc_date}: <b>{pnl_sign}{since_inc:.1f}%</b>  |  MTD: <b>{mtd_port:+.1f}%</b>',
         f'{cagr_str} | {sharpe_str} | MaxDD: {max_dd:.1f}%',
-        f'vs QQQ: {qqq_ret:+.1f}% | Excess: <b>{excess_ret:+.1f}%</b>',
+        f'Excess vs QQQ — MTD: <b>{mtd_excess:+.1f}%</b>  |  All-time: <b>{excess_ret:+.1f}%</b>',
         f'',
         f'<b>Holdings ({len(pos_rows)} stocks)</b>',
         f'{"Ticker":<7} {"Wt%":>4}  {"Cost":>7}  {"Price":>7}  {"P&amp;L%":>6}',
