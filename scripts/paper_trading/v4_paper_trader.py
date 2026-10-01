@@ -48,6 +48,7 @@ BASE_CAP      = 0.18
 BETA_CAP      = 0.12
 FETCH_THREADS = 8
 CANDIDATE_POOL = TOP_N * 5   # fetch ADTV for top-75 RS candidates
+RF_ANNUAL     = 0.04375      # ~4.375% Fed Funds rate (update annually)
 BKK           = timezone(timedelta(hours=7))
 OHLCV_DB      = 'data/ohlcv.db'
 
@@ -341,10 +342,14 @@ def compute_metrics(nav_history, inception_nav, inception_date):
     cagr   = (navs.iloc[-1] / inception_nav) ** (1 / n_yrs) - 1
 
     # Daily returns → Sharpe (suppress < 63 trading days — institutional standard)
+    # Uses annualized risk-free rate from CONFIG (RF_ANNUAL), not 0%.
+    # At Fed Funds ~4.375% in late 2026, Rf=0 overstates Sharpe by ~0.35 pts.
     daily_ret = navs.pct_change().dropna()
     if len(daily_ret) >= 63:
-        sharpe = float(daily_ret.mean() / daily_ret.std() * np.sqrt(252)) \
-                 if daily_ret.std() > 0 else 0.0
+        rf_daily  = RF_ANNUAL / 252
+        excess_dr = daily_ret - rf_daily
+        sharpe    = float(excess_dr.mean() / excess_dr.std() * np.sqrt(252)) \
+                    if excess_dr.std() > 0 else 0.0
     else:
         sharpe = None  # not enough data
 
@@ -697,26 +702,33 @@ def run_daily():
     bkk_now  = datetime.now(BKK).strftime('%d %b %Y %H:%M')
 
     fetch_tkrs = list(positions.keys()) + ['QQQ', 'IWM']
-    print(f'Fetching {len(fetch_tkrs)} prices via Tiingo...')
+    print(f'Fetching {len(fetch_tkrs)} prices (TV primary → Tiingo → Yahoo)...')
 
-    # Tiingo sequential fetch (rate-limit friendly: ~20 req/day, 50/hour limit)
+    # Step A: TradingView — 1 POST for all tickers, no rate limit concern
+    tv_all = fetch_tv_us_prices(fetch_tkrs)
+    print(f'  TV OK: {sum(1 for t in fetch_tkrs if t in tv_all)}/{len(fetch_tkrs)}')
+
+    # Step B: Tiingo fallback for any TV misses
+    tv_missing = [t for t in fetch_tkrs if t not in tv_all]
     tiingo_prices = {}
-    for t in fetch_tkrs:
-        px = fetch_tiingo_price(t)
-        if px is not None:
-            tiingo_prices[t] = px
-        time.sleep(0.2)  # 5 req/sec max, well under Tiingo free limits
-    print(f'  Tiingo OK: {sum(1 for t in fetch_tkrs if t in tiingo_prices)}/{len(fetch_tkrs)}')
+    if tv_missing:
+        print(f'  Tiingo fallback for: {tv_missing}')
+        for t in tv_missing:
+            px = fetch_tiingo_price(t)
+            if px is not None:
+                tiingo_prices[t] = px
+            time.sleep(0.2)
+        print(f'  Tiingo OK: {len(tiingo_prices)}/{len(tv_missing)}')
 
-    # Yahoo fallback for any missing tickers
-    missing = [t for t in fetch_tkrs if t not in tiingo_prices]
+    # Step C: Yahoo last resort for anything still missing
+    still_missing = [t for t in fetch_tkrs if t not in tv_all and t not in tiingo_prices]
     data_dict = {}
-    if missing:
-        print(f'  Yahoo fallback for: {missing}')
-        data_dict = fetch_many(missing, days=10, threads=8, min_len=2)
+    if still_missing:
+        print(f'  Yahoo last resort for: {still_missing}')
+        data_dict = fetch_many(still_missing, days=10, threads=8, min_len=2)
 
     # IWM regime — read MA200 from ohlcv.db (no network required on Actions)
-    iwm_px = tiingo_prices.get('IWM')
+    iwm_px = tv_all.get('IWM') or tiingo_prices.get('IWM')
     if iwm_px:
         iwm_db = fetch_from_db(['IWM'], days=300)
         if 'IWM' in iwm_db:
@@ -733,50 +745,21 @@ def run_daily():
     else:
         bull = state.get('regime', 'BULL') == 'BULL'
 
-    # Price each position — Tiingo primary, Yahoo fallback, then cost_basis
-    # Step 1: build raw prices from Tiingo / Yahoo
+    # Assemble raw prices: TV primary → Tiingo → Yahoo → cost_basis last resort
     raw_prices = {}
     for tkr in positions:
-        if tkr in tiingo_prices:
+        if tkr in tv_all:
+            raw_prices[tkr] = tv_all[tkr]
+        elif tkr in tiingo_prices:
             raw_prices[tkr] = tiingo_prices[tkr]
         else:
             td = data_dict.get(tkr)
-            raw_prices[tkr] = float(td[0].iloc[-1]) if td else None
-
-    # Step 2: sanity check — flag tickers with pnl < -40% as suspicious
-    # Only negative extremes are suspect (stale/wrong price from API).
-    # Large positive gains (e.g. +50% since inception) are legitimate.
-    PNL_SANITY = -40.0  # negative threshold only
-    suspicious = []
-    for tkr, pos in positions.items():
-        px = raw_prices.get(tkr)
-        if px is None:
-            suspicious.append(tkr)
-            continue
-        cost = float(pos['cost_basis'])
-        pnl  = (px / cost - 1) * 100 if cost > 0 else 0
-        if pnl < PNL_SANITY:
-            suspicious.append(tkr)
-
-    # Step 3: TradingView fallback for suspicious tickers
-    tv_prices = {}
-    if suspicious:
-        print(f'  [SANITY] Suspicious prices for: {suspicious} — fetching TradingView...')
-        tv_prices = fetch_tv_us_prices(suspicious)
-        for tkr in suspicious:
-            tv_px = tv_prices.get(tkr)
-            if tv_px is not None:
-                cost = float(positions[tkr]['cost_basis'])
-                old_px = raw_prices.get(tkr, cost)
-                tv_pnl = (tv_px / cost - 1) * 100 if cost > 0 else 0
-                old_pnl = (old_px / cost - 1) * 100 if cost > 0 else 0
-                print(f'    {tkr}: Tiingo/Yahoo={old_px:.2f}({old_pnl:+.1f}%) → TV={tv_px:.2f}({tv_pnl:+.1f}%)')
-                raw_prices[tkr] = tv_px   # replace with TV price
+            if td:
+                raw_prices[tkr] = float(td[0].iloc[-1])
             else:
-                # Both sources failed — use cost_basis (pnl=0), log warning
                 cost = float(positions[tkr]['cost_basis'])
                 raw_prices[tkr] = cost
-                print(f'    [WARN] {tkr}: all sources failed — using cost_basis ${cost:.2f}')
+                print(f'  [WARN] {tkr}: all price sources failed — using cost_basis ${cost:.2f}')
 
     total_mkt = float(state.get('cash', 0))
     pos_rows  = []
