@@ -76,6 +76,40 @@ def fetch_tiingo_price(ticker):
         return None
 
 
+# ── TRADINGVIEW US PRICE FETCH (sanity fallback) ─────────────────────────────
+def fetch_tv_us_prices(tickers):
+    """Fetch latest close prices from TradingView Scanner for US stocks.
+    Returns dict {ticker: price}. Used as sanity-check fallback only.
+    Unofficial API — same endpoint TV browser uses, no key, ~1 req/session."""
+    if not tickers:
+        return {}
+    url = 'https://scanner.tradingview.com/america/scan'
+    payload = {
+        'symbols': {'tickers': [f'NASDAQ:{t}' for t in tickers] +
+                                [f'NYSE:{t}' for t in tickers]},
+        'columns': ['close', 'exchange'],
+    }
+    try:
+        r = requests.post(url, json=payload, timeout=15, verify=False,
+                          headers={'User-Agent': 'Mozilla/5.0'})
+        if r.status_code != 200:
+            return {}
+        rows = r.json().get('data', [])
+        result = {}
+        for row in rows:
+            sym   = row.get('s', '')          # e.g. "NASDAQ:AAPL"
+            vals  = row.get('d', [None, None])
+            price = vals[0] if vals else None
+            if price is None:
+                continue
+            tkr = sym.split(':')[-1]
+            if tkr not in result:  # first match wins (prefer NASDAQ)
+                result[tkr] = float(price)
+        return result
+    except Exception:
+        return {}
+
+
 # ── YAHOO FINANCE ─────────────────────────────────────────────────────────────
 def fetch_yahoo(ticker, days=300):
     """Returns (close_series, volume_series) or (None, None)."""
@@ -693,17 +727,55 @@ def run_daily():
         bull = state.get('regime', 'BULL') == 'BULL'
 
     # Price each position — Tiingo primary, Yahoo fallback, then cost_basis
+    # Step 1: build raw prices from Tiingo / Yahoo
+    raw_prices = {}
+    for tkr in positions:
+        if tkr in tiingo_prices:
+            raw_prices[tkr] = tiingo_prices[tkr]
+        else:
+            td = data_dict.get(tkr)
+            raw_prices[tkr] = float(td[0].iloc[-1]) if td else None
+
+    # Step 2: sanity check — flag tickers with |pnl| > 40% as suspicious
+    PNL_SANITY = 40.0   # percent threshold to trigger TV cross-check
+    suspicious = []
+    for tkr, pos in positions.items():
+        px = raw_prices.get(tkr)
+        if px is None:
+            suspicious.append(tkr)
+            continue
+        cost = float(pos['cost_basis'])
+        pnl  = (px / cost - 1) * 100 if cost > 0 else 0
+        if abs(pnl) > PNL_SANITY:
+            suspicious.append(tkr)
+
+    # Step 3: TradingView fallback for suspicious tickers
+    tv_prices = {}
+    if suspicious:
+        print(f'  [SANITY] Suspicious prices for: {suspicious} — fetching TradingView...')
+        tv_prices = fetch_tv_us_prices(suspicious)
+        for tkr in suspicious:
+            tv_px = tv_prices.get(tkr)
+            if tv_px is not None:
+                cost = float(positions[tkr]['cost_basis'])
+                old_px = raw_prices.get(tkr, cost)
+                tv_pnl = (tv_px / cost - 1) * 100 if cost > 0 else 0
+                old_pnl = (old_px / cost - 1) * 100 if cost > 0 else 0
+                print(f'    {tkr}: Tiingo/Yahoo={old_px:.2f}({old_pnl:+.1f}%) → TV={tv_px:.2f}({tv_pnl:+.1f}%)')
+                raw_prices[tkr] = tv_px   # replace with TV price
+            else:
+                # Both sources failed — use cost_basis (pnl=0), log warning
+                cost = float(positions[tkr]['cost_basis'])
+                raw_prices[tkr] = cost
+                print(f'    [WARN] {tkr}: all sources failed — using cost_basis ${cost:.2f}')
+
     total_mkt = float(state.get('cash', 0))
     pos_rows  = []
     for tkr, pos in positions.items():
-        if tkr in tiingo_prices:
-            cur_px = tiingo_prices[tkr]
-        else:
-            td = data_dict.get(tkr)
-            cur_px = float(td[0].iloc[-1]) if td else float(pos['cost_basis'])
-        shares = float(pos['shares'])
-        cost   = float(pos['cost_basis'])
-        mkt    = shares * cur_px
+        cur_px  = raw_prices.get(tkr) or float(pos['cost_basis'])
+        shares  = float(pos['shares'])
+        cost    = float(pos['cost_basis'])
+        mkt     = shares * cur_px
         pnl_pct = (cur_px / cost - 1) * 100
         pnl_usd = mkt - shares * cost
         total_mkt += mkt

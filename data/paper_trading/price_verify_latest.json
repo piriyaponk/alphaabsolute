@@ -1,0 +1,127 @@
+{
+  "date": "2026-10-01",
+  "results": [
+    {
+      "ticker": "MRNA",
+      "tiingo": 192.57,
+      "tv": 192.57,
+      "diff_pct": 0.0,
+      "cost_basis": 181.4616,
+      "status": "OK"
+    },
+    {
+      "ticker": "MXL",
+      "tiingo": 90.31,
+      "tv": 90.31,
+      "diff_pct": 0.0,
+      "cost_basis": 92.7895,
+      "status": "OK"
+    },
+    {
+      "ticker": "TWST",
+      "tiingo": 193.24,
+      "tv": 193.24,
+      "diff_pct": 0.0,
+      "cost_basis": 127.43000030517578,
+      "status": "OK"
+    },
+    {
+      "ticker": "TXG",
+      "tiingo": 90.36,
+      "tv": 90.36,
+      "diff_pct": 0.0,
+      "cost_basis": 59.689998626708984,
+      "status": "OK"
+    },
+    {
+      "ticker": "DELL",
+      "tiingo": 537.95,
+      "tv": 537.95,
+      "diff_pct": 0.0,
+      "cost_basis": 482.8762,
+      "status": "OK"
+    },
+    {
+      "ticker": "BE",
+      "tiingo": 276.98,
+      "tv": 276.98,
+      "diff_pct": 0.0,
+      "cost_basis": 291.4684,
+      "status": "OK"
+    },
+    {
+      "ticker": "MRVL",
+      "tiingo": 264.21,
+      "tv": 264.21,
+      "diff_pct": 0.0,
+      "cost_basis": 263.4674,
+      "status": "OK"
+    },
+    {
+      "ticker": "VICR",
+      "tiingo": 288.94,
+      "tv": 288.94,
+      "diff_pct": 0.0,
+      "cost_basis": 290.898,
+      "status": "OK"
+    },
+    {
+      "ticker": "ALAB",
+      "tiingo": 355.97,
+      "tv": 355.97,
+      "diff_pct": 0.0,
+      "cost_basis": 358.1084,
+      "status": "OK"
+    },
+    {
+      "ticker": "SIMO",
+      "tiingo": 280.0,
+      "tv": 280.0,
+      "diff_pct": 0.0,
+      "cost_basis": 276.3671,
+      "status": "OK"
+    },
+    {
+      "ticker": "INTC",
+      "tiingo": 120.23,
+      "tv": 120.23,
+      "diff_pct": 0.0,
+      "cost_basis": 116.0169,
+      "status": "OK"
+    },
+    {
+      "ticker": "STX",
+      "tiingo": 922.34,
+      "tv": 922.34,
+      "diff_pct": 0.0,
+      "cost_basis": 819.6365,
+      "status": "OK"
+    },
+    {
+      "ticker": "UMC",
+      "tiingo": 24.49,
+      "tv": 24.49,
+      "diff_pct": 0.0,
+      "cost_basis": 24.7385,
+      "status": "OK"
+    },
+    {
+      "ticker": "SMTC",
+      "tiingo": 178.35,
+      "tv": 178.35,
+      "diff_pct": 0.0,
+      "cost_basis": 180.2351,
+      "status": "OK"
+    },
+    {
+      "ticker": "AMD",
+      "tiingo": 611.76,
+      "tv": 611.76,
+      "diff_pct": 0.0,
+      "cost_basis": 608.0257,
+      "status": "OK"
+    }
+  ],
+  "alerts": 0,
+  "warns": 0
+}

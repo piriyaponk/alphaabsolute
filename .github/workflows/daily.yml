@@ -51,6 +51,14 @@ jobs:
           python scripts/paper_trading/v4_paper_trader.py \
             --mode ${{ github.event.inputs.mode || 'daily' }}
 
+      - name: Verify prices (Tiingo vs TradingView cross-check)
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TIINGO_API_KEY: ${{ secrets.TIINGO_API_KEY }}
+        run: |
+          python scripts/paper_trading/v4_price_verifier.py || true
+
       - name: Run PULSE-US Best Final screen
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -69,6 +77,6 @@ jobs:
         run: |
           git config user.name "AlphaAbsolute Bot"
           git config user.email "bot@alphaabsolute.local"
-          git add data/paper_trading/state.json data/research/pulse_us/pulse_us_best_final_signals.json data/research/pulse_us/pulse_us_daily_signals.json
+          git add data/paper_trading/state.json data/paper_trading/price_verify_latest.json data/research/pulse_us/pulse_us_best_final_signals.json data/research/pulse_us/pulse_us_daily_signals.json
           git diff --staged --quiet || git commit -m "paper: state $(date -u +%Y-%m-%d)"
           git push
