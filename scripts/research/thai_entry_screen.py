@@ -7733,8 +7733,9 @@ def run_backtest(df: pd.DataFrame, after_date=None):
         except KeyError:
             continue
 
-        # ADTV filter
-        adtv = (px.loc[hist_idx].values * vl.loc[hist_idx].values).mean(axis=0)
+        # ADTV filter — 6-month lookback (126 trading days), consistent with PULSE-US
+        adtv_idx = all_dates[max(0, i - 126):i + 1]
+        adtv = (px.loc[adtv_idx].values * vl.loc[adtv_idx].values).mean(axis=0)
         adtv_s = pd.Series(adtv, index=px.columns)
 
         eligible = px_now.index[
