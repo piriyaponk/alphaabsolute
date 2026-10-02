@@ -180,6 +180,18 @@ STEPS: list[dict] = [
         "modes":    ["premarket"],
     },
 
+    {
+        "id":       "fwd_estimates",
+        "layer":    "1-RS",
+        "name":     "Forward Estimates Fetcher",
+        "module":   "scripts.pre_compute.fetch_forward_estimates",
+        "func":     "run",
+        "output":   "data/fundamentals/forward_estimates.json",
+        "desc":     "Yahoo Finance forward EPS/Rev estimates for RS>=90+ADTV>=15M universe",
+        "critical": False,
+        "modes":    ["premarket"],
+    },
+
     # ── EOD ──────────────────────────────────────────────────────────────────
     {
         "id":              "fill_ohlc",
