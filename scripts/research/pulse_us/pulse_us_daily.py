@@ -42,11 +42,12 @@ def load_rs_universe():
     rows = []
     for ticker, item in universe.items():
         rows.append({
-            'ticker':    ticker,
-            'rs_pct':    float(item.get('rs_composite_pct') or 0),
-            'rs_pct_3m': float(item.get('rs_3m_pct') or 0),
-            'rs_pct_6m': float(item.get('rs_6m_pct') or 0),
-            'rs_pct_1m': float(item.get('rs_1m_pct') or 0),
+            'ticker':       ticker,
+            'rs_pct':       float(item.get('rs_composite_pct') or 0),
+            'rs_pct_3m':    float(item.get('rs_3m_pct') or 0),
+            'rs_pct_6m':    float(item.get('rs_6m_pct') or 0),
+            'rs_pct_1m':    float(item.get('rs_1m_pct') or 0),
+            'adtv_6m_usd':  float(item.get('adtv_6m_usd') or 0),
         })
     return pd.DataFrame(rows).dropna()
 
@@ -461,9 +462,10 @@ def calc_pulse_scores(signal_matrix, tickers, sig_h3_arr, sig_labels, n_quality_
 
 def run_screen(quality_sigs, target_date=None):
     rs_df = load_rs_universe()
-    candidates_df = rs_df[rs_df['rs_pct'] >= 90].copy()
+    candidates_df = rs_df[(rs_df['rs_pct'] >= 90) & (rs_df['adtv_6m_usd'] >= 15_000_000)].copy()
     candidates    = candidates_df['ticker'].tolist()
-    print(f"Universe: {len(rs_df)} | RS≥90 candidates: {len(candidates)}")
+    n_rs90 = (rs_df['rs_pct'] >= 90).sum()
+    print(f"Universe: {len(rs_df)} | RS≥90: {n_rs90} | RS≥90 + ADTV≥$15M: {len(candidates)}")
 
     if not candidates:
         return None
