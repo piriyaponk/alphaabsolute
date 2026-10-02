@@ -929,7 +929,7 @@ def run_daily():
         f'',
         f'<b>NAV: ${nav:,.0f}</b>  ({daily_chg:+.1f}% today)',
         f'<code>{"":10} {"Port":>7}  {"QQQ":>7}  {"Alpha":>7}</code>',
-        f'<code>{"Since inc":10} {pnl_sign+f"{since_inc:.1f}%":>7}  {qqq_ret:>+6.1f}%  {excess_ret:>+6.1f}%</code>',
+        f'<code>{"Since inc":10} {pnl_sign+f"{since_inc:.1f}%":>7}  {qqq_ret:>+6.1f}%  {excess_ret:>+6.1f}%</code>  <i>({datetime.strptime(inc_date, "%Y-%m-%d").strftime("%d %b %Y")})</i>',
         f'<code>{"MTD":10} {mtd_port:>+6.1f}%  {mtd_qqq:>+6.1f}%  {mtd_excess:>+6.1f}%</code>',
         f'{cagr_str} | {sharpe_str} | MaxDD: {max_dd:.1f}%',
         f'',
