@@ -827,7 +827,7 @@ def run_daily():
 
     # QQQ — Tiingo primary, Yahoo fallback
     qqq_inc  = float(state.get('qqq_inception', 0))
-    qqq_now  = tiingo_prices.get('QQQ')
+    qqq_now  = tv_all.get('QQQ') or tiingo_prices.get('QQQ')
     if qqq_now is None:
         qqq_data = data_dict.get('QQQ')
         qqq_now = float(qqq_data[0].iloc[-1]) if qqq_data else qqq_inc
