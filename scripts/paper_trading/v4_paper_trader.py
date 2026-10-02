@@ -825,12 +825,11 @@ def run_daily():
     peak_nav = max(float(state.get('peak_nav', nav)), nav)
     max_dd   = (nav / peak_nav - 1) * 100
 
-    # QQQ — Tiingo primary, Yahoo fallback
+    # QQQ — always use EOD close from DB (regular-session only, consistent with inception)
+    # TV after-hours prices cause inception mismatch; DB is the ground truth
     qqq_inc  = float(state.get('qqq_inception', 0))
-    qqq_now  = tv_all.get('QQQ') or tiingo_prices.get('QQQ')
-    if qqq_now is None:
-        qqq_data = data_dict.get('QQQ')
-        qqq_now = float(qqq_data[0].iloc[-1]) if qqq_data else qqq_inc
+    _qqq_db  = fetch_from_db(['QQQ'], days=5)
+    qqq_now  = float(_qqq_db['QQQ'][0].iloc[-1]) if (_qqq_db and 'QQQ' in _qqq_db) else (tv_all.get('QQQ') or qqq_inc)
     qqq_ret  = (qqq_now / qqq_inc - 1) * 100 if qqq_inc > 0 else 0
 
     # NAV history + metrics
