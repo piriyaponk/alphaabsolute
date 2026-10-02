@@ -886,11 +886,9 @@ def run_daily():
         mtd_port = since_inc  # fallback: use since inception
     qqq_nav_history = state.get('qqq_nav_history', {})
     mtd_qqq_dates = sorted(d for d in qqq_nav_history if d.startswith(cur_month_prefix) and d <= today)
-    if len(mtd_qqq_dates) >= 2 and qqq_now:
+    if len(mtd_qqq_dates) >= 1 and qqq_now:
         mtd_qqq_start = qqq_nav_history[mtd_qqq_dates[0]]
         mtd_qqq = (qqq_now / mtd_qqq_start - 1) * 100
-    elif qqq_now and qqq_inc > 0:
-        mtd_qqq = qqq_ret  # fallback
     else:
         mtd_qqq = 0.0
     mtd_excess = mtd_port - mtd_qqq
