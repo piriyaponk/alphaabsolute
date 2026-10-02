@@ -20,10 +20,12 @@ After running, pipeline_metrics.py step D will have RS change data.
 import sqlite3
 import numpy as np
 from datetime import datetime
+from pathlib import Path
 import warnings
 warnings.filterwarnings('ignore')
 
-DB_PATH    = "data/ohlcv.db"
+ROOT       = Path(__file__).resolve().parents[2]
+DB_PATH    = str(ROOT / "data" / "ohlcv.db")
 BACKFILL_DAYS = 30   # how many historical trading days to backfill
 
 def main():
