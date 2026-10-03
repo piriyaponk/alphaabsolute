@@ -572,11 +572,25 @@ def run_daily():
     ep  = state.get("entry_prices", {})
     cps = {t: float(prices.loc[today, t]) for t in new_holdings
            if t in prices.columns and pd.notna(prices.loc[today, t])}
+    # MTD: find first daily_log entry of current month
+    cur_month = str(today.date())[:7]
+    mtd_logs  = [e for e in state.get("daily_log", []) if e["date"].startswith(cur_month)]
+    if len(mtd_logs) >= 2:
+        mtd_nav_start = mtd_logs[0]["nav"]
+        mtd_set_start = mtd_logs[0]["set_nav"]
+    else:
+        mtd_nav_start = nav       # first day of month — show 0%
+        mtd_set_start = set_nav
+    mtd_port = (nav / mtd_nav_start - 1) * 100 if mtd_nav_start else 0.0
+    mtd_set  = (set_nav / mtd_set_start - 1) * 100 if mtd_set_start else 0.0
+    mtd_exc  = mtd_port - mtd_set
+
     _send_telegram(
         today=today.date(), nav=nav, nav_ret=nav_ret, set_ret_cum=set_ret_cum,
         excess=excess, daily_ret=daily_ret_pct, set_daily=set_daily_pct,
         holdings=new_holdings, sells=sells, buys=buys, bull=bool(new_holdings),
         inception=inception, entry_prices=ep, cur_prices=cps,
+        mtd_port=mtd_port, mtd_set=mtd_set, mtd_exc=mtd_exc,
     )
     _send_focus_list(today=today.date(), focus=focus, holdings=set(new_holdings))
     _send_pulse_top5(today=today.date(), prices=prices)
@@ -920,18 +934,21 @@ def _send_pulse_top5(*, today, prices):
 
 def _send_telegram(*, today, nav, nav_ret, set_ret_cum, excess, daily_ret,
                    set_daily, holdings, sells, buys, bull, inception,
-                   entry_prices, cur_prices):
-    s    = lambda x, fmt=".1f": (f"+{x:{fmt}}%" if x >= 0 else f"{x:{fmt}}%")
+                   entry_prices, cur_prices,
+                   mtd_port=0.0, mtd_set=0.0, mtd_exc=0.0):
+    from datetime import datetime as _dt
     cash = 0 if bull else 100
     regime_str = "BULL" if bull else "CASH"
+    inc_label = _dt.strptime(str(inception), "%Y-%m-%d").strftime("%d %b %Y") if inception else str(inception)
 
     lines = [
         f"<b>[TH] AlphaAbsolute-TH  |  {today}</b>",
         f"Regime: <b>{regime_str}</b> | Cash: {cash}%",
         "",
         f"<b>NAV: ฿{nav:,.0f}</b>  ({daily_ret:+.1f}% today)",
-        f"Since {inception}: <b>{nav_ret:+.1f}%</b>",
-        f"vs SET: {set_ret_cum:+.1f}% | Excess: <b>{excess:+.1f}%</b>",
+        f'<code>{"":10} {"Port":>7}  {"SET":>7}  {"Alpha":>7}</code>',
+        f'<code>{"Since inc":10} {nav_ret:>+6.1f}%  {set_ret_cum:>+6.1f}%  {excess:>+6.1f}%</code>  <i>({inc_label})</i>',
+        f'<code>{"MTD":10} {mtd_port:>+6.1f}%  {mtd_set:>+6.1f}%  {mtd_exc:>+6.1f}%</code>',
     ]
 
     # Holdings table
