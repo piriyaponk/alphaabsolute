@@ -354,5 +354,9 @@ def main():
         send_telegram(msg)
 
 
+def run():
+    """Entry point for pre_market_runner pipeline."""
+    main()
+
 if __name__ == '__main__':
     main()

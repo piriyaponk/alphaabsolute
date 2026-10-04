@@ -265,6 +265,32 @@ STEPS: list[dict] = [
         "modes":       ["premarket"],
         "first_of_month": True,
     },
+    # PULSE-US: Best Final screen (Grade S signals → Telegram)
+    {
+        "id":          "pulse_us_best_final",
+        "layer":       "3-Research",
+        "name":        "PULSE-US Best Final",
+        "module":      "scripts.research.pulse_us.pulse_us_best_final",
+        "func":        "run",
+        "output":      "data/research/pulse_us/pulse_us_best_final_signals.json",
+        "desc":        "PULSE-US Grade S signals → Telegram Focus List",
+        "critical":    False,
+        "modes":       ["premarket"],
+        "day_filter":  [0, 1, 2, 3, 4],  # Mon-Fri
+    },
+    # PULSE-US: Daily multi-signal screen (Top 5 → Telegram)
+    {
+        "id":          "pulse_us_daily",
+        "layer":       "3-Research",
+        "name":        "PULSE-US Daily",
+        "module":      "scripts.research.pulse_us.pulse_us_daily",
+        "func":        "run",
+        "output":      "data/research/pulse_us/pulse_us_daily_signals.json",
+        "desc":        "PULSE-US daily breadth screen → Telegram Top 5",
+        "critical":    False,
+        "modes":       ["premarket"],
+        "day_filter":  [0, 1, 2, 3, 4],  # Mon-Fri
+    },
 ]
 
 
