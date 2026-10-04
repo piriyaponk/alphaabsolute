@@ -59,19 +59,33 @@ jobs:
         run: |
           python scripts/paper_trading/v4_price_verifier.py || true
 
+      - name: Restore PULSE-US OHLCV cache
+        uses: actions/cache@v4
+        with:
+          path: data/research/pulse_us/pulse_us_ohlcv.db
+          key: pulse-us-ohlcv-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: |
+            pulse-us-ohlcv-${{ runner.os }}-
+
+      - name: Update PULSE-US OHLCV data
+        env:
+          TIINGO_API_KEY: ${{ secrets.TIINGO_API_KEY }}
+        run: |
+          python scripts/research/pulse_us/pulse_us_data_layer.py
+
       - name: Run PULSE-US Best Final screen
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
-          python scripts/research/pulse_us/pulse_us_best_final.py || true
+          python scripts/research/pulse_us/pulse_us_best_final.py
 
       - name: Run PULSE-US Daily (multi-signal)
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
-          python scripts/research/pulse_us/pulse_us_daily.py || true
+          python scripts/research/pulse_us/pulse_us_daily.py
 
       - name: Commit state update
         run: |

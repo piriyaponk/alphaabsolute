@@ -25,7 +25,13 @@ import argparse
 from datetime import datetime, timedelta
 from pathlib import Path
 
-DB_PATH  = "data/ohlcv.db"
+# Use lightweight pulse_us_ohlcv.db if available (GitHub Actions / no local ohlcv.db)
+# Fall back to full ohlcv.db when running locally with full pipeline
+import os as _os
+_pulse_db = "data/research/pulse_us/pulse_us_ohlcv.db"
+_full_db  = "data/ohlcv.db"
+DB_PATH   = _pulse_db if (_os.path.exists(_pulse_db) and not _os.path.exists(_full_db)) else \
+            (_full_db  if _os.path.exists(_full_db)  else _pulse_db)
 RS_PATH  = "data/rs_universe/latest.json"
 LIB_PATH = "data/research/pulse_us/library/q_library_1000.json"
 OUT_PATH = "data/research/pulse_us/pulse_us_daily_signals.json"

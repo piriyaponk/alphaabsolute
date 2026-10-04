@@ -33,7 +33,12 @@ import argparse
 from datetime import date, datetime, timedelta
 from pathlib import Path
 
-DB_PATH   = "data/ohlcv.db"
+# Use lightweight pulse_us_ohlcv.db if available (GitHub Actions / no local ohlcv.db)
+import os as _os
+_pulse_db = "data/research/pulse_us/pulse_us_ohlcv.db"
+_full_db  = "data/ohlcv.db"
+DB_PATH   = _pulse_db if (_os.path.exists(_pulse_db) and not _os.path.exists(_full_db)) else \
+            (_full_db  if _os.path.exists(_full_db)  else _pulse_db)
 RS_PATH   = "data/rs_universe/latest.json"
 OUT_PATH  = "data/research/pulse_us/pulse_us_best_final_signals.json"
 MIN_ROWS  = 252  # need 1 year of history
