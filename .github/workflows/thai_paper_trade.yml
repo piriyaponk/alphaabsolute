@@ -79,6 +79,15 @@ jobs:
         run: |
           python -X utf8 scripts/research/thai_fill_combo_columns.py 2>&1 | tail -10
 
+      - name: Run PULSE-TH screener
+        id: pulse_th
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
+          PYTHONIOENCODING:   utf-8
+        run: |
+          python -X utf8 scripts/research/thai_pulse/thai_pulse_daily.py 2>&1
+
       - name: Run paper trader
         id: paper_trader
         env:
@@ -106,7 +115,8 @@ jobs:
                   data/research/thai_entry_screen_results.csv \
                   data/research/thai_entry_screen_summary.csv \
                   data/research/thai_ohlcv.db \
-                  data/research/set_universe.json || true
+                  data/research/set_universe.json \
+                  data/research/thai_pulse/pulse_th_daily_signals.json || true
           git diff --staged --quiet || \
             git commit -m "th-paper: daily update $(date -u +%Y-%m-%d)"
           git push || true

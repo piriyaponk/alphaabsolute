@@ -1,0 +1,122 @@
+{
+  "date": "2026-09-29",
+  "n_quality": 28,
+  "n_quality_signals": 1933,
+  "ticker_hits": {
+    "HANA.BK": {
+      "breadth": 7,
+      "breadth_pct": 25.0,
+      "avg_h3": 68.8,
+      "n_signals_fired": 17
+    }
+  },
+  "pulse_scores": {
+    "AWC.BK": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0
+    },
+    "BCH.BK": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0
+    },
+    "BJC.BK": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0
+    },
+    "CHG.BK": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0
+    },
+    "DELTA.BK": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0
+    },
+    "GFPT.BK": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0
+    },
+    "GUNKUL.BK": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0
+    },
+    "HANA.BK": {
+      "breadth": 7,
+      "breadth_pct": 25.0,
+      "avg_h3": 68.8,
+      "n_signals_fired": 17
+    },
+    "IRPC.BK": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0
+    },
+    "IVL.BK": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0
+    },
+    "KCE.BK": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0
+    },
+    "PTTGC.BK": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0
+    },
+    "SPCG.BK": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0
+    },
+    "SPRC.BK": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0
+    },
+    "TOP.BK": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0
+    }
+  },
+  "rs_map": {
+    "AWC.BK": 0.0,
+    "BCH.BK": 0.0,
+    "BJC.BK": 0.0,
+    "CHG.BK": 0.0,
+    "DELTA.BK": 0.0,
+    "GFPT.BK": 0.0,
+    "GUNKUL.BK": 0.0,
+    "HANA.BK": 0.0,
+    "IRPC.BK": 0.0,
+    "IVL.BK": 0.0,
+    "KCE.BK": 0.0,
+    "PTTGC.BK": 0.0,
+    "SPCG.BK": 0.0,
+    "SPRC.BK": 0.0,
+    "TOP.BK": 0.0
+  }
+}

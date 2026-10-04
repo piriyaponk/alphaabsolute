@@ -597,157 +597,61 @@ def run_daily():
         mtd_port=mtd_port, mtd_set=mtd_set, mtd_exc=mtd_exc,
     )
     _send_focus_list(today=today.date(), focus=focus, holdings=set(new_holdings))
-    _send_pulse_top5(today=today.date(), prices=prices)
+    # NOTE: PULSE Top 5 is now sent by thai_pulse_daily.py (canonical PULSE screener)
 
     print(f"\n[DONE] State saved → {STATE_PATH.name}")
 
 
 def _load_pulse_map() -> dict:
-    """Load PULSE-TH signals with per-signal hit rates.
+    """Load PULSE-TH scores from pre-computed pulse_th_daily_signals.json.
 
-    Returns per-ticker PULSE score:
-      avg_h3  = average fwd5 hit rate of top-3 quality signals that fired
-      breadth = % of quality FAMILIES that fired (family-dedup, same as PULSE-US)
+    thai_pulse_daily.py runs BEFORE this script in the pipeline and writes
+    the canonical PULSE scores. We read that JSON to avoid recomputing from
+    the full 39k-row CSV on every run.
 
-    Improvements (2026-09-30):
-      1. fwd5 instead of fwd3 — SET market needs 5-day window (fwd3 baseline=44%,
-         fwd5 baseline=46%, quality signals jump from 6 → 38+ at h>=63%)
-      2. Threshold h3>63% (38 quality signals on fwd5 vs 6 on fwd3)
-      3. Family-level breadth dedup (first token of Q-name = family)
-         e.g. Q813_i9_i8_fvg8 → family=i9, Q837_f5_k4_q2 → family=f5
-      4. breadth is ranking tiebreaker only — icon uses h5 solely
+    Falls back to empty dict if JSON is missing (first run or pipeline failure).
+
+    Returns dict with keys:
+      latest_score   = {ticker: {avg_h3, breadth, breadth_pct}}
+      n_quality      = n_quality_families (breadth denominator)
     """
-    csv_path  = ROOT / "data" / "research" / "thai_entry_screen_results.csv"
-    cache_path = ROOT / "data" / "research" / "thai_pulse_cache.pkl"
-    if not csv_path.exists():
+    json_path = ROOT / "data" / "research" / "thai_pulse" / "pulse_th_daily_signals.json"
+
+    if not json_path.exists():
+        print("[PULSE] pulse_th_daily_signals.json not found — PULSE overlay skipped")
         return {}
 
-    # Cache: re-compute only when CSV is newer than cache
-    import pickle, os
-    csv_mtime = os.path.getmtime(csv_path)
-    if cache_path.exists() and os.path.getmtime(cache_path) >= csv_mtime:
-        try:
-            with open(cache_path, "rb") as f:
-                return pickle.load(f)
-        except Exception:
-            pass  # corrupt cache → rebuild
-
     try:
-        df = pd.read_csv(csv_path, low_memory=False)
-        df["date"] = pd.to_datetime(df["date"])
-        q_cols = [c for c in df.columns if c.startswith("Q") and len(c) > 1
-                  and (c[1].isdigit() or c.startswith("Q_CMB"))]
-        for col in q_cols:
-            df[col] = pd.to_numeric(df[col], errors="coerce").fillna(0).astype(int)
+        with open(json_path) as f:
+            data = json.load(f)
 
-        # ── Vectorized per-signal hit rate ────────────────────────────────
-        q_arr = df[q_cols].values  # (N_rows, N_signals)
-        import numpy as np
+        pulse_scores   = data.get("pulse_scores", {})
+        n_quality      = data.get("n_quality", 1)   # n_quality_families
+        pulse_date_str = data.get("date", "")
 
-        # Use fwd5: SET market needs 5-day window for signal to resolve
-        # fwd5 quality signals: 38 at h>=63% vs only 6 on fwd3
-        fwd_col = "fwd5" if "fwd5" in df.columns else "fwd3"
-        if fwd_col in df.columns:
-            fwd = df[fwd_col].values
-            hit = (fwd > 0).astype(float)
-            hit[np.isnan(fwd)] = np.nan
-            sig_h3_arr = np.full(len(q_cols), np.nan)
-            for j in range(len(q_cols)):
-                mask = q_arr[:, j] == 1
-                if mask.sum() >= 15:
-                    sig_h3_arr[j] = np.nanmean(hit[mask])
-        else:
-            sig_h3_arr = np.full(len(q_cols), 0.60)
-
-        # ── Step 1: Quality threshold h3>63% (calibrated on fwd5) ────────
-        # fwd5 baseline=45.7%, 63% = +17pp lift, cuts noise to ~38 quality signals
-        quality_mask = (sig_h3_arr > 0.63) & (~np.isnan(sig_h3_arr))
-
-        # ── Step 2: Family-level breadth dedup ───────────────────────────
-        # Q813_i9_i8_fvg8 → family = "i9"  (first token after Q-number)
-        # Mirrors PULSE-US family-dedup: prevents correlated variants from
-        # inflating breadth (e.g. i9_i8_fvg3 / i9_i8_fvg5 / i9_i8_fvg8
-        # are all "i9 family" — count once)
-        def _col_family(col: str) -> str:
-            """Extract signal family from Q-column name.
-            Q813_i9_i8_fvg8          → "i9"   (parts[1])
-            Q_CMB_Q670_j3_f1_E4_pb   → "j3"   (parts[4], first token of base signal)
-            Q_CMB2_Q813_i9_Q670_j3   → "i9"   (parts[4], first token of first base)
-            """
-            parts = col.split("_")
-            if len(parts) < 2:
-                return "other"
-            if parts[1] in ("CMB", "CMB2"):
-                # Q_CMB_Q{num}_fam_... → parts[3] is Q-num, parts[4] is family token
-                return parts[4] if len(parts) >= 5 else parts[1]
-            return parts[1]
-
-        sig_families = [_col_family(c) for c in q_cols]
-        sig_families_arr = np.array(sig_families)
-
-        # quality families = families that have at least one h3>63% signal
-        quality_fam_set = set(sig_families_arr[quality_mask])
-        n_quality_families = max(len(quality_fam_set), 1)
-
-        # Per-row family breadth: distinct quality families that fired
-        # For each row: fired_q = quality signals that fired → unique families
-        q_quality = q_arr[:, quality_mask]                  # (N_rows, N_quality_sigs)
-        quality_families_arr = sig_families_arr[quality_mask]
-        unique_fams = sorted(quality_fam_set)
-        fam_cols = []
-        for fam in unique_fams:
-            fam_idx = np.where(quality_families_arr == fam)[0]
-            fam_fired = q_quality[:, fam_idx].any(axis=1)  # True if any sig in family fired
-            fam_cols.append(fam_fired)
-        if fam_cols:
-            fam_matrix = np.column_stack(fam_cols)          # (N_rows, N_families)
-            fired_fam_counts = fam_matrix.sum(axis=1).astype(int)
-        else:
-            fired_fam_counts = np.zeros(len(df), dtype=int)
-
-        # ── HR: avg h3 of top-3 QUALITY signals that fired ──────────────
-        # Use only quality signals (h3>63%) — non-quality signals must not
-        # contribute to avg_h3 or it can show hit rate with breadth=0
-        quality_h3_arr = np.where(quality_mask, sig_h3_arr, 0.0)
-        h3_fired = q_arr * np.where(np.isnan(quality_h3_arr), 0, quality_h3_arr)
-        top3_h3      = np.sort(h3_fired, axis=1)[:, ::-1][:, :3]
-        top3_nonzero = (top3_h3 > 0).sum(axis=1)
-        top3_sum     = top3_h3.sum(axis=1)
-        avg_h3_arr   = np.where(top3_nonzero > 0, top3_sum / top3_nonzero, 0.0)
-
-        # ── Build score_map {(date, ticker): {avg_h3, breadth, breadth_pct}} ──
-        score_map = {}
+        # Build latest_score: {ticker: {avg_h3, breadth, breadth_pct}}
         latest_score = {}
-        dates   = df["date"].values
-        tickers = df["ticker"].values
-        sort_idx = np.argsort(dates)
-        for idx in sort_idx:
-            key = (dates[idx], tickers[idx])
-            bp  = round(fired_fam_counts[idx] / n_quality_families * 100, 1)
-            sc  = {"avg_h3":     round(float(avg_h3_arr[idx]) * 100, 1),
-                   "breadth":    int(fired_fam_counts[idx]),
-                   "breadth_pct": bp}
-            score_map[key] = sc
-            latest_score[tickers[idx]] = sc
+        for tkr, sc in pulse_scores.items():
+            latest_score[tkr] = {
+                "avg_h3":      float(sc.get("avg_h3", 0.0)),      # already in % (0-100)
+                "breadth":     int(sc.get("breadth", 0)),
+                "breadth_pct": float(sc.get("breadth_pct", 0.0)),
+            }
 
-        score_map_ts = {(pd.Timestamp(d), t): v for (d, t), v in score_map.items()}
+        print(f"[PULSE] Loaded {len(latest_score)} tickers from {pulse_date_str} "
+              f"(n_quality_families={n_quality})")
 
-        result = {
-            "score_map":          score_map_ts,
-            "latest_score":       latest_score,
-            "n_signals":          len(q_cols),
-            "n_quality":          n_quality_families,   # family count (breadth denom)
-            "n_quality_signals":  int(quality_mask.sum()),
+        return {
+            "latest_score":      latest_score,
+            "n_quality":         n_quality,
+            "n_quality_signals": data.get("n_quality_signals", 0),
+            "pulse_date":        pulse_date_str,
         }
-        try:
-            with open(cache_path, "wb") as f:
-                pickle.dump(result, f)
-        except Exception:
-            pass  # cache write failure is non-fatal
-        return result
     except Exception as e:
         print(f"[PULSE] load error: {e}")
         return {}
+
+
 
 
 def compute_focus_list(prices, volumes, today, top_n=15):
