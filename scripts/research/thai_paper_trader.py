@@ -705,8 +705,11 @@ def _load_pulse_map() -> dict:
         else:
             fired_fam_counts = np.zeros(len(df), dtype=int)
 
-        # ── HR: avg h3 of top-3 quality signals that fired ───────────────
-        h3_fired = q_arr * np.where(np.isnan(sig_h3_arr), 0, sig_h3_arr)
+        # ── HR: avg h3 of top-3 QUALITY signals that fired ──────────────
+        # Use only quality signals (h3>63%) — non-quality signals must not
+        # contribute to avg_h3 or it can show hit rate with breadth=0
+        quality_h3_arr = np.where(quality_mask, sig_h3_arr, 0.0)
+        h3_fired = q_arr * np.where(np.isnan(quality_h3_arr), 0, quality_h3_arr)
         top3_h3      = np.sort(h3_fired, axis=1)[:, ::-1][:, :3]
         top3_nonzero = (top3_h3 > 0).sum(axis=1)
         top3_sum     = top3_h3.sum(axis=1)
