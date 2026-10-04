@@ -572,14 +572,18 @@ def run_daily():
     ep  = state.get("entry_prices", {})
     cps = {t: float(prices.loc[today, t]) for t in new_holdings
            if t in prices.columns and pd.notna(prices.loc[today, t])}
-    # MTD: find first daily_log entry of current month
+    # MTD: use first entry of current month; if none yet, use last entry of prior month
     cur_month = str(today.date())[:7]
-    mtd_logs  = [e for e in state.get("daily_log", []) if e["date"].startswith(cur_month)]
-    if len(mtd_logs) >= 2:
+    all_logs  = state.get("daily_log", [])
+    mtd_logs  = [e for e in all_logs if e["date"].startswith(cur_month)]
+    if mtd_logs:
         mtd_nav_start = mtd_logs[0]["nav"]
         mtd_set_start = mtd_logs[0]["set_nav"]
+    elif all_logs:
+        mtd_nav_start = all_logs[-1]["nav"]
+        mtd_set_start = all_logs[-1]["set_nav"]
     else:
-        mtd_nav_start = nav       # first day of month — show 0%
+        mtd_nav_start = nav
         mtd_set_start = set_nav
     mtd_port = (nav / mtd_nav_start - 1) * 100 if mtd_nav_start else 0.0
     mtd_set  = (set_nav / mtd_set_start - 1) * 100 if mtd_set_start else 0.0
