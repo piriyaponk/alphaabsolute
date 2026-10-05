@@ -741,7 +741,7 @@ def main():
     ticker_hits  = result['ticker_hits']
 
     print(f"\nN_QUALITY={n_quality}  |  Tickers hit: {len(ticker_hits)}")
-    ranked = sorted(ticker_hits, key=lambda t: -pulse_scores[t]['breadth_pct'])
+    ranked = sorted(ticker_hits, key=lambda t: -(pulse_scores[t]['avg_h3'] * 1000 + pulse_scores[t]['breadth_pct']))
     for ticker in ranked[:20]:
         sc = pulse_scores[ticker]
         print(f"  {ticker}: {sc['breadth']}/{n_quality} ({sc['breadth_pct']:.1f}%)  avg_h3={sc['avg_h3']:.1f}%")

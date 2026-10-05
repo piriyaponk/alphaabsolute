@@ -175,10 +175,6 @@ def calc_pulse_scores(
 
     sig_h3_arr must be in % (0–100), NOT fraction.
     """
-    sig_families = [lbl.split("_")[0] if not lbl.startswith("Q") else
-                    (lbl.split("_")[1] if len(lbl.split("_")) > 1 else "other")
-                    for lbl in sig_labels]
-    # Use same logic as _col_family for consistency
     sig_families = [_col_family(lbl) for lbl in sig_labels]
 
     scores = {}

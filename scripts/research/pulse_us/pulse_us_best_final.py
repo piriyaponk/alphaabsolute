@@ -123,23 +123,22 @@ def compute_factors(grp):
     else:
         base_tight = 1.0
 
-    # --- pocket_pivot: today's vol > max down-day vol in prior 10d ---
+    # --- pocket_pivot: today's vol / max down-day vol in prior 10d (continuous ratio)
+    # Identical formula to pulse_us_daily.py compute_factors()
     pocket_pivot = 0.0
-    if n >= 11 and not np.isnan(volume[-1]):
-        today_vol = volume[-1]
-        prev_closes = close[-11:-1]
-        prev_vols   = volume[-11:-1]
-        down_vols = [v for c, v, p in zip(prev_closes[1:], prev_vols[1:], prev_closes[:-1])
-                     if not np.isnan(v) and not np.isnan(c) and not np.isnan(p) and c < p]
-        if down_vols and not np.isnan(today_vol):
-            pocket_pivot = 1.0 if today_vol > max(down_vols) else 0.0
-        elif not down_vols:
-            pocket_pivot = 1.0  # no down days in window = very tight
+    if n >= 11:
+        rets10    = np.diff(close[-11:])
+        down_vols = volume[-10:][rets10 < 0]
+        max_down  = np.nanmax(down_vols) if len(down_vols) > 0 else 0
+        last_ret  = close[-1] - close[-2]
+        last_vol  = volume[-1] if not np.isnan(volume[-1]) else 0
+        if last_ret > 0 and last_vol > max_down > 0:
+            pocket_pivot = float(last_vol / max_down)
 
-    # --- dd_recovery: price / 50-day rolling low ---
-    if n >= 50:
-        low50 = np.nanmin(close[-50:])
-        dd_recovery = px / (low50 + 1e-10) if low50 > 0 else 1.0
+    # --- dd_recovery: price / 63-day rolling low (aligned with pulse_us_daily.py) ---
+    if n >= 63:
+        min63 = np.nanmin(close[-63:])
+        dd_recovery = px / min63 if min63 > 0 else 1.0
     else:
         dd_recovery = 1.0
 

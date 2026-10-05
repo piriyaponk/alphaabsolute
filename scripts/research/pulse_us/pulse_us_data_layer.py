@@ -111,7 +111,7 @@ def _fetch_yahoo(ticker, start, end):
         adj = result["indicators"].get("adjclose", [{}])[0].get("adjclose", q["close"])
         rows = []
         for i, ts in enumerate(timestamps):
-            dt = datetime.fromtimestamp(ts).strftime("%Y-%m-%d")
+            dt = datetime.utcfromtimestamp(ts).strftime("%Y-%m-%d")
             rows.append({
                 "ticker": ticker,
                 "date":   dt,

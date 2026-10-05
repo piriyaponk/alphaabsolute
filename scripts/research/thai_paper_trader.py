@@ -560,6 +560,7 @@ def run_daily():
         "buys":         list(buys),
     }
     state.setdefault("daily_log", []).append(log_entry)
+    state["daily_log"] = state["daily_log"][-90:]  # keep last 90 days (MTD needs ~31)
     append_log(log_entry)
     save_state(state)
 
@@ -584,16 +585,17 @@ def run_daily():
     ep  = state.get("entry_prices", {})
     cps = {t: float(prices.loc[today, t]) for t in new_holdings
            if t in prices.columns and pd.notna(prices.loc[today, t])}
-    # MTD: use first entry of current month; if none yet, use last entry of prior month
+    # MTD: baseline = last entry of PRIOR month (not first entry of current month,
+    # because the first entry is already AFTER that day's gains are applied)
     cur_month = str(today.date())[:7]
     all_logs  = state.get("daily_log", [])
-    mtd_logs  = [e for e in all_logs if e["date"].startswith(cur_month)]
-    if mtd_logs:
-        mtd_nav_start = mtd_logs[0]["nav"]
-        mtd_set_start = mtd_logs[0]["set_nav"]
+    prior_logs = [e for e in all_logs if not e["date"].startswith(cur_month)]
+    if prior_logs:
+        mtd_nav_start = prior_logs[-1]["nav"]
+        mtd_set_start = prior_logs[-1]["set_nav"]
     elif all_logs:
-        mtd_nav_start = all_logs[-1]["nav"]
-        mtd_set_start = all_logs[-1]["set_nav"]
+        mtd_nav_start = all_logs[0]["nav"]
+        mtd_set_start = all_logs[0]["set_nav"]
     else:
         mtd_nav_start = nav
         mtd_set_start = set_nav

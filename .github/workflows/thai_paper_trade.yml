@@ -88,6 +88,15 @@ jobs:
         run: |
           python -X utf8 scripts/research/thai_pulse/thai_pulse_daily.py 2>&1
 
+      - name: Alert on PULSE-TH failure
+        if: failure() && steps.pulse_th.outcome == 'failure'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
+          PYTHONIOENCODING:   utf-8
+        run: |
+          python -X utf8 scripts/research/thai_paper_trader.py --alert-fail "pulse_th" || true
+
       - name: Run paper trader
         id: paper_trader
         env:
@@ -119,4 +128,4 @@ jobs:
                   data/research/thai_pulse/pulse_th_daily_signals.json || true
           git diff --staged --quiet || \
             git commit -m "th-paper: daily update $(date -u +%Y-%m-%d)"
-          git push || true
+          git pull --rebase origin main && git push

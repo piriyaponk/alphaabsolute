@@ -63,7 +63,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: data/research/pulse_us/pulse_us_ohlcv.db
-          key: pulse-us-ohlcv-${{ runner.os }}-${{ github.run_id }}
+          key: pulse-us-ohlcv-${{ runner.os }}-${{ github.sha }}
           restore-keys: |
             pulse-us-ohlcv-${{ runner.os }}-
 
@@ -73,19 +73,86 @@ jobs:
         run: |
           python scripts/research/pulse_us/pulse_us_data_layer.py
 
+      - name: Check RS data freshness
+        id: rs_check
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python3 -c "
+          import json, os, sys
+          from datetime import datetime
+          from pathlib import Path
+          p = Path('data/rs_universe/latest.json')
+          if not p.exists():
+              print('ERROR: data/rs_universe/latest.json not found — PULSE-US screens skipped')
+              import requests
+              t = os.environ.get('TELEGRAM_BOT_TOKEN')
+              c = os.environ.get('TELEGRAM_CHAT_ID')
+              if t and c:
+                  requests.post(f'https://api.telegram.org/bot{t}/sendMessage',
+                                json={'chat_id':c,'text':'[US] PULSE-US SKIP: RS file missing. Run rs_ranker.py first.'},timeout=10)
+              sys.exit(1)
+          d = json.load(open(p))
+          rs_date = d.get('date','')[:10]
+          if rs_date:
+              age = (datetime.utcnow() - datetime.strptime(rs_date,'%Y-%m-%d')).days
+              print(f'RS date: {rs_date} (age {age}d)')
+              if age > 7:
+                  print(f'WARNING: RS data is {age} days old — signals may be stale')
+                  import requests
+                  t = os.environ.get('TELEGRAM_BOT_TOKEN')
+                  c = os.environ.get('TELEGRAM_CHAT_ID')
+                  if t and c:
+                      requests.post(f'https://api.telegram.org/bot{t}/sendMessage',
+                                    json={'chat_id':c,'text':f'[US] PULSE-US WARNING: RS data is {age}d old ({rs_date}). Stale signals possible.'},timeout=10)
+          "
+
       - name: Run PULSE-US Best Final screen
+        id: pulse_best_final
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           python scripts/research/pulse_us/pulse_us_best_final.py
 
+      - name: Alert on PULSE-US Best Final failure
+        if: failure() && steps.pulse_best_final.outcome == 'failure'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python3 -c "
+          import os, requests
+          t = os.environ.get('TELEGRAM_BOT_TOKEN')
+          c = os.environ.get('TELEGRAM_CHAT_ID')
+          if t and c:
+              requests.post(f'https://api.telegram.org/bot{t}/sendMessage',
+                            json={'chat_id':c,'text':'[US] PULSE-US Best Final FAILED — check GitHub Actions logs'},timeout=10)
+          " || true
+
       - name: Run PULSE-US Daily (multi-signal)
+        id: pulse_daily
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           python scripts/research/pulse_us/pulse_us_daily.py
+
+      - name: Alert on PULSE-US Daily failure
+        if: failure() && steps.pulse_daily.outcome == 'failure'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python3 -c "
+          import os, requests
+          t = os.environ.get('TELEGRAM_BOT_TOKEN')
+          c = os.environ.get('TELEGRAM_CHAT_ID')
+          if t and c:
+              requests.post(f'https://api.telegram.org/bot{t}/sendMessage',
+                            json={'chat_id':c,'text':'[US] PULSE-US Daily FAILED — check GitHub Actions logs'},timeout=10)
+          " || true
 
       - name: Commit state update
         run: |
