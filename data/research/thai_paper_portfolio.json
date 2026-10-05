@@ -1,6 +1,6 @@
 {
   "nav": 1000000.0,
-  "set_nav": 962168.0,
+  "set_nav": 972931.1057760553,
   "set_inception_price": 1620.31,
   "set_synthetic_inception": {
     "ADVANC.BK": 349.0,
@@ -11,8 +11,8 @@
   "entry_prices": {},
   "last_rebal": 0,
   "inception": "2026-09-02",
-  "last_update": "2026-10-04",
-  "last_db_date": "2026-09-30",
+  "last_update": "2026-10-05",
+  "last_db_date": "2026-10-05",
   "trade_count": 0,
   "daily_log": [
     {
@@ -51,6 +51,16 @@
       "set_nav": 962168.0,
       "daily_ret": 0.0,
       "set_daily": -2.21,
+      "holdings": [],
+      "sells": [],
+      "buys": []
+    },
+    {
+      "date": "2026-10-05",
+      "nav": 1000000.0,
+      "set_nav": 972931.0,
+      "daily_ret": 0.0,
+      "set_daily": 0.31,
       "holdings": [],
       "sells": [],
       "buys": []

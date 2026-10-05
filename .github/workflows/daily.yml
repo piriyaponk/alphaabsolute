@@ -110,11 +110,8 @@ jobs:
 
       - name: Run PULSE-US Best Final screen
         id: pulse_best_final
-        env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
-          python scripts/research/pulse_us/pulse_us_best_final.py
+          python scripts/research/pulse_us/pulse_us_best_final.py --no-telegram
 
       - name: Alert on PULSE-US Best Final failure
         if: failure() && steps.pulse_best_final.outcome == 'failure'

@@ -618,9 +618,9 @@ def format_telegram(result, mkt, run_date):
         f"Tickers hit: {len(ticker_hits)}  |  Total fires: {total}",
     ]
     if not ticker_hits:
-        lines1.append("No tickers fired any quality signal today.")
-        return ["\n".join(lines1)]
-    messages = ["\n".join(lines1)]
+        # Still send one message if nothing fired
+        return [f"<b>[US] PULSE-US  |  {date_str}</b>\nNo tickers fired any quality signal today."]
+    messages = []  # Skip header — send only Focus List + Top 5
 
     # Sort by RS descending (same as PULSE-TH focus list default)
     focus_by_rs = sorted(
