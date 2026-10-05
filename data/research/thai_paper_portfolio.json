@@ -1,21 +1,56 @@
 {
   "nav": 1000000.0,
-  "set_nav": 1008555.0565586863,
+  "set_nav": 962168.0,
   "set_inception_price": 1620.31,
-  "set_synthetic_inception": {"ADVANC.BK": 349.0, "PTT.BK": 41.0, "KBANK.BK": 248.0},
+  "set_synthetic_inception": {
+    "ADVANC.BK": 349.0,
+    "PTT.BK": 41.0,
+    "KBANK.BK": 248.0
+  },
   "holdings": [],
   "entry_prices": {},
   "last_rebal": 0,
   "inception": "2026-09-02",
-  "last_update": "2026-09-18",
+  "last_update": "2026-10-04",
+  "last_db_date": "2026-09-30",
   "trade_count": 0,
   "daily_log": [
     {
       "date": "2026-09-18",
       "nav": 1000000.0,
-      "set_nav": 1008555.0,
+      "set_nav": 977683.0,
       "daily_ret": 0.0,
-      "set_daily": 0.86,
+      "set_daily": 0.06,
+      "holdings": [],
+      "sells": [],
+      "buys": []
+    },
+    {
+      "date": "2026-09-25",
+      "nav": 1000000.0,
+      "set_nav": 992174.0,
+      "daily_ret": 0.0,
+      "set_daily": -0.31,
+      "holdings": [],
+      "sells": [],
+      "buys": []
+    },
+    {
+      "date": "2026-09-29",
+      "nav": 1000000.0,
+      "set_nav": 983948.0,
+      "daily_ret": 0.0,
+      "set_daily": -0.51,
+      "holdings": [],
+      "sells": [],
+      "buys": []
+    },
+    {
+      "date": "2026-09-30",
+      "nav": 1000000.0,
+      "set_nav": 962168.0,
+      "daily_ret": 0.0,
+      "set_daily": -2.21,
       "holdings": [],
       "sells": [],
       "buys": []

@@ -452,6 +452,12 @@ def run_daily():
         print(f"[SKIP] Already updated for {today_str}")
         return
 
+    # Guard: also skip if DB date already processed (prevents re-running on stale DB)
+    db_date_str = str(today.date())
+    if state.get("last_db_date") == db_date_str:
+        print(f"[SKIP] DB date {db_date_str} already processed (DB still stale)")
+        return
+
     prev_date = avail_dates[-2] if len(avail_dates) >= 2 else None
 
     prev_holdings = state["holdings"][:]
@@ -473,12 +479,17 @@ def run_daily():
 
     state["nav"] *= (1 + port_ret)
 
-    # SET benchmark — anchored to inception price (same start date as portfolio)
+    # SET benchmark — anchored to inception price (idempotent: same price → same set_nav)
     set_idx  = prices[SET_INDEX].dropna()
     set_p0   = set_idx.get(prev_date) if prev_date else None
     set_p1   = set_idx.get(today)
     set_ret  = (set_p1 / set_p0 - 1) if (set_p0 and set_p1 and set_p0 > 0) else 0.0
-    state["set_nav"] = state.get("set_nav", STARTING_NAV) * (1 + set_ret)
+    # Use anchored formula when inception price is known (prevents compounding on re-run)
+    inc_px = state.get("set_inception_price")
+    if inc_px and inc_px > 0 and set_p1 and set_p1 > 0:
+        state["set_nav"] = STARTING_NAV * (float(set_p1) / inc_px)
+    else:
+        state["set_nav"] = state.get("set_nav", STARTING_NAV) * (1 + set_ret)
 
     # Store inception prices (first time only — never overwrite)
     if "set_inception_price" not in state and set_p1:
@@ -512,7 +523,8 @@ def run_daily():
             state["nav"] *= (1 - TCOST_BUY * len(buys) / top_n)
 
     state["holdings"]    = new_holdings
-    state["last_update"] = today_str  # calendar date of this run (not DB date)
+    state["last_update"]  = today_str   # calendar date of this run
+    state["last_db_date"] = db_date_str  # DB date processed — prevents re-run on stale DB
     state["trade_count"] = state.get("trade_count", 0) + len(sells) + len(buys)
 
     # Entry prices for new buys
