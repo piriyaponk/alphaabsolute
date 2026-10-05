@@ -17,6 +17,13 @@ on:
 permissions:
   contents: write
 
+# Prevent double-run: queues a second trigger instead of running concurrently.
+# After the first run pushes last_update=today, the queued run will hit the
+# pre-check below and exit early.
+concurrency:
+  group: thai-paper-trade
+  cancel-in-progress: false
+
 jobs:
   paper-trade:
     runs-on: ubuntu-latest
@@ -28,6 +35,25 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
+
+      - name: Pre-check — skip if already ran today
+        id: date_check
+        run: |
+          python3 -c "
+          import json, sys
+          from datetime import date
+          today = str(date.today())
+          try:
+              with open('data/research/thai_paper_portfolio.json') as f:
+                  state = json.load(f)
+              lu = state.get('last_update', '')
+              if lu == today:
+                  print(f'already_ran=true')
+                  sys.exit(0)
+              print(f'last_update={lu} → running')
+          except Exception:
+              print('state not found → running')
+          " >> \$GITHUB_OUTPUT || true
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -52,6 +78,7 @@ jobs:
 
       - name: Update thai_ohlcv.db
         id: update_db
+        if: steps.date_check.outputs.already_ran != 'true'
         env:
           PYTHONIOENCODING: utf-8
         run: |
@@ -68,12 +95,14 @@ jobs:
 
       - name: Update PULSE-TH signals
         id: pulse_screen
+        if: steps.date_check.outputs.already_ran != 'true'
         env:
           PYTHONIOENCODING: utf-8
         run: |
           python -X utf8 scripts/research/thai_entry_screen.py 2>&1 | tail -20
 
       - name: Fill combo columns for new rows
+        if: steps.date_check.outputs.already_ran != 'true'
         env:
           PYTHONIOENCODING: utf-8
         run: |
@@ -81,6 +110,7 @@ jobs:
 
       - name: Run PULSE-TH screener
         id: pulse_th
+        if: steps.date_check.outputs.already_ran != 'true'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -99,6 +129,7 @@ jobs:
 
       - name: Run paper trader
         id: paper_trader
+        if: steps.date_check.outputs.already_ran != 'true'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
