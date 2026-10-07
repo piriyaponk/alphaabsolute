@@ -275,20 +275,27 @@ def run(full=False):
         tv_reachable = False
 
     # ── Check 4: Spot-check stocks ────────────────────────────────────────────
+    # Root cause of false alerts: spot-check compares DB's last close vs TV's
+    # LIVE price. When DB is 1-2 trading days stale (normal morning-run lag),
+    # volatile Thai stocks easily differ >5% — this is expected, NOT a bug.
+    # Only run ALERT-capable spot-check when DB has TODAY's data.
+    spot = []
+    bad_spot = []
     if tv_reachable:
-        print("[SPOT] Fetching TradingView prices for random sample...")
-        spot = spot_check_prices(conn, n=5)
-        bad_spot = [s for s in spot if not s["ok"]]
-        for s in spot:
-            flag = "✅" if s["ok"] else "⚠️"
-            print(f"  {flag} {s['ticker']}: DB={s['db_close']}({s['db_date']})  TV={s['tv_close']}  diff={s['diff_pct']:.1f}%")
-
-        if len(bad_spot) >= 3:
-            issues.append(f"❌ Spot-check: {len(bad_spot)}/{len(spot)} tickers diff >5% vs TradingView")
-        elif bad_spot:
-            warns.append(f"Spot drift (normal day-lag): {', '.join(s['ticker'] for s in bad_spot)}")
-    else:
-        spot = []
+        if best_day == today:
+            print("[SPOT] Fetching TradingView prices for random sample...")
+            spot = spot_check_prices(conn, n=5)
+            bad_spot = [s for s in spot if not s["ok"]]
+            for s in spot:
+                flag = "✅" if s["ok"] else "⚠️"
+                print(f"  {flag} {s['ticker']}: DB={s['db_close']}({s['db_date']})  TV={s['tv_close']}  diff={s['diff_pct']:.1f}%")
+            if len(bad_spot) >= 3:
+                issues.append(f"❌ Spot-check: {len(bad_spot)}/{len(spot)} tickers diff >5% vs TradingView")
+            elif bad_spot:
+                warns.append(f"Spot drift: {', '.join(s['ticker'] for s in bad_spot)}")
+        else:
+            # DB is 1-2 trading days stale — day-lag price diff is normal, not data corruption
+            print(f"[SPOT] Skipped — DB at {best_day}, spot-check unreliable until today's EOD loads")
 
     conn.close()
 

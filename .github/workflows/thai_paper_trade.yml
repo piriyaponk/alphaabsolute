@@ -47,12 +47,15 @@ jobs:
               with open('data/research/thai_paper_portfolio.json') as f:
                   state = json.load(f)
               lu = state.get('last_update', '')
+              # flush=True: Python block-buffers stdout to files; explicit flush
+              # guarantees GITHUB_OUTPUT is written before process exits
               if lu == today:
-                  print(f'already_ran=true')
-                  sys.exit(0)
-              print(f'last_update={lu} → running')
+                  print('already_ran=true', flush=True)
+              else:
+                  print('already_ran=false', flush=True)
           except Exception:
-              print('state not found → running')
+              print('already_ran=false', flush=True)
+          sys.stdout.flush()
           " >> \$GITHUB_OUTPUT || true
 
       - name: Setup Python
