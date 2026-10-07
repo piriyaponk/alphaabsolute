@@ -56,6 +56,8 @@ def run():
     else:
         print(f"[S4 QQQ Sync] {patched} entries patched")
 
+    # Sort by date key so dict iteration order = chronological (prevents insertion-order bugs)
+    state["qqq_nav_history"] = dict(sorted(state["qqq_nav_history"].items()))
     STATE_PATH.write_text(json.dumps(state, indent=2), encoding="utf-8")
 
 

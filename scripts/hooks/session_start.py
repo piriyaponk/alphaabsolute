@@ -134,7 +134,7 @@ def session_start():
         # QQQ comparison
         qqq_nav_hist = v4.get("qqq_nav_history", {})
         qqq_inc = v4.get("qqq_inception", 0)
-        qqq_now = list(qqq_nav_hist.values())[-1] if qqq_nav_hist else 0
+        qqq_now = qqq_nav_hist[max(qqq_nav_hist)] if qqq_nav_hist else 0
         qqq_ret = round((qqq_now / max(qqq_inc, 1) - 1) * 100, 2) if qqq_inc else 0
         alpha   = round(total_ret - qqq_ret, 2)
         alpha_sign = "+" if alpha >= 0 else ""
