@@ -226,7 +226,7 @@ def run(full=False):
     warns  = []   # WARN  — console only, no Telegram
 
     # ── Check 1: Staleness ────────────────────────────────────────────────────
-    stale = check_staleness(conn, today, max_days=3)
+    stale = check_staleness(conn, today, max_trading_days=1)
     if stale:
         dow = datetime.strptime(today, "%Y-%m-%d").weekday()
         if dow in (5, 6):
@@ -258,12 +258,11 @@ def run(full=False):
         d1 = datetime.strptime(best_day, "%Y-%m-%d")
         d2 = datetime.strptime(today, "%Y-%m-%d")
         lag_days = sum(1 for i in range((d2 - d1).days)
-                       if (d1 + timedelta(days=i)).weekday() < 5)
-        if lag_days > 3:
-            issues.append(f"❌ Coverage stale: last={best_day} ({lag_days} trading days ago)")
-        else:
-            warns.append(f"Today's data not loaded yet (last={best_day})")
-        print(f"[COVERAGE] Last update: {best_day} | {best_updated}/{total} ({cov_pct:.0f}%)")
+                       if is_set_trading_day((d1 + timedelta(days=i)).date()))
+        # Watchdog runs after SET close — --update should always get today's data.
+        # If best_day != today after update, the pipeline fetch failed → ALERT immediately.
+        issues.append(f"❌ Today's data missing: last={best_day} ({lag_days} trading days ago) — fetch failed?")
+        print(f"[COVERAGE] MISSING today: last={best_day} | {best_updated}/{total} ({cov_pct:.0f}%)")
     elif cov_pct < 80:
         issues.append(f"❌ Coverage low: {best_updated}/{total} ({cov_pct:.0f}%)")
         print(f"[COVERAGE] LOW: {best_updated}/{total} ({cov_pct:.0f}%)")
