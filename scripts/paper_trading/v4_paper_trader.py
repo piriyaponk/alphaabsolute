@@ -857,6 +857,7 @@ def run_daily():
     if qqq_now and qqq_now != qqq_inc:
         qqq_nav_history = dict(state.get('qqq_nav_history', {}))
         qqq_nav_history[today] = qqq_now
+        qqq_nav_history = dict(sorted(qqq_nav_history.items()))  # keep chronological
     else:
         qqq_nav_history = state.get('qqq_nav_history', {})
 
