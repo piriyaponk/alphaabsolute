@@ -137,13 +137,25 @@ TOP_20 = [
 ]
 
 
-def check_staleness(conn, today, max_days=3):
-    threshold = (datetime.strptime(today, "%Y-%m-%d") - timedelta(days=max_days)).strftime("%Y-%m-%d")
+def check_staleness(conn, today, max_trading_days=3):
+    """Stale = last DB date is more than max_trading_days SET trading days ago.
+    Uses trading-day count (not calendar days) so Thai long weekends / holidays
+    don't fire a false alert on the next trading day."""
+    today_dt = datetime.strptime(today, "%Y-%m-%d")
     stale = []
     for tkr in TOP_20:
         ld = db_last_date(conn, tkr)
-        if ld is None or ld < threshold:
-            stale.append(f"{tkr}(last={ld})")
+        if ld is None:
+            stale.append(f"{tkr}(last=None)")
+            continue
+        ld_dt = datetime.strptime(ld, "%Y-%m-%d")
+        # Count SET trading days strictly between ld and today (exclusive of ld, inclusive of today)
+        trading_days_gap = sum(
+            1 for i in range(1, (today_dt - ld_dt).days + 1)
+            if is_set_trading_day((ld_dt + timedelta(days=i)).date())
+        )
+        if trading_days_gap > max_trading_days:
+            stale.append(f"{tkr}(last={ld},{trading_days_gap}td)")
     return stale
 
 
