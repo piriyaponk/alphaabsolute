@@ -101,7 +101,7 @@ def eligible_universe(prices, volumes, today, lookback=126):
 
 # ── SET benchmark helpers ─────────────────────────────────────────────────
 _SET_SYNTHETIC = ["ADVANC.BK", "PTT.BK", "KBANK.BK"]  # fallback if TDEX stale
-_MAX_STALE_DAYS = 3  # calendar days before falling back to synthetic
+_MAX_STALE_DAYS = 5  # calendar days before falling back to synthetic (5 = covers Fri data valid through Tue after 3-day weekend)
 
 
 def _get_set_latest_price() -> tuple[float | None, str]:
