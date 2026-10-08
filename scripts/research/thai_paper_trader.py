@@ -130,15 +130,15 @@ def _get_set_latest_price() -> tuple[float | None, str]:
         row = conn.execute(
             "SELECT date, close FROM set_index_history ORDER BY date DESC LIMIT 1"
         ).fetchone()
-        if row and row[0] and row[1] and row[0] >= stale_cutoff:
+        if row and row[0] and row[1] and row[0] > stale_cutoff:  # strictly fresher than cutoff
             conn.close()
             return float(row[1]), "set_index"
 
-        # Fallback 1: TDEX.BK (SET50 ETF)
+        # Fallback 1: TDEX.BK (SET50 ETF) — use if fresher than set_index_history
         row = conn.execute(
             "SELECT date, close FROM thai_ohlcv WHERE ticker='TDEX.BK' ORDER BY date DESC LIMIT 1"
         ).fetchone()
-        if row and row[0] and row[1] and row[0] >= stale_cutoff:
+        if row and row[0] and row[1] and row[0] > stale_cutoff:  # strictly fresher than cutoff
             conn.close()
             return float(row[1]), "tdex"
 
