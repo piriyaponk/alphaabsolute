@@ -57,33 +57,17 @@ jobs:
           TVREMIX_API_KEY: ${{ secrets.TVREMIX_API_KEY }}
         run: |
           python -X utf8 - <<'PYEOF'
-          import sys, pathlib
-          sys.path.insert(0, "scripts/research")
-          import sqlite3, pathlib as _pl
-          from thai_data_layer import DB_PATH, _ensure_schema
+import sys
+sys.path.insert(0, "scripts/research")
+import sqlite3
+from thai_data_layer import DB_PATH, init_db, update_set_index_history
 
-          db = _pl.Path(DB_PATH)
-          conn = sqlite3.connect(db)
-          _ensure_schema(conn)
-
-          # Import tvremix and update SET index only (no OHLCV bulk fetch)
-          sys.path.insert(0, "scripts/research")
-          from tvremix_client import fetch_set_index_tvremix
-          tv_df = fetch_set_index_tvremix(lookback_days=10)
-          if tv_df is not None and not tv_df.empty:
-              rows = [(str(ts)[:10], round(float(r["close"]),2),
-                       round(float(r["high"]),2), round(float(r["low"]),2), "tvremix")
-                      for ts, r in tv_df.iterrows()]
-              conn.executemany(
-                  "INSERT OR REPLACE INTO set_index_history(date,close,high,low,source) VALUES(?,?,?,?,?)",
-                  rows)
-              conn.commit()
-              latest = rows[-1]
-              print(f"[SET] tvremix: {len(rows)} rows written, latest {latest[0]} close={latest[1]}")
-          else:
-              print("[SET] tvremix returned no data")
-          conn.close()
-          PYEOF
+conn = sqlite3.connect(DB_PATH)
+init_db(conn)
+n = update_set_index_history(conn, backfill=False)
+print(f"[SET] update_set_index_history wrote {n} rows")
+conn.close()
+PYEOF
 
       - name: Commit updated DB
         run: |
