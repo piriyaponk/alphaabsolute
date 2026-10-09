@@ -64,10 +64,10 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/research/thai_ohlcv.db 2>/dev/null || true
           git add data/research/set_universe.json 2>/dev/null || true
-          git fetch origin
-          git rebase origin/main -X ours || (git rebase --abort && echo "REBASE_FAILED" && exit 1)
           git diff --staged --quiet || \
             git commit -m "th-eod: DB update $(date -u +%Y-%m-%d)"
+          git fetch origin
+          git rebase origin/main -X ours || (git rebase --abort && echo "REBASE_FAILED" && exit 1)
           git push origin HEAD:main
 
       - name: Alert on failure
