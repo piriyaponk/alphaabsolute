@@ -419,6 +419,18 @@ def run_daily():
     prices, volumes = load_prices()
     state = load_state()
 
+    # Sanity check: set_nav must be in portfolio range (~500k-2M), not raw SET level (~1000-2000).
+    # If wrong scale detected, recalculate from inception price.
+    if state.get("set_nav", STARTING_NAV) < STARTING_NAV * 0.1:
+        inc_px = state.get("set_inception_price")
+        px, _ = _get_set_latest_price()
+        if px and inc_px and inc_px > 0:
+            state["set_nav"] = STARTING_NAV * (float(px) / inc_px)
+            print(f"[FIX] set_nav was wrong scale — reset to {state['set_nav']:.0f}")
+        else:
+            state["set_nav"] = STARTING_NAV
+            print("[FIX] set_nav was wrong scale — reset to STARTING_NAV")
+
     # Find last available trading day in DB
     trading_dates = prices.index.tolist()
     if len(trading_dates) == 0:

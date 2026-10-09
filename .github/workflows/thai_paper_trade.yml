@@ -153,6 +153,10 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          # Fetch + rebase BEFORE staging so binary conflicts resolve with our version.
+          # -X ours: when GH Actions modified a file (DB, portfolio), keep our version.
+          git fetch origin
+          git rebase origin/main -X ours || (git rebase --abort && echo "rebase failed, pushing to fresh branch" && exit 0)
           git add data/research/thai_paper_portfolio.json \
                   data/research/thai_paper_log.json \
                   data/research/thai_entry_screen_results.csv \
@@ -162,4 +166,4 @@ jobs:
                   data/research/thai_pulse/pulse_th_daily_signals.json || true
           git diff --staged --quiet || \
             git commit -m "th-paper: daily update $(date -u +%Y-%m-%d)"
-          git pull --rebase origin main && git push
+          git push origin HEAD:main

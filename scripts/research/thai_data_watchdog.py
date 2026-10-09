@@ -259,10 +259,14 @@ def run(full=False):
         d2 = datetime.strptime(today, "%Y-%m-%d")
         lag_days = sum(1 for i in range((d2 - d1).days)
                        if is_set_trading_day((d1 + timedelta(days=i)).date()))
-        # Watchdog runs after SET close — --update should always get today's data.
-        # If best_day != today after update, the pipeline fetch failed → ALERT immediately.
-        issues.append(f"❌ Today's data missing: last={best_day} ({lag_days} trading days ago) — fetch failed?")
-        print(f"[COVERAGE] MISSING today: last={best_day} | {best_updated}/{total} ({cov_pct:.0f}%)")
+        # Watchdog runs right after SET close (16:30 ICT). Market data takes 30-60 min
+        # to settle on TradingView after close — 1 trading-day lag is normal, not a failure.
+        # Only alert if data is MISSING for > 1 trading day (pipeline truly broken).
+        if lag_days > 1:
+            issues.append(f"❌ Data stale {lag_days}td: last={best_day} — pipeline broken?")
+        else:
+            warns.append(f"⚠️ 1td lag ({best_day}) — data settling after close, normal")
+        print(f"[COVERAGE] lag={lag_days}td: last={best_day} | {best_updated}/{total} ({cov_pct:.0f}%)")
     elif cov_pct < 80:
         issues.append(f"❌ Coverage low: {best_updated}/{total} ({cov_pct:.0f}%)")
         print(f"[COVERAGE] LOW: {best_updated}/{total} ({cov_pct:.0f}%)")
