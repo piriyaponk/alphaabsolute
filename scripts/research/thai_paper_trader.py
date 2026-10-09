@@ -206,9 +206,7 @@ def _calc_set_ret_cum(state: dict, set_nav: float) -> float:
 
 # ── State I/O ─────────────────────────────────────────────────────────────
 def load_state() -> dict:
-    if STATE_PATH.exists():
-        return json.loads(STATE_PATH.read_text(encoding="utf-8"))
-    return {
+    defaults = {
         "nav":          STARTING_NAV,
         "set_nav":      STARTING_NAV,
         "holdings":     [],
@@ -219,6 +217,20 @@ def load_state() -> dict:
         "trade_count":  0,
         "daily_log":    [],
     }
+    if STATE_PATH.exists():
+        state = json.loads(STATE_PATH.read_text(encoding="utf-8"))
+        # Fill missing keys with defaults (forward-compat: new keys added to schema)
+        for k, v in defaults.items():
+            state.setdefault(k, v)
+        # Validate critical numeric fields — catch corrupted/wrong-scale values
+        if not (STARTING_NAV * 0.01 < state["nav"] < STARTING_NAV * 100):
+            print(f"[STATE FIX] nav={state['nav']} out of range → reset to STARTING_NAV")
+            state["nav"] = STARTING_NAV
+        if not (STARTING_NAV * 0.01 < state["set_nav"] < STARTING_NAV * 100):
+            print(f"[STATE FIX] set_nav={state['set_nav']} out of range → reset to STARTING_NAV")
+            state["set_nav"] = STARTING_NAV
+        return state
+    return defaults
 
 
 def save_state(state: dict):

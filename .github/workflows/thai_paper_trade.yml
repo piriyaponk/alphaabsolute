@@ -150,13 +150,14 @@ jobs:
           python -X utf8 scripts/research/thai_paper_trader.py --alert-fail "paper_trader" || true
 
       - name: Commit updated state
+        id: commit_state
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           # Fetch + rebase BEFORE staging so binary conflicts resolve with our version.
           # -X ours: when GH Actions modified a file (DB, portfolio), keep our version.
           git fetch origin
-          git rebase origin/main -X ours || (git rebase --abort && echo "rebase failed, pushing to fresh branch" && exit 0)
+          git rebase origin/main -X ours || (git rebase --abort && echo "REBASE_FAILED" && exit 1)
           git add data/research/thai_paper_portfolio.json \
                   data/research/thai_paper_log.json \
                   data/research/thai_entry_screen_results.csv \
@@ -167,3 +168,22 @@ jobs:
           git diff --staged --quiet || \
             git commit -m "th-paper: daily update $(date -u +%Y-%m-%d)"
           git push origin HEAD:main
+
+      - name: Alert on commit failure
+        if: failure() && steps.commit_state.outcome == 'failure'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python3 -c "
+          import os, urllib.request, json, ssl
+          token = os.environ['TELEGRAM_BOT_TOKEN']
+          chat  = os.environ['TELEGRAM_CHAT_ID']
+          msg   = '<b>[TH] ⚠️ GIT PUSH FAILED</b>\nState NOT saved to git — next run will recompute from stale state.\nCheck GH Actions logs.'
+          ctx = ssl.create_default_context(); ctx.check_hostname=False; ctx.verify_mode=ssl.CERT_NONE
+          payload = json.dumps({'chat_id': chat, 'text': msg, 'parse_mode': 'HTML'}).encode()
+          req = urllib.request.Request(f'https://api.telegram.org/bot{token}/sendMessage',
+                data=payload, headers={'Content-Type': 'application/json'})
+          urllib.request.urlopen(req, context=ctx, timeout=10)
+          print('alert sent')
+          " || true
