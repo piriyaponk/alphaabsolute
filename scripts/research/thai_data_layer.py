@@ -465,24 +465,48 @@ def _fetch_settrade_set_today() -> dict | None:
 
 
 def update_set_index_history(conn: sqlite3.Connection, backfill: bool = False) -> int:
-    """Store today's SET index close in set_index_history.
+    """Sync set_index_history from tvremix (primary) with Settrade as same-day fallback.
 
-    Primary source: Settrade API (real SET level ~1584).
-    Backfill: Investing.com normalized history converted to real level via today's ratio.
+    tvremix returns real SET composite levels directly — no ratio conversion needed.
+    300-bar limit covers ~15 months, more than enough for paper portfolio history.
 
     Returns number of new rows inserted.
     """
     today_str = date.today().strftime("%Y-%m-%d")
-
-    # Check what's already in DB
-    last_row = conn.execute(
-        "SELECT date FROM set_index_history ORDER BY date DESC LIMIT 1"
-    ).fetchone()
-    last_date = last_row[0] if last_row else None
-
     inserted = 0
 
-    # ── Today's real level from Settrade ─────────────────────────────────────
+    # ── Primary: tvremix SET:SET (real SET composite, always current) ─────────
+    try:
+        import sys as _sys, pathlib as _pl
+        _sys.path.insert(0, str(_pl.Path(__file__).parent))
+        from tvremix_client import fetch_set_index_tvremix, TvremixError
+        lookback = 400 if backfill else 10  # backfill = max history; daily = recent only
+        tv_df = fetch_set_index_tvremix(lookback_days=lookback)
+        if tv_df is not None and not tv_df.empty:
+            rows = []
+            for ts, row in tv_df.iterrows():
+                d_str = str(ts)[:10]
+                rows.append((
+                    d_str,
+                    round(float(row["close"]), 2),
+                    round(float(row["high"]),  2) if row.get("high") else round(float(row["close"]), 2),
+                    round(float(row["low"]),   2) if row.get("low")  else round(float(row["close"]), 2),
+                    "tvremix",
+                ))
+            if rows:
+                conn.executemany(
+                    "INSERT OR REPLACE INTO set_index_history (date,close,high,low,source) VALUES (?,?,?,?,?)",
+                    rows,
+                )
+                conn.commit()
+                inserted += len(rows)
+                first, last = rows[0][0], rows[-1][0]
+                print(f"  [SET] tvremix: {len(rows)} rows ({first} → {last}), latest close={rows[-1][1]:.2f}")
+                return inserted
+    except Exception as e:
+        print(f"  [SET] tvremix failed ({e}) — falling back to Settrade")
+
+    # ── Fallback: Settrade API for today only ─────────────────────────────────
     st = _fetch_settrade_set_today()
     if st:
         conn.execute(
@@ -491,72 +515,7 @@ def update_set_index_history(conn: sqlite3.Connection, backfill: bool = False) -
         )
         conn.commit()
         inserted += 1
-        print(f"  [SET] {today_str} close={st['close']:.2f} (settrade)")
-
-    # ── Backfill history from Investing.com (first run or missing dates) ──────
-    if backfill or last_date is None or last_date < (
-        (date.today() - timedelta(days=5)).strftime("%Y-%m-%d")
-    ):
-        # Need at least today's Settrade anchor to convert normalized → real
-        anchor_row = conn.execute(
-            "SELECT date, close FROM set_index_history WHERE source='settrade' ORDER BY date DESC LIMIT 1"
-        ).fetchone()
-        if not anchor_row:
-            print("  [SET] No Settrade anchor yet — skip Investing.com backfill")
-            return inserted
-
-        anchor_date, anchor_real = anchor_row
-        # Fetch Investing.com history (normalized ~130 scale)
-        from_dt = (date.today() - timedelta(days=60)).strftime("%Y-%m-%d")
-        inv_df = fetch_set_direct(from_dt, today_str)
-        if inv_df.empty:
-            print("  [SET] Investing.com returned empty — skip backfill")
-            return inserted
-
-        # Find the anchor date in Investing.com data to get conversion ratio
-        anchor_inv = None
-        for d_str in [anchor_date] + [
-            (date.fromisoformat(anchor_date) - timedelta(days=i)).strftime("%Y-%m-%d")
-            for i in range(1, 4)
-        ]:
-            try:
-                anchor_inv = float(inv_df.loc[pd.Timestamp(d_str), "close"])
-                break
-            except (KeyError, TypeError):
-                continue
-
-        if not anchor_inv or anchor_inv <= 0:
-            print("  [SET] Could not find anchor date in Investing.com data — skip backfill")
-            return inserted
-
-        # Conversion: real_price = inv_price × (anchor_real / anchor_inv)
-        ratio = anchor_real / anchor_inv
-        print(f"  [SET] Backfill ratio: {anchor_inv:.2f} × {ratio:.4f} = {anchor_real:.2f} SET")
-
-        rows = []
-        for ts, row in inv_df.iterrows():
-            d_str = ts.strftime("%Y-%m-%d")
-            if d_str == today_str:
-                continue  # already inserted from Settrade
-            # Skip if already in DB
-            exists = conn.execute(
-                "SELECT 1 FROM set_index_history WHERE date=?", (d_str,)
-            ).fetchone()
-            if exists:
-                continue
-            real_close = round(float(row["close"]) * ratio, 2)
-            real_high  = round(float(row["high"])  * ratio, 2) if row.get("high") else real_close
-            real_low   = round(float(row["low"])   * ratio, 2) if row.get("low")  else real_close
-            rows.append((d_str, real_close, real_high, real_low, "investing_converted"))
-
-        if rows:
-            conn.executemany(
-                "INSERT OR IGNORE INTO set_index_history (date,close,high,low,source) VALUES (?,?,?,?,?)",
-                rows,
-            )
-            conn.commit()
-            inserted += len(rows)
-            print(f"  [SET] Backfilled {len(rows)} rows from Investing.com (converted)")
+        print(f"  [SET] settrade fallback: {today_str} close={st['close']:.2f}")
 
     return inserted
 
