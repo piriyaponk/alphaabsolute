@@ -1,0 +1,88 @@
+name: AlphaAbsolute-TH EOD Update
+
+# Triggered by cron-job.org at 10:30 UTC = 17:30 ICT every weekday.
+# Runs 1 hour after SET closes (16:30 ICT) — data fully settled on TradingView.
+#
+# cron-job.org setup:
+#   URL: https://api.github.com/repos/piriyaponk/alphaabsolute/actions/workflows/thai_eod_update.yml/dispatches
+#   Method: POST | Every weekday 10:30 UTC (Mon-Fri)
+#   Headers: Authorization: Bearer <PAT>  |  Content-Type: application/json
+#   Body: {"ref":"main"}
+
+on:
+  schedule:
+    - cron: '30 10 * * 1-5'   # 10:30 UTC = 17:30 ICT Mon-Fri
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: thai-eod-update
+  cancel-in-progress: false
+
+jobs:
+  eod-update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install pandas numpy requests
+
+      - name: Restore thai_ohlcv.db from cache
+        uses: actions/cache@v4
+        with:
+          path: data/research/thai_ohlcv.db
+          key: thai-ohlcv-db-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: |
+            thai-ohlcv-db-${{ runner.os }}-
+
+      - name: Update OHLCV + SET index (EOD)
+        id: eod_update
+        env:
+          PYTHONIOENCODING: utf-8
+        run: |
+          python -X utf8 scripts/research/thai_data_layer.py --update 2>&1 | tail -20
+
+      - name: Commit updated DB
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin
+          git rebase origin/main -X ours || (git rebase --abort && echo "REBASE_FAILED" && exit 1)
+          git add data/research/thai_ohlcv.db \
+                  data/research/set_universe.json || true
+          git diff --staged --quiet || \
+            git commit -m "th-eod: DB update $(date -u +%Y-%m-%d)"
+          git push origin HEAD:main
+
+      - name: Alert on failure
+        if: failure()
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python3 -c "
+          import os, urllib.request, json, ssl
+          token = os.environ['TELEGRAM_BOT_TOKEN']
+          chat  = os.environ['TELEGRAM_CHAT_ID']
+          msg   = '<b>[TH] EOD Update FAILED</b>\nDB ไม่ได้อัปเดต — watchdog จะเห็น lag พรุ่งนี้\nCheck GH Actions logs.'
+          ctx = ssl.create_default_context(); ctx.check_hostname=False; ctx.verify_mode=ssl.CERT_NONE
+          payload = json.dumps({'chat_id': chat, 'text': msg, 'parse_mode': 'HTML'}).encode()
+          req = urllib.request.Request(f'https://api.telegram.org/bot{token}/sendMessage',
+                data=payload, headers={'Content-Type': 'application/json'})
+          urllib.request.urlopen(req, context=ctx, timeout=10)
+          " || true
