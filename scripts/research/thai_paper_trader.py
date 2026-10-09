@@ -126,24 +126,30 @@ def _get_set_latest_price() -> tuple[float | None, str]:
     try:
         conn = _sqlite3.connect(str(db))
 
-        # Primary: real SET index from set_index_history
-        row = conn.execute(
+        # Fetch both candidates and pick the FRESHEST one within staleness window.
+        # set_index_history = real SET level; TDEX.BK = ETF proxy (~0.3% tracking error).
+        # --update refreshes TDEX.BK daily but set_index_history may lag 1-2 days,
+        # so always prefer whichever has the later date.
+        row_set = conn.execute(
             "SELECT date, close FROM set_index_history ORDER BY date DESC LIMIT 1"
         ).fetchone()
-        if row and row[0] and row[1] and row[0] > stale_cutoff:  # strictly fresher than cutoff
-            conn.close()
-            return float(row[1]), "set_index"
-
-        # Fallback 1: TDEX.BK (SET50 ETF) — use if fresher than set_index_history
-        row = conn.execute(
+        row_tdex = conn.execute(
             "SELECT date, close FROM thai_ohlcv WHERE ticker='TDEX.BK' ORDER BY date DESC LIMIT 1"
         ).fetchone()
-        if row and row[0] and row[1] and row[0] > stale_cutoff:  # strictly fresher than cutoff
-            conn.close()
-            return float(row[1]), "tdex"
+        conn.close()
+
+        candidates = []
+        if row_set and row_set[0] and row_set[1] and row_set[0] > stale_cutoff:
+            candidates.append((row_set[0], float(row_set[1]), "set_index"))
+        if row_tdex and row_tdex[0] and row_tdex[1] and row_tdex[0] > stale_cutoff:
+            candidates.append((row_tdex[0], float(row_tdex[1]), "tdex"))
+
+        if candidates:
+            # pick latest date; tie-break: prefer set_index (real data over ETF proxy)
+            best = max(candidates, key=lambda c: (c[0], c[2] == "set_index"))
+            return best[1], best[2]
 
         # Fallback 2: synthetic proxy availability check (handled by _get_synthetic_ratio)
-        conn.close()
 
     except Exception:
         pass
