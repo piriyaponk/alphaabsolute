@@ -55,19 +55,7 @@ jobs:
         env:
           PYTHONIOENCODING: utf-8
           TVREMIX_API_KEY: ${{ secrets.TVREMIX_API_KEY }}
-        run: |
-          python -X utf8 - <<'PYEOF'
-import sys
-sys.path.insert(0, "scripts/research")
-import sqlite3
-from thai_data_layer import DB_PATH, init_db, update_set_index_history
-
-conn = sqlite3.connect(DB_PATH)
-init_db(conn)
-n = update_set_index_history(conn, backfill=False)
-print(f"[SET] update_set_index_history wrote {n} rows")
-conn.close()
-PYEOF
+        run: python -X utf8 scripts/ci/th_eod_set_index.py
 
       - name: Commit updated DB
         run: |
