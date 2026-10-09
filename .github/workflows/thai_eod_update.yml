@@ -50,22 +50,48 @@ jobs:
           restore-keys: |
             thai-ohlcv-db-${{ runner.os }}-
 
-      - name: Update OHLCV + SET index (EOD)
+      - name: Update SET index (EOD — tvremix only, fast)
         id: eod_update
         env:
           PYTHONIOENCODING: utf-8
           TVREMIX_API_KEY: ${{ secrets.TVREMIX_API_KEY }}
         run: |
-          python -X utf8 scripts/research/thai_data_layer.py --update 2>&1 | tail -20
+          python -X utf8 - <<'PYEOF'
+          import sys, pathlib
+          sys.path.insert(0, "scripts/research")
+          import sqlite3, pathlib as _pl
+          from thai_data_layer import DB_PATH, _ensure_schema
+
+          db = _pl.Path(DB_PATH)
+          conn = sqlite3.connect(db)
+          _ensure_schema(conn)
+
+          # Import tvremix and update SET index only (no OHLCV bulk fetch)
+          sys.path.insert(0, "scripts/research")
+          from tvremix_client import fetch_set_index_tvremix
+          tv_df = fetch_set_index_tvremix(lookback_days=10)
+          if tv_df is not None and not tv_df.empty:
+              rows = [(str(ts)[:10], round(float(r["close"]),2),
+                       round(float(r["high"]),2), round(float(r["low"]),2), "tvremix")
+                      for ts, r in tv_df.iterrows()]
+              conn.executemany(
+                  "INSERT OR REPLACE INTO set_index_history(date,close,high,low,source) VALUES(?,?,?,?,?)",
+                  rows)
+              conn.commit()
+              latest = rows[-1]
+              print(f"[SET] tvremix: {len(rows)} rows written, latest {latest[0]} close={latest[1]}")
+          else:
+              print("[SET] tvremix returned no data")
+          conn.close()
+          PYEOF
 
       - name: Commit updated DB
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/research/thai_ohlcv.db 2>/dev/null || true
-          git add data/research/set_universe.json 2>/dev/null || true
           git diff --staged --quiet || \
-            git commit -m "th-eod: DB update $(date -u +%Y-%m-%d)"
+            git commit -m "th-eod: SET index update $(date -u +%Y-%m-%d)"
           git fetch origin
           git rebase origin/main -X ours || (git rebase --abort && echo "REBASE_FAILED" && exit 1)
           git push origin HEAD:main
