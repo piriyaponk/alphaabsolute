@@ -50,19 +50,31 @@ def _tg(text: str):
     token = os.environ.get("TELEGRAM_BOT_TOKEN", "")
     chat  = os.environ.get("TELEGRAM_CHAT_ID", "")
     if not token or not chat:
+        # fallback: read .env directly
+        env_path = ROOT / ".env"
+        if env_path.exists():
+            for line in env_path.read_text(encoding="utf-8").splitlines():
+                if line.startswith("TELEGRAM_BOT_TOKEN=") and not token:
+                    token = line.split("=", 1)[1].strip()
+                elif line.startswith("TELEGRAM_CHAT_ID=") and not chat:
+                    chat = line.split("=", 1)[1].strip()
+    if not token or not chat:
         print(f"[TG-SKIP] {text[:80]}")
         return
     url  = f"https://api.telegram.org/bot{token}/sendMessage"
     data = urllib.parse.urlencode({"chat_id": chat, "text": text, "parse_mode": "HTML"}).encode()
     try:
         urllib.request.urlopen(urllib.request.Request(url, data=data), timeout=10)
+        return True
     except Exception:
         # retry without parse_mode
         try:
             data = urllib.parse.urlencode({"chat_id": chat, "text": text}).encode()
             urllib.request.urlopen(urllib.request.Request(url, data=data), timeout=10)
+            return True
         except Exception as e:
             print(f"[TG-FAIL] {e}")
+            return False
 
 
 # ── Data loading ───────────────────────────────────────────────────────────
