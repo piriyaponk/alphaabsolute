@@ -105,10 +105,11 @@ _MAX_STALE_DAYS = 5  # calendar days before falling back to synthetic (5 = cover
 
 
 def _get_set_latest_price() -> tuple[float | None, str]:
-    """Read latest SET index close with staleness check.
+    """Read latest SET index close.
 
-    Fallback chain:
-      1. set_index_history table — real SET level from Settrade/Investing.com
+    Fallback chain (pick freshest date across all sources):
+      0. tvremix SET:SET — real-time, always today's data when market closed
+      1. set_index_history table — real SET level from Investing.com scraper
       2. TDEX.BK from thai_ohlcv — SET50 ETF proxy (tracking error ~0.3%)
       3. Synthetic ADVANC+PTT+KBANK — last resort
 
@@ -117,42 +118,46 @@ def _get_set_latest_price() -> tuple[float | None, str]:
     import sqlite3 as _sqlite3
     from datetime import date as _date, timedelta as _td
 
-    db = ROOT / "data" / "research" / "thai_ohlcv.db"
-    if not db.exists():
-        return None, "none"
-
+    today_str = str(_date.today())
     stale_cutoff = (_date.today() - _td(days=_MAX_STALE_DAYS)).strftime("%Y-%m-%d")
+    candidates: list[tuple[str, float, str]] = []  # (date, price, source)
 
+    # Source 0: tvremix — real SET composite, always freshest
     try:
-        conn = _sqlite3.connect(str(db))
-
-        # Fetch both candidates and pick the FRESHEST one within staleness window.
-        # set_index_history = real SET level; TDEX.BK = ETF proxy (~0.3% tracking error).
-        # --update refreshes TDEX.BK daily but set_index_history may lag 1-2 days,
-        # so always prefer whichever has the later date.
-        row_set = conn.execute(
-            "SELECT date, close FROM set_index_history ORDER BY date DESC LIMIT 1"
-        ).fetchone()
-        row_tdex = conn.execute(
-            "SELECT date, close FROM thai_ohlcv WHERE ticker='TDEX.BK' ORDER BY date DESC LIMIT 1"
-        ).fetchone()
-        conn.close()
-
-        candidates = []
-        if row_set and row_set[0] and row_set[1] and row_set[0] > stale_cutoff:
-            candidates.append((row_set[0], float(row_set[1]), "set_index"))
-        if row_tdex and row_tdex[0] and row_tdex[1] and row_tdex[0] > stale_cutoff:
-            candidates.append((row_tdex[0], float(row_tdex[1]), "tdex"))
-
-        if candidates:
-            # pick latest date; tie-break: prefer set_index (real data over ETF proxy)
-            best = max(candidates, key=lambda c: (c[0], c[2] == "set_index"))
-            return best[1], best[2]
-
-        # Fallback 2: synthetic proxy availability check (handled by _get_synthetic_ratio)
-
+        from tvremix_client import fetch_set_index_tvremix, TvremixError
+        tv_df = fetch_set_index_tvremix(lookback_days=5)
+        if tv_df is not None and not tv_df.empty:
+            last_row = tv_df.iloc[-1]
+            last_date = str(tv_df.index[-1])[:10]
+            if last_date >= stale_cutoff:
+                candidates.append((last_date, float(last_row["close"]), "tvremix"))
     except Exception:
         pass
+
+    # Source 1 & 2: DB-backed sources
+    db = ROOT / "data" / "research" / "thai_ohlcv.db"
+    if db.exists():
+        try:
+            conn = _sqlite3.connect(str(db))
+            row_set = conn.execute(
+                "SELECT date, close FROM set_index_history ORDER BY date DESC LIMIT 1"
+            ).fetchone()
+            row_tdex = conn.execute(
+                "SELECT date, close FROM thai_ohlcv WHERE ticker='TDEX.BK' ORDER BY date DESC LIMIT 1"
+            ).fetchone()
+            conn.close()
+            if row_set and row_set[0] and row_set[1] and row_set[0] > stale_cutoff:
+                candidates.append((row_set[0], float(row_set[1]), "set_index"))
+            if row_tdex and row_tdex[0] and row_tdex[1] and row_tdex[0] > stale_cutoff:
+                candidates.append((row_tdex[0], float(row_tdex[1]), "tdex"))
+        except Exception:
+            pass
+
+    if candidates:
+        # pick latest date; tie-break priority: tvremix > set_index > tdex
+        priority = {"tvremix": 2, "set_index": 1, "tdex": 0}
+        best = max(candidates, key=lambda c: (c[0], priority.get(c[2], 0)))
+        return best[1], best[2]
 
     return None, "none"
 
