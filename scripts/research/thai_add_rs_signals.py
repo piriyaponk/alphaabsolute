@@ -21,7 +21,6 @@ import pandas as pd
 import numpy as np
 import sqlite3
 from pathlib import Path
-import shutil
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 DB_PATH   = ROOT / "data" / "research" / "thai_ohlcv.db"

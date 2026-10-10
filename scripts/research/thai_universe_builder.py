@@ -14,6 +14,8 @@ import pandas as pd
 from datetime import datetime
 from pathlib import Path
 
+ROOT = Path(__file__).resolve().parents[2]
+
 warnings.filterwarnings("ignore")
 
 START = "2024-01-01"   # 2yr for ADTV calc
@@ -85,7 +87,9 @@ def _fetch(ticker: str, verbose: bool = False) -> tuple:
         with urllib.request.urlopen(req, context=ctx, timeout=15) as resp:
             d = json.loads(resp.read())
         res     = d["chart"]["result"][0]
-        ts      = pd.to_datetime(res["timestamp"], unit="s", utc=True).tz_localize(None)
+        ts      = (pd.to_datetime(res["timestamp"], unit="s", utc=True)
+                  .tz_convert("Asia/Bangkok")
+                  .tz_localize(None))
         closes  = res["indicators"]["quote"][0]["close"]
         volumes = res["indicators"]["quote"][0].get("volume", [None]*len(closes))
         c = pd.Series(closes,  index=ts, dtype=float).dropna()
@@ -152,8 +156,8 @@ def main():
         "count": len(passed_sorted),
         "adtv_by_ticker": {t: round(adtv_data.get(t, 0)/1e6, 1) for t in passed_sorted},
     }
-    Path("data/research").mkdir(parents=True, exist_ok=True)
-    with open("data/research/set_universe.json", "w") as f:
+    (ROOT / "data" / "research").mkdir(parents=True, exist_ok=True)
+    with open(ROOT / "data" / "research" / "set_universe.json", "w", encoding="utf-8") as f:
         json.dump(out, f, indent=2)
     print(f"\n[Saved] data/research/set_universe.json — {len(passed_sorted)} tickers")
     print("\nNext: use this universe in thai_combined.py for proper full-SET backtest")

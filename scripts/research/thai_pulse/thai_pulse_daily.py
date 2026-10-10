@@ -35,8 +35,7 @@ ROOT      = Path(__file__).resolve().parents[3]
 LIB_PATH  = ROOT / "data" / "research" / "thai_pulse" / "q_library_th.json"
 OUT_PATH  = ROOT / "data" / "research" / "thai_pulse" / "pulse_th_daily_signals.json"
 
-import sys as _sys
-_sys.path.insert(0, str(ROOT / "scripts" / "research"))
+sys.path.insert(0, str(ROOT / "scripts" / "research"))
 from entry_screen_db import read_entry_screen, get_max_date as _db_max_date
 
 
