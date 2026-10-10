@@ -81,7 +81,7 @@ def _get_crumb(session: requests.Session) -> str | None:
 # ── Universe loader ────────────────────────────────────────────────────────────
 
 def load_universe() -> list[str]:
-    with open(RS_PATH) as f:
+    with open(RS_PATH, encoding="utf-8") as f:
         data = json.load(f)
     uni = data.get("universe", data)
     tickers = [

@@ -120,7 +120,7 @@ def run(tickers=None, dry_run=False):
     sleep = SLEEP_PAID if tier == "paid" else SLEEP_FREE
     print(f"  Polygon tier: {tier} (sleep={sleep}s)")
 
-    with open(LABELS_PATH) as f:
+    with open(LABELS_PATH, encoding="utf-8") as f:
         universe = list(json.load(f)["labels"].keys())
     if tickers:
         universe = [t for t in tickers if t in set(universe)]
