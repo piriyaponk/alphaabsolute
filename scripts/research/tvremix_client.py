@@ -17,7 +17,7 @@ Usage:
 """
 
 import json, os, ssl, time, urllib.request, urllib.error, warnings
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 import pandas as pd
@@ -157,8 +157,11 @@ def fetch_tvremix(bk_ticker: str, start: str, end: str) -> pd.DataFrame:
     for b in bars:
         # TradingView timestamps are Unix seconds (exchange local time)
         # SET bars are ICT (UTC+7) — convert accordingly
-        dt = datetime.utcfromtimestamp(b["t"] + 7 * 3600)  # shift to ICT
-        dt = dt.replace(hour=0, minute=0, second=0, microsecond=0)
+        # Convert Unix timestamp to Bangkok date (ICT = UTC+7, no DST)
+        # utcfromtimestamp is deprecated; use timezone-aware fromtimestamp instead
+        _ICT = timezone(timedelta(hours=7))
+        dt = datetime.fromtimestamp(b["t"], tz=_ICT).replace(
+            hour=0, minute=0, second=0, microsecond=0, tzinfo=None)
         if dt < start_dt or dt > end_dt:
             continue
         records.append({
@@ -200,8 +203,9 @@ def fetch_set_index_tvremix(lookback_days: int = 300) -> pd.DataFrame:
 
     records = []
     for b in bars:
-        dt = datetime.utcfromtimestamp(b["t"] + 7 * 3600)
-        dt = dt.replace(hour=0, minute=0, second=0, microsecond=0)
+        _ICT = timezone(timedelta(hours=7))
+        dt = datetime.fromtimestamp(b["t"], tz=_ICT).replace(
+            hour=0, minute=0, second=0, microsecond=0, tzinfo=None)
         records.append({
             "date":   dt,
             "open":   b.get("o"),

@@ -15,6 +15,7 @@ the opposite approach from RS-gating which starts from RS and adds features.
 
 Output: updated thai_entry_screen_results.csv (backup first)
 """
+import json
 import pandas as pd
 import numpy as np
 from pathlib import Path
@@ -179,12 +180,11 @@ def main():
         df = pd.concat([df, new_df], axis=1)
 
     # ── Save combo definitions JSON for incremental fill ──────────
-    import json as _json
     defs_path = ROOT / "data" / "research" / "thai_combo_definitions.json"
     existing_defs = {}
     if defs_path.exists():
         try:
-            existing_defs = _json.loads(defs_path.read_text())
+            existing_defs = json.loads(defs_path.read_text())
         except Exception:
             pass
     for col_name, (_, h, n, base) in new_cols_a.items():
@@ -195,7 +195,7 @@ def main():
     for col_name, (_, h, n, base) in new_cols_b.items():
         q1, q2 = base.split("+")
         existing_defs[col_name] = {"type": "B", "sources": [q1, q2], "h5": h, "n": n}
-    defs_path.write_text(_json.dumps(existing_defs, indent=2, default=lambda x: int(x) if hasattr(x, '__int__') else float(x)))
+    defs_path.write_text(json.dumps(existing_defs, indent=2, default=lambda x: int(x) if hasattr(x, '__int__') else float(x)))
     print(f"  Saved {len(existing_defs)} combo definitions → {defs_path.name}")
 
     # ── Final quality summary ─────────────────────────────────────
