@@ -390,9 +390,20 @@ def label_to_tokens(label):
 
 
 def compute_signal_series(label, cond_dict):
-    """Convert signal label → boolean Series over all tickers (vectorized)."""
-    tokens = [t for t in label_to_tokens(label) if t in cond_dict]
+    """Convert signal label → boolean Series over all tickers (vectorized).
+
+    Returns None if ANY token in the label is not in cond_dict — unknown tokens
+    mean we cannot compute the full AND formula, so the entire signal is skipped.
+    Silently dropping unknown tokens (old behavior) caused stocks to pass more
+    easily than the real formula because fewer AND conditions were applied.
+    """
+    tokens = label_to_tokens(label)
     if not tokens:
+        return None
+    unknown = [t for t in tokens if t not in cond_dict]
+    if unknown:
+        # Log once per unknown token family to aid diagnosis
+        print(f"[PULSE-US] SKIP signal '{label}': unknown token(s) {unknown}")
         return None
     result = cond_dict[tokens[0]].copy()
     for tok in tokens[1:]:
