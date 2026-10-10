@@ -806,7 +806,7 @@ def score_to_percentile(excess_return: float, timeframe: str) -> float:
     if not DIST_FILE.exists():
         return None   # Signal to caller: no benchmark built yet
     try:
-        dist_data = json.loads(DIST_FILE.read_text())
+        dist_data = json.loads(DIST_FILE.read_text(encoding="utf-8"))
         dist = dist_data.get("distributions", {}).get(timeframe, {})
         return _score_to_percentile(excess_return, dist)
     except Exception:
@@ -818,7 +818,7 @@ def get_distribution_meta() -> dict:
     if not DIST_FILE.exists():
         return {"built": False, "date": None, "benchmark_size": 0}
     try:
-        d = json.loads(DIST_FILE.read_text())
+        d = json.loads(DIST_FILE.read_text(encoding="utf-8"))
         return {
             "built":          True,
             "date":           d.get("date"),

@@ -41,8 +41,8 @@ def main():
         try:
             c.execute(f"ALTER TABLE rs_daily ADD COLUMN {col} REAL")
             print(f"  Added column rs_daily.{col}")
-        except:
-            pass
+        except Exception:
+            pass  # column already exists
     conn.commit()
 
     # ── Load ALL ohlcv into memory (1,325 tickers × ~250 bars) ──────────────

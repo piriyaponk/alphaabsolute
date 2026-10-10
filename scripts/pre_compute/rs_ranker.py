@@ -611,7 +611,6 @@ def run():
 
         # ── Trend Template Price Fields ─────────────────────────────────────
         # Compute MA and distance metrics while price data is in memory
-        import statistics as _stats
         cur = closes[-1]
 
         def _ma(n):

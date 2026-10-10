@@ -242,8 +242,6 @@ STEPS: list[dict] = [
 
     # ── S4 Brain (Obsidian sync — runs daily after RS) ───────────────────────
     {
-        "id":       "s4_brain",
-        "layer":    "2-Brain",
         "id":       "s4_qqq_sync",
         "layer":    "2-Brain",
         "name":     "S4 QQQ Benchmark Sync",
@@ -620,10 +618,6 @@ def _send_pipeline_alert(summary: dict, mode: str, aborted: bool) -> None:
 
     failed_count = summary.get("failed", 0)
 
-    # Silent on ALL PASS — only alert when something is wrong
-    if not aborted and failed_count == 0:
-        print("  [Alert] Pipeline OK — no Telegram alert sent (all pass)")
-        return
     passed_count = summary.get("passed", 0)
     skipped_count = summary.get("skipped", 0)
     run_date = summary.get("date", date.today().isoformat())
