@@ -83,7 +83,7 @@ def compute_factors(grp):
     pct_from_52w_high = (px / high252 - 1) * 100
 
     # --- MA50 ---
-    ma50 = np.mean(close[-50:]) if n >= 50 else np.mean(close)
+    ma50 = np.nanmean(close[-50:]) if n >= 50 else np.nanmean(close)
     price_vs_ma50_pct = (px / ma50 - 1) * 100
 
     # --- vol_trend: 20d slope of volume (normalized) ---
@@ -162,7 +162,7 @@ def run_screen(target_date=None):
         print(f"[ERROR] {RS_PATH} not found — run rs_ranker.py first")
         return pd.DataFrame()
 
-    with open(RS_PATH) as f:
+    with open(RS_PATH, encoding="utf-8") as f:
         rs_data = json.load(f)
 
     # Build RS dataframe — universe is a dict keyed by ticker
@@ -292,21 +292,24 @@ def format_telegram(signals_df, run_date, n_candidates):
     return "\n".join(lines)
 
 
-def send_telegram(text):
-    token = os.getenv('TELEGRAM_BOT_TOKEN')
-    chat  = os.getenv('TELEGRAM_CHAT_ID')
-    if not token or not chat:
+def send_telegram(text, token=None, chat_id=None):
+    # Telegram hard limit: 4096 chars per message
+    if len(text) > 4000:
+        text = text[:3970] + '\n... [truncated]'
+    token   = token   or os.getenv('TELEGRAM_BOT_TOKEN')
+    chat_id = chat_id or os.getenv('TELEGRAM_CHAT_ID')
+    if not token or not chat_id:
         print("[Telegram] No credentials — printing instead:")
         print(text)
         return
     url = f'https://api.telegram.org/bot{token}/sendMessage'
     try:
-        r = requests.post(url, json={'chat_id': chat, 'text': text, 'parse_mode': 'HTML'},
+        r = requests.post(url, json={'chat_id': chat_id, 'text': text, 'parse_mode': 'HTML'},
                           verify=False, timeout=10)
         if r.ok:
             print('[Telegram] Sent OK')
         elif r.status_code == 400:
-            r2 = requests.post(url, json={'chat_id': chat, 'text': text}, verify=False, timeout=10)
+            r2 = requests.post(url, json={'chat_id': chat_id, 'text': text}, verify=False, timeout=10)
             print('[Telegram] Sent (plain)' if r2.ok else f'[Telegram] Error: {r2.text}')
         else:
             print(f'[Telegram] Error {r.status_code}: {r.text}')
@@ -325,7 +328,7 @@ def main():
     print("=" * 60)
 
     # Load RS to get candidate count
-    with open(RS_PATH) as f:
+    with open(RS_PATH, encoding="utf-8") as f:
         rs_data = json.load(f)
     universe = rs_data.get('universe', {})
     n_rs95 = sum(1 for v in universe.values() if float(v.get('rs_composite_pct') or 0) >= 95)
@@ -348,7 +351,7 @@ def main():
         'n_signals': n,
         'signals': signals.to_dict('records') if not signals.empty else []
     }
-    with open(OUT_PATH, 'w') as f:
+    with open(OUT_PATH, 'w', encoding='utf-8') as f:
         json.dump(out, f, indent=2, default=str)
     print(f"\nSaved → {OUT_PATH}")
 

@@ -42,7 +42,7 @@ OUT_PATH = _BASE_DIR / "data" / "research" / "pulse_us" / "pulse_us_daily_signal
 # ─────────────────────────────────────────────
 
 def load_rs_universe():
-    with open(RS_PATH) as f:
+    with open(RS_PATH, encoding="utf-8") as f:
         rs_data = json.load(f)
     universe = rs_data.get('universe', {})
     rows = []
@@ -77,7 +77,7 @@ def load_ohlcv(tickers, min_date):
 
 def load_quality_signals():
     """Load all quality signals (h3>70%, grade S_BOTH/S/A) from library."""
-    with open(LIB_PATH) as f:
+    with open(LIB_PATH, encoding="utf-8") as f:
         lib = json.load(f)
     quality = [
         r for r in lib.get('results', [])
@@ -704,6 +704,9 @@ def format_telegram(result, mkt, run_date):
 
 
 def send_telegram(text, token, chat_id):
+    # Telegram hard limit: 4096 chars per message
+    if len(text) > 4000:
+        text = text[:3970] + '\n... [truncated]'
     url = f'https://api.telegram.org/bot{token}/sendMessage'
     try:
         r = requests.post(url, json={'chat_id': chat_id, 'text': text, 'parse_mode': 'HTML'},
@@ -742,7 +745,7 @@ def main():
     if result is None:
         print("No results.")
         Path(OUT_PATH).parent.mkdir(parents=True, exist_ok=True)
-        with open(OUT_PATH, 'w') as f:
+        with open(OUT_PATH, 'w', encoding='utf-8') as f:
             json.dump({'date': run_date.strftime('%Y-%m-%d'), 'n_quality': 0,
                        'total_hits': 0, 'unique_tickers': 0}, f)
         return
