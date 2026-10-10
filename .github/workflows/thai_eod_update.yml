@@ -57,6 +57,33 @@ jobs:
           TVREMIX_API_KEY: ${{ secrets.TVREMIX_API_KEY }}
         run: python -X utf8 scripts/ci/th_eod_set_index.py
 
+      - name: Update .BK stock prices (EOD)
+        id: stock_update
+        continue-on-error: true
+        env:
+          PYTHONIOENCODING: utf-8
+          TVREMIX_API_KEY: ${{ secrets.TVREMIX_API_KEY }}
+        run: |
+          python -X utf8 scripts/research/thai_data_layer.py --update 2>&1 | tail -30
+
+      - name: Alert on stock update failure
+        if: steps.stock_update.outcome == 'failure'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python3 -c "
+          import os, urllib.request, json, ssl
+          token = os.environ['TELEGRAM_BOT_TOKEN']
+          chat  = os.environ['TELEGRAM_CHAT_ID']
+          msg   = '<b>[TH] EOD Stock Update FAILED</b> .BK prices NOT updated. RS rankings will use stale prices tomorrow. Check GH Actions.'
+          ctx = ssl.create_default_context(); ctx.check_hostname=False; ctx.verify_mode=ssl.CERT_NONE
+          payload = json.dumps({'chat_id': chat, 'text': msg, 'parse_mode': 'HTML'}).encode()
+          req = urllib.request.Request(f'https://api.telegram.org/bot{token}/sendMessage',
+                data=payload, headers={'Content-Type': 'application/json'})
+          urllib.request.urlopen(req, context=ctx, timeout=10)
+          " || true
+
       - name: Commit updated DB
         run: |
           git config user.name  "github-actions[bot]"

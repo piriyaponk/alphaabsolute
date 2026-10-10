@@ -79,6 +79,30 @@ jobs:
           restore-keys: |
             thai-ohlcv-db-${{ runner.os }}-
 
+      - name: Guard — verify thai_ohlcv.db is present and non-empty
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python3 -c "
+          import os, sys, urllib.request, json, ssl
+          db = 'data/research/thai_ohlcv.db'
+          if not os.path.exists(db) or os.path.getsize(db) < 1_000_000:
+              token = os.environ.get('TELEGRAM_BOT_TOKEN', '')
+              chat  = os.environ.get('TELEGRAM_CHAT_ID', '')
+              if token and chat:
+                  msg = '<b>[TH] DB cache expired</b> thai_ohlcv.db missing or <1MB. Paper trader NOT run. Cache expired — manual restore required.'
+                  ctx = ssl.create_default_context(); ctx.check_hostname=False; ctx.verify_mode=ssl.CERT_NONE
+                  payload = json.dumps({'chat_id': chat, 'text': msg, 'parse_mode': 'HTML'}).encode()
+                  req = urllib.request.Request(f'https://api.telegram.org/bot{token}/sendMessage',
+                        data=payload, headers={'Content-Type': 'application/json'})
+                  try: urllib.request.urlopen(req, context=ctx, timeout=10)
+                  except: pass
+              print('ERROR: thai_ohlcv.db missing or too small', file=sys.stderr)
+              sys.exit(1)
+          print(f'DB OK: {os.path.getsize(db):,} bytes')
+          "
+
       - name: Update thai_ohlcv.db
         id: update_db
         if: steps.date_check.outputs.already_ran != 'true'
