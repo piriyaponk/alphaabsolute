@@ -23,6 +23,11 @@ import os
 import requests
 import argparse
 from datetime import datetime, timedelta
+try:
+    from pulse_us_db import init_db, upsert_signals, get_connection
+    _DB_AVAILABLE = True
+except ImportError:
+    _DB_AVAILABLE = False
 from pathlib import Path
 
 # Use lightweight pulse_us_ohlcv.db if available (GitHub Actions / no local ohlcv.db)
@@ -772,7 +777,7 @@ def main():
                               ticker_hits.items(),
                               key=lambda x: -pulse_scores[x[0]]['breadth_pct'])},
     }
-    with open(OUT_PATH, 'w') as f:
+    with open(OUT_PATH, 'w', encoding='utf-8') as f:
         json.dump(out, f, indent=2, default=str)
     print(f"\nSaved → {OUT_PATH}")
 
