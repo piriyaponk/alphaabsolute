@@ -98,7 +98,7 @@ def main():
 
     # Load state
     try:
-        state = json.loads(Path(STATE_FILE).read_text())
+        state = json.loads(Path(STATE_FILE).read_text(encoding="utf-8"))
         positions = state.get('positions', {})
     except Exception as e:
         print(f'[ERROR] Cannot read state: {e}'); sys.exit(1)
@@ -174,7 +174,7 @@ def main():
     # Save output
     output = {'date': today, 'results': results,
                'alerts': len(alerts), 'warns': sum(1 for r in results if r['status'] == 'WARN')}
-    Path(OUT_FILE).write_text(json.dumps(output, indent=2))
+    Path(OUT_FILE).write_text(json.dumps(output, indent=2), encoding="utf-8")
     print(f'\n[SAVED] {OUT_FILE}')
 
     # Telegram ALERT

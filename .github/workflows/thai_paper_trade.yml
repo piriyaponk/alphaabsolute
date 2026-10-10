@@ -75,7 +75,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: data/research/thai_ohlcv.db
-          key: thai-ohlcv-db-${{ runner.os }}-${{ github.run_id }}
+          key: thai-ohlcv-db-${{ runner.os }}-${{ hashFiles('scripts/research/thai_data_layer.py') }}
           restore-keys: |
             thai-ohlcv-db-${{ runner.os }}-
 
