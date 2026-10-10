@@ -38,5 +38,95 @@
     "holdings": [],
     "sells": [],
     "buys": []
+  },
+  {
+    "date": "2026-09-18",
+    "nav": 1000000.0,
+    "set_nav": 1017183.0,
+    "daily_ret": 0.0,
+    "set_daily": 0.86,
+    "holdings": [],
+    "sells": [],
+    "buys": []
+  },
+  {
+    "date": "2026-09-25",
+    "nav": 1000000.0,
+    "set_nav": 1017183.0,
+    "daily_ret": 0.0,
+    "set_daily": 0.0,
+    "holdings": [],
+    "sells": [],
+    "buys": []
+  },
+  {
+    "date": "2026-09-29",
+    "nav": 1000000.0,
+    "set_nav": 1012060.0,
+    "daily_ret": 0.0,
+    "set_daily": -0.5,
+    "holdings": [],
+    "sells": [],
+    "buys": []
+  },
+  {
+    "date": "2026-09-29",
+    "nav": 1000000.0,
+    "set_nav": 1006963.0,
+    "daily_ret": 0.0,
+    "set_daily": -0.5,
+    "holdings": [],
+    "sells": [],
+    "buys": []
+  },
+  {
+    "date": "2026-09-30",
+    "nav": 1000000.0,
+    "set_nav": 984674.0,
+    "daily_ret": 0.0,
+    "set_daily": -2.21,
+    "holdings": [],
+    "sells": [],
+    "buys": []
+  },
+  {
+    "date": "2026-09-30",
+    "nav": 1000000.0,
+    "set_nav": 962878.0,
+    "daily_ret": 0.0,
+    "set_daily": -2.21,
+    "holdings": [],
+    "sells": [],
+    "buys": []
+  },
+  {
+    "date": "2026-09-30",
+    "nav": 1000000.0,
+    "set_nav": 941565.0,
+    "daily_ret": 0.0,
+    "set_daily": -2.21,
+    "holdings": [],
+    "sells": [],
+    "buys": []
+  },
+  {
+    "date": "2026-10-05",
+    "nav": 1000000.0,
+    "set_nav": 972931.0,
+    "daily_ret": 0.0,
+    "set_daily": 0.31,
+    "holdings": [],
+    "sells": [],
+    "buys": []
+  },
+  {
+    "date": "2026-10-08",
+    "nav": 1000000.0,
+    "set_nav": 969327.0,
+    "daily_ret": 0.0,
+    "set_daily": -0.88,
+    "holdings": [],
+    "sells": [],
+    "buys": []
   }
 ]

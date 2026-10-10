@@ -1,23 +1,43 @@
 {
-  "date": "2026-06-16",
-  "prev_date": "260615",
+  "date": "2026-10-10",
+  "prev_date": "261008",
   "n_universe": 1802,
   "n_climbers": 0,
   "n_droppers": 0,
-  "n_rev_inflections": 1,
+  "n_rev_inflections": 3,
   "climbers": [],
   "droppers": [],
   "revenue_inflections": [
     {
-      "ticker": "ACRS",
+      "ticker": "ACTG",
       "event": "revenue_inflection",
-      "rev_q0": 37.2,
-      "rev_q1": -24.1,
-      "eps_q0": -25.0,
-      "rs_3m": 90.1,
+      "rev_q0": 123.6,
+      "rev_q1": -56.4,
+      "eps_q0": 100.0,
+      "rs_3m": 65.8,
       "theme": "\u2014",
-      "note": "Rev inflection: Q-1=-24%\u2192Q0=37%"
+      "note": "Rev inflection: Q-1=-56%\u2192Q0=124%"
+    },
+    {
+      "ticker": "AA",
+      "event": "revenue_inflection",
+      "rev_q0": 31.4,
+      "rev_q1": -5.2,
+      "eps_q0": 146.8,
+      "rs_3m": 79.2,
+      "theme": "\u2014",
+      "note": "Rev inflection: Q-1=-5%\u2192Q0=31%"
+    },
+    {
+      "ticker": "ACON",
+      "event": "revenue_inflection",
+      "rev_q0": 30.5,
+      "rev_q1": 11.3,
+      "eps_q0": 59.3,
+      "rs_3m": 74.4,
+      "theme": "\u2014",
+      "note": "Rev inflection: Q-1=11%\u2192Q0=30%"
     }
   ],
-  "generated_at": "21:25"
+  "generated_at": "09:17"
 }

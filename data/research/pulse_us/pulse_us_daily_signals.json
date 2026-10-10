@@ -1,42 +1,392 @@
 {
-  "date": "2026-09-30",
+  "date": "2026-10-08",
   "market_context": {
-    "n_universe": 5094,
-    "n_rs70": 552,
-    "n_rs95": 62,
-    "pct_rs70": 10.8
+    "n_universe": 5109,
+    "n_rs70": 846,
+    "n_rs95": 31,
+    "pct_rs70": 16.6
   },
-  "n_quality": 6,
-  "total_hits": 1,
-  "unique_tickers": 1,
+  "n_quality": 292,
+  "total_hits": 162,
+  "unique_tickers": 20,
   "pulse_scores": {
-    "AOUT": {
+    "ABCL": {
       "breadth": 1,
-      "breadth_pct": 16.7,
-      "avg_h3": 80.0
+      "breadth_pct": 5.0,
+      "avg_h3": 81.8,
+      "n_signals_fired": 1
+    },
+    "AEHR": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0
+    },
+    "ALNT": {
+      "breadth": 1,
+      "breadth_pct": 5.0,
+      "avg_h3": 79.8,
+      "n_signals_fired": 4
+    },
+    "ASST": {
+      "breadth": 2,
+      "breadth_pct": 10.0,
+      "avg_h3": 74.7,
+      "n_signals_fired": 2
+    },
+    "AXTI": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0
+    },
+    "CBOE": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0
+    },
+    "CDNA": {
+      "breadth": 2,
+      "breadth_pct": 10.0,
+      "avg_h3": 76.4,
+      "n_signals_fired": 7
+    },
+    "CERT": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0
+    },
+    "COHU": {
+      "breadth": 1,
+      "breadth_pct": 5.0,
+      "avg_h3": 79.8,
+      "n_signals_fired": 4
+    },
+    "CRSR": {
+      "breadth": 1,
+      "breadth_pct": 5.0,
+      "avg_h3": 81.8,
+      "n_signals_fired": 2
+    },
+    "CRWD": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0
+    },
+    "CVI": {
+      "breadth": 2,
+      "breadth_pct": 10.0,
+      "avg_h3": 80.2,
+      "n_signals_fired": 12
+    },
+    "FORM": {
+      "breadth": 2,
+      "breadth_pct": 10.0,
+      "avg_h3": 83.1,
+      "n_signals_fired": 12
+    },
+    "HPE": {
+      "breadth": 3,
+      "breadth_pct": 15.0,
+      "avg_h3": 80.2,
+      "n_signals_fired": 10
+    },
+    "LITE": {
+      "breadth": 2,
+      "breadth_pct": 10.0,
+      "avg_h3": 80.2,
+      "n_signals_fired": 7
+    },
+    "MRNA": {
+      "breadth": 2,
+      "breadth_pct": 10.0,
+      "avg_h3": 96.3,
+      "n_signals_fired": 28
+    },
+    "NTAP": {
+      "breadth": 3,
+      "breadth_pct": 15.0,
+      "avg_h3": 80.2,
+      "n_signals_fired": 12
+    },
+    "NTRA": {
+      "breadth": 1,
+      "breadth_pct": 5.0,
+      "avg_h3": 81.8,
+      "n_signals_fired": 1
+    },
+    "OKTA": {
+      "breadth": 2,
+      "breadth_pct": 10.0,
+      "avg_h3": 80.2,
+      "n_signals_fired": 11
+    },
+    "QMCO": {
+      "breadth": 2,
+      "breadth_pct": 10.0,
+      "avg_h3": 79.5,
+      "n_signals_fired": 6
+    },
+    "S": {
+      "breadth": 2,
+      "breadth_pct": 10.0,
+      "avg_h3": 79.9,
+      "n_signals_fired": 9
+    },
+    "SITM": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0
+    },
+    "SMTC": {
+      "breadth": 2,
+      "breadth_pct": 10.0,
+      "avg_h3": 81.2,
+      "n_signals_fired": 12
+    },
+    "STX": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0
+    },
+    "TWLO": {
+      "breadth": 2,
+      "breadth_pct": 10.0,
+      "avg_h3": 83.1,
+      "n_signals_fired": 10
+    },
+    "U": {
+      "breadth": 1,
+      "breadth_pct": 5.0,
+      "avg_h3": 81.8,
+      "n_signals_fired": 1
+    },
+    "UMC": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0
+    },
+    "VICR": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0
+    },
+    "ZBRA": {
+      "breadth": 2,
+      "breadth_pct": 10.0,
+      "avg_h3": 80.2,
+      "n_signals_fired": 11
     }
   },
-  "signals": {
-    "SIG1": [],
-    "SIG2": [],
-    "SIG3": [],
-    "SIG4": [
-      {
-        "ticker": "AOUT",
-        "price": 17.08,
-        "rs_pct": 95.5,
-        "pct_from_52w_high": -2.7,
-        "price_vs_ma50_pct": 29.7,
-        "dd_recovery": 1.72,
-        "vol_trend": -0.037,
-        "vol_contraction": 0.37,
-        "base_tight": 0.056,
-        "pocket_pivot": 0.0,
-        "trend_consistency": 70.0,
-        "sharpe_60d": 1.08
-      }
+  "ticker_hits": {
+    "HPE": [
+      "F_BASE_bt40_bp80_vc60",
+      "F_BASE_bt40_bp90_vc60",
+      "F21_rs90_bt60_ATH3_OR",
+      "F_REC_ddr30_ATH5_bt70",
+      "F21_rs90_bt60_ATH3_lo70",
+      "F21_rs90_bt60_ATH3_ddr15",
+      "F_REC_ddr25_ATH5_bt70",
+      "F_BASE_bt50_bp80_rs90_uvr60_ATH5",
+      "F8_rs90_res15_sr15_OR",
+      "F21_rs90_bt60_ATH3_sr15"
     ],
-    "SIG5": [],
-    "SIG6": []
+    "NTAP": [
+      "F_BASE_bt40_bp80_vc60",
+      "F_BASE_bt40_bp90_vc60",
+      "F21_rs90_bt60_ATH3_OR",
+      "F21_rs85_bt60_ATH3_ads_tc60",
+      "F_REC_ddr30_ATH5_bt70",
+      "F21_rs90_bt60_ATH3_lo70",
+      "F21_rs90_bt60_ATH3_ddr15",
+      "F21_rs90_bt60_ATH3_ads_tc60",
+      "F_REC_ddr25_ATH5_bt70",
+      "F_BASE_bt50_bp80_rs90_uvr60_ATH5",
+      "F8_rs90_res15_sr15_OR",
+      "F21_rs90_bt60_ATH3_sr15"
+    ],
+    "ASST": [
+      "F_BASE_bt40_bp85_vc70",
+      "F8_rs90_res15_sr15_OR"
+    ],
+    "CDNA": [
+      "F_BASE_bt40_bp80_vc60",
+      "F8_rs95_res15_sr15_OR",
+      "F8_rs90_res15_sr15_OR",
+      "F_REC_ddr20_tc70",
+      "F_REC_ddr20_rs80_tc70",
+      "F_REC_ddr20_rs70_tc70",
+      "F8_rs95_res15_sr15_ddr10"
+    ],
+    "CVI": [
+      "F_BASE_bt40_bp80_vc60",
+      "F_BASE_bt40_bp90_vc60",
+      "F21_rs90_bt60_ATH3_OR",
+      "F_REC_ddr30_ATH5_bt70",
+      "F21_rs90_bt60_ATH3_lo70",
+      "F21_rs90_bt60_ATH3_ddr15",
+      "F_REC_ddr25_ATH5_bt70",
+      "F_REC_ddr20_ATH5_bt70",
+      "F_BASE_bt50_bp80_rs90_uvr60_ATH5",
+      "F_REC_ddr20_tc70",
+      "F_REC_ddr20_rs80_tc70",
+      "F_REC_ddr20_rs70_tc70"
+    ],
+    "FORM": [
+      "F1_vt05_ddr15_tc60",
+      "F1_vt05_ddr15",
+      "F_BASE_bt40_bp80_vc60",
+      "F1_vt05_ddr12",
+      "F1_vt05_ddr15_ads",
+      "F1_vt05_ddr12_bp70",
+      "F1_vt05_ddr12_ma20",
+      "F1_vt05_ddr15_bp70",
+      "F1_vt05_ddr12_ads",
+      "F1_vt05_ddr10_ma20",
+      "F1_vt05_OR_ddr15_ma20",
+      "F1_vt05_ddr15_ma20"
+    ],
+    "LITE": [
+      "F_BASE_bt40_bp80_vc60",
+      "F_BASE_bt40_bp90_vc60",
+      "F21_rs90_bt60_ATH3_OR",
+      "F_REC_ddr30_ATH5_bt70",
+      "F21_rs90_bt60_ATH3_lo70",
+      "F21_rs90_bt60_ATH3_ddr15",
+      "F_REC_ddr25_ATH5_bt70"
+    ],
+    "MRNA": [
+      "F_BASE_bt50_bp85_rs90_vc70_ATH5",
+      "F_BASE_bt40_bp85_rs90_vc70_ATH5",
+      "F_BASE_bt40_bp90_rs80_vc70_ATH5",
+      "F_BASE_bt50_bp90_rs90_vc70_ATH5",
+      "F_BASE_bt40_bp90_rs85_vc70_ATH5",
+      "F_BASE_bt40_bp80_rs90_vc70_ATH5",
+      "F_BASE_bt60_bp85_rs90_vc70_ATH5",
+      "F_BASE_bt40_bp90_rs90_vc70_ATH5",
+      "F_BASE_bt50_bp90_rs85_vc70_ATH5",
+      "F_BASE_bt40_bp85_rs80_vc70_ATH5",
+      "F_BASE_bt40_bp80_vc60",
+      "F_BASE_bt40_bp90_vc70",
+      "F_BASE_bt40_bp90_vc60",
+      "F_BASE_bt50_bp80_rs90_vc70_ATH5",
+      "F_BASE_bt60_bp80_rs90_vc70_ATH5",
+      "F_BASE_bt40_bp85_rs85_vc70_ATH5",
+      "F_BASE_bt60_bp90_rs90_vc70_ATH5",
+      "F_BASE_bt40_bp85_vc70",
+      "F_REC_ddr30_ATH5_bt70",
+      "F_REC_ddr25_ATH5_bt70",
+      "F_REC_ddr20_ATH5_bt70",
+      "F_BASE_bt50_bp80_rs90_uvr60_ATH5",
+      "F_BASE_bt40_bp80_rs80_vc70_ATH5",
+      "F8_rs90_res15_sr15_OR",
+      "F_BASE_bt60_bp90_rs85_vc70_ATH5",
+      "F_BASE_bt50_bp90_rs80_vc70_ATH5",
+      "F_BASE_bt40_bp80_vc70",
+      "F_BASE_bt60_bp85_rs80_vc70_ATH5"
+    ],
+    "OKTA": [
+      "F_BASE_bt40_bp80_vc60",
+      "F_BASE_bt40_bp90_vc60",
+      "F21_rs90_bt60_ATH3_OR",
+      "F21_rs85_bt60_ATH3_ads_tc60",
+      "F_REC_ddr30_ATH5_bt70",
+      "F21_rs90_bt60_ATH3_lo70",
+      "F21_rs90_bt60_ATH3_ddr15",
+      "F21_rs90_bt60_ATH3_ads_tc60",
+      "F_REC_ddr25_ATH5_bt70",
+      "F_BASE_bt50_bp80_rs90_uvr60_ATH5",
+      "F21_rs90_bt60_ATH3_sr15"
+    ],
+    "QMCO": [
+      "F_BASE_bt40_bp80_vc60",
+      "F_BASE_bt40_bp90_vc60",
+      "F8_rs95_res15_sr15_OR",
+      "F8_rs90_res15_sr15_OR",
+      "F8_rs95_res20_sr15_ddr10",
+      "F8_rs95_res15_sr15_ddr10"
+    ],
+    "S": [
+      "F_BASE_bt40_bp80_vc60",
+      "F_BASE_bt40_bp90_vc60",
+      "F21_rs85_bt60_ATH3_ads_tc60",
+      "F_REC_ddr30_ATH5_bt70",
+      "F21_rs90_bt60_ATH3_lo70",
+      "F21_rs90_bt60_ATH3_ads_tc60",
+      "F_REC_ddr25_ATH5_bt70",
+      "F_BASE_bt50_bp80_rs90_uvr60_ATH5",
+      "F21_rs90_bt60_ATH3_sr15"
+    ],
+    "SMTC": [
+      "F_BASE_bt40_bp80_vc60",
+      "F_BASE_bt40_bp90_vc60",
+      "F_REC_ddr25_ATH3_bt70_vc75",
+      "F_REC_ddr30_ATH3_bt70_vc75",
+      "F21_rs90_bt60_ATH3_OR",
+      "F21_rs85_bt60_ATH3_ads_tc60",
+      "F_REC_ddr30_ATH5_bt70",
+      "F21_rs90_bt60_ATH3_lo70",
+      "F21_rs90_bt60_ATH3_ddr15",
+      "F21_rs90_bt60_ATH3_ads_tc60",
+      "F_REC_ddr25_ATH5_bt70",
+      "F21_rs90_bt60_ATH3_sr15"
+    ],
+    "TWLO": [
+      "F1_vt10_ddr10_bp70",
+      "F_BASE_bt40_bp80_vc60",
+      "F1_vt10_ddr10_tc60",
+      "F1_vt05_ddr12_sr15",
+      "F1_vt05_ddr12",
+      "F1_vt10_ddr10",
+      "F1_vt10_ddr10_ads",
+      "F1_vt05_ddr12_bp70",
+      "F1_vt05_ddr12_ads",
+      "F1_vt10_ddr10_sr15"
+    ],
+    "ZBRA": [
+      "F_BASE_bt40_bp80_vc60",
+      "F_BASE_bt40_bp90_vc60",
+      "F21_rs90_bt60_ATH3_OR",
+      "F21_rs85_bt60_ATH3_ads_tc60",
+      "F_REC_ddr30_ATH5_bt70",
+      "F21_rs90_bt60_ATH3_lo70",
+      "F21_rs90_bt60_ATH3_ddr15",
+      "F21_rs90_bt60_ATH3_ads_tc60",
+      "F_REC_ddr25_ATH5_bt70",
+      "F_BASE_bt50_bp80_rs90_uvr60_ATH5",
+      "F21_rs90_bt60_ATH3_sr15"
+    ],
+    "ABCL": [
+      "F_BASE_bt40_bp80_vc60"
+    ],
+    "ALNT": [
+      "F_BASE_bt40_bp80_vc60",
+      "F_BASE_bt40_bp90_vc60",
+      "F_REC_ddr30_ATH5_bt70",
+      "F_REC_ddr25_ATH5_bt70"
+    ],
+    "COHU": [
+      "F_BASE_bt40_bp80_vc60",
+      "F_BASE_bt40_bp90_vc60",
+      "F_REC_ddr30_ATH5_bt70",
+      "F_REC_ddr25_ATH5_bt70"
+    ],
+    "CRSR": [
+      "F_BASE_bt40_bp80_vc60",
+      "F_BASE_bt40_bp90_vc60"
+    ],
+    "NTRA": [
+      "F_BASE_bt40_bp80_vc60"
+    ],
+    "U": [
+      "F_BASE_bt40_bp80_vc60"
+    ]
   }
 }

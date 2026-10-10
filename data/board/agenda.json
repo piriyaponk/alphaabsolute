@@ -1,5 +1,61 @@
 [
   {
+    "id": "BOA-026",
+    "date": "2026-10-01",
+    "status": "OPEN",
+    "title": "Earnings Gap Risk Gate — Stop-Loss Blind Spot",
+    "question": "Stop-loss -12% is structurally blind to ALL overnight gaps (any sector). Should A10 add a gap risk position cap near known binary events?",
+    "type": "standard",
+    "required_votes": "3/4",
+    "flagged_by": "BOA-025 Quant"
+  },
+  {
+    "id": "BOA-027",
+    "date": "2026-10-01",
+    "status": "OPEN",
+    "title": "SIC Backfill — Data Infrastructure (DE Task)",
+    "question": "Build Polygon SIC backfill script. Populate company_info.sic_code for >80% of universe. Required before BOA-025 Tier 1 mechanical enforcement.",
+    "type": "de-task",
+    "required_votes": "N/A",
+    "assigned_to": "de-team",
+    "parent": "BOA-025"
+  },
+  {
+    "id": "BOA-025",
+    "date": "2026-10-01",
+    "status": "CLOSED",
+    "title": "Pharma Binary Event Gate",
+    "question": "LQDA entered System 4 on 2026-09-02 (RS high, revenue present, Stage 2) and dropped -55.6% on a pharma binary event, costing -42634 realized. All PRISM gates PASSED. Should PRISM add a gate to block or size-limit pharma/biotech stocks facing imminent FDA decisions or clinical readouts?",
+    "type": "standard",
+    "required_votes": "3/4",
+    "context": {
+      "incident": "LQDA: entered Sep 2 at 68.14, exited Sep 30 at 30.24, realized -55.6% (-42634)",
+      "gate_status": "All 5 PRISM gates passed at entry",
+      "root_cause": "Pharma binary risk (FDA/clinical catalyst) not captured by momentum gates",
+      "proposed_options": [
+        "Option A: Hard block GICS Biotechnology + Pharmaceuticals from PRISM",
+        "Option B: Soft gate — if implied move > 20% within 30 days, block or cap at 2.5%",
+        "Option C: Revenue quality gate — require product_revenue > 80% of total",
+        "Option D: Catalyst calendar gate — PDUFA dates within 60 days reduce to 2.5%"
+      ],
+      "current_pharma_in_portfolio": [
+        "MRNA 8.5%",
+        "IBRX 6.7%"
+      ]
+    },
+    "result": "CONDITIONAL_APPROVED",
+    "decisions": [
+      "DEC-032"
+    ],
+    "vote": {
+      "fund_manager": "Y",
+      "research": "Y",
+      "quant": "N",
+      "da": "Y",
+      "result": "3-1 CONDITIONAL"
+    }
+  },
+  {
     "id": "BOA-024",
     "date": "2026-06-15",
     "status": "CLOSED",
@@ -8,10 +64,29 @@
     "type": "regime-critical",
     "required_votes": "4/4",
     "context": {
-      "current_factors": ["A: price_structure (QQQ vs 50/200DMA)", "B: distribution_days (BOA-023: zero predictive value in rising trends per Bulkowski)", "C: breadth (pct_above_50dma — internally derived threshold)", "E: rs_leaders_count", "F: intermarket (VIX, yield curve)", "G: sentiment (VIX level)"],
-      "approved_but_non_functional": ["AD line direction (BOA-001, 11 history entries vs 21 needed)", "NH/NL acceleration (BOA-001, indexing bug)"],
-      "practitioner_consensus_on_regime": ["Price trend vs key MAs", "Breadth thrust/deterioration (A-D line, NH-NL)", "Volume behavior at index level (Wyckoff/Lowry accumulation vs distribution)", "Credit & liquidity (HY spread, yield curve — Druckenmiller)"],
-      "not_yet_measured": ["A-D line rate of change", "Volume quality at index level (up-volume vs down-volume ratio)", "NH/NL ratio trend (not just level)"]
+      "current_factors": [
+        "A: price_structure (QQQ vs 50/200DMA)",
+        "B: distribution_days (BOA-023: zero predictive value in rising trends per Bulkowski)",
+        "C: breadth (pct_above_50dma — internally derived threshold)",
+        "E: rs_leaders_count",
+        "F: intermarket (VIX, yield curve)",
+        "G: sentiment (VIX level)"
+      ],
+      "approved_but_non_functional": [
+        "AD line direction (BOA-001, 11 history entries vs 21 needed)",
+        "NH/NL acceleration (BOA-001, indexing bug)"
+      ],
+      "practitioner_consensus_on_regime": [
+        "Price trend vs key MAs",
+        "Breadth thrust/deterioration (A-D line, NH-NL)",
+        "Volume behavior at index level (Wyckoff/Lowry accumulation vs distribution)",
+        "Credit & liquidity (HY spread, yield curve — Druckenmiller)"
+      ],
+      "not_yet_measured": [
+        "A-D line rate of change",
+        "Volume quality at index level (up-volume vs down-volume ratio)",
+        "NH/NL ratio trend (not just level)"
+      ]
     }
   },
   {
@@ -23,6 +98,10 @@
     "type": "regime-critical",
     "required_votes": "4/4",
     "result": "CONDITIONAL_APPROVED",
-    "decisions": ["DEC-027", "DEC-028", "DEC-029"]
+    "decisions": [
+      "DEC-027",
+      "DEC-028",
+      "DEC-029"
+    ]
   }
 ]

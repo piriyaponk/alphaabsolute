@@ -154,15 +154,9 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          # Stage + commit FIRST (clears working tree), THEN rebase so git rebase
-          # doesn't fail with "You have unstaged changes."
-          git add data/research/thai_paper_portfolio.json \
-                  data/research/thai_paper_log.json \
-                  data/research/thai_entry_screen_results.csv \
-                  data/research/thai_entry_screen_summary.csv \
-                  data/research/thai_ohlcv.db \
-                  data/research/set_universe.json \
-                  data/research/thai_pulse/pulse_th_daily_signals.json 2>/dev/null || true
+          # Stage ALL tracked modified files first — prevents "unstaged changes" error on rebase.
+          # Specific paths would miss tracked files modified by other concurrent workflows.
+          git add -u
           git diff --staged --quiet || \
             git commit -m "th-paper: daily update $(date -u +%Y-%m-%d)"
           git fetch origin

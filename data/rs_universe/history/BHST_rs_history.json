@@ -70,5 +70,143 @@
     "rs_1m_pct": 12.6,
     "rs_3m_pct": 14.6,
     "date": "2026-09-06"
+  },
+  {
+    "rs_composite_pct": 29.8,
+    "rs_1m_pct": 53.8,
+    "rs_3m_pct": 4.5,
+    "date": "2026-09-13"
+  },
+  {
+    "rs_composite_pct": 29.8,
+    "rs_1m_pct": 53.8,
+    "rs_3m_pct": 4.5,
+    "date": "2026-09-14"
+  },
+  {
+    "rs_composite_pct": 29.8,
+    "rs_1m_pct": 53.8,
+    "rs_3m_pct": 4.5,
+    "date": "2026-09-15"
+  },
+  {
+    "rs_composite_pct": 20.6,
+    "rs_1m_pct": 36.2,
+    "rs_3m_pct": 4.3,
+    "date": "2026-09-18"
+  },
+  {
+    "rs_composite_pct": 13.6,
+    "rs_1m_pct": 25.4,
+    "rs_3m_pct": 3.3,
+    "date": "2026-09-19"
+  },
+  {
+    "rs_composite_pct": 13.6,
+    "rs_1m_pct": 25.4,
+    "rs_3m_pct": 3.3,
+    "date": "2026-09-20"
+  },
+  {
+    "rs_composite_pct": 13.6,
+    "rs_1m_pct": 25.4,
+    "rs_3m_pct": 3.3,
+    "date": "2026-09-21"
+  },
+  {
+    "rs_composite_pct": 13.6,
+    "rs_1m_pct": 25.4,
+    "rs_3m_pct": 3.3,
+    "date": "2026-09-22"
+  },
+  {
+    "rs_composite_pct": 13.6,
+    "rs_1m_pct": 25.4,
+    "rs_3m_pct": 3.3,
+    "date": "2026-09-23"
+  },
+  {
+    "rs_composite_pct": 13.6,
+    "rs_1m_pct": 25.4,
+    "rs_3m_pct": 3.3,
+    "date": "2026-09-24"
+  },
+  {
+    "rs_composite_pct": 22.5,
+    "rs_1m_pct": 27.7,
+    "rs_3m_pct": 9.1,
+    "date": "2026-09-25"
+  },
+  {
+    "rs_composite_pct": 4.9,
+    "rs_1m_pct": 4.6,
+    "rs_3m_pct": 5.4,
+    "date": "2026-09-26"
+  },
+  {
+    "rs_composite_pct": 4.9,
+    "rs_1m_pct": 4.6,
+    "rs_3m_pct": 5.4,
+    "date": "2026-09-27"
+  },
+  {
+    "rs_composite_pct": 4.9,
+    "rs_1m_pct": 4.6,
+    "rs_3m_pct": 5.4,
+    "date": "2026-09-29"
+  },
+  {
+    "rs_composite_pct": 4.9,
+    "rs_1m_pct": 4.6,
+    "rs_3m_pct": 5.4,
+    "date": "2026-09-30"
+  },
+  {
+    "rs_composite_pct": 13.1,
+    "rs_1m_pct": 8.7,
+    "rs_3m_pct": 6.3,
+    "date": "2026-10-01"
+  },
+  {
+    "rs_composite_pct": 13.2,
+    "rs_1m_pct": 13.6,
+    "rs_3m_pct": 7.2,
+    "date": "2026-10-02"
+  },
+  {
+    "rs_composite_pct": 20.3,
+    "rs_1m_pct": 9.4,
+    "rs_3m_pct": 6.8,
+    "date": "2026-10-03"
+  },
+  {
+    "rs_composite_pct": 20.3,
+    "rs_1m_pct": 9.4,
+    "rs_3m_pct": 6.8,
+    "date": "2026-10-04"
+  },
+  {
+    "rs_composite_pct": 20.3,
+    "rs_1m_pct": 9.4,
+    "rs_3m_pct": 6.8,
+    "date": "2026-10-05"
+  },
+  {
+    "rs_composite_pct": 20.3,
+    "rs_1m_pct": 9.4,
+    "rs_3m_pct": 6.8,
+    "date": "2026-10-07"
+  },
+  {
+    "rs_composite_pct": 20.3,
+    "rs_1m_pct": 9.4,
+    "rs_3m_pct": 6.8,
+    "date": "2026-10-08"
+  },
+  {
+    "rs_composite_pct": 28.2,
+    "rs_1m_pct": 16.0,
+    "rs_3m_pct": 7.3,
+    "date": "2026-10-10"
   }
 ]

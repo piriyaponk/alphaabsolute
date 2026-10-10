@@ -37,7 +37,7 @@ STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
 # ── Config ─────────────────────────────────────────────────────────────────
 COMBINED = dict(rs_days=21, top_n=10, rebal_days=5, regime_ma=50, rs_type="vol_weight")
 STARTING_NAV   = 1_000_000.0   # ฿1,000,000
-SET_INDEX      = "TDEX.BK"    # TDEX.BK = SET ETF proxy (^SET.BK has Yahoo data gaps)
+# SET_INDEX removed — TDEX.BK discontinued. Regime gate uses set_index_history (real SET).
 TCOST_BUY      = 0.0015
 TCOST_SELL     = 0.0015
 ADTV_MIN_THB   = 20_000_000
@@ -92,7 +92,7 @@ def load_prices():
 
 
 def eligible_universe(prices, volumes, today, lookback=126):
-    hard_exclude = {SET_INDEX, "^SET.BK", "TDEX.BK"}
+    hard_exclude = {"TDEX.BK", "^SET.BK"}
     eligible = set()
     idx_pos = prices.index.get_loc(today)
     lb_pos  = max(0, idx_pos - lookback)
@@ -112,7 +112,7 @@ def eligible_universe(prices, volumes, today, lookback=126):
 
 
 # ── SET benchmark helpers ─────────────────────────────────────────────────
-_SET_SYNTHETIC = ["ADVANC.BK", "PTT.BK", "KBANK.BK"]  # fallback if TDEX stale
+_SET_SYNTHETIC = ["ADVANC.BK", "PTT.BK", "KBANK.BK"]  # fallback if set_index_history stale
 _MAX_STALE_DAYS = 5  # calendar days before falling back to synthetic (5 = covers Fri data valid through Tue after 3-day weekend)
 
 
@@ -122,8 +122,8 @@ def _get_set_latest_price() -> tuple[float | None, str]:
     Fallback chain (pick freshest date across all sources):
       0. tvremix SET:SET — real-time, always today's data when market closed
       1. set_index_history table — real SET level from Investing.com scraper
-      2. TDEX.BK from thai_ohlcv — SET50 ETF proxy (tracking error ~0.3%)
-      3. Synthetic ADVANC+PTT+KBANK — last resort
+      2. Synthetic ADVANC+PTT+KBANK — last resort
+    (TDEX.BK removed — discontinued ETF, scale mismatch vs set_inception_price ~1600)
 
     Returns (price, source).
     """
@@ -146,7 +146,7 @@ def _get_set_latest_price() -> tuple[float | None, str]:
     except Exception:
         pass
 
-    # Source 1 & 2: DB-backed sources
+    # Source 1: set_index_history — real SET composite from Investing.com scraper
     db = ROOT / "data" / "research" / "thai_ohlcv.db"
     if db.exists():
         try:
@@ -154,14 +154,9 @@ def _get_set_latest_price() -> tuple[float | None, str]:
             row_set = conn.execute(
                 "SELECT date, close FROM set_index_history ORDER BY date DESC LIMIT 1"
             ).fetchone()
-            row_tdex = conn.execute(
-                "SELECT date, close FROM thai_ohlcv WHERE ticker='TDEX.BK' ORDER BY date DESC LIMIT 1"
-            ).fetchone()
             conn.close()
             if row_set and row_set[0] and row_set[1] and row_set[0] > stale_cutoff:
                 candidates.append((row_set[0], float(row_set[1]), "set_index"))
-            if row_tdex and row_tdex[0] and row_tdex[1] and row_tdex[0] > stale_cutoff:
-                candidates.append((row_tdex[0], float(row_tdex[1]), "tdex"))
         except Exception:
             pass
 
@@ -211,14 +206,16 @@ def _calc_set_ret_cum(state: dict, set_nav: float) -> float:
     """Return cumulative SET return (%) anchored to inception date.
 
     Fallback chain:
-      1. TDEX.BK from DB (fresh ≤3 days)
+      1. tvremix or set_index_history — real SET composite index (~1500-1600 scale)
       2. Synthetic proxy: ADVANC+PTT+KBANK from DB
       3. set_nav accumulation (legacy)
+
+    TDEX.BK removed — _get_set_latest_price() now returns only tvremix/set_index (real SET ~1500-1600).
     """
     set_inc_px = state.get("set_inception_price")
     if set_inc_px and set_inc_px > 0:
         px, source = _get_set_latest_price()
-        if px:
+        if px and source in ("tvremix", "set_index"):
             return (px / set_inc_px - 1) * 100
         # Fallback to synthetic
         syn = _get_synthetic_ratio(state)
@@ -276,9 +273,6 @@ def compute_signal(prices, volumes, today, state):
     regime_ma  = COMBINED["regime_ma"]
     rs_type    = COMBINED["rs_type"]
 
-    if SET_INDEX not in prices.columns:
-        return state["holdings"], False, []
-
     trading_dates = prices.index.tolist()
     if today not in prices.index:
         return state["holdings"], False, []
@@ -290,9 +284,9 @@ def compute_signal(prices, volumes, today, state):
     # Exit CASH:  SET < MA50 × 0.995  (-0.5% below)
     # Dead zone [0.995–1.005]: stay in previous regime, no trade
     #
-    # Source 1: Investing.com SET direct (curr_id=45425, no API key)
-    # Source 2: TDEX.BK via Yahoo Finance (ETF proxy from DB)
-    # Source 3: Synthetic equal-weight ADVANC+PTT+KBANK from DB
+    # Source 1: set_index_history — real SET composite (Investing.com scraper)
+    # Source 2: Synthetic equal-weight ADVANC+PTT+KBANK from DB
+    # (TDEX.BK removed — discontinued)
 
     set_today = np.nan
     ma_today  = np.nan
@@ -333,19 +327,7 @@ def compute_signal(prices, volumes, today, state):
         except Exception:
             pass
 
-    # ── Source 2: TDEX.BK from DB (fallback if Investing.com fails) ───────────
-    if pd.isna(set_today) or pd.isna(ma_today):
-        if SET_INDEX in prices.columns:
-            set_idx   = prices[SET_INDEX].dropna()
-            set_ma    = set_idx.rolling(regime_ma, min_periods=int(regime_ma * 0.75)).mean()
-            src2_today    = set_idx.get(today, np.nan)
-            src2_ma_today = set_ma.get(today, np.nan)
-            if not pd.isna(src2_today) and not pd.isna(src2_ma_today):
-                set_today = src2_today
-                ma_today  = src2_ma_today
-                print(f"[regime] Investing.com unavailable — using TDEX.BK proxy (normal fallback)")
-
-    # ── Source 3: Synthetic proxy — equal-weight ADVANC+PTT+KBANK ────────────
+    # ── Source 2: Synthetic proxy — equal-weight ADVANC+PTT+KBANK ────────────
     _SYNTHETIC_TICKERS = ["ADVANC.BK", "PTT.BK", "KBANK.BK"]
     if pd.isna(set_today) or pd.isna(ma_today):
         synth_avail = [t for t in _SYNTHETIC_TICKERS if t in prices.columns]
@@ -360,8 +342,8 @@ def compute_signal(prices, volumes, today, state):
                 if not pd.isna(synth_today) and not pd.isna(synth_ma_today):
                     set_today = synth_today
                     ma_today  = synth_ma_today
-                    _tg(f"<b>[TH] ⚠️ SOURCE 3 SYNTHETIC | {today.date()}</b>\n"
-                        f"Investing.com + TDEX.BK ขาด — ใช้ synthetic proxy ({', '.join(synth_avail)})\n"
+                    _tg(f"<b>[TH] ⚠️ SOURCE 2 SYNTHETIC | {today.date()}</b>\n"
+                        f"Investing.com ขาด — ใช้ synthetic proxy ({', '.join(synth_avail)})\n"
                         f"Proxy signal: {'BULL' if synth_today > synth_ma_today * 1.005 else 'BEAR'}\n"
                         f"ตรวจสอบ: python scripts/research/thai_data_layer.py --update")
 
@@ -369,7 +351,7 @@ def compute_signal(prices, volumes, today, state):
         bull = False
         # Alert: all proxies failed, forced to CASH as last resort
         _tg(f"<b>[TH] ⚠️ DATA ALERT | {today.date()}</b>\n"
-            f"{SET_INDEX} และ synthetic proxy ขาดทุกตัว — บังคับ CASH\n"
+            f"set_index_history และ synthetic proxy ขาดทุกตัว — บังคับ CASH\n"
             f"ตรวจสอบ: python scripts/research/thai_data_layer.py --update")
     elif set_today > ma_today * 1.005:        # clearly above → BULL
         bull = True
@@ -526,11 +508,28 @@ def run_daily():
 
     state["nav"] *= (1 + port_ret)
 
-    # SET benchmark — anchored to inception price (idempotent: same price → same set_nav)
-    set_idx  = prices[SET_INDEX].dropna()
-    set_p0   = set_idx.get(prev_date) if prev_date else None
-    set_p1   = set_idx.get(today)
-    set_ret  = (set_p1 / set_p0 - 1) if (set_p0 and set_p1 and set_p0 > 0) else 0.0
+    # SET benchmark — use set_index_history (real SET composite, not TDEX ETF proxy)
+    def _set_price_for(d) -> float | None:
+        if d is None:
+            return None
+        import sqlite3 as _sqlite3
+        db = ROOT / "data" / "research" / "thai_ohlcv.db"
+        if not db.exists():
+            return None
+        try:
+            conn = _sqlite3.connect(str(db))
+            row = conn.execute(
+                "SELECT close FROM set_index_history WHERE date <= ? ORDER BY date DESC LIMIT 1",
+                (str(d.date()) if hasattr(d, "date") else str(d)[:10],)
+            ).fetchone()
+            conn.close()
+            return float(row[0]) if row and row[0] else None
+        except Exception:
+            return None
+
+    set_p0 = _set_price_for(prev_date)
+    set_p1 = _set_price_for(today)
+    set_ret = (set_p1 / set_p0 - 1) if (set_p0 and set_p1 and set_p0 > 0) else 0.0
     # Use anchored formula when inception price is known (prevents compounding on re-run)
     inc_px = state.get("set_inception_price")
     if inc_px and inc_px > 0 and set_p1 and set_p1 > 0:
