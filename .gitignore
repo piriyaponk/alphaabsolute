@@ -70,3 +70,8 @@ obsidian-vault/**/.smart-env/
 
 # Large backtest data files
 data/backtest/*.parquet
+
+# ── Entry screen CSV — migrated to SQLite (entry_screen_signals table) ────────
+data/research/thai_entry_screen_results.csv
+data/research/thai_entry_screen_results*.bak.csv
+data/research/thai_entry_screen_results_*.bak.csv

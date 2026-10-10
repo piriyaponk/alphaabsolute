@@ -15,7 +15,8 @@ import pandas as pd
 import numpy as np
 from pathlib import Path
 
-DB     = "data/research/thai_ohlcv.db"
+_ROOT  = Path(__file__).resolve().parents[2]
+DB     = str(_ROOT / "data" / "research" / "thai_ohlcv.db")
 TOP_N  = 15       # focus list size
 RS_DAYS = 21      # COMBINED lookback
 ADTV_MIN = 20e6   # same as eligible_universe
@@ -7897,7 +7898,7 @@ if __name__ == "__main__":
     import sys
     full_rebuild = "--full" in sys.argv
 
-    sum_path = Path("data/research/thai_entry_screen_summary.csv")
+    sum_path = _ROOT / "data" / "research" / "thai_entry_screen_summary.csv"
 
     # ── SQLite-first incremental mode ──────────────────────────────────────────
     from entry_screen_db import (
