@@ -1,6 +1,6 @@
 {
-  "fetched_at": "2026-10-10T03:20:09+07:00",
-  "total": 292,
+  "fetched_at": "2026-10-10",
+  "total": 282,
   "rows": [
     {
       "s": "AAOI03",
@@ -1693,66 +1693,6 @@
       "u": "WMT",
       "issuer": "KTB",
       "val": 13142.24
-    },
-    {
-      "s": "CIEN03",
-      "u": "CIEN",
-      "issuer": "PI",
-      "val": 585631.95
-    },
-    {
-      "s": "APLD03",
-      "u": "APLD",
-      "issuer": "PI",
-      "val": 964582.98
-    },
-    {
-      "s": "CBRS03",
-      "u": "CBRS",
-      "issuer": "PI",
-      "val": 8283467.6
-    },
-    {
-      "s": "CBRS80",
-      "u": "CBRS",
-      "issuer": "KTB",
-      "val": 871651.72
-    },
-    {
-      "s": "CRWV03",
-      "u": "CRWV",
-      "issuer": "PI",
-      "val": 1362851.46
-    },
-    {
-      "s": "CRWV23",
-      "u": "CRWV",
-      "issuer": "INVX",
-      "val": 1800601.66
-    },
-    {
-      "s": "EOSE03",
-      "u": "EOSE",
-      "issuer": "PI",
-      "val": 15262172.09
-    },
-    {
-      "s": "EOSE23",
-      "u": "EOSE",
-      "issuer": "INVX",
-      "val": 2637360.31
-    },
-    {
-      "s": "HIMS03",
-      "u": "HIMS",
-      "issuer": "PI",
-      "val": 1978030.9
-    },
-    {
-      "s": "ONDS03",
-      "u": "ONDS",
-      "issuer": "PI",
-      "val": 2205652.9
     }
   ]
 }

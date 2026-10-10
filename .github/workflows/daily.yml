@@ -153,10 +153,67 @@ jobs:
                             json={'chat_id':c,'text':'[US] PULSE-US Daily FAILED — check GitHub Actions logs'},timeout=10)
           " || true
 
+      - name: Run PULSE-DR Daily
+        id: pulse_dr
+        if: steps.pulse_daily.outcome == 'success'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python scripts/research/dr/dr_daily_screen.py
+
+      - name: Alert on PULSE-DR skipped
+        if: steps.pulse_daily.outcome != 'success'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python3 -c "
+          import os, requests
+          t = os.environ.get('TELEGRAM_BOT_TOKEN')
+          c = os.environ.get('TELEGRAM_CHAT_ID')
+          if t and c:
+              requests.post(f'https://api.telegram.org/bot{t}/sendMessage',
+                            json={'chat_id':c,'text':'[DR] PULSE-DR skipped — PULSE-US Daily did not succeed'},timeout=10)
+          " || true
+
+      - name: Alert on PULSE-DR failure
+        if: failure() && steps.pulse_dr.outcome == 'failure'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python3 -c "
+          import os, requests
+          t = os.environ.get('TELEGRAM_BOT_TOKEN')
+          c = os.environ.get('TELEGRAM_CHAT_ID')
+          if t and c:
+              requests.post(f'https://api.telegram.org/bot{t}/sendMessage',
+                            json={'chat_id':c,'text':'[DR] PULSE-DR Daily FAILED — check GitHub Actions logs'},timeout=10)
+          " || true
+
+      - name: Monthly DR universe refresh (1st of month only)
+        id: dr_refresh
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python3 -c "
+          from datetime import date
+          import subprocess, sys
+          if date.today().day == 1:
+              result = subprocess.run(['python', 'scripts/research/dr/dr_refresh.py'], capture_output=True, text=True)
+              print(result.stdout)
+              if result.returncode != 0:
+                  print(result.stderr)
+          else:
+              print(f'Not 1st of month (today={date.today().day}) — skipping DR refresh')
+          "
+
       - name: Commit state update
         run: |
           git config user.name "AlphaAbsolute Bot"
           git config user.email "bot@alphaabsolute.local"
-          git add data/paper_trading/state.json data/paper_trading/price_verify_latest.json data/research/pulse_us/pulse_us_best_final_signals.json data/research/pulse_us/pulse_us_daily_signals.json
+          git add data/paper_trading/state.json data/paper_trading/price_verify_latest.json data/research/pulse_us/pulse_us_best_final_signals.json data/research/pulse_us/pulse_us_daily_signals.json data/research/dr/dr_daily_signals.json data/research/dr/dr_map.json data/research/dr/dr_universe.json
           git diff --staged --quiet || git commit -m "paper: state $(date -u +%Y-%m-%d)"
           git push

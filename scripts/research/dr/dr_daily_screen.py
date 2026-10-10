@@ -112,16 +112,18 @@ def pick_dr_candidates(us_signals: dict, dr_map: dict) -> list[dict]:
             "source": "FocusList",
         })
 
-    # Sort: PULSE rank = breadth × avg_h3 (same logic as pulse_us_daily top ranking) → val_thb tiebreak
-    candidates.sort(key=lambda x: (-(x["breadth"] * x["h3_score"]), -x["val_thb"]))
+    # Sort: h3_score DESC → breadth DESC → val_thb tiebreak
+    # (breadth * h3_score) was wrong — it scores zero for high-h3 single-signal tickers
+    candidates.sort(key=lambda x: (-x["h3_score"], -x["breadth"], -x["val_thb"]))
     return candidates[:MAX_DR_PICKS]
 
 
-def format_telegram(picks: list[dict], today: str) -> str:
+def format_telegram(picks: list[dict], today: str, n_screened: int = 0) -> str:
     if not picks:
-        return f"📡 PULSE-DR [{today}]\nNo DR candidates today."
+        screened_note = f" ({n_screened} US tickers screened)" if n_screened else ""
+        return f"📡 PULSE-DR [{today}]\nNo DR candidates today.{screened_note}"
 
-    lines = [f"📡 PULSE-DR [{today}] — Top {len(picks)} picks\n"]
+    lines = [f"📡 PULSE-DR [{today}] — Top {len(picks)} of {n_screened} screened\n"]
     for i, p in enumerate(picks, 1):
         val_m = p["val_thb"] / 1_000_000
         alts = ", ".join(p["all_dr"]) if len(p["all_dr"]) > 1 else ""
@@ -145,11 +147,11 @@ def send_telegram(text: str) -> bool:
     url = f"https://api.telegram.org/bot{token}/sendMessage"
     payload = {"chat_id": chat_id, "text": text, "parse_mode": "Markdown"}
     try:
-        resp = requests.post(url, json=payload, timeout=10)
+        resp = requests.post(url, json=payload, timeout=10, verify=False)
         if resp.status_code == 400:
             # Retry without parse_mode (unescaped special chars)
             payload.pop("parse_mode")
-            resp = requests.post(url, json=payload, timeout=10)
+            resp = requests.post(url, json=payload, timeout=10, verify=False)
         resp.raise_for_status()
         print(f"[OK] Telegram sent ({len(text)} chars)")
         return True
@@ -170,6 +172,7 @@ def run():
     active_pulse = sum(1 for sc in pulse_scores.values() if sc.get("breadth", 0) > 0)
     print(f"  US signals loaded: {len(pulse_scores)} tickers ({active_pulse} with breadth>0)")
 
+    n_screened = len(us_signals.get("pulse_scores", {}))
     picks = pick_dr_candidates(us_signals, dr_map)
     print(f"  DR picks: {len(picks)}")
     for p in picks:
@@ -179,6 +182,7 @@ def run():
     output = {
         "date": today,
         "dr_map_version": json.loads(DR_MAP_PATH.read_text(encoding="utf-8")).get("built_at", ""),
+        "n_screened": n_screened,
         "n_picks": len(picks),
         "picks": picks,
     }
@@ -187,7 +191,7 @@ def run():
     print(f"  Saved → {OUTPUT_PATH}")
 
     # Telegram
-    msg = format_telegram(picks, today)
+    msg = format_telegram(picks, today, n_screened=n_screened)
     print("\n" + msg)
     send_telegram(msg)
 

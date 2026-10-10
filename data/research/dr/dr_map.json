@@ -1,6 +1,6 @@
 {
-  "built_at": "2026-10-10T21:42:13.728497",
-  "source_date": "2026-10-10T03:20:09+07:00",
+  "built_at": "2026-10-10T21:59:00.336393",
+  "source_date": "2026-10-10",
   "us_tickers": 147,
   "map": {
     "AAOI": {
@@ -163,7 +163,6 @@
       "issuer_code": "03",
       "val_thb": 964582.98,
       "all_dr": [
-        "APLD03",
         "APLD03"
       ]
     },
@@ -307,8 +306,6 @@
       "val_thb": 871651.72,
       "all_dr": [
         "CBRS03",
-        "CBRS80",
-        "CBRS03",
         "CBRS80"
       ]
     },
@@ -345,7 +342,6 @@
       "issuer_code": "03",
       "val_thb": 585631.95,
       "all_dr": [
-        "CIEN03",
         "CIEN03"
       ]
     },
@@ -436,8 +432,6 @@
       "val_thb": 1800601.66,
       "all_dr": [
         "CRWV03",
-        "CRWV23",
-        "CRWV03",
         "CRWV23"
       ]
     },
@@ -494,8 +488,6 @@
       "issuer_code": "23",
       "val_thb": 2637360.31,
       "all_dr": [
-        "EOSE03",
-        "EOSE23",
         "EOSE03",
         "EOSE23"
       ]
@@ -640,7 +632,6 @@
       "issuer_code": "03",
       "val_thb": 1978030.9,
       "all_dr": [
-        "HIMS03",
         "HIMS03"
       ]
     },
@@ -1068,7 +1059,6 @@
       "issuer_code": "03",
       "val_thb": 2205652.9,
       "all_dr": [
-        "ONDS03",
         "ONDS03"
       ]
     },

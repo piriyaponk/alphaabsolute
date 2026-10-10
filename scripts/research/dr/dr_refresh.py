@@ -47,7 +47,7 @@ def _try_direct_fetch() -> list[dict] | None:
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
             "Referer": "https://www.settrade.com/th/equities/dr/overview",
         }
-        resp = requests.get(SETTRADE_API, headers=headers, timeout=15)
+        resp = requests.get(SETTRADE_API, headers=headers, timeout=15, verify=False)
         if resp.status_code == 200:
             data = resp.json()
             rows = data.get("data", data.get("rows", []))
@@ -60,7 +60,7 @@ def _try_direct_fetch() -> list[dict] | None:
 
 
 def _try_fresh_file() -> list[dict] | None:
-    """Check for manually-dropped dr_universe_fresh.json."""
+    """Check for manually-dropped dr_universe_fresh.json. Parse only — do NOT unlink here."""
     if not FRESH_PATH.exists():
         return None
     try:
@@ -68,7 +68,6 @@ def _try_fresh_file() -> list[dict] | None:
         rows = data.get("rows", data) if isinstance(data, dict) else data
         if rows:
             print(f"  [OK] Fresh file found: {len(rows)} rows")
-            FRESH_PATH.unlink()  # consume it
             return rows
     except Exception as e:
         print(f"  [WARN] Fresh file parse failed: {e}")
@@ -101,8 +100,14 @@ def run():
                 "issuer": r.get("issuerShortName") or r.get("issuer", ""),
                 "val": float(r.get("totalValue") or r.get("value") or r.get("val") or 0),
             })
-        build_from_json(normalized)
-        return {"status": "refreshed", "rows": len(normalized)}
+        valid = [r for r in normalized if r.get("s") and r.get("u")]
+        if not valid:
+            raise ValueError("All rows invalid after normalization — no s/u fields found")
+        build_from_json(valid)
+        # Only unlink the manual drop file AFTER successful write
+        if FRESH_PATH.exists():
+            FRESH_PATH.unlink()
+        return {"status": "refreshed", "rows": len(valid)}
     else:
         msg = (
             f"[DR-Refresh] MANUAL REFRESH NEEDED — DR map is {age} days old.\n"
@@ -130,6 +135,7 @@ def _warn_telegram(age: int):
             f"https://api.telegram.org/bot{token}/sendMessage",
             json={"chat_id": chat_id, "text": msg},
             timeout=10,
+            verify=False,
         )
     except Exception:
         pass
