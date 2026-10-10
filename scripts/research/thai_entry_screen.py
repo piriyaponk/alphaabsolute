@@ -7902,7 +7902,8 @@ if __name__ == "__main__":
 
     # ── SQLite-first incremental mode ──────────────────────────────────────────
     from entry_screen_db import (
-        read_entry_screen, write_entry_screen, get_max_date as _db_max_date
+        read_entry_screen, write_entry_screen, get_max_date as _db_max_date,
+        validate_date_completeness,
     )
 
     last_date = None
@@ -7934,8 +7935,39 @@ if __name__ == "__main__":
             print("[OK] No new rows generated")
             sys.exit(0)
         n_written = write_entry_screen(new_results)
-        total_rows = int(_db_max_date() and True) and None  # fetch count separately
         print(f"[INCREMENTAL] Added {len(new_results):,} rows → SQLite")
+
+        # ── Date completeness guard ────────────────────────────────────────────
+        new_dates = new_results["date"].dt.strftime("%Y-%m-%d").unique().tolist()
+        guard = validate_date_completeness(new_dates)
+        for r in guard["results"]:
+            flag = "✅" if r["ok"] else "⚠️ INCOMPLETE"
+            print(f"  {flag} {r['date']}: {r['actual']} rows "
+                  f"({r['coverage']*100:.0f}% of universe)")
+        if not guard["ok"]:
+            _msg = (f"[ENTRY SCREEN] ⚠️ INCOMPLETE WRITE — "
+                    f"dates with low row count: {guard['incomplete']}. "
+                    f"Pipeline may have been killed mid-write.")
+            print(_msg)
+            # Try to send Telegram alert
+            try:
+                import os, urllib.request, json as _json, ssl as _ssl
+                tok  = os.environ.get("TELEGRAM_BOT_TOKEN", "")
+                chat = os.environ.get("TELEGRAM_CHAT_ID", "")
+                if tok and chat:
+                    ctx = _ssl.create_default_context()
+                    ctx.check_hostname = False
+                    ctx.verify_mode = _ssl.CERT_NONE
+                    payload = _json.dumps({"chat_id": chat, "text": _msg}).encode()
+                    req = urllib.request.Request(
+                        f"https://api.telegram.org/bot{tok}/sendMessage",
+                        data=payload, headers={"Content-Type": "application/json"})
+                    urllib.request.urlopen(req, context=ctx, timeout=10)
+            except Exception:
+                pass
+            import sys as _sys2
+            _sys2.exit(1)
+
         results = new_results  # for summary below
     else:
         print("[FULL] Running full backtest ...")
@@ -7946,6 +7978,13 @@ if __name__ == "__main__":
               f"Unknown: {(results['regime']=='unknown').sum():,}")
         n_written = write_entry_screen(results)
         print(f"[OK] {n_written:,} rows written to SQLite")
+
+        # ── Date completeness guard (sample last 5 dates) ──────────────────────
+        last_dates = sorted(results["date"].dt.strftime("%Y-%m-%d").unique())[-5:]
+        guard = validate_date_completeness(last_dates)
+        for r in guard["results"]:
+            flag = "✅" if r["ok"] else "⚠️"
+            print(f"  {flag} {r['date']}: {r['actual']} rows ({r['coverage']*100:.0f}% of universe)")
 
     for regime, label in [("all", "ALL"), ("bull", "BULL"), ("bear", "BEAR")]:
         summary = summarise(results, regime)

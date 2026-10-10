@@ -244,6 +244,90 @@ def get_column_count(db_path: Optional[Path] = None) -> int:
     return n
 
 
+# ── Date completeness guard ─────────────────────────────────────────────────────
+def validate_date_completeness(
+    dates_written: list,
+    db_path: Optional[Path] = None,
+    min_coverage: float = 0.85,
+) -> dict:
+    """After a write, verify each date has enough rows vs expected ticker count.
+
+    For each date in dates_written:
+      - Query actual row count from entry_screen_signals
+      - Compare against the maximum row count seen for any date in the DB
+        (proxy for "full universe size" — avoids needing a separate universe list)
+      - If actual < max_ever × min_coverage → flag as incomplete
+
+    Returns dict with keys:
+      ok          (bool)   — True if all dates pass
+      results     (list)   — [{date, actual, expected, coverage, ok}]
+      incomplete  (list)   — dates that failed the check
+    """
+    init_tables(db_path)
+    conn = get_connection(db_path)
+
+    # Use the MODE (most-common row count per date) as the expected universe size.
+    # MAX would be distorted by rare large dates; MODE reflects the typical daily screen size.
+    mode_row = conn.execute(
+        "SELECT cnt FROM "
+        "(SELECT COUNT(*) AS cnt FROM entry_screen_signals GROUP BY date) "
+        "GROUP BY cnt ORDER BY COUNT(*) DESC LIMIT 1"
+    ).fetchone()
+    expected = mode_row[0] if mode_row else 1
+
+    results = []
+    incomplete = []
+    for d in dates_written:
+        d_str = str(d)[:10]
+        actual = conn.execute(
+            "SELECT COUNT(*) FROM entry_screen_signals WHERE date = ?", (d_str,)
+        ).fetchone()[0]
+        coverage = actual / expected
+        passed = coverage >= min_coverage
+        results.append({"date": d_str, "actual": actual, "expected": expected,
+                         "coverage": round(coverage, 3), "ok": passed})
+        if not passed:
+            incomplete.append(d_str)
+
+    conn.close()
+    return {"ok": len(incomplete) == 0, "results": results, "incomplete": incomplete}
+
+
+# ── DB integrity check ───────────────────────────────────────────────────────────
+def check_integrity(db_path: Optional[Path] = None) -> dict:
+    """Run PRAGMA integrity_check + size check on thai_ohlcv.db.
+
+    Returns dict with keys:
+      integrity_ok  (bool)
+      integrity_msg (str)    — 'ok' on pass, or first error line
+      size_bytes    (int)
+      row_count     (int)
+      col_count     (int)
+      max_date      (str)
+    """
+    p = Path(db_path) if db_path else DB_PATH
+    size_bytes = p.stat().st_size if p.exists() else 0
+
+    conn = get_connection(db_path)
+    result = conn.execute("PRAGMA integrity_check").fetchone()
+    integrity_msg = result[0] if result else "no result"
+    integrity_ok  = (integrity_msg == "ok")
+
+    row_count = conn.execute("SELECT COUNT(*) FROM entry_screen_signals").fetchone()[0]
+    col_count = conn.execute("SELECT COUNT(*) FROM entry_screen_column_order").fetchone()[0]
+    max_date  = conn.execute("SELECT MAX(date) FROM entry_screen_signals").fetchone()[0]
+    conn.close()
+
+    return {
+        "integrity_ok":  integrity_ok,
+        "integrity_msg": integrity_msg,
+        "size_bytes":    size_bytes,
+        "row_count":     row_count,
+        "col_count":     col_count,
+        "max_date":      max_date,
+    }
+
+
 # ── Migration ───────────────────────────────────────────────────────────────────
 def migrate_from_csv(csv_path: Path,
                      db_path: Optional[Path] = None,
@@ -337,5 +421,17 @@ if __name__ == "__main__":
         sig_cols = [c for c in df.columns if c not in {"date", "ticker", "regime"}]
         true_rate = df[sig_cols].values.mean()
         print(f"[verify] Signal true rate: {true_rate:.1%}")
+    elif cmd == "integrity":
+        r = check_integrity()
+        status = "✅ OK" if r["integrity_ok"] else f"❌ FAIL: {r['integrity_msg']}"
+        size_mb = r["size_bytes"] / 1_048_576
+        print(f"[integrity] {status}")
+        print(f"  size:     {size_mb:.1f} MB")
+        print(f"  rows:     {r['row_count']:,}")
+        print(f"  cols:     {r['col_count']:,}")
+        print(f"  max_date: {r['max_date']}")
+        if not r["integrity_ok"]:
+            sys.exit(1)
+
     else:
-        print("Usage: entry_screen_db.py [migrate|status|test|verify]")
+        print("Usage: entry_screen_db.py [migrate|status|test|verify|integrity]")

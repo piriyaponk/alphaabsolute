@@ -52,6 +52,62 @@ jobs:
         run: |
           python -X utf8 scripts/research/thai_data_layer.py --update 2>&1 | tail -5
 
+      - name: DB integrity check
+        id: db_integrity
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
+          PYTHONIOENCODING:   utf-8
+        run: |
+          python -X utf8 - <<'PYEOF'
+          import sys, os, urllib.request, json, ssl
+          sys.path.insert(0, "scripts/research")
+          from entry_screen_db import check_integrity
+
+          r = check_integrity()
+          size_mb = r["size_bytes"] / 1_048_576
+          print(f"[integrity] size={size_mb:.1f}MB rows={r['row_count']:,} cols={r['col_count']} max_date={r['max_date']}")
+
+          # ── Integrity check ──────────────────────────────────────────────────
+          if not r["integrity_ok"]:
+              msg = f"🚨 [TH] DB INTEGRITY FAIL\n{r['integrity_msg']}\nRun: git checkout HEAD -- data/research/thai_ohlcv.db"
+              print(msg)
+              try:
+                  tok = os.environ.get("TELEGRAM_BOT_TOKEN","")
+                  chat = os.environ.get("TELEGRAM_CHAT_ID","")
+                  if tok and chat:
+                      ctx = ssl.create_default_context(); ctx.check_hostname=False; ctx.verify_mode=ssl.CERT_NONE
+                      urllib.request.urlopen(
+                          urllib.request.Request(
+                              f"https://api.telegram.org/bot{tok}/sendMessage",
+                              data=json.dumps({"chat_id":chat,"text":msg}).encode(),
+                              headers={"Content-Type":"application/json"}),
+                          context=ctx, timeout=10)
+              except Exception: pass
+              sys.exit(1)
+
+          # ── Size anomaly check (< 5 MB = suspiciously small, > 500 MB = too large) ──
+          MIN_MB, MAX_MB = 5, 500
+          if size_mb < MIN_MB or size_mb > MAX_MB:
+              msg = f"⚠️ [TH] DB SIZE ANOMALY: {size_mb:.1f} MB (expected {MIN_MB}–{MAX_MB} MB)"
+              print(msg)
+              try:
+                  tok = os.environ.get("TELEGRAM_BOT_TOKEN","")
+                  chat = os.environ.get("TELEGRAM_CHAT_ID","")
+                  if tok and chat:
+                      ctx = ssl.create_default_context(); ctx.check_hostname=False; ctx.verify_mode=ssl.CERT_NONE
+                      urllib.request.urlopen(
+                          urllib.request.Request(
+                              f"https://api.telegram.org/bot{tok}/sendMessage",
+                              data=json.dumps({"chat_id":chat,"text":msg}).encode(),
+                              headers={"Content-Type":"application/json"}),
+                          context=ctx, timeout=10)
+              except Exception: pass
+              sys.exit(1)
+
+          print("[integrity] ✅ OK")
+          PYEOF
+
       - name: Run watchdog
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
