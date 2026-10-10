@@ -33,6 +33,13 @@ from pathlib import Path
 # Use lightweight pulse_us_ohlcv.db if available (GitHub Actions / no local ohlcv.db)
 # Fall back to full ohlcv.db when running locally with full pipeline
 _BASE_DIR = Path(__file__).resolve().parents[3]
+import sys as _sys
+_sys.path.insert(0, str(_BASE_DIR / "scripts" / "research"))
+try:
+    from pulse_db import upsert_pulse_signals as _upsert_pulse, write_shortlist_json as _write_shortlist
+    _PULSE_DB_AVAILABLE = True
+except ImportError:
+    _PULSE_DB_AVAILABLE = False
 _pulse_db = _BASE_DIR / "data" / "research" / "pulse_us" / "pulse_us_ohlcv.db"
 _full_db  = _BASE_DIR / "data" / "ohlcv.db"
 DB_PATH   = _pulse_db if (_pulse_db.exists() and not _full_db.exists()) else \
@@ -463,17 +470,22 @@ def calc_pulse_scores(signal_matrix, tickers, sig_h3_arr, sig_labels, n_quality_
         breadth_pct = round(breadth / n_quality_families * 100, 1) if n_quality_families > 0 else 0.0
 
         # avg_h3: top-3 individual signals (same as PULSE-TH, not deduplicated)
+        top_signals = []
         if fired_mask.any():
-            top3 = sorted(sig_h3_arr[fired_mask].tolist(), reverse=True)[:3]
-            avg_h3 = round(sum(top3) / len(top3), 1)
+            fired_indices = [j for j, f in enumerate(fired_mask) if f]
+            fired_sorted = sorted(fired_indices, key=lambda j: -sig_h3_arr[j])[:3]
+            top3_h3 = [sig_h3_arr[j] for j in fired_sorted]
+            top_signals = [sig_labels[j] for j in fired_sorted]
+            avg_h3 = round(sum(top3_h3) / len(top3_h3), 1)
         else:
             avg_h3 = 0.0
 
         scores[ticker] = {
-            'breadth':        breadth,           # families fired
-            'breadth_pct':    breadth_pct,        # families / 19 * 100
-            'avg_h3':         avg_h3,
-            'n_signals_fired': int(fired_mask.sum()),  # raw for debug
+            'breadth':         breadth,
+            'breadth_pct':     breadth_pct,
+            'avg_h3':          avg_h3,
+            'n_signals_fired': int(fired_mask.sum()),
+            'top_signals':     top_signals,
         }
     return scores
 
@@ -781,11 +793,37 @@ def main():
         json.dump(out, f, indent=2, default=str)
     print(f"\nSaved → {OUT_PATH}")
 
+    # Upsert to shared pulse_signals.db
+    if _PULSE_DB_AVAILABLE:
+        date_str = run_date.strftime('%Y-%m-%d')
+        ticker_factors = result.get('ticker_factors', {})
+        upsert_rows = []
+        for ticker, sc in pulse_scores.items():
+            fac = ticker_factors.get(ticker, {})
+            upsert_rows.append({
+                "date":            date_str,
+                "system":          "US",
+                "ticker":          ticker,
+                "breadth":         int(sc.get("breadth", 0)),
+                "breadth_pct":     float(sc.get("breadth_pct", 0.0)),
+                "avg_h3":          float(sc.get("avg_h3", 0.0)),
+                "n_signals_fired": int(sc.get("n_signals_fired", 0)),
+                "rs_pct":          float(fac.get("rs_pct", 0) or 0),
+                "top_signals":     sc.get("top_signals", []),
+            })
+        if upsert_rows:
+            n = _upsert_pulse(upsert_rows)
+            print(f"[pulse_db] Upserted {n} US rows for {date_str}")
+            _write_shortlist(today=date_str)
+
     token   = os.getenv('TELEGRAM_BOT_TOKEN')
     chat_id = os.getenv('TELEGRAM_CHAT_ID')
     messages = format_telegram(result, mkt, run_date)
 
     if args.no_telegram or not token or not chat_id:
+        if not args.no_telegram and (not token or not chat_id):
+            print("[WARN] Telegram not configured — signals not sent. "
+                  "Set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID in .env")
         print("\n--- TELEGRAM PREVIEW ---")
         for i, msg in enumerate(messages):
             print(f"\n[MSG {i+1}]"); print(msg)

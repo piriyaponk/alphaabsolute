@@ -1,0 +1,18 @@
+{
+  "version": "2026-10-10",
+  "note": "US ticker to Thai DR mapping. No liquidity check — CIO decides whether to trade DR or US directly.",
+  "mappings": {
+    "NVDA":  {"dr_ticker": "NVDRDR",  "ratio": 1},
+    "MSFT":  {"dr_ticker": "MSDRDR",  "ratio": 1},
+    "GOOGL": {"dr_ticker": "GOOGDR",  "ratio": 1},
+    "META":  {"dr_ticker": "METADR",  "ratio": 1},
+    "TSLA":  {"dr_ticker": "TSLADR",  "ratio": 1},
+    "AMZN":  {"dr_ticker": "AMZDR",   "ratio": 1},
+    "AAPL":  {"dr_ticker": "APPLEDR", "ratio": 1},
+    "ASML":  {"dr_ticker": "ASMDR",   "ratio": 1},
+    "MRVL":  {"dr_ticker": "MRVLDR",  "ratio": 1},
+    "COHR":  {"dr_ticker": "COHDRDR", "ratio": 1},
+    "MU":    {"dr_ticker": "MUDRDR",  "ratio": 1},
+    "AMD":   {"dr_ticker": "AMDDR",   "ratio": 1}
+  }
+}

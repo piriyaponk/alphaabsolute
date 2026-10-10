@@ -514,6 +514,7 @@ _REQUIRED_DIRS = [
     "data/regime", "data/rs_universe", "data/rs_universe/snapshots",
     "data/runner_logs", "data/health", "data/quality",
     "data/paper_trading", "data/ohlcv_cache",
+    "data/research", "data/research/thai_pulse", "data/research/pulse_us",
     "output",
 ]
 

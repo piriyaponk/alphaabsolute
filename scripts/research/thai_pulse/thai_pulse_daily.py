@@ -37,6 +37,55 @@ OUT_PATH  = ROOT / "data" / "research" / "thai_pulse" / "pulse_th_daily_signals.
 
 sys.path.insert(0, str(ROOT / "scripts" / "research"))
 from entry_screen_db import read_entry_screen, get_max_date as _db_max_date
+from pulse_db import upsert_pulse_signals, write_shortlist_json
+
+_OHLCV_DB = ROOT / "data" / "research" / "thai_ohlcv.db"
+
+
+def _compute_rs_from_ohlcv(tickers: list, as_of_date: str) -> dict:
+    """Compute RS percentile (3M return rank) from thai_ohlcv.db.
+    Returns {ticker: rs_percentile_0_to_100}.
+    """
+    if not _OHLCV_DB.exists():
+        return {}
+    try:
+        conn = sqlite3.connect(str(_OHLCV_DB))
+        # Get close prices for all tickers: today and ~63 trading days ago (~3 months)
+        q = """
+            SELECT ticker, date, close FROM thai_ohlcv
+            WHERE ticker IN ({placeholders})
+              AND date <= ?
+              AND close > 0
+            ORDER BY ticker, date
+        """.format(placeholders=",".join("?" * len(tickers)))
+        rows = conn.execute(q, tickers + [as_of_date]).fetchall()
+        conn.close()
+        if not rows:
+            return {}
+        df = pd.DataFrame(rows, columns=["ticker", "date", "close"])
+        df["date"] = pd.to_datetime(df["date"])
+        # Get latest and 63-day-ago price per ticker
+        returns = {}
+        for tkr, grp in df.groupby("ticker"):
+            grp = grp.sort_values("date")
+            if len(grp) < 10:
+                continue
+            latest = grp["close"].iloc[-1]
+            lookback = grp.iloc[max(0, len(grp) - 63)]["close"]
+            if lookback > 0:
+                returns[tkr] = (latest / lookback - 1) * 100
+        if not returns:
+            return {}
+        # Compute percentile rank
+        vals = list(returns.values())
+        tickers_list = list(returns.keys())
+        import scipy.stats as _stats
+        ranks = _stats.rankdata(vals)
+        n = len(vals)
+        return {t: round(float(r / n * 100), 1) for t, r in zip(tickers_list, ranks)}
+    except Exception as e:
+        print(f"[rs_compute] Failed: {e}")
+        return {}
 
 
 # ── Load signal library ─────────────────────────────────────────────────────
@@ -90,10 +139,10 @@ def load_signal_matrix(quality_sigs: list[dict], target_date: str | None = None)
         print(f"[WARN] Removed {n_before - len(today_df)} duplicate ticker rows for {td.date()}")
 
     tickers = today_df["ticker"].tolist()
-    # Staleness check: warn if data is more than 3 calendar days old
+    # Staleness check: warn if data is 1+ calendar days old
     from datetime import date as _date
     days_old = (_date.today() - td.date()).days
-    if days_old > 3:
+    if days_old >= 1:
         print(f"[WARN] Data is STALE: latest row is {td.date()} ({days_old} days ago). "
               f"thai_entry_screen.py may have failed to fetch new data.")
     print(f"[screen] Date: {td.date()} | Tickers: {len(tickers)} | Days old: {days_old}")
@@ -105,13 +154,20 @@ def load_signal_matrix(quality_sigs: list[dict], target_date: str | None = None)
             rs_col = candidate
             break
     rs_map = {}
-    for _, row in today_df.iterrows():
-        val = float(row[rs_col]) if rs_col and pd.notna(row.get(rs_col)) else 0.0
-        rs_map[row["ticker"]] = val
     if rs_col:
+        for _, row in today_df.iterrows():
+            val = float(row.get(rs_col) or 0)
+            rs_map[row["ticker"]] = val
         print(f"[rs] Using column '{rs_col}' for RS ranking")
     else:
-        print("[WARN] No RS column with data found — RS will show as 0 in focus list")
+        # Compute RS from thai_ohlcv.db (3M return percentile rank)
+        computed = _compute_rs_from_ohlcv(tickers, str(td.date()))
+        if computed:
+            rs_map = {t: computed.get(t, 0.0) for t in tickers}
+            print(f"[rs] Computed RS from ohlcv for {len(computed)}/{len(tickers)} tickers")
+        else:
+            rs_map = {t: 0.0 for t in tickers}
+            print("[WARN] No RS data available — RS will show as 0 in focus list")
 
     # Build signal matrix for quality signals only
     sig_labels  = []
@@ -125,16 +181,27 @@ def load_signal_matrix(quality_sigs: list[dict], target_date: str | None = None)
             missing += 1
             continue
         col_data = today_df[col]
-        if col_data.dtype == bool or col_data.dtype == "bool":
-            vals = col_data.values.astype(bool)
-        else:
-            vals = pd.to_numeric(col_data, errors="coerce").fillna(0).astype(bool).values
+        vals = col_data.fillna(False).astype(bool).values
         sig_labels.append(col)
         sig_h3_list.append(float(sig["h3"]))  # already in % (0-100)
         sig_cols.append(vals)
 
+    total_quality = len(quality_sigs)
+    schema_drift_pct = round(missing / total_quality * 100, 1) if total_quality > 0 else 0.0
     if missing:
-        print(f"[WARN] {missing} library signals not in CSV columns (schema drift)")
+        print(f"[WARN] {missing}/{total_quality} library signals not in CSV columns "
+              f"(schema drift {schema_drift_pct}%)")
+        if schema_drift_pct > 20:
+            print(f"[WARN CRITICAL] Schema drift {schema_drift_pct}% > 20% — "
+                  f"quality signal coverage severely degraded. Re-run thai_entry_screen.py --full")
+
+    # Universe coverage check
+    from datetime import date as _date
+    expected_universe = 183  # SET200-quality universe (update when universe changes)
+    coverage_pct = round(len(tickers) / expected_universe * 100, 1)
+    if coverage_pct < 70:
+        print(f"[WARN CRITICAL] Universe coverage {coverage_pct}% ({len(tickers)}/{expected_universe}) "
+              f"< 70% — screener is running on a near-empty universe")
 
     if not sig_cols:
         print("[FAIL] No signals matched CSV columns")
@@ -149,13 +216,15 @@ def load_signal_matrix(quality_sigs: list[dict], target_date: str | None = None)
     print(f"[matrix] {len(sig_labels)} quality signals | {n_quality_families} families | {len(tickers)} tickers")
 
     return {
-        "signal_matrix":     signal_matrix,
-        "tickers":           tickers,
-        "sig_h3_arr":        sig_h3_arr,
-        "sig_labels":        sig_labels,
-        "n_quality_families":n_quality_families,
-        "rs_map":            rs_map,
-        "price_date":        td.date(),
+        "signal_matrix":       signal_matrix,
+        "tickers":             tickers,
+        "sig_h3_arr":          sig_h3_arr,
+        "sig_labels":          sig_labels,
+        "n_quality_families":  n_quality_families,
+        "rs_map":              rs_map,
+        "price_date":          td.date(),
+        "schema_drift_pct":    schema_drift_pct,
+        "universe_coverage_pct": coverage_pct,
     }
 
 
@@ -200,9 +269,13 @@ def calc_pulse_scores(
         breadth_pct = round(breadth / n_quality_families * 100, 1) if n_quality_families > 0 else 0.0
 
         # avg_h3: top-3 quality signals that fired, by h3 descending
+        top_signals = []
         if fired_mask.any():
-            top3 = sorted(sig_h3_arr[fired_mask].tolist(), reverse=True)[:3]
-            avg_h3 = round(sum(top3) / len(top3), 1)
+            fired_indices = [j for j, f in enumerate(fired_mask) if f]
+            fired_sorted = sorted(fired_indices, key=lambda j: -sig_h3_arr[j])[:3]
+            top3_h3 = [sig_h3_arr[j] for j in fired_sorted]
+            top_signals = [sig_labels[j] for j in fired_sorted]
+            avg_h3 = round(sum(top3_h3) / len(top3_h3), 1)
         else:
             avg_h3 = 0.0
 
@@ -211,6 +284,7 @@ def calc_pulse_scores(
             "breadth_pct":     breadth_pct,
             "avg_h3":          avg_h3,           # % (0–100)
             "n_signals_fired": int(fired_mask.sum()),
+            "top_signals":     top_signals,
         }
     return scores
 
@@ -240,12 +314,14 @@ def run_screen(quality_sigs: list[dict], target_date: str | None = None) -> dict
         print(f"  {tkr}: {sc['breadth']}/{data['n_quality_families']} ({sc['breadth_pct']:.1f}%)  avg_h3={sc['avg_h3']:.1f}%  RS={rs:.0f}")
 
     return {
-        "date":              str(data["price_date"]),
-        "n_quality":         data["n_quality_families"],
-        "n_quality_signals": len(data["sig_labels"]),
-        "ticker_hits":       ticker_hits,
-        "pulse_scores":      pulse_scores,
-        "rs_map":            data["rs_map"],
+        "date":                   str(data["price_date"]),
+        "n_quality":              data["n_quality_families"],
+        "n_quality_signals":      len(data["sig_labels"]),
+        "ticker_hits":            ticker_hits,
+        "pulse_scores":           pulse_scores,
+        "rs_map":                 data["rs_map"],
+        "schema_drift_pct":       data["schema_drift_pct"],
+        "universe_coverage_pct":  data["universe_coverage_pct"],
     }
 
 
@@ -380,6 +456,35 @@ def main():
                                 for k, v in result["pulse_scores"].items()}
         json.dump(out, f, indent=2, default=str)
     print(f"\nSaved → {OUT_PATH}")
+
+    # Upsert to shared pulse_signals.db
+    date_str = result["date"]
+    upsert_rows = []
+    for ticker, sc in result["pulse_scores"].items():
+        rs = result["rs_map"].get(ticker, 0) or 0
+        upsert_rows.append({
+            "date":            date_str,
+            "system":          "TH",
+            "ticker":          ticker,
+            "breadth":         int(sc.get("breadth", 0)),
+            "breadth_pct":     float(sc.get("breadth_pct", 0.0)),
+            "avg_h3":          float(sc.get("avg_h3", 0.0)),
+            "n_signals_fired": int(sc.get("n_signals_fired", 0)),
+            "rs_pct":          float(rs),
+            "top_signals":     sc.get("top_signals", []),
+        })
+    if upsert_rows:
+        n = upsert_pulse_signals(upsert_rows)
+        print(f"[pulse_db] Upserted {n} TH rows for {date_str}")
+
+    # Write shortlist_today.json (TH portion — US will add its rows separately)
+    meta = {
+        "schema_drift_pct_th":       result.get("schema_drift_pct", 0),
+        "universe_coverage_pct_th":  result.get("universe_coverage_pct", 0),
+        "n_quality_signals_th":      result.get("n_quality_signals", 0),
+        "n_quality_families_th":     result.get("n_quality", 0),
+    }
+    write_shortlist_json(today=date_str, meta=meta)
 
     if not args.no_telegram:
         msgs = format_telegram(result, run_date)

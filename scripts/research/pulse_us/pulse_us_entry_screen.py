@@ -626,6 +626,9 @@ def main():
     # Score
     summary = score_signals(combined)
     summary.to_csv(OUT_SUMMARY, index=False)
+    if summary.empty or "n_obs" not in summary.columns:
+        print("Skipping top-signal display: score_signals returned empty or missing n_obs column.")
+        return
     print(f"\nTop 20 signals by fwd3 hit rate (≥8 obs):")
     top = summary[summary["n_obs"] >= 15].head(20)
     print(top[["signal","n_obs","hit_rate","avg_ret","fwd5_hit","fwd5_avg"]].to_string(index=False))
