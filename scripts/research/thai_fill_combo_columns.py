@@ -19,24 +19,25 @@ from pathlib import Path
 import time
 
 ROOT       = Path(__file__).resolve().parent.parent.parent
-CSV_PATH   = ROOT / "data" / "research" / "thai_entry_screen_results.csv"
 DEFS_PATH  = ROOT / "data" / "research" / "thai_combo_definitions.json"
 CACHE_PATH = ROOT / "data" / "research" / "thai_pulse_cache.pkl"
+
+import sys as _sys
+_sys.path.insert(0, str(ROOT / "scripts" / "research"))
+from entry_screen_db import read_entry_screen, write_entry_screen
 
 
 def main():
     t0 = time.time()
 
-    if not CSV_PATH.exists():
-        print("[SKIP] CSV not found"); return
     if not DEFS_PATH.exists():
         print("[SKIP] Combo definitions not found — run thai_add_combo_signals*.py first"); return
 
     defs = json.loads(DEFS_PATH.read_text())
     print(f"[fill_combo] {len(defs)} combo definitions loaded")
 
-    print(f"[fill_combo] Loading CSV...")
-    df = pd.read_csv(CSV_PATH, low_memory=False)
+    print(f"[fill_combo] Loading from SQLite...")
+    df = read_entry_screen()
     df["date"] = pd.to_datetime(df["date"])
     total_rows = len(df)
 
@@ -106,8 +107,8 @@ def main():
         filled_cols += 1
 
     print(f"  Filled {filled_cols} columns | Skipped (missing src): {skipped_missing_src}")
-    df.to_csv(CSV_PATH, index=False)
-    print(f"  Saved CSV ({time.time()-t0:.1f}s total)")
+    n_written = write_entry_screen(df)
+    print(f"  Saved {n_written:,} rows to SQLite ({time.time()-t0:.1f}s total)")
 
     _invalidate_cache()
 

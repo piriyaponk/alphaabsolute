@@ -24,9 +24,11 @@ from pathlib import Path
 import shutil
 
 ROOT = Path(__file__).resolve().parent.parent.parent
-CSV_PATH  = ROOT / "data" / "research" / "thai_entry_screen_results.csv"
 DB_PATH   = ROOT / "data" / "research" / "thai_ohlcv.db"
-BACK_PATH = ROOT / "data" / "research" / "thai_entry_screen_results.bak.csv"
+
+import sys as _sys
+_sys.path.insert(0, str(ROOT / "scripts" / "research"))
+from entry_screen_db import read_entry_screen, write_entry_screen
 
 # RS thresholds to gate on (3M and 6M)
 RS_THRESHOLDS = [60, 70, 75, 80, 85, 90]
@@ -110,22 +112,18 @@ def main():
     print("Adding RS-gated Q-signals to PULSE-TH CSV")
     print("=" * 60)
 
-    # ── 1. Load existing CSV ───────────────────────────────────────
-    print(f"\n[1] Loading {CSV_PATH.name}...")
-    df = pd.read_csv(CSV_PATH, low_memory=False)
+    # ── 1. Load from SQLite ───────────────────────────────────────
+    print(f"\n[1] Loading from SQLite entry_screen_signals...")
+    df = read_entry_screen()
     df["date"] = pd.to_datetime(df["date"])
     n_orig = len(df)
     q_orig = [c for c in df.columns if c.startswith("Q") and len(c) > 1 and c[1].isdigit()]
     print(f"  Rows: {n_orig:,} | Existing Q-cols: {len(q_orig)}")
 
-    # Check which features actually exist in CSV
+    # Check which features actually exist
     feat_available = [f for f in FEATURES_FOR_RS if f in df.columns]
     feat_missing   = [f for f in FEATURES_FOR_RS if f not in df.columns]
     print(f"  Features available: {len(feat_available)} | Missing: {feat_missing}")
-
-    # Backup
-    shutil.copy(CSV_PATH, BACK_PATH)
-    print(f"  Backup saved: {BACK_PATH.name}")
 
     # ── 2. Compute RS ─────────────────────────────────────────────
     print("\n[2] Computing RS percentiles from thai_ohlcv.db...")
@@ -135,6 +133,8 @@ def main():
 
     # ── 3. Join RS into main CSV ──────────────────────────────────
     print("\n[3] Joining RS into CSV...")
+    # Drop existing RS cols to avoid _x/_y suffix conflicts on re-run
+    df = df.drop(columns=["rs_pct_3m","rs_pct_6m","rs_pct_1m"], errors="ignore")
     df = df.merge(rs_df[["date","ticker","rs_pct_3m","rs_pct_6m","rs_pct_1m"]],
                   on=["date","ticker"], how="left")
     n_with_rs = df["rs_pct_3m"].notna().sum()
@@ -217,13 +217,11 @@ def main():
     else:
         print("  fwd3 column not found — skipping hit-rate check")
 
-    # ── 6. Save updated CSV ───────────────────────────────────────
-    # Drop temp cols
+    # ── 6. Save to SQLite ───────────────────────────────────────
     df = df.drop(columns=["_rsmom"], errors="ignore")
-    # Keep rs_pct columns in CSV for future use
-    print(f"\n[6] Saving updated CSV ({len(df.columns)} columns)...")
-    df.to_csv(CSV_PATH, index=False)
-    print(f"  Saved: {CSV_PATH}")
+    print(f"\n[6] Writing to SQLite ({len(df.columns)} columns)...")
+    n_written = write_entry_screen(df)
+    print(f"  Written: {n_written:,} rows")
     print(f"  Total Q-cols now: {len(q_orig) + len(new_q_cols)}")
     print("\nDone. Re-run thai_paper_trader.py to pick up new signals.")
 

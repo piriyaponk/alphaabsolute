@@ -7897,42 +7897,45 @@ if __name__ == "__main__":
     import sys
     full_rebuild = "--full" in sys.argv
 
-    out_path = Path("data/research/thai_entry_screen_results.csv")
     sum_path = Path("data/research/thai_entry_screen_summary.csv")
 
-    # Incremental mode: load existing CSV, find last date, run only new dates
+    # ── SQLite-first incremental mode ──────────────────────────────────────────
+    from entry_screen_db import (
+        read_entry_screen, write_entry_screen, get_max_date as _db_max_date
+    )
+
     last_date = None
     existing  = None
-    if not full_rebuild and out_path.exists():
+    if not full_rebuild:
         try:
-            existing  = pd.read_csv(out_path, low_memory=False)
-            existing["date"] = pd.to_datetime(existing["date"])
-            last_date = existing["date"].max()
-            print(f"[INCREMENTAL] Existing CSV last date: {last_date.date()}")
+            max_d = _db_max_date()
+            if max_d:
+                last_date = pd.Timestamp(max_d)
+                print(f"[INCREMENTAL] SQLite last date: {last_date.date()}")
+            else:
+                print("[INFO] SQLite empty — will do full rebuild")
         except Exception as e:
-            print(f"[WARN] Could not read existing CSV ({e}), doing full rebuild")
-            existing = None
+            print(f"[WARN] Could not read SQLite ({e}), doing full rebuild")
 
     df = load_data()
     print(f"Loaded {len(df):,} rows  |  {df['ticker'].nunique()} tickers  |  "
           f"{df['date'].min().date()} → {df['date'].max().date()}")
 
-    if existing is not None and last_date is not None:
+    if last_date is not None:
         db_last = df["date"].max()
         if last_date >= db_last:
-            print(f"[OK] CSV already up to date ({last_date.date()}) — nothing to do")
+            print(f"[OK] SQLite already up to date ({last_date.date()}) — nothing to do")
             sys.exit(0)
-        # Run backtest only on dates after last_date (but need MIN_HIST lookback)
         cutoff = last_date
         print(f"[INCREMENTAL] Running {last_date.date()} → {db_last.date()} ...")
         new_results = run_backtest(df, after_date=cutoff)
         if new_results is None or len(new_results) == 0:
             print("[OK] No new rows generated")
             sys.exit(0)
-        results = pd.concat([existing, new_results], ignore_index=True)
-        results = results.drop_duplicates(subset=["date", "ticker"], keep="last")
-        results = results.sort_values(["date", "ticker"]).reset_index(drop=True)
-        print(f"[INCREMENTAL] Added {len(new_results):,} rows  |  Total: {len(results):,}")
+        n_written = write_entry_screen(new_results)
+        total_rows = int(_db_max_date() and True) and None  # fetch count separately
+        print(f"[INCREMENTAL] Added {len(new_results):,} rows → SQLite")
+        results = new_results  # for summary below
     else:
         print("[FULL] Running full backtest ...")
         results = run_backtest(df)
@@ -7940,9 +7943,8 @@ if __name__ == "__main__":
         print(f"  Bull: {(results['regime']=='bull').sum():,}  "
               f"Bear: {(results['regime']=='bear').sum():,}  "
               f"Unknown: {(results['regime']=='unknown').sum():,}")
-
-    results.to_csv(out_path, index=False)
-    print(f"Raw results → {out_path}")
+        n_written = write_entry_screen(results)
+        print(f"[OK] {n_written:,} rows written to SQLite")
 
     for regime, label in [("all", "ALL"), ("bull", "BULL"), ("bear", "BEAR")]:
         summary = summarise(results, regime)

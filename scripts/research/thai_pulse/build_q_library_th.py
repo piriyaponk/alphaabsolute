@@ -28,8 +28,11 @@ import argparse
 from pathlib import Path
 
 ROOT     = Path(__file__).resolve().parents[3]
-CSV_PATH = ROOT / "data" / "research" / "thai_entry_screen_results.csv"
 OUT_PATH = ROOT / "data" / "research" / "thai_pulse" / "q_library_th.json"
+
+import sys as _sys
+_sys.path.insert(0, str(ROOT / "scripts" / "research"))
+from entry_screen_db import read_entry_screen
 
 # Standard thresholds (mirror q_library_1000.json grading)
 H3_S_BOTH = 80.0
@@ -58,9 +61,9 @@ def _col_family(col: str) -> str:
     return parts[1] if len(parts) > 1 else "other"
 
 
-def build_library(csv_path: Path, fwd_col: str, min_n: int) -> dict:
-    print(f"Loading {csv_path} ...")
-    df = pd.read_csv(csv_path, low_memory=False)
+def build_library(fwd_col: str, min_n: int) -> dict:
+    print("Loading from SQLite entry_screen_signals ...")
+    df = read_entry_screen()
     print(f"  Rows: {len(df)}  |  Columns: {len(df.columns)}")
 
     if fwd_col not in df.columns:
@@ -140,7 +143,7 @@ def run():
     ap.add_argument("--out",   default=str(OUT_PATH))
     args = ap.parse_args()
 
-    library = build_library(CSV_PATH, args.fwd, args.min_n)
+    library = build_library(args.fwd, args.min_n)
 
     out_path = Path(args.out)
     out_path.parent.mkdir(parents=True, exist_ok=True)

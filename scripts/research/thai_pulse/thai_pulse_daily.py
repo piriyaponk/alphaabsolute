@@ -33,8 +33,11 @@ warnings.filterwarnings("ignore", message="Unverified HTTPS request")
 
 ROOT      = Path(__file__).resolve().parents[3]
 LIB_PATH  = ROOT / "data" / "research" / "thai_pulse" / "q_library_th.json"
-CSV_PATH  = ROOT / "data" / "research" / "thai_entry_screen_results.csv"
 OUT_PATH  = ROOT / "data" / "research" / "thai_pulse" / "pulse_th_daily_signals.json"
+
+import sys as _sys
+_sys.path.insert(0, str(ROOT / "scripts" / "research"))
+from entry_screen_db import read_entry_screen, get_max_date as _db_max_date
 
 
 # ── Load signal library ─────────────────────────────────────────────────────
@@ -54,18 +57,29 @@ def load_signal_matrix(quality_sigs: list[dict], target_date: str | None = None)
     Returns dict with: signal_matrix, tickers, sig_h3_arr, sig_labels,
                        n_quality_families, rs_map, price_date
     """
-    df = pd.read_csv(CSV_PATH, low_memory=False)
-    df["date"] = pd.to_datetime(df["date"])
-
-    # Target date: latest available
+    # Point query: read only the target date from SQLite (fast)
     if target_date:
-        td = pd.Timestamp(target_date)
-        avail = sorted(df["date"].unique())
-        td = max(d for d in avail if d <= td)
+        td_str = str(target_date)[:10]
+        # Find latest available date <= target_date
+        max_d = _db_max_date()
+        if max_d and td_str > max_d:
+            td_str = max_d
+        df = read_entry_screen(date=td_str)
     else:
-        td = df["date"].max()
+        max_d = _db_max_date()
+        if not max_d:
+            print("[ERROR] No data in SQLite — run thai_entry_screen.py first")
+            return None
+        td_str = max_d
+        df = read_entry_screen(date=td_str)
 
-    today_df = df[df["date"] == td].copy()
+    if df.empty:
+        print(f"[WARN] No data in SQLite for {td_str}")
+        return None
+
+    df["date"] = pd.to_datetime(df["date"])
+    td = df["date"].iloc[0]
+    today_df = df.copy()
     if today_df.empty:
         print(f"[WARN] No rows for {td.date()}")
         return None

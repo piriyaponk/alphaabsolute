@@ -17,12 +17,13 @@ Output: updated thai_entry_screen_results.csv (backup first)
 """
 import pandas as pd
 import numpy as np
-import shutil
 from pathlib import Path
 
-ROOT     = Path(__file__).resolve().parent.parent.parent
-CSV_PATH = ROOT / "data" / "research" / "thai_entry_screen_results.csv"
-BACK_PATH= ROOT / "data" / "research" / "thai_entry_screen_results_precombo.bak.csv"
+ROOT = Path(__file__).resolve().parent.parent.parent
+
+import sys as _sys
+_sys.path.insert(0, str(ROOT / "scripts" / "research"))
+from entry_screen_db import read_entry_screen, write_entry_screen
 
 MIN_N_QUALITY = 15    # minimum N for a signal to be called "quality"
 MIN_H5_QUALITY = 0.63 # quality threshold
@@ -36,8 +37,8 @@ def main():
     print("=" * 60)
 
     # ── Load ──────────────────────────────────────────────────────
-    print("\n[1] Loading CSV...")
-    df = pd.read_csv(CSV_PATH, low_memory=False)
+    print("\n[1] Loading from SQLite entry_screen_signals...")
+    df = read_entry_screen()
     df["date"] = pd.to_datetime(df["date"])
     n_rows = len(df)
 
@@ -98,10 +99,6 @@ def main():
     print("  Top 10 quality signals:")
     for c, (h, n) in top_quality[:10]:
         print(f"    {c:<40}  h5={h*100:.1f}%  N={n}")
-
-    # Backup
-    shutil.copy(CSV_PATH, BACK_PATH)
-    print(f"\n  Backup: {BACK_PATH.name}")
 
     # ── Strategy A: quality_signal AND feature_col ────────────────
     print("\n[3] Strategy A: quality_signal AND feature_col...")
@@ -238,8 +235,8 @@ def main():
     for fam, cnt in sorted(fam_counts.items(), key=lambda x: -x[1])[:15]:
         print(f"    {fam:<12} {cnt}")
 
-    df.to_csv(CSV_PATH, index=False)
-    print(f"\n  Saved: {CSV_PATH}")
+    n_written = write_entry_screen(df)
+    print(f"\n  Saved: {n_written:,} rows to SQLite")
     print(f"  Total columns: {len(df.columns)}")
     print("\nDone.")
 
