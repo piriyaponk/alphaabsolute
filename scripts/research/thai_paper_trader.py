@@ -682,7 +682,7 @@ def _load_pulse_map() -> dict:
         return {}
 
     try:
-        with open(json_path) as f:
+        with open(json_path, encoding='utf-8') as f:
             data = json.load(f)
 
         pulse_scores   = data.get("pulse_scores", {})

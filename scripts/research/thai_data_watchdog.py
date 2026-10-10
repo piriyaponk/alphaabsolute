@@ -129,7 +129,7 @@ def db_close_on(conn, ticker, dt):
 # Checks
 # ─────────────────────────────────────────────────────────────────────────────
 TOP_20 = [
-    "TDEX.BK",
+    # TDEX.BK removed -- discontinued ETF, always stale, hard_excluded from paper trader
     "ADVANC.BK", "KBANK.BK", "PTT.BK", "PTTEP.BK", "SCB.BK",
     "CPALL.BK", "GULF.BK", "BBL.BK", "SCC.BK", "BDMS.BK",
     "DELTA.BK", "AOT.BK", "MINT.BK", "TRUE.BK", "KTB.BK",

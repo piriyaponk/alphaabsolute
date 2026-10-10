@@ -115,8 +115,12 @@ def score_performance() -> dict:
         })
     attribution.sort(key=lambda x: x["contribution_bps"], reverse=True)
 
-    # Realized P&L
-    realized = state.get("realized_pnl", 0)
+    # Realized P&L — v4 state stores realized_pnl as list of trade dicts
+    realized_log = state.get("realized_pnl", [])
+    realized = (
+        sum(float(e.get("amount", e.get("pnl", 0))) for e in realized_log)
+        if isinstance(realized_log, list) else float(realized_log or 0)
+    )
 
     result = {
         "date":                TODAY,
@@ -142,12 +146,12 @@ def _send_telegram(msg: str):
     if not token or not chat:
         return
     import requests
+    url = f"https://api.telegram.org/bot{token}/sendMessage"
     try:
-        requests.post(
-            f"https://api.telegram.org/bot{token}/sendMessage",
-            json={"chat_id": chat, "text": msg},
-            timeout=10,
-        )
+        r = requests.post(url, json={"chat_id": chat, "text": msg, "parse_mode": "HTML"},
+                          verify=False, timeout=10)
+        if r.status_code == 400:
+            requests.post(url, json={"chat_id": chat, "text": msg}, verify=False, timeout=10)
     except Exception:
         pass
 
@@ -176,20 +180,21 @@ def run():
         print(f"    {p['ticker']:6s}  {p['weight_pct']:.1f}%  ret={p['return_pct']:+.1f}%  contrib={p['contribution_bps']:+.0f}bps")
 
     # Telegram push
-    a_str = f"{alpha:+.2f}pp" if alpha is not None else "N/A"
-    msg = (
-        f"📊 S4 Monthly Score [{TODAY}]\n"
-        f"NAV: ${perf['nav']:,.0f}\n"
-        f"Port: {perf['port_return_total_pct']:+.2f}% | QQQ: {perf['qqq_return_total_pct']:+.2f if perf.get('qqq_return_total_pct') is not None else 'N/A'}"
-        f"% | Alpha: {a_str}\n"
-        f"Positions: {perf['n_positions']} | Saved to learning_curve.json"
-    )
+    qqq_str = f"{perf['qqq_return_total_pct']:+.2f}" if perf.get("qqq_return_total_pct") is not None else "N/A"
+    msg_parts = [
+        f"📊 S4 Monthly Score [{TODAY}]",
+        f"NAV: ${perf['nav']:,.0f}",
+        f"Port: {perf['port_return_total_pct']:+.2f}% | QQQ: {qqq_str}% | Alpha: {alpha_str}",
+        f"Positions: {perf['n_positions']} | Saved to learning_curve.json",
+    ]
+    msg = chr(10).join(msg_parts)
     _send_telegram(msg)
-    print(f"\n[S4 Monthly Scorer] Saved → {CURVE_FILE}")
+    print()
+    print(f"[S4 Monthly Scorer] Saved -> {CURVE_FILE}")
     return perf
 
 
 if __name__ == "__main__":
     from dotenv import load_dotenv
-    load_dotenv(ROOT / ".env")
+    load_dotenv(Path(__file__).resolve().parents[2] / ".env")
     run()
