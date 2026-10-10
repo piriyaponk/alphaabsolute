@@ -19,7 +19,7 @@ Commands:
 import sqlite3, json, time, os, sys, argparse
 import urllib.request, urllib.parse
 import pandas as pd
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 # ── Paths ──────────────────────────────────────────────────────────────────
@@ -54,7 +54,7 @@ def _get_conn():
 # ── Universe ───────────────────────────────────────────────────────────────
 def load_universe(rs_min=MIN_TICKERS_RS):
     """Return list of tickers with RS >= rs_min from latest.json."""
-    with open(RS_PATH) as f:
+    with open(RS_PATH, encoding="utf-8") as f:
         data = json.load(f)
     universe = data.get("universe", {})
     tickers = []
@@ -111,7 +111,7 @@ def _fetch_yahoo(ticker, start, end):
         adj = result["indicators"].get("adjclose", [{}])[0].get("adjclose", q["close"])
         rows = []
         for i, ts in enumerate(timestamps):
-            dt = datetime.utcfromtimestamp(ts).strftime("%Y-%m-%d")
+            dt = datetime.fromtimestamp(ts, tz=timezone.utc).strftime("%Y-%m-%d")
             rows.append({
                 "ticker": ticker,
                 "date":   dt,

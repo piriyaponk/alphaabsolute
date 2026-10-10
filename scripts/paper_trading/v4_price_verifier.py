@@ -43,9 +43,9 @@ def tg_send(text):
     url = f'https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage'
     try:
         r = requests.post(url, json={'chat_id': TELEGRAM_CHAT, 'text': text,
-                                      'parse_mode': 'HTML'}, timeout=10)
+                                      'parse_mode': 'HTML'}, verify=False, timeout=10)
         if r.status_code == 400:
-            requests.post(url, json={'chat_id': TELEGRAM_CHAT, 'text': text}, timeout=10)
+            requests.post(url, json={'chat_id': TELEGRAM_CHAT, 'text': text}, verify=False, timeout=10)
     except Exception:
         pass
 

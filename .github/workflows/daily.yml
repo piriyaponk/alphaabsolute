@@ -12,9 +12,9 @@ name: AlphaAbsolute-US — Daily
 # Script auto-detects month-end and switches to full rebalance mode automatically.
 
 on:
-  schedule:
-    - cron: '0 0 * * *'      # 00:00 UTC = 07:00 BKK, every day (matches TH workflow)
-    - cron: '15 13 3 9 *'    # 13:15 UTC = 20:15 BKK, 3 Sep only (test run)
+  # schedule: block removed — cron-job.org dispatches via workflow_dispatch.
+  # GH Actions free-tier schedule is unreliable (+1-3h delay) and would cause
+  # a double-trigger alongside cron-job.org POST to workflow_dispatch.
   workflow_dispatch:
     inputs:
       mode:
@@ -63,7 +63,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: data/research/pulse_us/pulse_us_ohlcv.db
-          key: pulse-us-ohlcv-${{ runner.os }}-${{ github.sha }}
+          key: pulse-us-ohlcv-${{ runner.os }}-v1
           restore-keys: |
             pulse-us-ohlcv-${{ runner.os }}-
 
@@ -110,6 +110,7 @@ jobs:
 
       - name: Run PULSE-US Best Final screen
         id: pulse_best_final
+        if: steps.rs_check.outcome == 'success'
         run: |
           python scripts/research/pulse_us/pulse_us_best_final.py --no-telegram
 
@@ -130,6 +131,7 @@ jobs:
 
       - name: Run PULSE-US Daily (multi-signal)
         id: pulse_daily
+        if: steps.rs_check.outcome == 'success'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
