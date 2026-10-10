@@ -626,7 +626,7 @@ def run_pipeline(mode: str = "premarket", step_filter: str | None = None,
     print(f"  Log: {log.log_file.name}")
     print(f"{'='*62}\n")
 
-    # Send Telegram alert only on failures — skip if ALL PASS
+    # Send Telegram alert on EVERY run (ALL PASS + PARTIAL FAILURE + ABORT)
     _send_pipeline_alert(summary, mode, aborted)
     return summary
 

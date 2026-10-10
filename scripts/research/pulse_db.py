@@ -3,7 +3,7 @@ pulse_db.py — Shared SQLite backend for PULSE-TH and PULSE-US daily signals
 =============================================================================
 Public API:
   init_db(db_path)                    — CREATE tables + indexes
-  upsert_pulse_signals(rows, db_path) — INSERT OR REPLACE list of dicts
+  upsert_pulse_signals(rows, db_path) — Upsert signal rows (preserves created_at)
   write_shortlist_json(out_path)      — read DB for today → shortlist_today.json
   purge_old_records(db_path, days=90) — DELETE rows older than N days (weekly)
 
@@ -30,7 +30,7 @@ from typing import Optional
 
 ROOT    = Path(__file__).resolve().parents[2]
 _DB_DEFAULT = ROOT / "data" / "research" / "pulse_signals.db"
-_DR_MAP_PATH = ROOT / "data" / "research" / "dr_map.json"
+_DR_MAP_PATH = ROOT / "data" / "research" / "dr" / "dr_map.json"
 _SHORTLIST_DEFAULT = ROOT / "data" / "research" / "shortlist_today.json"
 _MARKET_HEALTH = ROOT / "data" / "regime" / "market_health.json"
 
@@ -87,7 +87,7 @@ def init_db(db_path: Optional[Path] = None) -> None:
 # ── DR Map ───────────────────────────────────────────────────────────────────
 def _load_dr_map() -> dict:
     if _DR_MAP_PATH.exists():
-        return json.loads(_DR_MAP_PATH.read_text()).get("mappings", {})
+        return json.loads(_DR_MAP_PATH.read_text(encoding="utf-8")).get("map", {})
     return {}
 
 
@@ -128,7 +128,7 @@ def _apply_quality_gate(row: dict) -> int:
 
 # ── Upsert ───────────────────────────────────────────────────────────────────
 def upsert_pulse_signals(rows: list[dict], db_path: Optional[Path] = None) -> int:
-    """INSERT OR REPLACE signal rows.
+    """Upsert signal rows, preserving created_at on re-runs.
     Each dict must have: date, system, ticker, breadth, breadth_pct, avg_h3, n_signals_fired
     Optional: rs_pct, theme, adtv_thb, adtv_usd, mktcap, top_signals (list), thesis_hint
     Returns number of rows written.
@@ -145,7 +145,7 @@ def upsert_pulse_signals(rows: list[dict], db_path: Optional[Path] = None) -> in
     for r in rows:
         ticker = r.get("ticker", "")
         system = r.get("system", "")
-        dr_ticker = dr_map.get(ticker, {}).get("dr_ticker") if system == "US" else None
+        dr_ticker = dr_map.get(ticker, {}).get("set_symbol") if system == "US" else None
         top_sigs = r.get("top_signals", [])
         passes = _apply_quality_gate(r)
         insert_rows.append((
@@ -169,11 +169,19 @@ def upsert_pulse_signals(rows: list[dict], db_path: Optional[Path] = None) -> in
         ))
 
     conn.executemany("""
-        INSERT OR REPLACE INTO pulse_signals
+        INSERT INTO pulse_signals
         (date, system, ticker, breadth, breadth_pct, avg_h3, n_signals_fired,
          rs_pct, regime, theme, adtv_thb, adtv_usd, mktcap, passes_quality,
          dr_ticker, top_signals, thesis_hint)
         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        ON CONFLICT(date, system, ticker) DO UPDATE SET
+          breadth=excluded.breadth, breadth_pct=excluded.breadth_pct,
+          avg_h3=excluded.avg_h3, n_signals_fired=excluded.n_signals_fired,
+          rs_pct=excluded.rs_pct, regime=excluded.regime, theme=excluded.theme,
+          adtv_thb=excluded.adtv_thb, adtv_usd=excluded.adtv_usd,
+          mktcap=excluded.mktcap, passes_quality=excluded.passes_quality,
+          dr_ticker=excluded.dr_ticker, top_signals=excluded.top_signals,
+          thesis_hint=excluded.thesis_hint
     """, insert_rows)
     conn.commit()
     conn.close()
@@ -259,7 +267,7 @@ def write_shortlist_json(
         "meta":           meta or {},
     }
 
-    out.write_text(json.dumps(shortlist, indent=2, default=str))
+    out.write_text(json.dumps(shortlist, indent=2, default=str), encoding="utf-8")
     print(f"[shortlist] {td}: TH={len(th_candidates)}, US={len(us_candidates)}, "
           f"watchlist={len(watchlist)} → {out}")
     return shortlist

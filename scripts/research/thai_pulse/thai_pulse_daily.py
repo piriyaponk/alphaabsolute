@@ -91,7 +91,7 @@ def _compute_rs_from_ohlcv(tickers: list, as_of_date: str) -> dict:
 # ── Load signal library ─────────────────────────────────────────────────────
 def load_quality_signals() -> list[dict]:
     """Load quality signals (h3>=63%, grade A/S/S_BOTH) from q_library_th.json."""
-    with open(LIB_PATH) as f:
+    with open(LIB_PATH, encoding="utf-8") as f:
         lib = json.load(f)
     quality = [r for r in lib["results"] if r["grade"] in ("S_BOTH", "S", "A")]
     print(f"[library] {lib['total_scored']} total | {len(quality)} quality signals loaded")
@@ -195,13 +195,19 @@ def load_signal_matrix(quality_sigs: list[dict], target_date: str | None = None)
             print(f"[WARN CRITICAL] Schema drift {schema_drift_pct}% > 20% — "
                   f"quality signal coverage severely degraded. Re-run thai_entry_screen.py --full")
 
-    # Universe coverage check
+    # Universe coverage check — compare against full day count in DB for this date
     from datetime import date as _date
-    expected_universe = 183  # SET200-quality universe (update when universe changes)
-    coverage_pct = round(len(tickers) / expected_universe * 100, 1)
-    if coverage_pct < 70:
-        print(f"[WARN CRITICAL] Universe coverage {coverage_pct}% ({len(tickers)}/{expected_universe}) "
-              f"< 70% — screener is running on a near-empty universe")
+    import sqlite3 as _sqlite3
+    _conn_uc = _sqlite3.connect(str(_OHLCV_DB))
+    full_day_count = _conn_uc.execute(
+        "SELECT COUNT(*) FROM entry_screen_signals WHERE date = ?", (td_str,)
+    ).fetchone()[0]
+    _conn_uc.close()
+    # tickers = top-RS subset of full_day_count (15 of ~15-183) — that's by design
+    coverage_pct = round(len(tickers) / max(full_day_count, 1) * 100, 1)
+    if full_day_count < 10:
+        print(f"[WARN CRITICAL] Universe coverage {coverage_pct}% ({len(tickers)}/{full_day_count}) "
+              f"< 10 tickers in DB — thai_entry_screen.py may have failed")
 
     if not sig_cols:
         print("[FAIL] No signals matched CSV columns")
@@ -398,7 +404,7 @@ def send_telegram(text: str) -> bool:
         # Try .env fallback
         env_path = ROOT / ".env"
         if env_path.exists():
-            for line in env_path.read_text().splitlines():
+            for line in env_path.read_text(encoding="utf-8").splitlines():
                 if line.startswith("TELEGRAM_BOT_TOKEN="):
                     token = line.split("=", 1)[1].strip()
                 if line.startswith("TELEGRAM_CHAT_ID="):
@@ -445,7 +451,7 @@ def main():
 
     # Save output JSON (same pattern as PULSE-US)
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    with open(OUT_PATH, "w") as f:
+    with open(OUT_PATH, "w", encoding="utf-8") as f:
         # pulse_scores values may have numpy types — convert
         out = dict(result)
         out["ticker_hits"]  = {k: {kk: float(vv) if hasattr(vv, 'item') else vv

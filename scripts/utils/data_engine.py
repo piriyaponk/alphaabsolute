@@ -749,14 +749,14 @@ def _finnhub_fundamentals(ticker: str, quarters: int = 8) -> Optional[dict]:
                 prev_rev = quarterly[j]["revenue"]
                 if prev_eps and abs(prev_eps) > 0.001:
                     eps_yoy = round((q["eps"] - prev_eps) / abs(prev_eps) * 100, 1)
-                if prev_rev > 0:
+                if prev_rev is not None and prev_rev > 0:
                     rev_yoy = round((rev - prev_rev) / prev_rev * 100, 1)
 
             # QoQ: compare to prior quarter (index i+1 = one period older)
             rev_qoq = None
             if i + 1 < len(quarterly):
                 prev_rev = quarterly[i + 1]["revenue"]
-                if prev_rev > 0:
+                if prev_rev is not None and prev_rev > 0:
                     rev_qoq = round((rev - prev_rev) / prev_rev * 100, 1)
 
             eps_history.append({

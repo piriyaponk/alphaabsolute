@@ -81,7 +81,7 @@ jobs:
         run: |
           python3 -c "
           import json, os, sys
-          from datetime import datetime
+          from datetime import datetime, timezone
           from pathlib import Path
           p = Path('data/rs_universe/latest.json')
           if not p.exists():
@@ -96,7 +96,7 @@ jobs:
           d = json.load(open(p))
           rs_date = d.get('date','')[:10]
           if rs_date:
-              age = (datetime.utcnow() - datetime.strptime(rs_date,'%Y-%m-%d')).days
+              age = (datetime.now(timezone.utc).replace(tzinfo=None) - datetime.strptime(rs_date,'%Y-%m-%d')).days
               print(f'RS date: {rs_date} (age {age}d)')
               if age > 7:
                   print(f'WARNING: RS data is {age} days old — signals may be stale')

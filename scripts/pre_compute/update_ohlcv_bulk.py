@@ -36,6 +36,7 @@ from datetime import datetime, date, timedelta, timezone
 from pathlib import Path
 from dotenv import load_dotenv
 import warnings
+sys.stdout.reconfigure(encoding="utf-8")  # Windows Thai locale safety
 
 warnings.filterwarnings('ignore')
 urllib3.disable_warnings()

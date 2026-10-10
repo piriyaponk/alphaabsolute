@@ -148,8 +148,8 @@ def update(rs_min=MIN_TICKERS_RS):
     conn       = _get_conn()
     tickers    = load_universe(rs_min)
 
-    end   = datetime.now().strftime("%Y-%m-%d")
-    start = (datetime.now() - timedelta(days=LOOKBACK_DAYS)).strftime("%Y-%m-%d")
+    end   = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    start = (datetime.now(timezone.utc) - timedelta(days=LOOKBACK_DAYS)).strftime("%Y-%m-%d")
 
     # Find last date per ticker in DB — only fetch what's missing
     existing = {}
@@ -178,7 +178,7 @@ def update(rs_min=MIN_TICKERS_RS):
                 ok += 1
                 time.sleep(0.3)   # ~3 req/sec — safe for free tier
                 continue
-            time.sleep(5)         # 429 backoff
+            time.sleep(1)         # brief backoff (dead ticker or 429)
 
         # Yahoo fallback
         df = _fetch_yahoo(tkr, fetch_start, end)
