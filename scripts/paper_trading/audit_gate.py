@@ -50,7 +50,7 @@ if not os.path.exists(STATE_FILE):
     print(f"[SKIP] No state.json found -- skipping audit (run --mode init first)")
     sys.exit(0)
 
-with open(STATE_FILE) as f:
+with open(STATE_FILE, encoding="utf-8") as f:
     state = json.load(f)
 
 positions   = state.get("positions", {})
@@ -147,7 +147,7 @@ chk("+2% since_inc approx +2%",
     # After rebalancing cost_basis reflects rebalance prices; test the formula
     # instead: NAV increase should equal 2% of invested capital.
     abs(nav_sim2 - cash - sum(float(p["shares"]) * float(p["cost_basis"])
-        for p in positions.values()) * 1.02 - cash) < 1
+        for p in positions.values()) * 1.02) < 1  # removed duplicate - cash (was always failing)
     if len(nav_history) > 1
     else abs(since_sim2 - 2.0) < 0.1,
     f"since_inc={since_sim2:.4f}% (expected ~2.00%)")

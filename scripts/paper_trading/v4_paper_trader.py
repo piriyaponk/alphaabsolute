@@ -401,18 +401,18 @@ def tg_send(text):
 def load_state():
     if not os.path.exists(STATE_FILE):
         return None
-    with open(STATE_FILE) as f:
+    with open(STATE_FILE, encoding='utf-8') as f:
         return json.load(f)
 
 def save_state(state):
     os.makedirs(os.path.dirname(STATE_FILE), exist_ok=True)
     if os.path.exists(STATE_FILE):
         shutil.copy2(STATE_FILE, STATE_BAK)   # backup before overwrite
-    with open(STATE_FILE, 'w') as f:
+    with open(STATE_FILE, 'w', encoding='utf-8') as f:
         json.dump(state, f, indent=2)
 
 def load_tickers():
-    with open(TICKERS_FILE) as f:
+    with open(TICKERS_FILE, encoding='utf-8') as f:
         return [l.strip() for l in f if l.strip()]
 
 
@@ -884,7 +884,8 @@ def run_daily():
         mtd_port = 0.0  # only one day this month
     else:
         mtd_port = since_inc  # fallback: use since inception
-    qqq_nav_history = state.get('qqq_nav_history', {})
+    # qqq_nav_history already set above (updated with today's QQQ close)
+    # Do NOT re-read from state here — that overwrites today's entry before save
     mtd_qqq_dates = sorted(d for d in qqq_nav_history if d.startswith(cur_month_prefix) and d <= today)
     if len(mtd_qqq_dates) >= 1 and qqq_now:
         mtd_qqq_start = qqq_nav_history[mtd_qqq_dates[0]]

@@ -436,8 +436,8 @@ def _run_inner(conn, target_dates, backfill_days, force) -> dict:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Bulk OHLCV updater via Polygon grouped endpoint")
     parser.add_argument("--date", help="Fetch specific date (YYYY-MM-DD)")
-    parser.add_argument("--backfill-days", type=int, default=10,
-                        help="Max trading days to backfill (default 10)")
+    parser.add_argument("--backfill-days", type=int, default=None,
+                        help="Max trading days to backfill (default None = auto-detect gap, per CLAUDE.md)")
     parser.add_argument("--force", action="store_true",
                         help="Skip time-of-day check — fetch all missing dates immediately "
                              "(use when running manually outside scheduled windows)")

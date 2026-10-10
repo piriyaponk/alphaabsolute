@@ -103,8 +103,8 @@ def score_performance() -> dict:
     # Per-position attribution
     attribution = []
     for ticker, pos in positions.items():
-        entry = pos.get("entry_price", 0)
-        weight= pos.get("weight", 0)
+        entry = pos.get("cost_basis", 0)  # v4 state uses cost_basis, not entry_price
+        weight= pos.get("weight_target", 0)  # v4 state uses weight_target, not weight
         latest= _latest_price(ticker) or entry
         ret   = _pct(latest, entry)
         attribution.append({
@@ -180,7 +180,7 @@ def run():
     msg = (
         f"📊 S4 Monthly Score [{TODAY}]\n"
         f"NAV: ${perf['nav']:,.0f}\n"
-        f"Port: {perf['port_return_total_pct']:+.2f}% | QQQ: {perf.get('qqq_return_total_pct') or '?'}"
+        f"Port: {perf['port_return_total_pct']:+.2f}% | QQQ: {perf['qqq_return_total_pct']:+.2f if perf.get('qqq_return_total_pct') is not None else 'N/A'}"
         f"% | Alpha: {a_str}\n"
         f"Positions: {perf['n_positions']} | Saved to learning_curve.json"
     )
