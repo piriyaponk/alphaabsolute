@@ -1,0 +1,74 @@
+{
+  "date": "2026-10-10",
+  "dr_map_version": "2026-10-10T21:42:13.728497",
+  "n_picks": 4,
+  "picks": [
+    {
+      "us_ticker": "HPE",
+      "set_symbol": "HPE80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 679093.7,
+      "all_dr": [
+        "HPE80"
+      ],
+      "h3_score": 74.3,
+      "breadth": 2,
+      "n_signals": 3,
+      "top_signal_labels": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70",
+        "F8_rs90_res15_sr15_OR"
+      ],
+      "source": "PULSE-US"
+    },
+    {
+      "us_ticker": "LITE",
+      "set_symbol": "LITE80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 29101479.22,
+      "all_dr": [
+        "LITE01",
+        "LITE23",
+        "LITE80"
+      ],
+      "h3_score": 0.0,
+      "breadth": 0,
+      "n_signals": 0,
+      "top_signal_labels": [],
+      "source": "PULSE-US"
+    },
+    {
+      "us_ticker": "CRWD",
+      "set_symbol": "CRWD80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 2647626.25,
+      "all_dr": [
+        "CRWD06",
+        "CRWD80"
+      ],
+      "h3_score": 0.0,
+      "breadth": 0,
+      "n_signals": 0,
+      "top_signal_labels": [],
+      "source": "PULSE-US"
+    },
+    {
+      "us_ticker": "VICR",
+      "set_symbol": "VICR80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 223085.7,
+      "all_dr": [
+        "VICR80"
+      ],
+      "h3_score": 0.0,
+      "breadth": 0,
+      "n_signals": 0,
+      "top_signal_labels": [],
+      "source": "PULSE-US"
+    }
+  ]
+}

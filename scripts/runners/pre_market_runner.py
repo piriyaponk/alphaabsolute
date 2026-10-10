@@ -302,6 +302,33 @@ STEPS: list[dict] = [
         "modes":       ["premarket"],
         "day_filter":  [0, 1, 2, 3, 4],  # Mon-Fri
     },
+    # PULSE-DR: Monthly universe refresh (1st of month)
+    {
+        "id":             "dr_refresh",
+        "layer":          "3-Research",
+        "name":           "DR Universe Refresh",
+        "module":         "scripts.research.dr.dr_refresh",
+        "func":           "run",
+        "output":         "data/research/dr/dr_map.json",
+        "desc":           "Monthly: refresh SET DR universe from Settrade",
+        "critical":       False,
+        "modes":          ["premarket"],
+        "first_of_month": True,
+    },
+    # PULSE-DR: Top 10 US PULSE signals that have SET DR → Telegram
+    {
+        "id":          "pulse_dr_daily",
+        "layer":       "3-Research",
+        "name":        "PULSE-DR Daily",
+        "module":      "scripts.research.dr.dr_daily_screen",
+        "func":        "run",
+        "output":      "data/research/dr/dr_daily_signals.json",
+        "desc":        "PULSE-US tickers with SET DR → Top 10 → Telegram",
+        "critical":    False,
+        "modes":       ["premarket"],
+        "day_filter":  [0, 1, 2, 3, 4],  # Mon-Fri
+        "depends_on":  ["pulse_us_daily"],
+    },
 ]
 
 
@@ -514,7 +541,7 @@ _REQUIRED_DIRS = [
     "data/regime", "data/rs_universe", "data/rs_universe/snapshots",
     "data/runner_logs", "data/health", "data/quality",
     "data/paper_trading", "data/ohlcv_cache",
-    "data/research", "data/research/thai_pulse", "data/research/pulse_us",
+    "data/research", "data/research/thai_pulse", "data/research/pulse_us", "data/research/dr",
     "output",
 ]
 

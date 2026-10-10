@@ -1,0 +1,1475 @@
+{
+  "built_at": "2026-10-10T21:42:13.728497",
+  "source_date": "2026-10-10T03:20:09+07:00",
+  "us_tickers": 147,
+  "map": {
+    "AAOI": {
+      "set_symbol": "AAOI23",
+      "issuer": "INVX",
+      "issuer_code": "23",
+      "val_thb": 2338118.62,
+      "all_dr": [
+        "AAOI03",
+        "AAOI23"
+      ]
+    },
+    "AAPL": {
+      "set_symbol": "AAPL80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 9178527.7,
+      "all_dr": [
+        "AAPL01",
+        "AAPL03",
+        "AAPL19",
+        "AAPL80"
+      ]
+    },
+    "ABBV": {
+      "set_symbol": "ABBV80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 167540.65,
+      "all_dr": [
+        "ABBV19",
+        "ABBV80"
+      ]
+    },
+    "ABNB": {
+      "set_symbol": "ABNB06",
+      "issuer": "KKPS",
+      "issuer_code": "06",
+      "val_thb": 9408.9,
+      "all_dr": [
+        "ABNB06"
+      ]
+    },
+    "ADBE": {
+      "set_symbol": "ADBE06",
+      "issuer": "KKPS",
+      "issuer_code": "06",
+      "val_thb": 764698.1,
+      "all_dr": [
+        "ADBE03",
+        "ADBE06"
+      ]
+    },
+    "AFRM": {
+      "set_symbol": "AFRM03",
+      "issuer": "PI",
+      "issuer_code": "03",
+      "val_thb": 104327.44,
+      "all_dr": [
+        "AFRM03"
+      ]
+    },
+    "AIRBUS": {
+      "set_symbol": "AIRBUS80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 4570.24,
+      "all_dr": [
+        "AIRBUS80"
+      ]
+    },
+    "ALAB": {
+      "set_symbol": "ALAB01",
+      "issuer": "BLS",
+      "issuer_code": "01",
+      "val_thb": 10758346.84,
+      "all_dr": [
+        "ALAB01",
+        "ALAB23"
+      ]
+    },
+    "AMAT": {
+      "set_symbol": "AMAT80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 81165.6,
+      "all_dr": [
+        "AMAT01",
+        "AMAT19",
+        "AMAT23",
+        "AMAT80"
+      ]
+    },
+    "AMD": {
+      "set_symbol": "AMD80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 16451854.16,
+      "all_dr": [
+        "AMD03",
+        "AMD23",
+        "AMD80"
+      ]
+    },
+    "AMGN": {
+      "set_symbol": "AMGN06",
+      "issuer": "KKPS",
+      "issuer_code": "06",
+      "val_thb": 16949.68,
+      "all_dr": [
+        "AMGN06"
+      ]
+    },
+    "AMKR": {
+      "set_symbol": "AMKR23",
+      "issuer": "INVX",
+      "issuer_code": "23",
+      "val_thb": 2876049.74,
+      "all_dr": [
+        "AMKR03",
+        "AMKR23"
+      ]
+    },
+    "AMPX": {
+      "set_symbol": "AMPX03",
+      "issuer": "PI",
+      "issuer_code": "03",
+      "val_thb": 4055.8,
+      "all_dr": [
+        "AMPX03"
+      ]
+    },
+    "AMZN": {
+      "set_symbol": "AMZN80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 12780132.82,
+      "all_dr": [
+        "AMZN01",
+        "AMZN03",
+        "AMZN06",
+        "AMZN19",
+        "AMZN23",
+        "AMZN80"
+      ]
+    },
+    "ANET": {
+      "set_symbol": "ANET80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 31472.8,
+      "all_dr": [
+        "ANET23",
+        "ANET80"
+      ]
+    },
+    "APLD": {
+      "set_symbol": "APLD03",
+      "issuer": "PI",
+      "issuer_code": "03",
+      "val_thb": 964582.98,
+      "all_dr": [
+        "APLD03",
+        "APLD03"
+      ]
+    },
+    "APPL": {
+      "set_symbol": "APPL03",
+      "issuer": "PI",
+      "issuer_code": "03",
+      "val_thb": 658868.31,
+      "all_dr": [
+        "APPL03"
+      ]
+    },
+    "ASML": {
+      "set_symbol": "ASML01",
+      "issuer": "BLS",
+      "issuer_code": "01",
+      "val_thb": 853671.25,
+      "all_dr": [
+        "ASML01"
+      ]
+    },
+    "ASTS": {
+      "set_symbol": "ASTS01",
+      "issuer": "BLS",
+      "issuer_code": "01",
+      "val_thb": 17580383.58,
+      "all_dr": [
+        "ASTS01",
+        "ASTS03",
+        "ASTS23"
+      ]
+    },
+    "AVGO": {
+      "set_symbol": "AVGO80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 5986310.16,
+      "all_dr": [
+        "AVGO23",
+        "AVGO80"
+      ]
+    },
+    "AXP": {
+      "set_symbol": "AXP06",
+      "issuer": "KKPS",
+      "issuer_code": "06",
+      "val_thb": 204017.92,
+      "all_dr": [
+        "AXP06"
+      ]
+    },
+    "BAC": {
+      "set_symbol": "BAC03",
+      "issuer": "PI",
+      "issuer_code": "03",
+      "val_thb": 188096.38,
+      "all_dr": [
+        "BAC03"
+      ]
+    },
+    "BDX": {
+      "set_symbol": "BDX06",
+      "issuer": "KKPS",
+      "issuer_code": "06",
+      "val_thb": 295.5,
+      "all_dr": [
+        "BDX06"
+      ]
+    },
+    "BE": {
+      "set_symbol": "BE80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 615587.52,
+      "all_dr": [
+        "BE03",
+        "BE80"
+      ]
+    },
+    "BKNG": {
+      "set_symbol": "BKNG80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 83586.8,
+      "all_dr": [
+        "BKNG03",
+        "BKNG80"
+      ]
+    },
+    "BKSY": {
+      "set_symbol": "BKSY03",
+      "issuer": "PI",
+      "issuer_code": "03",
+      "val_thb": 17860.3,
+      "all_dr": [
+        "BKSY03"
+      ]
+    },
+    "BLK": {
+      "set_symbol": "BLK06",
+      "issuer": "KKPS",
+      "issuer_code": "06",
+      "val_thb": 58207.22,
+      "all_dr": [
+        "BLK06"
+      ]
+    },
+    "BOEING": {
+      "set_symbol": "BOEING80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 33015.75,
+      "all_dr": [
+        "BOEING80"
+      ]
+    },
+    "BRKB": {
+      "set_symbol": "BRKB80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 882574.54,
+      "all_dr": [
+        "BRKB23",
+        "BRKB80"
+      ]
+    },
+    "CAT": {
+      "set_symbol": "CAT80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 22435.44,
+      "all_dr": [
+        "CAT19",
+        "CAT80"
+      ]
+    },
+    "CBRS": {
+      "set_symbol": "CBRS80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 871651.72,
+      "all_dr": [
+        "CBRS03",
+        "CBRS80",
+        "CBRS03",
+        "CBRS80"
+      ]
+    },
+    "CCJ": {
+      "set_symbol": "CCJ23",
+      "issuer": "INVX",
+      "issuer_code": "23",
+      "val_thb": 183136.67,
+      "all_dr": [
+        "CCJ23"
+      ]
+    },
+    "CDNS": {
+      "set_symbol": "CDNS23",
+      "issuer": "INVX",
+      "issuer_code": "23",
+      "val_thb": 703.4,
+      "all_dr": [
+        "CDNS23"
+      ]
+    },
+    "CEG": {
+      "set_symbol": "CEG23",
+      "issuer": "INVX",
+      "issuer_code": "23",
+      "val_thb": 1175663.54,
+      "all_dr": [
+        "CEG23"
+      ]
+    },
+    "CIEN": {
+      "set_symbol": "CIEN03",
+      "issuer": "PI",
+      "issuer_code": "03",
+      "val_thb": 585631.95,
+      "all_dr": [
+        "CIEN03",
+        "CIEN03"
+      ]
+    },
+    "CME": {
+      "set_symbol": "CME03",
+      "issuer": "PI",
+      "issuer_code": "03",
+      "val_thb": 1999.92,
+      "all_dr": [
+        "CME03"
+      ]
+    },
+    "COHR": {
+      "set_symbol": "COHR80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 14483767.5,
+      "all_dr": [
+        "COHR23",
+        "COHR80"
+      ]
+    },
+    "COIN": {
+      "set_symbol": "COIN80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 1565136.9,
+      "all_dr": [
+        "COIN01",
+        "COIN23",
+        "COIN80"
+      ]
+    },
+    "COSTCO": {
+      "set_symbol": "COSTCO80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 2577.6,
+      "all_dr": [
+        "COSTCO19",
+        "COSTCO80"
+      ]
+    },
+    "CRDO": {
+      "set_symbol": "CRDO80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 205686.22,
+      "all_dr": [
+        "CRDO23",
+        "CRDO80"
+      ]
+    },
+    "CRM": {
+      "set_symbol": "CRM80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 102295,
+      "all_dr": [
+        "CRM01",
+        "CRM06",
+        "CRM80"
+      ]
+    },
+    "CRSP": {
+      "set_symbol": "CRSP03",
+      "issuer": "PI",
+      "issuer_code": "03",
+      "val_thb": 78041.6,
+      "all_dr": [
+        "CRSP03"
+      ]
+    },
+    "CRWD": {
+      "set_symbol": "CRWD80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 2647626.25,
+      "all_dr": [
+        "CRWD06",
+        "CRWD80"
+      ]
+    },
+    "CRWV": {
+      "set_symbol": "CRWV23",
+      "issuer": "INVX",
+      "issuer_code": "23",
+      "val_thb": 1800601.66,
+      "all_dr": [
+        "CRWV03",
+        "CRWV23",
+        "CRWV03",
+        "CRWV23"
+      ]
+    },
+    "CSCO": {
+      "set_symbol": "CSCO06",
+      "issuer": "KKPS",
+      "issuer_code": "06",
+      "val_thb": 617164.7,
+      "all_dr": [
+        "CSCO06"
+      ]
+    },
+    "DASH": {
+      "set_symbol": "DASH03",
+      "issuer": "PI",
+      "issuer_code": "03",
+      "val_thb": 262396.72,
+      "all_dr": [
+        "DASH03"
+      ]
+    },
+    "DDOG": {
+      "set_symbol": "DDOG19",
+      "issuer": "YUANTA",
+      "issuer_code": "19",
+      "val_thb": 718762.85,
+      "all_dr": [
+        "DDOG19"
+      ]
+    },
+    "DELL": {
+      "set_symbol": "DELL80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 1717134.88,
+      "all_dr": [
+        "DELL19",
+        "DELL23",
+        "DELL80"
+      ]
+    },
+    "DISNEY": {
+      "set_symbol": "DISNEY19",
+      "issuer": "YUANTA",
+      "issuer_code": "19",
+      "val_thb": 55419.7,
+      "all_dr": [
+        "DISNEY19"
+      ]
+    },
+    "EOSE": {
+      "set_symbol": "EOSE23",
+      "issuer": "INVX",
+      "issuer_code": "23",
+      "val_thb": 2637360.31,
+      "all_dr": [
+        "EOSE03",
+        "EOSE23",
+        "EOSE03",
+        "EOSE23"
+      ]
+    },
+    "ESTEE": {
+      "set_symbol": "ESTEE80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 64898.66,
+      "all_dr": [
+        "ESTEE80"
+      ]
+    },
+    "ETN": {
+      "set_symbol": "ETN23",
+      "issuer": "INVX",
+      "issuer_code": "23",
+      "val_thb": 160380.35,
+      "all_dr": [
+        "ETN03",
+        "ETN23"
+      ]
+    },
+    "FABRINET": {
+      "set_symbol": "FABRINET80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 49868,
+      "all_dr": [
+        "FABRINET03",
+        "FABRINET23",
+        "FABRINET80"
+      ]
+    },
+    "FCX": {
+      "set_symbol": "FCX23",
+      "issuer": "INVX",
+      "issuer_code": "23",
+      "val_thb": 62553.38,
+      "all_dr": [
+        "FCX23"
+      ]
+    },
+    "FSLR": {
+      "set_symbol": "FSLR03",
+      "issuer": "PI",
+      "issuer_code": "03",
+      "val_thb": 4794.97,
+      "all_dr": [
+        "FSLR03"
+      ]
+    },
+    "FTNT": {
+      "set_symbol": "FTNT03",
+      "issuer": "PI",
+      "issuer_code": "03",
+      "val_thb": 37097.48,
+      "all_dr": [
+        "FTNT03"
+      ]
+    },
+    "GEV": {
+      "set_symbol": "GEV80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 473373.75,
+      "all_dr": [
+        "GEV23",
+        "GEV80"
+      ]
+    },
+    "GFS": {
+      "set_symbol": "GFS03",
+      "issuer": "PI",
+      "issuer_code": "03",
+      "val_thb": 282817.92,
+      "all_dr": [
+        "GFS03"
+      ]
+    },
+    "GLW": {
+      "set_symbol": "GLW80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 345572.25,
+      "all_dr": [
+        "GLW80"
+      ]
+    },
+    "GOOG": {
+      "set_symbol": "GOOG80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 47540921.8,
+      "all_dr": [
+        "GOOG06",
+        "GOOG23",
+        "GOOG80"
+      ]
+    },
+    "GOOGL": {
+      "set_symbol": "GOOGL01",
+      "issuer": "BLS",
+      "issuer_code": "01",
+      "val_thb": 472010.5,
+      "all_dr": [
+        "GOOGL01",
+        "GOOGL03",
+        "GOOGL19"
+      ]
+    },
+    "GRAB": {
+      "set_symbol": "GRAB80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 1600069.9,
+      "all_dr": [
+        "GRAB80"
+      ]
+    },
+    "GSUS": {
+      "set_symbol": "GSUS06",
+      "issuer": "KKPS",
+      "issuer_code": "06",
+      "val_thb": 463122.46,
+      "all_dr": [
+        "GSUS06"
+      ]
+    },
+    "HERMES": {
+      "set_symbol": "HERMES80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 8347,
+      "all_dr": [
+        "HERMES80"
+      ]
+    },
+    "HIMS": {
+      "set_symbol": "HIMS03",
+      "issuer": "PI",
+      "issuer_code": "03",
+      "val_thb": 1978030.9,
+      "all_dr": [
+        "HIMS03",
+        "HIMS03"
+      ]
+    },
+    "HOOD": {
+      "set_symbol": "HOOD80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 585503.38,
+      "all_dr": [
+        "HOOD03",
+        "HOOD06",
+        "HOOD80"
+      ]
+    },
+    "HPE": {
+      "set_symbol": "HPE80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 679093.7,
+      "all_dr": [
+        "HPE80"
+      ]
+    },
+    "IBM": {
+      "set_symbol": "IBM23",
+      "issuer": "INVX",
+      "issuer_code": "23",
+      "val_thb": 762,
+      "all_dr": [
+        "IBM06",
+        "IBM23"
+      ]
+    },
+    "INTEL": {
+      "set_symbol": "INTEL80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 3678182.38,
+      "all_dr": [
+        "INTEL01",
+        "INTEL03",
+        "INTEL19",
+        "INTEL23",
+        "INTEL80"
+      ]
+    },
+    "IONQ": {
+      "set_symbol": "IONQ23",
+      "issuer": "INVX",
+      "issuer_code": "23",
+      "val_thb": 1637908.24,
+      "all_dr": [
+        "IONQ03",
+        "IONQ23"
+      ]
+    },
+    "ISRG": {
+      "set_symbol": "ISRG80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 124096,
+      "all_dr": [
+        "ISRG01",
+        "ISRG06",
+        "ISRG19",
+        "ISRG80"
+      ]
+    },
+    "JNJ": {
+      "set_symbol": "JNJ03",
+      "issuer": "PI",
+      "issuer_code": "03",
+      "val_thb": 80886.62,
+      "all_dr": [
+        "JNJ03"
+      ]
+    },
+    "JOBY": {
+      "set_symbol": "JOBY03",
+      "issuer": "PI",
+      "issuer_code": "03",
+      "val_thb": 121031.84,
+      "all_dr": [
+        "JOBY03"
+      ]
+    },
+    "JPMUS": {
+      "set_symbol": "JPMUS19",
+      "issuer": "YUANTA",
+      "issuer_code": "19",
+      "val_thb": 251944.5,
+      "all_dr": [
+        "JPMUS06",
+        "JPMUS19"
+      ]
+    },
+    "KLAC": {
+      "set_symbol": "KLAC01",
+      "issuer": "BLS",
+      "issuer_code": "01",
+      "val_thb": 770338.16,
+      "all_dr": [
+        "KLAC01",
+        "KLAC19",
+        "KLAC23"
+      ]
+    },
+    "KO": {
+      "set_symbol": "KO80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 418739.8,
+      "all_dr": [
+        "KO80"
+      ]
+    },
+    "LITE": {
+      "set_symbol": "LITE80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 29101479.22,
+      "all_dr": [
+        "LITE01",
+        "LITE23",
+        "LITE80"
+      ]
+    },
+    "LLY": {
+      "set_symbol": "LLY80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 3238768.14,
+      "all_dr": [
+        "LLY23",
+        "LLY80"
+      ]
+    },
+    "LRCX": {
+      "set_symbol": "LRCX80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 1163651.4,
+      "all_dr": [
+        "LRCX01",
+        "LRCX19",
+        "LRCX23",
+        "LRCX80"
+      ]
+    },
+    "LULU": {
+      "set_symbol": "LULU06",
+      "issuer": "KKPS",
+      "issuer_code": "06",
+      "val_thb": 428495.74,
+      "all_dr": [
+        "LULU06"
+      ]
+    },
+    "LVMH": {
+      "set_symbol": "LVMH01",
+      "issuer": "BLS",
+      "issuer_code": "01",
+      "val_thb": 170613.25,
+      "all_dr": [
+        "LVMH01"
+      ]
+    },
+    "MA": {
+      "set_symbol": "MA80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 48921.48,
+      "all_dr": [
+        "MA80"
+      ]
+    },
+    "MELI": {
+      "set_symbol": "MELI23",
+      "issuer": "INVX",
+      "issuer_code": "23",
+      "val_thb": 31.75,
+      "all_dr": [
+        "MELI06",
+        "MELI23"
+      ]
+    },
+    "META": {
+      "set_symbol": "META80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 4609089.04,
+      "all_dr": [
+        "META01",
+        "META06",
+        "META23",
+        "META80"
+      ]
+    },
+    "MICRON": {
+      "set_symbol": "MICRON80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 8652070.25,
+      "all_dr": [
+        "MICRON01",
+        "MICRON03",
+        "MICRON19",
+        "MICRON23",
+        "MICRON80"
+      ]
+    },
+    "MKSI": {
+      "set_symbol": "MKSI03",
+      "issuer": "PI",
+      "issuer_code": "03",
+      "val_thb": 47194.16,
+      "all_dr": [
+        "MKSI03"
+      ]
+    },
+    "MNST": {
+      "set_symbol": "MNST06",
+      "issuer": "KKPS",
+      "issuer_code": "06",
+      "val_thb": 22108.02,
+      "all_dr": [
+        "MNST06"
+      ]
+    },
+    "MP": {
+      "set_symbol": "MP80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 201155.1,
+      "all_dr": [
+        "MP23",
+        "MP80"
+      ]
+    },
+    "MPWR": {
+      "set_symbol": "MPWR23",
+      "issuer": "INVX",
+      "issuer_code": "23",
+      "val_thb": 147937.46,
+      "all_dr": [
+        "MPWR23"
+      ]
+    },
+    "MRAM": {
+      "set_symbol": "MRAM03",
+      "issuer": "PI",
+      "issuer_code": "03",
+      "val_thb": 44777.51,
+      "all_dr": [
+        "MRAM03"
+      ]
+    },
+    "MRVL": {
+      "set_symbol": "MRVL80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 20478022.95,
+      "all_dr": [
+        "MRVL06",
+        "MRVL23",
+        "MRVL80"
+      ]
+    },
+    "MS": {
+      "set_symbol": "MS06",
+      "issuer": "KKPS",
+      "issuer_code": "06",
+      "val_thb": 496158.02,
+      "all_dr": [
+        "MS06"
+      ]
+    },
+    "MSFT": {
+      "set_symbol": "MSFT80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 3327405.8,
+      "all_dr": [
+        "MSFT01",
+        "MSFT03",
+        "MSFT06",
+        "MSFT19",
+        "MSFT23",
+        "MSFT80"
+      ]
+    },
+    "NBIS": {
+      "set_symbol": "NBIS80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 4365892.8,
+      "all_dr": [
+        "NBIS01",
+        "NBIS03",
+        "NBIS23",
+        "NBIS80"
+      ]
+    },
+    "NDAQ": {
+      "set_symbol": "NDAQ06",
+      "issuer": "KKPS",
+      "issuer_code": "06",
+      "val_thb": 76190.7,
+      "all_dr": [
+        "NDAQ06"
+      ]
+    },
+    "NEE": {
+      "set_symbol": "NEE80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 8604.56,
+      "all_dr": [
+        "NEE80"
+      ]
+    },
+    "NEM": {
+      "set_symbol": "NEM23",
+      "issuer": "INVX",
+      "issuer_code": "23",
+      "val_thb": 373014.34,
+      "all_dr": [
+        "NEM06",
+        "NEM23"
+      ]
+    },
+    "NET": {
+      "set_symbol": "NET03",
+      "issuer": "PI",
+      "issuer_code": "03",
+      "val_thb": 1521184.8,
+      "all_dr": [
+        "NET03"
+      ]
+    },
+    "NFLX": {
+      "set_symbol": "NFLX80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 4522781.82,
+      "all_dr": [
+        "NFLX06",
+        "NFLX80"
+      ]
+    },
+    "NIKE": {
+      "set_symbol": "NIKE80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 56489.9,
+      "all_dr": [
+        "NIKE80"
+      ]
+    },
+    "NOVOB": {
+      "set_symbol": "NOVOB80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 1352839.96,
+      "all_dr": [
+        "NOVOB80"
+      ]
+    },
+    "NOW": {
+      "set_symbol": "NOW23",
+      "issuer": "INVX",
+      "issuer_code": "23",
+      "val_thb": 175893.96,
+      "all_dr": [
+        "NOW19",
+        "NOW23"
+      ]
+    },
+    "NVDA": {
+      "set_symbol": "NVDA80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 17101519,
+      "all_dr": [
+        "NVDA01",
+        "NVDA03",
+        "NVDA06",
+        "NVDA19",
+        "NVDA23",
+        "NVDA80"
+      ]
+    },
+    "NVTS": {
+      "set_symbol": "NVTS23",
+      "issuer": "INVX",
+      "issuer_code": "23",
+      "val_thb": 1011567.08,
+      "all_dr": [
+        "NVTS03",
+        "NVTS23"
+      ]
+    },
+    "OKLO": {
+      "set_symbol": "OKLO23",
+      "issuer": "INVX",
+      "issuer_code": "23",
+      "val_thb": 1137621.22,
+      "all_dr": [
+        "OKLO03",
+        "OKLO23"
+      ]
+    },
+    "ON": {
+      "set_symbol": "ON23",
+      "issuer": "INVX",
+      "issuer_code": "23",
+      "val_thb": 650338,
+      "all_dr": [
+        "ON23"
+      ]
+    },
+    "ONDS": {
+      "set_symbol": "ONDS03",
+      "issuer": "PI",
+      "issuer_code": "03",
+      "val_thb": 2205652.9,
+      "all_dr": [
+        "ONDS03",
+        "ONDS03"
+      ]
+    },
+    "ONON": {
+      "set_symbol": "ONON03",
+      "issuer": "PI",
+      "issuer_code": "03",
+      "val_thb": 305252.06,
+      "all_dr": [
+        "ONON03"
+      ]
+    },
+    "ORCL": {
+      "set_symbol": "ORCL80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 1765159.76,
+      "all_dr": [
+        "ORCL01",
+        "ORCL06",
+        "ORCL19",
+        "ORCL23",
+        "ORCL80"
+      ]
+    },
+    "OXY": {
+      "set_symbol": "OXY03",
+      "issuer": "PI",
+      "issuer_code": "03",
+      "val_thb": 469853.68,
+      "all_dr": [
+        "OXY03"
+      ]
+    },
+    "PANW": {
+      "set_symbol": "PANW80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 3497723.4,
+      "all_dr": [
+        "PANW19",
+        "PANW80"
+      ]
+    },
+    "PEP": {
+      "set_symbol": "PEP80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 989264.85,
+      "all_dr": [
+        "PEP80"
+      ]
+    },
+    "PFIZER": {
+      "set_symbol": "PFIZER19",
+      "issuer": "YUANTA",
+      "issuer_code": "19",
+      "val_thb": 784188.3,
+      "all_dr": [
+        "PFIZER19"
+      ]
+    },
+    "PLAB": {
+      "set_symbol": "PLAB03",
+      "issuer": "PI",
+      "issuer_code": "03",
+      "val_thb": 310046.68,
+      "all_dr": [
+        "PLAB03"
+      ]
+    },
+    "PLTR": {
+      "set_symbol": "PLTR80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 491931.9,
+      "all_dr": [
+        "PLTR01",
+        "PLTR03",
+        "PLTR06",
+        "PLTR23",
+        "PLTR80"
+      ]
+    },
+    "PWR": {
+      "set_symbol": "PWR80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 23320,
+      "all_dr": [
+        "PWR03",
+        "PWR80"
+      ]
+    },
+    "QBTS": {
+      "set_symbol": "QBTS03",
+      "issuer": "PI",
+      "issuer_code": "03",
+      "val_thb": 99651.08,
+      "all_dr": [
+        "QBTS03"
+      ]
+    },
+    "QCOM": {
+      "set_symbol": "QCOM80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 45047.3,
+      "all_dr": [
+        "QCOM06",
+        "QCOM23",
+        "QCOM80"
+      ]
+    },
+    "RBLX": {
+      "set_symbol": "RBLX06",
+      "issuer": "KKPS",
+      "issuer_code": "06",
+      "val_thb": 3055165.2,
+      "all_dr": [
+        "RBLX06"
+      ]
+    },
+    "RGTI": {
+      "set_symbol": "RGTI23",
+      "issuer": "INVX",
+      "issuer_code": "23",
+      "val_thb": 863308.36,
+      "all_dr": [
+        "RGTI03",
+        "RGTI23"
+      ]
+    },
+    "RKLB": {
+      "set_symbol": "RKLB80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 10972467.14,
+      "all_dr": [
+        "RKLB01",
+        "RKLB03",
+        "RKLB23",
+        "RKLB80"
+      ]
+    },
+    "SBUX": {
+      "set_symbol": "SBUX80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 85545.78,
+      "all_dr": [
+        "SBUX80"
+      ]
+    },
+    "SEAGATE": {
+      "set_symbol": "SEAGATE80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 783747.32,
+      "all_dr": [
+        "SEAGATE23",
+        "SEAGATE80"
+      ]
+    },
+    "SHOP": {
+      "set_symbol": "SHOP06",
+      "issuer": "KKPS",
+      "issuer_code": "06",
+      "val_thb": 103113.12,
+      "all_dr": [
+        "SHOP03",
+        "SHOP06"
+      ]
+    },
+    "SIL": {
+      "set_symbol": "SIL03",
+      "issuer": "PI",
+      "issuer_code": "03",
+      "val_thb": 119373.96,
+      "all_dr": [
+        "SIL03"
+      ]
+    },
+    "SMCI": {
+      "set_symbol": "SMCI03",
+      "issuer": "PI",
+      "issuer_code": "03",
+      "val_thb": 1606553.42,
+      "all_dr": [
+        "SMCI03"
+      ]
+    },
+    "SMR": {
+      "set_symbol": "SMR23",
+      "issuer": "INVX",
+      "issuer_code": "23",
+      "val_thb": 123089.71,
+      "all_dr": [
+        "SMR03",
+        "SMR23"
+      ]
+    },
+    "SNDK": {
+      "set_symbol": "SNDK80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 23592241.7,
+      "all_dr": [
+        "SNDK03",
+        "SNDK23",
+        "SNDK80"
+      ]
+    },
+    "SNOW": {
+      "set_symbol": "SNOW23",
+      "issuer": "INVX",
+      "issuer_code": "23",
+      "val_thb": 2890454.3,
+      "all_dr": [
+        "SNOW06",
+        "SNOW23"
+      ]
+    },
+    "SOFI": {
+      "set_symbol": "SOFI23",
+      "issuer": "INVX",
+      "issuer_code": "23",
+      "val_thb": 1521388,
+      "all_dr": [
+        "SOFI23"
+      ]
+    },
+    "SPACEX": {
+      "set_symbol": "SPACEX80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 20426930.2,
+      "all_dr": [
+        "SPACEX01",
+        "SPACEX03",
+        "SPACEX06",
+        "SPACEX23",
+        "SPACEX80"
+      ]
+    },
+    "STM": {
+      "set_symbol": "STM03",
+      "issuer": "PI",
+      "issuer_code": "03",
+      "val_thb": 8750,
+      "all_dr": [
+        "STM03"
+      ]
+    },
+    "SYM": {
+      "set_symbol": "SYM23",
+      "issuer": "INVX",
+      "issuer_code": "23",
+      "val_thb": 8098.75,
+      "all_dr": [
+        "SYM03",
+        "SYM23"
+      ]
+    },
+    "SYNP": {
+      "set_symbol": "SYNP23",
+      "issuer": "INVX",
+      "issuer_code": "23",
+      "val_thb": 74563.75,
+      "all_dr": [
+        "SYNP03",
+        "SYNP23"
+      ]
+    },
+    "TER": {
+      "set_symbol": "TER80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 318482.5,
+      "all_dr": [
+        "TER01",
+        "TER23",
+        "TER80"
+      ]
+    },
+    "TSEMI": {
+      "set_symbol": "TSEMI80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 301177.82,
+      "all_dr": [
+        "TSEMI03",
+        "TSEMI23",
+        "TSEMI80"
+      ]
+    },
+    "TSLA": {
+      "set_symbol": "TSLA80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 13136448.1,
+      "all_dr": [
+        "TSLA01",
+        "TSLA03",
+        "TSLA23",
+        "TSLA80"
+      ]
+    },
+    "TTMI": {
+      "set_symbol": "TTMI80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 30861,
+      "all_dr": [
+        "TTMI80"
+      ]
+    },
+    "UBER": {
+      "set_symbol": "UBER06",
+      "issuer": "KKPS",
+      "issuer_code": "06",
+      "val_thb": 2278719.72,
+      "all_dr": [
+        "UBER06"
+      ]
+    },
+    "UNH": {
+      "set_symbol": "UNH19",
+      "issuer": "YUANTA",
+      "issuer_code": "19",
+      "val_thb": 546642,
+      "all_dr": [
+        "UNH19"
+      ]
+    },
+    "USAR": {
+      "set_symbol": "USAR03",
+      "issuer": "PI",
+      "issuer_code": "03",
+      "val_thb": 304303.79,
+      "all_dr": [
+        "USAR03"
+      ]
+    },
+    "VICR": {
+      "set_symbol": "VICR80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 223085.7,
+      "all_dr": [
+        "VICR80"
+      ]
+    },
+    "VISA": {
+      "set_symbol": "VISA80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 1803250.24,
+      "all_dr": [
+        "VISA06",
+        "VISA80"
+      ]
+    },
+    "VRT": {
+      "set_symbol": "VRT80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 456895.7,
+      "all_dr": [
+        "VRT01",
+        "VRT23",
+        "VRT80"
+      ]
+    },
+    "VST": {
+      "set_symbol": "VST03",
+      "issuer": "PI",
+      "issuer_code": "03",
+      "val_thb": 3526732.98,
+      "all_dr": [
+        "VST03"
+      ]
+    },
+    "WDC": {
+      "set_symbol": "WDC03",
+      "issuer": "PI",
+      "issuer_code": "03",
+      "val_thb": 7061978.97,
+      "all_dr": [
+        "WDC03"
+      ]
+    },
+    "WMT": {
+      "set_symbol": "WMT80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 13142.24,
+      "all_dr": [
+        "WMT06",
+        "WMT80"
+      ]
+    }
+  }
+}
