@@ -173,6 +173,16 @@ jobs:
         run: |
           python -X utf8 scripts/research/thai_paper_trader.py --alert-fail "paper_trader" || true
 
+
+      - name: Write Obsidian notes
+        if: steps.date_check.outputs.already_ran != 'true'
+        continue-on-error: true
+        env:
+          OBSIDIAN_VAULT_PATH: ${{ secrets.OBSIDIAN_VAULT_PATH }}
+          PYTHONIOENCODING: utf-8
+        run: |
+          python -X utf8 scripts/research/thai_obsidian_writer.py 2>&1 | tail -20
+
       - name: Commit updated state
         id: commit_state
         run: |
