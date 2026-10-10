@@ -86,10 +86,9 @@ def _call_tool(name: str, args: dict, api_key: str) -> dict:
             return json.loads(content[0]["text"])
         except urllib.error.HTTPError as e:
             if e.code == 429:
-                # tvremix free plan: 20/min limit (not hourly) — 10s enough to reset
-                wait = 10 * (attempt + 1)
-                print(f"  [tvremix] 429 rate-limit — sleeping {wait}s")
-                time.sleep(wait)
+                # Raise immediately — let callers (fetch_stock circuit breaker) decide.
+                # Sleeping here blocks the entire bulk loop for 10-60s per ticker.
+                raise TvremixError(f"429 rate-limit for {name}({args})")
             elif e.code in (400, 403, 404):
                 raise TvremixError(f"HTTP {e.code} for {name}({args})")
             else:

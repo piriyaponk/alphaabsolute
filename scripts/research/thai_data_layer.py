@@ -307,24 +307,37 @@ def fetch_yahoo(ticker: str, start: str, end: str) -> pd.DataFrame:
     raise last_exc
 
 
+# Circuit breaker: once tvremix returns 429 in a bulk run, skip it for all
+# remaining tickers in this process — avoids 60s sleep × N tickers.
+_tvremix_rate_limited = False
+
+
 def fetch_stock(ticker: str, start: str, end: str) -> pd.DataFrame:
     """Fetch OHLCV — tvremix primary, Yahoo Finance fallback.
 
     Source 1: tvremix.xyz (TradingView WebSocket feed) — reliable, no auth issues
     Source 2: Yahoo Finance query2 → query1 — fallback when tvremix unavailable
+
+    Circuit breaker: first 429 from tvremix sets _tvremix_rate_limited=True,
+    skipping tvremix for all remaining tickers in this run.
     """
-    # Try tvremix first
-    try:
-        import sys as _sys
-        _sys.path.insert(0, str(Path(__file__).resolve().parent))
-        from tvremix_client import fetch_tvremix, TvremixError
-        df = fetch_tvremix(ticker, start, end)
-        if len(df) > 0:
-            return df
-        # Empty result → fall through to Yahoo
-    except Exception as _tvr_err:
-        # tvremix unavailable or key not set → silent fallback
-        pass
+    global _tvremix_rate_limited
+
+    if not _tvremix_rate_limited:
+        try:
+            import sys as _sys
+            _sys.path.insert(0, str(Path(__file__).resolve().parent))
+            from tvremix_client import fetch_tvremix, TvremixError
+            df = fetch_tvremix(ticker, start, end)
+            if len(df) > 0:
+                return df
+            # Empty result → fall through to Yahoo
+        except Exception as _tvr_err:
+            err_str = str(_tvr_err)
+            if "429" in err_str or "rate" in err_str.lower():
+                _tvremix_rate_limited = True
+                print(f"  [tvremix] circuit breaker tripped — switching to Yahoo Finance for all remaining tickers")
+            # Any tvremix error → silent fallback to Yahoo
 
     # Fallback: Yahoo Finance
     return fetch_yahoo(ticker, start, end)
