@@ -197,6 +197,21 @@ jobs:
         run: |
           python scripts/research/focus_list_builder.py
 
+      - name: Alert on Focus List failure
+        if: failure() && steps.focus_list.outcome == 'failure'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python3 -c "
+          import os, requests
+          t = os.environ.get('TELEGRAM_BOT_TOKEN')
+          c = os.environ.get('TELEGRAM_CHAT_ID')
+          if t and c:
+              requests.post(f'https://api.telegram.org/bot{t}/sendMessage',
+                            json={'chat_id':c,'text':'[FOCUS] Focus List Builder FAILED -- daily_focus_list.json not updated. Check GitHub Actions logs.'},timeout=10)
+          " || true
+
       - name: Monthly DR universe refresh (1st of month only)
         id: dr_refresh
         env:

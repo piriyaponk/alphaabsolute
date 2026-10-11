@@ -234,7 +234,11 @@ def _build_dr_section(today: str) -> list[dict]:
         print("  [WARN] DR map not found — skipping DR section")
         return []
 
-    dr_map: dict = json.loads(DR_MAP_PATH.read_text(encoding="utf-8"))["map"]
+    try:
+        dr_map: dict = json.loads(DR_MAP_PATH.read_text(encoding="utf-8"))["map"]
+    except Exception as e:
+        print(f"  [WARN] DR map load failed: {e} — skipping DR section")
+        return []
     rows: list[dict] = []
     seen: set[str] = set()  # keyed by US ticker
 
@@ -394,12 +398,15 @@ def run():
 
     all_rows = th_pulse + th_set100 + dr_rows + pulse_rows
 
-    # Write to DB
-    con = sqlite3.connect(DB_PATH)
-    _ensure_table(con)
-    _upsert(con, all_rows)
-    con.close()
-    print(f"  Upserted {len(all_rows)} rows → focus_list table")
+    # Write to DB (non-fatal — JSON must still be written even if DB is locked)
+    try:
+        con = sqlite3.connect(DB_PATH, timeout=10)
+        _ensure_table(con)
+        _upsert(con, all_rows)
+        con.close()
+        print(f"  Upserted {len(all_rows)} rows → focus_list table")
+    except Exception as e:
+        print(f"  [WARN] DB upsert failed (DB may be locked): {e} — continuing to JSON write")
 
     # ── Label helper ──────────────────────────────────────────────────────────
     # source:     PULSE | AA | RS-FILL | LIQUIDITY-FILL
