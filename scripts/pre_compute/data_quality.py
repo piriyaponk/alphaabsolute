@@ -183,11 +183,15 @@ def check_rs_coverage(conn, universe: list[str]) -> dict:
 
 def check_fundamental_coverage(conn, universe: list[str]) -> dict:
     """Tickers that pass RS gate but have no fundamental data."""
+    import sqlite3
     c = conn.cursor()
     latest_screen = None
     try:
         c.execute("SELECT MAX(date) FROM screening_results")
         latest_screen = c.fetchone()[0]
+    except sqlite3.OperationalError:
+        return {"check": "fundamental_coverage", "status": "skip",
+                "message": "screening_results table absent (dropped — AA pipeline uses rs_daily now)"}
     except Exception:
         pass
 
@@ -282,10 +286,13 @@ def check_ohlcv_data_quality(conn) -> dict:
 
 def check_screening_freshness(conn) -> dict:
     """Is screening_results from today or yesterday?"""
+    import sqlite3
     c = conn.cursor()
     try:
         c.execute("SELECT MAX(date), COUNT(*) FROM screening_results")
         latest, count = c.fetchone()
+    except sqlite3.OperationalError:
+        return {"check": "screening_freshness", "status": "skip", "message": "screening_results table absent (dropped — AA pipeline uses rs_daily now)"}
     except Exception:
         return {"check": "screening_freshness", "status": "fail", "message": "No screening_results"}
 

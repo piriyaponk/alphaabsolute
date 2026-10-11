@@ -426,6 +426,10 @@ def _load_universe_from_db() -> dict:
             }
         return result
     except Exception as e:
+        msg = str(e)
+        if "no such table: screening_results" in msg:
+            # Table was dropped — rs_change_detector falls back to latest.json path
+            return {}
         print(f"  [!] DB universe load: {e}")
         return {}
 
