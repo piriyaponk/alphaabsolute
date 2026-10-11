@@ -14,10 +14,13 @@ Output:
 Run: after thai_pulse_daily.py + dr_daily_screen.py complete
 """
 import json
+import os
 import sqlite3
 import sys
 from datetime import date, datetime
 from pathlib import Path
+
+import requests
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
@@ -479,6 +482,103 @@ def run():
     return output
 
 
+def _send_telegram(text: str) -> bool:
+    token   = os.environ.get("TELEGRAM_BOT_TOKEN", "")
+    chat_id = os.environ.get("TELEGRAM_CHAT_ID", "")
+    if not token or not chat_id:
+        # Try .env file
+        env_path = ROOT / ".env"
+        if env_path.exists():
+            for line in env_path.read_text(encoding="utf-8").splitlines():
+                if line.startswith("TELEGRAM_BOT_TOKEN=") and not token:
+                    token = line.split("=", 1)[1].strip()
+                elif line.startswith("TELEGRAM_CHAT_ID=") and not chat_id:
+                    chat_id = line.split("=", 1)[1].strip()
+    if not token or not chat_id:
+        print("  [WARN] TELEGRAM creds not found — skipping push")
+        return False
+    url = f"https://api.telegram.org/bot{token}/sendMessage"
+    payload = {"chat_id": chat_id, "text": text, "parse_mode": "Markdown"}
+    try:
+        resp = requests.post(url, json=payload, timeout=10, verify=False)
+        if resp.status_code == 400:
+            payload.pop("parse_mode")
+            resp = requests.post(url, json=payload, timeout=10, verify=False)
+        resp.raise_for_status()
+        print(f"  [OK] Telegram sent ({len(text)} chars)")
+        return True
+    except Exception as e:
+        print(f"  [ERROR] Telegram failed: {e}")
+        return False
+
+
+def format_telegram(output: dict) -> str:
+    today = output["date"]
+    s = output["summary"]
+    lines = [f"📋 *Focus List* [{today}]"]
+    lines.append(f"Total: {s['total']} | TH-PULSE:{s['th_pulse_count']} SET100:{s['th_set100_count']} DR:{s['dr_count']} US:{s['pulse_us_count']}")
+    lines.append("")
+
+    # TH-PULSE section
+    th_pulse = output.get("th_pulse", [])
+    if th_pulse:
+        lines.append("🇹🇭 *TH PULSE* (active signals)")
+        for e in th_pulse:
+            lbl = e["label"]
+            cv  = "🔴" if lbl["conviction"] == "HIGH" else "🟡"
+            sig = e["top_signals"][0] if e.get("top_signals") else ""
+            lines.append(f"{cv} {e['ticker']} h3={lbl['pulse_h3_hit_rate_pct']:.0f}% brd={lbl['pulse_breadth']} rs={lbl['rs_pct']:.0f}")
+            if sig:
+                lines.append(f"   └ {sig}")
+    else:
+        lines.append("🇹🇭 *TH PULSE*: no active signals today")
+    lines.append("")
+
+    # TH-SET100 — show top 10 only
+    th_set = output.get("th_set100", [])
+    pulse_in_set = [e for e in th_set if e["label"]["source"] == "PULSE"]
+    if pulse_in_set:
+        lines.append(f"🇹🇭 *SET100* — {len(pulse_in_set)} with active PULSE signal")
+        for e in pulse_in_set[:5]:
+            lbl = e["label"]
+            lines.append(f"🟡 {e['ticker']} h3={lbl['pulse_h3_hit_rate_pct']:.0f}% brd={lbl['pulse_breadth']}")
+    else:
+        top5 = th_set[:5]
+        tickers = " | ".join(e["ticker"].replace(".BK", "") for e in top5)
+        lines.append(f"🇹🇭 *SET100* top5: {tickers} (+{len(th_set)-5} more)")
+    lines.append("")
+
+    # DR section
+    dr = output.get("dr", [])
+    if dr:
+        lines.append("🔗 *DR* (US→SET, top 5)")
+        for e in dr[:5]:
+            lbl = e["label"]
+            cv  = "🔴" if lbl["conviction"] == "HIGH" else ("🟡" if lbl["conviction"] == "MEDIUM" else "⚪")
+            set_sym = e.get("set_symbol") or "-"
+            lines.append(f"{cv} ${e['us_ticker']} → {set_sym} h3={lbl['pulse_h3_hit_rate_pct']:.0f}% brd={lbl['pulse_breadth']}")
+    lines.append("")
+
+    # PULSE-US — active signals only
+    pulse_us = [e for e in output.get("pulse_us", []) if e["label"]["source"] == "PULSE"]
+    if pulse_us:
+        lines.append(f"🇺🇸 *PULSE-US* ({len(pulse_us)} active)")
+        for e in pulse_us[:5]:
+            lbl = e["label"]
+            cv  = "🔴" if lbl["conviction"] == "HIGH" else "🟡"
+            lines.append(f"{cv} ${e['ticker']} h3={lbl['pulse_h3_hit_rate_pct']:.0f}% brd={lbl['pulse_breadth']} rs={lbl['rs_pct']:.0f}")
+        if len(pulse_us) > 5:
+            more = " ".join(f"${e['ticker']}" for e in pulse_us[5:])
+            lines.append(f"   +more: {more}")
+
+    return "\n".join(lines)
+
+
 if __name__ == "__main__":
     result = run()
     print(f"\nSummary: {result['summary']}")
+    msg = format_telegram(result)
+    print("\n--- Telegram preview ---")
+    print(msg)
+    print("------------------------")
+    _send_telegram(msg)

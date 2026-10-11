@@ -194,6 +194,9 @@ jobs:
 
       - name: Build Daily Focus List (strategist universe)
         id: focus_list
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           python scripts/research/focus_list_builder.py
 
