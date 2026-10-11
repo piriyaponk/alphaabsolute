@@ -277,6 +277,19 @@ STEPS: list[dict] = [
         "modes":       ["premarket"],
         "first_of_month": True,
     },
+    # PULSE-US: Data layer — fetch/update OHLCV for RS>=90 tickers (prerequisite for screens)
+    {
+        "id":          "pulse_us_data",
+        "layer":       "3-Research",
+        "name":        "PULSE-US Data Layer",
+        "module":      "scripts.research.pulse_us.pulse_us_data_layer",
+        "func":        "run",
+        "output":      "data/research/pulse_us/pulse_us_ohlcv.db",
+        "desc":        "Fetch/update OHLCV for RS>=90 tickers — required by PULSE-US screens",
+        "critical":    False,
+        "modes":       ["premarket"],
+        "day_filter":  [0, 1, 2, 3, 4],  # Mon-Fri
+    },
     # PULSE-US: Best Final screen (Grade S signals → Telegram)
     {
         "id":          "pulse_us_best_final",
@@ -447,16 +460,16 @@ MAX_RETRIES = 2
 RETRY_DELAY = 5   # seconds between retries
 
 
-def run_step(step: dict, dry_run: bool = False) -> tuple[bool, float, str, bool]:
+def run_step(step: dict, dry_run: bool = False, force_run: bool = False) -> tuple[bool, float, str, bool]:
     """
     Run a single pipeline step with auto-retry on transient failures.
     Returns (success, duration, error_msg, was_skipped).
     """
     t0 = time.time()
 
-    # --- skip if day_filter doesn't match today ---
+    # --- skip if day_filter doesn't match today (bypass when step is explicitly named) ---
     day_filter = step.get("day_filter")
-    if day_filter is not None:
+    if day_filter is not None and not force_run:
         today_weekday = date.today().weekday()  # 0=Mon, 4=Fri
         if today_weekday not in day_filter:
             return True, 0.0, "", True  # silently skip — wrong day
@@ -649,7 +662,7 @@ def run_pipeline(mode: str = "premarket", step_filter: str | None = None,
         print(f"\n  [{step['layer']}] {step['name']}")
         print(f"  -> {step['desc']}")
 
-        ok, dur, err, skipped = run_step(step, dry_run=dry_run)
+        ok, dur, err, skipped = run_step(step, dry_run=dry_run, force_run=bool(step_filter))
         log.record(step["id"], step["name"], ok, dur, step["output"], err, skipped)
         if not dry_run:
             _log_pipeline_run(

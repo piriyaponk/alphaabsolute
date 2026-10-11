@@ -755,7 +755,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--date',        default=None)
     parser.add_argument('--no-telegram', action='store_true')
-    args = parser.parse_args()
+    args, _ = parser.parse_known_args()  # parse_known_args: ignore runner args (--step etc)
 
     run_date = datetime.strptime(args.date, '%Y-%m-%d') if args.date else datetime.now()
 
@@ -769,9 +769,11 @@ def main():
     if result is None:
         print("No results.")
         Path(OUT_PATH).parent.mkdir(parents=True, exist_ok=True)
-        with open(OUT_PATH, 'w', encoding='utf-8') as f:
+        _tmp = Path(OUT_PATH).with_suffix('.tmp')
+        with open(_tmp, 'w', encoding='utf-8') as f:
             json.dump({'date': run_date.strftime('%Y-%m-%d'), 'n_quality': 0,
                        'total_hits': 0, 'unique_tickers': 0}, f)
+        os.replace(_tmp, OUT_PATH)
         return
 
     n_quality    = result['n_quality']
@@ -796,8 +798,10 @@ def main():
                               ticker_hits.items(),
                               key=lambda x: -pulse_scores[x[0]]['breadth_pct'])},
     }
-    with open(OUT_PATH, 'w', encoding='utf-8') as f:
+    _tmp_out = Path(OUT_PATH).with_suffix('.tmp')
+    with open(_tmp_out, 'w', encoding='utf-8') as f:
         json.dump(out, f, indent=2, default=str)
+    os.replace(_tmp_out, OUT_PATH)
     print(f"\nSaved → {OUT_PATH}")
 
     # Upsert to shared pulse_signals.db

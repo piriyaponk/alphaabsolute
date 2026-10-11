@@ -439,6 +439,36 @@ def run_init():
     return run_rebalance(init=True)
 
 
+
+# ── MARKET-WIDE RS LOADER (Option B: rs_composite_pct from rs_ranker.py output) ──
+RS_UNIVERSE_PATH = 'data/rs_universe/latest.json'
+
+def _load_mkt_rs() -> dict:
+    """
+    Load market-wide RS composite percentile from rs_ranker output.
+    Returns {ticker: rs_composite_pct} for the full 5000+ universe.
+    RS_THRESH=80 now means genuine market-wide 80th percentile, not within-pool.
+    Falls back gracefully if file is missing or stale.
+    """
+    p = Path(RS_UNIVERSE_PATH)
+    if not p.exists():
+        print('[RS] latest.json not found — falling back to within-pool RS ranking')
+        return {}
+    try:
+        d = json.loads(p.read_text(encoding='utf-8'))
+        universe = d.get('universe', {})
+        result = {}
+        for ticker, info in universe.items():
+            pct = info.get('rs_composite_pct')
+            if pct is not None:
+                result[ticker] = float(pct)
+        print(f'[RS] Market-wide RS loaded: {len(result)} tickers from {d.get("date", "unknown")}')
+        return result
+    except Exception as e:
+        print(f'[RS] Failed to load latest.json: {e} — falling back to within-pool RS ranking')
+        return {}
+
+
 # ── MODE: REBALANCE ───────────────────────────────────────────────────────────
 def run_rebalance(init=False):
     tickers = load_tickers()
@@ -482,8 +512,23 @@ def run_rebalance(init=False):
     if sig.empty:
         print('ERROR: No signals'); return None
 
+    # Option B: augment with market-wide RS percentile from rs_ranker output.
+    # Ensures RS_THRESH=80 means genuine market-wide 80th pct, not within-pool.
+    # Within-pool fallback applies for tickers absent from latest.json.
+    mkt_rs = _load_mkt_rs()
+    if mkt_rs:
+        sig['rs_mkt_pct'] = sig['ticker'].map(mkt_rs)
+        # Where market RS is missing, fall back to within-pool percentile
+        sig['rs_eff_pct'] = sig['rs_mkt_pct'].fillna(sig['rs_pct'])
+        n_mkt  = sig['rs_mkt_pct'].notna().sum()
+        n_fall = sig['rs_mkt_pct'].isna().sum()
+        print(f'[RS] Market-wide RS: {n_mkt} tickers mapped, {n_fall} fallback to within-pool')
+    else:
+        sig['rs_eff_pct'] = sig['rs_pct']  # pure within-pool fallback
+
     # Screens — fetch ADTV for top candidates
-    mask   = ((sig['rs_pct'] >= RS_THRESH) &
+    # rs_eff_pct = market-wide RS when available, within-pool fallback otherwise
+    mask   = ((sig['rs_eff_pct'] >= RS_THRESH) &
               (sig['vs_ma200_pct'] >= 0) &
               (sig['vol_trend'] >= vt))
     passed = sig[mask].nlargest(CANDIDATE_POOL, 'rs_pct')
