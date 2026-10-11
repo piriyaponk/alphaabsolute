@@ -111,6 +111,10 @@ def _ensure_table(con: sqlite3.Connection):
             PRIMARY KEY (date, category, ticker)
         )
     """)
+    # Purge stale category='TH' rows written by an old version of this script
+    con.execute("DELETE FROM focus_list WHERE category = 'TH'")
+    # Prevent unbounded growth — keep only last 30 days
+    con.execute("DELETE FROM focus_list WHERE date < date('now', '-30 days')")
     con.commit()
 
 
@@ -475,7 +479,11 @@ def run():
         "pulse_us": [_entry(r) for r in pulse_rows],
     }
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    OUT_PATH.write_text(json.dumps(output, indent=2, ensure_ascii=False), encoding="utf-8")
+    # Atomic write: write to .tmp first, then os.replace() so downstream agents
+    # never read a partially-written file if this process is killed mid-write.
+    _tmp = OUT_PATH.with_suffix(".tmp")
+    _tmp.write_text(json.dumps(output, indent=2, ensure_ascii=False), encoding="utf-8")
+    os.replace(_tmp, OUT_PATH)
     print(f"  Saved → {OUT_PATH}")
     print(f"  Total: {len(th_pulse)} TH-PULSE + {len(th_set100)} TH-SET100 + {len(dr_rows)} DR + {len(pulse_rows)} PULSE-US = {len(all_rows)}")
 
