@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-10",
+  "date": "2026-10-11",
   "market_context": {
     "n_universe": 5086,
     "n_rs70": 824,
@@ -7,8 +7,8 @@
     "pct_rs70": 16.2
   },
   "n_quality": 195,
-  "total_hits": 48,
-  "unique_tickers": 13,
+  "total_hits": 53,
+  "unique_tickers": 14,
   "pulse_scores": {
     "AMPL": {
       "breadth": 2,
@@ -222,6 +222,24 @@
         "F1_vt05_ddr12"
       ]
     },
+    "TWST": {
+      "breadth": 1,
+      "breadth_pct": 5.9,
+      "avg_h3": 79.3,
+      "n_signals_fired": 5,
+      "top_signals": [
+        "F1_vt05_ddr15",
+        "F1_vt05_ddr12_sr15",
+        "F1_vt05_ddr12"
+      ]
+    },
+    "TXG": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0,
+      "top_signals": []
+    },
     "U": {
       "breadth": 0,
       "breadth_pct": 0.0,
@@ -324,6 +342,13 @@
       "F1_vt05_ddr12_bp70",
       "F1_vt05_ddr15_bp70",
       "F1_vt05_ddr12_ads"
+    ],
+    "TWST": [
+      "F1_vt05_ddr15",
+      "F1_vt05_ddr12_sr15",
+      "F1_vt05_ddr12",
+      "F1_vt05_ddr12_bp70",
+      "F1_vt05_ddr15_bp70"
     ],
     "ZBRA": [
       "F_REC_ddr30_ATH5_bt70",

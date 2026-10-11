@@ -122,8 +122,8 @@ def fetch_estimates(ticker: str, session: requests.Session, crumb: str) -> dict:
     rev_cur  = _raw(cur_y,  "revenueEstimate",  "avg")
     n_analysts = _raw(fwd_1y, "numberOfAnalysts")
 
-    eps_fwd = round((eps_next / eps_cur - 1) * 100, 1) if eps_next and eps_cur and eps_cur > 0 else None
-    rev_fwd = round((rev_next / rev_cur - 1) * 100, 1) if rev_next and rev_cur and rev_cur > 0 else None
+    eps_fwd = round((eps_next / eps_cur - 1) * 100, 1) if (eps_next is not None and eps_cur is not None and eps_cur > 0) else None
+    rev_fwd = round((rev_next / rev_cur - 1) * 100, 1) if (rev_next is not None and rev_cur is not None and rev_cur > 0) else None
 
     return {
         "ticker":              ticker,
@@ -229,7 +229,9 @@ def run():
         "records":     records,
         "ticker_index": {r["ticker"]: r for r in records if "error" not in r},
     }
-    OUT_JSON.write_text(json.dumps(out, indent=2, default=str), encoding="utf-8")
+    _tmp_json = OUT_JSON.with_suffix(".tmp")
+    _tmp_json.write_text(json.dumps(out, indent=2, default=str), encoding="utf-8")
+    import os as _os; _os.replace(_tmp_json, OUT_JSON)
     print(f"\n[fwd-estimates] Saved → {OUT_JSON.name} ({ok_count}/{len(tickers)} OK)")
 
     # ── Archive to SQLite ──────────────────────────────────────────────────────

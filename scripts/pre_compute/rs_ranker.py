@@ -176,12 +176,30 @@ def fetch_ohlcv(ticker: str, period_days: int = 280) -> dict:
     Returns dict with 'dates', 'close', 'volume' lists (oldest first).
     """
     # ── Priority 1: JSON cache (fast_prefetch writes here) ───────────────────
+    # Acceptance criteria: 260+ bars (covers 12M=252d + margin) AND
+    # last date <= 5 calendar days ago (stale cache causes 10-day-old RS numbers).
+    # A cache with only 209 bars fails the 12M gate silently — all tickers get
+    # rs_12m_pct=None. Falling through to SQLite (Priority 2) gives fresh 590+ bars.
+    _CACHE_MIN_BARS = 260
+    _CACHE_MAX_STALE_DAYS = 5
     try:
         cache_path = BASE_DIR / "data" / "ohlcv_cache" / f"{ticker}.json"
         if cache_path.exists():
             d = json.loads(cache_path.read_text(encoding="utf-8"))
             closes = d.get("close", [])
-            if closes and len(closes) >= 30:
+            dates  = d.get("dates", [])
+            cache_ok_bars = len(closes) >= _CACHE_MIN_BARS
+            cache_ok_fresh = False
+            if dates:
+                try:
+                    from datetime import date as _date_cls
+                    last_cache_date = _date_cls.fromisoformat(str(dates[-1])[:10])
+                    cache_ok_fresh = (_date_cls.today() - last_cache_date).days <= _CACHE_MAX_STALE_DAYS
+                except Exception:
+                    cache_ok_fresh = True  # cannot parse date, give benefit of doubt
+            else:
+                cache_ok_fresh = True  # no dates key, cannot check
+            if closes and cache_ok_bars and cache_ok_fresh:
                 return d
     except Exception:
         pass
@@ -190,7 +208,7 @@ def fetch_ohlcv(ticker: str, period_days: int = 280) -> dict:
     try:
         from scripts.pre_compute.ohlcv_prefetch import read_cache
         cached = read_cache(ticker)
-        if cached.get("close") and len(cached["close"]) >= 30:
+        if cached.get("close") and len(cached["close"]) >= _CACHE_MIN_BARS:
             return cached
     except Exception:
         pass
@@ -326,6 +344,13 @@ def _excess_to_market_pct(excess: float, tf_dist: dict) -> float:
         # Below p1 threshold -- interpolate down to 0
         if pts[0][1] == 0:
             return 0.0
+        if pts[0][1] < 0:
+            # Negative p1 threshold: excess is more negative than p1 → lower percentile.
+            # Formula: p1_pct * (2 - excess/p1_val).
+            #   At excess=p1_val → p1_pct (boundary). At excess=2*p1_val → 0.
+            # Original formula p1_pct*excess/p1_val inverts direction for negative values
+            # (more negative excess / more negative threshold = larger ratio = higher pct).
+            return max(0.0, round(pts[0][0] * (2.0 - excess / pts[0][1]), 1))
         return max(0.0, round(pts[0][0] * excess / pts[0][1], 1))
 
     if excess >= pts[-1][1]:
@@ -575,8 +600,9 @@ def run():
     if latest_file.exists():
         try:
             existing = json.loads(latest_file.read_text(encoding="utf-8"))
-            if existing.get("date") == today_iso and len(existing.get("ranked", [])) >= 100:
-                n = len(existing["ranked"])
+            # Output key is "universe" (dict), not "ranked" (list) — old key was wrong.
+            if existing.get("date") == today_iso and len(existing.get("universe", {})) >= 100:
+                n = len(existing["universe"])
                 print(f"[RS Ranker] latest.json is already fresh for {today_iso} ({n} tickers) — skipping rebuild.")
                 print(f"[RS Ranker] To force a full rebuild, delete data/rs_universe/latest.json first.")
                 return
@@ -723,6 +749,14 @@ def run():
             "inflection_notes": inflection_sig.get("notes", ""),
             "price_last":       tf_data.get("_close_last", 0),
             "rs_source":        rs_source,  # "market" or "watchlist"
+            # Phase: Leader>=80, Emerging>=60, Recovering>=40, Weak<40
+            # Based on rs_composite_pct — same thresholds as A06 Leadership Curator.
+            "phase": (
+                "Leader"    if (pcts.get("rs_composite_pct") or 0) >= 80 else
+                "Emerging"  if (pcts.get("rs_composite_pct") or 0) >= 60 else
+                "Recovering" if (pcts.get("rs_composite_pct") or 0) >= 40 else
+                "Weak"
+            ),
             "computed_at":      datetime.now().isoformat(),
         }
         full_universe[ticker] = entry
@@ -837,9 +871,12 @@ def run():
         "universe": {ticker: data for ticker, data in ranked_list},
     }
 
-    # 9. Save files
+    # 9. Save files — atomic write: tmp then os.replace() prevents downstream
+    # readers from seeing a partially-written file if this process is killed mid-write.
     latest_file = DATA_DIR / "latest.json"
-    latest_file.write_text(json.dumps(output, indent=2, ensure_ascii=False), encoding="utf-8")
+    _tmp_latest = DATA_DIR / "latest.json.tmp"
+    _tmp_latest.write_text(json.dumps(output, indent=2, ensure_ascii=False), encoding="utf-8")
+    os.replace(_tmp_latest, latest_file)
 
     # 9b. Persist RS scores to SQLite rs_daily table
     # This means latest.json can always be rebuilt from SQLite even if Polygon fails
