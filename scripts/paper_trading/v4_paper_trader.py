@@ -214,6 +214,15 @@ def compute_signals(data_dict, spy_close, iwm_close):
             ret   = aligned_px.pct_change()
 
             # RS composite (20/60/126/252d excess vs SPY)
+            # NOTE: v4 RS methodology differs from rs_ranker.py by design:
+            #   Formula   : additive rolling sum of daily returns (SPY-benchmarked), not
+            #               multiplicative ratio used in rs_ranker.py. Additive is faster
+            #               to compute and sufficient for within-pool ranking.
+            #   Index     : SPY (S&P 500) here vs QQQ (Nasdaq) in rs_ranker.py.
+            #   Percentile: rs_pct = rank within screened pool each day, NOT market-wide.
+            #               RS_THRESH=80 means top 20% of TODAY's screened pool —
+            #               on thin-screen days (few stocks pass MA/vol gates), this
+            #               threshold is less selective than the market-wide 80th pct.
             def er(lb, w):
                 sc = ret.rolling(lb, min_periods=int(lb*0.6)).sum()
                 bc = spy_ret.rolling(lb, min_periods=int(lb*0.6)).sum()
@@ -324,9 +333,14 @@ def vp_weights(df_screen, exposure):
     vols  = df_screen['realized_vol'].values
     betas = df_screen['beta'].values
     maxws = np.array([min(BASE_CAP, BETA_CAP / max(b, 0.5)) for b in betas])
+    # Feasibility guard: if sum(caps) < exposure the iterative redistribution cannot
+    # converge — the constraint set is infeasible.  Scale all caps proportionally to
+    # restore feasibility while preserving the relative risk ordering across tickers.
+    if maxws.sum() < exposure:
+        maxws = maxws * (exposure / maxws.sum())
     raw_w = 1.0 / vols; raw_w /= raw_w.sum()
     w = raw_w.copy()
-    for _ in range(25):
+    for _ in range(200):          # 25 → 200: 25 was insufficient for high-beta universes
         over = w > maxws
         if not over.any(): break
         exc = (w[over] - maxws[over]).sum(); w[over] = maxws[over]
@@ -408,8 +422,11 @@ def save_state(state):
     os.makedirs(os.path.dirname(STATE_FILE), exist_ok=True)
     if os.path.exists(STATE_FILE):
         shutil.copy2(STATE_FILE, STATE_BAK)   # backup before overwrite
-    with open(STATE_FILE, 'w', encoding='utf-8') as f:
+    # Atomic write: write to .tmp then rename — prevents corrupt state on process kill
+    tmp = STATE_FILE + '.tmp'
+    with open(tmp, 'w', encoding='utf-8') as f:
         json.dump(state, f, indent=2)
+    os.replace(tmp, STATE_FILE)
 
 def load_tickers():
     with open(TICKERS_FILE, encoding='utf-8') as f:

@@ -26,6 +26,7 @@ import os
 import json
 import time
 import argparse
+import uuid
 import importlib.util
 from datetime import datetime, date
 from pathlib import Path
@@ -559,6 +560,45 @@ def _ensure_dirs() -> None:
                 pass   # dir was created by another process between exists() and mkdir()
 
 
+
+def _log_pipeline_run(step_id: str, status: str, duration_s: float, error_msg: str = "") -> None:
+    """
+    Write one row to pipeline_runs in ohlcv.db after each step completes.
+    run_id format: full UUID (36 chars) — replaces legacy 16-char truncation from pipeline_metrics.py.
+    Called from run_pipeline() after every step (ok, fail, or skipped).
+    Table created on first call if absent — safe to run before DB migration.
+    """
+    try:
+        import sqlite3 as _sqlite3
+        db_path = BASE_DIR / "data" / "ohlcv.db"
+        if not db_path.exists():
+            return
+        conn = _sqlite3.connect(str(db_path))
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS pipeline_runs (
+                run_id     TEXT,
+                run_date   TEXT,
+                step       TEXT,
+                status     TEXT,
+                duration_s REAL,
+                rows_written INTEGER DEFAULT 0,
+                error_msg  TEXT,
+                started_at TEXT
+            )
+        """)
+        conn.execute(
+            """INSERT INTO pipeline_runs (run_id, run_date, step, status, duration_s, error_msg, started_at)
+               VALUES (?, ?, ?, ?, ?, ?, ?)""",
+            (str(uuid.uuid4()), date.today().isoformat(), step_id, status,
+             round(duration_s, 2), error_msg[:500] if error_msg else "",
+             datetime.now().isoformat())
+        )
+        conn.commit()
+        conn.close()
+    except Exception:
+        pass   # never let logging break the pipeline
+
+
 def run_pipeline(mode: str = "premarket", step_filter: str | None = None,
                  dry_run: bool = False) -> dict:
     _ensure_dirs()   # guarantee all output dirs exist before any step imports
@@ -611,6 +651,13 @@ def run_pipeline(mode: str = "premarket", step_filter: str | None = None,
 
         ok, dur, err, skipped = run_step(step, dry_run=dry_run)
         log.record(step["id"], step["name"], ok, dur, step["output"], err, skipped)
+        if not dry_run:
+            _log_pipeline_run(
+                step["id"],
+                "skipped" if skipped else ("ok" if ok else "fail"),
+                dur,
+                err,
+            )
 
         if not ok and not skipped and step.get("critical"):
             print(f"\n  !! CRITICAL STEP FAILED — pipeline aborted.")
@@ -633,10 +680,11 @@ def run_pipeline(mode: str = "premarket", step_filter: str | None = None,
 
 def _send_pipeline_alert(summary: dict, mode: str, aborted: bool) -> None:
     """
-    Send a Telegram pipeline status alert ONLY when there are failures.
-    - ALL PASS  → silent (no message sent)
+    Send a Telegram pipeline status alert on EVERY run (ALL PASS + PARTIAL FAILURE + ABORT).
+    - ALL PASS  → [OK] status sent
     - PARTIAL FAILURE / ABORT → warning with failed step names
     Silent if Telegram not configured.
+    If no Telegram arrives → pipeline never ran (cron missed, Actions down).
     """
     import os, requests as _req
     token = os.getenv("TELEGRAM_BOT_TOKEN", "")
