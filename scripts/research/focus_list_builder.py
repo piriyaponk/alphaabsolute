@@ -519,33 +519,38 @@ def format_telegram(output: dict) -> str:
     lines.append(f"Total: {s['total']} | TH-PULSE:{s['th_pulse_count']} SET100:{s['th_set100_count']} DR:{s['dr_count']} US:{s['pulse_us_count']}")
     lines.append("")
 
-    # TH-PULSE section
+    # TH-PULSE section — up to 5
     th_pulse = output.get("th_pulse", [])
     if th_pulse:
-        lines.append("🇹🇭 *TH PULSE* (active signals)")
-        for e in th_pulse:
+        lines.append(f"🇹🇭 *TH PULSE* ({len(th_pulse)} active signals)")
+        for e in th_pulse[:5]:
             lbl = e["label"]
             cv  = "🔴" if lbl["conviction"] == "HIGH" else "🟡"
             sig = e["top_signals"][0] if e.get("top_signals") else ""
             lines.append(f"{cv} {e['ticker']} h3={lbl['pulse_h3_hit_rate_pct']:.0f}% brd={lbl['pulse_breadth']} rs={lbl['rs_pct']:.0f}")
             if sig:
                 lines.append(f"   └ {sig}")
+        if len(th_pulse) > 5:
+            lines.append(f"   +{len(th_pulse)-5} more")
     else:
         lines.append("🇹🇭 *TH PULSE*: no active signals today")
     lines.append("")
 
-    # TH-SET100 — show top 10 only
+    # TH-SET100 — show 10 tickers (PULSE-active first, then by liquidity)
     th_set = output.get("th_set100", [])
     pulse_in_set = [e for e in th_set if e["label"]["source"] == "PULSE"]
-    if pulse_in_set:
-        lines.append(f"🇹🇭 *SET100* — {len(pulse_in_set)} with active PULSE signal")
-        for e in pulse_in_set[:5]:
+    non_pulse    = [e for e in th_set if e["label"]["source"] != "PULSE"]
+    show10 = (pulse_in_set + non_pulse)[:10]
+    if show10:
+        lines.append(f"🇹🇭 *SET100* top10 ({len(pulse_in_set)} with active signal)")
+        for e in show10:
             lbl = e["label"]
-            lines.append(f"🟡 {e['ticker']} h3={lbl['pulse_h3_hit_rate_pct']:.0f}% brd={lbl['pulse_breadth']}")
-    else:
-        top5 = th_set[:5]
-        tickers = " | ".join(e["ticker"].replace(".BK", "") for e in top5)
-        lines.append(f"🇹🇭 *SET100* top5: {tickers} (+{len(th_set)-5} more)")
+            sym = e["ticker"].replace(".BK", "")
+            if lbl["source"] == "PULSE":
+                lines.append(f"🟡 {sym} h3={lbl['pulse_h3_hit_rate_pct']:.0f}% brd={lbl['pulse_breadth']}")
+            else:
+                lines.append(f"⚪ {sym}")
+    lines.append("")
     lines.append("")
 
     # DR section
