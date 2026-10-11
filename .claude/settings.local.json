@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Skill(update-config)",
-      "Skill(update-config:*)"
+      "Skill(update-config:*)",
+      "Bash(python -X utf8 \"C:/Users/Pizza/AppData/Local/Temp/claude/C--Users-Pizza-OneDrive-Desktop-AlphaAbsolute/bde5c017-b3ba-4b58-8c91-a308afd23c86/scratchpad/send_tg.py\" \"C:/Users/Pizza/OneDrive/Desktop/AlphaAbsolute/output/alpha_pulse_daily_261010.md\")"
     ]
   }
 }

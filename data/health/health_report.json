@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-10-10T09:14:18.237786",
-  "date": "2026-10-10",
+  "generated_at": "2026-10-11T09:49:31.315031",
+  "date": "2026-10-11",
   "checks": [
     {
       "id": "ohlcv_fresh",
       "status": "PASS",
-      "msg": "OHLCV fresh (2026-10-08)"
+      "msg": "OHLCV fresh (2026-10-09)"
     },
     {
       "id": "rs_fresh",
       "status": "PASS",
-      "msg": "RS fresh (2026-10-08)"
+      "msg": "RS fresh (2026-10-10)"
     },
     {
       "id": "s4_state",
@@ -20,7 +20,7 @@
     {
       "id": "earnings_cal",
       "status": "PASS",
-      "msg": "Earnings calendar fresh (2026-10-08)"
+      "msg": "Earnings calendar fresh (2026-10-10)"
     }
   ],
   "passed": 4,

@@ -1,392 +1,333 @@
 {
-  "date": "2026-10-08",
+  "date": "2026-10-10",
   "market_context": {
-    "n_universe": 5109,
-    "n_rs70": 846,
-    "n_rs95": 31,
-    "pct_rs70": 16.6
+    "n_universe": 5086,
+    "n_rs70": 824,
+    "n_rs95": 30,
+    "pct_rs70": 16.2
   },
-  "n_quality": 292,
-  "total_hits": 162,
-  "unique_tickers": 20,
+  "n_quality": 195,
+  "total_hits": 48,
+  "unique_tickers": 13,
   "pulse_scores": {
-    "ABCL": {
-      "breadth": 1,
-      "breadth_pct": 5.0,
-      "avg_h3": 81.8,
-      "n_signals_fired": 1
-    },
-    "AEHR": {
-      "breadth": 0,
-      "breadth_pct": 0.0,
-      "avg_h3": 0.0,
-      "n_signals_fired": 0
-    },
-    "ALNT": {
-      "breadth": 1,
-      "breadth_pct": 5.0,
-      "avg_h3": 79.8,
-      "n_signals_fired": 4
-    },
-    "ASST": {
+    "AMPL": {
       "breadth": 2,
-      "breadth_pct": 10.0,
-      "avg_h3": 74.7,
-      "n_signals_fired": 2
+      "breadth_pct": 11.8,
+      "avg_h3": 75.1,
+      "n_signals_fired": 5,
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F8_rs95_res15_sr15_OR",
+        "F_REC_ddr25_ATH5_bt70"
+      ]
     },
-    "AXTI": {
+    "APPN": {
       "breadth": 0,
       "breadth_pct": 0.0,
       "avg_h3": 0.0,
-      "n_signals_fired": 0
+      "n_signals_fired": 0,
+      "top_signals": []
+    },
+    "ASAN": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0,
+      "top_signals": []
+    },
+    "AZTA": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0,
+      "top_signals": []
     },
     "CBOE": {
       "breadth": 0,
       "breadth_pct": 0.0,
       "avg_h3": 0.0,
-      "n_signals_fired": 0
+      "n_signals_fired": 0,
+      "top_signals": []
     },
     "CDNA": {
-      "breadth": 2,
-      "breadth_pct": 10.0,
-      "avg_h3": 76.4,
-      "n_signals_fired": 7
+      "breadth": 1,
+      "breadth_pct": 5.9,
+      "avg_h3": 72.8,
+      "n_signals_fired": 3,
+      "top_signals": [
+        "F8_rs95_res15_sr15_OR",
+        "F8_rs90_res15_sr15_OR",
+        "F8_rs95_res15_sr15_ddr10"
+      ]
     },
     "CERT": {
       "breadth": 0,
       "breadth_pct": 0.0,
       "avg_h3": 0.0,
-      "n_signals_fired": 0
+      "n_signals_fired": 0,
+      "top_signals": []
     },
     "COHU": {
-      "breadth": 1,
-      "breadth_pct": 5.0,
-      "avg_h3": 79.8,
-      "n_signals_fired": 4
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0,
+      "top_signals": []
     },
     "CRSR": {
-      "breadth": 1,
-      "breadth_pct": 5.0,
-      "avg_h3": 81.8,
-      "n_signals_fired": 2
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0,
+      "top_signals": []
     },
     "CRWD": {
       "breadth": 0,
       "breadth_pct": 0.0,
       "avg_h3": 0.0,
-      "n_signals_fired": 0
+      "n_signals_fired": 0,
+      "top_signals": []
     },
     "CVI": {
-      "breadth": 2,
-      "breadth_pct": 10.0,
-      "avg_h3": 80.2,
-      "n_signals_fired": 12
+      "breadth": 1,
+      "breadth_pct": 5.9,
+      "avg_h3": 74.7,
+      "n_signals_fired": 3,
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70",
+        "F_REC_ddr20_ATH5_bt70"
+      ]
     },
     "FORM": {
-      "breadth": 2,
-      "breadth_pct": 10.0,
-      "avg_h3": 83.1,
-      "n_signals_fired": 12
+      "breadth": 1,
+      "breadth_pct": 5.9,
+      "avg_h3": 78.5,
+      "n_signals_fired": 5,
+      "top_signals": [
+        "F1_vt05_ddr15",
+        "F1_vt05_ddr12",
+        "F1_vt05_ddr12_bp70"
+      ]
     },
     "HPE": {
-      "breadth": 3,
-      "breadth_pct": 15.0,
-      "avg_h3": 80.2,
-      "n_signals_fired": 10
+      "breadth": 2,
+      "breadth_pct": 11.8,
+      "avg_h3": 74.3,
+      "n_signals_fired": 3,
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70",
+        "F8_rs90_res15_sr15_OR"
+      ]
     },
     "LITE": {
-      "breadth": 2,
-      "breadth_pct": 10.0,
-      "avg_h3": 80.2,
-      "n_signals_fired": 7
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0,
+      "top_signals": []
     },
     "MRNA": {
       "breadth": 2,
-      "breadth_pct": 10.0,
-      "avg_h3": 96.3,
-      "n_signals_fired": 28
+      "breadth_pct": 11.8,
+      "avg_h3": 81.3,
+      "n_signals_fired": 9,
+      "top_signals": [
+        "F_BASE_bt60_bp85_rs90_vc70_ATH5",
+        "F_BASE_bt60_bp80_rs90_vc70_ATH5",
+        "F_BASE_bt60_bp90_rs90_vc70_ATH5"
+      ]
     },
     "NTAP": {
-      "breadth": 3,
-      "breadth_pct": 15.0,
-      "avg_h3": 80.2,
-      "n_signals_fired": 12
+      "breadth": 1,
+      "breadth_pct": 5.9,
+      "avg_h3": 75.2,
+      "n_signals_fired": 2,
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70"
+      ]
     },
     "NTRA": {
-      "breadth": 1,
-      "breadth_pct": 5.0,
-      "avg_h3": 81.8,
-      "n_signals_fired": 1
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0,
+      "top_signals": []
     },
     "OKTA": {
-      "breadth": 2,
-      "breadth_pct": 10.0,
-      "avg_h3": 80.2,
-      "n_signals_fired": 11
+      "breadth": 1,
+      "breadth_pct": 5.9,
+      "avg_h3": 75.2,
+      "n_signals_fired": 2,
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70"
+      ]
     },
     "QMCO": {
-      "breadth": 2,
-      "breadth_pct": 10.0,
-      "avg_h3": 79.5,
-      "n_signals_fired": 6
+      "breadth": 1,
+      "breadth_pct": 5.9,
+      "avg_h3": 72.9,
+      "n_signals_fired": 4,
+      "top_signals": [
+        "F8_rs95_res15_sr15_OR",
+        "F8_rs90_res15_sr15_OR",
+        "F8_rs95_res20_sr15_ddr10"
+      ]
     },
     "S": {
-      "breadth": 2,
-      "breadth_pct": 10.0,
-      "avg_h3": 79.9,
-      "n_signals_fired": 9
+      "breadth": 1,
+      "breadth_pct": 5.9,
+      "avg_h3": 75.2,
+      "n_signals_fired": 2,
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70"
+      ]
     },
     "SITM": {
       "breadth": 0,
       "breadth_pct": 0.0,
       "avg_h3": 0.0,
-      "n_signals_fired": 0
+      "n_signals_fired": 0,
+      "top_signals": []
     },
     "SMTC": {
-      "breadth": 2,
-      "breadth_pct": 10.0,
-      "avg_h3": 81.2,
-      "n_signals_fired": 12
+      "breadth": 1,
+      "breadth_pct": 5.9,
+      "avg_h3": 75.2,
+      "n_signals_fired": 2,
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70"
+      ]
     },
     "STX": {
       "breadth": 0,
       "breadth_pct": 0.0,
       "avg_h3": 0.0,
-      "n_signals_fired": 0
+      "n_signals_fired": 0,
+      "top_signals": []
     },
     "TWLO": {
-      "breadth": 2,
-      "breadth_pct": 10.0,
-      "avg_h3": 83.1,
-      "n_signals_fired": 10
+      "breadth": 1,
+      "breadth_pct": 5.9,
+      "avg_h3": 79.3,
+      "n_signals_fired": 6,
+      "top_signals": [
+        "F1_vt05_ddr15",
+        "F1_vt05_ddr12_sr15",
+        "F1_vt05_ddr12"
+      ]
     },
     "U": {
-      "breadth": 1,
-      "breadth_pct": 5.0,
-      "avg_h3": 81.8,
-      "n_signals_fired": 1
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0,
+      "top_signals": []
     },
     "UMC": {
       "breadth": 0,
       "breadth_pct": 0.0,
       "avg_h3": 0.0,
-      "n_signals_fired": 0
+      "n_signals_fired": 0,
+      "top_signals": []
     },
     "VICR": {
       "breadth": 0,
       "breadth_pct": 0.0,
       "avg_h3": 0.0,
-      "n_signals_fired": 0
+      "n_signals_fired": 0,
+      "top_signals": []
     },
     "ZBRA": {
-      "breadth": 2,
-      "breadth_pct": 10.0,
-      "avg_h3": 80.2,
-      "n_signals_fired": 11
+      "breadth": 1,
+      "breadth_pct": 5.9,
+      "avg_h3": 75.2,
+      "n_signals_fired": 2,
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70"
+      ]
     }
   },
   "ticker_hits": {
+    "AMPL": [
+      "F_REC_ddr30_ATH5_bt70",
+      "F8_rs95_res15_sr15_OR",
+      "F_REC_ddr25_ATH5_bt70",
+      "F8_rs90_res15_sr15_OR",
+      "F8_rs95_res15_sr15_ddr10"
+    ],
     "HPE": [
-      "F_BASE_bt40_bp80_vc60",
-      "F_BASE_bt40_bp90_vc60",
-      "F21_rs90_bt60_ATH3_OR",
       "F_REC_ddr30_ATH5_bt70",
-      "F21_rs90_bt60_ATH3_lo70",
-      "F21_rs90_bt60_ATH3_ddr15",
       "F_REC_ddr25_ATH5_bt70",
-      "F_BASE_bt50_bp80_rs90_uvr60_ATH5",
-      "F8_rs90_res15_sr15_OR",
-      "F21_rs90_bt60_ATH3_sr15"
-    ],
-    "NTAP": [
-      "F_BASE_bt40_bp80_vc60",
-      "F_BASE_bt40_bp90_vc60",
-      "F21_rs90_bt60_ATH3_OR",
-      "F21_rs85_bt60_ATH3_ads_tc60",
-      "F_REC_ddr30_ATH5_bt70",
-      "F21_rs90_bt60_ATH3_lo70",
-      "F21_rs90_bt60_ATH3_ddr15",
-      "F21_rs90_bt60_ATH3_ads_tc60",
-      "F_REC_ddr25_ATH5_bt70",
-      "F_BASE_bt50_bp80_rs90_uvr60_ATH5",
-      "F8_rs90_res15_sr15_OR",
-      "F21_rs90_bt60_ATH3_sr15"
-    ],
-    "ASST": [
-      "F_BASE_bt40_bp85_vc70",
       "F8_rs90_res15_sr15_OR"
     ],
+    "MRNA": [
+      "F_BASE_bt60_bp85_rs90_vc70_ATH5",
+      "F_BASE_bt60_bp80_rs90_vc70_ATH5",
+      "F_BASE_bt60_bp90_rs90_vc70_ATH5",
+      "F_REC_ddr30_ATH5_bt70",
+      "F_REC_ddr25_ATH5_bt70",
+      "F_REC_ddr20_ATH5_bt70",
+      "F8_rs90_res15_sr15_OR",
+      "F_BASE_bt60_bp90_rs85_vc70_ATH5",
+      "F_BASE_bt60_bp85_rs80_vc70_ATH5"
+    ],
     "CDNA": [
-      "F_BASE_bt40_bp80_vc60",
       "F8_rs95_res15_sr15_OR",
       "F8_rs90_res15_sr15_OR",
-      "F_REC_ddr20_tc70",
-      "F_REC_ddr20_rs80_tc70",
-      "F_REC_ddr20_rs70_tc70",
       "F8_rs95_res15_sr15_ddr10"
     ],
     "CVI": [
-      "F_BASE_bt40_bp80_vc60",
-      "F_BASE_bt40_bp90_vc60",
-      "F21_rs90_bt60_ATH3_OR",
       "F_REC_ddr30_ATH5_bt70",
-      "F21_rs90_bt60_ATH3_lo70",
-      "F21_rs90_bt60_ATH3_ddr15",
       "F_REC_ddr25_ATH5_bt70",
-      "F_REC_ddr20_ATH5_bt70",
-      "F_BASE_bt50_bp80_rs90_uvr60_ATH5",
-      "F_REC_ddr20_tc70",
-      "F_REC_ddr20_rs80_tc70",
-      "F_REC_ddr20_rs70_tc70"
+      "F_REC_ddr20_ATH5_bt70"
     ],
     "FORM": [
-      "F1_vt05_ddr15_tc60",
       "F1_vt05_ddr15",
-      "F_BASE_bt40_bp80_vc60",
       "F1_vt05_ddr12",
-      "F1_vt05_ddr15_ads",
       "F1_vt05_ddr12_bp70",
-      "F1_vt05_ddr12_ma20",
       "F1_vt05_ddr15_bp70",
-      "F1_vt05_ddr12_ads",
-      "F1_vt05_ddr10_ma20",
-      "F1_vt05_OR_ddr15_ma20",
-      "F1_vt05_ddr15_ma20"
+      "F1_vt05_ddr12_ads"
     ],
-    "LITE": [
-      "F_BASE_bt40_bp80_vc60",
-      "F_BASE_bt40_bp90_vc60",
-      "F21_rs90_bt60_ATH3_OR",
+    "NTAP": [
       "F_REC_ddr30_ATH5_bt70",
-      "F21_rs90_bt60_ATH3_lo70",
-      "F21_rs90_bt60_ATH3_ddr15",
       "F_REC_ddr25_ATH5_bt70"
     ],
-    "MRNA": [
-      "F_BASE_bt50_bp85_rs90_vc70_ATH5",
-      "F_BASE_bt40_bp85_rs90_vc70_ATH5",
-      "F_BASE_bt40_bp90_rs80_vc70_ATH5",
-      "F_BASE_bt50_bp90_rs90_vc70_ATH5",
-      "F_BASE_bt40_bp90_rs85_vc70_ATH5",
-      "F_BASE_bt40_bp80_rs90_vc70_ATH5",
-      "F_BASE_bt60_bp85_rs90_vc70_ATH5",
-      "F_BASE_bt40_bp90_rs90_vc70_ATH5",
-      "F_BASE_bt50_bp90_rs85_vc70_ATH5",
-      "F_BASE_bt40_bp85_rs80_vc70_ATH5",
-      "F_BASE_bt40_bp80_vc60",
-      "F_BASE_bt40_bp90_vc70",
-      "F_BASE_bt40_bp90_vc60",
-      "F_BASE_bt50_bp80_rs90_vc70_ATH5",
-      "F_BASE_bt60_bp80_rs90_vc70_ATH5",
-      "F_BASE_bt40_bp85_rs85_vc70_ATH5",
-      "F_BASE_bt60_bp90_rs90_vc70_ATH5",
-      "F_BASE_bt40_bp85_vc70",
-      "F_REC_ddr30_ATH5_bt70",
-      "F_REC_ddr25_ATH5_bt70",
-      "F_REC_ddr20_ATH5_bt70",
-      "F_BASE_bt50_bp80_rs90_uvr60_ATH5",
-      "F_BASE_bt40_bp80_rs80_vc70_ATH5",
-      "F8_rs90_res15_sr15_OR",
-      "F_BASE_bt60_bp90_rs85_vc70_ATH5",
-      "F_BASE_bt50_bp90_rs80_vc70_ATH5",
-      "F_BASE_bt40_bp80_vc70",
-      "F_BASE_bt60_bp85_rs80_vc70_ATH5"
-    ],
     "OKTA": [
-      "F_BASE_bt40_bp80_vc60",
-      "F_BASE_bt40_bp90_vc60",
-      "F21_rs90_bt60_ATH3_OR",
-      "F21_rs85_bt60_ATH3_ads_tc60",
       "F_REC_ddr30_ATH5_bt70",
-      "F21_rs90_bt60_ATH3_lo70",
-      "F21_rs90_bt60_ATH3_ddr15",
-      "F21_rs90_bt60_ATH3_ads_tc60",
-      "F_REC_ddr25_ATH5_bt70",
-      "F_BASE_bt50_bp80_rs90_uvr60_ATH5",
-      "F21_rs90_bt60_ATH3_sr15"
+      "F_REC_ddr25_ATH5_bt70"
     ],
     "QMCO": [
-      "F_BASE_bt40_bp80_vc60",
-      "F_BASE_bt40_bp90_vc60",
       "F8_rs95_res15_sr15_OR",
       "F8_rs90_res15_sr15_OR",
       "F8_rs95_res20_sr15_ddr10",
       "F8_rs95_res15_sr15_ddr10"
     ],
     "S": [
-      "F_BASE_bt40_bp80_vc60",
-      "F_BASE_bt40_bp90_vc60",
-      "F21_rs85_bt60_ATH3_ads_tc60",
       "F_REC_ddr30_ATH5_bt70",
-      "F21_rs90_bt60_ATH3_lo70",
-      "F21_rs90_bt60_ATH3_ads_tc60",
-      "F_REC_ddr25_ATH5_bt70",
-      "F_BASE_bt50_bp80_rs90_uvr60_ATH5",
-      "F21_rs90_bt60_ATH3_sr15"
+      "F_REC_ddr25_ATH5_bt70"
     ],
     "SMTC": [
-      "F_BASE_bt40_bp80_vc60",
-      "F_BASE_bt40_bp90_vc60",
-      "F_REC_ddr25_ATH3_bt70_vc75",
-      "F_REC_ddr30_ATH3_bt70_vc75",
-      "F21_rs90_bt60_ATH3_OR",
-      "F21_rs85_bt60_ATH3_ads_tc60",
       "F_REC_ddr30_ATH5_bt70",
-      "F21_rs90_bt60_ATH3_lo70",
-      "F21_rs90_bt60_ATH3_ddr15",
-      "F21_rs90_bt60_ATH3_ads_tc60",
-      "F_REC_ddr25_ATH5_bt70",
-      "F21_rs90_bt60_ATH3_sr15"
+      "F_REC_ddr25_ATH5_bt70"
     ],
     "TWLO": [
-      "F1_vt10_ddr10_bp70",
-      "F_BASE_bt40_bp80_vc60",
-      "F1_vt10_ddr10_tc60",
+      "F1_vt05_ddr15",
       "F1_vt05_ddr12_sr15",
       "F1_vt05_ddr12",
-      "F1_vt10_ddr10",
-      "F1_vt10_ddr10_ads",
       "F1_vt05_ddr12_bp70",
-      "F1_vt05_ddr12_ads",
-      "F1_vt10_ddr10_sr15"
+      "F1_vt05_ddr15_bp70",
+      "F1_vt05_ddr12_ads"
     ],
     "ZBRA": [
-      "F_BASE_bt40_bp80_vc60",
-      "F_BASE_bt40_bp90_vc60",
-      "F21_rs90_bt60_ATH3_OR",
-      "F21_rs85_bt60_ATH3_ads_tc60",
-      "F_REC_ddr30_ATH5_bt70",
-      "F21_rs90_bt60_ATH3_lo70",
-      "F21_rs90_bt60_ATH3_ddr15",
-      "F21_rs90_bt60_ATH3_ads_tc60",
-      "F_REC_ddr25_ATH5_bt70",
-      "F_BASE_bt50_bp80_rs90_uvr60_ATH5",
-      "F21_rs90_bt60_ATH3_sr15"
-    ],
-    "ABCL": [
-      "F_BASE_bt40_bp80_vc60"
-    ],
-    "ALNT": [
-      "F_BASE_bt40_bp80_vc60",
-      "F_BASE_bt40_bp90_vc60",
       "F_REC_ddr30_ATH5_bt70",
       "F_REC_ddr25_ATH5_bt70"
-    ],
-    "COHU": [
-      "F_BASE_bt40_bp80_vc60",
-      "F_BASE_bt40_bp90_vc60",
-      "F_REC_ddr30_ATH5_bt70",
-      "F_REC_ddr25_ATH5_bt70"
-    ],
-    "CRSR": [
-      "F_BASE_bt40_bp80_vc60",
-      "F_BASE_bt40_bp90_vc60"
-    ],
-    "NTRA": [
-      "F_BASE_bt40_bp80_vc60"
-    ],
-    "U": [
-      "F_BASE_bt40_bp80_vc60"
     ]
   }
 }

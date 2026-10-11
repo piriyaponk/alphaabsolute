@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-10-10T09:15:20.922952",
+  "generated_at": "2026-10-11T09:50:42.210591",
   "window": {
-    "from": "2026-10-10",
-    "to": "2026-11-24"
+    "from": "2026-10-11",
+    "to": "2026-11-25"
   },
-  "total_events": 4755,
-  "tickers_in_universe_with_earnings": 119,
+  "total_events": 4760,
+  "tickers_in_universe_with_earnings": 120,
   "within_5_trading_days": [
     "AA",
     "AAL",
@@ -5014,6 +5014,13 @@
       "PTIX",
       "SJ",
       "SVIN"
+    ],
+    "2026-11-25": [
+      "CZBT",
+      "DE",
+      "DIDIY",
+      "PONY",
+      "YGMZ"
     ]
   },
   "by_ticker": {
@@ -5744,6 +5751,12 @@
     "WDAY": [
       {
         "date": "2026-11-23",
+        "time": "amc"
+      }
+    ],
+    "DE": [
+      {
+        "date": "2026-11-25",
         "time": "amc"
       }
     ]

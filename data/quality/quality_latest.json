@@ -1,6 +1,6 @@
 {
-  "date": "2026-10-10",
-  "generated_at": "2026-10-10T09:15:24.926413",
+  "date": "2026-10-11",
+  "generated_at": "2026-10-11T09:50:46.039761",
   "summary": {
     "ok": 12,
     "warn": 3,
@@ -116,19 +116,19 @@
     {
       "check": "rs_coverage",
       "status": "ok",
-      "latest_rs_date": "2026-10-07",
-      "covered_total": 5109,
+      "latest_rs_date": "2026-10-09",
+      "covered_total": 5086,
       "covered_in_universe": 150,
       "universe_size": 156,
       "pct_covered": 96.2,
-      "message": "RS coverage: 150/156 (96%) for 2026-10-07"
+      "message": "RS coverage: 150/156 (96%) for 2026-10-09"
     },
     {
       "check": "rs_null_composite",
       "status": "ok",
       "count": 0,
       "tickers": [],
-      "message": "All rs_composite populated for 2026-10-07"
+      "message": "All rs_composite populated for 2026-10-09"
     },
     {
       "check": "screening_freshness",
@@ -226,9 +226,9 @@
     {
       "check": "earnings_calendar",
       "status": "ok",
-      "upcoming_events": 4755,
-      "last_fetched": "2026-10-10T09:14:26.913719",
-      "message": "4755 upcoming earnings events loaded (fetched 0d ago)"
+      "upcoming_events": 4760,
+      "last_fetched": "2026-10-11T09:49:38.598722",
+      "message": "4760 upcoming earnings events loaded (fetched 0d ago)"
     },
     {
       "check": "pipeline_runs",

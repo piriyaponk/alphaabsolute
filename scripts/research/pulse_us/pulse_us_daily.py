@@ -88,12 +88,19 @@ def load_ohlcv(tickers, min_date):
 
 
 def load_quality_signals():
-    """Load all quality signals (h3>70%, grade S_BOTH/S/A) from library."""
+    """Load quality signals from library.
+    Filters: h3>70%, grade S_BOTH/S/A, N>=20, exclude F21 (OOS-documented failure).
+    F21 (Phase 5 VCP-at-ATH) fails OOS validation: raw h3 looks strong but dedup+OOS
+    drops to ~45-57%, near baseline. Documented in pulse_us_phase5_validate.py.
+    """
     with open(LIB_PATH, encoding="utf-8") as f:
         lib = json.load(f)
     quality = [
         r for r in lib.get('results', [])
-        if r.get('h3', 0) > 70.0 and r.get('grade', '') in ('S_BOTH', 'S', 'A')
+        if r.get('h3', 0) > 70.0
+        and r.get('grade', '') in ('S_BOTH', 'S', 'A')
+        and r.get('N', 0) >= 20
+        and r['label'].split('_')[0] != 'F21'
     ]
     quality.sort(key=lambda x: -x['h3'])
     return quality
