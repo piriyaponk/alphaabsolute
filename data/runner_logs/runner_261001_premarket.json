@@ -1,0 +1,100 @@
+{
+  "date": "2026-10-01",
+  "mode": "premarket",
+  "run_at": "2026-10-01T18:12:47.557911",
+  "steps": [
+    {
+      "step": "health_check",
+      "name": "System Health Check",
+      "status": "ok",
+      "duration": 0.2,
+      "output": "data/health/health_report.json",
+      "error": "",
+      "time": "18:08:08"
+    },
+    {
+      "step": "ohlcv_update",
+      "name": "OHLCV Bulk Update",
+      "status": "ok",
+      "duration": 11.1,
+      "output": "data/ohlcv.db",
+      "error": "",
+      "time": "18:08:19"
+    },
+    {
+      "step": "fix_volumes",
+      "name": "Fix Float Volumes",
+      "status": "ok",
+      "duration": 2.2,
+      "output": "data/ohlcv.db",
+      "error": "",
+      "time": "18:08:21"
+    },
+    {
+      "step": "earnings_cal",
+      "name": "Earnings Calendar",
+      "status": "ok",
+      "duration": 78.7,
+      "output": "data/regime/earnings_next30.json",
+      "error": "",
+      "time": "18:09:40"
+    },
+    {
+      "step": "data_quality",
+      "name": "Data Quality Check",
+      "status": "ok",
+      "duration": 2.8,
+      "output": "data/quality/quality_latest.json",
+      "error": "",
+      "time": "18:09:43"
+    },
+    {
+      "step": "a03",
+      "name": "RS Universe Ranker",
+      "status": "ok",
+      "duration": 116.1,
+      "output": "data/rs_universe/latest.json",
+      "error": "",
+      "time": "18:11:39"
+    },
+    {
+      "step": "tvremix_us",
+      "name": "tvremix US Pre-Screen",
+      "status": "ok",
+      "duration": 5.0,
+      "output": "data/rs_universe/tvremix_us_prescreen.json",
+      "error": "",
+      "time": "18:11:44"
+    },
+    {
+      "step": "a03c",
+      "name": "RS Change Detector",
+      "status": "ok",
+      "duration": 57.8,
+      "output": "data/rs_universe/changes_today.json",
+      "error": "",
+      "time": "18:12:42"
+    },
+    {
+      "step": "s4_brain",
+      "name": "S4 Brain \u2014 Obsidian Sync",
+      "status": "ok",
+      "duration": 0.0,
+      "output": null,
+      "error": "",
+      "time": "18:12:42"
+    },
+    {
+      "step": "s4_postmortem",
+      "name": "S4 Post-Mortem",
+      "status": "ok",
+      "duration": 5.2,
+      "output": null,
+      "error": "",
+      "time": "18:12:47"
+    }
+  ],
+  "passed": 10,
+  "failed": 0,
+  "skipped": 0
+}

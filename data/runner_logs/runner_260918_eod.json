@@ -1,0 +1,73 @@
+{
+  "date": "2026-09-18",
+  "mode": "eod",
+  "run_at": "2026-09-18T17:14:13.217974",
+  "steps": [
+    {
+      "step": "health_check",
+      "name": "System Health Check",
+      "status": "ok",
+      "duration": 0.1,
+      "output": "data/health/health_report.json",
+      "error": "",
+      "time": "17:00:01"
+    },
+    {
+      "step": "ohlcv_update",
+      "name": "OHLCV Bulk Update",
+      "status": "ok",
+      "duration": 0.4,
+      "output": "data/ohlcv.db",
+      "error": "",
+      "time": "17:00:01"
+    },
+    {
+      "step": "fix_volumes",
+      "name": "Fix Float Volumes",
+      "status": "ok",
+      "duration": 0.1,
+      "output": "data/ohlcv.db",
+      "error": "",
+      "time": "17:00:01"
+    },
+    {
+      "step": "fill_ohlc",
+      "name": "Fill OHLC Gaps",
+      "status": "ok",
+      "duration": 384.0,
+      "output": "data/quality/quality_latest.json",
+      "error": "",
+      "time": "17:06:25"
+    },
+    {
+      "step": "data_quality_eod",
+      "name": "Data Quality Check (EOD)",
+      "status": "ok",
+      "duration": 1.6,
+      "output": "data/quality/quality_latest.json",
+      "error": "",
+      "time": "17:06:27"
+    },
+    {
+      "step": "ohlcv_prefetch",
+      "name": "OHLCV Pre-fetch",
+      "status": "ok",
+      "duration": 465.8,
+      "output": "data/ohlcv_cache/_manifest.json",
+      "error": "",
+      "time": "17:14:13"
+    },
+    {
+      "step": "rs_history",
+      "name": "RS History Backfill",
+      "status": "fail",
+      "duration": 0.0,
+      "output": "data/rs_universe/latest.json",
+      "error": "Function 'run' not in scripts.pre_compute.pipeline_rs_history",
+      "time": "17:14:13"
+    }
+  ],
+  "passed": 6,
+  "failed": 1,
+  "skipped": 0
+}

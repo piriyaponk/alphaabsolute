@@ -1,0 +1,2966 @@
+{
+  "metadata": {
+    "description": "AlphaAbsolute Thailand Screening System — Full Knowledge Export for AI Training",
+    "date_exported": "2026-10-07",
+    "universe": "SET Focus List — top-RS stocks from SET100 + high-momentum SET universe (~60-100 tickers)",
+    "total_unique_signals": 993,
+    "total_summary_rows": 3972,
+    "forward_windows_tested_days": [
+      1,
+      2,
+      3,
+      5
+    ],
+    "hit_rate_definition": "fraction of observations where fwd_return > 0 (any positive return counts)",
+    "fire_rate_definition": "fraction of all ticker-days where signal fires (rarity measure)",
+    "baseline_fwd1": {
+      "hit_rate": 39.815617366637774,
+      "n": 38073,
+      "avg_ret": 0.03362545977828732
+    },
+    "baseline_fwd2": {
+      "hit_rate": 43.37343068760834,
+      "n": 38074,
+      "avg_ret": 0.10071064888835937
+    },
+    "baseline_fwd3": {
+      "hit_rate": 44.316569446634084,
+      "n": 38058,
+      "avg_ret": 0.16681321509367802
+    },
+    "baseline_fwd5": {
+      "hit_rate": 45.74750743166812,
+      "n": 38013,
+      "avg_ret": 0.2630286129856316
+    },
+    "signal_family_counts": {
+      "A1": 1,
+      "A2": 1,
+      "A3": 1,
+      "B1": 1,
+      "B2": 1,
+      "B3": 1,
+      "C1": 1,
+      "C2": 1,
+      "C3": 1,
+      "D1": 1,
+      "D2": 1,
+      "D3": 1,
+      "D4": 1,
+      "D5": 1,
+      "E1": 1,
+      "E2": 1,
+      "E3": 1,
+      "E4": 1,
+      "F1": 1,
+      "F2": 1,
+      "F3": 1,
+      "F4": 1,
+      "F5": 1,
+      "G1": 1,
+      "G2": 1,
+      "H1": 1,
+      "H2": 1,
+      "I1": 1,
+      "I10": 1,
+      "I1B": 1,
+      "I2": 1,
+      "I2B": 1,
+      "I3": 1,
+      "I3B": 1,
+      "I4": 1,
+      "I4B": 1,
+      "I5": 1,
+      "I6": 1,
+      "I7": 1,
+      "I8": 1,
+      "I9": 1,
+      "J": 4,
+      "J1": 1,
+      "J10": 1,
+      "J2": 1,
+      "J3": 1,
+      "J4": 1,
+      "J5": 1,
+      "J5B": 1,
+      "J6": 1,
+      "J7": 1,
+      "J8": 1,
+      "J9": 1,
+      "K1": 1,
+      "K2": 1,
+      "K3": 1,
+      "K4": 1,
+      "M1": 1,
+      "M2": 1,
+      "M3": 1,
+      "M4": 1,
+      "M5": 1,
+      "N1": 1,
+      "N2": 1,
+      "N3": 1,
+      "N5": 1,
+      "O1": 3,
+      "O2": 1,
+      "O3": 1,
+      "P1": 1,
+      "P2": 1,
+      "P3": 1,
+      "P4": 1,
+      "P6": 1,
+      "P7": 1,
+      "P8": 1,
+      "Q": 350,
+      "Q1": 1,
+      "Q10": 1,
+      "Q100": 1,
+      "Q101": 1,
+      "Q102": 1,
+      "Q104": 1,
+      "Q105": 1,
+      "Q106": 1,
+      "Q107": 1,
+      "Q108": 1,
+      "Q109": 1,
+      "Q11": 1,
+      "Q110": 1,
+      "Q111": 1,
+      "Q112": 1,
+      "Q113": 1,
+      "Q115": 1,
+      "Q116": 1,
+      "Q117": 1,
+      "Q118": 1,
+      "Q119": 1,
+      "Q12": 1,
+      "Q120": 1,
+      "Q121": 1,
+      "Q122": 1,
+      "Q123": 1,
+      "Q124": 1,
+      "Q125": 1,
+      "Q126": 1,
+      "Q127": 1,
+      "Q128": 1,
+      "Q129": 1,
+      "Q13": 1,
+      "Q130": 1,
+      "Q131": 1,
+      "Q132": 1,
+      "Q133": 1,
+      "Q134": 1,
+      "Q135": 1,
+      "Q136": 1,
+      "Q137": 1,
+      "Q140": 1,
+      "Q142": 1,
+      "Q144": 1,
+      "Q146": 1,
+      "Q147": 1,
+      "Q148": 1,
+      "Q149": 1,
+      "Q150": 1,
+      "Q151": 1,
+      "Q153": 1,
+      "Q154": 1,
+      "Q155": 1,
+      "Q158": 1,
+      "Q159": 1,
+      "Q16": 1,
+      "Q164": 1,
+      "Q165": 1,
+      "Q17": 1,
+      "Q170": 1,
+      "Q171": 1,
+      "Q172": 1,
+      "Q173": 1,
+      "Q174": 1,
+      "Q176": 1,
+      "Q177": 1,
+      "Q178": 1,
+      "Q179": 1,
+      "Q182": 1,
+      "Q184": 1,
+      "Q185": 1,
+      "Q186": 1,
+      "Q187": 1,
+      "Q188": 1,
+      "Q189": 1,
+      "Q190": 1,
+      "Q193": 1,
+      "Q194": 1,
+      "Q196": 1,
+      "Q198": 1,
+      "Q2": 1,
+      "Q20": 1,
+      "Q200": 1,
+      "Q204": 1,
+      "Q207": 1,
+      "Q208": 1,
+      "Q209": 1,
+      "Q21": 1,
+      "Q211": 1,
+      "Q212": 1,
+      "Q213": 1,
+      "Q214": 1,
+      "Q215": 1,
+      "Q216": 1,
+      "Q217": 1,
+      "Q219": 1,
+      "Q22": 1,
+      "Q220": 1,
+      "Q221": 1,
+      "Q223": 1,
+      "Q224": 1,
+      "Q225": 1,
+      "Q226": 1,
+      "Q227": 1,
+      "Q23": 1,
+      "Q230": 1,
+      "Q231": 1,
+      "Q232": 1,
+      "Q234": 1,
+      "Q24": 1,
+      "Q245": 1,
+      "Q246": 1,
+      "Q247": 1,
+      "Q248": 1,
+      "Q249": 1,
+      "Q252": 1,
+      "Q254": 1,
+      "Q26": 1,
+      "Q261": 1,
+      "Q262": 1,
+      "Q263": 1,
+      "Q264": 1,
+      "Q265": 1,
+      "Q266": 1,
+      "Q267": 1,
+      "Q27": 1,
+      "Q270": 1,
+      "Q273": 1,
+      "Q274": 1,
+      "Q275": 1,
+      "Q276": 1,
+      "Q278": 1,
+      "Q28": 1,
+      "Q281": 1,
+      "Q283": 1,
+      "Q284": 1,
+      "Q285": 1,
+      "Q286": 1,
+      "Q287": 1,
+      "Q29": 1,
+      "Q290": 1,
+      "Q291": 1,
+      "Q295": 1,
+      "Q3": 1,
+      "Q30": 1,
+      "Q301": 1,
+      "Q302": 1,
+      "Q303": 1,
+      "Q304": 1,
+      "Q305": 1,
+      "Q306": 1,
+      "Q307": 1,
+      "Q308": 1,
+      "Q309": 1,
+      "Q310": 1,
+      "Q316": 1,
+      "Q317": 1,
+      "Q318": 1,
+      "Q32": 1,
+      "Q320": 1,
+      "Q321": 1,
+      "Q322": 1,
+      "Q324": 1,
+      "Q33": 1,
+      "Q331": 1,
+      "Q332": 1,
+      "Q334": 1,
+      "Q336": 1,
+      "Q337": 1,
+      "Q338": 1,
+      "Q339": 1,
+      "Q34": 1,
+      "Q35": 1,
+      "Q351": 1,
+      "Q352": 1,
+      "Q353": 1,
+      "Q354": 1,
+      "Q355": 1,
+      "Q36": 1,
+      "Q368": 1,
+      "Q369": 1,
+      "Q37": 1,
+      "Q370": 1,
+      "Q371": 1,
+      "Q375": 1,
+      "Q376": 1,
+      "Q377": 1,
+      "Q379": 1,
+      "Q38": 1,
+      "Q380": 1,
+      "Q385": 1,
+      "Q389": 1,
+      "Q39": 1,
+      "Q390": 1,
+      "Q392": 1,
+      "Q394": 1,
+      "Q395": 1,
+      "Q398": 1,
+      "Q4": 1,
+      "Q406": 1,
+      "Q407": 1,
+      "Q408": 1,
+      "Q409": 1,
+      "Q41": 1,
+      "Q410": 1,
+      "Q412": 1,
+      "Q413": 1,
+      "Q414": 1,
+      "Q419": 1,
+      "Q42": 1,
+      "Q420": 1,
+      "Q428": 1,
+      "Q429": 1,
+      "Q43": 1,
+      "Q430": 1,
+      "Q431": 1,
+      "Q433": 1,
+      "Q434": 1,
+      "Q435": 1,
+      "Q44": 1,
+      "Q440": 1,
+      "Q441": 1,
+      "Q442": 1,
+      "Q445": 1,
+      "Q446": 1,
+      "Q447": 1,
+      "Q449": 1,
+      "Q45": 1,
+      "Q450": 1,
+      "Q453": 1,
+      "Q454": 1,
+      "Q455": 1,
+      "Q456": 1,
+      "Q457": 1,
+      "Q458": 1,
+      "Q459": 1,
+      "Q46": 1,
+      "Q47": 1,
+      "Q470": 1,
+      "Q472": 1,
+      "Q474": 1,
+      "Q477": 1,
+      "Q480": 1,
+      "Q481": 1,
+      "Q483": 1,
+      "Q488": 1,
+      "Q495": 1,
+      "Q496": 1,
+      "Q497": 1,
+      "Q5": 1,
+      "Q502": 1,
+      "Q503": 1,
+      "Q504": 1,
+      "Q505": 1,
+      "Q506": 1,
+      "Q509": 1,
+      "Q51": 1,
+      "Q513": 1,
+      "Q514": 1,
+      "Q515": 1,
+      "Q516": 1,
+      "Q517": 1,
+      "Q518": 1,
+      "Q519": 1,
+      "Q520": 1,
+      "Q524": 1,
+      "Q526": 1,
+      "Q527": 1,
+      "Q529": 1,
+      "Q530": 1,
+      "Q531": 1,
+      "Q532": 1,
+      "Q533": 1,
+      "Q535": 1,
+      "Q539": 1,
+      "Q54": 1,
+      "Q540": 1,
+      "Q541": 1,
+      "Q542": 1,
+      "Q543": 1,
+      "Q545": 1,
+      "Q548": 1,
+      "Q549": 1,
+      "Q55": 1,
+      "Q550": 1,
+      "Q551": 1,
+      "Q553": 1,
+      "Q554": 1,
+      "Q555": 1,
+      "Q556": 1,
+      "Q557": 1,
+      "Q558": 1,
+      "Q56": 1,
+      "Q561": 1,
+      "Q562": 1,
+      "Q564": 1,
+      "Q569": 1,
+      "Q57": 1,
+      "Q575": 1,
+      "Q576": 1,
+      "Q577": 1,
+      "Q578": 1,
+      "Q58": 1,
+      "Q585": 1,
+      "Q586": 1,
+      "Q587": 1,
+      "Q588": 1,
+      "Q589": 1,
+      "Q59": 1,
+      "Q590": 1,
+      "Q591": 1,
+      "Q592": 1,
+      "Q593": 1,
+      "Q594": 1,
+      "Q599": 1,
+      "Q6": 1,
+      "Q60": 1,
+      "Q601": 1,
+      "Q602": 1,
+      "Q603": 1,
+      "Q604": 1,
+      "Q605": 1,
+      "Q61": 1,
+      "Q615": 1,
+      "Q62": 1,
+      "Q624": 1,
+      "Q627": 1,
+      "Q628": 1,
+      "Q63": 1,
+      "Q636": 1,
+      "Q637": 1,
+      "Q638": 1,
+      "Q64": 1,
+      "Q642": 1,
+      "Q643": 1,
+      "Q644": 1,
+      "Q645": 1,
+      "Q646": 1,
+      "Q647": 1,
+      "Q648": 1,
+      "Q649": 1,
+      "Q65": 1,
+      "Q650": 1,
+      "Q651": 1,
+      "Q652": 1,
+      "Q653": 1,
+      "Q657": 1,
+      "Q659": 1,
+      "Q66": 1,
+      "Q660": 1,
+      "Q661": 1,
+      "Q662": 1,
+      "Q667": 1,
+      "Q668": 1,
+      "Q669": 1,
+      "Q67": 1,
+      "Q670": 1,
+      "Q672": 1,
+      "Q676": 1,
+      "Q677": 1,
+      "Q68": 1,
+      "Q680": 1,
+      "Q684": 1,
+      "Q685": 1,
+      "Q686": 1,
+      "Q687": 1,
+      "Q688": 1,
+      "Q689": 1,
+      "Q69": 1,
+      "Q690": 1,
+      "Q691": 1,
+      "Q692": 1,
+      "Q693": 1,
+      "Q694": 1,
+      "Q695": 1,
+      "Q696": 1,
+      "Q697": 1,
+      "Q698": 1,
+      "Q699": 1,
+      "Q7": 1,
+      "Q70": 1,
+      "Q700": 1,
+      "Q701": 1,
+      "Q702": 1,
+      "Q703": 1,
+      "Q704": 1,
+      "Q705": 1,
+      "Q706": 1,
+      "Q707": 1,
+      "Q708": 1,
+      "Q709": 1,
+      "Q71": 1,
+      "Q710": 1,
+      "Q711": 1,
+      "Q712": 1,
+      "Q713": 1,
+      "Q716": 1,
+      "Q718": 1,
+      "Q719": 1,
+      "Q72": 1,
+      "Q720": 1,
+      "Q723": 1,
+      "Q729": 1,
+      "Q73": 1,
+      "Q731": 1,
+      "Q732": 1,
+      "Q733": 1,
+      "Q734": 1,
+      "Q735": 1,
+      "Q736": 1,
+      "Q737": 1,
+      "Q738": 1,
+      "Q739": 1,
+      "Q74": 1,
+      "Q740": 1,
+      "Q745": 1,
+      "Q746": 1,
+      "Q747": 1,
+      "Q748": 1,
+      "Q749": 1,
+      "Q75": 1,
+      "Q750": 1,
+      "Q752": 1,
+      "Q753": 1,
+      "Q76": 1,
+      "Q761": 1,
+      "Q763": 1,
+      "Q769": 1,
+      "Q77": 1,
+      "Q78": 1,
+      "Q781": 1,
+      "Q788": 1,
+      "Q789": 1,
+      "Q79": 1,
+      "Q792": 1,
+      "Q793": 1,
+      "Q794": 1,
+      "Q799": 1,
+      "Q8": 1,
+      "Q80": 1,
+      "Q800": 1,
+      "Q807": 1,
+      "Q81": 1,
+      "Q811": 1,
+      "Q815": 1,
+      "Q816": 1,
+      "Q82": 1,
+      "Q820": 1,
+      "Q821": 1,
+      "Q823": 1,
+      "Q829": 1,
+      "Q83": 1,
+      "Q831": 1,
+      "Q833": 1,
+      "Q836": 1,
+      "Q837": 1,
+      "Q838": 1,
+      "Q839": 1,
+      "Q84": 1,
+      "Q840": 1,
+      "Q841": 1,
+      "Q842": 1,
+      "Q845": 1,
+      "Q846": 1,
+      "Q847": 1,
+      "Q848": 1,
+      "Q849": 1,
+      "Q85": 1,
+      "Q852": 1,
+      "Q853": 1,
+      "Q854": 1,
+      "Q859": 1,
+      "Q86": 1,
+      "Q864": 1,
+      "Q865": 1,
+      "Q868": 1,
+      "Q869": 1,
+      "Q87": 1,
+      "Q870": 1,
+      "Q871": 1,
+      "Q873": 1,
+      "Q874": 1,
+      "Q876": 1,
+      "Q877": 1,
+      "Q878": 1,
+      "Q879": 1,
+      "Q88": 1,
+      "Q880": 1,
+      "Q881": 1,
+      "Q883": 1,
+      "Q884": 1,
+      "Q885": 1,
+      "Q889": 1,
+      "Q89": 1,
+      "Q890": 1,
+      "Q893": 1,
+      "Q894": 1,
+      "Q896": 1,
+      "Q897": 1,
+      "Q9": 1,
+      "Q90": 1,
+      "Q900": 1,
+      "Q901": 1,
+      "Q902": 1,
+      "Q903": 1,
+      "Q904": 1,
+      "Q906": 1,
+      "Q907": 1,
+      "Q908": 1,
+      "Q909": 1,
+      "Q91": 1,
+      "Q910": 1,
+      "Q911": 1,
+      "Q912": 1,
+      "Q913": 1,
+      "Q914": 1,
+      "Q917": 1,
+      "Q919": 1,
+      "Q92": 1,
+      "Q920": 1,
+      "Q921": 1,
+      "Q922": 1,
+      "Q923": 1,
+      "Q924": 1,
+      "Q926": 1,
+      "Q928": 1,
+      "Q929": 1,
+      "Q93": 1,
+      "Q930": 1,
+      "Q931": 1,
+      "Q932": 1,
+      "Q933": 1,
+      "Q934": 1,
+      "Q935": 1,
+      "Q936": 1,
+      "Q938": 1,
+      "Q939": 1,
+      "Q94": 1,
+      "Q940": 1,
+      "Q943": 1,
+      "Q944": 1,
+      "Q945": 1,
+      "Q947": 1,
+      "Q949": 1,
+      "Q95": 1,
+      "Q950": 1,
+      "Q951": 1,
+      "Q96": 1,
+      "Q97": 1,
+      "Q98": 1,
+      "Q99": 1,
+      "QB": 1,
+      "QB2": 1,
+      "X1": 1,
+      "X2": 1,
+      "X3": 1,
+      "X4": 1,
+      "X5": 1,
+      "X6": 1,
+      "X7": 1,
+      "X8": 1
+    },
+    "minimum_n_for_inclusion": 20,
+    "benchmark": "TDEX.BK — SET50 ETF (tracking error ~0.3% vs SET index)"
+  },
+  "alphamodel_th": {
+    "description": "AlphaAbsolute Thailand alpha model: RS-based weekly momentum rotation in SET market. Ranks all Focus List stocks by multi-horizon RS, holds top-N, rebalances weekly.",
+    "locked_baseline": {
+      "config": "COMBINED (rs_days=21, top_n=10, vol_parity_sizing, MA50_regime_gate, weekly)",
+      "locked_date": "2026-09-12",
+      "cagr_pct": 33.2,
+      "max_dd_pct": -13.2,
+      "sharpe": 2.54,
+      "win_rate_pct": 71.6,
+      "beat_set_wft_windows": "8/8",
+      "avg_wft_sharpe": 2.37,
+      "worst_wft_dd_pct": -13.3,
+      "note": "DELTA.BK included as contributor not drag. DO NOT change without CIO approval."
+    },
+    "backtest_timeline": {
+      "cagr": 2.6,
+      "set_cagr": -0.1,
+      "excess_cagr": 2.6,
+      "max_dd": -29.4,
+      "set_max_dd": -40.9,
+      "sharpe": 0.05,
+      "win_rate_vs_set": 55.2,
+      "n_months": 116,
+      "bull_months": 53,
+      "bear_months": 63,
+      "final_nav": 1.276,
+      "set_final_nav": 0.992,
+      "holdings_log": [
+        {
+          "month": "2017-08",
+          "regime": "BULL",
+          "picks": [
+            "EA.BK",
+            "SYNEX.BK",
+            "AOT.BK",
+            "WORK.BK",
+            "SPRC.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": 6.09
+        },
+        {
+          "month": "2017-09",
+          "regime": "BULL",
+          "picks": [
+            "AOT.BK",
+            "WORK.BK",
+            "GPSC.BK",
+            "SPRC.BK",
+            "EA.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": 8.98
+        },
+        {
+          "month": "2017-10",
+          "regime": "BULL",
+          "picks": [
+            "GPSC.BK",
+            "WORK.BK",
+            "CBG.BK",
+            "HMPRO.BK",
+            "TOP.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": -6.75
+        },
+        {
+          "month": "2017-11",
+          "regime": "BULL",
+          "picks": [
+            "COM7.BK",
+            "GPSC.BK",
+            "WORK.BK",
+            "IVL.BK",
+            "HMPRO.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": 4.91
+        },
+        {
+          "month": "2017-12",
+          "regime": "BULL",
+          "picks": [
+            "GPSC.BK",
+            "EA.BK",
+            "BJC.BK",
+            "IVL.BK",
+            "QH.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": 4.26
+        },
+        {
+          "month": "2018-01",
+          "regime": "BULL",
+          "picks": [
+            "GPSC.BK",
+            "EA.BK",
+            "IVL.BK",
+            "COM7.BK",
+            "PTTEP.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": -0.72
+        },
+        {
+          "month": "2018-02",
+          "regime": "BULL",
+          "picks": [
+            "EA.BK",
+            "WICE.BK",
+            "PTT.BK",
+            "GPSC.BK",
+            "PTTEP.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": -6.17
+        },
+        {
+          "month": "2018-03",
+          "regime": "BULL",
+          "picks": [
+            "GPSC.BK",
+            "PTT.BK",
+            "TRUE.BK",
+            "IRPC.BK",
+            "PTTEP.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": 0.58
+        },
+        {
+          "month": "2018-04",
+          "regime": "BULL",
+          "picks": [
+            "PTTEP.BK",
+            "PTT.BK",
+            "TRUE.BK",
+            "COM7.BK",
+            "PTTGC.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": -3.07
+        },
+        {
+          "month": "2018-09",
+          "regime": "BULL",
+          "picks": [
+            "NOBLE.BK",
+            "MTC.BK",
+            "CKP.BK",
+            "SAWAD.BK",
+            "COM7.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": -6.37
+        },
+        {
+          "month": "2019-04",
+          "regime": "BULL",
+          "picks": [
+            "BEC.BK",
+            "CBG.BK",
+            "NOBLE.BK",
+            "ICHI.BK",
+            "AP.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": 0.74
+        },
+        {
+          "month": "2019-06",
+          "regime": "BULL",
+          "picks": [
+            "ICHI.BK",
+            "TFG.BK",
+            "CBG.BK",
+            "BEC.BK",
+            "CKP.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": 3.03
+        },
+        {
+          "month": "2019-07",
+          "regime": "BULL",
+          "picks": [
+            "ICHI.BK",
+            "NOBLE.BK",
+            "BEC.BK",
+            "TFG.BK",
+            "CBG.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": -0.6
+        },
+        {
+          "month": "2019-08",
+          "regime": "BULL",
+          "picks": [
+            "ICHI.BK",
+            "TFG.BK",
+            "COM7.BK",
+            "NOBLE.BK",
+            "CBG.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": -3.62
+        },
+        {
+          "month": "2020-11",
+          "regime": "BULL",
+          "picks": [
+            "NOBLE.BK",
+            "PR9.BK",
+            "WICE.BK",
+            "SYNEX.BK",
+            "KBANK.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": 3.35
+        },
+        {
+          "month": "2020-12",
+          "regime": "BULL",
+          "picks": [
+            "NOBLE.BK",
+            "BEC.BK",
+            "IRPC.BK",
+            "WORK.BK",
+            "IVL.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": 2.87
+        },
+        {
+          "month": "2021-01",
+          "regime": "BULL",
+          "picks": [
+            "TPBI.BK",
+            "IRPC.BK",
+            "TOP.BK",
+            "KBANK.BK",
+            "THRE.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": 5.05
+        },
+        {
+          "month": "2021-02",
+          "regime": "BULL",
+          "picks": [
+            "BCP.BK",
+            "KBANK.BK",
+            "BEC.BK",
+            "SPRC.BK",
+            "IRPC.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": 4.02
+        },
+        {
+          "month": "2021-03",
+          "regime": "BULL",
+          "picks": [
+            "SYNEX.BK",
+            "INOX.BK",
+            "COM7.BK",
+            "BEC.BK",
+            "DOHOME.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": 7.68
+        },
+        {
+          "month": "2021-04",
+          "regime": "BULL",
+          "picks": [
+            "INOX.BK",
+            "DOHOME.BK",
+            "SYNEX.BK",
+            "COM7.BK",
+            "ASK.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": -1.32
+        },
+        {
+          "month": "2021-05",
+          "regime": "BULL",
+          "picks": [
+            "INOX.BK",
+            "COM7.BK",
+            "ASK.BK",
+            "SYNEX.BK",
+            "BEC.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": 6.86
+        },
+        {
+          "month": "2021-06",
+          "regime": "BULL",
+          "picks": [
+            "INOX.BK",
+            "ASK.BK",
+            "WICE.BK",
+            "BCH.BK",
+            "BEC.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": -1.92
+        },
+        {
+          "month": "2021-07",
+          "regime": "BULL",
+          "picks": [
+            "ASK.BK",
+            "INSET.BK",
+            "BCH.BK",
+            "LEO.BK",
+            "INOX.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": 3.52
+        },
+        {
+          "month": "2021-08",
+          "regime": "BULL",
+          "picks": [
+            "WICE.BK",
+            "ASK.BK",
+            "LEO.BK",
+            "BA.BK",
+            "INSET.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": -3.51
+        },
+        {
+          "month": "2021-09",
+          "regime": "BULL",
+          "picks": [
+            "INSET.BK",
+            "BA.BK",
+            "WICE.BK",
+            "LEO.BK",
+            "SKR.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": 0.22
+        },
+        {
+          "month": "2021-10",
+          "regime": "BULL",
+          "picks": [
+            "INSET.BK",
+            "TRUE.BK",
+            "SKR.BK",
+            "ASK.BK",
+            "BA.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": -1.29
+        },
+        {
+          "month": "2021-11",
+          "regime": "BULL",
+          "picks": [
+            "TRUE.BK",
+            "WICE.BK",
+            "EA.BK",
+            "KBANK.BK",
+            "SKR.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": 10.26
+        },
+        {
+          "month": "2021-12",
+          "regime": "BULL",
+          "picks": [
+            "EA.BK",
+            "SYNEX.BK",
+            "TRUE.BK",
+            "WICE.BK",
+            "BLA.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": 0.63
+        },
+        {
+          "month": "2022-01",
+          "regime": "BULL",
+          "picks": [
+            "MONO.BK",
+            "WICE.BK",
+            "BLA.BK",
+            "EA.BK",
+            "ASK.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": -1.18
+        },
+        {
+          "month": "2022-02",
+          "regime": "BULL",
+          "picks": [
+            "MONO.BK",
+            "WICE.BK",
+            "EA.BK",
+            "BLA.BK",
+            "LEO.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": -0.33
+        },
+        {
+          "month": "2022-03",
+          "regime": "BULL",
+          "picks": [
+            "MONO.BK",
+            "BLA.BK",
+            "PTTEP.BK",
+            "WICE.BK",
+            "EA.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": 0.46
+        },
+        {
+          "month": "2022-04",
+          "regime": "BULL",
+          "picks": [
+            "MONO.BK",
+            "WORK.BK",
+            "BCP.BK",
+            "PR9.BK",
+            "PTTEP.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": -2.72
+        },
+        {
+          "month": "2022-05",
+          "regime": "BULL",
+          "picks": [
+            "PTTEP.BK",
+            "PR9.BK",
+            "BH.BK",
+            "AP.BK",
+            "GFPT.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": -1.51
+        },
+        {
+          "month": "2022-08",
+          "regime": "BULL",
+          "picks": [
+            "TFG.BK",
+            "SPRC.BK",
+            "BH.BK",
+            "PR9.BK",
+            "GFPT.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": -6.02
+        },
+        {
+          "month": "2022-12",
+          "regime": "BULL",
+          "picks": [
+            "SIRI.BK",
+            "ICHI.BK",
+            "BA.BK",
+            "SPALI.BK",
+            "TPBI.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": 0.87
+        },
+        {
+          "month": "2023-01",
+          "regime": "BULL",
+          "picks": [
+            "SIRI.BK",
+            "ICHI.BK",
+            "SPALI.BK",
+            "SC.BK",
+            "AP.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": -2.55
+        },
+        {
+          "month": "2023-02",
+          "regime": "BULL",
+          "picks": [
+            "SIRI.BK",
+            "SAWAD.BK",
+            "AP.BK",
+            "SC.BK",
+            "ICHI.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": -2.87
+        },
+        {
+          "month": "2024-09",
+          "regime": "BULL",
+          "picks": [
+            "MONO.BK",
+            "SYNEX.BK",
+            "TRUE.BK",
+            "ADVANC.BK",
+            "COM7.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": 0.48
+        },
+        {
+          "month": "2024-10",
+          "regime": "BULL",
+          "picks": [
+            "MONO.BK",
+            "COM7.BK",
+            "TRUE.BK",
+            "INSET.BK",
+            "AAV.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": 0.8
+        },
+        {
+          "month": "2024-11",
+          "regime": "BULL",
+          "picks": [
+            "MONO.BK",
+            "PR9.BK",
+            "AAV.BK",
+            "IVL.BK",
+            "INSET.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": -1.17
+        },
+        {
+          "month": "2024-12",
+          "regime": "BULL",
+          "picks": [
+            "PR9.BK",
+            "INSET.BK",
+            "IVL.BK",
+            "BLA.BK",
+            "MONO.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": -7.46
+        },
+        {
+          "month": "2025-09",
+          "regime": "BULL",
+          "picks": [
+            "NRF.BK",
+            "DUSIT.BK",
+            "SAWAD.BK",
+            "IRPC.BK",
+            "AP.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": -3.23
+        },
+        {
+          "month": "2025-10",
+          "regime": "BULL",
+          "picks": [
+            "NRF.BK",
+            "SAWAD.BK",
+            "IRPC.BK",
+            "BGRIM.BK",
+            "KKP.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": -7.45
+        },
+        {
+          "month": "2025-11",
+          "regime": "BULL",
+          "picks": [
+            "DUSIT.BK",
+            "BGRIM.BK",
+            "KTB.BK",
+            "TU.BK",
+            "NOBLE.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": 1.12
+        },
+        {
+          "month": "2025-12",
+          "regime": "BULL",
+          "picks": [
+            "AOT.BK",
+            "SPRC.BK",
+            "NOBLE.BK",
+            "KKP.BK",
+            "KBANK.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": 2.69
+        },
+        {
+          "month": "2026-01",
+          "regime": "BULL",
+          "picks": [
+            "SPRC.BK",
+            "AOT.BK",
+            "KKP.BK",
+            "ADVANC.BK",
+            "RATCH.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": 12.4
+        },
+        {
+          "month": "2026-02",
+          "regime": "BULL",
+          "picks": [
+            "INSET.BK",
+            "SPRC.BK",
+            "TOP.BK",
+            "TFG.BK",
+            "BA.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": -3.03
+        },
+        {
+          "month": "2026-03",
+          "regime": "BULL",
+          "picks": [
+            "IRPC.BK",
+            "TFG.BK",
+            "PTTGC.BK",
+            "INSET.BK",
+            "IVL.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": 2.0
+        },
+        {
+          "month": "2026-04",
+          "regime": "BULL",
+          "picks": [
+            "IRPC.BK",
+            "TFG.BK",
+            "PTTGC.BK",
+            "INSET.BK",
+            "IVL.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": -2.18
+        },
+        {
+          "month": "2026-05",
+          "regime": "BULL",
+          "picks": [
+            "TFG.BK",
+            "INSET.BK",
+            "IRPC.BK",
+            "BAY.BK",
+            "PTTGC.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": 2.93
+        },
+        {
+          "month": "2026-06",
+          "regime": "BULL",
+          "picks": [
+            "TFG.BK",
+            "BAY.BK",
+            "INSET.BK",
+            "IRPC.BK",
+            "SCGP.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": 7.13
+        },
+        {
+          "month": "2026-07",
+          "regime": "BULL",
+          "picks": [
+            "INSET.BK",
+            "BGRIM.BK",
+            "GPSC.BK",
+            "WICE.BK",
+            "ASK.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": 2.14
+        },
+        {
+          "month": "2026-08",
+          "regime": "BULL",
+          "picks": [
+            "SPRC.BK",
+            "BGRIM.BK",
+            "INSET.BK",
+            "TCAP.BK",
+            "BCP.BK"
+          ],
+          "n_picks": 15,
+          "port_ret": 0.48
+        }
+      ]
+    },
+    "rebalance_frequency_comparison": {
+      "monthly": {
+        "cagr": 6.7,
+        "set_cagr": 0.5,
+        "excess_cagr": 6.2,
+        "max_dd": -28.0,
+        "set_max_dd": -44.3,
+        "sharpe": 1.16,
+        "win_rate_vs_set": 56.0,
+        "final_nav": 1.863,
+        "set_final_nav": 1.048,
+        "n_rebalances": 54
+      },
+      "biweekly": {
+        "cagr": 10.3,
+        "set_cagr": 0.5,
+        "excess_cagr": 9.8,
+        "max_dd": -23.3,
+        "set_max_dd": -44.3,
+        "sharpe": 1.36,
+        "win_rate_vs_set": 56.9,
+        "final_nav": 2.576,
+        "set_final_nav": 1.048,
+        "n_rebalances": 110
+      },
+      "weekly": {
+        "cagr": 13.0,
+        "set_cagr": 0.5,
+        "excess_cagr": 12.5,
+        "max_dd": -14.8,
+        "set_max_dd": -44.3,
+        "sharpe": 1.53,
+        "win_rate_vs_set": 57.8,
+        "final_nav": 3.248,
+        "set_final_nav": 1.048,
+        "n_rebalances": 212
+      }
+    },
+    "component_ablation": {
+      "Baseline": {
+        "cagr": 16.1,
+        "set_cagr": 0.5,
+        "excess": 15.6,
+        "max_dd": -19.0,
+        "sharpe": 1.54,
+        "win_rate": 62.9,
+        "final_nav": 4.228
+      },
+      "MA50 regime": {
+        "cagr": 24.1,
+        "set_cagr": 0.5,
+        "excess": 23.6,
+        "max_dd": -14.3,
+        "sharpe": 2.18,
+        "win_rate": 69.8,
+        "final_nav": 8.031
+      },
+      "1M RS": {
+        "cagr": 16.8,
+        "set_cagr": 0.5,
+        "excess": 16.3,
+        "max_dd": -14.5,
+        "sharpe": 2.79,
+        "win_rate": 59.5,
+        "final_nav": 4.482
+      },
+      "Vol-weighted RS": {
+        "cagr": 12.2,
+        "set_cagr": 0.5,
+        "excess": 11.7,
+        "max_dd": -18.2,
+        "sharpe": 1.31,
+        "win_rate": 60.3,
+        "final_nav": 3.029
+      },
+      "Top-10": {
+        "cagr": 19.0,
+        "set_cagr": 0.5,
+        "excess": 18.6,
+        "max_dd": -19.1,
+        "sharpe": 1.26,
+        "win_rate": 62.9,
+        "final_nav": 5.392
+      },
+      "Weekly rebal": {
+        "cagr": 22.5,
+        "set_cagr": 0.5,
+        "excess": 22.0,
+        "max_dd": -20.9,
+        "sharpe": 1.76,
+        "win_rate": 65.5,
+        "final_nav": 7.124
+      },
+      "COMBINED (all best)": {
+        "cagr": 33.2,
+        "set_cagr": 0.5,
+        "excess": 32.7,
+        "max_dd": -13.2,
+        "sharpe": 2.54,
+        "win_rate": 71.6,
+        "final_nav": 15.995
+      }
+    },
+    "parameter_optimization": {
+      "rs_lookback": [
+        {
+          "cagr": 11.5,
+          "dd": -16.6,
+          "sharpe": 2.3,
+          "excess": 11.0,
+          "win_rt": 58.6,
+          "nav": 2.87,
+          "label": "21d  (1M)"
+        },
+        {
+          "cagr": 11.6,
+          "dd": -18.5,
+          "sharpe": 1.61,
+          "excess": 11.1,
+          "win_rt": 57.8,
+          "nav": 2.894,
+          "label": "42d  (2M)"
+        },
+        {
+          "cagr": 13.0,
+          "dd": -14.8,
+          "sharpe": 1.53,
+          "excess": 12.5,
+          "win_rt": 57.8,
+          "nav": 3.248,
+          "label": "63d  (3M)"
+        },
+        {
+          "cagr": 12.0,
+          "dd": -11.2,
+          "sharpe": 1.41,
+          "excess": 11.5,
+          "win_rt": 61.2,
+          "nav": 2.987,
+          "label": "84d  (4M)"
+        },
+        {
+          "cagr": 12.2,
+          "dd": -12.9,
+          "sharpe": 1.23,
+          "excess": 11.7,
+          "win_rt": 60.3,
+          "nav": 3.044,
+          "label": "126d (6M)"
+        },
+        {
+          "cagr": 12.8,
+          "dd": -13.8,
+          "sharpe": 1.45,
+          "excess": 12.3,
+          "win_rt": 60.3,
+          "nav": 3.192,
+          "label": "252d (12M)"
+        }
+      ],
+      "top_n": [
+        {
+          "cagr": 21.0,
+          "dd": -19.5,
+          "sharpe": 1.26,
+          "excess": 20.5,
+          "win_rt": 60.3,
+          "nav": 6.317,
+          "label": "Top 5"
+        },
+        {
+          "cagr": 18.2,
+          "dd": -13.3,
+          "sharpe": 1.34,
+          "excess": 17.8,
+          "win_rt": 62.9,
+          "nav": 5.049,
+          "label": "Top 8"
+        },
+        {
+          "cagr": 16.6,
+          "dd": -13.3,
+          "sharpe": 1.39,
+          "excess": 16.1,
+          "win_rt": 61.2,
+          "nav": 4.412,
+          "label": "Top 10"
+        },
+        {
+          "cagr": 13.0,
+          "dd": -14.8,
+          "sharpe": 1.53,
+          "excess": 12.5,
+          "win_rt": 57.8,
+          "nav": 3.248,
+          "label": "Top 15"
+        },
+        {
+          "cagr": 6.9,
+          "dd": -29.4,
+          "sharpe": 1.58,
+          "excess": 6.4,
+          "win_rt": 53.4,
+          "nav": 1.91,
+          "label": "Top 20"
+        },
+        {
+          "cagr": -4.2,
+          "dd": -57.5,
+          "sharpe": 1.72,
+          "excess": -4.7,
+          "win_rt": 41.4,
+          "nav": 0.657,
+          "label": "Top 25"
+        }
+      ],
+      "regime_gate": [
+        {
+          "cagr": 6.0,
+          "dd": -49.6,
+          "sharpe": 1.73,
+          "excess": 5.5,
+          "win_rt": 54.3,
+          "nav": 1.75,
+          "label": "No regime gate"
+        },
+        {
+          "cagr": 17.0,
+          "dd": -13.6,
+          "sharpe": 2.19,
+          "excess": 16.5,
+          "win_rt": 65.5,
+          "nav": 4.545,
+          "label": "MA50  regime"
+        },
+        {
+          "cagr": 16.5,
+          "dd": -12.1,
+          "sharpe": 1.93,
+          "excess": 16.1,
+          "win_rt": 59.5,
+          "nav": 4.39,
+          "label": "MA100 regime"
+        },
+        {
+          "cagr": 14.8,
+          "dd": -12.3,
+          "sharpe": 1.69,
+          "excess": 14.3,
+          "win_rt": 61.2,
+          "nav": 3.798,
+          "label": "MA150 regime"
+        },
+        {
+          "cagr": 13.0,
+          "dd": -14.8,
+          "sharpe": 1.53,
+          "excess": 12.5,
+          "win_rt": 57.8,
+          "nav": 3.248,
+          "label": "MA200 regime"
+        },
+        {
+          "cagr": 11.3,
+          "dd": -14.2,
+          "sharpe": 1.4,
+          "excess": 10.9,
+          "win_rt": 58.6,
+          "nav": 2.826,
+          "label": "MA250 regime"
+        }
+      ]
+    }
+  },
+  "rs_formula": {
+    "description": "Relative Strength formula used in AlphaModel-TH for SET universe ranking",
+    "input": "Daily close prices (split/div adjusted) from ohlcv.db",
+    "profiles": {
+      "balanced": {
+        "lookbacks_days": [
+          20,
+          60,
+          126,
+          252
+        ],
+        "weights": [
+          0.1,
+          0.2,
+          0.3,
+          0.4
+        ],
+        "formula": "RS = 0.10*(ret_20d) + 0.20*(ret_60d) + 0.30*(ret_126d) + 0.40*(ret_252d)",
+        "note": "Most weight on 12M trend; 1M adds recency bias. Chosen in champion config."
+      },
+      "momentum_tilt": {
+        "lookbacks_days": [
+          20,
+          60,
+          126,
+          252
+        ],
+        "weights": [
+          0.3,
+          0.3,
+          0.2,
+          0.2
+        ],
+        "note": "More responsive; tested but not in COMBINED baseline."
+      }
+    },
+    "ranking": "All Focus List tickers ranked by RS_score → top_n selected each rebalance",
+    "champion_lookback": "21 days (best Sharpe per DD unit in SET; 63d/252d have similar excess but lower Sharpe)",
+    "regime_gate": {
+      "enabled_in_combined": true,
+      "ticker": "TDEX.BK",
+      "rule": "Only hold positions when TDEX.BK close > 50-day MA; else 100% cash",
+      "effect": "MA50 gate lifts CAGR from 6% (no gate) to 24% (MA50 gate) vs 33% COMBINED"
+    },
+    "sizing_methods": {
+      "vol_parity": "position_weight = (1/vol_20d) normalized to sum=1; lower-vol stocks get larger weight",
+      "equal_weight": "1/N for each position",
+      "note": "vol_parity beats equal_weight: same return, lower MaxDD in SET universe"
+    }
+  },
+  "signal_families": {
+    "A": {
+      "name": "Breakout",
+      "description": "Price clears N-day high, with or without volume confirmation",
+      "signals": [
+        "a1_bkt20_vol",
+        "a2_bkt10",
+        "a3_vol_surge"
+      ],
+      "key_formulas": {
+        "a1_bkt20_vol": "close >= hi20 * 0.999 AND vol >= vol20 * 1.5",
+        "a2_bkt10": "close >= hi10 * 0.999",
+        "a3_vol_surge": "vol >= vol20 * 2.0"
+      },
+      "note": "SET fakes breakouts frequently — pure breakout h5 near 31-45%, below baseline."
+    },
+    "B": {
+      "name": "Tight Base",
+      "description": "Price range compressed; stock hugging high — coiled spring setup",
+      "key_formulas": {
+        "b1_tight_near_hi": "10d_hi/10d_lo - 1 < 8% AND close >= hi20 * 0.95",
+        "b2_tight": "10d_range < 6%",
+        "b3_near_hi20": "pct_from_hi20 between -5% and +1%"
+      }
+    },
+    "C": {
+      "name": "Early Move",
+      "description": "Small positive return, stock above MA50 — early accumulation signal",
+      "key_formulas": {
+        "c1_early_move": "0.5% <= ret3 <= 6% AND close > ma50",
+        "c2_above_ma50": "close > ma50",
+        "c3_pocket_pivot": "today up AND vol > max(down_day_vols_10d)"
+      }
+    },
+    "E": {
+      "name": "Pullback to MA",
+      "description": "Price returns to MA20 or MA50 zone in uptrend — continuation setup",
+      "key_formulas": {
+        "e1_pb_ma20": "ma20 * 0.98 <= close <= ma20 * 1.03",
+        "e2_pb_ma50": "ma50 * 0.97 <= close <= ma50 * 1.03 AND close > ma20",
+        "e3_mild_pb": "-10% <= pct_from_hi20 <= -3% AND close > ma50",
+        "e4_shallow_pb": "-5% <= pct_from_hi20 <= -1% AND close > ma50"
+      }
+    },
+    "F": {
+      "name": "Volume Dry-Up (VDU)",
+      "description": "Volume drying up — institutions not selling; supply exhausted",
+      "key_formulas": {
+        "f1_vol_dry": "vol < vol20 * 0.50",
+        "f2_dry_after_surge": "had_vol_surge_10d AND vol < vol20 * 0.60",
+        "f3_3day_dry": "all(vol[-3:] < vol20 * 0.70)",
+        "f4_dry_near_hi": "f1 AND pct_from_hi20 between -8% and +1%",
+        "f5_dry_ma50": "f1 AND close > ma50"
+      },
+      "note": "F-family is most powerful as COMPONENT — 'dry_near_X' combos with J/N/K families excel."
+    },
+    "G": {
+      "name": "Pattern — Inside Bar / NR7",
+      "description": "Volatility contraction at single-bar level",
+      "key_formulas": {
+        "g1_inside_bar": "today_high <= prev_high AND today_low >= prev_low",
+        "g2_nr7": "today_range == min(last_7d_ranges)"
+      }
+    },
+    "H": {
+      "name": "Momentum Resume",
+      "description": "5-day return positive, new 10-day high — trend continuation",
+      "key_formulas": {
+        "h1_mom_resume": "ret5 > 1% AND close > ma50",
+        "h2_new10d_hi": "close >= hi10 * 0.999"
+      }
+    },
+    "I": {
+      "name": "Short-Term (1-3 day)",
+      "description": "Close quality, power moves, gap holds, reversal candles",
+      "key_formulas": {
+        "i1_close_quality": "close in top 25% of day range AND vol >= vol20",
+        "i2_power_move": "today_ret > 1.5% AND vol >= vol20 * 1.5",
+        "i2b_power_move_strong": "today_ret > 2.5% AND vol >= vol20 * 2.0",
+        "i3_gap_up_hold": "gap > 0.5% AND close > open",
+        "i4_2down_bounce": "2 consecutive down closes THEN today up",
+        "i5_cap_reversal": "prev: down > 2% on 2x_vol THEN today up",
+        "i6_nr7_close_hi": "g2_nr7 AND close in top 50% of range",
+        "i7_dry_up_near_hi": "today up AND vol < vol20*0.70 AND pct_from_hi20 between -6% and +1%",
+        "i8_3up_days": "3 consecutive up closes",
+        "i9_inside_close_hi": "g1_inside_bar AND close in top 50% of range"
+      }
+    },
+    "J": {
+      "name": "Support Confluence + Dry Volume",
+      "description": "Price at specific MA/swing level WITH low volume — institutional accumulation signal",
+      "key_formulas": {
+        "j1_dry_near_ma10": "vol < vol20*0.70 AND ma10*0.98 <= close <= ma10*1.02",
+        "j2_dry_near_ma20": "vol < vol20*0.70 AND ma20*0.98 <= close <= ma20*1.03",
+        "j3_dry_near_ma50": "vol < vol20*0.70 AND ma50*0.97 <= close <= ma50*1.03",
+        "j6_dry_near_swing_lo": "vol < vol20*0.70 AND near 5-30d swing low support",
+        "j7_vcp_zone_ma20": "vol < vol20*0.70 AND pct_from_hi between -8% and -3% AND near_ma20",
+        "j8_pb_zone_ma50": "vol < vol20*0.70 AND pct_from_hi between -15% and -5% AND near_ma50"
+      },
+      "note": "J-family consistently top performers when combined with F (volume dry-up). J3+F1+J6 combination at h5=68.4% (N=57) — one of the highest-N strong signals."
+    },
+    "K": {
+      "name": "First Pullback After Breakout",
+      "description": "O'Neil: first pullback after 3-month breakout has highest continuation probability",
+      "key_formulas": {
+        "k1_first_pb_after_bkt": "63d_high within last 30d AND pb_from_bkt between -8% and -3% AND vol < vol20*0.85",
+        "k4_first_pb_to_ma20": "63d_high within last 30d AND near_ma20 AND vol < vol20*0.85"
+      }
+    },
+    "M": {
+      "name": "VDU + Expansion Day",
+      "description": "Minervini: 3 days declining volume then expansion up-day (spring loading pattern)",
+      "key_formulas": {
+        "m1_vdu_expansion": "vol[-3], vol[-2], vol[-1] all declining THEN today: vol > avg(prior_3d) AND today_up",
+        "m2_vdu_deep_expansion": "m1 AND min(vol[-3:]) < vol20 * 0.60"
+      }
+    },
+    "N": {
+      "name": "Pocket Pivot at MA",
+      "description": "Morales/Kacher: up-day volume exceeds any down-day volume in prior 10 days, at key MA",
+      "key_formulas": {
+        "n2_pp_at_ma50": "pocket_pivot_signal AND ma50*0.95 <= close <= ma50*1.05",
+        "n4_pp_at_ma50_vdu": "n2 AND f3_3day_dry"
+      }
+    },
+    "O": {
+      "name": "SMC — Smart Money Concepts",
+      "description": "Fair Value Gap (FVG) and Change of Character (CHoCH) from Smart Money Concepts framework",
+      "key_formulas": {
+        "o1_in_fvg_3d": "price inside bullish FVG formed in last 3 bars (gap between bar[-2].high and bar[0].low where bar[-1] is gap bar)",
+        "o2_choch_10d": "close > max_close_prior_10d (simplified CHoCH: breaking recent swing high)"
+      },
+      "note": "FVG signals critical for SET — Thai market = FVG+Volume+Structure works better than pure momentum."
+    },
+    "P": {
+      "name": "TD Sequential",
+      "description": "Tom DeMark TD Sequential for exhaustion timing on SET",
+      "key_formulas": {
+        "p2_td_setup_9": "9 consecutive closes each below the close 4 bars prior (Setup complete)",
+        "p5_td_countdown_13": "13+ countdown bars where close <= low 2 bars prior",
+        "p7_td9_bull_ma50": "p2_td_setup_9 AND close > ma50"
+      },
+      "academic_source": "Chen, Huang & Kuan (2016): TD Setup 9 on SET → 58% win rate, 5d alpha +1.1%"
+    },
+    "Q": {
+      "name": "PULSE-TH Composite Q-Signals",
+      "description": "Multi-indicator Q-signals from PULSE-TH systematic library. Each Q-signal is a specific combination of A-P family signals.",
+      "note": "See pulse_th_library section for full Q-signal details with hit rates."
+    }
+  },
+  "top_signals_ranked": [
+    {
+      "rank": 1,
+      "signal": "Q20_q9_above_ma50",
+      "h1": 61.3,
+      "h2": 54.8,
+      "h3": 64.5,
+      "h5": 71.0,
+      "avg_ret_fwd5_pct": 5.133,
+      "n_fwd5": 31,
+      "fire_rate_pct": 0.081
+    },
+    {
+      "rank": 2,
+      "signal": "Q_CMB_Q3_inside_dry_td6_F2_dry_after_surge",
+      "h1": 50.0,
+      "h2": 52.9,
+      "h3": 67.6,
+      "h5": 70.6,
+      "avg_ret_fwd5_pct": 4.558,
+      "n_fwd5": 34,
+      "fire_rate_pct": 0.089
+    },
+    {
+      "rank": 3,
+      "signal": "Q_CMB4_Q3_inside_dry_td6_F2_dry_after_G1_inside_ba",
+      "h1": 50.0,
+      "h2": 52.9,
+      "h3": 67.6,
+      "h5": 70.6,
+      "avg_ret_fwd5_pct": 4.558,
+      "n_fwd5": 34,
+      "fire_rate_pct": 0.089
+    },
+    {
+      "rank": 4,
+      "signal": "Q_CMB4_Q3_inside_dry_td6_F2_dry_after_J4_dry_value",
+      "h1": 50.0,
+      "h2": 52.9,
+      "h3": 67.6,
+      "h5": 70.6,
+      "avg_ret_fwd5_pct": 4.558,
+      "n_fwd5": 34,
+      "fire_rate_pct": 0.089
+    },
+    {
+      "rank": 5,
+      "signal": "Q_CMB4_Q3_inside_dry_td6_F2_dry_after_P3_td_setup_",
+      "h1": 50.0,
+      "h2": 52.9,
+      "h3": 67.6,
+      "h5": 70.6,
+      "avg_ret_fwd5_pct": 4.558,
+      "n_fwd5": 34,
+      "fire_rate_pct": 0.089
+    },
+    {
+      "rank": 6,
+      "signal": "Q_CMB4_Q3_inside_dry_td6_F2_dry_after_F5_dry_ma50",
+      "h1": 56.7,
+      "h2": 60.0,
+      "h3": 70.0,
+      "h5": 70.0,
+      "avg_ret_fwd5_pct": 4.805,
+      "n_fwd5": 30,
+      "fire_rate_pct": 0.079
+    },
+    {
+      "rank": 7,
+      "signal": "Q9_td6_2day_dry_inside",
+      "h1": 56.4,
+      "h2": 51.3,
+      "h3": 61.5,
+      "h5": 69.2,
+      "avg_ret_fwd5_pct": 4.327,
+      "n_fwd5": 39,
+      "fire_rate_pct": 0.102
+    },
+    {
+      "rank": 8,
+      "signal": "Q_CMB_Q3_inside_dry_td6_K4_first_pb_to_ma20",
+      "h1": 46.9,
+      "h2": 59.4,
+      "h3": 71.9,
+      "h5": 68.8,
+      "avg_ret_fwd5_pct": 2.56,
+      "n_fwd5": 32,
+      "fire_rate_pct": 0.084
+    },
+    {
+      "rank": 9,
+      "signal": "Q_CMB4_Q3_inside_dry_td6_K4_first_pb__P3_td_setup_",
+      "h1": 46.9,
+      "h2": 59.4,
+      "h3": 71.9,
+      "h5": 68.8,
+      "avg_ret_fwd5_pct": 2.56,
+      "n_fwd5": 32,
+      "fire_rate_pct": 0.084
+    },
+    {
+      "rank": 10,
+      "signal": "Q670_j3_f1_j6",
+      "h1": 38.6,
+      "h2": 49.1,
+      "h3": 56.1,
+      "h5": 68.4,
+      "avg_ret_fwd5_pct": 1.133,
+      "n_fwd5": 57,
+      "fire_rate_pct": 0.149
+    },
+    {
+      "rank": 11,
+      "signal": "Q530_j3_f1_j6",
+      "h1": 38.6,
+      "h2": 49.1,
+      "h3": 56.1,
+      "h5": 68.4,
+      "avg_ret_fwd5_pct": 1.133,
+      "n_fwd5": 57,
+      "fire_rate_pct": 0.149
+    },
+    {
+      "rank": 12,
+      "signal": "Q188_f1_j3_j6",
+      "h1": 38.6,
+      "h2": 49.1,
+      "h3": 56.1,
+      "h5": 68.4,
+      "avg_ret_fwd5_pct": 1.133,
+      "n_fwd5": 57,
+      "fire_rate_pct": 0.149
+    },
+    {
+      "rank": 13,
+      "signal": "Q170_j3_f1_j6",
+      "h1": 38.6,
+      "h2": 49.1,
+      "h3": 56.1,
+      "h5": 68.4,
+      "avg_ret_fwd5_pct": 1.133,
+      "n_fwd5": 57,
+      "fire_rate_pct": 0.149
+    },
+    {
+      "rank": 14,
+      "signal": "Q35_4b_quality_gap",
+      "h1": 48.6,
+      "h2": 43.2,
+      "h3": 61.1,
+      "h5": 67.6,
+      "avg_ret_fwd5_pct": 4.739,
+      "n_fwd5": 37,
+      "fire_rate_pct": 0.097
+    },
+    {
+      "rank": 15,
+      "signal": "Q837_f5_k4_q2",
+      "h1": 51.0,
+      "h2": 63.3,
+      "h3": 69.4,
+      "h5": 67.3,
+      "avg_ret_fwd5_pct": 1.998,
+      "n_fwd5": 49,
+      "fire_rate_pct": 0.128
+    },
+    {
+      "rank": 16,
+      "signal": "Q543_k4_f5_q2",
+      "h1": 51.0,
+      "h2": 63.3,
+      "h3": 69.4,
+      "h5": 67.3,
+      "avg_ret_fwd5_pct": 1.998,
+      "n_fwd5": 49,
+      "fire_rate_pct": 0.128
+    },
+    {
+      "rank": 17,
+      "signal": "Q542_k4_f1_q2",
+      "h1": 51.0,
+      "h2": 63.3,
+      "h3": 69.4,
+      "h5": 67.3,
+      "avg_ret_fwd5_pct": 1.998,
+      "n_fwd5": 49,
+      "fire_rate_pct": 0.128
+    },
+    {
+      "rank": 18,
+      "signal": "Q207_f1_k4_q2",
+      "h1": 51.0,
+      "h2": 63.3,
+      "h3": 69.4,
+      "h5": 67.3,
+      "avg_ret_fwd5_pct": 1.998,
+      "n_fwd5": 49,
+      "fire_rate_pct": 0.128
+    },
+    {
+      "rank": 19,
+      "signal": "Q_CMB4_Q3_inside_dry_td6_E1_pb_ma20_F1_vol_dry",
+      "h1": 56.7,
+      "h2": 66.7,
+      "h3": 70.0,
+      "h5": 66.7,
+      "avg_ret_fwd5_pct": 4.834,
+      "n_fwd5": 30,
+      "fire_rate_pct": 0.079
+    },
+    {
+      "rank": 20,
+      "signal": "Q_CMB4_Q3_inside_dry_td6_E1_pb_ma20_F5_dry_ma50",
+      "h1": 56.7,
+      "h2": 66.7,
+      "h3": 70.0,
+      "h5": 66.7,
+      "avg_ret_fwd5_pct": 4.834,
+      "n_fwd5": 30,
+      "fire_rate_pct": 0.079
+    },
+    {
+      "rank": 21,
+      "signal": "Q_CMB_Q3_inside_dry_td6_E1_pb_ma20",
+      "h1": 48.6,
+      "h2": 62.9,
+      "h3": 71.4,
+      "h5": 65.7,
+      "avg_ret_fwd5_pct": 4.155,
+      "n_fwd5": 35,
+      "fire_rate_pct": 0.092
+    },
+    {
+      "rank": 22,
+      "signal": "Q_CMB_Q3_inside_dry_td6_J2_dry_near_ma20",
+      "h1": 48.6,
+      "h2": 62.9,
+      "h3": 71.4,
+      "h5": 65.7,
+      "avg_ret_fwd5_pct": 4.155,
+      "n_fwd5": 35,
+      "fire_rate_pct": 0.092
+    },
+    {
+      "rank": 23,
+      "signal": "Q_CMB_Q3_inside_dry_td6_J_combo_ma20_trend",
+      "h1": 48.6,
+      "h2": 62.9,
+      "h3": 71.4,
+      "h5": 65.7,
+      "avg_ret_fwd5_pct": 4.155,
+      "n_fwd5": 35,
+      "fire_rate_pct": 0.092
+    },
+    {
+      "rank": 24,
+      "signal": "Q_CMB4_Q3_inside_dry_td6_E1_pb_ma20_G1_inside_ba",
+      "h1": 48.6,
+      "h2": 62.9,
+      "h3": 71.4,
+      "h5": 65.7,
+      "avg_ret_fwd5_pct": 4.155,
+      "n_fwd5": 35,
+      "fire_rate_pct": 0.092
+    },
+    {
+      "rank": 25,
+      "signal": "Q_CMB4_Q3_inside_dry_td6_E1_pb_ma20_J2_dry_near_",
+      "h1": 48.6,
+      "h2": 62.9,
+      "h3": 71.4,
+      "h5": 65.7,
+      "avg_ret_fwd5_pct": 4.155,
+      "n_fwd5": 35,
+      "fire_rate_pct": 0.092
+    },
+    {
+      "rank": 26,
+      "signal": "Q_CMB4_Q3_inside_dry_td6_E1_pb_ma20_J4_dry_value",
+      "h1": 48.6,
+      "h2": 62.9,
+      "h3": 71.4,
+      "h5": 65.7,
+      "avg_ret_fwd5_pct": 4.155,
+      "n_fwd5": 35,
+      "fire_rate_pct": 0.092
+    },
+    {
+      "rank": 27,
+      "signal": "Q_CMB4_Q3_inside_dry_td6_E1_pb_ma20_J_combo_ma20",
+      "h1": 48.6,
+      "h2": 62.9,
+      "h3": 71.4,
+      "h5": 65.7,
+      "avg_ret_fwd5_pct": 4.155,
+      "n_fwd5": 35,
+      "fire_rate_pct": 0.092
+    },
+    {
+      "rank": 28,
+      "signal": "Q_CMB4_Q3_inside_dry_td6_E1_pb_ma20_P3_td_setup_",
+      "h1": 48.6,
+      "h2": 62.9,
+      "h3": 71.4,
+      "h5": 65.7,
+      "avg_ret_fwd5_pct": 4.155,
+      "n_fwd5": 35,
+      "fire_rate_pct": 0.092
+    },
+    {
+      "rank": 29,
+      "signal": "Q_CMB4_Q3_inside_dry_td6_J2_dry_near__J4_dry_value",
+      "h1": 48.6,
+      "h2": 62.9,
+      "h3": 71.4,
+      "h5": 65.7,
+      "avg_ret_fwd5_pct": 4.155,
+      "n_fwd5": 35,
+      "fire_rate_pct": 0.092
+    },
+    {
+      "rank": 30,
+      "signal": "Q_CMB4_Q3_inside_dry_td6_J2_dry_near__J_combo_ma20",
+      "h1": 48.6,
+      "h2": 62.9,
+      "h3": 71.4,
+      "h5": 65.7,
+      "avg_ret_fwd5_pct": 4.155,
+      "n_fwd5": 35,
+      "fire_rate_pct": 0.092
+    },
+    {
+      "rank": 31,
+      "signal": "Q_CMB4_Q3_inside_dry_td6_J2_dry_near__P3_td_setup_",
+      "h1": 48.6,
+      "h2": 62.9,
+      "h3": 71.4,
+      "h5": 65.7,
+      "avg_ret_fwd5_pct": 4.155,
+      "n_fwd5": 35,
+      "fire_rate_pct": 0.092
+    },
+    {
+      "rank": 32,
+      "signal": "Q_CMB4_Q3_inside_dry_td6_J_combo_ma20_P3_td_setup_",
+      "h1": 48.6,
+      "h2": 62.9,
+      "h3": 71.4,
+      "h5": 65.7,
+      "avg_ret_fwd5_pct": 4.155,
+      "n_fwd5": 35,
+      "fire_rate_pct": 0.092
+    },
+    {
+      "rank": 33,
+      "signal": "Q672_j6_f1_f2",
+      "h1": 43.6,
+      "h2": 49.1,
+      "h3": 54.5,
+      "h5": 65.5,
+      "avg_ret_fwd5_pct": 0.934,
+      "n_fwd5": 55,
+      "fire_rate_pct": 0.144
+    },
+    {
+      "rank": 34,
+      "signal": "Q531_j6_f1_f2",
+      "h1": 43.6,
+      "h2": 49.1,
+      "h3": 54.5,
+      "h5": 65.5,
+      "avg_ret_fwd5_pct": 0.934,
+      "n_fwd5": 55,
+      "fire_rate_pct": 0.144
+    },
+    {
+      "rank": 35,
+      "signal": "Q324_f2_f1_j6",
+      "h1": 43.6,
+      "h2": 49.1,
+      "h3": 54.5,
+      "h5": 65.5,
+      "avg_ret_fwd5_pct": 0.934,
+      "n_fwd5": 55,
+      "fire_rate_pct": 0.144
+    },
+    {
+      "rank": 36,
+      "signal": "Q189_f1_f2_j6",
+      "h1": 43.6,
+      "h2": 49.1,
+      "h3": 54.5,
+      "h5": 65.5,
+      "avg_ret_fwd5_pct": 0.934,
+      "n_fwd5": 55,
+      "fire_rate_pct": 0.144
+    },
+    {
+      "rank": 37,
+      "signal": "Q12_td6_pb_nr7",
+      "h1": 37.1,
+      "h2": 51.4,
+      "h3": 68.6,
+      "h5": 62.9,
+      "avg_ret_fwd5_pct": 0.638,
+      "n_fwd5": 35,
+      "fire_rate_pct": 0.092
+    },
+    {
+      "rank": 38,
+      "signal": "Q3_inside_dry_td6",
+      "h1": 46.1,
+      "h2": 51.3,
+      "h3": 55.7,
+      "h5": 61.7,
+      "avg_ret_fwd5_pct": 2.134,
+      "n_fwd5": 115,
+      "fire_rate_pct": 0.301
+    },
+    {
+      "rank": 39,
+      "signal": "Q7_dry_inside_td6",
+      "h1": 48.9,
+      "h2": 44.7,
+      "h3": 53.2,
+      "h5": 61.7,
+      "avg_ret_fwd5_pct": 3.493,
+      "n_fwd5": 47,
+      "fire_rate_pct": 0.123
+    },
+    {
+      "rank": 40,
+      "signal": "Q524_i9_f2_p3",
+      "h1": 48.9,
+      "h2": 44.7,
+      "h3": 53.2,
+      "h5": 61.7,
+      "avg_ret_fwd5_pct": 3.493,
+      "n_fwd5": 47,
+      "fire_rate_pct": 0.123
+    },
+    {
+      "rank": 41,
+      "signal": "Q200_f2_i9_p3",
+      "h1": 48.9,
+      "h2": 44.7,
+      "h3": 53.2,
+      "h5": 61.7,
+      "avg_ret_fwd5_pct": 3.493,
+      "n_fwd5": 47,
+      "fire_rate_pct": 0.123
+    },
+    {
+      "rank": 42,
+      "signal": "Q29_gap_3down_bounce",
+      "h1": 46.2,
+      "h2": 42.3,
+      "h3": 54.9,
+      "h5": 61.5,
+      "avg_ret_fwd5_pct": 4.721,
+      "n_fwd5": 52,
+      "fire_rate_pct": 0.136
+    },
+    {
+      "rank": 43,
+      "signal": "J6_dry_near_swing_lo",
+      "h1": 41.1,
+      "h2": 50.4,
+      "h3": 51.2,
+      "h5": 61.2,
+      "avg_ret_fwd5_pct": 0.927,
+      "n_fwd5": 129,
+      "fire_rate_pct": 0.338
+    },
+    {
+      "rank": 44,
+      "signal": "Q712_m5_b3_fvg3",
+      "h1": 30.0,
+      "h2": 55.2,
+      "h3": 57.1,
+      "h5": 60.7,
+      "avg_ret_fwd5_pct": 1.767,
+      "n_fwd5": 28,
+      "fire_rate_pct": 0.079
+    },
+    {
+      "rank": 45,
+      "signal": "Q710_d3_m5_fvg3",
+      "h1": 30.0,
+      "h2": 55.2,
+      "h3": 57.1,
+      "h5": 60.7,
+      "avg_ret_fwd5_pct": 1.767,
+      "n_fwd5": 28,
+      "fire_rate_pct": 0.079
+    },
+    {
+      "rank": 46,
+      "signal": "Q351_m5_b3_fvg3",
+      "h1": 30.0,
+      "h2": 55.2,
+      "h3": 57.1,
+      "h5": 60.7,
+      "avg_ret_fwd5_pct": 1.767,
+      "n_fwd5": 28,
+      "fire_rate_pct": 0.079
+    },
+    {
+      "rank": 47,
+      "signal": "Q147_m5_e4_fvg3",
+      "h1": 30.0,
+      "h2": 55.2,
+      "h3": 57.1,
+      "h5": 60.7,
+      "avg_ret_fwd5_pct": 1.767,
+      "n_fwd5": 28,
+      "fire_rate_pct": 0.079
+    },
+    {
+      "rank": 48,
+      "signal": "Q146_m5_b3_fvg3",
+      "h1": 30.0,
+      "h2": 55.2,
+      "h3": 57.1,
+      "h5": 60.7,
+      "avg_ret_fwd5_pct": 1.767,
+      "n_fwd5": 28,
+      "fire_rate_pct": 0.079
+    },
+    {
+      "rank": 49,
+      "signal": "Q731_m1_e4_fvg3",
+      "h1": 35.0,
+      "h2": 53.8,
+      "h3": 55.3,
+      "h5": 60.5,
+      "avg_ret_fwd5_pct": 1.733,
+      "n_fwd5": 38,
+      "fire_rate_pct": 0.105
+    },
+    {
+      "rank": 50,
+      "signal": "Q380_m1_e4_fvg3",
+      "h1": 35.0,
+      "h2": 53.8,
+      "h3": 55.3,
+      "h5": 60.5,
+      "avg_ret_fwd5_pct": 1.733,
+      "n_fwd5": 38,
+      "fire_rate_pct": 0.105
+    },
+    {
+      "rank": 51,
+      "signal": "Q140_m1_e4_fvg3",
+      "h1": 35.0,
+      "h2": 53.8,
+      "h3": 55.3,
+      "h5": 60.5,
+      "avg_ret_fwd5_pct": 1.733,
+      "n_fwd5": 38,
+      "fire_rate_pct": 0.105
+    },
+    {
+      "rank": 52,
+      "signal": "Q908_k4_x7_q2",
+      "h1": 45.7,
+      "h2": 57.1,
+      "h3": 65.7,
+      "h5": 60.0,
+      "avg_ret_fwd5_pct": 0.518,
+      "n_fwd5": 35,
+      "fire_rate_pct": 0.092
+    },
+    {
+      "rank": 53,
+      "signal": "Q909_k4_x7_q3",
+      "h1": 42.5,
+      "h2": 55.0,
+      "h3": 65.0,
+      "h5": 60.0,
+      "avg_ret_fwd5_pct": 0.511,
+      "n_fwd5": 40,
+      "fire_rate_pct": 0.105
+    },
+    {
+      "rank": 54,
+      "signal": "Q917_a3_e1_fvg8",
+      "h1": 42.2,
+      "h2": 56.7,
+      "h3": 58.9,
+      "h5": 60.0,
+      "avg_ret_fwd5_pct": 0.63,
+      "n_fwd5": 90,
+      "fire_rate_pct": 0.238
+    },
+    {
+      "rank": 55,
+      "signal": "Q849_e1_a3_fvg8",
+      "h1": 42.2,
+      "h2": 56.7,
+      "h3": 58.9,
+      "h5": 60.0,
+      "avg_ret_fwd5_pct": 0.63,
+      "n_fwd5": 90,
+      "fire_rate_pct": 0.238
+    },
+    {
+      "rank": 56,
+      "signal": "Q677_x7_k4_q3",
+      "h1": 42.5,
+      "h2": 55.0,
+      "h3": 65.0,
+      "h5": 60.0,
+      "avg_ret_fwd5_pct": 0.511,
+      "n_fwd5": 40,
+      "fire_rate_pct": 0.105
+    },
+    {
+      "rank": 57,
+      "signal": "Q676_x7_k4_q2",
+      "h1": 45.7,
+      "h2": 57.1,
+      "h3": 65.7,
+      "h5": 60.0,
+      "avg_ret_fwd5_pct": 0.518,
+      "n_fwd5": 35,
+      "fire_rate_pct": 0.092
+    },
+    {
+      "rank": 58,
+      "signal": "Q540_k4_x7_q3",
+      "h1": 42.5,
+      "h2": 55.0,
+      "h3": 65.0,
+      "h5": 60.0,
+      "avg_ret_fwd5_pct": 0.511,
+      "n_fwd5": 40,
+      "fire_rate_pct": 0.105
+    },
+    {
+      "rank": 59,
+      "signal": "Q539_k4_x7_q2",
+      "h1": 45.7,
+      "h2": 57.1,
+      "h3": 65.7,
+      "h5": 60.0,
+      "avg_ret_fwd5_pct": 0.518,
+      "n_fwd5": 35,
+      "fire_rate_pct": 0.092
+    },
+    {
+      "rank": 60,
+      "signal": "Q506_a3_e1_fvg8",
+      "h1": 42.2,
+      "h2": 56.7,
+      "h3": 58.9,
+      "h5": 60.0,
+      "avg_ret_fwd5_pct": 0.63,
+      "n_fwd5": 90,
+      "fire_rate_pct": 0.238
+    }
+  ],
+  "pulse_th_library": {
+    "description": "PULSE-TH: systematic Q-signal library for SET market. Tests all multi-indicator combinations for forward return predictability.",
+    "how_it_works": "1. For each ticker-day: compute all 993 signals (families A-P). 2. For each Q-signal (combo of 2-5 indicators): check if ALL components fire. 3. Record forward returns (fwd1/2/3/5 days). 4. Grade Q-signals by h3/h5 hit rate across all observations.",
+    "grade_definitions": {
+      "S_BOTH": "h3 >= 63% AND h5 >= 63% AND n >= 15 (strong signal at both 3d and 5d horizon)",
+      "S": "h5 >= 63% AND n >= 15 (strong 5-day horizon only)",
+      "A": "h5 >= 55% AND n >= 15 (good signal, actionable)",
+      "B": "h5 >= 50% AND n >= 15 (mild edge)"
+    },
+    "totals": {
+      "total_q_signals_scored": 7659,
+      "total_qualifying_n15plus": 3025,
+      "grade_s_both": 24,
+      "grade_s": 1607,
+      "grade_a": 302
+    },
+    "thresholds_used": {
+      "h3_threshold_for_grade_s": 63.0,
+      "min_n_observations": 15,
+      "forward_window": "fwd5"
+    },
+    "top_25_q_signals": [
+      {
+        "label": "Q_CMB_Q670_j3_f1_j6_J8_pb_zone_ma50",
+        "h3": 84.2,
+        "h5": 84.2,
+        "avg": 0.0249,
+        "N": 19,
+        "grade": "S_BOTH",
+        "family": "j3"
+      },
+      {
+        "label": "Q_CMB_Q530_j3_f1_j6_J8_pb_zone_ma50",
+        "h3": 84.2,
+        "h5": 84.2,
+        "avg": 0.0249,
+        "N": 19,
+        "grade": "S_BOTH",
+        "family": "j3"
+      },
+      {
+        "label": "Q_CMB_Q188_f1_j3_j6_J8_pb_zone_ma50",
+        "h3": 84.2,
+        "h5": 84.2,
+        "avg": 0.0249,
+        "N": 19,
+        "grade": "S_BOTH",
+        "family": "f1"
+      },
+      {
+        "label": "Q_CMB_Q170_j3_f1_j6_J8_pb_zone_ma50",
+        "h3": 84.2,
+        "h5": 84.2,
+        "avg": 0.0249,
+        "N": 19,
+        "grade": "S_BOTH",
+        "family": "j3"
+      },
+      {
+        "label": "Q_CMB3_Q670_j3_f1_j6_Q188_f1_j3_j6_J8_pb_zone_ma50",
+        "h3": 84.2,
+        "h5": 84.2,
+        "avg": 0.0249,
+        "N": 19,
+        "grade": "S_BOTH",
+        "family": "CMB3"
+      },
+      {
+        "label": "Q_CMB3_Q530_j3_f1_j6_Q188_f1_j3_j6_J8_pb_zone_ma50",
+        "h3": 84.2,
+        "h5": 84.2,
+        "avg": 0.0249,
+        "N": 19,
+        "grade": "S_BOTH",
+        "family": "CMB3"
+      },
+      {
+        "label": "Q_CMB3_Q188_f1_j3_j6_Q170_j3_f1_j6_J8_pb_zone_ma50",
+        "h3": 84.2,
+        "h5": 84.2,
+        "avg": 0.0249,
+        "N": 19,
+        "grade": "S_BOTH",
+        "family": "CMB3"
+      },
+      {
+        "label": "Q812_i9_i8_fvg5",
+        "h3": 80.0,
+        "h5": 80.0,
+        "avg": 0.0226,
+        "N": 20,
+        "grade": "S_BOTH",
+        "family": "i9"
+      },
+      {
+        "label": "Q525_i9_i8_fvg5",
+        "h3": 80.0,
+        "h5": 80.0,
+        "avg": 0.0226,
+        "N": 20,
+        "grade": "S_BOTH",
+        "family": "i9"
+      },
+      {
+        "label": "Q_CMB_Q670_j3_f1_j6_G1_inside_bar",
+        "h3": 80.0,
+        "h5": 80.0,
+        "avg": 0.0172,
+        "N": 15,
+        "grade": "S_BOTH",
+        "family": "j3"
+      },
+      {
+        "label": "Q_CMB_Q530_j3_f1_j6_G1_inside_bar",
+        "h3": 80.0,
+        "h5": 80.0,
+        "avg": 0.0172,
+        "N": 15,
+        "grade": "S_BOTH",
+        "family": "j3"
+      },
+      {
+        "label": "Q_CMB_Q188_f1_j3_j6_G1_inside_bar",
+        "h3": 80.0,
+        "h5": 80.0,
+        "avg": 0.0172,
+        "N": 15,
+        "grade": "S_BOTH",
+        "family": "f1"
+      },
+      {
+        "label": "Q_CMB_Q170_j3_f1_j6_G1_inside_bar",
+        "h3": 80.0,
+        "h5": 80.0,
+        "avg": 0.0172,
+        "N": 15,
+        "grade": "S_BOTH",
+        "family": "j3"
+      },
+      {
+        "label": "Q_CMB3_Q670_j3_f1_j6_Q188_f1_j3_j6_G1_inside_bar",
+        "h3": 80.0,
+        "h5": 80.0,
+        "avg": 0.0172,
+        "N": 15,
+        "grade": "S_BOTH",
+        "family": "CMB3"
+      },
+      {
+        "label": "Q_CMB3_Q530_j3_f1_j6_Q188_f1_j3_j6_G1_inside_bar",
+        "h3": 80.0,
+        "h5": 80.0,
+        "avg": 0.0172,
+        "N": 15,
+        "grade": "S_BOTH",
+        "family": "CMB3"
+      },
+      {
+        "label": "Q_CMB3_Q188_f1_j3_j6_Q170_j3_f1_j6_G1_inside_bar",
+        "h3": 80.0,
+        "h5": 80.0,
+        "avg": 0.0172,
+        "N": 15,
+        "grade": "S_BOTH",
+        "family": "CMB3"
+      },
+      {
+        "label": "Q_CMB4_Q670_j3_f1_j6_G1_inside_ba_J3_dry_near_",
+        "h3": 80.0,
+        "h5": 80.0,
+        "avg": 0.0172,
+        "N": 15,
+        "grade": "S_BOTH",
+        "family": "CMB4"
+      },
+      {
+        "label": "Q_CMB4_Q670_j3_f1_j6_G1_inside_ba_J6_dry_near_",
+        "h3": 80.0,
+        "h5": 80.0,
+        "avg": 0.0172,
+        "N": 15,
+        "grade": "S_BOTH",
+        "family": "CMB4"
+      },
+      {
+        "label": "Q_CMB4_Q530_j3_f1_j6_G1_inside_ba_J3_dry_near_",
+        "h3": 80.0,
+        "h5": 80.0,
+        "avg": 0.0172,
+        "N": 15,
+        "grade": "S_BOTH",
+        "family": "CMB4"
+      },
+      {
+        "label": "Q_CMB4_Q530_j3_f1_j6_G1_inside_ba_J6_dry_near_",
+        "h3": 80.0,
+        "h5": 80.0,
+        "avg": 0.0172,
+        "N": 15,
+        "grade": "S_BOTH",
+        "family": "CMB4"
+      },
+      {
+        "label": "Q_CMB4_Q188_f1_j3_j6_G1_inside_ba_J3_dry_near_",
+        "h3": 80.0,
+        "h5": 80.0,
+        "avg": 0.0172,
+        "N": 15,
+        "grade": "S_BOTH",
+        "family": "CMB4"
+      },
+      {
+        "label": "Q_CMB4_Q188_f1_j3_j6_G1_inside_ba_J6_dry_near_",
+        "h3": 80.0,
+        "h5": 80.0,
+        "avg": 0.0172,
+        "N": 15,
+        "grade": "S_BOTH",
+        "family": "CMB4"
+      },
+      {
+        "label": "Q_CMB4_Q170_j3_f1_j6_G1_inside_ba_J3_dry_near_",
+        "h3": 80.0,
+        "h5": 80.0,
+        "avg": 0.0172,
+        "N": 15,
+        "grade": "S_BOTH",
+        "family": "CMB4"
+      },
+      {
+        "label": "Q_CMB4_Q170_j3_f1_j6_G1_inside_ba_J6_dry_near_",
+        "h3": 80.0,
+        "h5": 80.0,
+        "avg": 0.0172,
+        "N": 15,
+        "grade": "S_BOTH",
+        "family": "CMB4"
+      },
+      {
+        "label": "Q813_i9_i8_fvg8",
+        "h3": 78.3,
+        "h5": 78.3,
+        "avg": 0.0253,
+        "N": 23,
+        "grade": "S",
+        "family": "i9"
+      }
+    ],
+    "key_patterns": [
+      "Best S_BOTH cluster: J3+F1+J6+J8_pb_zone_ma50 combos → h3=h5=84.2% (N=19)",
+      "Best high-N cluster: I9+I8+FVG5 combos → h3=h5=80.0% (N=20)",
+      "Best single-signal: Q20_q9_above_ma50 → h5=71.0%, avg_ret=5.13%, N=31",
+      "Thai insight: FVG (Fair Value Gap) + Volume + MA-confluence beats pure momentum"
+    ]
+  },
+  "pulse_breadth_scoring": {
+    "description": "Daily PULSE-TH output: for each ticker, count how many quality Q-signals fire today. High breadth = multiple independent indicators agree = higher conviction.",
+    "fields": {
+      "breadth": "count of quality Q-signals firing for this ticker today",
+      "breadth_pct": "breadth / n_quality_signals * 100 — what % of quality library agrees",
+      "avg_h3": "weighted avg expected 3-day hit rate from all firing signals",
+      "n_quality": "total quality signals in library (Grade A+S+S_BOTH)"
+    },
+    "last_run_date": "2026-09-29",
+    "n_quality_signals_in_library": 28,
+    "example_output": {
+      "HANA.BK": {
+        "breadth": 7,
+        "breadth_pct": 25.0,
+        "avg_h3": 68.8,
+        "n_signals_fired": 17
+      }
+    },
+    "all_ticker_scores_latest": {
+      "AWC.BK": {
+        "breadth": 0,
+        "breadth_pct": 0.0,
+        "avg_h3": 0.0,
+        "n_signals_fired": 0
+      },
+      "BCH.BK": {
+        "breadth": 0,
+        "breadth_pct": 0.0,
+        "avg_h3": 0.0,
+        "n_signals_fired": 0
+      },
+      "BJC.BK": {
+        "breadth": 0,
+        "breadth_pct": 0.0,
+        "avg_h3": 0.0,
+        "n_signals_fired": 0
+      },
+      "CHG.BK": {
+        "breadth": 0,
+        "breadth_pct": 0.0,
+        "avg_h3": 0.0,
+        "n_signals_fired": 0
+      },
+      "DELTA.BK": {
+        "breadth": 0,
+        "breadth_pct": 0.0,
+        "avg_h3": 0.0,
+        "n_signals_fired": 0
+      },
+      "GFPT.BK": {
+        "breadth": 0,
+        "breadth_pct": 0.0,
+        "avg_h3": 0.0,
+        "n_signals_fired": 0
+      },
+      "GUNKUL.BK": {
+        "breadth": 0,
+        "breadth_pct": 0.0,
+        "avg_h3": 0.0,
+        "n_signals_fired": 0
+      },
+      "HANA.BK": {
+        "breadth": 7,
+        "breadth_pct": 25.0,
+        "avg_h3": 68.8,
+        "n_signals_fired": 17
+      },
+      "IRPC.BK": {
+        "breadth": 0,
+        "breadth_pct": 0.0,
+        "avg_h3": 0.0,
+        "n_signals_fired": 0
+      },
+      "IVL.BK": {
+        "breadth": 0,
+        "breadth_pct": 0.0,
+        "avg_h3": 0.0,
+        "n_signals_fired": 0
+      },
+      "KCE.BK": {
+        "breadth": 0,
+        "breadth_pct": 0.0,
+        "avg_h3": 0.0,
+        "n_signals_fired": 0
+      },
+      "PTTGC.BK": {
+        "breadth": 0,
+        "breadth_pct": 0.0,
+        "avg_h3": 0.0,
+        "n_signals_fired": 0
+      },
+      "SPCG.BK": {
+        "breadth": 0,
+        "breadth_pct": 0.0,
+        "avg_h3": 0.0,
+        "n_signals_fired": 0
+      },
+      "SPRC.BK": {
+        "breadth": 0,
+        "breadth_pct": 0.0,
+        "avg_h3": 0.0,
+        "n_signals_fired": 0
+      },
+      "TOP.BK": {
+        "breadth": 0,
+        "breadth_pct": 0.0,
+        "avg_h3": 0.0,
+        "n_signals_fired": 0
+      }
+    }
+  },
+  "thai_paper_portfolio": {
+    "inception_date": "2026-09-02",
+    "starting_nav": 1000000,
+    "current_nav": 1000000.0,
+    "set_inception_price": 1620.31,
+    "set_current_price": 972931.1057760553,
+    "last_update": "2026-10-05",
+    "holdings": [],
+    "universe_size": "~60-100 SET Focus List stocks",
+    "entry_trigger": "PULSE breadth >= threshold AND regime = MA50 above (TDEX.BK > MA50)",
+    "exit_trigger": "Weekly rebalance: RS drops below top-N cutoff"
+  },
+  "key_findings": {
+    "alphamodel_th_insights": [
+      "RS lookback 21d (1 month) is optimal for SET — shorter is better than longer for momentum capture",
+      "Top-N=10 is sweet spot: Top5 gives higher CAGR but higher MaxDD; Top15+ drops sharply in both",
+      "MA50 regime gate (TDEX.BK above MA50): without it CAGR = 6%, with it = 24% — mandatory for live trading",
+      "Vol-parity sizing reduces MaxDD vs equal-weight without sacrificing return",
+      "COMBINED config (all best params together) CAGR 33.2% — synergistic, not just additive",
+      "DELTA.BK: included in universe, proven contributor (removed it = lower Sharpe)"
+    ],
+    "signal_insights": [
+      "Volume Dry-Up (F-family) is most powerful as a COMPONENT — add it to any support signal",
+      "J-family (dry near MA/swing support) + F-family = most consistent high-N performers",
+      "J3+F1+J6 = h5=68.4% at N=57 — high enough N to be actionable",
+      "SET market rewards: price at support (J) + low supply (F) + inside/reversal (I/G) combos",
+      "Pure breakout (A-family) h5=31-45% — below baseline — SET fakes breakouts too often",
+      "FVG (O-family) in combinations is powerful — O1+I9+I8 cluster h3=h5=80% (N=20)",
+      "TD Sequential P2 (Setup 9) with MA50 above: h5=71% — academic validation confirmed",
+      "First pullback after breakout (K-family): strong conceptually but N too small for SET"
+    ],
+    "breadth_logic": [
+      "Single signal fires on 0.1-0.3% of ticker-days (very rare = highly selective)",
+      "PULSE breadth: count of quality signals agreeing on one stock on one day",
+      "Breadth > 5% of quality library = noteworthy; >10% = high conviction",
+      "On 2026-09-29: HANA.BK only ticker with breadth>0 (breadth=7, breadth_pct=25%, avg_h3=68.8%)",
+      "Low breadth day = no signals = stay in cash (normal for SET in sideways)"
+    ],
+    "what_does_not_work_in_set": [
+      "Pure price breakout without volume: h5 near or below baseline (45.7%)",
+      "HOT theme bonus (lowering RS threshold for themes): REJECTED — underperformed +3.9pp",
+      "Monthly rebalance: CAGR 6.7% vs weekly 13% — SET needs frequent rotation",
+      "Top-25 stock universe: CAGR -4.2% — too diluted",
+      "Long lookback RS (252d alone): CAGR lower, higher DD vs 21d",
+      "No regime gate: CAGR 6% vs 24% — devastating in bear market (MaxDD -49.6%)"
+    ],
+    "thai_market_character": [
+      "SET responds better to structure (FVG, support levels) than pure momentum",
+      "Volume dry-up at support is THE most reliable pattern",
+      "Market rotates faster than US — 21d RS more useful than 252d",
+      "Institutional stop-hunts common — need soft tolerance around MAs (-3%/-5%)",
+      "Holiday density high: 2026 has 16+ SET trading holidays — must filter calendar"
+    ]
+  },
+  "implementation_notes": {
+    "data_source": "SET OHLCV from Tiingo (primary), Yahoo Finance fallback",
+    "universe_construction": "Start with SET100 + any stock with ADTV > 50M THB; filter by MA50 stage",
+    "signal_computation": "scripts/research/thai_entry_screen.py → compute_signals(hist_df)",
+    "rs_computation": "scripts/research/alphamodel_th.py → compute_rs_score(prices_df, rs_days=21)",
+    "pulse_library": "data/research/thai_pulse/q_library_th.json — pre-scored, re-score monthly",
+    "daily_breadth": "scripts/research/thai_pulse_screener.py → runs on Focus List each evening",
+    "paper_portfolio": "data/research/thai_paper_portfolio.json — updated by thai_paper_trade.py",
+    "github_action": ".github/workflows/thai_paper_trade.yml — runs 07:00 ICT daily",
+    "watchdog": ".github/workflows/thai_watchdog.yml — alerts 16:30 ICT if DB stale",
+    "benchmark_proxy": "TDEX.BK (SET50 ETF) — regime gate ticker AND benchmark"
+  }
+}

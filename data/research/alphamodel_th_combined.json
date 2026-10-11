@@ -1,0 +1,65 @@
+{
+  "Baseline": {
+    "cagr": 16.1,
+    "set_cagr": 0.5,
+    "excess": 15.6,
+    "max_dd": -19.0,
+    "sharpe": 1.54,
+    "win_rate": 62.9,
+    "final_nav": 4.228
+  },
+  "MA50 regime": {
+    "cagr": 24.1,
+    "set_cagr": 0.5,
+    "excess": 23.6,
+    "max_dd": -14.3,
+    "sharpe": 2.18,
+    "win_rate": 69.8,
+    "final_nav": 8.031
+  },
+  "1M RS": {
+    "cagr": 16.8,
+    "set_cagr": 0.5,
+    "excess": 16.3,
+    "max_dd": -14.5,
+    "sharpe": 2.79,
+    "win_rate": 59.5,
+    "final_nav": 4.482
+  },
+  "Vol-weighted RS": {
+    "cagr": 12.2,
+    "set_cagr": 0.5,
+    "excess": 11.7,
+    "max_dd": -18.2,
+    "sharpe": 1.31,
+    "win_rate": 60.3,
+    "final_nav": 3.029
+  },
+  "Top-10": {
+    "cagr": 19.0,
+    "set_cagr": 0.5,
+    "excess": 18.6,
+    "max_dd": -19.1,
+    "sharpe": 1.26,
+    "win_rate": 62.9,
+    "final_nav": 5.392
+  },
+  "Weekly rebal": {
+    "cagr": 22.5,
+    "set_cagr": 0.5,
+    "excess": 22.0,
+    "max_dd": -20.9,
+    "sharpe": 1.76,
+    "win_rate": 65.5,
+    "final_nav": 7.124
+  },
+  "COMBINED (all best)": {
+    "cagr": 33.2,
+    "set_cagr": 0.5,
+    "excess": 32.7,
+    "max_dd": -13.2,
+    "sharpe": 2.54,
+    "win_rate": 71.6,
+    "final_nav": 15.995
+  }
+}

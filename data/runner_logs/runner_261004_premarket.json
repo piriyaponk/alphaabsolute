@@ -1,0 +1,100 @@
+{
+  "date": "2026-10-04",
+  "mode": "premarket",
+  "run_at": "2026-10-04T15:04:27.266419",
+  "steps": [
+    {
+      "step": "health_check",
+      "name": "System Health Check",
+      "status": "ok",
+      "duration": 0.2,
+      "output": "data/health/health_report.json",
+      "error": "",
+      "time": "14:59:14"
+    },
+    {
+      "step": "ohlcv_update",
+      "name": "OHLCV Bulk Update",
+      "status": "ok",
+      "duration": 2.4,
+      "output": "data/ohlcv.db",
+      "error": "",
+      "time": "14:59:17"
+    },
+    {
+      "step": "fix_volumes",
+      "name": "Fix Float Volumes",
+      "status": "ok",
+      "duration": 2.3,
+      "output": "data/ohlcv.db",
+      "error": "",
+      "time": "14:59:19"
+    },
+    {
+      "step": "earnings_cal",
+      "name": "Earnings Calendar",
+      "status": "ok",
+      "duration": 72.4,
+      "output": "data/regime/earnings_next30.json",
+      "error": "",
+      "time": "15:00:31"
+    },
+    {
+      "step": "data_quality",
+      "name": "Data Quality Check",
+      "status": "ok",
+      "duration": 3.7,
+      "output": "data/quality/quality_latest.json",
+      "error": "",
+      "time": "15:00:35"
+    },
+    {
+      "step": "a03",
+      "name": "RS Universe Ranker",
+      "status": "ok",
+      "duration": 125.1,
+      "output": "data/rs_universe/latest.json",
+      "error": "",
+      "time": "15:02:40"
+    },
+    {
+      "step": "tvremix_us",
+      "name": "tvremix US Pre-Screen",
+      "status": "ok",
+      "duration": 5.0,
+      "output": "data/rs_universe/tvremix_us_prescreen.json",
+      "error": "",
+      "time": "15:02:45"
+    },
+    {
+      "step": "a03c",
+      "name": "RS Change Detector",
+      "status": "ok",
+      "duration": 59.4,
+      "output": "data/rs_universe/changes_today.json",
+      "error": "",
+      "time": "15:03:45"
+    },
+    {
+      "step": "fwd_estimates",
+      "name": "Forward Estimates Fetcher",
+      "status": "ok",
+      "duration": 42.2,
+      "output": "data/fundamentals/forward_estimates.json",
+      "error": "",
+      "time": "15:04:27"
+    },
+    {
+      "step": "s4_brain",
+      "name": "S4 Brain \u2014 Obsidian Sync",
+      "status": "ok",
+      "duration": 0.0,
+      "output": null,
+      "error": "",
+      "time": "15:04:27"
+    }
+  ],
+  "passed": 10,
+  "failed": 0,
+  "skipped": 0
+}

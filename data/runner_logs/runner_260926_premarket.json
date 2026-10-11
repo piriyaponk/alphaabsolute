@@ -1,0 +1,82 @@
+{
+  "date": "2026-09-26",
+  "mode": "premarket",
+  "run_at": "2026-09-26T19:26:26.555857",
+  "steps": [
+    {
+      "step": "health_check",
+      "name": "System Health Check",
+      "status": "ok",
+      "duration": 0.2,
+      "output": "data/health/health_report.json",
+      "error": "",
+      "time": "19:21:45"
+    },
+    {
+      "step": "ohlcv_update",
+      "name": "OHLCV Bulk Update",
+      "status": "ok",
+      "duration": 10.4,
+      "output": "data/ohlcv.db",
+      "error": "",
+      "time": "19:21:55"
+    },
+    {
+      "step": "fix_volumes",
+      "name": "Fix Float Volumes",
+      "status": "ok",
+      "duration": 2.3,
+      "output": "data/ohlcv.db",
+      "error": "",
+      "time": "19:21:58"
+    },
+    {
+      "step": "earnings_cal",
+      "name": "Earnings Calendar",
+      "status": "ok",
+      "duration": 92.4,
+      "output": "data/regime/earnings_next30.json",
+      "error": "",
+      "time": "19:23:30"
+    },
+    {
+      "step": "data_quality",
+      "name": "Data Quality Check",
+      "status": "ok",
+      "duration": 2.8,
+      "output": "data/quality/quality_latest.json",
+      "error": "",
+      "time": "19:23:33"
+    },
+    {
+      "step": "a03",
+      "name": "RS Universe Ranker",
+      "status": "fail",
+      "duration": 110.1,
+      "output": "data/rs_universe/latest.json",
+      "error": "TypeError: unsupported format string passed to NoneType.__format__",
+      "time": "19:25:23"
+    },
+    {
+      "step": "a03c",
+      "name": "RS Change Detector",
+      "status": "ok",
+      "duration": 63.0,
+      "output": "data/rs_universe/changes_today.json",
+      "error": "",
+      "time": "19:26:26"
+    },
+    {
+      "step": "s4_brain",
+      "name": "S4 Brain \u2014 Obsidian Sync",
+      "status": "ok",
+      "duration": 0.0,
+      "output": null,
+      "error": "",
+      "time": "19:26:26"
+    }
+  ],
+  "passed": 7,
+  "failed": 1,
+  "skipped": 0
+}

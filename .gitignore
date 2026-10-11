@@ -13,14 +13,15 @@ data/state/http_cache.sqlite
 # ── Large data directories (regenerated or cached externally) ─────────────────
 data/raw/
 data/state/
-data/edgar_cache/          # EDGAR XBRL cache — large, rebuilt weekly
-data/ohlcv_cache/          # Legacy v1 file-based OHLCV cache
-data/nrgc/analyst_cache/   # Analyst cache — large, rebuilt
-data/themes/company_info_cache/  # Company info cache
+data/edgar_cache/
+data/ohlcv_cache/
+data/nrgc/analyst_cache/
+data/themes/company_info_cache/
 
 # ── Agent memory / ephemeral state ───────────────────────────────────────────
 data/agent_memory/
 data/td_sequential/
+.claude/worktrees/
 data/nrgc/state/
 data/nrgc/weekly/
 # data/paper_trading/ — unignored: state.json must persist in repo for GH Actions

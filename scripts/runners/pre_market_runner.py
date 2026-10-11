@@ -424,13 +424,7 @@ def _execute_step_once(step: dict, full_path) -> tuple[bool, float, str]:
         # Verify output exists (skip if step has no output file)
         output_p = _resolve_output(step)
         if output_p is not None:
-            if step["output"].endswith("/"):
-                today_str = date.today().strftime("%y%m%d")
-                if output_p.exists() and step["id"] == "a11":
-                    brief = output_p / f"daily_brief_{today_str}.md"
-                    if not brief.exists():
-                        return False, duration, f"report_writer: daily_brief_{today_str}.md not written"
-            else:
+            if not step["output"].endswith("/"):
                 if not output_p.exists():
                     return False, duration, "Output file not written"
 

@@ -1,0 +1,127 @@
+{
+  "date": "2026-10-08",
+  "mode": "premarket",
+  "run_at": "2026-10-08T18:02:31.519290",
+  "steps": [
+    {
+      "step": "health_check",
+      "name": "System Health Check",
+      "status": "ok",
+      "duration": 0.2,
+      "output": "data/health/health_report.json",
+      "error": "",
+      "time": "17:58:54"
+    },
+    {
+      "step": "ohlcv_update",
+      "name": "OHLCV Bulk Update",
+      "status": "ok",
+      "duration": 8.2,
+      "output": "data/ohlcv.db",
+      "error": "",
+      "time": "17:59:02"
+    },
+    {
+      "step": "fix_volumes",
+      "name": "Fix Float Volumes",
+      "status": "ok",
+      "duration": 2.1,
+      "output": "data/ohlcv.db",
+      "error": "",
+      "time": "17:59:04"
+    },
+    {
+      "step": "earnings_cal",
+      "name": "Earnings Calendar",
+      "status": "ok",
+      "duration": 59.3,
+      "output": "data/regime/earnings_next30.json",
+      "error": "",
+      "time": "18:00:03"
+    },
+    {
+      "step": "data_quality",
+      "name": "Data Quality Check",
+      "status": "ok",
+      "duration": 3.0,
+      "output": "data/quality/quality_latest.json",
+      "error": "",
+      "time": "18:00:06"
+    },
+    {
+      "step": "a03",
+      "name": "RS Universe Ranker",
+      "status": "ok",
+      "duration": 66.2,
+      "output": "data/rs_universe/latest.json",
+      "error": "",
+      "time": "18:01:13"
+    },
+    {
+      "step": "tvremix_us",
+      "name": "tvremix US Pre-Screen",
+      "status": "ok",
+      "duration": 5.5,
+      "output": "data/rs_universe/tvremix_us_prescreen.json",
+      "error": "",
+      "time": "18:01:18"
+    },
+    {
+      "step": "a03c",
+      "name": "RS Change Detector",
+      "status": "ok",
+      "duration": 36.1,
+      "output": "data/rs_universe/changes_today.json",
+      "error": "",
+      "time": "18:01:54"
+    },
+    {
+      "step": "fwd_estimates",
+      "name": "Forward Estimates Fetcher",
+      "status": "ok",
+      "duration": 23.4,
+      "output": "data/fundamentals/forward_estimates.json",
+      "error": "",
+      "time": "18:02:18"
+    },
+    {
+      "step": "s4_qqq_sync",
+      "name": "S4 QQQ Benchmark Sync",
+      "status": "ok",
+      "duration": 0.0,
+      "output": null,
+      "error": "",
+      "time": "18:02:18"
+    },
+    {
+      "step": "s4_obsidian",
+      "name": "S4 Brain \u2014 Obsidian Sync",
+      "status": "ok",
+      "duration": 0.0,
+      "output": null,
+      "error": "",
+      "time": "18:02:18"
+    },
+    {
+      "step": "pulse_us_best_final",
+      "name": "PULSE-US Best Final",
+      "status": "ok",
+      "duration": 11.2,
+      "output": "data/research/pulse_us/pulse_us_best_final_signals.json",
+      "error": "",
+      "time": "18:02:29"
+    },
+    {
+      "step": "pulse_us_daily",
+      "name": "PULSE-US Daily",
+      "status": "ok",
+      "duration": 2.1,
+      "output": "data/research/pulse_us/pulse_us_daily_signals.json",
+      "error": "",
+      "time": "18:02:31"
+    }
+  ],
+  "passed": 13,
+  "failed": 0,
+  "skipped": 0
+}

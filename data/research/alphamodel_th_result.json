@@ -1,0 +1,38 @@
+{
+  "monthly": {
+    "cagr": 6.7,
+    "set_cagr": 0.5,
+    "excess_cagr": 6.2,
+    "max_dd": -28.0,
+    "set_max_dd": -44.3,
+    "sharpe": 1.16,
+    "win_rate_vs_set": 56.0,
+    "final_nav": 1.863,
+    "set_final_nav": 1.048,
+    "n_rebalances": 54
+  },
+  "biweekly": {
+    "cagr": 10.3,
+    "set_cagr": 0.5,
+    "excess_cagr": 9.8,
+    "max_dd": -23.3,
+    "set_max_dd": -44.3,
+    "sharpe": 1.36,
+    "win_rate_vs_set": 56.9,
+    "final_nav": 2.576,
+    "set_final_nav": 1.048,
+    "n_rebalances": 110
+  },
+  "weekly": {
+    "cagr": 13.0,
+    "set_cagr": 0.5,
+    "excess_cagr": 12.5,
+    "max_dd": -14.8,
+    "set_max_dd": -44.3,
+    "sharpe": 1.53,
+    "win_rate_vs_set": 57.8,
+    "final_nav": 3.248,
+    "set_final_nav": 1.048,
+    "n_rebalances": 212
+  }
+}

@@ -33,7 +33,6 @@ if hasattr(sys.stdout, "reconfigure"):
 BASE_DIR = Path(__file__).resolve().parents[2]
 DATA_DIR = BASE_DIR / "data" / "rs_universe"
 PORT_FILE = BASE_DIR / "data" / "paper_trading" / "state.json"
-CANSLIM_DIR = BASE_DIR / "data" / "canslim_scores"
 ACTIVE_UNIVERSE_FILE = BASE_DIR / "data" / "universe" / "active_universe.json"
 SCREEN_UNIVERSE_FILE = BASE_DIR / "data" / "universe" / "screen_universe.json"
 
@@ -150,12 +149,6 @@ def get_tracked_universe() -> list:
                 tickers.add(t.upper())
         except Exception:
             pass
-
-    # From CANSLIM scored tickers
-    if CANSLIM_DIR.exists():
-        for f in CANSLIM_DIR.glob("*.json"):
-            if f.stem != "_summary":
-                tickers.add(f.stem.upper())
 
     # Remove benchmark + ETFs + empty
     for excl in {"SPY", "QQQ", "IWM", "MDYG", "VIX", "^VIX", "^GSPC", "^IXIC", "^SOX", ""}:

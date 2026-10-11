@@ -1,0 +1,82 @@
+{
+  "date": "2026-09-12",
+  "mode": "premarket",
+  "run_at": "2026-09-12T09:11:53.163024",
+  "steps": [
+    {
+      "step": "health_check",
+      "name": "System Health Check",
+      "status": "ok",
+      "duration": 0.1,
+      "output": "data/health/health_report.json",
+      "error": "",
+      "time": "09:06:26"
+    },
+    {
+      "step": "ohlcv_update",
+      "name": "OHLCV Bulk Update",
+      "status": "ok",
+      "duration": 13.2,
+      "output": "data/ohlcv.db",
+      "error": "",
+      "time": "09:06:39"
+    },
+    {
+      "step": "fix_volumes",
+      "name": "Fix Float Volumes",
+      "status": "ok",
+      "duration": 1.9,
+      "output": "data/ohlcv.db",
+      "error": "",
+      "time": "09:06:41"
+    },
+    {
+      "step": "earnings_cal",
+      "name": "Earnings Calendar",
+      "status": "ok",
+      "duration": 194.6,
+      "output": "data/regime/earnings_next30.json",
+      "error": "",
+      "time": "09:09:55"
+    },
+    {
+      "step": "data_quality",
+      "name": "Data Quality Check",
+      "status": "ok",
+      "duration": 3.3,
+      "output": "data/quality/quality_latest.json",
+      "error": "",
+      "time": "09:09:59"
+    },
+    {
+      "step": "a03",
+      "name": "RS Universe Ranker",
+      "status": "ok",
+      "duration": 88.9,
+      "output": "data/rs_universe/latest.json",
+      "error": "",
+      "time": "09:11:27"
+    },
+    {
+      "step": "a03c",
+      "name": "RS Change Detector",
+      "status": "ok",
+      "duration": 25.2,
+      "output": "data/rs_universe/changes_today.json",
+      "error": "",
+      "time": "09:11:53"
+    },
+    {
+      "step": "s4_brain",
+      "name": "S4 Brain \u2014 Obsidian Sync",
+      "status": "ok",
+      "duration": 0.0,
+      "output": null,
+      "error": "",
+      "time": "09:11:53"
+    }
+  ],
+  "passed": 8,
+  "failed": 0,
+  "skipped": 0
+}

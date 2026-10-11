@@ -1,0 +1,115 @@
+{
+  "month": "2026-09",
+  "regime": "BULL",
+  "regime_correct": true,
+  "portfolio_return": 0.0,
+  "qqq_return": 0.0,
+  "picks": [
+    {
+      "ticker": "SNDK",
+      "weight": 6.7,
+      "rs_at_entry": 100.0,
+      "return": 0.0,
+      "loss_reason": null
+    },
+    {
+      "ticker": "MRNA",
+      "weight": 6.7,
+      "rs_at_entry": 99.8,
+      "return": 0.0,
+      "loss_reason": null
+    },
+    {
+      "ticker": "LITE",
+      "weight": 6.7,
+      "rs_at_entry": 99.6,
+      "return": 0.0,
+      "loss_reason": null
+    },
+    {
+      "ticker": "PRAX",
+      "weight": 6.7,
+      "rs_at_entry": 99.6,
+      "return": 0.0,
+      "loss_reason": null
+    },
+    {
+      "ticker": "TWST",
+      "weight": 6.7,
+      "rs_at_entry": 99.5,
+      "return": 0.0,
+      "loss_reason": null
+    },
+    {
+      "ticker": "RVMD",
+      "weight": 6.7,
+      "rs_at_entry": 99.4,
+      "return": 0.0,
+      "loss_reason": null
+    },
+    {
+      "ticker": "TXG",
+      "weight": 6.7,
+      "rs_at_entry": 99.3,
+      "return": 0.0,
+      "loss_reason": null
+    },
+    {
+      "ticker": "WDC",
+      "weight": 6.7,
+      "rs_at_entry": 99.2,
+      "return": 0.0,
+      "loss_reason": null
+    },
+    {
+      "ticker": "STX",
+      "weight": 6.7,
+      "rs_at_entry": 99.1,
+      "return": 0.0,
+      "loss_reason": null
+    },
+    {
+      "ticker": "DELL",
+      "weight": 6.7,
+      "rs_at_entry": 99.0,
+      "return": 0.0,
+      "loss_reason": null
+    },
+    {
+      "ticker": "AAOI",
+      "weight": 6.7,
+      "rs_at_entry": 98.7,
+      "return": 0.0,
+      "loss_reason": null
+    },
+    {
+      "ticker": "TVTX",
+      "weight": 6.7,
+      "rs_at_entry": 98.6,
+      "return": 0.0,
+      "loss_reason": null
+    },
+    {
+      "ticker": "DOCN",
+      "weight": 6.7,
+      "rs_at_entry": 98.5,
+      "return": 0.0,
+      "loss_reason": null
+    },
+    {
+      "ticker": "ALM",
+      "weight": 6.7,
+      "rs_at_entry": 98.3,
+      "return": 0.0,
+      "loss_reason": null
+    },
+    {
+      "ticker": "INTC",
+      "weight": 6.7,
+      "rs_at_entry": 98.2,
+      "return": 0.0,
+      "loss_reason": null
+    }
+  ],
+  "missed_leaders": []
+}

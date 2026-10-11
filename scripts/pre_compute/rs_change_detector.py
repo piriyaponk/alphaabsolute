@@ -458,9 +458,8 @@ def run() -> dict:
 
     print(f"  Universe: {len(today_u)} tickers")
 
-    # Load theme data (for HOT classification)
-    theme_raw  = _load_json(RS_DIR / "theme_rs_latest.json")
-    theme_data = theme_raw.get("themes", {})
+    # theme_rs_latest.json is no longer written (rs_theme_ranker.py removed per BOA-022)
+    theme_data: dict = {}
 
     # Load portfolio (for held position context) — System 4 v4_paper_trader canonical path
     portfolio = _load_json(ROOT / "data" / "paper_trading" / "state.json")

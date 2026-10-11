@@ -1,0 +1,351 @@
+{
+  "rs_lookback": [
+    {
+      "cagr": 11.5,
+      "dd": -16.6,
+      "sharpe": 2.3,
+      "excess": 11.0,
+      "win_rt": 58.6,
+      "nav": 2.87,
+      "label": "21d  (1M)"
+    },
+    {
+      "cagr": 11.6,
+      "dd": -18.5,
+      "sharpe": 1.61,
+      "excess": 11.1,
+      "win_rt": 57.8,
+      "nav": 2.894,
+      "label": "42d  (2M)"
+    },
+    {
+      "cagr": 13.0,
+      "dd": -14.8,
+      "sharpe": 1.53,
+      "excess": 12.5,
+      "win_rt": 57.8,
+      "nav": 3.248,
+      "label": "63d  (3M)"
+    },
+    {
+      "cagr": 12.0,
+      "dd": -11.2,
+      "sharpe": 1.41,
+      "excess": 11.5,
+      "win_rt": 61.2,
+      "nav": 2.987,
+      "label": "84d  (4M)"
+    },
+    {
+      "cagr": 12.2,
+      "dd": -12.9,
+      "sharpe": 1.23,
+      "excess": 11.7,
+      "win_rt": 60.3,
+      "nav": 3.044,
+      "label": "126d (6M)"
+    },
+    {
+      "cagr": 12.8,
+      "dd": -13.8,
+      "sharpe": 1.45,
+      "excess": 12.3,
+      "win_rt": 60.3,
+      "nav": 3.192,
+      "label": "252d (12M)"
+    }
+  ],
+  "top_n": [
+    {
+      "cagr": 21.0,
+      "dd": -19.5,
+      "sharpe": 1.26,
+      "excess": 20.5,
+      "win_rt": 60.3,
+      "nav": 6.317,
+      "label": "Top 5"
+    },
+    {
+      "cagr": 18.2,
+      "dd": -13.3,
+      "sharpe": 1.34,
+      "excess": 17.8,
+      "win_rt": 62.9,
+      "nav": 5.049,
+      "label": "Top 8"
+    },
+    {
+      "cagr": 16.6,
+      "dd": -13.3,
+      "sharpe": 1.39,
+      "excess": 16.1,
+      "win_rt": 61.2,
+      "nav": 4.412,
+      "label": "Top 10"
+    },
+    {
+      "cagr": 13.0,
+      "dd": -14.8,
+      "sharpe": 1.53,
+      "excess": 12.5,
+      "win_rt": 57.8,
+      "nav": 3.248,
+      "label": "Top 15"
+    },
+    {
+      "cagr": 6.9,
+      "dd": -29.4,
+      "sharpe": 1.58,
+      "excess": 6.4,
+      "win_rt": 53.4,
+      "nav": 1.91,
+      "label": "Top 20"
+    },
+    {
+      "cagr": -4.2,
+      "dd": -57.5,
+      "sharpe": 1.72,
+      "excess": -4.7,
+      "win_rt": 41.4,
+      "nav": 0.657,
+      "label": "Top 25"
+    }
+  ],
+  "regime": [
+    {
+      "cagr": 6.0,
+      "dd": -49.6,
+      "sharpe": 1.73,
+      "excess": 5.5,
+      "win_rt": 54.3,
+      "nav": 1.75,
+      "label": "No regime gate"
+    },
+    {
+      "cagr": 17.0,
+      "dd": -13.6,
+      "sharpe": 2.19,
+      "excess": 16.5,
+      "win_rt": 65.5,
+      "nav": 4.545,
+      "label": "MA50  regime"
+    },
+    {
+      "cagr": 16.5,
+      "dd": -12.1,
+      "sharpe": 1.93,
+      "excess": 16.1,
+      "win_rt": 59.5,
+      "nav": 4.39,
+      "label": "MA100 regime"
+    },
+    {
+      "cagr": 14.8,
+      "dd": -12.3,
+      "sharpe": 1.69,
+      "excess": 14.3,
+      "win_rt": 61.2,
+      "nav": 3.798,
+      "label": "MA150 regime"
+    },
+    {
+      "cagr": 13.0,
+      "dd": -14.8,
+      "sharpe": 1.53,
+      "excess": 12.5,
+      "win_rt": 57.8,
+      "nav": 3.248,
+      "label": "MA200 regime"
+    },
+    {
+      "cagr": 11.3,
+      "dd": -14.2,
+      "sharpe": 1.4,
+      "excess": 10.9,
+      "win_rt": 58.6,
+      "nav": 2.826,
+      "label": "MA250 regime"
+    }
+  ],
+  "trend_filter": [
+    {
+      "cagr": 13.0,
+      "dd": -15.3,
+      "sharpe": 1.5,
+      "excess": 12.6,
+      "win_rt": 58.6,
+      "nav": 3.271,
+      "label": "No trend filter"
+    },
+    {
+      "cagr": 7.5,
+      "dd": -30.3,
+      "sharpe": 2.1,
+      "excess": 7.0,
+      "win_rt": 55.2,
+      "nav": 2.003,
+      "label": "price > MA50"
+    },
+    {
+      "cagr": 12.3,
+      "dd": -15.6,
+      "sharpe": 1.58,
+      "excess": 11.8,
+      "win_rt": 57.8,
+      "nav": 3.068,
+      "label": "price > MA100"
+    },
+    {
+      "cagr": 13.1,
+      "dd": -13.4,
+      "sharpe": 1.51,
+      "excess": 12.6,
+      "win_rt": 59.5,
+      "nav": 3.284,
+      "label": "price > MA150"
+    },
+    {
+      "cagr": 13.0,
+      "dd": -14.8,
+      "sharpe": 1.53,
+      "excess": 12.5,
+      "win_rt": 57.8,
+      "nav": 3.248,
+      "label": "price > MA200"
+    }
+  ],
+  "rs_type": [
+    {
+      "cagr": 13.0,
+      "dd": -14.8,
+      "sharpe": 1.53,
+      "excess": 12.5,
+      "win_rt": 57.8,
+      "nav": 3.248,
+      "label": "Simple return"
+    },
+    {
+      "cagr": 12.5,
+      "dd": -11.6,
+      "sharpe": 1.55,
+      "excess": 12.0,
+      "win_rt": 59.5,
+      "nav": 3.132,
+      "label": "Vol-adjusted (Sharpe)"
+    },
+    {
+      "cagr": 12.7,
+      "dd": -13.9,
+      "sharpe": 2.11,
+      "excess": 12.2,
+      "win_rt": 59.5,
+      "nav": 3.181,
+      "label": "Vol-weighted"
+    }
+  ],
+  "rebal_freq": [
+    {
+      "cagr": 13.0,
+      "dd": -14.8,
+      "sharpe": 1.53,
+      "excess": 12.5,
+      "win_rt": 57.8,
+      "nav": 3.248,
+      "label": "Weekly  (5d)"
+    },
+    {
+      "cagr": 10.3,
+      "dd": -23.3,
+      "sharpe": 1.36,
+      "excess": 9.8,
+      "win_rt": 56.9,
+      "nav": 2.576,
+      "label": "BiWeekly (10d)"
+    },
+    {
+      "cagr": 6.7,
+      "dd": -28.0,
+      "sharpe": 1.16,
+      "excess": 6.2,
+      "win_rt": 56.0,
+      "nav": 1.863,
+      "label": "Monthly  (21d)"
+    },
+    {
+      "cagr": 8.0,
+      "dd": -26.2,
+      "sharpe": 1.24,
+      "excess": 7.5,
+      "win_rt": 55.2,
+      "nav": 2.106,
+      "label": "3-Weekly (15d)"
+    }
+  ],
+  "sector_cap": [
+    {
+      "cagr": 13.0,
+      "dd": -14.8,
+      "sharpe": 1.53,
+      "excess": 12.5,
+      "win_rt": 57.8,
+      "nav": 3.248,
+      "label": "No cap"
+    },
+    {
+      "cagr": 12.5,
+      "dd": -14.7,
+      "sharpe": 1.51,
+      "excess": 12.0,
+      "win_rt": 56.9,
+      "nav": 3.131,
+      "label": "Max 4/sector"
+    },
+    {
+      "cagr": 12.2,
+      "dd": -15.2,
+      "sharpe": 1.53,
+      "excess": 11.7,
+      "win_rt": 58.6,
+      "nav": 3.046,
+      "label": "Max 3/sector"
+    },
+    {
+      "cagr": 10.4,
+      "dd": -13.3,
+      "sharpe": 1.52,
+      "excess": 9.9,
+      "win_rt": 56.0,
+      "nav": 2.607,
+      "label": "Max 2/sector"
+    },
+    {
+      "cagr": -14.5,
+      "dd": -79.7,
+      "sharpe": 1.8,
+      "excess": -15.0,
+      "win_rt": 41.4,
+      "nav": 0.22,
+      "label": "Max 1/sector"
+    }
+  ],
+  "early_exit": [
+    {
+      "cagr": 13.0,
+      "dd": -14.8,
+      "sharpe": 1.53,
+      "excess": 12.5,
+      "win_rt": 57.8,
+      "nav": 3.248,
+      "label": "Early exit ON"
+    },
+    {
+      "cagr": 15.0,
+      "dd": -12.4,
+      "sharpe": 1.33,
+      "excess": 14.5,
+      "win_rt": 62.1,
+      "nav": 3.856,
+      "label": "Early exit OFF"
+    }
+  ]
+}
