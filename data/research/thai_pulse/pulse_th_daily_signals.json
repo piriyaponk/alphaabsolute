@@ -4,112 +4,129 @@
   "n_quality_signals": 50,
   "ticker_hits": {},
   "pulse_scores": {
-    "KCE.BK": {
-      "breadth": 0,
-      "breadth_pct": 0.0,
-      "avg_h3": 0.0,
-      "n_signals_fired": 0
-    },
-    "PLANB.BK": {
-      "breadth": 0,
-      "breadth_pct": 0.0,
-      "avg_h3": 0.0,
-      "n_signals_fired": 0
-    },
-    "SMT.BK": {
-      "breadth": 0,
-      "breadth_pct": 0.0,
-      "avg_h3": 0.0,
-      "n_signals_fired": 0
-    },
-    "SPRC.BK": {
-      "breadth": 0,
-      "breadth_pct": 0.0,
-      "avg_h3": 0.0,
-      "n_signals_fired": 0
-    },
-    "SPCG.BK": {
-      "breadth": 0,
-      "breadth_pct": 0.0,
-      "avg_h3": 0.0,
-      "n_signals_fired": 0
-    },
-    "SINGER.BK": {
-      "breadth": 0,
-      "breadth_pct": 0.0,
-      "avg_h3": 0.0,
-      "n_signals_fired": 0
-    },
-    "TOP.BK": {
-      "breadth": 0,
-      "breadth_pct": 0.0,
-      "avg_h3": 0.0,
-      "n_signals_fired": 0
-    },
-    "COM7.BK": {
-      "breadth": 0,
-      "breadth_pct": 0.0,
-      "avg_h3": 0.0,
-      "n_signals_fired": 0
-    },
     "BJC.BK": {
       "breadth": 0,
       "breadth_pct": 0.0,
       "avg_h3": 0.0,
-      "n_signals_fired": 0
-    },
-    "HANA.BK": {
-      "breadth": 0,
-      "breadth_pct": 0.0,
-      "avg_h3": 0.0,
-      "n_signals_fired": 0
+      "n_signals_fired": 0,
+      "top_signals": []
     },
     "CCET.BK": {
       "breadth": 0,
       "breadth_pct": 0.0,
       "avg_h3": 0.0,
-      "n_signals_fired": 0
+      "n_signals_fired": 0,
+      "top_signals": []
     },
-    "PTTGC.BK": {
+    "COM7.BK": {
       "breadth": 0,
       "breadth_pct": 0.0,
       "avg_h3": 0.0,
-      "n_signals_fired": 0
+      "n_signals_fired": 0,
+      "top_signals": []
     },
     "GFPT.BK": {
       "breadth": 0,
       "breadth_pct": 0.0,
       "avg_h3": 0.0,
-      "n_signals_fired": 0
+      "n_signals_fired": 0,
+      "top_signals": []
+    },
+    "HANA.BK": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0,
+      "top_signals": []
+    },
+    "KCE.BK": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0,
+      "top_signals": []
+    },
+    "PLANB.BK": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0,
+      "top_signals": []
+    },
+    "PTTGC.BK": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0,
+      "top_signals": []
+    },
+    "SINGER.BK": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0,
+      "top_signals": []
+    },
+    "SMT.BK": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0,
+      "top_signals": []
+    },
+    "SPCG.BK": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0,
+      "top_signals": []
+    },
+    "SPRC.BK": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0,
+      "top_signals": []
     },
     "STA.BK": {
       "breadth": 0,
       "breadth_pct": 0.0,
       "avg_h3": 0.0,
-      "n_signals_fired": 0
+      "n_signals_fired": 0,
+      "top_signals": []
+    },
+    "TOP.BK": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0,
+      "top_signals": []
     },
     "TVO.BK": {
       "breadth": 0,
       "breadth_pct": 0.0,
       "avg_h3": 0.0,
-      "n_signals_fired": 0
+      "n_signals_fired": 0,
+      "top_signals": []
     }
   },
   "rs_map": {
+    "BJC.BK": 0.0,
+    "CCET.BK": 0.0,
+    "COM7.BK": 0.0,
+    "GFPT.BK": 0.0,
+    "HANA.BK": 0.0,
     "KCE.BK": 0.0,
     "PLANB.BK": 0.0,
-    "SMT.BK": 0.0,
-    "SPRC.BK": 0.0,
-    "SPCG.BK": 0.0,
-    "SINGER.BK": 0.0,
-    "TOP.BK": 0.0,
-    "COM7.BK": 0.0,
-    "BJC.BK": 0.0,
-    "HANA.BK": 0.0,
-    "CCET.BK": 0.0,
     "PTTGC.BK": 0.0,
-    "GFPT.BK": 0.0,
+    "SINGER.BK": 0.0,
+    "SMT.BK": 0.0,
+    "SPCG.BK": 0.0,
+    "SPRC.BK": 0.0,
     "STA.BK": 0.0,
+    "TOP.BK": 0.0,
     "TVO.BK": 0.0
-  }
+  },
+  "schema_drift_pct": 97.4,
+  "universe_coverage_pct": 8.2
 }
