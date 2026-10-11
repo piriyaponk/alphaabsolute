@@ -192,6 +192,11 @@ jobs:
                             json={'chat_id':c,'text':'[DR] PULSE-DR Daily FAILED — check GitHub Actions logs'},timeout=10)
           " || true
 
+      - name: Build Daily Focus List (strategist universe)
+        id: focus_list
+        run: |
+          python scripts/research/focus_list_builder.py
+
       - name: Monthly DR universe refresh (1st of month only)
         id: dr_refresh
         env:
@@ -214,6 +219,6 @@ jobs:
         run: |
           git config user.name "AlphaAbsolute Bot"
           git config user.email "bot@alphaabsolute.local"
-          git add data/paper_trading/state.json data/paper_trading/price_verify_latest.json data/research/pulse_us/pulse_us_best_final_signals.json data/research/pulse_us/pulse_us_daily_signals.json data/research/dr/dr_daily_signals.json data/research/dr/dr_map.json data/research/dr/dr_universe.json
+          git add data/paper_trading/state.json data/paper_trading/price_verify_latest.json data/research/pulse_us/pulse_us_best_final_signals.json data/research/pulse_us/pulse_us_daily_signals.json data/research/dr/dr_daily_signals.json data/research/dr/dr_map.json data/research/dr/dr_universe.json data/research/daily_focus_list.json
           git diff --staged --quiet || git commit -m "paper: state $(date -u +%Y-%m-%d)"
           git push
