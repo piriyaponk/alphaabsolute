@@ -138,5 +138,15 @@
     "holdings": [],
     "sells": [],
     "buys": []
+  },
+  {
+    "date": "2026-10-12",
+    "nav": 1000000.0,
+    "set_nav": 973672.0,
+    "daily_ret": 0.0,
+    "set_daily": 0.0,
+    "holdings": [],
+    "sells": [],
+    "buys": []
   }
 ]

@@ -1,12 +1,12 @@
 {
-  "date": "2026-10-09",
-  "weekly_mode": false,
+  "date": "2026-10-12",
+  "weekly_mode": true,
   "regime": "Distribution",
   "th_candidates": [
     {
-      "ticker": "TVO.BK",
+      "ticker": "BCH.BK",
       "system": "TH",
-      "avg_h3": 75.0,
+      "avg_h3": 65.8,
       "breadth": 1,
       "breadth_pct": 2.4,
       "n_signals_fired": 1,
@@ -15,7 +15,7 @@
       "dr_ticker": null,
       "theme": null,
       "top_signals": [
-        "Q102_i6_i7_d5_j1"
+        "Q838_f5_j3_j5"
       ],
       "thesis_hint": null,
       "adtv_thb": null,
@@ -74,22 +74,6 @@
     },
     {
       "ticker": "GFPT.BK",
-      "system": "TH",
-      "avg_h3": 0.0,
-      "breadth": 0,
-      "breadth_pct": 0.0,
-      "n_signals_fired": 0,
-      "rs_pct": 0.0,
-      "passes_quality": true,
-      "dr_ticker": null,
-      "theme": null,
-      "top_signals": [],
-      "thesis_hint": null,
-      "adtv_thb": null,
-      "mktcap_thb": null
-    },
-    {
-      "ticker": "HANA.BK",
       "system": "TH",
       "avg_h3": 0.0,
       "breadth": 0,
@@ -234,6 +218,22 @@
     },
     {
       "ticker": "TOP.BK",
+      "system": "TH",
+      "avg_h3": 0.0,
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "n_signals_fired": 0,
+      "rs_pct": 0.0,
+      "passes_quality": true,
+      "dr_ticker": null,
+      "theme": null,
+      "top_signals": [],
+      "thesis_hint": null,
+      "adtv_thb": null,
+      "mktcap_thb": null
+    },
+    {
+      "ticker": "WHA.BK",
       "system": "TH",
       "avg_h3": 0.0,
       "breadth": 0,

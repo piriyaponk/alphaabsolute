@@ -11,8 +11,8 @@
   "entry_prices": {},
   "last_rebal": 0,
   "inception": "2026-09-02",
-  "last_update": "2026-10-10",
-  "last_db_date": "2026-10-09",
+  "last_update": "2026-10-13",
+  "last_db_date": "2026-10-12",
   "trade_count": 0,
   "daily_log": [
     {
@@ -81,6 +81,16 @@
       "set_nav": 973672.0,
       "daily_ret": 0.0,
       "set_daily": 0.45,
+      "holdings": [],
+      "sells": [],
+      "buys": []
+    },
+    {
+      "date": "2026-10-12",
+      "nav": 1000000.0,
+      "set_nav": 973672.0,
+      "daily_ret": 0.0,
+      "set_daily": 0.0,
       "holdings": [],
       "sells": [],
       "buys": []

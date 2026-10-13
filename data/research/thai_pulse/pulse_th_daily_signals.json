@@ -1,19 +1,28 @@
 {
-  "date": "2026-10-09",
+  "date": "2026-10-12",
   "n_quality": 42,
   "n_quality_signals": 83,
   "ticker_hits": {
-    "TVO.BK": {
+    "BCH.BK": {
       "breadth": 1,
       "breadth_pct": 2.4,
-      "avg_h3": 75.0,
+      "avg_h3": 65.8,
       "n_signals_fired": 1,
       "top_signals": [
-        "Q102_i6_i7_d5_j1"
+        "Q838_f5_j3_j5"
       ]
     }
   },
   "pulse_scores": {
+    "BCH.BK": {
+      "breadth": 1,
+      "breadth_pct": 2.4,
+      "avg_h3": 65.8,
+      "n_signals_fired": 1,
+      "top_signals": [
+        "Q838_f5_j3_j5"
+      ]
+    },
     "BJC.BK": {
       "breadth": 0,
       "breadth_pct": 0.0,
@@ -36,13 +45,6 @@
       "top_signals": []
     },
     "GFPT.BK": {
-      "breadth": 0,
-      "breadth_pct": 0.0,
-      "avg_h3": 0.0,
-      "n_signals_fired": 0,
-      "top_signals": []
-    },
-    "HANA.BK": {
       "breadth": 0,
       "breadth_pct": 0.0,
       "avg_h3": 0.0,
@@ -112,22 +114,20 @@
       "n_signals_fired": 0,
       "top_signals": []
     },
-    "TVO.BK": {
-      "breadth": 1,
-      "breadth_pct": 2.4,
-      "avg_h3": 75.0,
-      "n_signals_fired": 1,
-      "top_signals": [
-        "Q102_i6_i7_d5_j1"
-      ]
+    "WHA.BK": {
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0,
+      "top_signals": []
     }
   },
   "rs_map": {
+    "BCH.BK": 0.0,
     "BJC.BK": 0.0,
     "CCET.BK": 0.0,
     "COM7.BK": 0.0,
     "GFPT.BK": 0.0,
-    "HANA.BK": 0.0,
     "KCE.BK": 0.0,
     "PLANB.BK": 0.0,
     "PTTGC.BK": 0.0,
@@ -137,7 +137,7 @@
     "SPRC.BK": 0.0,
     "STA.BK": 0.0,
     "TOP.BK": 0.0,
-    "TVO.BK": 0.0
+    "WHA.BK": 0.0
   },
   "schema_drift_pct": 98.3,
   "universe_coverage_pct": 100.0
