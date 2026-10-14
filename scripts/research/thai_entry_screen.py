@@ -10,6 +10,7 @@ Usage:
     python scripts/research/thai_entry_screen.py
 """
 
+import sys
 import sqlite3
 import pandas as pd
 import numpy as np
@@ -17,8 +18,19 @@ from pathlib import Path
 
 _ROOT  = Path(__file__).resolve().parents[2]
 DB     = str(_ROOT / "data" / "research" / "thai_ohlcv.db")
-TOP_N  = 15       # focus list size
-RS_DAYS = 21      # COMBINED lookback
+
+# Import canonical RS constants — single source of truth for PULSE-TH RS window.
+# Both thai_entry_screen.py and thai_pulse_daily.py must use these values.
+# See CLAUDE.md: "PULSE-TH RS Window — Single Source of Truth"
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from constants import RS_LOOKBACK_DAYS, RS_MIN_PCT
+
+TOP_N  = 25       # focus list size — expanded from 15 (CIO 2026-10-13: RS>60% threshold)
+RS_PCT_MIN = RS_MIN_PCT           # 3-month RS percentile filter (canonical: constants.py)
+RS_DAYS = RS_LOOKBACK_DAYS        # 63-day lookback — INTENTIONAL: aligns ranking window
+                                  # with display window in thai_pulse_daily.py (Option C,
+                                  # CIO approved 2026-10-13). Previously 21d; changed to
+                                  # 63d so focus list ranking and RS filter use same window.
 ADTV_MIN = 20e6   # same as eligible_universe
 PRICE_MIN = 1.0
 FWD_DAYS  = [1, 2, 3, 5]
@@ -7748,16 +7760,29 @@ def run_backtest(df: pd.DataFrame, after_date=None):
         if len(eligible) < 10:
             continue
 
-        # ── RS rank → top-N focus list ───────────────────────────────────
+        # ── RS rank → top-N focus list (3-month RS percentile ≥ RS_PCT_MIN) ─
         lb_idx = all_dates[max(0, i - RS_DAYS)]
         px_lb  = px.loc[lb_idx] if lb_idx in px.index else None
         if px_lb is None:
             continue
 
         rs_raw = (px_now[eligible] / px_lb[eligible] - 1).dropna()
-        if len(rs_raw) < TOP_N:
+
+        # 3-month RS percentile filter — align selection with display RS
+        lb3m_idx = all_dates[max(0, i - 63)]
+        px_lb3m  = px.loc[lb3m_idx] if lb3m_idx in px.index else None
+        if px_lb3m is not None:
+            # Rank against FULL universe (all tickers with valid prices), not just eligible subset
+            rs_3m_full = (px_now / px_lb3m - 1).dropna()  # all 226 tickers
+            rs_3m_pct_full = rs_3m_full.rank(pct=True) * 100  # percentile in full universe
+            # Keep only eligible tickers that also pass RS_PCT_MIN in full-universe rank
+            eligible_rs = [t for t in eligible if rs_3m_pct_full.get(t, 0) >= RS_PCT_MIN]
+            rs_raw = rs_raw.reindex(eligible_rs).dropna()
+
+        if len(rs_raw) < 3:  # need at least 3 tickers to proceed
             continue
-        focus = rs_raw.nlargest(TOP_N).index.tolist()
+        n_select = min(TOP_N, len(rs_raw))
+        focus = rs_raw.nlargest(n_select).index.tolist()
 
         # ── Market regime: use median MA200 ratio across eligible stocks ──
         # Bull = median stock price > MA200; Bear = below
@@ -7894,6 +7919,62 @@ def print_report(summary: pd.DataFrame, label: str = "ALL"):
 
 
 # ── Entry ──────────────────────────────────────────────────────────────────────
+
+def run():
+    """Pipeline entry point — incremental daily update of Thai entry screen signals."""
+    import sys as _sys
+    from pathlib import Path as _Path
+    _research_dir = str(_Path(__file__).resolve().parent)
+    if _research_dir not in _sys.path:
+        _sys.path.insert(0, _research_dir)
+
+    from entry_screen_db import (
+        write_entry_screen, get_max_date as _db_max_date,
+        validate_date_completeness,
+    )
+
+    sum_path = _Path(__file__).resolve().parents[2] / 'data' / 'research' / 'thai_entry_screen_summary.csv'
+
+    last_date_val = None
+    try:
+        max_d = _db_max_date()
+        if max_d:
+            last_date_val = pd.Timestamp(max_d)
+            print(f'[INCREMENTAL] SQLite last date: {last_date_val.date()}')
+        else:
+            print('[INFO] SQLite empty — will do full rebuild')
+    except Exception as e:
+        print(f'[WARN] Could not read SQLite ({e}), doing full rebuild')
+
+    df = load_data()
+    print(f'Loaded {len(df):,} rows | {df["ticker"].nunique()} tickers | '
+          f'{df["date"].min().date()} -> {df["date"].max().date()}')
+
+    if last_date_val is not None:
+        db_last = df["date"].max()
+        if last_date_val >= db_last:
+            print(f'[OK] Already up to date ({last_date_val.date()}) -- nothing to do')
+            # write empty summary so runner output check passes
+            summarise(run_backtest(df.tail(0)), "all").to_csv(sum_path, index=False) if False else None
+            return
+        results = run_backtest(df, after_date=last_date_val)
+        if results is None or len(results) == 0:
+            print('[OK] No new rows generated')
+            return
+        write_entry_screen(results)
+        print(f'[INCREMENTAL] Added {len(results):,} rows -> SQLite')
+        new_dates = results["date"].dt.strftime("%Y-%m-%d").unique().tolist()
+        guard = validate_date_completeness(new_dates)
+        if not guard["ok"]:
+            raise RuntimeError(f'[ENTRY SCREEN] INCOMPLETE WRITE -- dates: {guard["incomplete"]}')
+    else:
+        results = run_backtest(df)
+        write_entry_screen(results)
+
+    summarise(results, "all").to_csv(sum_path, index=False)
+    print(f'Summary -> {sum_path}')
+
+
 if __name__ == "__main__":
     import sys
     full_rebuild = "--full" in sys.argv

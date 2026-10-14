@@ -80,11 +80,24 @@ def _fetch_tiingo(ticker, start, end, api_key):
         if not rows:
             return None
         df = pd.DataFrame(rows)
-        df = df.rename(columns={"adjClose": "close", "adjOpen": "open",
-                                 "adjHigh": "high", "adjLow": "low"})
-        df["ticker"] = ticker
-        df["date"]   = pd.to_datetime(df["date"]).dt.strftime("%Y-%m-%d")
-        return df[["ticker", "date", "open", "high", "low", "close", "volume"]]
+        # Tiingo returns both unadjusted (open/high/low/close) AND adjusted
+        # (adjOpen/adjHigh/adjLow/adjClose/adjVolume) in the same response.
+        # Using rename() then column-slice creates duplicate column names
+        # (two "open" cols, etc.) → itertuples produces 11-element tuples
+        # fed into a 7-? INSERT → ProgrammingError binding mismatch.
+        # Fix: pick each adjusted column by name; never create duplicates.
+        def _acol(adj, raw):
+            return df[adj] if adj in df.columns else df[raw]
+        result = pd.DataFrame({
+            "ticker": ticker,
+            "date":   pd.to_datetime(df["date"]).dt.strftime("%Y-%m-%d"),
+            "open":   _acol("adjOpen",   "open"),
+            "high":   _acol("adjHigh",   "high"),
+            "low":    _acol("adjLow",    "low"),
+            "close":  _acol("adjClose",  "close"),
+            "volume": _acol("adjVolume", "volume"),
+        })
+        return result[["ticker", "date", "open", "high", "low", "close", "volume"]]
     except Exception as e:
         print(f"  [tiingo] {ticker}: {e}")
         return None

@@ -1,19 +1,19 @@
 {
-  "date": "2026-10-11",
-  "generated_at": "2026-10-11T19:46:58.756883",
+  "date": "2026-10-14",
+  "generated_at": "2026-10-14T17:49:06.584938",
   "summary": {
-    "ok": 10,
-    "warn": 4,
-    "fail": 1,
-    "skip": 0,
-    "overall": "fail"
+    "ok": 11,
+    "warn": 2,
+    "fail": 0,
+    "skip": 2,
+    "overall": "ok"
   },
   "checks": [
     {
       "check": "date_formats",
       "status": "ok",
       "bad_rows": 0,
-      "total_rows": 639396,
+      "total_rows": 641131,
       "message": "All dates YYYY-MM-DD"
     },
     {
@@ -32,8 +32,8 @@
     {
       "check": "ohlc_coverage",
       "status": "ok",
-      "total_rows": 87966,
-      "rows_with_ohlc": 87921,
+      "total_rows": 88112,
+      "rows_with_ohlc": 88067,
       "rows_null_ohlc": 45,
       "pct_covered": 99.9,
       "tickers_with_ohlc": 150,
@@ -43,30 +43,30 @@
     {
       "check": "ohlcv_data_quality",
       "status": "ok",
-      "date_range": "2024-01-02 to 2026-10-09",
+      "date_range": "2024-01-02 to 2026-10-13",
       "total_tickers": 1820,
-      "qqq_bars": 696,
+      "qqq_bars": 698,
       "qqq_years": 2.8,
       "tickers_lt_20_bars": 0,
-      "tickers_no_ma200": 62,
-      "tickers_no_rs12m": 104,
-      "message": "QQQ has 696 bars (2.8yr) | No MA200: 62 | No RS12M: 104"
+      "tickers_no_ma200": 61,
+      "tickers_no_rs12m": 103,
+      "message": "QQQ has 698 bars (2.8yr) | No MA200: 61 | No RS12M: 103"
     },
     {
       "check": "backfill_progress",
       "status": "warn",
       "earliest_date": "2024-01-02",
-      "tickers_1y_history": 1749,
+      "tickers_1y_history": 1750,
       "tickers_3y_history": 0,
-      "pct_1y": 96.1,
+      "pct_1y": 96.2,
       "pct_3y": 0.0,
       "message": "1Y history OK (96%), 3Y incomplete (0%) \u2014 backfill running?"
     },
     {
       "check": "stale_tickers",
       "status": "ok",
-      "latest_date": "2026-10-09",
-      "cutoff_3td": "2026-10-05",
+      "latest_date": "2026-10-13",
+      "cutoff_3td": "2026-10-07",
       "stale_count": 4,
       "priority_stale": [],
       "stale_sample": [
@@ -116,47 +116,44 @@
     {
       "check": "rs_coverage",
       "status": "ok",
-      "latest_rs_date": "2026-10-09",
-      "covered_total": 5086,
+      "latest_rs_date": "2026-10-12",
+      "covered_total": 1799,
       "covered_in_universe": 150,
       "universe_size": 156,
       "pct_covered": 96.2,
-      "message": "RS coverage: 150/156 (96%) for 2026-10-09"
+      "message": "RS coverage: 150/156 (96%) for 2026-10-12"
     },
     {
       "check": "rs_null_composite",
       "status": "ok",
       "count": 0,
       "tickers": [],
-      "message": "All rs_composite populated for 2026-10-09"
+      "message": "All rs_composite populated for 2026-10-12"
     },
     {
       "check": "screening_freshness",
-      "status": "fail",
-      "message": "No screening_results"
+      "status": "skip",
+      "message": "screening_results table absent (dropped \u2014 AA pipeline uses rs_daily now)"
     },
     {
       "check": "fundamental_coverage",
-      "status": "warn",
-      "message": "No screening_results data"
+      "status": "skip",
+      "message": "screening_results table absent (dropped \u2014 AA pipeline uses rs_daily now)"
     },
     {
       "check": "earnings_calendar",
       "status": "ok",
-      "upcoming_events": 4760,
-      "last_fetched": "2026-10-11T19:46:04.232425",
-      "message": "4760 upcoming earnings events loaded (fetched 0d ago)"
+      "upcoming_events": 5152,
+      "last_fetched": "2026-10-14T17:47:49.078499",
+      "message": "5152 upcoming earnings events loaded (fetched 0d ago)"
     },
     {
       "check": "pipeline_runs",
-      "status": "warn",
+      "status": "ok",
       "recent_runs": 14,
-      "recent_fails": 2,
-      "failed_steps": [
-        "pulse_us_daily",
-        "pulse_us_daily"
-      ],
-      "message": "Last 14 runs: 2 failures"
+      "recent_fails": 0,
+      "failed_steps": [],
+      "message": "Last 14 pipeline runs all OK"
     }
   ]
 }

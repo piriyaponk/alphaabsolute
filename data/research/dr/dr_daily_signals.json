@@ -1,9 +1,91 @@
 {
-  "date": "2026-10-10",
+  "date": "2026-10-14",
   "dr_map_version": "2026-10-10T21:59:00.336393",
-  "n_screened": 28,
-  "n_picks": 4,
+  "n_screened": 34,
+  "n_picks": 5,
   "picks": [
+    {
+      "us_ticker": "SNOW",
+      "set_symbol": "SNOW23",
+      "issuer": "INVX",
+      "issuer_code": "23",
+      "val_thb": 2890454.3,
+      "all_dr": [
+        "SNOW06",
+        "SNOW23"
+      ],
+      "h3_score": 81.5,
+      "breadth": 1,
+      "n_signals": 9,
+      "top_signal_labels": [
+        "F_BASE_bt60_bp85_rs90_vc70_ATH5",
+        "F_REC_ddr25_ATH3_bt70_vc75",
+        "F_BASE_bt60_bp80_rs90_vc70_ATH5"
+      ],
+      "source": "PULSE-US"
+    },
+    {
+      "us_ticker": "DELL",
+      "set_symbol": "DELL80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 1717134.88,
+      "all_dr": [
+        "DELL19",
+        "DELL23",
+        "DELL80"
+      ],
+      "h3_score": 81.5,
+      "breadth": 1,
+      "n_signals": 9,
+      "top_signal_labels": [
+        "F_BASE_bt60_bp85_rs90_vc70_ATH5",
+        "F_REC_ddr25_ATH3_bt70_vc75",
+        "F_BASE_bt60_bp80_rs90_vc70_ATH5"
+      ],
+      "source": "PULSE-US"
+    },
+    {
+      "us_ticker": "PLTR",
+      "set_symbol": "PLTR80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 491931.9,
+      "all_dr": [
+        "PLTR01",
+        "PLTR03",
+        "PLTR06",
+        "PLTR23",
+        "PLTR80"
+      ],
+      "h3_score": 78.3,
+      "breadth": 3,
+      "n_signals": 10,
+      "top_signal_labels": [
+        "F_REC_ddr25_ATH3_bt70_vc75",
+        "F_REC_ddr30_ATH3_bt70_vc75",
+        "F_REC_ddr30_ATH5_bt70"
+      ],
+      "source": "PULSE-US"
+    },
+    {
+      "us_ticker": "DDOG",
+      "set_symbol": "DDOG19",
+      "issuer": "YUANTA",
+      "issuer_code": "19",
+      "val_thb": 718762.85,
+      "all_dr": [
+        "DDOG19"
+      ],
+      "h3_score": 75.2,
+      "breadth": 1,
+      "n_signals": 2,
+      "top_signal_labels": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70"
+      ],
+      "source": "PULSE-US"
+    },
     {
       "us_ticker": "HPE",
       "set_symbol": "HPE80",
@@ -13,62 +95,13 @@
       "all_dr": [
         "HPE80"
       ],
-      "h3_score": 74.3,
-      "breadth": 2,
-      "n_signals": 3,
+      "h3_score": 75.2,
+      "breadth": 1,
+      "n_signals": 2,
       "top_signal_labels": [
         "F_REC_ddr30_ATH5_bt70",
-        "F_REC_ddr25_ATH5_bt70",
-        "F8_rs90_res15_sr15_OR"
+        "F_REC_ddr25_ATH5_bt70"
       ],
-      "source": "PULSE-US"
-    },
-    {
-      "us_ticker": "LITE",
-      "set_symbol": "LITE80",
-      "issuer": "KTB",
-      "issuer_code": "80",
-      "val_thb": 29101479.22,
-      "all_dr": [
-        "LITE01",
-        "LITE23",
-        "LITE80"
-      ],
-      "h3_score": 0.0,
-      "breadth": 0,
-      "n_signals": 0,
-      "top_signal_labels": [],
-      "source": "PULSE-US"
-    },
-    {
-      "us_ticker": "CRWD",
-      "set_symbol": "CRWD80",
-      "issuer": "KTB",
-      "issuer_code": "80",
-      "val_thb": 2647626.25,
-      "all_dr": [
-        "CRWD06",
-        "CRWD80"
-      ],
-      "h3_score": 0.0,
-      "breadth": 0,
-      "n_signals": 0,
-      "top_signal_labels": [],
-      "source": "PULSE-US"
-    },
-    {
-      "us_ticker": "VICR",
-      "set_symbol": "VICR80",
-      "issuer": "KTB",
-      "issuer_code": "80",
-      "val_thb": 223085.7,
-      "all_dr": [
-        "VICR80"
-      ],
-      "h3_score": 0.0,
-      "breadth": 0,
-      "n_signals": 0,
-      "top_signal_labels": [],
       "source": "PULSE-US"
     }
   ]

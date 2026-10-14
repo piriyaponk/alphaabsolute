@@ -214,5 +214,23 @@
     "rs_1m_pct": 48.2,
     "rs_3m_pct": 80.3,
     "date": "2026-10-11"
+  },
+  {
+    "rs_composite_pct": 70.9,
+    "rs_1m_pct": 54.0,
+    "rs_3m_pct": 81.6,
+    "date": "2026-10-12"
+  },
+  {
+    "rs_composite_pct": 73.8,
+    "rs_1m_pct": 60.1,
+    "rs_3m_pct": 83.3,
+    "date": "2026-10-13"
+  },
+  {
+    "rs_composite_pct": 78.3,
+    "rs_1m_pct": 57.5,
+    "rs_3m_pct": 85.1,
+    "date": "2026-10-14"
   }
 ]

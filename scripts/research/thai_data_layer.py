@@ -778,5 +778,25 @@ def main():
         conn_set.close()
 
 
+
+def run():
+    """Pipeline entry point — incremental daily update of Thai OHLCV (pre_market_runner)."""
+    if hasattr(sys.stdout, 'reconfigure'):
+        sys.stdout.reconfigure(encoding='utf-8')
+    if not Path(DB_PATH).exists():
+        print('[thai_ohlcv] DB not found — running full init...')
+        cmd_init(SET_ALL_TICKERS)
+        conn_set = sqlite3.connect(DB_PATH)
+        init_db(conn_set)
+        update_set_index_history(conn_set, backfill=True)
+        conn_set.close()
+    else:
+        cmd_update(SET_ALL_TICKERS)
+        conn_set = sqlite3.connect(DB_PATH)
+        init_db(conn_set)
+        update_set_index_history(conn_set, backfill=False)
+        conn_set.close()
+
+
 if __name__ == "__main__":
     main()

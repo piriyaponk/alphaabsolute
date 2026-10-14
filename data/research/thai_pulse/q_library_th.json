@@ -17,7 +17,8 @@
       "avg": 0.0249,
       "N": 19,
       "grade": "S_BOTH",
-      "family": "j3"
+      "family": "j3",
+      "label_th": "ดึงกลับ MA20+ดึงกลับ MA50"
     },
     {
       "label": "Q_CMB_Q188_f1_j3_j6_J8_pb_zone_ma50",
@@ -26,7 +27,8 @@
       "avg": 0.0249,
       "N": 19,
       "grade": "S_BOTH",
-      "family": "f1"
+      "family": "f1",
+      "label_th": "ดึงกลับ MA20+ดึงกลับ MA50"
     },
     {
       "label": "Q_CMB_Q170_j3_f1_j6_J8_pb_zone_ma50",
@@ -35,7 +37,8 @@
       "avg": 0.0249,
       "N": 19,
       "grade": "S_BOTH",
-      "family": "j3"
+      "family": "j3",
+      "label_th": "ดึงกลับ MA20+ดึงกลับ MA50"
     },
     {
       "label": "Q_CMB4_Q_CMB_Q68_i9_j4_d3_K_X6_dry_near__J2_dry_near_",
@@ -219,7 +222,8 @@
       "avg": 0.0226,
       "N": 20,
       "grade": "S_BOTH",
-      "family": "i9"
+      "family": "i9",
+      "label_th": "ช่องว่างสถาบัน+FVG สถาบัน"
     },
     {
       "label": "Q525_i9_i8_fvg5",
@@ -228,7 +232,8 @@
       "avg": 0.0226,
       "N": 20,
       "grade": "S_BOTH",
-      "family": "i9"
+      "family": "i9",
+      "label_th": "ช่องว่างสถาบัน+FVG สถาบัน"
     },
     {
       "label": "Q_CMB_Q670_j3_f1_j6_G1_inside_bar",
@@ -237,7 +242,8 @@
       "avg": 0.0172,
       "N": 15,
       "grade": "S_BOTH",
-      "family": "j3"
+      "family": "j3",
+      "label_th": "ดึงกลับ MA20+Inside Bar"
     },
     {
       "label": "Q_CMB_Q188_f1_j3_j6_G1_inside_bar",
@@ -246,7 +252,8 @@
       "avg": 0.0172,
       "N": 15,
       "grade": "S_BOTH",
-      "family": "f1"
+      "family": "f1",
+      "label_th": "ดึงกลับ MA20+Inside Bar"
     },
     {
       "label": "Q_CMB_Q170_j3_f1_j6_G1_inside_bar",
@@ -255,7 +262,8 @@
       "avg": 0.0172,
       "N": 15,
       "grade": "S_BOTH",
-      "family": "j3"
+      "family": "j3",
+      "label_th": "ดึงกลับ MA20+Inside Bar"
     },
     {
       "label": "Q_CMB3_Q670_j3_f1_j6_Q188_f1_j3_j6_G1_inside_bar",
@@ -264,7 +272,8 @@
       "avg": 0.0172,
       "N": 15,
       "grade": "S_BOTH",
-      "family": "CMB3"
+      "family": "CMB3",
+      "label_th": "ดึงกลับ MA20+Inside Bar"
     },
     {
       "label": "Q_CMB3_Q530_j3_f1_j6_Q188_f1_j3_j6_G1_inside_bar",
@@ -273,7 +282,8 @@
       "avg": 0.0172,
       "N": 15,
       "grade": "S_BOTH",
-      "family": "CMB3"
+      "family": "CMB3",
+      "label_th": "ดึงกลับ MA20+Inside Bar"
     },
     {
       "label": "Q_CMB3_Q188_f1_j3_j6_Q170_j3_f1_j6_G1_inside_bar",
@@ -282,7 +292,8 @@
       "avg": 0.0172,
       "N": 15,
       "grade": "S_BOTH",
-      "family": "CMB3"
+      "family": "CMB3",
+      "label_th": "ดึงกลับ MA20+Inside Bar"
     },
     {
       "label": "Q_CMB4_Q670_j3_f1_j6_G1_inside_ba_J3_dry_near_",
@@ -291,7 +302,8 @@
       "avg": 0.0172,
       "N": 15,
       "grade": "S_BOTH",
-      "family": "CMB4"
+      "family": "CMB4",
+      "label_th": "ดึงกลับ MA20+Inside Bar"
     },
     {
       "label": "Q_CMB4_Q670_j3_f1_j6_G1_inside_ba_J6_dry_near_",
@@ -300,7 +312,8 @@
       "avg": 0.0172,
       "N": 15,
       "grade": "S_BOTH",
-      "family": "CMB4"
+      "family": "CMB4",
+      "label_th": "ดึงกลับ MA20+Inside Bar"
     },
     {
       "label": "Q_CMB4_Q530_j3_f1_j6_G1_inside_ba_J3_dry_near_",
@@ -309,7 +322,8 @@
       "avg": 0.0172,
       "N": 15,
       "grade": "S_BOTH",
-      "family": "CMB4"
+      "family": "CMB4",
+      "label_th": "ดึงกลับ MA20+Inside Bar"
     },
     {
       "label": "Q_CMB4_Q530_j3_f1_j6_G1_inside_ba_J6_dry_near_",
@@ -318,7 +332,8 @@
       "avg": 0.0172,
       "N": 15,
       "grade": "S_BOTH",
-      "family": "CMB4"
+      "family": "CMB4",
+      "label_th": "ดึงกลับ MA20+Inside Bar"
     },
     {
       "label": "Q_CMB4_Q188_f1_j3_j6_G1_inside_ba_J3_dry_near_",
@@ -327,7 +342,8 @@
       "avg": 0.0172,
       "N": 15,
       "grade": "S_BOTH",
-      "family": "CMB4"
+      "family": "CMB4",
+      "label_th": "ดึงกลับ MA20+Inside Bar"
     },
     {
       "label": "Q_CMB4_Q188_f1_j3_j6_G1_inside_ba_J6_dry_near_",
@@ -336,7 +352,8 @@
       "avg": 0.0172,
       "N": 15,
       "grade": "S_BOTH",
-      "family": "CMB4"
+      "family": "CMB4",
+      "label_th": "ดึงกลับ MA20+Inside Bar"
     },
     {
       "label": "Q_CMB4_Q170_j3_f1_j6_G1_inside_ba_J3_dry_near_",
@@ -345,7 +362,8 @@
       "avg": 0.0172,
       "N": 15,
       "grade": "S_BOTH",
-      "family": "CMB4"
+      "family": "CMB4",
+      "label_th": "ดึงกลับ MA20+Inside Bar"
     },
     {
       "label": "Q_CMB4_Q170_j3_f1_j6_G1_inside_ba_J6_dry_near_",
@@ -354,7 +372,8 @@
       "avg": 0.0172,
       "N": 15,
       "grade": "S_BOTH",
-      "family": "CMB4"
+      "family": "CMB4",
+      "label_th": "ดึงกลับ MA20+Inside Bar"
     },
     {
       "label": "Q_CMB3_Q65_n1_fvg5_c2_Q_CMB_Q497_fvg_B3_near_hi20",
@@ -613,28 +632,32 @@
       "h3": 75.0,
       "h5": 87.5,
       "N": 16,
-      "grade": "S_BOTH"
+      "grade": "S_BOTH",
+      "label_th": "ใกล้ High ที่ MA50"
     },
     {
       "label": "Q_CMB_Q707_d3_c2_q1_D5_full_setup",
       "h3": 75.0,
       "h5": 87.5,
       "N": 16,
-      "grade": "S_BOTH"
+      "grade": "S_BOTH",
+      "label_th": "ใกล้ High ที่ MA50"
     },
     {
       "label": "Q_CMB_Q442_h1_c3_q1_O2_choch_10d",
       "h3": 75.0,
       "h5": 87.5,
       "N": 16,
-      "grade": "S_BOTH"
+      "grade": "S_BOTH",
+      "label_th": "Breakout + Volume แห้ง+โมเมนตัมกลับมา"
     },
     {
       "label": "Q_CMB_Q414_a3_e1_i10_A2_bkt10",
       "h3": 75.0,
       "h5": 87.5,
       "N": 16,
-      "grade": "S_BOTH"
+      "grade": "S_BOTH",
+      "label_th": "Top 10% ของตลาด"
     },
     {
       "label": "Q_CMB4_Q73_i9_j4_b2_X7_pb_dry_ma_K3_first_pb_",
@@ -791,14 +814,16 @@
       "h3": 73.3,
       "h5": 80.0,
       "N": 15,
-      "grade": "S"
+      "grade": "S",
+      "label_th": "ดึงกลับเบาๆ"
     },
     {
       "label": "Q_CMB_Q9_td6_2day_dry_inside_E1_pb_ma20",
       "h3": 73.3,
       "h5": 80.0,
       "N": 15,
-      "grade": "S"
+      "grade": "S",
+      "label_th": "Inside Bar+Volume แห้งหลังวิ่ง"
     },
     {
       "label": "Q_CMB_Q220_m1_h1_fvg3_D4_pocket_ma50",
@@ -812,84 +837,96 @@
       "h3": 73.3,
       "h5": 86.7,
       "N": 15,
-      "grade": "S"
+      "grade": "S",
+      "label_th": "ดึงกลับ MA20+ดึงกลับ MA50"
     },
     {
       "label": "Q_CMB_Q704_b3_fvg8_q1_B1_tight_near_hi",
       "h3": 73.3,
       "h5": 86.7,
       "N": 15,
-      "grade": "S"
+      "grade": "S",
+      "label_th": "ใกล้ High 20 วัน+ราคาทรงตัวแน่น"
     },
     {
       "label": "Q_CMB_Q440_h1_n1_fvg3_X4_inside_near_hi",
       "h3": 73.3,
       "h5": 86.7,
       "N": 15,
-      "grade": "S"
+      "grade": "S",
+      "label_th": "โมเมนตัมกลับมา"
     },
     {
       "label": "Q_CMB_Q414_a3_e1_i10_M1_vdu_expansion",
       "h3": 73.3,
       "h5": 86.7,
       "N": 15,
-      "grade": "S"
+      "grade": "S",
+      "label_th": "Top 10% ของตลาด"
     },
     {
       "label": "Q_CMB_Q214_b3_n1_fvg5_M3_vdu_expansion_pb",
       "h3": 73.3,
       "h5": 80.0,
       "N": 15,
-      "grade": "S"
+      "grade": "S",
+      "label_th": "ช่องว่างสถาบัน+ใกล้ High 20 วัน"
     },
     {
       "label": "Q_CMB_Q212_e4_n1_fvg5_E1_pb_ma20",
       "h3": 73.3,
       "h5": 80.0,
       "N": 15,
-      "grade": "S"
+      "grade": "S",
+      "label_th": "ช่องว่างสถาบัน+FVG สถาบัน"
     },
     {
       "label": "Q_CMB_Q212_e4_n1_fvg5_G1_inside_bar",
       "h3": 73.3,
       "h5": 80.0,
       "N": 15,
-      "grade": "S"
+      "grade": "S",
+      "label_th": "ช่องว่างสถาบัน+Inside Bar"
     },
     {
       "label": "Q_CMB_Q212_e4_n1_fvg5_P1_td_setup_count",
       "h3": 73.3,
       "h5": 80.0,
       "N": 15,
-      "grade": "S"
+      "grade": "S",
+      "label_th": "ช่องว่างสถาบัน+FVG สถาบัน"
     },
     {
       "label": "Q_CMB_Q208_n1_a3_e3_B1_tight_near_hi",
       "h3": 73.3,
       "h5": 80.0,
       "N": 15,
-      "grade": "S"
+      "grade": "S",
+      "label_th": "ใกล้ High 20 วัน+ราคาทรงตัวแน่น"
     },
     {
       "label": "Q_CMB_Q208_n1_a3_e3_M3_vdu_expansion_pb",
       "h3": 73.3,
       "h5": 80.0,
       "N": 15,
-      "grade": "S"
+      "grade": "S",
+      "label_th": "Volume Surge+ดึงกลับเบาๆ"
     },
     {
       "label": "Q_CMB_Q208_n1_a3_e3_N2_pp_at_ma50",
       "h3": 73.3,
       "h5": 80.0,
       "N": 15,
-      "grade": "S"
+      "grade": "S",
+      "label_th": "Volume Surge+ดึงกลับเบาๆ"
     },
     {
       "label": "Q_CMB_Q203_i3b_i5_o2_I1b_close_quality_hi_vol",
       "h3": 73.3,
       "h5": 80.0,
       "N": 15,
-      "grade": "S"
+      "grade": "S",
+      "label_th": "Breakout + Volume แห้ง"
     },
     {
       "label": "Q_CMB4_Q68_i9_j4_d3_E4_shallow_p_H1_mom_resum",

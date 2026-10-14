@@ -1,39 +1,64 @@
 {
-  "date": "2026-10-11",
+  "date": "2026-10-14",
   "market_context": {
-    "n_universe": 5086,
-    "n_rs70": 824,
-    "n_rs95": 30,
-    "pct_rs70": 16.2
+    "n_universe": 1799,
+    "n_rs70": 447,
+    "n_rs95": 16,
+    "pct_rs70": 24.8
   },
   "n_quality": 195,
-  "total_hits": 53,
-  "unique_tickers": 14,
+  "total_hits": 131,
+  "unique_tickers": 29,
   "pulse_scores": {
+    "AMC": {
+      "breadth": 1,
+      "breadth_pct": 5.9,
+      "avg_h3": 72.4,
+      "n_signals_fired": 1,
+      "top_signals": [
+        "F8_rs90_res15_sr15_OR"
+      ]
+    },
     "AMPL": {
-      "breadth": 2,
-      "breadth_pct": 11.8,
-      "avg_h3": 75.1,
-      "n_signals_fired": 5,
+      "breadth": 1,
+      "breadth_pct": 5.9,
+      "avg_h3": 75.2,
+      "n_signals_fired": 2,
       "top_signals": [
         "F_REC_ddr30_ATH5_bt70",
-        "F8_rs95_res15_sr15_OR",
         "F_REC_ddr25_ATH5_bt70"
       ]
     },
-    "APPN": {
-      "breadth": 0,
-      "breadth_pct": 0.0,
-      "avg_h3": 0.0,
-      "n_signals_fired": 0,
-      "top_signals": []
+    "ANDG": {
+      "breadth": 1,
+      "breadth_pct": 5.9,
+      "avg_h3": 75.2,
+      "n_signals_fired": 2,
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70"
+      ]
     },
-    "ASAN": {
-      "breadth": 0,
-      "breadth_pct": 0.0,
-      "avg_h3": 0.0,
-      "n_signals_fired": 0,
-      "top_signals": []
+    "ANF": {
+      "breadth": 3,
+      "breadth_pct": 17.6,
+      "avg_h3": 81.5,
+      "n_signals_fired": 15,
+      "top_signals": [
+        "F_BASE_bt60_bp85_rs90_vc70_ATH5",
+        "F_REC_ddr25_ATH3_bt70_vc75",
+        "F_BASE_bt60_bp80_rs90_vc70_ATH5"
+      ]
+    },
+    "ASX": {
+      "breadth": 1,
+      "breadth_pct": 5.9,
+      "avg_h3": 75.2,
+      "n_signals_fired": 2,
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70"
+      ]
     },
     "AZTA": {
       "breadth": 0,
@@ -42,75 +67,43 @@
       "n_signals_fired": 0,
       "top_signals": []
     },
-    "CBOE": {
+    "BITF": {
       "breadth": 0,
       "breadth_pct": 0.0,
       "avg_h3": 0.0,
       "n_signals_fired": 0,
       "top_signals": []
+    },
+    "CAKE": {
+      "breadth": 1,
+      "breadth_pct": 5.9,
+      "avg_h3": 75.2,
+      "n_signals_fired": 2,
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70"
+      ]
+    },
+    "CBRL": {
+      "breadth": 1,
+      "breadth_pct": 5.9,
+      "avg_h3": 75.2,
+      "n_signals_fired": 2,
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70"
+      ]
     },
     "CDNA": {
       "breadth": 1,
       "breadth_pct": 5.9,
-      "avg_h3": 72.8,
-      "n_signals_fired": 3,
+      "avg_h3": 72.4,
+      "n_signals_fired": 1,
       "top_signals": [
-        "F8_rs95_res15_sr15_OR",
-        "F8_rs90_res15_sr15_OR",
-        "F8_rs95_res15_sr15_ddr10"
+        "F8_rs90_res15_sr15_OR"
       ]
     },
-    "CERT": {
-      "breadth": 0,
-      "breadth_pct": 0.0,
-      "avg_h3": 0.0,
-      "n_signals_fired": 0,
-      "top_signals": []
-    },
-    "COHU": {
-      "breadth": 0,
-      "breadth_pct": 0.0,
-      "avg_h3": 0.0,
-      "n_signals_fired": 0,
-      "top_signals": []
-    },
-    "CRSR": {
-      "breadth": 0,
-      "breadth_pct": 0.0,
-      "avg_h3": 0.0,
-      "n_signals_fired": 0,
-      "top_signals": []
-    },
-    "CRWD": {
-      "breadth": 0,
-      "breadth_pct": 0.0,
-      "avg_h3": 0.0,
-      "n_signals_fired": 0,
-      "top_signals": []
-    },
-    "CVI": {
-      "breadth": 1,
-      "breadth_pct": 5.9,
-      "avg_h3": 74.7,
-      "n_signals_fired": 3,
-      "top_signals": [
-        "F_REC_ddr30_ATH5_bt70",
-        "F_REC_ddr25_ATH5_bt70",
-        "F_REC_ddr20_ATH5_bt70"
-      ]
-    },
-    "FORM": {
-      "breadth": 1,
-      "breadth_pct": 5.9,
-      "avg_h3": 78.5,
-      "n_signals_fired": 5,
-      "top_signals": [
-        "F1_vt05_ddr15",
-        "F1_vt05_ddr12",
-        "F1_vt05_ddr12_bp70"
-      ]
-    },
-    "HPE": {
+    "CLMT": {
       "breadth": 2,
       "breadth_pct": 11.8,
       "avg_h3": 74.3,
@@ -121,22 +114,127 @@
         "F8_rs90_res15_sr15_OR"
       ]
     },
-    "LITE": {
+    "CMBT": {
+      "breadth": 1,
+      "breadth_pct": 5.9,
+      "avg_h3": 75.2,
+      "n_signals_fired": 2,
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70"
+      ]
+    },
+    "CRSR": {
+      "breadth": 2,
+      "breadth_pct": 11.8,
+      "avg_h3": 74.3,
+      "n_signals_fired": 3,
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70",
+        "F8_rs90_res15_sr15_OR"
+      ]
+    },
+    "CVI": {
+      "breadth": 2,
+      "breadth_pct": 11.8,
+      "avg_h3": 75.1,
+      "n_signals_fired": 7,
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F8_rs95_res15_sr15_OR",
+        "F_REC_ddr25_ATH5_bt70"
+      ]
+    },
+    "DDOG": {
+      "breadth": 1,
+      "breadth_pct": 5.9,
+      "avg_h3": 75.2,
+      "n_signals_fired": 2,
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70"
+      ]
+    },
+    "DELL": {
+      "breadth": 1,
+      "breadth_pct": 5.9,
+      "avg_h3": 81.5,
+      "n_signals_fired": 9,
+      "top_signals": [
+        "F_BASE_bt60_bp85_rs90_vc70_ATH5",
+        "F_REC_ddr25_ATH3_bt70_vc75",
+        "F_BASE_bt60_bp80_rs90_vc70_ATH5"
+      ]
+    },
+    "FTNT": {
+      "breadth": 1,
+      "breadth_pct": 5.9,
+      "avg_h3": 75.2,
+      "n_signals_fired": 2,
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70"
+      ]
+    },
+    "HAE": {
+      "breadth": 3,
+      "breadth_pct": 17.6,
+      "avg_h3": 79.5,
+      "n_signals_fired": 18,
+      "top_signals": [
+        "F1_vt05_ddr15",
+        "F1_vt05_ddr12_res15",
+        "F1_vt05_ddr12_sr15"
+      ]
+    },
+    "HPE": {
+      "breadth": 1,
+      "breadth_pct": 5.9,
+      "avg_h3": 75.2,
+      "n_signals_fired": 2,
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70"
+      ]
+    },
+    "HURN": {
+      "breadth": 1,
+      "breadth_pct": 5.9,
+      "avg_h3": 75.2,
+      "n_signals_fired": 2,
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70"
+      ]
+    },
+    "ILMN": {
       "breadth": 0,
       "breadth_pct": 0.0,
       "avg_h3": 0.0,
       "n_signals_fired": 0,
       "top_signals": []
     },
+    "MPC": {
+      "breadth": 2,
+      "breadth_pct": 11.8,
+      "avg_h3": 75.1,
+      "n_signals_fired": 5,
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F8_rs95_res15_sr15_OR",
+        "F_REC_ddr25_ATH5_bt70"
+      ]
+    },
     "MRNA": {
       "breadth": 2,
       "breadth_pct": 11.8,
-      "avg_h3": 81.3,
-      "n_signals_fired": 9,
+      "avg_h3": 75.1,
+      "n_signals_fired": 7,
       "top_signals": [
-        "F_BASE_bt60_bp85_rs90_vc70_ATH5",
-        "F_BASE_bt60_bp80_rs90_vc70_ATH5",
-        "F_BASE_bt60_bp90_rs90_vc70_ATH5"
+        "F_REC_ddr30_ATH5_bt70",
+        "F8_rs95_res15_sr15_OR",
+        "F_REC_ddr25_ATH5_bt70"
       ]
     },
     "NTAP": {
@@ -149,35 +247,29 @@
         "F_REC_ddr25_ATH5_bt70"
       ]
     },
-    "NTRA": {
-      "breadth": 0,
-      "breadth_pct": 0.0,
-      "avg_h3": 0.0,
-      "n_signals_fired": 0,
-      "top_signals": []
-    },
     "OKTA": {
       "breadth": 1,
       "breadth_pct": 5.9,
-      "avg_h3": 75.2,
-      "n_signals_fired": 2,
-      "top_signals": [
-        "F_REC_ddr30_ATH5_bt70",
-        "F_REC_ddr25_ATH5_bt70"
-      ]
-    },
-    "QMCO": {
-      "breadth": 1,
-      "breadth_pct": 5.9,
-      "avg_h3": 72.9,
+      "avg_h3": 78.3,
       "n_signals_fired": 4,
       "top_signals": [
-        "F8_rs95_res15_sr15_OR",
-        "F8_rs90_res15_sr15_OR",
-        "F8_rs95_res20_sr15_ddr10"
+        "F_REC_ddr25_ATH3_bt70_vc75",
+        "F_REC_ddr30_ATH3_bt70_vc75",
+        "F_REC_ddr30_ATH5_bt70"
       ]
     },
-    "S": {
+    "PLTR": {
+      "breadth": 3,
+      "breadth_pct": 17.6,
+      "avg_h3": 78.3,
+      "n_signals_fired": 10,
+      "top_signals": [
+        "F_REC_ddr25_ATH3_bt70_vc75",
+        "F_REC_ddr30_ATH3_bt70_vc75",
+        "F_REC_ddr30_ATH5_bt70"
+      ]
+    },
+    "PSX": {
       "breadth": 1,
       "breadth_pct": 5.9,
       "avg_h3": 75.2,
@@ -187,14 +279,7 @@
         "F_REC_ddr25_ATH5_bt70"
       ]
     },
-    "SITM": {
-      "breadth": 0,
-      "breadth_pct": 0.0,
-      "avg_h3": 0.0,
-      "n_signals_fired": 0,
-      "top_signals": []
-    },
-    "SMTC": {
+    "QLYS": {
       "breadth": 1,
       "breadth_pct": 5.9,
       "avg_h3": 75.2,
@@ -204,41 +289,27 @@
         "F_REC_ddr25_ATH5_bt70"
       ]
     },
-    "STX": {
-      "breadth": 0,
-      "breadth_pct": 0.0,
-      "avg_h3": 0.0,
-      "n_signals_fired": 0,
-      "top_signals": []
-    },
-    "TWLO": {
+    "SNOW": {
       "breadth": 1,
       "breadth_pct": 5.9,
-      "avg_h3": 79.3,
+      "avg_h3": 81.5,
+      "n_signals_fired": 9,
+      "top_signals": [
+        "F_BASE_bt60_bp85_rs90_vc70_ATH5",
+        "F_REC_ddr25_ATH3_bt70_vc75",
+        "F_BASE_bt60_bp80_rs90_vc70_ATH5"
+      ]
+    },
+    "TEAM": {
+      "breadth": 2,
+      "breadth_pct": 11.8,
+      "avg_h3": 78.3,
       "n_signals_fired": 6,
       "top_signals": [
-        "F1_vt05_ddr15",
-        "F1_vt05_ddr12_sr15",
-        "F1_vt05_ddr12"
+        "F_REC_ddr25_ATH3_bt70_vc75",
+        "F_REC_ddr30_ATH3_bt70_vc75",
+        "F_REC_ddr30_ATH5_bt70"
       ]
-    },
-    "TWST": {
-      "breadth": 1,
-      "breadth_pct": 5.9,
-      "avg_h3": 79.3,
-      "n_signals_fired": 5,
-      "top_signals": [
-        "F1_vt05_ddr15",
-        "F1_vt05_ddr12_sr15",
-        "F1_vt05_ddr12"
-      ]
-    },
-    "TXG": {
-      "breadth": 0,
-      "breadth_pct": 0.0,
-      "avg_h3": 0.0,
-      "n_signals_fired": 0,
-      "top_signals": []
     },
     "U": {
       "breadth": 0,
@@ -254,12 +325,16 @@
       "n_signals_fired": 0,
       "top_signals": []
     },
-    "VICR": {
-      "breadth": 0,
-      "breadth_pct": 0.0,
-      "avg_h3": 0.0,
-      "n_signals_fired": 0,
-      "top_signals": []
+    "VLO": {
+      "breadth": 2,
+      "breadth_pct": 11.8,
+      "avg_h3": 75.1,
+      "n_signals_fired": 5,
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F8_rs95_res15_sr15_OR",
+        "F_REC_ddr25_ATH5_bt70"
+      ]
     },
     "ZBRA": {
       "breadth": 1,
@@ -273,82 +348,190 @@
     }
   },
   "ticker_hits": {
-    "AMPL": [
+    "ANF": [
+      "F_BASE_bt60_bp85_rs90_vc70_ATH5",
+      "F_REC_ddr25_ATH3_bt70_vc75",
+      "F_BASE_bt60_bp80_rs90_vc70_ATH5",
+      "F_REC_ddr30_ATH3_bt70_vc75",
+      "F_BASE_bt60_bp90_rs90_vc70_ATH5",
       "F_REC_ddr30_ATH5_bt70",
+      "F_REC_ddr25_ATH5_bt70",
+      "F18_rs90_ma200_30_ma50_20_full_ddr10",
+      "F_BASE_bt60_bp90_rs85_vc70_ATH5",
+      "F18_rs90_ma200_30_ma50_20_full_OR",
+      "F18_rs90_ma200_40_ma50_30_rsmom_bt70_ATH3_pp_vc75",
+      "F18_rs90_ma200_20_ma50_neg5_full_OR",
+      "F18_rs90_ma200_20_ma50_10_full_OR",
+      "F9_rs90_ma200_20_rsmom_full_OR",
+      "F_BASE_bt60_bp85_rs80_vc70_ATH5"
+    ],
+    "HAE": [
+      "F1_vt05_ddr15",
+      "F1_vt05_ddr12_res15",
+      "F1_vt05_ddr12_sr15",
+      "F1_vt05_ddr12",
+      "F1_vt05_ddr15_uvr55",
+      "F1_vt05_ddr12_bp70",
+      "F1_vt05_ddr12_uvr55",
+      "F_REC_ddr30_ATH5_bt70",
+      "F1_vt05_ddr12_ma20",
+      "F1_vt05_ddr15_bp70",
       "F8_rs95_res15_sr15_OR",
       "F_REC_ddr25_ATH5_bt70",
+      "F1_vt05_ddr12_ads",
+      "F1_vt05_ddr10_ma20",
+      "F1_vt05_OR_ddr15_ma20",
       "F8_rs90_res15_sr15_OR",
-      "F8_rs95_res15_sr15_ddr10"
+      "F8_rs95_res15_sr15_ddr10",
+      "F1_vt05_ddr10_res15"
     ],
-    "HPE": [
+    "PLTR": [
+      "F_REC_ddr25_ATH3_bt70_vc75",
+      "F_REC_ddr30_ATH3_bt70_vc75",
+      "F_REC_ddr30_ATH5_bt70",
+      "F_REC_ddr25_ATH5_bt70",
+      "F18_rs90_ma200_30_ma50_20_full_ddr10",
+      "F18_rs90_ma200_30_ma50_20_full_OR",
+      "F18_rs90_ma200_40_ma50_30_rsmom_bt70_ATH3_pp_vc75",
+      "F18_rs90_ma200_20_ma50_neg5_full_OR",
+      "F18_rs90_ma200_20_ma50_10_full_OR",
+      "F9_rs90_ma200_20_rsmom_full_OR"
+    ],
+    "CLMT": [
       "F_REC_ddr30_ATH5_bt70",
       "F_REC_ddr25_ATH5_bt70",
       "F8_rs90_res15_sr15_OR"
     ],
-    "MRNA": [
-      "F_BASE_bt60_bp85_rs90_vc70_ATH5",
-      "F_BASE_bt60_bp80_rs90_vc70_ATH5",
-      "F_BASE_bt60_bp90_rs90_vc70_ATH5",
+    "CRSR": [
       "F_REC_ddr30_ATH5_bt70",
       "F_REC_ddr25_ATH5_bt70",
-      "F_REC_ddr20_ATH5_bt70",
-      "F8_rs90_res15_sr15_OR",
-      "F_BASE_bt60_bp90_rs85_vc70_ATH5",
-      "F_BASE_bt60_bp85_rs80_vc70_ATH5"
-    ],
-    "CDNA": [
-      "F8_rs95_res15_sr15_OR",
-      "F8_rs90_res15_sr15_OR",
-      "F8_rs95_res15_sr15_ddr10"
+      "F8_rs90_res15_sr15_OR"
     ],
     "CVI": [
       "F_REC_ddr30_ATH5_bt70",
+      "F8_rs95_res15_sr15_OR",
       "F_REC_ddr25_ATH5_bt70",
-      "F_REC_ddr20_ATH5_bt70"
+      "F_REC_ddr20_ATH5_bt70",
+      "F8_rs90_res15_sr15_OR",
+      "F8_rs95_res20_sr15_ddr10",
+      "F8_rs95_res15_sr15_ddr10"
     ],
-    "FORM": [
-      "F1_vt05_ddr15",
-      "F1_vt05_ddr12",
-      "F1_vt05_ddr12_bp70",
-      "F1_vt05_ddr15_bp70",
-      "F1_vt05_ddr12_ads"
+    "MPC": [
+      "F_REC_ddr30_ATH5_bt70",
+      "F8_rs95_res15_sr15_OR",
+      "F_REC_ddr25_ATH5_bt70",
+      "F8_rs90_res15_sr15_OR",
+      "F8_rs95_res15_sr15_ddr10"
+    ],
+    "MRNA": [
+      "F_REC_ddr30_ATH5_bt70",
+      "F8_rs95_res15_sr15_OR",
+      "F_REC_ddr25_ATH5_bt70",
+      "F_REC_ddr20_ATH5_bt70",
+      "F8_rs90_res15_sr15_OR",
+      "F8_rs95_res20_sr15_ddr10",
+      "F8_rs95_res15_sr15_ddr10"
+    ],
+    "TEAM": [
+      "F_REC_ddr25_ATH3_bt70_vc75",
+      "F_REC_ddr30_ATH3_bt70_vc75",
+      "F_REC_ddr30_ATH5_bt70",
+      "F_REC_ddr25_ATH5_bt70",
+      "F_REC_ddr20_ATH5_bt70",
+      "F8_rs90_res15_sr15_OR"
+    ],
+    "VLO": [
+      "F_REC_ddr30_ATH5_bt70",
+      "F8_rs95_res15_sr15_OR",
+      "F_REC_ddr25_ATH5_bt70",
+      "F8_rs90_res15_sr15_OR",
+      "F8_rs95_res15_sr15_ddr10"
+    ],
+    "AMC": [
+      "F8_rs90_res15_sr15_OR"
+    ],
+    "AMPL": [
+      "F_REC_ddr30_ATH5_bt70",
+      "F_REC_ddr25_ATH5_bt70"
+    ],
+    "ANDG": [
+      "F_REC_ddr30_ATH5_bt70",
+      "F_REC_ddr25_ATH5_bt70"
+    ],
+    "ASX": [
+      "F_REC_ddr30_ATH5_bt70",
+      "F_REC_ddr25_ATH5_bt70"
+    ],
+    "CAKE": [
+      "F_REC_ddr30_ATH5_bt70",
+      "F_REC_ddr25_ATH5_bt70"
+    ],
+    "CBRL": [
+      "F_REC_ddr30_ATH5_bt70",
+      "F_REC_ddr25_ATH5_bt70"
+    ],
+    "CDNA": [
+      "F8_rs90_res15_sr15_OR"
+    ],
+    "CMBT": [
+      "F_REC_ddr30_ATH5_bt70",
+      "F_REC_ddr25_ATH5_bt70"
+    ],
+    "DDOG": [
+      "F_REC_ddr30_ATH5_bt70",
+      "F_REC_ddr25_ATH5_bt70"
+    ],
+    "DELL": [
+      "F_BASE_bt60_bp85_rs90_vc70_ATH5",
+      "F_REC_ddr25_ATH3_bt70_vc75",
+      "F_BASE_bt60_bp80_rs90_vc70_ATH5",
+      "F_REC_ddr30_ATH3_bt70_vc75",
+      "F_BASE_bt60_bp90_rs90_vc70_ATH5",
+      "F_REC_ddr30_ATH5_bt70",
+      "F_REC_ddr25_ATH5_bt70",
+      "F_BASE_bt60_bp90_rs85_vc70_ATH5",
+      "F_BASE_bt60_bp85_rs80_vc70_ATH5"
+    ],
+    "FTNT": [
+      "F_REC_ddr30_ATH5_bt70",
+      "F_REC_ddr25_ATH5_bt70"
+    ],
+    "HPE": [
+      "F_REC_ddr30_ATH5_bt70",
+      "F_REC_ddr25_ATH5_bt70"
+    ],
+    "HURN": [
+      "F_REC_ddr30_ATH5_bt70",
+      "F_REC_ddr25_ATH5_bt70"
     ],
     "NTAP": [
       "F_REC_ddr30_ATH5_bt70",
       "F_REC_ddr25_ATH5_bt70"
     ],
     "OKTA": [
+      "F_REC_ddr25_ATH3_bt70_vc75",
+      "F_REC_ddr30_ATH3_bt70_vc75",
       "F_REC_ddr30_ATH5_bt70",
       "F_REC_ddr25_ATH5_bt70"
     ],
-    "QMCO": [
-      "F8_rs95_res15_sr15_OR",
-      "F8_rs90_res15_sr15_OR",
-      "F8_rs95_res20_sr15_ddr10",
-      "F8_rs95_res15_sr15_ddr10"
-    ],
-    "S": [
+    "PSX": [
       "F_REC_ddr30_ATH5_bt70",
       "F_REC_ddr25_ATH5_bt70"
     ],
-    "SMTC": [
+    "QLYS": [
       "F_REC_ddr30_ATH5_bt70",
       "F_REC_ddr25_ATH5_bt70"
     ],
-    "TWLO": [
-      "F1_vt05_ddr15",
-      "F1_vt05_ddr12_sr15",
-      "F1_vt05_ddr12",
-      "F1_vt05_ddr12_bp70",
-      "F1_vt05_ddr15_bp70",
-      "F1_vt05_ddr12_ads"
-    ],
-    "TWST": [
-      "F1_vt05_ddr15",
-      "F1_vt05_ddr12_sr15",
-      "F1_vt05_ddr12",
-      "F1_vt05_ddr12_bp70",
-      "F1_vt05_ddr15_bp70"
+    "SNOW": [
+      "F_BASE_bt60_bp85_rs90_vc70_ATH5",
+      "F_REC_ddr25_ATH3_bt70_vc75",
+      "F_BASE_bt60_bp80_rs90_vc70_ATH5",
+      "F_REC_ddr30_ATH3_bt70_vc75",
+      "F_BASE_bt60_bp90_rs90_vc70_ATH5",
+      "F_REC_ddr30_ATH5_bt70",
+      "F_REC_ddr25_ATH5_bt70",
+      "F_BASE_bt60_bp90_rs85_vc70_ATH5",
+      "F_BASE_bt60_bp85_rs80_vc70_ATH5"
     ],
     "ZBRA": [
       "F_REC_ddr30_ATH5_bt70",

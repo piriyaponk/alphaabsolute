@@ -653,6 +653,12 @@ These rules encode bugs found in production. When fixing pipeline errors, apply 
 ### Pipeline Exit Code — sys.exit(1) on Failures
 **Rule:** `pre_market_runner.py` exits with `sys.exit(1)` when `result["failed"] > 0`. This causes GitHub Actions to mark the workflow run as **failed** (red X), making failures visible in the Actions tab without needing to read logs. File: `scripts/runners/pre_market_runner.py` `__main__` block.
 
+### PULSE-TH RS Window — Single Source of Truth
+**Rule:** RS percentile for PULSE-TH must use the 63-day cross-sectional rank () throughout ALL scripts. The filter () and the display () must use the same window. Define  and  in  — never hardcode these values in individual scripts.
+**Root cause:**  used  for focus-list ranking while  used 63 bars in  → different tickers passed the filter vs what Telegram displayed. GPSC (RS-63d=53%) appeared in Telegram output because it passed the 21d RS threshold.
+**Fix (2026-10-13):** Created  with  and . Both scripts import from it.  now imports via .  already had  in sys.path. Added secondary RS floor in  after RS map computation (before signal matrix build) — drops any ticker from the CSV that has RS-63d < RS_MIN_PCT, defending against stale CSV from pre-fix runs.
+**Note:** Changing RS_DAYS 21→63 in the backtest also changes the focus-list ranking order (21d short-term momentum → 63d momentum for top-N selection). This is an intentional decision approved by CIO 2026-10-13 (Option C). The RS filter at line 7761 of  was already using hardcoded 63 — only the ranking window changed.
+
 ---
 
 ## Model Portfolio + Backtesting
@@ -893,6 +899,84 @@ Every root cause fix gets a rule in the **Pipeline Auto-Fix Rules** section abov
 The definition of "fixed" is: **the full pipeline runs `0 failed` in both local and CI environments, and the failure mechanism no longer exists in the codebase.**
 
 Not "it passed this time." Not "it should be fine now." Confirmed 0 failures on a real run.
+
+---
+
+## Mandatory Skill Usage Protocol — DE Team Design (2026-10-13)
+
+**Core rule:** ทุก task type ใน AlphaAbsolute มี skill หรือ plugin ที่กำหนดไว้ Claude ต้องเรียกใช้ก่อนเสมอ — ห้ามข้ามเพราะ "รู้อยู่แล้ว"
+
+> **Why this exists:** Without enforcement, Claude answers from memory → hallucinated RS percentiles, skipped BoA reviews, pipeline scripts without DE review. Skills force grounding in real data and real process.
+
+---
+
+### Master Trigger Map
+
+| เมื่อ CIO พูดว่า... | Skill / Agent ที่ต้องเรียก | ก่อนทำอะไร |
+|---|---|---|
+| `analyse [TICKER]` | `/deep-research` → `equity-research` `/earnings` + `/thesis` | ก่อน generate thesis ใดๆ |
+| `run daily brief` | `/morning` | ก่อน collect data |
+| `alpha pulse` / `pulse brief` | Agent `quanta-research-house` | ก่อน write narrative |
+| `post-mortem [TICKER]` | `earnings-reviewer` `/earnings-analysis` + `/model-update` | ก่อน write lessons |
+| `backtest rule: [desc]` | `data:statistical-analysis` → `data:build-dashboard` | ก่อน make any claim about signal |
+| `screen leaders` | Agent `a05-leadership-curator` + `data:sql-queries` | ก่อน output watchlist |
+| `find early stage` | Agent `a07-monster-scout` | ก่อน name any candidate |
+| `risk check` | Agent `a08-risk-guardian` | ก่อน approve any entry |
+| `/boa-review [topic]` | Skill `/boa-review` (4-member committee) | เสมอ — ห้าม skip |
+| Pipeline debug / error | `data:explore-data` + `data:sql-queries` | ก่อน touch code |
+| News / theme research | `Exa Deep Research` `/search` + `deep-research` | ก่อน generate narrative |
+| Earnings / SEC filings | `equity-research` `/earnings-preview` + `/catalyst-calendar` | ก่อน state any number |
+| New Python script | Agent `de-team` review | ก่อน write any file |
+| Quanta brief | Agent `quanta-research-house` | orchestrator routes specialists |
+| Preference correction | Task Observer `/learn` | auto-capture rule ทันที |
+| Unwanted behavior pattern | `hookify` `/hookify` | สร้าง hook ป้องกัน pattern |
+
+---
+
+### Enforcement Rules (ห้ามยืดหยุ่น)
+
+**Rule 1 — Skill Before Answer**
+ทุก task ใน Trigger Map: invoke skill ก่อน → collect output → ใช้ output นั้น generate answer. ห้าม skip ไป output ตรงๆ
+
+**Rule 2 — Agent = Skill Equivalent**
+การ spawn named agent (เช่น `a08-risk-guardian`) นับว่าใช้ skill ถูกต้องแล้ว ไม่ต้อง invoke skill แยกอีก
+
+**Rule 3 — Thin Data ≠ Skip**
+ถ้า skill return ข้อมูลน้อย: document สิ่งที่ return มา → supplement ด้วย analysis — ห้ามทำเหมือน skill ไม่จำเป็น
+
+**Rule 4 — CIO Override = 1 Response Only**
+CIO พูดว่า "skip skill, answer directly" → override ได้ 1 response เท่านั้น. Request ถัดไป reset เป็น mandatory
+
+**Rule 5 — New Task Type = Add Rule First**
+พบ task type ที่ยังไม่มีใน Trigger Map → DE team เพิ่ม entry ก่อน แล้วค่อย answer. Protocol โตไปข้างหน้าเสมอ
+
+**Rule 6 — New Script = DE Review First (Hard Block)**
+ห้ามเขียน Python file ใหม่โดยไม่ผ่าน `de-team` review. ไม่มีข้อยกเว้น นอกจาก CIO บอก explicitly
+
+---
+
+### Plugin-to-Workflow Mapping (หลัง install)
+
+| Plugin | ใช้เมื่อไหร่ใน AlphaAbsolute |
+|---|---|
+| **equity-research** (Anthropic FSI) | `analyse TICKER` → `/earnings` `/thesis` `/catalyst-calendar` |
+| **earnings-reviewer** (Anthropic FSI) | `post-mortem` → `/earnings-analysis` `/model-update` |
+| **Exa Deep Research** (partner) | `news/theme research` → `/search` real-time web |
+| **Task Observer** | ทุกครั้งที่ CIO correct → `/learn` auto-save to CLAUDE.md |
+| **hookify** (Anthropic) | สร้าง PreToolUse hook บังคับ de-team review ก่อน Write Python |
+| **data** (enabled) | `backtest` → `data:sql-queries` `data:statistical-analysis` |
+| **finance** (enabled) | financial data workflows |
+
+---
+
+### What "Always Use Skill" Prevents
+
+- Hallucinate RS percentile จาก memory แทน query ohlcv.db จริง
+- เขียน pipeline script โดยไม่ DE review → introduce pattern bugs
+- Generate earnings thesis โดยไม่เช็ก actual filings ผ่าน equity-research
+- Approve new rule โดยไม่ผ่าน BoA committee
+- Publish daily brief โดยไม่รัน morning skill's data collection order
+- CIO correction หาย ไม่ถูก encode เป็น rule ถาวร
 
 ---
 
