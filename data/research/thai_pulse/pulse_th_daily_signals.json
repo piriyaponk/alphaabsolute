@@ -83,15 +83,15 @@
     }
   },
   "rs_map": {
-    "BCP.BK": 94.7,
-    "IRPC.BK": 96.5,
-    "KKP.BK": 81.9,
+    "BCP.BK": 93.4,
+    "IRPC.BK": 96.0,
+    "KKP.BK": 81.4,
     "KTB.BK": 74.3,
     "PTT.BK": 77.4,
-    "PTTEP.BK": 81.4,
+    "PTTEP.BK": 80.5,
     "PTTGC.BK": 96.9,
-    "SPRC.BK": 98.7,
-    "TOP.BK": 92.5
+    "SPRC.BK": 98.2,
+    "TOP.BK": 91.6
   },
   "price_map": {
     "BCP.BK": 53.25,

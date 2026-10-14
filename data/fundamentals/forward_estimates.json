@@ -1,7 +1,7 @@
 {
   "date": "2026-10-14",
-  "generated_at": "2026-10-14T17:51:48.869317",
-  "n_total": 34,
+  "generated_at": "2026-10-14T19:02:48.003596",
+  "n_total": 33,
   "n_ok": 33,
   "records": [
     {
@@ -14,7 +14,7 @@
       "fwd_rev_growth_yf": 0.142,
       "target_price": 3.11667,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:33.325824"
+      "fetched_at": "2026-10-14T19:02:32.947812"
     },
     {
       "ticker": "AMPL",
@@ -26,7 +26,7 @@
       "fwd_rev_growth_yf": 0.212,
       "target_price": 14.54545,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:33.783540"
+      "fetched_at": "2026-10-14T19:02:33.404727"
     },
     {
       "ticker": "ANDG",
@@ -38,7 +38,7 @@
       "fwd_rev_growth_yf": 0.237,
       "target_price": 59.85714,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:34.232370"
+      "fetched_at": "2026-10-14T19:02:33.853395"
     },
     {
       "ticker": "ANF",
@@ -50,7 +50,7 @@
       "fwd_rev_growth_yf": 0.048,
       "target_price": 163.54546,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:34.687629"
+      "fetched_at": "2026-10-14T19:02:34.312293"
     },
     {
       "ticker": "ASX",
@@ -62,7 +62,7 @@
       "fwd_rev_growth_yf": 0.267,
       "target_price": 58.0,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:35.136792"
+      "fetched_at": "2026-10-14T19:02:34.772110"
     },
     {
       "ticker": "AZTA",
@@ -74,11 +74,7 @@
       "fwd_rev_growth_yf": 0.12,
       "target_price": 37.0,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:35.585982"
-    },
-    {
-      "ticker": "BITF",
-      "error": "HTTP 404"
+      "fetched_at": "2026-10-14T19:02:35.247913"
     },
     {
       "ticker": "CAKE",
@@ -90,7 +86,7 @@
       "fwd_rev_growth_yf": 0.077,
       "target_price": 97.42857,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:36.508553"
+      "fetched_at": "2026-10-14T19:02:35.700477"
     },
     {
       "ticker": "CBRL",
@@ -102,7 +98,7 @@
       "fwd_rev_growth_yf": -0.022,
       "target_price": 50.71429,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:36.958124"
+      "fetched_at": "2026-10-14T19:02:36.155991"
     },
     {
       "ticker": "CDNA",
@@ -114,7 +110,7 @@
       "fwd_rev_growth_yf": 0.522,
       "target_price": 61.66667,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:37.417548"
+      "fetched_at": "2026-10-14T19:02:36.609299"
     },
     {
       "ticker": "CLMT",
@@ -126,7 +122,7 @@
       "fwd_rev_growth_yf": 0.408,
       "target_price": 53.4,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:37.866393"
+      "fetched_at": "2026-10-14T19:02:37.066625"
     },
     {
       "ticker": "CMBT",
@@ -138,7 +134,7 @@
       "fwd_rev_growth_yf": 0.815,
       "target_price": 20.45,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:38.319040"
+      "fetched_at": "2026-10-14T19:02:37.528044"
     },
     {
       "ticker": "CRSR",
@@ -150,7 +146,7 @@
       "fwd_rev_growth_yf": -0.018,
       "target_price": 13.22222,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:38.774730"
+      "fetched_at": "2026-10-14T19:02:37.984340"
     },
     {
       "ticker": "CVI",
@@ -162,7 +158,7 @@
       "fwd_rev_growth_yf": 0.555,
       "target_price": 45.0,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:39.235888"
+      "fetched_at": "2026-10-14T19:02:38.439861"
     },
     {
       "ticker": "DDOG",
@@ -174,7 +170,7 @@
       "fwd_rev_growth_yf": 0.356,
       "target_price": 289.74084,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:39.697531"
+      "fetched_at": "2026-10-14T19:02:38.896589"
     },
     {
       "ticker": "DELL",
@@ -186,7 +182,7 @@
       "fwd_rev_growth_yf": 0.577,
       "target_price": 594.16,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:40.148481"
+      "fetched_at": "2026-10-14T19:02:39.352392"
     },
     {
       "ticker": "FTNT",
@@ -198,7 +194,7 @@
       "fwd_rev_growth_yf": 0.256,
       "target_price": 165.70833,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:40.600300"
+      "fetched_at": "2026-10-14T19:02:39.807666"
     },
     {
       "ticker": "HAE",
@@ -210,7 +206,7 @@
       "fwd_rev_growth_yf": 0.056,
       "target_price": 122.2,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:41.064261"
+      "fetched_at": "2026-10-14T19:02:40.256516"
     },
     {
       "ticker": "HPE",
@@ -222,7 +218,7 @@
       "fwd_rev_growth_yf": 0.337,
       "target_price": 72.0281,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:41.518174"
+      "fetched_at": "2026-10-14T19:02:40.706740"
     },
     {
       "ticker": "HURN",
@@ -234,7 +230,7 @@
       "fwd_rev_growth_yf": 0.157,
       "target_price": 190.75,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:41.973392"
+      "fetched_at": "2026-10-14T19:02:41.163383"
     },
     {
       "ticker": "ILMN",
@@ -246,7 +242,7 @@
       "fwd_rev_growth_yf": 0.094,
       "target_price": 236.55,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:42.421256"
+      "fetched_at": "2026-10-14T19:02:41.623317"
     },
     {
       "ticker": "MPC",
@@ -258,7 +254,7 @@
       "fwd_rev_growth_yf": 0.537,
       "target_price": 433.44443,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:42.872830"
+      "fetched_at": "2026-10-14T19:02:42.074671"
     },
     {
       "ticker": "MRNA",
@@ -270,7 +266,7 @@
       "fwd_rev_growth_yf": 0.021,
       "target_price": 122.66667,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:43.332869"
+      "fetched_at": "2026-10-14T19:02:42.536256"
     },
     {
       "ticker": "NTAP",
@@ -282,7 +278,7 @@
       "fwd_rev_growth_yf": 0.299,
       "target_price": 211.6875,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:43.826329"
+      "fetched_at": "2026-10-14T19:02:42.992652"
     },
     {
       "ticker": "OKTA",
@@ -294,7 +290,7 @@
       "fwd_rev_growth_yf": 0.106,
       "target_price": 212.59792,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:44.283109"
+      "fetched_at": "2026-10-14T19:02:43.453116"
     },
     {
       "ticker": "PLTR",
@@ -306,7 +302,7 @@
       "fwd_rev_growth_yf": 0.928,
       "target_price": 205.27309,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:44.739411"
+      "fetched_at": "2026-10-14T19:02:43.904290"
     },
     {
       "ticker": "PSX",
@@ -318,7 +314,7 @@
       "fwd_rev_growth_yf": 0.531,
       "target_price": 276.3158,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:45.198342"
+      "fetched_at": "2026-10-14T19:02:44.390872"
     },
     {
       "ticker": "QLYS",
@@ -330,7 +326,7 @@
       "fwd_rev_growth_yf": 0.11,
       "target_price": 181.02943,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:45.658442"
+      "fetched_at": "2026-10-14T19:02:44.852220"
     },
     {
       "ticker": "SNOW",
@@ -342,7 +338,7 @@
       "fwd_rev_growth_yf": 0.351,
       "target_price": 425.14166,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:46.145206"
+      "fetched_at": "2026-10-14T19:02:45.305914"
     },
     {
       "ticker": "TEAM",
@@ -354,7 +350,7 @@
       "fwd_rev_growth_yf": 0.276,
       "target_price": 209.74902,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:46.596807"
+      "fetched_at": "2026-10-14T19:02:45.760492"
     },
     {
       "ticker": "U",
@@ -366,7 +362,7 @@
       "fwd_rev_growth_yf": 0.239,
       "target_price": 50.2144,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:47.101177"
+      "fetched_at": "2026-10-14T19:02:46.213195"
     },
     {
       "ticker": "UMC",
@@ -378,7 +374,7 @@
       "fwd_rev_growth_yf": 0.17,
       "target_price": 19.11665,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:47.552795"
+      "fetched_at": "2026-10-14T19:02:46.672849"
     },
     {
       "ticker": "VLO",
@@ -390,7 +386,7 @@
       "fwd_rev_growth_yf": 0.517,
       "target_price": 401.5263,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:48.015144"
+      "fetched_at": "2026-10-14T19:02:47.142079"
     },
     {
       "ticker": "ZBRA",
@@ -402,7 +398,7 @@
       "fwd_rev_growth_yf": 0.204,
       "target_price": 414.51932,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:48.468076"
+      "fetched_at": "2026-10-14T19:02:47.602694"
     }
   ],
   "ticker_index": {
@@ -416,7 +412,7 @@
       "fwd_rev_growth_yf": 0.142,
       "target_price": 3.11667,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:33.325824"
+      "fetched_at": "2026-10-14T19:02:32.947812"
     },
     "AMPL": {
       "ticker": "AMPL",
@@ -428,7 +424,7 @@
       "fwd_rev_growth_yf": 0.212,
       "target_price": 14.54545,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:33.783540"
+      "fetched_at": "2026-10-14T19:02:33.404727"
     },
     "ANDG": {
       "ticker": "ANDG",
@@ -440,7 +436,7 @@
       "fwd_rev_growth_yf": 0.237,
       "target_price": 59.85714,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:34.232370"
+      "fetched_at": "2026-10-14T19:02:33.853395"
     },
     "ANF": {
       "ticker": "ANF",
@@ -452,7 +448,7 @@
       "fwd_rev_growth_yf": 0.048,
       "target_price": 163.54546,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:34.687629"
+      "fetched_at": "2026-10-14T19:02:34.312293"
     },
     "ASX": {
       "ticker": "ASX",
@@ -464,7 +460,7 @@
       "fwd_rev_growth_yf": 0.267,
       "target_price": 58.0,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:35.136792"
+      "fetched_at": "2026-10-14T19:02:34.772110"
     },
     "AZTA": {
       "ticker": "AZTA",
@@ -476,7 +472,7 @@
       "fwd_rev_growth_yf": 0.12,
       "target_price": 37.0,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:35.585982"
+      "fetched_at": "2026-10-14T19:02:35.247913"
     },
     "CAKE": {
       "ticker": "CAKE",
@@ -488,7 +484,7 @@
       "fwd_rev_growth_yf": 0.077,
       "target_price": 97.42857,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:36.508553"
+      "fetched_at": "2026-10-14T19:02:35.700477"
     },
     "CBRL": {
       "ticker": "CBRL",
@@ -500,7 +496,7 @@
       "fwd_rev_growth_yf": -0.022,
       "target_price": 50.71429,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:36.958124"
+      "fetched_at": "2026-10-14T19:02:36.155991"
     },
     "CDNA": {
       "ticker": "CDNA",
@@ -512,7 +508,7 @@
       "fwd_rev_growth_yf": 0.522,
       "target_price": 61.66667,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:37.417548"
+      "fetched_at": "2026-10-14T19:02:36.609299"
     },
     "CLMT": {
       "ticker": "CLMT",
@@ -524,7 +520,7 @@
       "fwd_rev_growth_yf": 0.408,
       "target_price": 53.4,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:37.866393"
+      "fetched_at": "2026-10-14T19:02:37.066625"
     },
     "CMBT": {
       "ticker": "CMBT",
@@ -536,7 +532,7 @@
       "fwd_rev_growth_yf": 0.815,
       "target_price": 20.45,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:38.319040"
+      "fetched_at": "2026-10-14T19:02:37.528044"
     },
     "CRSR": {
       "ticker": "CRSR",
@@ -548,7 +544,7 @@
       "fwd_rev_growth_yf": -0.018,
       "target_price": 13.22222,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:38.774730"
+      "fetched_at": "2026-10-14T19:02:37.984340"
     },
     "CVI": {
       "ticker": "CVI",
@@ -560,7 +556,7 @@
       "fwd_rev_growth_yf": 0.555,
       "target_price": 45.0,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:39.235888"
+      "fetched_at": "2026-10-14T19:02:38.439861"
     },
     "DDOG": {
       "ticker": "DDOG",
@@ -572,7 +568,7 @@
       "fwd_rev_growth_yf": 0.356,
       "target_price": 289.74084,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:39.697531"
+      "fetched_at": "2026-10-14T19:02:38.896589"
     },
     "DELL": {
       "ticker": "DELL",
@@ -584,7 +580,7 @@
       "fwd_rev_growth_yf": 0.577,
       "target_price": 594.16,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:40.148481"
+      "fetched_at": "2026-10-14T19:02:39.352392"
     },
     "FTNT": {
       "ticker": "FTNT",
@@ -596,7 +592,7 @@
       "fwd_rev_growth_yf": 0.256,
       "target_price": 165.70833,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:40.600300"
+      "fetched_at": "2026-10-14T19:02:39.807666"
     },
     "HAE": {
       "ticker": "HAE",
@@ -608,7 +604,7 @@
       "fwd_rev_growth_yf": 0.056,
       "target_price": 122.2,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:41.064261"
+      "fetched_at": "2026-10-14T19:02:40.256516"
     },
     "HPE": {
       "ticker": "HPE",
@@ -620,7 +616,7 @@
       "fwd_rev_growth_yf": 0.337,
       "target_price": 72.0281,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:41.518174"
+      "fetched_at": "2026-10-14T19:02:40.706740"
     },
     "HURN": {
       "ticker": "HURN",
@@ -632,7 +628,7 @@
       "fwd_rev_growth_yf": 0.157,
       "target_price": 190.75,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:41.973392"
+      "fetched_at": "2026-10-14T19:02:41.163383"
     },
     "ILMN": {
       "ticker": "ILMN",
@@ -644,7 +640,7 @@
       "fwd_rev_growth_yf": 0.094,
       "target_price": 236.55,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:42.421256"
+      "fetched_at": "2026-10-14T19:02:41.623317"
     },
     "MPC": {
       "ticker": "MPC",
@@ -656,7 +652,7 @@
       "fwd_rev_growth_yf": 0.537,
       "target_price": 433.44443,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:42.872830"
+      "fetched_at": "2026-10-14T19:02:42.074671"
     },
     "MRNA": {
       "ticker": "MRNA",
@@ -668,7 +664,7 @@
       "fwd_rev_growth_yf": 0.021,
       "target_price": 122.66667,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:43.332869"
+      "fetched_at": "2026-10-14T19:02:42.536256"
     },
     "NTAP": {
       "ticker": "NTAP",
@@ -680,7 +676,7 @@
       "fwd_rev_growth_yf": 0.299,
       "target_price": 211.6875,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:43.826329"
+      "fetched_at": "2026-10-14T19:02:42.992652"
     },
     "OKTA": {
       "ticker": "OKTA",
@@ -692,7 +688,7 @@
       "fwd_rev_growth_yf": 0.106,
       "target_price": 212.59792,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:44.283109"
+      "fetched_at": "2026-10-14T19:02:43.453116"
     },
     "PLTR": {
       "ticker": "PLTR",
@@ -704,7 +700,7 @@
       "fwd_rev_growth_yf": 0.928,
       "target_price": 205.27309,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:44.739411"
+      "fetched_at": "2026-10-14T19:02:43.904290"
     },
     "PSX": {
       "ticker": "PSX",
@@ -716,7 +712,7 @@
       "fwd_rev_growth_yf": 0.531,
       "target_price": 276.3158,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:45.198342"
+      "fetched_at": "2026-10-14T19:02:44.390872"
     },
     "QLYS": {
       "ticker": "QLYS",
@@ -728,7 +724,7 @@
       "fwd_rev_growth_yf": 0.11,
       "target_price": 181.02943,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:45.658442"
+      "fetched_at": "2026-10-14T19:02:44.852220"
     },
     "SNOW": {
       "ticker": "SNOW",
@@ -740,7 +736,7 @@
       "fwd_rev_growth_yf": 0.351,
       "target_price": 425.14166,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:46.145206"
+      "fetched_at": "2026-10-14T19:02:45.305914"
     },
     "TEAM": {
       "ticker": "TEAM",
@@ -752,7 +748,7 @@
       "fwd_rev_growth_yf": 0.276,
       "target_price": 209.74902,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:46.596807"
+      "fetched_at": "2026-10-14T19:02:45.760492"
     },
     "U": {
       "ticker": "U",
@@ -764,7 +760,7 @@
       "fwd_rev_growth_yf": 0.239,
       "target_price": 50.2144,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:47.101177"
+      "fetched_at": "2026-10-14T19:02:46.213195"
     },
     "UMC": {
       "ticker": "UMC",
@@ -776,7 +772,7 @@
       "fwd_rev_growth_yf": 0.17,
       "target_price": 19.11665,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:47.552795"
+      "fetched_at": "2026-10-14T19:02:46.672849"
     },
     "VLO": {
       "ticker": "VLO",
@@ -788,7 +784,7 @@
       "fwd_rev_growth_yf": 0.517,
       "target_price": 401.5263,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:48.015144"
+      "fetched_at": "2026-10-14T19:02:47.142079"
     },
     "ZBRA": {
       "ticker": "ZBRA",
@@ -800,7 +796,7 @@
       "fwd_rev_growth_yf": 0.204,
       "target_price": 414.51932,
       "n_analysts": null,
-      "fetched_at": "2026-10-14T17:51:48.468076"
+      "fetched_at": "2026-10-14T19:02:47.602694"
     }
   }
 }

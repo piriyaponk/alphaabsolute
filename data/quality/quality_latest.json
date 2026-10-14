@@ -1,9 +1,9 @@
 {
   "date": "2026-10-14",
-  "generated_at": "2026-10-14T17:49:06.584938",
+  "generated_at": "2026-10-14T19:02:25.393303",
   "summary": {
-    "ok": 11,
-    "warn": 2,
+    "ok": 12,
+    "warn": 1,
     "fail": 0,
     "skip": 2,
     "overall": "ok"
@@ -13,7 +13,7 @@
       "check": "date_formats",
       "status": "ok",
       "bad_rows": 0,
-      "total_rows": 641131,
+      "total_rows": 640872,
       "message": "All dates YYYY-MM-DD"
     },
     {
@@ -37,14 +37,14 @@
       "rows_null_ohlc": 45,
       "pct_covered": 99.9,
       "tickers_with_ohlc": 150,
-      "universe_size": 156,
+      "universe_size": 150,
       "message": "OHLC 100%: 45 rows need fill_ohlc_gaps.py (run after backfill)"
     },
     {
       "check": "ohlcv_data_quality",
       "status": "ok",
       "date_range": "2024-01-02 to 2026-10-13",
-      "total_tickers": 1820,
+      "total_tickers": 1819,
       "qqq_bars": 698,
       "qqq_years": 2.8,
       "tickers_lt_20_bars": 0,
@@ -56,7 +56,7 @@
       "check": "backfill_progress",
       "status": "warn",
       "earliest_date": "2024-01-02",
-      "tickers_1y_history": 1750,
+      "tickers_1y_history": 1749,
       "tickers_3y_history": 0,
       "pct_1y": 96.2,
       "pct_3y": 0.0,
@@ -91,44 +91,37 @@
     },
     {
       "check": "missing_universe",
-      "status": "warn",
-      "universe_size": 156,
+      "status": "ok",
+      "universe_size": 150,
       "in_db": 150,
-      "missing_count": 6,
-      "missing_sample": [
-        "ABB",
-        "AMPS",
-        "DZSI",
-        "IIVI",
-        "JNPR",
-        "MAXR"
-      ],
-      "message": "6 universe tickers have NO ohlcv data"
+      "missing_count": 0,
+      "missing_sample": [],
+      "message": "All 150 universe tickers in ohlcv"
     },
     {
       "check": "orphan_tickers",
       "status": "ok",
-      "total_in_db": 1820,
-      "universe_size": 156,
-      "orphan_count": 1664,
-      "message": "1664 benchmark tickers in DB (not in universe \u2014 expected for RS percentile)"
+      "total_in_db": 1819,
+      "universe_size": 150,
+      "orphan_count": 1669,
+      "message": "1669 benchmark tickers in DB (not in universe \u2014 expected for RS percentile)"
     },
     {
       "check": "rs_coverage",
       "status": "ok",
-      "latest_rs_date": "2026-10-12",
+      "latest_rs_date": "2026-10-13",
       "covered_total": 1799,
       "covered_in_universe": 150,
-      "universe_size": 156,
-      "pct_covered": 96.2,
-      "message": "RS coverage: 150/156 (96%) for 2026-10-12"
+      "universe_size": 150,
+      "pct_covered": 100.0,
+      "message": "RS coverage: 150/150 (100%) for 2026-10-13"
     },
     {
       "check": "rs_null_composite",
       "status": "ok",
       "count": 0,
       "tickers": [],
-      "message": "All rs_composite populated for 2026-10-12"
+      "message": "All rs_composite populated for 2026-10-13"
     },
     {
       "check": "screening_freshness",
@@ -144,7 +137,7 @@
       "check": "earnings_calendar",
       "status": "ok",
       "upcoming_events": 5152,
-      "last_fetched": "2026-10-14T17:47:49.078499",
+      "last_fetched": "2026-10-14T19:01:39.484717",
       "message": "5152 upcoming earnings events loaded (fetched 0d ago)"
     },
     {

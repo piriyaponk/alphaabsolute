@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-10-14T17:47:21.615844",
+  "generated_at": "2026-10-14T19:01:38.027733",
   "date": "2026-10-14",
   "checks": [
     {
       "id": "ohlcv_fresh",
-      "status": "PASS",
-      "msg": "OHLCV fresh (2026-10-12)"
+      "status": "WARN",
+      "msg": "OHLCV behind last trading day: 2026-10-13 vs 2026-10-14"
     },
     {
       "id": "rs_fresh",
       "status": "PASS",
-      "msg": "RS fresh (2026-10-13)"
+      "msg": "RS fresh (2026-10-14)"
     },
     {
       "id": "s4_state",
@@ -20,11 +20,11 @@
     {
       "id": "earnings_cal",
       "status": "PASS",
-      "msg": "Earnings calendar fresh (2026-10-13)"
+      "msg": "Earnings calendar fresh (2026-10-14)"
     }
   ],
-  "passed": 4,
-  "warned": 0,
+  "passed": 3,
+  "warned": 1,
   "failed": 0,
-  "overall": "PASS"
+  "overall": "WARN"
 }

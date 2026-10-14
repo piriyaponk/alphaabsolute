@@ -1,7 +1,7 @@
 {
   "date": "2026-10-14",
   "prev_date": "261013",
-  "n_universe": 1799,
+  "n_universe": 1798,
   "n_climbers": 0,
   "n_droppers": 20,
   "n_rev_inflections": 0,
@@ -249,5 +249,5 @@
     }
   ],
   "revenue_inflections": [],
-  "generated_at": "17:51"
+  "generated_at": "19:02"
 }

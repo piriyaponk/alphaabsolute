@@ -1,0 +1,190 @@
+{
+  "date": "2026-10-14",
+  "mode": "premarket",
+  "run_at": "2026-10-14T19:05:59.899026",
+  "steps": [
+    {
+      "step": "health_check",
+      "name": "System Health Check",
+      "status": "ok",
+      "duration": 0.1,
+      "output": "data/health/health_report.json",
+      "error": "",
+      "time": "19:01:38"
+    },
+    {
+      "step": "ohlcv_update",
+      "name": "OHLCV Bulk Update",
+      "status": "ok",
+      "duration": 0.6,
+      "output": "data/ohlcv.db",
+      "error": "",
+      "time": "19:01:38"
+    },
+    {
+      "step": "fix_volumes",
+      "name": "Fix Float Volumes",
+      "status": "ok",
+      "duration": 0.3,
+      "output": "data/ohlcv.db",
+      "error": "",
+      "time": "19:01:38"
+    },
+    {
+      "step": "earnings_cal",
+      "name": "Earnings Calendar",
+      "status": "ok",
+      "duration": 43.6,
+      "output": "data/regime/earnings_next30.json",
+      "error": "",
+      "time": "19:02:22"
+    },
+    {
+      "step": "data_quality",
+      "name": "Data Quality Check",
+      "status": "ok",
+      "duration": 2.8,
+      "output": "data/quality/quality_latest.json",
+      "error": "",
+      "time": "19:02:25"
+    },
+    {
+      "step": "a03",
+      "name": "RS Universe Ranker",
+      "status": "ok",
+      "duration": 0.0,
+      "output": "data/rs_universe/latest.json",
+      "error": "",
+      "time": "19:02:25"
+    },
+    {
+      "step": "tvremix_us",
+      "name": "tvremix US Pre-Screen",
+      "status": "ok",
+      "duration": 6.6,
+      "output": "data/rs_universe/tvremix_us_prescreen.json",
+      "error": "",
+      "time": "19:02:32"
+    },
+    {
+      "step": "a03c",
+      "name": "RS Change Detector",
+      "status": "ok",
+      "duration": 0.1,
+      "output": "data/rs_universe/changes_today.json",
+      "error": "",
+      "time": "19:02:32"
+    },
+    {
+      "step": "fwd_estimates",
+      "name": "Forward Estimates Fetcher",
+      "status": "ok",
+      "duration": 15.9,
+      "output": "data/fundamentals/forward_estimates.json",
+      "error": "",
+      "time": "19:02:48"
+    },
+    {
+      "step": "s4_qqq_sync",
+      "name": "S4 QQQ Benchmark Sync",
+      "status": "ok",
+      "duration": 0.0,
+      "output": null,
+      "error": "",
+      "time": "19:02:48"
+    },
+    {
+      "step": "s4_obsidian",
+      "name": "S4 Brain \u2014 Obsidian Sync",
+      "status": "ok",
+      "duration": 0.0,
+      "output": null,
+      "error": "",
+      "time": "19:02:48"
+    },
+    {
+      "step": "pulse_us_data",
+      "name": "PULSE-US Data Layer",
+      "status": "ok",
+      "duration": 87.0,
+      "output": "data/research/pulse_us/pulse_us_ohlcv.db",
+      "error": "",
+      "time": "19:04:15"
+    },
+    {
+      "step": "pulse_us_best_final",
+      "name": "PULSE-US Best Final",
+      "status": "ok",
+      "duration": 11.2,
+      "output": "data/research/pulse_us/pulse_us_best_final_signals.json",
+      "error": "",
+      "time": "19:04:26"
+    },
+    {
+      "step": "pulse_us_daily",
+      "name": "PULSE-US Daily",
+      "status": "ok",
+      "duration": 2.2,
+      "output": "data/research/pulse_us/pulse_us_daily_signals.json",
+      "error": "",
+      "time": "19:04:28"
+    },
+    {
+      "step": "pulse_dr_daily",
+      "name": "PULSE-DR Daily",
+      "status": "ok",
+      "duration": 0.9,
+      "output": "data/research/dr/dr_daily_signals.json",
+      "error": "",
+      "time": "19:04:29"
+    },
+    {
+      "step": "thai_ohlcv_update",
+      "name": "PULSE-TH OHLCV Update",
+      "status": "ok",
+      "duration": 79.1,
+      "output": "data/research/thai_ohlcv.db",
+      "error": "",
+      "time": "19:05:48"
+    },
+    {
+      "step": "thai_entry_screen",
+      "name": "PULSE-TH Entry Screen",
+      "status": "ok",
+      "duration": 2.5,
+      "output": "data/research/thai_entry_screen_summary.csv",
+      "error": "",
+      "time": "19:05:51"
+    },
+    {
+      "step": "update_index_membership",
+      "name": "SET Index Membership Update",
+      "status": "skipped",
+      "duration": 0.0,
+      "output": "data/research/thai_pulse/th_index_membership.json",
+      "error": "",
+      "time": "19:05:51"
+    },
+    {
+      "step": "thai_pulse_daily",
+      "name": "PULSE-TH Daily",
+      "status": "ok",
+      "duration": 8.4,
+      "output": "data/research/thai_pulse/pulse_th_daily_signals.json",
+      "error": "",
+      "time": "19:05:59"
+    },
+    {
+      "step": "focus_list_builder",
+      "name": "PULSE-TH Focus List",
+      "status": "ok",
+      "duration": 0.2,
+      "output": "data/research/daily_focus_list.json",
+      "error": "",
+      "time": "19:05:59"
+    }
+  ],
+  "passed": 19,
+  "failed": 0,
+  "skipped": 1
+}

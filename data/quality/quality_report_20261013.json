@@ -1,0 +1,161 @@
+{
+  "date": "2026-10-13",
+  "generated_at": "2026-10-13T17:06:20.886990",
+  "summary": {
+    "ok": 10,
+    "warn": 3,
+    "fail": 0,
+    "skip": 2,
+    "overall": "ok"
+  },
+  "checks": [
+    {
+      "check": "date_formats",
+      "status": "ok",
+      "bad_rows": 0,
+      "total_rows": 639400,
+      "message": "All dates YYYY-MM-DD"
+    },
+    {
+      "check": "ticker_meta_dates",
+      "status": "ok",
+      "message": "All ticker_meta dates are YYYY-MM-DD"
+    },
+    {
+      "check": "volume_types",
+      "status": "ok",
+      "float_volumes": 0,
+      "zero_or_null_volumes": 2428,
+      "message": "All volumes INTEGER",
+      "warning": "2428 zero/null volumes"
+    },
+    {
+      "check": "ohlc_coverage",
+      "status": "ok",
+      "total_rows": 87966,
+      "rows_with_ohlc": 87921,
+      "rows_null_ohlc": 45,
+      "pct_covered": 99.9,
+      "tickers_with_ohlc": 150,
+      "universe_size": 156,
+      "message": "OHLC 100%: 45 rows need fill_ohlc_gaps.py (run after backfill)"
+    },
+    {
+      "check": "ohlcv_data_quality",
+      "status": "ok",
+      "date_range": "2024-01-02 to 2026-10-12",
+      "total_tickers": 1820,
+      "qqq_bars": 697,
+      "qqq_years": 2.8,
+      "tickers_lt_20_bars": 0,
+      "tickers_no_ma200": 62,
+      "tickers_no_rs12m": 104,
+      "message": "QQQ has 697 bars (2.8yr) | No MA200: 62 | No RS12M: 104"
+    },
+    {
+      "check": "backfill_progress",
+      "status": "warn",
+      "earliest_date": "2024-01-02",
+      "tickers_1y_history": 1750,
+      "tickers_3y_history": 0,
+      "pct_1y": 96.2,
+      "pct_3y": 0.0,
+      "message": "1Y history OK (96%), 3Y incomplete (0%) \u2014 backfill running?"
+    },
+    {
+      "check": "stale_tickers",
+      "status": "ok",
+      "latest_date": "2026-10-12",
+      "cutoff_3td": "2026-10-06",
+      "stale_count": 4,
+      "priority_stale": [],
+      "stale_sample": [
+        [
+          "SPNS",
+          "2025-12-16"
+        ],
+        [
+          "GLDD",
+          "2026-04-01"
+        ],
+        [
+          "FANUY",
+          "2026-06-12"
+        ],
+        [
+          "PSTG",
+          "2026-06-12"
+        ]
+      ],
+      "message": "4 tickers stale (> 3td behind)"
+    },
+    {
+      "check": "missing_universe",
+      "status": "warn",
+      "universe_size": 156,
+      "in_db": 150,
+      "missing_count": 6,
+      "missing_sample": [
+        "ABB",
+        "AMPS",
+        "DZSI",
+        "IIVI",
+        "JNPR",
+        "MAXR"
+      ],
+      "message": "6 universe tickers have NO ohlcv data"
+    },
+    {
+      "check": "orphan_tickers",
+      "status": "ok",
+      "total_in_db": 1820,
+      "universe_size": 156,
+      "orphan_count": 1664,
+      "message": "1664 benchmark tickers in DB (not in universe \u2014 expected for RS percentile)"
+    },
+    {
+      "check": "rs_coverage",
+      "status": "ok",
+      "latest_rs_date": "2026-10-12",
+      "covered_total": 1799,
+      "covered_in_universe": 150,
+      "universe_size": 156,
+      "pct_covered": 96.2,
+      "message": "RS coverage: 150/156 (96%) for 2026-10-12"
+    },
+    {
+      "check": "rs_null_composite",
+      "status": "ok",
+      "count": 0,
+      "tickers": [],
+      "message": "All rs_composite populated for 2026-10-12"
+    },
+    {
+      "check": "screening_freshness",
+      "status": "skip",
+      "message": "screening_results table absent (dropped \u2014 AA pipeline uses rs_daily now)"
+    },
+    {
+      "check": "fundamental_coverage",
+      "status": "skip",
+      "message": "screening_results table absent (dropped \u2014 AA pipeline uses rs_daily now)"
+    },
+    {
+      "check": "earnings_calendar",
+      "status": "ok",
+      "upcoming_events": 5193,
+      "last_fetched": "2026-10-13T09:31:15.599400",
+      "message": "5193 upcoming earnings events loaded (fetched 0d ago)"
+    },
+    {
+      "check": "pipeline_runs",
+      "status": "warn",
+      "recent_runs": 14,
+      "recent_fails": 1,
+      "failed_steps": [
+        "pulse_us_data"
+      ],
+      "message": "Last 14 runs: 1 failures"
+    }
+  ]
+}
