@@ -771,10 +771,16 @@ def run():
     if tv_prescreen_file.exists():
         try:
             tv_data = json.loads(tv_prescreen_file.read_text(encoding="utf-8"))
-            # Accept if from today or yesterday (avoid stale data beyond 1 day)
-            from datetime import timedelta
+            # Accept if from last trading day or today — avoids false rejection of Friday
+            # data on Monday mornings (Friday = 3 calendar days ago but is still fresh).
+            from datetime import timedelta as _td
+            def _ldt_iso():
+                _d = date.today()
+                while _d.weekday() >= 5:
+                    _d -= _td(days=1)
+                return _d.isoformat()
             tv_date = tv_data.get("date", "")
-            if tv_date >= (date.today() - timedelta(days=1)).isoformat():
+            if tv_date >= _ldt_iso():
                 tv_index = tv_data.get("ticker_index", {})
                 print(f"  [tvremix] Loaded pre-screen: {len(tv_index)} tickers ({tv_date})")
             else:

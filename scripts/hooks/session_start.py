@@ -46,8 +46,10 @@ def _session_health_check() -> list[str]:
                 days = _days_old(latest or "")
                 if days > 5:
                     issues.append(f"[FAIL] OHLCV {days}d old ({latest}) — run: python scripts/runners/pre_market_runner.py --mode eod")
-                elif days > 2:
-                    issues.append(f"[!]   OHLCV {days}d old ({latest} vs expected {last_td})")
+                # Use last_trading_day comparison — days > 2 fires false WARN every Monday
+                # (Friday OHLCV = 3 calendar days old on Monday morning)
+                elif latest and latest[:10] < _last_trading_day():
+                    issues.append(f"[!]   OHLCV behind last trading day: {latest} vs {_last_trading_day()}")
         except Exception as e:
             issues.append(f"[!]   OHLCV DB check error: {e}")
 

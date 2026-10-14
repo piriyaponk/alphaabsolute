@@ -43,9 +43,13 @@ def _check_ohlcv():
             if days > 5:
                 return {"id": "ohlcv_fresh", "status": "FAIL",
                         "msg": f"OHLCV {days}d old ({latest}) — run pre_market_runner.py --mode eod"}
-            elif days > 2:
+            # Use last_trading_day comparison — calendar days > 2 fires false WARN every Monday
+            # (Friday OHLCV = 3 calendar days old on Monday morning)
+            ldt = _last_trading_day()
+            ohlcv_date = datetime.strptime(latest[:10], "%Y-%m-%d").date() if latest else None
+            if ohlcv_date and ohlcv_date < ldt:
                 return {"id": "ohlcv_fresh", "status": "WARN",
-                        "msg": f"OHLCV {days}d old ({latest})"}
+                        "msg": f"OHLCV behind last trading day: {latest} vs {ldt}"}
             return {"id": "ohlcv_fresh", "status": "PASS", "msg": f"OHLCV fresh ({latest})"}
     except Exception as e:
         return {"id": "ohlcv_fresh", "status": "FAIL", "msg": str(e)}

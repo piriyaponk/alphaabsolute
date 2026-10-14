@@ -297,17 +297,21 @@ def check_screening_freshness(conn) -> dict:
         return {"check": "screening_freshness", "status": "fail", "message": "No screening_results"}
 
     today = date.today().isoformat()
-    yesterday = (date.today() - timedelta(days=1)).isoformat()
+    # Use last trading day — yesterday is Sunday on Monday, rejecting valid Friday screening data
+    _ldt = date.today()
+    while _ldt.weekday() >= 5:
+        _ldt -= timedelta(days=1)
+    last_trading_day = _ldt.isoformat()
 
     if not latest:
         status = "fail"
         msg = "screening_results is empty"
-    elif latest >= yesterday:
+    elif latest >= last_trading_day:
         status = "ok"
         msg = f"screening_results is current: {latest} ({count} tickers)"
     else:
         status = "warn"
-        msg = f"screening_results is stale: last date {latest}"
+        msg = f"screening_results is stale: last date {latest} (last trading day {last_trading_day})"
 
     return {
         "check": "screening_freshness",
