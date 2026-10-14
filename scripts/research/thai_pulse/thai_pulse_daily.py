@@ -213,17 +213,25 @@ def load_signal_matrix(quality_sigs: list[dict], target_date: str | None = None)
         print(f"[WARN] Removed {n_before - len(today_df)} duplicate ticker rows for {td.date()}")
 
     tickers = today_df["ticker"].tolist()
-    # Staleness check: abort if data is 1+ calendar days old to prevent sending wrong Telegram
-    from datetime import date as _date
+    # Staleness check: abort only when thai_entry_screen did NOT run today.
+    # Root cause: days_old >= 1 is wrong — Monday data is always Friday (days_old=3),
+    # post-holiday data is 2-4 days old. These are correct. The only bad case is when
+    # thai_entry_screen.py failed or was skipped this pipeline run.
+    # Fix: check mtime of thai_entry_screen output file — if modified today, data is fresh.
+    from datetime import date as _date, datetime as _datetime
     days_old = (_date.today() - td.date()).days
-    print(f"[screen] Date: {td.date()} | Tickers: {len(tickers)} | Days old: {days_old}")
-    if days_old >= 1:
-        # Root cause: thai_entry_screen.py has not written today's data yet.
-        # Sending Telegram from stale data (version เก่า) is worse than not sending.
-        # Fail loudly so the runner marks this step FAIL instead of sending wrong data.
+    _screen_csv = ROOT / "data" / "research" / "thai_entry_screen_summary.csv"
+    _screen_ran_today = (
+        _screen_csv.exists()
+        and _datetime.fromtimestamp(_screen_csv.stat().st_mtime).date() == _date.today()
+    )
+    print(f"[screen] Date: {td.date()} | Tickers: {len(tickers)} | Days old: {days_old} | entry_screen_today={_screen_ran_today}")
+    if not _screen_ran_today:
+        # thai_entry_screen.py did not complete today — sending Telegram from old data
+        # (version เก่า) is worse than not sending. Fail loudly.
         raise RuntimeError(
-            f"[ABORT] Signal data is STALE ({days_old} days old — latest row {td.date()}). "
-            f"thai_entry_screen.py must complete before thai_pulse_daily.py can run. "
+            f"[ABORT] thai_entry_screen.py did not run today "
+            f"(output mtime={_datetime.fromtimestamp(_screen_csv.stat().st_mtime).date() if _screen_csv.exists() else 'missing'}). "
             f"Will not send Telegram with stale data."
         )
 
