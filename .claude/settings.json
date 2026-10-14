@@ -25,29 +25,20 @@
       "args": ["-y", "chrome-devtools-mcp@latest"],
       "description": "Chrome DevTools Protocol — inspect DOM, network requests, console errors, performance. Requires Chrome running."
     },
-    "perplexity": {
+    "jina-reader": {
       "command": "npx",
-      "args": ["-y", "@perplexity-ai/mcp-server"],
-      "env": {
-        "PERPLEXITY_API_KEY": "YOUR_PERPLEXITY_API_KEY_HERE"
-      },
-      "description": "Perplexity AI — live web search, deep research, reasoning. Get API key at: https://www.perplexity.ai/settings/api"
+      "args": ["-y", "jina-mcp-tools"],
+      "description": "Jina AI Reader — URL to clean markdown (reader mode, no API key needed)."
     },
-    "firecrawl": {
+    "sqlite": {
       "command": "npx",
-      "args": ["-y", "firecrawl-mcp"],
-      "env": {
-        "FIRECRAWL_API_KEY": "YOUR_FIRECRAWL_API_KEY_HERE"
-      },
-      "description": "Firecrawl — web scraping, crawl sites, extract structured data. Get API key at: https://www.firecrawl.dev"
+      "args": ["-y", "mcp-sqlite", "C:/Users/Pizza/OneDrive/Desktop/AlphaAbsolute/data/ohlcv.db"],
+      "description": "SQLite MCP — read-only access to ohlcv.db for ad-hoc queries."
     },
-    "glif": {
+    "github": {
       "command": "npx",
-      "args": ["-y", "@glifxyz/glif-mcp-server"],
-      "env": {
-        "GLIF_API_TOKEN": "YOUR_GLIF_API_TOKEN_HERE"
-      },
-      "description": "Glif — generate images, video, audio, voice cloning via AI workflows. Get token at: https://glif.app/settings"
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "description": "GitHub MCP — inspect CI logs, workflow runs. Reads GITHUB_PERSONAL_ACCESS_TOKEN from .env."
     }
   },
   "hooks": {

@@ -343,6 +343,74 @@ STEPS: list[dict] = [
         "day_filter":  [0, 1, 2, 3, 4],  # Mon-Fri
         "depends_on":  ["pulse_us_daily"],
     },
+    # PULSE-TH: Thai OHLCV update (prerequisite for entry screen and pulse daily)
+    {
+        "id":          "thai_ohlcv_update",
+        "layer":       "3-Research",
+        "name":        "PULSE-TH OHLCV Update",
+        "module":      "scripts.research.thai_data_layer",
+        "func":        "run",
+        "output":      "data/research/thai_ohlcv.db",
+        "desc":        "Incremental Thai OHLCV update — prerequisite for PULSE-TH",
+        "critical":    False,
+        "modes":       ["premarket"],
+        "day_filter":  [0, 1, 2, 3, 4],  # Mon-Fri
+    },
+    # PULSE-TH: Rebuild Thai entry screen signal columns (depends on thai_ohlcv_update)
+    {
+        "id":          "thai_entry_screen",
+        "layer":       "3-Research",
+        "name":        "PULSE-TH Entry Screen",
+        "module":      "scripts.research.thai_entry_screen",
+        "func":        "run",
+        "output":      "data/research/thai_entry_screen_summary.csv",
+        "desc":        "Rebuild Thai RS + signal columns — required by thai_pulse_daily",
+        "critical":    False,
+        "modes":       ["premarket"],
+        "day_filter":  [0, 1, 2, 3, 4],  # Mon-Fri
+        "depends_on":  ["thai_ohlcv_update"],
+    },
+    # PULSE-TH: Monthly index membership refresh (runs on the 1st of each month)
+    {
+        "id":          "update_index_membership",
+        "layer":       "3-Research",
+        "name":        "SET Index Membership Update",
+        "module":      "scripts.research.thai_pulse.update_index_membership",
+        "func":        "run",
+        "output":      "data/research/thai_pulse/th_index_membership.json",
+        "desc":        "Fetch SET50/SET100/SETHD/sSET constituents from SET.or.th official API",
+        "critical":    False,
+        "modes":       ["premarket"],
+        "month_day_filter": 1,  # Run on 1st of each month only
+    },
+    # PULSE-TH: Daily screen + Telegram (depends on thai_entry_screen)
+    {
+        "id":          "thai_pulse_daily",
+        "layer":       "3-Research",
+        "name":        "PULSE-TH Daily",
+        "module":      "scripts.research.thai_pulse.thai_pulse_daily",
+        "func":        "run",
+        "output":      "data/research/thai_pulse/pulse_th_daily_signals.json",
+        "desc":        "PULSE-TH daily screen → Telegram Top signals",
+        "critical":    False,
+        "modes":       ["premarket"],
+        "day_filter":  [0, 1, 2, 3, 4],  # Mon-Fri
+        "depends_on":  ["thai_entry_screen"],
+    },
+    # PULSE-TH: Focus list builder (depends on thai_pulse_daily signals)
+    {
+        "id":          "focus_list_builder",
+        "layer":       "3-Research",
+        "name":        "PULSE-TH Focus List",
+        "module":      "scripts.research.focus_list_builder",
+        "func":        "run",
+        "output":      "data/research/daily_focus_list.json",
+        "desc":        "Build daily TH focus list from pulse signals — required by strategist agents",
+        "critical":    False,
+        "modes":       ["premarket"],
+        "day_filter":  [0, 1, 2, 3, 4],  # Mon-Fri
+        "depends_on":  ["thai_pulse_daily"],
+    },
 ]
 
 
@@ -468,6 +536,12 @@ def run_step(step: dict, dry_run: bool = False, force_run: bool = False) -> tupl
         if today_weekday not in day_filter:
             return True, 0.0, "", True  # silently skip — wrong day
 
+
+    # --- skip if month_day_filter (day-of-month) does not match today ---
+    month_day_filter = step.get("month_day_filter")
+    if month_day_filter is not None and not force_run:
+        if date.today().day != month_day_filter:
+            return True, 0.0, "", True  # silently skip — not the right day of month
     # --- skip if script file missing ---
     module_path = step["module"].replace(".", "/") + ".py"
     full_path   = BASE_DIR / module_path
