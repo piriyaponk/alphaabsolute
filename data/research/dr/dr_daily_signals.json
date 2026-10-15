@@ -1,50 +1,9 @@
 {
-  "date": "2026-10-14",
+  "date": "2026-10-15",
   "dr_map_version": "2026-10-10T21:59:00.336393",
   "n_screened": 33,
   "n_picks": 5,
   "picks": [
-    {
-      "us_ticker": "SNOW",
-      "set_symbol": "SNOW23",
-      "issuer": "INVX",
-      "issuer_code": "23",
-      "val_thb": 2890454.3,
-      "all_dr": [
-        "SNOW06",
-        "SNOW23"
-      ],
-      "h3_score": 81.5,
-      "breadth": 1,
-      "n_signals": 9,
-      "top_signal_labels": [
-        "F_BASE_bt60_bp85_rs90_vc70_ATH5",
-        "F_REC_ddr25_ATH3_bt70_vc75",
-        "F_BASE_bt60_bp80_rs90_vc70_ATH5"
-      ],
-      "source": "PULSE-US"
-    },
-    {
-      "us_ticker": "DELL",
-      "set_symbol": "DELL80",
-      "issuer": "KTB",
-      "issuer_code": "80",
-      "val_thb": 1717134.88,
-      "all_dr": [
-        "DELL19",
-        "DELL23",
-        "DELL80"
-      ],
-      "h3_score": 81.5,
-      "breadth": 1,
-      "n_signals": 9,
-      "top_signal_labels": [
-        "F_BASE_bt60_bp85_rs90_vc70_ATH5",
-        "F_REC_ddr25_ATH3_bt70_vc75",
-        "F_BASE_bt60_bp80_rs90_vc70_ATH5"
-      ],
-      "source": "PULSE-US"
-    },
     {
       "us_ticker": "PLTR",
       "set_symbol": "PLTR80",
@@ -58,14 +17,46 @@
         "PLTR23",
         "PLTR80"
       ],
-      "h3_score": 78.3,
-      "breadth": 3,
-      "n_signals": 10,
+      "h3_score": 75.2,
+      "breadth": 1,
+      "n_signals": 2,
       "top_signal_labels": [
-        "F_REC_ddr25_ATH3_bt70_vc75",
-        "F_REC_ddr30_ATH3_bt70_vc75",
-        "F_REC_ddr30_ATH5_bt70"
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70"
       ],
+      "source": "PULSE-US"
+    },
+    {
+      "us_ticker": "SNOW",
+      "set_symbol": "SNOW23",
+      "issuer": "INVX",
+      "issuer_code": "23",
+      "val_thb": 2890454.3,
+      "all_dr": [
+        "SNOW06",
+        "SNOW23"
+      ],
+      "h3_score": 0.0,
+      "breadth": 0,
+      "n_signals": 0,
+      "top_signal_labels": [],
+      "source": "PULSE-US"
+    },
+    {
+      "us_ticker": "DELL",
+      "set_symbol": "DELL80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 1717134.88,
+      "all_dr": [
+        "DELL19",
+        "DELL23",
+        "DELL80"
+      ],
+      "h3_score": 0.0,
+      "breadth": 0,
+      "n_signals": 0,
+      "top_signal_labels": [],
       "source": "PULSE-US"
     },
     {
@@ -77,13 +68,10 @@
       "all_dr": [
         "DDOG19"
       ],
-      "h3_score": 75.2,
-      "breadth": 1,
-      "n_signals": 2,
-      "top_signal_labels": [
-        "F_REC_ddr30_ATH5_bt70",
-        "F_REC_ddr25_ATH5_bt70"
-      ],
+      "h3_score": 0.0,
+      "breadth": 0,
+      "n_signals": 0,
+      "top_signal_labels": [],
       "source": "PULSE-US"
     },
     {
@@ -95,13 +83,10 @@
       "all_dr": [
         "HPE80"
       ],
-      "h3_score": 75.2,
-      "breadth": 1,
-      "n_signals": 2,
-      "top_signal_labels": [
-        "F_REC_ddr30_ATH5_bt70",
-        "F_REC_ddr25_ATH5_bt70"
-      ],
+      "h3_score": 0.0,
+      "breadth": 0,
+      "n_signals": 0,
+      "top_signal_labels": [],
       "source": "PULSE-US"
     }
   ]
