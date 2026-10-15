@@ -1,5 +1,6 @@
 regime,signal,fwd_days,n_obs,hit_rate,avg_ret,med_ret,fire_rate
-all,BASELINE (all focus),1,0,,,,100.0
+all,BASELINE (all focus),1,25,72.0,1.481037405476219,1.5873015873015817,100.0
 all,BASELINE (all focus),2,0,,,,100.0
 all,BASELINE (all focus),3,0,,,,100.0
 all,BASELINE (all focus),5,0,,,,100.0
+all,C2_above_ma50,1,20,75.0,1.4487929019409307,1.61495142983763,84.0
