@@ -7930,7 +7930,7 @@ def run():
 
     from entry_screen_db import (
         write_entry_screen, get_max_date as _db_max_date,
-        validate_date_completeness,
+        validate_date_completeness, read_entry_screen as _read_all,
     )
 
     sum_path = _Path(__file__).resolve().parents[2] / 'data' / 'research' / 'thai_entry_screen_summary.csv'
@@ -7953,9 +7953,14 @@ def run():
     if last_date_val is not None:
         db_last = df["date"].max()
         if last_date_val >= db_last:
-            print(f'[OK] Already up to date ({last_date_val.date()}) -- nothing to do')
-            # write empty summary so runner output check passes
-            summarise(run_backtest(df.tail(0)), "all").to_csv(sum_path, index=False) if False else None
+            print(f'[OK] Already up to date ({last_date_val.date()}) -- regenerating summary from SQLite')
+            try:
+                all_results = _read_all()
+                if all_results is not None and len(all_results) > 0:
+                    summarise(all_results, "all").to_csv(sum_path, index=False)
+                    print(f'Summary -> {sum_path} (full SQLite: {len(all_results):,} rows)')
+            except Exception as _e:
+                print(f'[WARN] Could not regenerate summary: {_e}')
             return
         results = run_backtest(df, after_date=last_date_val)
         if results is None or len(results) == 0:
@@ -7971,8 +7976,21 @@ def run():
         results = run_backtest(df)
         write_entry_screen(results)
 
-    summarise(results, "all").to_csv(sum_path, index=False)
-    print(f'Summary -> {sum_path}')
+    # Always summarise from ALL SQLite data (not just today's incremental results)
+    # so the CSV retains all signal columns regardless of which signals fired today.
+    # Root cause of schema drift: incremental results only contain signals that
+    # fired today → summarise() produces fewer rows → thai_pulse_daily sees drift.
+    try:
+        all_results = _read_all()
+        if all_results is not None and len(all_results) > 0:
+            summarise(all_results, "all").to_csv(sum_path, index=False)
+            print(f'Summary -> {sum_path} (from full SQLite history: {len(all_results):,} rows)')
+        else:
+            summarise(results, "all").to_csv(sum_path, index=False)
+            print(f'Summary -> {sum_path} (from incremental results)')
+    except Exception as _e:
+        summarise(results, "all").to_csv(sum_path, index=False)
+        print(f'Summary -> {sum_path} (fallback incremental: {_e})')
 
 
 if __name__ == "__main__":
