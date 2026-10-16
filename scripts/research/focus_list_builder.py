@@ -24,6 +24,8 @@ import requests
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(ROOT / "scripts" / "research"))  # for constants.py (PULSE-TH SSOT)
+from constants import RS_LOOKBACK_DAYS  # 63 — single source of truth for TH RS window
 
 DB_PATH      = ROOT / "data/research/pulse_signals.db"
 TH_OHLCV_DB  = ROOT / "data/research/thai_ohlcv.db"
@@ -92,6 +94,59 @@ def _load_set100_proxy() -> list[str]:
         return []
 
 
+def _compute_th_rs_full(tickers: list, as_of_date: str) -> dict:
+    """Compute 63-day RS percentile from thai_ohlcv.db for any ticker list.
+
+    Ranks against FULL universe (all tickers in thai_ohlcv), returns only
+    the requested tickers.  Uses RS_LOOKBACK_DAYS from constants.py (63d).
+
+    Root cause fix (2026-10-16): focus_list_builder used rs_map from
+    pulse_th_daily_signals.json which only contains the 25 PULSE-TH screen
+    tickers.  All other SET100-proxy tickers got rs_pct=0.  This function
+    fills the gap by computing RS directly from ohlcv for any missing ticker.
+    """
+    if not TH_OHLCV_DB.exists() or not tickers:
+        return {}
+    try:
+        import numpy as np
+        import pandas as pd
+        con = sqlite3.connect(str(TH_OHLCV_DB))
+        rows = con.execute(
+            "SELECT ticker, date, close FROM thai_ohlcv "
+            "WHERE date <= ? AND close > 0 ORDER BY ticker, date",
+            (as_of_date,),
+        ).fetchall()
+        con.close()
+        if not rows:
+            return {}
+        df = pd.DataFrame(rows, columns=["ticker", "date", "close"])
+        df["date"] = pd.to_datetime(df["date"])
+        returns = {}
+        for tkr, grp in df.groupby("ticker"):
+            grp = grp.sort_values("date")
+            if len(grp) < 10:
+                continue
+            latest  = grp["close"].iloc[-1]
+            lookback = grp.iloc[max(0, len(grp) - RS_LOOKBACK_DAYS)]["close"]
+            if lookback > 0:
+                returns[tkr] = (latest / lookback - 1) * 100
+        if not returns:
+            return {}
+        all_t  = list(returns.keys())
+        vals   = list(returns.values())
+        ranks  = np.argsort(np.argsort(vals)) + 1  # 1-based rank
+        n      = len(vals)
+        universe_rs = {t: round(float(r / n * 100), 1) for t, r in zip(all_t, ranks)}
+        result = {t: universe_rs[t] for t in tickers if t in universe_rs}
+        n_filled = len(result)
+        if n_filled:
+            print(f"  [rs_fill] Computed ohlcv RS for {n_filled}/{len(tickers)} SET100 tickers")
+        return result
+    except Exception as e:
+        print(f"  [WARN] _compute_th_rs_full failed: {e}")
+        return {}
+
+
 # ── DB helpers ────────────────────────────────────────────────────────────────
 
 def _ensure_table(con: sqlite3.Connection):
@@ -156,6 +211,26 @@ def _build_th_section(today: str) -> tuple[list[dict], list[dict]]:
         print("  [WARN] TH signals not found — TH sections will be empty")
 
     set100 = _load_set100_proxy()  # ordered list by liquidity DESC
+
+    # Augment rs_map with full-universe RS for SET100 tickers missing from the
+    # PULSE-TH screen.  pulse_th_daily_signals.json rs_map only contains the
+    # 25 RS-filtered screen tickers.  Any SET100 ticker not in that screen gets
+    # rs_pct=0 without this fill — the bug reported 2026-10-13 and 2026-10-16.
+    missing_rs = [t for t in set100 if t not in rs_map]
+    if missing_rs:
+        # as_of_date = max date from the TH signals file (same as ohlcv max)
+        _signals_date = ""
+        if TH_SIGNALS.exists():
+            try:
+                _signals_date = json.loads(TH_SIGNALS.read_text(encoding="utf-8")).get("date", "")
+            except Exception:
+                pass
+        if not _signals_date:
+            from datetime import date as _d
+            _signals_date = str(_d.today())
+        filled = _compute_th_rs_full(missing_rs, _signals_date)
+        rs_map.update(filled)
+
     pulse_seen: set[str] = set()
 
     # ── Tier 1: th_pulse ───────────────────────────────────────────────────────

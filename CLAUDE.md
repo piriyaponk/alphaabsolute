@@ -658,6 +658,7 @@ These rules encode bugs found in production. When fixing pipeline errors, apply 
 **Root cause:**  used  for focus-list ranking while  used 63 bars in  → different tickers passed the filter vs what Telegram displayed. GPSC (RS-63d=53%) appeared in Telegram output because it passed the 21d RS threshold.
 **Fix (2026-10-13):** Created  with  and . Both scripts import from it.  now imports via .  already had  in sys.path. Added secondary RS floor in  after RS map computation (before signal matrix build) — drops any ticker from the CSV that has RS-63d < RS_MIN_PCT, defending against stale CSV from pre-fix runs.
 **Note:** Changing RS_DAYS 21→63 in the backtest also changes the focus-list ranking order (21d short-term momentum → 63d momentum for top-N selection). This is an intentional decision approved by CIO 2026-10-13 (Option C). The RS filter at line 7761 of  was already using hardcoded 63 — only the ranking window changed.
+**Recurrence fix (2026-10-16):**   used  for SET100-proxy tickers, but  from  only contains the 25 PULSE-TH screen tickers. All other SET100-proxy tickers (~75) got  in . Root cause: switching from 21d to 63d RS (2026-10-13 fix) changed which 25 tickers make the screen, leaving more SET100 members outside the screen without an RS source. Fix: added  in  — computes 63-day full-universe RS from  for any SET100 ticker not already in , then merges before Pass 1. Uses  from . File:  lines  and .
 
 ---
 
