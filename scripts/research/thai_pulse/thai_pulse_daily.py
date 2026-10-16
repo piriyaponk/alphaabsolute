@@ -215,25 +215,29 @@ def load_signal_matrix(quality_sigs: list[dict], target_date: str | None = None)
         print(f"[WARN] Removed {n_before - len(today_df)} duplicate ticker rows for {td.date()}")
 
     tickers = today_df["ticker"].tolist()
-    # Staleness check: abort only when thai_entry_screen did NOT run today.
-    # Root cause: days_old >= 1 is wrong — Monday data is always Friday (days_old=3),
-    # post-holiday data is 2-4 days old. These are correct. The only bad case is when
-    # thai_entry_screen.py failed or was skipped this pipeline run.
-    # Option B fix: query SQLite directly for today's rows — no CSV mtime dependency.
+    # Staleness check: abort only when thai_entry_screen did NOT run this pipeline cycle.
+    # Root cause of old mtime check: OneDrive sync can touch CSV mtime without script running.
+    # Root cause of date.today() check: pre-market pipeline runs at 6-9 AM using yesterday's
+    # OHLCV close — entry_screen writes rows for YESTERDAY (last trading day), not today.
+    # Checking date.today() always returns 0 rows → false ABORT every morning.
+    #
+    # Correct check: compare entry_screen_signals max_date vs ohlcv max_date.
+    # If they match → entry_screen ran on the same data ohlcv has → fresh.
+    # If entry_screen max_date < ohlcv max_date → entry_screen was skipped → abort.
     from datetime import date as _date
     days_old = (_date.today() - td.date()).days
-    _today_str = _date.today().isoformat()
-    _today_row_count = sqlite3.connect(str(_OHLCV_DB)).execute(
-        "SELECT COUNT(*) FROM entry_screen_signals WHERE date = ?", (_today_str,)
+    _es_max = _db_max_date()   # max date in entry_screen_signals (already imported)
+    _ohlcv_max = sqlite3.connect(str(_OHLCV_DB)).execute(
+        "SELECT MAX(date) FROM ohlcv"
     ).fetchone()[0]
-    _screen_ran_today = _today_row_count > 0
-    print(f"[screen] Date: {td.date()} | Tickers: {len(tickers)} | Days old: {days_old} | rows_today={_today_row_count} | entry_screen_today={_screen_ran_today}")
-    if not _screen_ran_today:
-        # thai_entry_screen.py did not complete today — sending Telegram from old data
-        # is worse than not sending. Fail loudly.
+    _screen_ran = (_es_max is not None and _ohlcv_max is not None and _es_max >= _ohlcv_max)
+    print(f"[screen] Date: {td.date()} | Tickers: {len(tickers)} | Days old: {days_old} | es_max={_es_max} | ohlcv_max={_ohlcv_max} | entry_screen_ran={_screen_ran}")
+    if not _screen_ran:
+        # thai_entry_screen.py did not process the latest OHLCV data — sending Telegram
+        # with stale signals is worse than not sending. Fail loudly.
         raise RuntimeError(
-            f"[ABORT] thai_entry_screen.py did not run today "
-            f"(entry_screen_signals has 0 rows for {_today_str}). "
+            f"[ABORT] thai_entry_screen.py did not run on latest OHLCV data "
+            f"(es_max={_es_max}, ohlcv_max={_ohlcv_max}). "
             f"Will not send Telegram with stale data."
         )
 
