@@ -2004,10 +2004,13 @@ def _yfinance_ohlcv(ticker: str, period: str = "1y") -> Optional[pd.DataFrame]:
 #                  BAMLH0A0HYM2 (HY spread), DEXUSEU (EUR/USD), DFII10 (TIPS)
 # =============================================================================
 
-def _fred_series(series_id: str, limit: int = 10) -> Optional[list[dict]]:
+def _fred_series(series_id: str, limit: int = 1000,
+                 observation_start: str = "1947-01-01") -> Optional[list[dict]]:
     """
     Fetch FRED series observations. Returns list of {date, value} newest-first.
     Uses FRED_API_KEY from .env. Falls back to Yahoo Finance if key missing.
+    Default limit=1000 fetches full modern history (50+ years for CPI/rates).
+    Pass observation_start to trim range if needed.
     """
     if not FRED_KEY:
         return None
@@ -2015,11 +2018,12 @@ def _fred_series(series_id: str, limit: int = 10) -> Optional[list[dict]]:
         r = _SESSION.get(
             "https://api.stlouisfed.org/fred/series/observations",
             params={
-                "series_id":  series_id,
-                "api_key":    FRED_KEY,
-                "file_type":  "json",
-                "sort_order": "desc",
-                "limit":      str(limit),
+                "series_id":        series_id,
+                "api_key":          FRED_KEY,
+                "file_type":        "json",
+                "sort_order":       "desc",
+                "limit":            str(limit),
+                "observation_start": observation_start,
             },
             timeout=10,
         )
