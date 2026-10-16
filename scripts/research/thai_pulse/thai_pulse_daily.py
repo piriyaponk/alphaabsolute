@@ -283,15 +283,22 @@ def load_signal_matrix(quality_sigs: list[dict], target_date: str | None = None)
               f"(stale CSV guard — {before_rs_floor} before → {len(tickers)} after)")
 
     # Build signal matrix for quality signals only
+    # Note: q_library_th.json contains combo signals (Q_CMB2_*) not implemented in entry_screen.py.
+    # These will never be in SQLite. Filter to available signals; warn only if base signals missing.
+    avail_cols = set(today_df.columns)
     sig_labels  = []
     sig_h5_list = []
     sig_cols    = []
-    missing     = 0
+    combo_missing = 0
+    base_missing  = 0
 
     for sig in quality_sigs:
         col = sig["label"]
-        if col not in today_df.columns:
-            missing += 1
+        if col not in avail_cols:
+            if col.startswith("Q_CMB"):
+                combo_missing += 1
+            else:
+                base_missing += 1
             continue
         col_data = today_df[col]
         vals = col_data.fillna(False).astype(bool).values
@@ -300,13 +307,14 @@ def load_signal_matrix(quality_sigs: list[dict], target_date: str | None = None)
         sig_cols.append(vals)
 
     total_quality = len(quality_sigs)
-    schema_drift_pct = round(missing / total_quality * 100, 1) if total_quality > 0 else 0.0
-    if missing:
-        print(f"[WARN] {missing}/{total_quality} library signals not in SQLite columns "
-              f"(schema drift {schema_drift_pct}%)")
-        if schema_drift_pct > 20:
-            print(f"[WARN CRITICAL] Schema drift {schema_drift_pct}% > 20% — "
-                  f"quality signal coverage severely degraded. Re-run thai_entry_screen.py --full")
+    total_missing = combo_missing + base_missing
+    if combo_missing:
+        print(f"[INFO] {combo_missing}/{total_quality} combo signals (Q_CMB2_*) not yet implemented in entry_screen — expected, not a bug")
+    if base_missing:
+        base_drift_pct = round(base_missing / max(total_quality - combo_missing, 1) * 100, 1)
+        print(f"[WARN] {base_missing} base signals missing from SQLite (drift {base_drift_pct}%) — may need --full rebuild")
+        if base_drift_pct > 20:
+            print(f"[WARN CRITICAL] Base signal drift {base_drift_pct}% > 20% — Re-run thai_entry_screen.py --full")
 
     # Universe coverage check — compare against full day count in DB for this date
     # (init_tables called at top of function; tables guaranteed to exist)
