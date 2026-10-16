@@ -228,7 +228,7 @@ def load_signal_matrix(quality_sigs: list[dict], target_date: str | None = None)
     days_old = (_date.today() - td.date()).days
     _es_max = _db_max_date()   # max date in entry_screen_signals (already imported)
     _ohlcv_max = sqlite3.connect(str(_OHLCV_DB)).execute(
-        "SELECT MAX(date) FROM ohlcv"
+        "SELECT MAX(date) FROM thai_ohlcv"
     ).fetchone()[0]
     _screen_ran = (_es_max is not None and _ohlcv_max is not None and _es_max >= _ohlcv_max)
     print(f"[screen] Date: {td.date()} | Tickers: {len(tickers)} | Days old: {days_old} | es_max={_es_max} | ohlcv_max={_ohlcv_max} | entry_screen_ran={_screen_ran}")
