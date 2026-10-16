@@ -364,7 +364,7 @@ def load_signal_matrix(quality_sigs: list[dict], target_date: str | None = None)
         "rs_map":              rs_map,
         "price_map":           price_map,
         "price_date":          td.date(),
-        "schema_drift_pct":    schema_drift_pct,
+        "schema_drift_pct":    round(total_missing / total_quality * 100, 1) if total_quality > 0 else 0.0,
         "universe_coverage_pct": coverage_pct,
         "base_fired":          base_fired,
     }
