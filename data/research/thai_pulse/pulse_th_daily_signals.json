@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-14",
+  "date": "2026-10-15",
   "n_quality": 42,
   "n_quality_signals": 83,
   "ticker_hits": {},
@@ -21,7 +21,6 @@
     "KKP.BK": 0.0,
     "PLANB.BK": 0.0,
     "PSL.BK": 0.0,
-    "PTTEP.BK": 0.0,
     "PTTGC.BK": 0.0,
     "SCC.BK": 0.0,
     "SMT.BK": 0.0,
@@ -29,7 +28,8 @@
     "SPRC.BK": 0.0,
     "STA.BK": 0.0,
     "TASCO.BK": 0.0,
-    "TOP.BK": 0.0
+    "TOP.BK": 0.0,
+    "VGI.BK": 0.0
   },
   "price_map": {},
   "schema_drift_pct": 98.3,
