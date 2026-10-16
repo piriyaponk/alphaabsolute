@@ -3,7 +3,7 @@ thai_pulse_daily.py — PULSE-TH Daily Screener
 ==============================================
 Standard architecture identical to pulse_us_daily.py:
   1. Load quality signals from q_library_th.json (h5>=63%, pre-computed)
-  2. Read today's row per ticker from thai_entry_screen_results.csv
+  2. Read today's row per ticker from SQLite (entry_screen_signals table)
   3. Build signal matrix (N_tickers × N_quality_signals)
   4. calc_pulse_scores() — IDENTICAL function to PULSE-US
   5. Rank by h5 (primary) + breadth (tiebreaker)
@@ -37,7 +37,7 @@ OUT_PATH  = ROOT / "data" / "research" / "thai_pulse" / "pulse_th_daily_signals.
 INDEX_PATH = ROOT / "data" / "research" / "thai_pulse" / "th_index_membership.json"
 
 sys.path.insert(0, str(ROOT / "scripts" / "research"))
-from entry_screen_db import read_entry_screen, get_max_date as _db_max_date
+from entry_screen_db import read_entry_screen, get_max_date as _db_max_date, init_tables as _es_init_tables
 from pulse_db import upsert_pulse_signals, write_shortlist_json
 from constants import RS_LOOKBACK_DAYS, RS_MIN_PCT  # single source of truth for PULSE-TH RS
 
@@ -172,13 +172,15 @@ def load_quality_signals() -> list[dict]:
     return quality
 
 
-# ── Load today's signal matrix from CSV ────────────────────────────────────
+# ── Load today's signal matrix from SQLite ──────────────────────────────────
 def load_signal_matrix(quality_sigs: list[dict], target_date: str | None = None) -> dict | None:
     """
-    Read thai_entry_screen_results.csv, pick today's rows, build signal matrix.
+    Read entry_screen_signals from SQLite (thai_ohlcv.db), build signal matrix.
     Returns dict with: signal_matrix, tickers, sig_h5_arr, sig_labels,
                        n_quality_families, rs_map, price_date
     """
+    # Ensure entry_screen_signals table exists before any query (idempotent)
+    _es_init_tables(_OHLCV_DB)
     # Point query: read only the target date from SQLite (fast)
     if target_date:
         td_str = str(target_date)[:10]
@@ -206,7 +208,7 @@ def load_signal_matrix(quality_sigs: list[dict], target_date: str | None = None)
         print(f"[WARN] No rows for {td.date()}")
         return None
 
-    # Deduplicate: keep last row per ticker (CSV may have duplicates after incremental appends)
+    # Deduplicate: keep last row per ticker (SQLite may have duplicates if entry_screen ran twice)
     n_before = len(today_df)
     today_df = today_df.drop_duplicates(subset=["ticker"], keep="last").reset_index(drop=True)
     if len(today_df) < n_before:
@@ -217,21 +219,21 @@ def load_signal_matrix(quality_sigs: list[dict], target_date: str | None = None)
     # Root cause: days_old >= 1 is wrong — Monday data is always Friday (days_old=3),
     # post-holiday data is 2-4 days old. These are correct. The only bad case is when
     # thai_entry_screen.py failed or was skipped this pipeline run.
-    # Fix: check mtime of thai_entry_screen output file — if modified today, data is fresh.
-    from datetime import date as _date, datetime as _datetime
+    # Option B fix: query SQLite directly for today's rows — no CSV mtime dependency.
+    from datetime import date as _date
     days_old = (_date.today() - td.date()).days
-    _screen_csv = ROOT / "data" / "research" / "thai_entry_screen_summary.csv"
-    _screen_ran_today = (
-        _screen_csv.exists()
-        and _datetime.fromtimestamp(_screen_csv.stat().st_mtime).date() == _date.today()
-    )
-    print(f"[screen] Date: {td.date()} | Tickers: {len(tickers)} | Days old: {days_old} | entry_screen_today={_screen_ran_today}")
+    _today_str = _date.today().isoformat()
+    _today_row_count = sqlite3.connect(str(_OHLCV_DB)).execute(
+        "SELECT COUNT(*) FROM entry_screen_signals WHERE date = ?", (_today_str,)
+    ).fetchone()[0]
+    _screen_ran_today = _today_row_count > 0
+    print(f"[screen] Date: {td.date()} | Tickers: {len(tickers)} | Days old: {days_old} | rows_today={_today_row_count} | entry_screen_today={_screen_ran_today}")
     if not _screen_ran_today:
         # thai_entry_screen.py did not complete today — sending Telegram from old data
-        # (version เก่า) is worse than not sending. Fail loudly.
+        # is worse than not sending. Fail loudly.
         raise RuntimeError(
             f"[ABORT] thai_entry_screen.py did not run today "
-            f"(output mtime={_datetime.fromtimestamp(_screen_csv.stat().st_mtime).date() if _screen_csv.exists() else 'missing'}). "
+            f"(entry_screen_signals has 0 rows for {_today_str}). "
             f"Will not send Telegram with stale data."
         )
 
@@ -296,16 +298,15 @@ def load_signal_matrix(quality_sigs: list[dict], target_date: str | None = None)
     total_quality = len(quality_sigs)
     schema_drift_pct = round(missing / total_quality * 100, 1) if total_quality > 0 else 0.0
     if missing:
-        print(f"[WARN] {missing}/{total_quality} library signals not in CSV columns "
+        print(f"[WARN] {missing}/{total_quality} library signals not in SQLite columns "
               f"(schema drift {schema_drift_pct}%)")
         if schema_drift_pct > 20:
             print(f"[WARN CRITICAL] Schema drift {schema_drift_pct}% > 20% — "
                   f"quality signal coverage severely degraded. Re-run thai_entry_screen.py --full")
 
     # Universe coverage check — compare against full day count in DB for this date
-    from datetime import date as _date
-    import sqlite3 as _sqlite3
-    _conn_uc = _sqlite3.connect(str(_OHLCV_DB))
+    # (init_tables called at top of function; tables guaranteed to exist)
+    _conn_uc = sqlite3.connect(str(_OHLCV_DB))
     full_day_count = _conn_uc.execute(
         "SELECT COUNT(*) FROM entry_screen_signals WHERE date = ?", (td_str,)
     ).fetchone()[0]

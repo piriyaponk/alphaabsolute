@@ -11,9 +11,13 @@ if hasattr(sys.stdout, "reconfigure"):
 _ROOT           = Path(__file__).resolve().parents[2]
 _PORTFOLIO_JSON = _ROOT / "data" / "research" / "thai_paper_portfolio.json"
 _PULSE_JSON     = _ROOT / "data" / "research" / "thai_pulse" / "pulse_th_daily_signals.json"
-_SUMMARY_CSV    = _ROOT / "data" / "research" / "thai_entry_screen_summary.csv"
 _DB_PATH        = _ROOT / "data" / "research" / "thai_ohlcv.db"
 _STARTING_NAV   = 1_000_000.0
+
+# entry_screen_db provides init_tables() — ensures schema exists before any query
+if str(_ROOT / "scripts" / "research") not in sys.path:
+    sys.path.insert(0, str(_ROOT / "scripts" / "research"))
+from entry_screen_db import init_tables as _es_init_tables
 
 
 def _write_with_retry(path, content, retries=3, delay=1.0):
@@ -83,7 +87,7 @@ def load_portfolio():
 
 def load_pulse_signals():
     """Load PULSE-TH signals. Primary source: pulse_th_daily_signals.json (decoded JSON).
-    Fallback: CSV. Fallback: SQLite ticker names only (signals_packed BLOB not decoded).
+    Fallback: SQLite ticker names only (entry_screen_signals, date query).
     Returns empty dict when no source available.
     """
     if _PULSE_JSON.exists():
@@ -93,40 +97,21 @@ def load_pulse_signals():
         except Exception as e:
             print(f'[thai_obsidian_writer] WARN: pulse JSON read error: {e}')
 
-    if _SUMMARY_CSV.exists():
-        try:
-            import csv
-            today = datetime.now(timezone.utc).date().isoformat()
-            rows = []
-            with open(_SUMMARY_CSV, encoding='utf-8') as f:
-                reader = csv.DictReader(f)
-                for row in reader:
-                    if row.get('date') == today:
-                        rows.append(row)
-            if rows:
-                return {'date': today, 'pulse_scores': {}}
-        except Exception as e:
-            print(f'[thai_obsidian_writer] WARN: CSV read error: {e}')
-
     if _DB_PATH.exists():
         try:
             today = datetime.now(timezone.utc).date().isoformat()
+            _es_init_tables(_DB_PATH)  # ensure entry_screen_signals table exists
             with sqlite3.connect(str(_DB_PATH)) as conn:
-                tbl = conn.execute(
-                    "SELECT name FROM sqlite_master"
-                    " WHERE type='table' AND name='entry_screen_signals'"
-                ).fetchone()
-                if tbl:
-                    rows = conn.execute(
-                        "SELECT DISTINCT ticker FROM entry_screen_signals"
-                        " WHERE date = ? LIMIT 50",
-                        (today,)
-                    ).fetchall()
-                    if rows:
-                        return {
-                            'date': today,
-                            'pulse_scores': {r[0]: {'n_signals_fired': 1} for r in rows},
-                        }
+                rows = conn.execute(
+                    "SELECT DISTINCT ticker FROM entry_screen_signals"
+                    " WHERE date = ? LIMIT 50",
+                    (today,)
+                ).fetchall()
+                if rows:
+                    return {
+                        'date': today,
+                        'pulse_scores': {r[0]: {'n_signals_fired': 1} for r in rows},
+                    }
         except Exception as e:
             print(f'[thai_obsidian_writer] WARN: SQLite fallback error: {e}')
 
