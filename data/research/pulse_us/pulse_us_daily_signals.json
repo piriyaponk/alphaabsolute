@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-19",
+  "date": "2026-10-20",
   "market_context": {
     "n_universe": 1798,
     "n_rs70": 446,
@@ -7,8 +7,8 @@
     "pct_rs70": 24.8
   },
   "n_quality": 195,
-  "total_hits": 63,
-  "unique_tickers": 13,
+  "total_hits": 53,
+  "unique_tickers": 12,
   "pulse_scores": {
     "AMC": {
       "breadth": 0,
@@ -18,11 +18,14 @@
       "top_signals": []
     },
     "AMPL": {
-      "breadth": 0,
-      "breadth_pct": 0.0,
-      "avg_h3": 0.0,
-      "n_signals_fired": 0,
-      "top_signals": []
+      "breadth": 1,
+      "breadth_pct": 5.9,
+      "avg_h3": 75.2,
+      "n_signals_fired": 2,
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70"
+      ]
     },
     "ANDG": {
       "breadth": 1,
@@ -80,21 +83,22 @@
       ]
     },
     "CDNA": {
+      "breadth": 2,
+      "breadth_pct": 11.8,
+      "avg_h3": 74.3,
+      "n_signals_fired": 3,
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70",
+        "F8_rs90_res15_sr15_OR"
+      ]
+    },
+    "CLMT": {
       "breadth": 0,
       "breadth_pct": 0.0,
       "avg_h3": 0.0,
       "n_signals_fired": 0,
       "top_signals": []
-    },
-    "CLMT": {
-      "breadth": 1,
-      "breadth_pct": 5.9,
-      "avg_h3": 75.2,
-      "n_signals_fired": 2,
-      "top_signals": [
-        "F_REC_ddr30_ATH5_bt70",
-        "F_REC_ddr25_ATH5_bt70"
-      ]
     },
     "CMBT": {
       "breadth": 0,
@@ -111,15 +115,11 @@
       "top_signals": []
     },
     "CVI": {
-      "breadth": 1,
-      "breadth_pct": 5.9,
-      "avg_h3": 81.5,
-      "n_signals_fired": 9,
-      "top_signals": [
-        "F_BASE_bt60_bp85_rs90_vc70_ATH5",
-        "F_REC_ddr25_ATH3_bt70_vc75",
-        "F_BASE_bt60_bp80_rs90_vc70_ATH5"
-      ]
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0,
+      "top_signals": []
     },
     "DDOG": {
       "breadth": 0,
@@ -185,14 +185,14 @@
       ]
     },
     "MRNA": {
-      "breadth": 1,
-      "breadth_pct": 5.9,
-      "avg_h3": 72.9,
-      "n_signals_fired": 4,
+      "breadth": 2,
+      "breadth_pct": 11.8,
+      "avg_h3": 75.1,
+      "n_signals_fired": 7,
       "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
         "F8_rs95_res15_sr15_OR",
-        "F8_rs90_res15_sr15_OR",
-        "F8_rs95_res20_sr15_ddr10"
+        "F_REC_ddr25_ATH5_bt70"
       ]
     },
     "NTAP": {
@@ -267,15 +267,11 @@
       "top_signals": []
     },
     "VLO": {
-      "breadth": 1,
-      "breadth_pct": 5.9,
-      "avg_h3": 81.3,
-      "n_signals_fired": 7,
-      "top_signals": [
-        "F_BASE_bt60_bp85_rs90_vc70_ATH5",
-        "F_BASE_bt60_bp80_rs90_vc70_ATH5",
-        "F_BASE_bt60_bp90_rs90_vc70_ATH5"
-      ]
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0,
+      "top_signals": []
     },
     "ZBRA": {
       "breadth": 1,
@@ -289,11 +285,29 @@
     }
   },
   "ticker_hits": {
+    "CDNA": [
+      "F_REC_ddr30_ATH5_bt70",
+      "F_REC_ddr25_ATH5_bt70",
+      "F8_rs90_res15_sr15_OR"
+    ],
+    "MRNA": [
+      "F_REC_ddr30_ATH5_bt70",
+      "F8_rs95_res15_sr15_OR",
+      "F_REC_ddr25_ATH5_bt70",
+      "F_REC_ddr20_ATH5_bt70",
+      "F8_rs90_res15_sr15_OR",
+      "F8_rs95_res20_sr15_ddr10",
+      "F8_rs95_res15_sr15_ddr10"
+    ],
     "TEAM": [
       "F_REC_ddr30_ATH5_bt70",
       "F_REC_ddr25_ATH5_bt70",
       "F_REC_ddr20_ATH5_bt70",
       "F8_rs90_res15_sr15_OR"
+    ],
+    "AMPL": [
+      "F_REC_ddr30_ATH5_bt70",
+      "F_REC_ddr25_ATH5_bt70"
     ],
     "ANDG": [
       "F_BASE_bt60_bp85_rs90_vc70_ATH5",
@@ -318,21 +332,6 @@
       "F_REC_ddr30_ATH5_bt70",
       "F_REC_ddr25_ATH5_bt70"
     ],
-    "CLMT": [
-      "F_REC_ddr30_ATH5_bt70",
-      "F_REC_ddr25_ATH5_bt70"
-    ],
-    "CVI": [
-      "F_BASE_bt60_bp85_rs90_vc70_ATH5",
-      "F_REC_ddr25_ATH3_bt70_vc75",
-      "F_BASE_bt60_bp80_rs90_vc70_ATH5",
-      "F_REC_ddr30_ATH3_bt70_vc75",
-      "F_BASE_bt60_bp90_rs90_vc70_ATH5",
-      "F_REC_ddr30_ATH5_bt70",
-      "F_REC_ddr25_ATH5_bt70",
-      "F_BASE_bt60_bp90_rs85_vc70_ATH5",
-      "F_BASE_bt60_bp85_rs80_vc70_ATH5"
-    ],
     "HAE": [
       "F_REC_ddr30_ATH5_bt70",
       "F_REC_ddr25_ATH5_bt70"
@@ -348,26 +347,11 @@
       "F_BASE_bt60_bp90_rs85_vc70_ATH5",
       "F_BASE_bt60_bp85_rs80_vc70_ATH5"
     ],
-    "MRNA": [
-      "F8_rs95_res15_sr15_OR",
-      "F8_rs90_res15_sr15_OR",
-      "F8_rs95_res20_sr15_ddr10",
-      "F8_rs95_res15_sr15_ddr10"
-    ],
     "PSX": [
       "F_BASE_bt60_bp85_rs90_vc70_ATH5",
       "F_REC_ddr25_ATH3_bt70_vc75",
       "F_BASE_bt60_bp80_rs90_vc70_ATH5",
       "F_REC_ddr30_ATH3_bt70_vc75",
-      "F_BASE_bt60_bp90_rs90_vc70_ATH5",
-      "F_REC_ddr30_ATH5_bt70",
-      "F_REC_ddr25_ATH5_bt70",
-      "F_BASE_bt60_bp90_rs85_vc70_ATH5",
-      "F_BASE_bt60_bp85_rs80_vc70_ATH5"
-    ],
-    "VLO": [
-      "F_BASE_bt60_bp85_rs90_vc70_ATH5",
-      "F_BASE_bt60_bp80_rs90_vc70_ATH5",
       "F_BASE_bt60_bp90_rs90_vc70_ATH5",
       "F_REC_ddr30_ATH5_bt70",
       "F_REC_ddr25_ATH5_bt70",
