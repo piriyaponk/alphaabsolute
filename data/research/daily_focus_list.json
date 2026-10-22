@@ -1,6 +1,6 @@
 {
-  "date": "2026-10-21",
-  "built_at": "2026-10-21T00:01:17.322568",
+  "date": "2026-10-22",
+  "built_at": "2026-10-22T00:01:17.407820",
   "summary": {
     "th_pulse_count": 0,
     "th_set100_count": 100,
@@ -17,7 +17,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 12.4
+        "rs_pct": 7.1
       },
       "top_signals": []
     },
@@ -28,7 +28,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 74.3
+        "rs_pct": 74.8
       },
       "top_signals": []
     },
@@ -39,7 +39,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 70.8
+        "rs_pct": 70.4
       },
       "top_signals": []
     },
@@ -50,7 +50,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 75.7
+        "rs_pct": 78.8
       },
       "top_signals": []
     },
@@ -61,7 +61,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 80.5
+        "rs_pct": 0.0
       },
       "top_signals": []
     },
@@ -72,7 +72,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 31.9
+        "rs_pct": 35.8
       },
       "top_signals": []
     },
@@ -83,7 +83,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 48.2
+        "rs_pct": 55.3
       },
       "top_signals": []
     },
@@ -94,7 +94,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 19.5
+        "rs_pct": 20.4
       },
       "top_signals": []
     },
@@ -105,7 +105,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 37.2
+        "rs_pct": 58.8
       },
       "top_signals": []
     },
@@ -127,7 +127,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 0.0
+        "rs_pct": 87.6
       },
       "top_signals": []
     },
@@ -138,7 +138,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 85.8
+        "rs_pct": 0.0
       },
       "top_signals": []
     },
@@ -149,7 +149,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 30.1
+        "rs_pct": 24.3
       },
       "top_signals": []
     },
@@ -171,7 +171,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 35.4
+        "rs_pct": 37.2
       },
       "top_signals": []
     },
@@ -182,7 +182,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 60.2
+        "rs_pct": 63.3
       },
       "top_signals": []
     },
@@ -193,7 +193,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 31.4
+        "rs_pct": 27.9
       },
       "top_signals": []
     },
@@ -226,7 +226,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 71.2
+        "rs_pct": 83.2
       },
       "top_signals": []
     },
@@ -248,18 +248,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 0.0
-      },
-      "top_signals": []
-    },
-    {
-      "ticker": "BH.BK",
-      "label": {
-        "source": "AA",
-        "conviction": "WATCH",
-        "pulse_h3_hit_rate_pct": 0,
-        "pulse_breadth": 0,
-        "rs_pct": 74.8
+        "rs_pct": 77.0
       },
       "top_signals": []
     },
@@ -270,7 +259,18 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 42.9
+        "rs_pct": 31.9
+      },
+      "top_signals": []
+    },
+    {
+      "ticker": "BH.BK",
+      "label": {
+        "source": "AA",
+        "conviction": "WATCH",
+        "pulse_h3_hit_rate_pct": 0,
+        "pulse_breadth": 0,
+        "rs_pct": 78.3
       },
       "top_signals": []
     },
@@ -281,7 +281,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 49.1
+        "rs_pct": 45.6
       },
       "top_signals": []
     },
@@ -292,7 +292,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 15.5
+        "rs_pct": 16.8
       },
       "top_signals": []
     },
@@ -303,7 +303,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 32.3
+        "rs_pct": 23.5
       },
       "top_signals": []
     },
@@ -314,7 +314,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 27.4
+        "rs_pct": 23.9
       },
       "top_signals": []
     },
@@ -325,7 +325,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 36.7
+        "rs_pct": 36.3
       },
       "top_signals": []
     },
@@ -336,7 +336,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 35.8
+        "rs_pct": 29.2
       },
       "top_signals": []
     },
@@ -369,7 +369,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 33.6
+        "rs_pct": 48.7
       },
       "top_signals": []
     },
@@ -391,7 +391,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 54.4
+        "rs_pct": 52.2
       },
       "top_signals": []
     },
@@ -407,35 +407,24 @@
       "top_signals": []
     },
     {
-      "ticker": "SCGP.BK",
-      "label": {
-        "source": "AA",
-        "conviction": "WATCH",
-        "pulse_h3_hit_rate_pct": 0,
-        "pulse_breadth": 0,
-        "rs_pct": 62.4
-      },
-      "top_signals": []
-    },
-    {
       "ticker": "MTC.BK",
       "label": {
         "source": "AA",
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 17.3
+        "rs_pct": 19.9
       },
       "top_signals": []
     },
     {
-      "ticker": "TIDLOR.BK",
+      "ticker": "SCGP.BK",
       "label": {
         "source": "AA",
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 14.6
+        "rs_pct": 46.5
       },
       "top_signals": []
     },
@@ -446,7 +435,18 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 47.8
+        "rs_pct": 41.6
+      },
+      "top_signals": []
+    },
+    {
+      "ticker": "TIDLOR.BK",
+      "label": {
+        "source": "AA",
+        "conviction": "WATCH",
+        "pulse_h3_hit_rate_pct": 0,
+        "pulse_breadth": 0,
+        "rs_pct": 16.4
       },
       "top_signals": []
     },
@@ -457,7 +457,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 72.1
+        "rs_pct": 74.3
       },
       "top_signals": []
     },
@@ -468,7 +468,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 0.0
+        "rs_pct": 81.4
       },
       "top_signals": []
     },
@@ -479,7 +479,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 81.4
+        "rs_pct": 0.0
       },
       "top_signals": []
     },
@@ -490,7 +490,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 50.9
+        "rs_pct": 52.7
       },
       "top_signals": []
     },
@@ -523,7 +523,18 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 27.9
+        "rs_pct": 31.4
+      },
+      "top_signals": []
+    },
+    {
+      "ticker": "RATCH.BK",
+      "label": {
+        "source": "AA",
+        "conviction": "WATCH",
+        "pulse_h3_hit_rate_pct": 0,
+        "pulse_breadth": 0,
+        "rs_pct": 46.0
       },
       "top_signals": []
     },
@@ -539,24 +550,13 @@
       "top_signals": []
     },
     {
-      "ticker": "RATCH.BK",
-      "label": {
-        "source": "AA",
-        "conviction": "WATCH",
-        "pulse_h3_hit_rate_pct": 0,
-        "pulse_breadth": 0,
-        "rs_pct": 55.8
-      },
-      "top_signals": []
-    },
-    {
       "ticker": "BANPU.BK",
       "label": {
         "source": "AA",
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 95.6
+        "rs_pct": 96.9
       },
       "top_signals": []
     },
@@ -578,7 +578,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 43.8
+        "rs_pct": 42.5
       },
       "top_signals": []
     },
@@ -589,7 +589,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 39.4
+        "rs_pct": 38.1
       },
       "top_signals": []
     },
@@ -616,6 +616,17 @@
       "top_signals": []
     },
     {
+      "ticker": "TFG.BK",
+      "label": {
+        "source": "AA",
+        "conviction": "WATCH",
+        "pulse_h3_hit_rate_pct": 0,
+        "pulse_breadth": 0,
+        "rs_pct": 31.0
+      },
+      "top_signals": []
+    },
+    {
       "ticker": "SPCG.BK",
       "label": {
         "source": "AA",
@@ -627,24 +638,13 @@
       "top_signals": []
     },
     {
-      "ticker": "TFG.BK",
-      "label": {
-        "source": "AA",
-        "conviction": "WATCH",
-        "pulse_h3_hit_rate_pct": 0,
-        "pulse_breadth": 0,
-        "rs_pct": 21.7
-      },
-      "top_signals": []
-    },
-    {
       "ticker": "BCH.BK",
       "label": {
         "source": "AA",
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 78.8
+        "rs_pct": 67.7
       },
       "top_signals": []
     },
@@ -656,6 +656,17 @@
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
         "rs_pct": 0.0
+      },
+      "top_signals": []
+    },
+    {
+      "ticker": "GLOBAL.BK",
+      "label": {
+        "source": "AA",
+        "conviction": "WATCH",
+        "pulse_h3_hit_rate_pct": 0,
+        "pulse_breadth": 0,
+        "rs_pct": 43.8
       },
       "top_signals": []
     },
@@ -677,18 +688,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 8.4
-      },
-      "top_signals": []
-    },
-    {
-      "ticker": "GLOBAL.BK",
-      "label": {
-        "source": "AA",
-        "conviction": "WATCH",
-        "pulse_h3_hit_rate_pct": 0,
-        "pulse_breadth": 0,
-        "rs_pct": 34.5
+        "rs_pct": 10.2
       },
       "top_signals": []
     },
@@ -710,7 +710,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 69.5
+        "rs_pct": 67.3
       },
       "top_signals": []
     },
@@ -732,7 +732,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 39.8
+        "rs_pct": 35.0
       },
       "top_signals": []
     },
@@ -743,7 +743,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 16.8
+        "rs_pct": 11.5
       },
       "top_signals": []
     },
@@ -754,7 +754,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 64.2
+        "rs_pct": 69.5
       },
       "top_signals": []
     },
@@ -765,7 +765,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 38.9
+        "rs_pct": 56.6
       },
       "top_signals": []
     },
@@ -776,7 +776,18 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 41.6
+        "rs_pct": 39.8
+      },
+      "top_signals": []
+    },
+    {
+      "ticker": "AP.BK",
+      "label": {
+        "source": "AA",
+        "conviction": "WATCH",
+        "pulse_h3_hit_rate_pct": 0,
+        "pulse_breadth": 0,
+        "rs_pct": 65.0
       },
       "top_signals": []
     },
@@ -792,24 +803,13 @@
       "top_signals": []
     },
     {
-      "ticker": "AP.BK",
-      "label": {
-        "source": "AA",
-        "conviction": "WATCH",
-        "pulse_h3_hit_rate_pct": 0,
-        "pulse_breadth": 0,
-        "rs_pct": 58.0
-      },
-      "top_signals": []
-    },
-    {
       "ticker": "BTS.BK",
       "label": {
         "source": "AA",
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 24.8
+        "rs_pct": 30.1
       },
       "top_signals": []
     },
@@ -831,7 +831,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 10.6
+        "rs_pct": 17.3
       },
       "top_signals": []
     },
@@ -842,7 +842,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 21.2
+        "rs_pct": 8.4
       },
       "top_signals": []
     },
@@ -853,7 +853,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 29.6
+        "rs_pct": 26.1
       },
       "top_signals": []
     },
@@ -864,7 +864,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 25.7
+        "rs_pct": 25.2
       },
       "top_signals": []
     },
@@ -897,7 +897,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 46.9
+        "rs_pct": 47.8
       },
       "top_signals": []
     },
@@ -908,7 +908,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 20.4
+        "rs_pct": 21.7
       },
       "top_signals": []
     },
@@ -919,7 +919,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 0.0
+        "rs_pct": 77.9
       },
       "top_signals": []
     },
@@ -930,7 +930,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 81.0
+        "rs_pct": 0.0
       },
       "top_signals": []
     },
@@ -941,7 +941,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 64.6
+        "rs_pct": 61.5
       },
       "top_signals": []
     },
@@ -952,7 +952,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 47.3
+        "rs_pct": 54.9
       },
       "top_signals": []
     },
@@ -974,7 +974,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 18.6
+        "rs_pct": 14.6
       },
       "top_signals": []
     },
@@ -985,7 +985,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 75.2
+        "rs_pct": 71.7
       },
       "top_signals": []
     },
@@ -996,7 +996,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 45.6
+        "rs_pct": 45.1
       },
       "top_signals": []
     },
@@ -1018,7 +1018,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 6.2
+        "rs_pct": 5.8
       },
       "top_signals": []
     },
@@ -1029,7 +1029,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 88.1
+        "rs_pct": 88.5
       },
       "top_signals": []
     },
@@ -1040,7 +1040,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 82.3
+        "rs_pct": 86.3
       },
       "top_signals": []
     },
@@ -1051,7 +1051,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 27.0
+        "rs_pct": 26.5
       },
       "top_signals": []
     },
@@ -1062,18 +1062,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 73.0
-      },
-      "top_signals": []
-    },
-    {
-      "ticker": "SYNEX.BK",
-      "label": {
-        "source": "AA",
-        "conviction": "WATCH",
-        "pulse_h3_hit_rate_pct": 0,
-        "pulse_breadth": 0,
-        "rs_pct": 60.6
+        "rs_pct": 71.2
       },
       "top_signals": []
     },
@@ -1084,18 +1073,18 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 97.8
+        "rs_pct": 97.3
       },
       "top_signals": []
     },
     {
-      "ticker": "M.BK",
+      "ticker": "SYNEX.BK",
       "label": {
         "source": "AA",
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 34.1
+        "rs_pct": 50.9
       },
       "top_signals": []
     },
@@ -1106,12 +1095,38 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 54.9
+        "rs_pct": 60.6
+      },
+      "top_signals": []
+    },
+    {
+      "ticker": "M.BK",
+      "label": {
+        "source": "AA",
+        "conviction": "WATCH",
+        "pulse_h3_hit_rate_pct": 0,
+        "pulse_breadth": 0,
+        "rs_pct": 43.4
       },
       "top_signals": []
     }
   ],
   "dr": [
+    {
+      "us_ticker": "PLTR",
+      "set_symbol": "PLTR80",
+      "label": {
+        "source": "PULSE",
+        "conviction": "MEDIUM",
+        "pulse_h3_hit_rate_pct": 75.2,
+        "pulse_breadth": 1,
+        "rs_pct": 0
+      },
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70"
+      ]
+    },
     {
       "us_ticker": "SNOW",
       "set_symbol": "SNOW23",
@@ -1151,18 +1166,6 @@
     {
       "us_ticker": "HPE",
       "set_symbol": "HPE80",
-      "label": {
-        "source": "PULSE",
-        "conviction": "WATCH",
-        "pulse_h3_hit_rate_pct": 0.0,
-        "pulse_breadth": 0,
-        "rs_pct": 0
-      },
-      "top_signals": []
-    },
-    {
-      "us_ticker": "PLTR",
-      "set_symbol": "PLTR80",
       "label": {
         "source": "PULSE",
         "conviction": "WATCH",
@@ -1235,21 +1238,6 @@
   ],
   "pulse_us": [
     {
-      "ticker": "CVI",
-      "label": {
-        "source": "PULSE",
-        "conviction": "HIGH",
-        "pulse_h3_hit_rate_pct": 81.5,
-        "pulse_breadth": 2,
-        "rs_pct": 96.2
-      },
-      "top_signals": [
-        "F_BASE_bt60_bp85_rs90_vc70_ATH5",
-        "F_REC_ddr25_ATH3_bt70_vc75",
-        "F_BASE_bt60_bp80_rs90_vc70_ATH5"
-      ]
-    },
-    {
       "ticker": "ANDG",
       "label": {
         "source": "PULSE",
@@ -1265,18 +1253,48 @@
       ]
     },
     {
+      "ticker": "CVI",
+      "label": {
+        "source": "PULSE",
+        "conviction": "HIGH",
+        "pulse_h3_hit_rate_pct": 81.3,
+        "pulse_breadth": 2,
+        "rs_pct": 96.2
+      },
+      "top_signals": [
+        "F_BASE_bt60_bp85_rs90_vc70_ATH5",
+        "F_BASE_bt60_bp80_rs90_vc70_ATH5",
+        "F_BASE_bt60_bp90_rs90_vc70_ATH5"
+      ]
+    },
+    {
+      "ticker": "ILMN",
+      "label": {
+        "source": "PULSE",
+        "conviction": "MEDIUM",
+        "pulse_h3_hit_rate_pct": 81.3,
+        "pulse_breadth": 1,
+        "rs_pct": 93.7
+      },
+      "top_signals": [
+        "F_BASE_bt60_bp85_rs90_vc70_ATH5",
+        "F_BASE_bt60_bp80_rs90_vc70_ATH5",
+        "F_BASE_bt60_bp90_rs90_vc70_ATH5"
+      ]
+    },
+    {
       "ticker": "MPC",
       "label": {
         "source": "PULSE",
         "conviction": "MEDIUM",
-        "pulse_h3_hit_rate_pct": 81.5,
+        "pulse_h3_hit_rate_pct": 81.3,
         "pulse_breadth": 1,
         "rs_pct": 95.9
       },
       "top_signals": [
         "F_BASE_bt60_bp85_rs90_vc70_ATH5",
-        "F_REC_ddr25_ATH3_bt70_vc75",
-        "F_BASE_bt60_bp80_rs90_vc70_ATH5"
+        "F_BASE_bt60_bp80_rs90_vc70_ATH5",
+        "F_BASE_bt60_bp90_rs90_vc70_ATH5"
       ]
     },
     {
@@ -1337,6 +1355,20 @@
       ]
     },
     {
+      "ticker": "CRSR",
+      "label": {
+        "source": "PULSE",
+        "conviction": "MEDIUM",
+        "pulse_h3_hit_rate_pct": 75.2,
+        "pulse_breadth": 1,
+        "rs_pct": 93.5
+      },
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70"
+      ]
+    },
+    {
       "ticker": "HAE",
       "label": {
         "source": "PULSE",
@@ -1344,34 +1376,6 @@
         "pulse_h3_hit_rate_pct": 75.2,
         "pulse_breadth": 1,
         "rs_pct": 95.4
-      },
-      "top_signals": [
-        "F_REC_ddr30_ATH5_bt70",
-        "F_REC_ddr25_ATH5_bt70"
-      ]
-    },
-    {
-      "ticker": "HURN",
-      "label": {
-        "source": "PULSE",
-        "conviction": "MEDIUM",
-        "pulse_h3_hit_rate_pct": 75.2,
-        "pulse_breadth": 1,
-        "rs_pct": 90.5
-      },
-      "top_signals": [
-        "F_REC_ddr30_ATH5_bt70",
-        "F_REC_ddr25_ATH5_bt70"
-      ]
-    },
-    {
-      "ticker": "ZBRA",
-      "label": {
-        "source": "PULSE",
-        "conviction": "MEDIUM",
-        "pulse_h3_hit_rate_pct": 75.2,
-        "pulse_breadth": 1,
-        "rs_pct": 90.0
       },
       "top_signals": [
         "F_REC_ddr30_ATH5_bt70",
@@ -1434,28 +1438,6 @@
       "top_signals": []
     },
     {
-      "ticker": "CRSR",
-      "label": {
-        "source": "AA",
-        "conviction": "WATCH",
-        "pulse_h3_hit_rate_pct": 0.0,
-        "pulse_breadth": 0,
-        "rs_pct": 93.5
-      },
-      "top_signals": []
-    },
-    {
-      "ticker": "ILMN",
-      "label": {
-        "source": "AA",
-        "conviction": "WATCH",
-        "pulse_h3_hit_rate_pct": 0.0,
-        "pulse_breadth": 0,
-        "rs_pct": 93.7
-      },
-      "top_signals": []
-    },
-    {
       "ticker": "NTAP",
       "label": {
         "source": "AA",
@@ -1474,17 +1456,6 @@
         "pulse_h3_hit_rate_pct": 0.0,
         "pulse_breadth": 0,
         "rs_pct": 95.7
-      },
-      "top_signals": []
-    },
-    {
-      "ticker": "QLYS",
-      "label": {
-        "source": "AA",
-        "conviction": "WATCH",
-        "pulse_h3_hit_rate_pct": 0.0,
-        "pulse_breadth": 0,
-        "rs_pct": 91.3
       },
       "top_signals": []
     },
@@ -1522,6 +1493,34 @@
       "top_signals": []
     },
     {
+      "ticker": "HURN",
+      "label": {
+        "source": "AA",
+        "conviction": "MEDIUM",
+        "pulse_h3_hit_rate_pct": 75.2,
+        "pulse_breadth": 1,
+        "rs_pct": 90.5
+      },
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70"
+      ]
+    },
+    {
+      "ticker": "QLYS",
+      "label": {
+        "source": "AA",
+        "conviction": "MEDIUM",
+        "pulse_h3_hit_rate_pct": 75.2,
+        "pulse_breadth": 1,
+        "rs_pct": 91.3
+      },
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70"
+      ]
+    },
+    {
       "ticker": "MRNA",
       "label": {
         "source": "AA",
@@ -1534,6 +1533,21 @@
         "F_REC_ddr30_ATH5_bt70",
         "F8_rs95_res15_sr15_OR",
         "F_REC_ddr25_ATH5_bt70"
+      ]
+    },
+    {
+      "ticker": "AMPL",
+      "label": {
+        "source": "AA",
+        "conviction": "HIGH",
+        "pulse_h3_hit_rate_pct": 74.7,
+        "pulse_breadth": 2,
+        "rs_pct": 94.2
+      },
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70",
+        "F_REC_ddr20_ATH5_bt70"
       ]
     },
     {
@@ -1552,13 +1566,13 @@
       ]
     },
     {
-      "ticker": "AMPL",
+      "ticker": "CDNA",
       "label": {
         "source": "AA",
         "conviction": "HIGH",
         "pulse_h3_hit_rate_pct": 74.3,
         "pulse_breadth": 2,
-        "rs_pct": 94.2
+        "rs_pct": 94.7
       },
       "top_signals": [
         "F_REC_ddr30_ATH5_bt70",
@@ -1567,13 +1581,13 @@
       ]
     },
     {
-      "ticker": "CDNA",
+      "ticker": "ZBRA",
       "label": {
         "source": "AA",
         "conviction": "HIGH",
         "pulse_h3_hit_rate_pct": 74.3,
         "pulse_breadth": 2,
-        "rs_pct": 94.7
+        "rs_pct": 90.0
       },
       "top_signals": [
         "F_REC_ddr30_ATH5_bt70",
