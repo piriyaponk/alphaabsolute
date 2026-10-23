@@ -1,11 +1,12 @@
 {
-  "date": "2026-10-21",
+  "date": "2026-10-22",
   "n_quality": 42,
   "n_quality_signals": 83,
   "ticker_hits": {},
   "pulse_scores": {},
   "rs_map": {
     "AWC.BK": 0.0,
+    "BA.BK": 0.0,
     "BCP.BK": 0.0,
     "BH.BK": 0.0,
     "BJC.BK": 0.0,
@@ -14,7 +15,6 @@
     "ERW.BK": 0.0,
     "HANA.BK": 0.0,
     "IRPC.BK": 0.0,
-    "IVL.BK": 0.0,
     "KCE.BK": 0.0,
     "PLANB.BK": 0.0,
     "PR9.BK": 0.0,
