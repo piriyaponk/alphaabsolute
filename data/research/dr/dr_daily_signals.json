@@ -1,31 +1,9 @@
 {
-  "date": "2026-10-22",
+  "date": "2026-10-23",
   "dr_map_version": "2026-10-10T21:59:00.336393",
   "n_screened": 33,
   "n_picks": 5,
   "picks": [
-    {
-      "us_ticker": "PLTR",
-      "set_symbol": "PLTR80",
-      "issuer": "KTB",
-      "issuer_code": "80",
-      "val_thb": 491931.9,
-      "all_dr": [
-        "PLTR01",
-        "PLTR03",
-        "PLTR06",
-        "PLTR23",
-        "PLTR80"
-      ],
-      "h3_score": 75.2,
-      "breadth": 1,
-      "n_signals": 2,
-      "top_signal_labels": [
-        "F_REC_ddr30_ATH5_bt70",
-        "F_REC_ddr25_ATH5_bt70"
-      ],
-      "source": "PULSE-US"
-    },
     {
       "us_ticker": "SNOW",
       "set_symbol": "SNOW23",
@@ -82,6 +60,25 @@
       "val_thb": 679093.7,
       "all_dr": [
         "HPE80"
+      ],
+      "h3_score": 0.0,
+      "breadth": 0,
+      "n_signals": 0,
+      "top_signal_labels": [],
+      "source": "PULSE-US"
+    },
+    {
+      "us_ticker": "PLTR",
+      "set_symbol": "PLTR80",
+      "issuer": "KTB",
+      "issuer_code": "80",
+      "val_thb": 491931.9,
+      "all_dr": [
+        "PLTR01",
+        "PLTR03",
+        "PLTR06",
+        "PLTR23",
+        "PLTR80"
       ],
       "h3_score": 0.0,
       "breadth": 0,
