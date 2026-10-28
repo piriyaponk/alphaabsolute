@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-27",
+  "date": "2026-10-28",
   "market_context": {
     "n_universe": 1798,
     "n_rs70": 446,
@@ -7,8 +7,8 @@
     "pct_rs70": 24.8
   },
   "n_quality": 195,
-  "total_hits": 60,
-  "unique_tickers": 16,
+  "total_hits": 55,
+  "unique_tickers": 17,
   "pulse_scores": {
     "AMC": {
       "breadth": 0,
@@ -107,22 +107,21 @@
       "top_signals": []
     },
     "CRSR": {
+      "breadth": 1,
+      "breadth_pct": 5.9,
+      "avg_h3": 75.2,
+      "n_signals_fired": 2,
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70"
+      ]
+    },
+    "CVI": {
       "breadth": 0,
       "breadth_pct": 0.0,
       "avg_h3": 0.0,
       "n_signals_fired": 0,
       "top_signals": []
-    },
-    "CVI": {
-      "breadth": 2,
-      "breadth_pct": 11.8,
-      "avg_h3": 78.3,
-      "n_signals_fired": 7,
-      "top_signals": [
-        "F_REC_ddr25_ATH3_bt70_vc75",
-        "F_REC_ddr30_ATH3_bt70_vc75",
-        "F_REC_ddr30_ATH5_bt70"
-      ]
     },
     "DDOG": {
       "breadth": 1,
@@ -176,22 +175,22 @@
       ]
     },
     "ILMN": {
+      "breadth": 1,
+      "breadth_pct": 5.9,
+      "avg_h3": 81.3,
+      "n_signals_fired": 7,
+      "top_signals": [
+        "F_BASE_bt60_bp85_rs90_vc70_ATH5",
+        "F_BASE_bt60_bp80_rs90_vc70_ATH5",
+        "F_BASE_bt60_bp90_rs90_vc70_ATH5"
+      ]
+    },
+    "MPC": {
       "breadth": 0,
       "breadth_pct": 0.0,
       "avg_h3": 0.0,
       "n_signals_fired": 0,
       "top_signals": []
-    },
-    "MPC": {
-      "breadth": 1,
-      "breadth_pct": 5.9,
-      "avg_h3": 81.5,
-      "n_signals_fired": 9,
-      "top_signals": [
-        "F_BASE_bt60_bp85_rs90_vc70_ATH5",
-        "F_REC_ddr25_ATH3_bt70_vc75",
-        "F_BASE_bt60_bp80_rs90_vc70_ATH5"
-      ]
     },
     "MRNA": {
       "breadth": 1,
@@ -205,18 +204,24 @@
       ]
     },
     "NTAP": {
-      "breadth": 0,
-      "breadth_pct": 0.0,
-      "avg_h3": 0.0,
-      "n_signals_fired": 0,
-      "top_signals": []
+      "breadth": 1,
+      "breadth_pct": 5.9,
+      "avg_h3": 75.2,
+      "n_signals_fired": 2,
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70"
+      ]
     },
     "OKTA": {
-      "breadth": 0,
-      "breadth_pct": 0.0,
-      "avg_h3": 0.0,
-      "n_signals_fired": 0,
-      "top_signals": []
+      "breadth": 1,
+      "breadth_pct": 5.9,
+      "avg_h3": 75.2,
+      "n_signals_fired": 2,
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70"
+      ]
     },
     "PLTR": {
       "breadth": 1,
@@ -229,14 +234,11 @@
       ]
     },
     "PSX": {
-      "breadth": 1,
-      "breadth_pct": 5.9,
-      "avg_h3": 75.2,
-      "n_signals_fired": 2,
-      "top_signals": [
-        "F_REC_ddr30_ATH5_bt70",
-        "F_REC_ddr25_ATH5_bt70"
-      ]
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0,
+      "top_signals": []
     },
     "QLYS": {
       "breadth": 2,
@@ -316,15 +318,6 @@
       "F_REC_ddr25_ATH5_bt70",
       "F8_rs90_res15_sr15_OR"
     ],
-    "CVI": [
-      "F_REC_ddr25_ATH3_bt70_vc75",
-      "F_REC_ddr30_ATH3_bt70_vc75",
-      "F_REC_ddr30_ATH5_bt70",
-      "F8_rs95_res15_sr15_OR",
-      "F_REC_ddr25_ATH5_bt70",
-      "F8_rs90_res15_sr15_OR",
-      "F8_rs95_res15_sr15_ddr10"
-    ],
     "QLYS": [
       "F_REC_ddr30_ATH5_bt70",
       "F_REC_ddr25_ATH5_bt70",
@@ -351,6 +344,10 @@
       "F_REC_ddr30_ATH5_bt70",
       "F_REC_ddr25_ATH5_bt70"
     ],
+    "CRSR": [
+      "F_REC_ddr30_ATH5_bt70",
+      "F_REC_ddr25_ATH5_bt70"
+    ],
     "DDOG": [
       "F_REC_ddr30_ATH5_bt70",
       "F_REC_ddr25_ATH5_bt70"
@@ -363,11 +360,9 @@
       "F_REC_ddr30_ATH5_bt70",
       "F_REC_ddr25_ATH5_bt70"
     ],
-    "MPC": [
+    "ILMN": [
       "F_BASE_bt60_bp85_rs90_vc70_ATH5",
-      "F_REC_ddr25_ATH3_bt70_vc75",
       "F_BASE_bt60_bp80_rs90_vc70_ATH5",
-      "F_REC_ddr30_ATH3_bt70_vc75",
       "F_BASE_bt60_bp90_rs90_vc70_ATH5",
       "F_REC_ddr30_ATH5_bt70",
       "F_REC_ddr25_ATH5_bt70",
@@ -380,11 +375,15 @@
       "F8_rs95_res20_sr15_ddr10",
       "F8_rs95_res15_sr15_ddr10"
     ],
-    "PLTR": [
+    "NTAP": [
       "F_REC_ddr30_ATH5_bt70",
       "F_REC_ddr25_ATH5_bt70"
     ],
-    "PSX": [
+    "OKTA": [
+      "F_REC_ddr30_ATH5_bt70",
+      "F_REC_ddr25_ATH5_bt70"
+    ],
+    "PLTR": [
       "F_REC_ddr30_ATH5_bt70",
       "F_REC_ddr25_ATH5_bt70"
     ],
