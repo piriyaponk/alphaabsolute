@@ -1,6 +1,6 @@
 {
-  "date": "2026-11-08",
-  "built_at": "2026-11-08T00:01:08.145043",
+  "date": "2026-11-09",
+  "built_at": "2026-11-09T00:01:15.812348",
   "summary": {
     "th_pulse_count": 0,
     "th_set100_count": 100,
@@ -77,13 +77,13 @@
       "top_signals": []
     },
     {
-      "ticker": "GULF.BK",
+      "ticker": "KCE.BK",
       "label": {
         "source": "AA",
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 41.2
+        "rs_pct": 0.0
       },
       "top_signals": []
     },
@@ -99,13 +99,13 @@
       "top_signals": []
     },
     {
-      "ticker": "KCE.BK",
+      "ticker": "GULF.BK",
       "label": {
         "source": "AA",
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 0.0
+        "rs_pct": 41.2
       },
       "top_signals": []
     },
@@ -182,7 +182,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 55.8
+        "rs_pct": 56.2
       },
       "top_signals": []
     },
@@ -215,7 +215,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 56.6
+        "rs_pct": 57.1
       },
       "top_signals": []
     },
@@ -275,17 +275,6 @@
       "top_signals": []
     },
     {
-      "ticker": "BGRIM.BK",
-      "label": {
-        "source": "AA",
-        "conviction": "WATCH",
-        "pulse_h3_hit_rate_pct": 0,
-        "pulse_breadth": 0,
-        "rs_pct": 0.0
-      },
-      "top_signals": []
-    },
-    {
       "ticker": "CPF.BK",
       "label": {
         "source": "AA",
@@ -293,6 +282,17 @@
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
         "rs_pct": 47.3
+      },
+      "top_signals": []
+    },
+    {
+      "ticker": "BGRIM.BK",
+      "label": {
+        "source": "AA",
+        "conviction": "WATCH",
+        "pulse_h3_hit_rate_pct": 0,
+        "pulse_breadth": 0,
+        "rs_pct": 0.0
       },
       "top_signals": []
     },
@@ -319,13 +319,13 @@
       "top_signals": []
     },
     {
-      "ticker": "GPSC.BK",
+      "ticker": "WHA.BK",
       "label": {
         "source": "AA",
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 0.0
+        "rs_pct": 71.2
       },
       "top_signals": []
     },
@@ -336,18 +336,18 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 58.4
+        "rs_pct": 58.8
       },
       "top_signals": []
     },
     {
-      "ticker": "WHA.BK",
+      "ticker": "GPSC.BK",
       "label": {
         "source": "AA",
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 71.2
+        "rs_pct": 0.0
       },
       "top_signals": []
     },
@@ -407,17 +407,6 @@
       "top_signals": []
     },
     {
-      "ticker": "SCGP.BK",
-      "label": {
-        "source": "AA",
-        "conviction": "WATCH",
-        "pulse_h3_hit_rate_pct": 0,
-        "pulse_breadth": 0,
-        "rs_pct": 20.8
-      },
-      "top_signals": []
-    },
-    {
       "ticker": "BEM.BK",
       "label": {
         "source": "AA",
@@ -429,13 +418,24 @@
       "top_signals": []
     },
     {
-      "ticker": "TIDLOR.BK",
+      "ticker": "SCGP.BK",
       "label": {
         "source": "AA",
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 21.2
+        "rs_pct": 20.8
+      },
+      "top_signals": []
+    },
+    {
+      "ticker": "AMATA.BK",
+      "label": {
+        "source": "AA",
+        "conviction": "WATCH",
+        "pulse_h3_hit_rate_pct": 0,
+        "pulse_breadth": 0,
+        "rs_pct": 29.6
       },
       "top_signals": []
     },
@@ -451,13 +451,13 @@
       "top_signals": []
     },
     {
-      "ticker": "AMATA.BK",
+      "ticker": "TIDLOR.BK",
       "label": {
         "source": "AA",
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 29.6
+        "rs_pct": 21.2
       },
       "top_signals": []
     },
@@ -605,17 +605,6 @@
       "top_signals": []
     },
     {
-      "ticker": "BA.BK",
-      "label": {
-        "source": "AA",
-        "conviction": "WATCH",
-        "pulse_h3_hit_rate_pct": 0,
-        "pulse_breadth": 0,
-        "rs_pct": 56.2
-      },
-      "top_signals": []
-    },
-    {
       "ticker": "CENTEL.BK",
       "label": {
         "source": "AA",
@@ -623,6 +612,17 @@
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
         "rs_pct": 0.0
+      },
+      "top_signals": []
+    },
+    {
+      "ticker": "BA.BK",
+      "label": {
+        "source": "AA",
+        "conviction": "WATCH",
+        "pulse_h3_hit_rate_pct": 0,
+        "pulse_breadth": 0,
+        "rs_pct": 56.6
       },
       "top_signals": []
     },
@@ -666,7 +666,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 52.7
+        "rs_pct": 53.1
       },
       "top_signals": []
     },
@@ -732,7 +732,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 55.3
+        "rs_pct": 55.8
       },
       "top_signals": []
     },
@@ -913,17 +913,6 @@
       "top_signals": []
     },
     {
-      "ticker": "GFPT.BK",
-      "label": {
-        "source": "AA",
-        "conviction": "WATCH",
-        "pulse_h3_hit_rate_pct": 0,
-        "pulse_breadth": 0,
-        "rs_pct": 61.5
-      },
-      "top_signals": []
-    },
-    {
       "ticker": "FORTH.BK",
       "label": {
         "source": "AA",
@@ -946,6 +935,17 @@
       "top_signals": []
     },
     {
+      "ticker": "GFPT.BK",
+      "label": {
+        "source": "AA",
+        "conviction": "WATCH",
+        "pulse_h3_hit_rate_pct": 0,
+        "pulse_breadth": 0,
+        "rs_pct": 61.5
+      },
+      "top_signals": []
+    },
+    {
       "ticker": "THCOM.BK",
       "label": {
         "source": "AA",
@@ -963,7 +963,7 @@
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 54.0
+        "rs_pct": 54.4
       },
       "top_signals": []
     },
@@ -1012,13 +1012,13 @@
       "top_signals": []
     },
     {
-      "ticker": "CIMBT.BK",
+      "ticker": "JAS.BK",
       "label": {
         "source": "AA",
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 93.8
+        "rs_pct": 1.8
       },
       "top_signals": []
     },
@@ -1034,24 +1034,24 @@
       "top_signals": []
     },
     {
-      "ticker": "JAS.BK",
-      "label": {
-        "source": "AA",
-        "conviction": "WATCH",
-        "pulse_h3_hit_rate_pct": 0,
-        "pulse_breadth": 0,
-        "rs_pct": 1.8
-      },
-      "top_signals": []
-    },
-    {
       "ticker": "QH.BK",
       "label": {
         "source": "AA",
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 57.5
+        "rs_pct": 58.0
+      },
+      "top_signals": []
+    },
+    {
+      "ticker": "CIMBT.BK",
+      "label": {
+        "source": "AA",
+        "conviction": "WATCH",
+        "pulse_h3_hit_rate_pct": 0,
+        "pulse_breadth": 0,
+        "rs_pct": 93.8
       },
       "top_signals": []
     },
@@ -1063,17 +1063,6 @@
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
         "rs_pct": 15.5
-      },
-      "top_signals": []
-    },
-    {
-      "ticker": "SIS.BK",
-      "label": {
-        "source": "AA",
-        "conviction": "WATCH",
-        "pulse_h3_hit_rate_pct": 0,
-        "pulse_breadth": 0,
-        "rs_pct": 27.0
       },
       "top_signals": []
     },
@@ -1100,13 +1089,24 @@
       "top_signals": []
     },
     {
-      "ticker": "THRE.BK",
+      "ticker": "SIS.BK",
       "label": {
         "source": "AA",
         "conviction": "WATCH",
         "pulse_h3_hit_rate_pct": 0,
         "pulse_breadth": 0,
-        "rs_pct": 77.9
+        "rs_pct": 27.0
+      },
+      "top_signals": []
+    },
+    {
+      "ticker": "ITEL.BK",
+      "label": {
+        "source": "AA",
+        "conviction": "WATCH",
+        "pulse_h3_hit_rate_pct": 0,
+        "pulse_breadth": 0,
+        "rs_pct": 40.3
       },
       "top_signals": []
     }
