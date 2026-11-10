@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "market_context": {
     "n_universe": 1798,
     "n_rs70": 446,
@@ -7,15 +7,18 @@
     "pct_rs70": 24.8
   },
   "n_quality": 195,
-  "total_hits": 34,
-  "unique_tickers": 5,
+  "total_hits": 42,
+  "unique_tickers": 8,
   "pulse_scores": {
     "AMC": {
-      "breadth": 0,
-      "breadth_pct": 0.0,
-      "avg_h3": 0.0,
-      "n_signals_fired": 0,
-      "top_signals": []
+      "breadth": 1,
+      "breadth_pct": 5.9,
+      "avg_h3": 75.2,
+      "n_signals_fired": 2,
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70"
+      ]
     },
     "AMPL": {
       "breadth": 1,
@@ -31,7 +34,7 @@
       "breadth": 2,
       "breadth_pct": 11.8,
       "avg_h3": 77.3,
-      "n_signals_fired": 5,
+      "n_signals_fired": 6,
       "top_signals": [
         "F1_vt05_ddr12_sr15",
         "F1_vt05_ddr12",
@@ -53,11 +56,14 @@
       "top_signals": []
     },
     "AZTA": {
-      "breadth": 0,
-      "breadth_pct": 0.0,
-      "avg_h3": 0.0,
-      "n_signals_fired": 0,
-      "top_signals": []
+      "breadth": 1,
+      "breadth_pct": 5.9,
+      "avg_h3": 75.2,
+      "n_signals_fired": 2,
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70"
+      ]
     },
     "CAKE": {
       "breadth": 0,
@@ -74,11 +80,15 @@
       "top_signals": []
     },
     "CDNA": {
-      "breadth": 0,
-      "breadth_pct": 0.0,
-      "avg_h3": 0.0,
-      "n_signals_fired": 0,
-      "top_signals": []
+      "breadth": 2,
+      "breadth_pct": 11.8,
+      "avg_h3": 74.3,
+      "n_signals_fired": 3,
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70",
+        "F8_rs90_res15_sr15_OR"
+      ]
     },
     "CLMT": {
       "breadth": 0,
@@ -266,8 +276,14 @@
       "F1_vt05_ddr12_sr15",
       "F1_vt05_ddr12",
       "F1_vt05_ddr12_bp70",
+      "F1_vt05_ddr12_uvr55",
       "F_REC_ddr30_ATH5_bt70",
       "F_REC_ddr25_ATH5_bt70"
+    ],
+    "CDNA": [
+      "F_REC_ddr30_ATH5_bt70",
+      "F_REC_ddr25_ATH5_bt70",
+      "F8_rs90_res15_sr15_OR"
     ],
     "MRNA": [
       "F_BASE_bt60_bp85_rs90_vc70_ATH5",
@@ -296,7 +312,15 @@
       "F1_vt05_ddr12_ads",
       "F1_vt05_ddr10_ma20"
     ],
+    "AMC": [
+      "F_REC_ddr30_ATH5_bt70",
+      "F_REC_ddr25_ATH5_bt70"
+    ],
     "AMPL": [
+      "F_REC_ddr30_ATH5_bt70",
+      "F_REC_ddr25_ATH5_bt70"
+    ],
+    "AZTA": [
       "F_REC_ddr30_ATH5_bt70",
       "F_REC_ddr25_ATH5_bt70"
     ],
