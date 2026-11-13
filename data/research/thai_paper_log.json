@@ -338,5 +338,37 @@
     "holdings": [],
     "sells": [],
     "buys": []
+  },
+  {
+    "date": "2026-11-12",
+    "nav": 998500.0,
+    "set_nav": 972579.0,
+    "daily_ret": 0.0,
+    "set_daily": 0.0,
+    "holdings": [
+      "BDMS.BK",
+      "PLANB.BK",
+      "BGRIM.BK",
+      "CPALL.BK",
+      "OSP.BK",
+      "MINT.BK",
+      "AOT.BK",
+      "WHA.BK",
+      "AWC.BK",
+      "TRUE.BK"
+    ],
+    "sells": [],
+    "buys": [
+      "BDMS.BK",
+      "PLANB.BK",
+      "BGRIM.BK",
+      "CPALL.BK",
+      "OSP.BK",
+      "MINT.BK",
+      "AOT.BK",
+      "WHA.BK",
+      "AWC.BK",
+      "TRUE.BK"
+    ]
   }
 ]
