@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-12",
+  "date": "2026-11-13",
   "market_context": {
     "n_universe": 1798,
     "n_rs70": 446,
@@ -7,18 +7,15 @@
     "pct_rs70": 24.8
   },
   "n_quality": 195,
-  "total_hits": 23,
-  "unique_tickers": 7,
+  "total_hits": 21,
+  "unique_tickers": 6,
   "pulse_scores": {
     "AMC": {
-      "breadth": 1,
-      "breadth_pct": 5.9,
-      "avg_h3": 75.2,
-      "n_signals_fired": 2,
-      "top_signals": [
-        "F_REC_ddr30_ATH5_bt70",
-        "F_REC_ddr25_ATH5_bt70"
-      ]
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0,
+      "top_signals": []
     },
     "AMPL": {
       "breadth": 1,
@@ -56,14 +53,11 @@
       "top_signals": []
     },
     "AZTA": {
-      "breadth": 1,
-      "breadth_pct": 5.9,
-      "avg_h3": 75.2,
-      "n_signals_fired": 2,
-      "top_signals": [
-        "F_REC_ddr30_ATH5_bt70",
-        "F_REC_ddr25_ATH5_bt70"
-      ]
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0,
+      "top_signals": []
     },
     "CAKE": {
       "breadth": 0,
@@ -138,11 +132,14 @@
       "top_signals": []
     },
     "HAE": {
-      "breadth": 0,
-      "breadth_pct": 0.0,
-      "avg_h3": 0.0,
-      "n_signals_fired": 0,
-      "top_signals": []
+      "breadth": 1,
+      "breadth_pct": 5.9,
+      "avg_h3": 75.2,
+      "n_signals_fired": 2,
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70"
+      ]
     },
     "HPE": {
       "breadth": 0,
@@ -282,20 +279,16 @@
       "F_REC_ddr25_ATH5_bt70",
       "F1_vt05_ddr12_ads"
     ],
-    "AMC": [
-      "F_REC_ddr30_ATH5_bt70",
-      "F_REC_ddr25_ATH5_bt70"
-    ],
     "AMPL": [
-      "F_REC_ddr30_ATH5_bt70",
-      "F_REC_ddr25_ATH5_bt70"
-    ],
-    "AZTA": [
       "F_REC_ddr30_ATH5_bt70",
       "F_REC_ddr25_ATH5_bt70"
     ],
     "CDNA": [
       "F8_rs90_res15_sr15_OR"
+    ],
+    "HAE": [
+      "F_REC_ddr30_ATH5_bt70",
+      "F_REC_ddr25_ATH5_bt70"
     ],
     "MRNA": [
       "F8_rs95_res15_sr15_OR",
