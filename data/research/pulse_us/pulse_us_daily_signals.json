@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-13",
+  "date": "2026-11-14",
   "market_context": {
     "n_universe": 1798,
     "n_rs70": 446,
@@ -7,8 +7,8 @@
     "pct_rs70": 24.8
   },
   "n_quality": 195,
-  "total_hits": 21,
-  "unique_tickers": 6,
+  "total_hits": 19,
+  "unique_tickers": 5,
   "pulse_scores": {
     "AMC": {
       "breadth": 0,
@@ -28,12 +28,11 @@
       ]
     },
     "ANDG": {
-      "breadth": 2,
-      "breadth_pct": 11.8,
-      "avg_h3": 77.3,
-      "n_signals_fired": 5,
+      "breadth": 1,
+      "breadth_pct": 5.9,
+      "avg_h3": 76.8,
+      "n_signals_fired": 2,
       "top_signals": [
-        "F1_vt05_ddr12_sr15",
         "F1_vt05_ddr12",
         "F1_vt05_ddr12_bp70"
       ]
@@ -74,13 +73,11 @@
       "top_signals": []
     },
     "CDNA": {
-      "breadth": 1,
-      "breadth_pct": 5.9,
-      "avg_h3": 72.4,
-      "n_signals_fired": 1,
-      "top_signals": [
-        "F8_rs90_res15_sr15_OR"
-      ]
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0,
+      "top_signals": []
     },
     "CLMT": {
       "breadth": 0,
@@ -233,7 +230,7 @@
       "breadth": 2,
       "breadth_pct": 11.8,
       "avg_h3": 77.3,
-      "n_signals_fired": 7,
+      "n_signals_fired": 9,
       "top_signals": [
         "F1_vt05_ddr12_sr15",
         "F1_vt05_ddr12",
@@ -263,28 +260,24 @@
     }
   },
   "ticker_hits": {
-    "ANDG": [
-      "F1_vt05_ddr12_sr15",
-      "F1_vt05_ddr12",
-      "F1_vt05_ddr12_bp70",
-      "F_REC_ddr30_ATH5_bt70",
-      "F_REC_ddr25_ATH5_bt70"
-    ],
     "U": [
       "F1_vt05_ddr12_sr15",
       "F1_vt05_ddr12",
       "F1_vt05_ddr12_bp70",
       "F1_vt05_ddr12_uvr55",
       "F_REC_ddr30_ATH5_bt70",
+      "F1_vt05_ddr12_ma20",
       "F_REC_ddr25_ATH5_bt70",
-      "F1_vt05_ddr12_ads"
+      "F1_vt05_ddr12_ads",
+      "F1_vt05_ddr10_ma20"
     ],
     "AMPL": [
       "F_REC_ddr30_ATH5_bt70",
       "F_REC_ddr25_ATH5_bt70"
     ],
-    "CDNA": [
-      "F8_rs90_res15_sr15_OR"
+    "ANDG": [
+      "F1_vt05_ddr12",
+      "F1_vt05_ddr12_bp70"
     ],
     "HAE": [
       "F_REC_ddr30_ATH5_bt70",
