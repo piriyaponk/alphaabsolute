@@ -370,5 +370,26 @@
       "AWC.BK",
       "TRUE.BK"
     ]
+  },
+  {
+    "date": "2026-11-13",
+    "nav": 987231.0,
+    "set_nav": 972579.0,
+    "daily_ret": -0.98,
+    "set_daily": 0.0,
+    "holdings": [],
+    "sells": [
+      "BDMS.BK",
+      "CPALL.BK",
+      "MINT.BK",
+      "TRUE.BK",
+      "PLANB.BK",
+      "WHA.BK",
+      "AOT.BK",
+      "BGRIM.BK",
+      "AWC.BK",
+      "OSP.BK"
+    ],
+    "buys": []
   }
 ]

@@ -1,5 +1,5 @@
 {
-  "nav": 998500.0,
+  "nav": 987231.0397286501,
   "set_nav": 972579.3212409972,
   "set_inception_price": 1620.31,
   "set_synthetic_inception": {
@@ -7,35 +7,13 @@
     "PTT.BK": 41.0,
     "KBANK.BK": 248.0
   },
-  "holdings": [
-    "BDMS.BK",
-    "PLANB.BK",
-    "BGRIM.BK",
-    "CPALL.BK",
-    "OSP.BK",
-    "MINT.BK",
-    "AOT.BK",
-    "WHA.BK",
-    "AWC.BK",
-    "TRUE.BK"
-  ],
-  "entry_prices": {
-    "BDMS.BK": 19.8,
-    "PLANB.BK": 8.9,
-    "BGRIM.BK": 22.7,
-    "CPALL.BK": 49.0,
-    "OSP.BK": 19.3,
-    "MINT.BK": 22.4,
-    "AOT.BK": 61.75,
-    "WHA.BK": 5.1,
-    "AWC.BK": 3.2,
-    "TRUE.BK": 13.1
-  },
+  "holdings": [],
+  "entry_prices": {},
   "last_rebal": 2920,
   "inception": "2026-09-02",
-  "last_update": "2026-11-13",
-  "last_db_date": "2026-11-12",
-  "trade_count": 10,
+  "last_update": "2026-11-14",
+  "last_db_date": "2026-11-13",
+  "trade_count": 20,
   "daily_log": [
     {
       "date": "2026-09-18",
@@ -338,6 +316,27 @@
         "AWC.BK",
         "TRUE.BK"
       ]
+    },
+    {
+      "date": "2026-11-13",
+      "nav": 987231.0,
+      "set_nav": 972579.0,
+      "daily_ret": -0.98,
+      "set_daily": 0.0,
+      "holdings": [],
+      "sells": [
+        "BDMS.BK",
+        "CPALL.BK",
+        "MINT.BK",
+        "TRUE.BK",
+        "PLANB.BK",
+        "WHA.BK",
+        "AOT.BK",
+        "BGRIM.BK",
+        "AWC.BK",
+        "OSP.BK"
+      ],
+      "buys": []
     }
   ]
 }
