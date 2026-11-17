@@ -11,8 +11,8 @@
   "entry_prices": {},
   "last_rebal": 2920,
   "inception": "2026-09-02",
-  "last_update": "2026-11-14",
-  "last_db_date": "2026-11-13",
+  "last_update": "2026-11-17",
+  "last_db_date": "2026-11-16",
   "trade_count": 20,
   "daily_log": [
     {
@@ -336,6 +336,16 @@
         "AWC.BK",
         "OSP.BK"
       ],
+      "buys": []
+    },
+    {
+      "date": "2026-11-16",
+      "nav": 987231.0,
+      "set_nav": 972579.0,
+      "daily_ret": 0.0,
+      "set_daily": 0.0,
+      "holdings": [],
+      "sells": [],
       "buys": []
     }
   ]
