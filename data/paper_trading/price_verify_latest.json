@@ -1,122 +1,122 @@
 {
-  "date": "2026-11-18",
+  "date": "2026-11-19",
   "results": [
     {
       "ticker": "MRNA",
-      "tiingo": 206.8,
-      "tv": 206.8,
+      "tiingo": 196.79,
+      "tv": 196.79,
       "diff_pct": 0.0,
       "cost_basis": 178.0276,
       "status": "OK"
     },
     {
       "ticker": "MXL",
-      "tiingo": 51.42,
-      "tv": 51.42,
+      "tiingo": 49.53,
+      "tv": 49.53,
       "diff_pct": 0.0,
       "cost_basis": 90.3777,
       "status": "OK"
     },
     {
       "ticker": "TWST",
-      "tiingo": 112.0,
-      "tv": 112.0,
+      "tiingo": 116.35,
+      "tv": 116.35,
       "diff_pct": 0.0,
       "cost_basis": 127.43000030517578,
       "status": "OK"
     },
     {
       "ticker": "TXG",
-      "tiingo": 56.3,
-      "tv": 56.3,
+      "tiingo": 57.07,
+      "tv": 57.07,
       "diff_pct": 0.0,
       "cost_basis": 59.69,
       "status": "OK"
     },
     {
       "ticker": "DELL",
-      "tiingo": 322.79,
-      "tv": 322.79,
+      "tiingo": 313.11,
+      "tv": 313.11,
       "diff_pct": 0.0,
       "cost_basis": 490.8857,
       "status": "OK"
     },
     {
       "ticker": "NBIS",
-      "tiingo": 106.035,
-      "tv": 106.035,
+      "tiingo": 106.96,
+      "tv": 106.96,
       "diff_pct": 0.0,
       "cost_basis": 236.0569,
       "status": "OK"
     },
     {
       "ticker": "INTC",
-      "tiingo": 55.17,
-      "tv": 55.17,
+      "tiingo": 54.67,
+      "tv": 54.67,
       "diff_pct": 0.0,
       "cost_basis": 120.3202,
       "status": "OK"
     },
     {
       "ticker": "ALAB",
-      "tiingo": 211.6,
-      "tv": 211.6,
+      "tiingo": 216.75,
+      "tv": 216.75,
       "diff_pct": 0.0,
       "cost_basis": 356.237,
       "status": "OK"
     },
     {
       "ticker": "MRVL",
-      "tiingo": 148.74,
-      "tv": 148.74,
+      "tiingo": 145.54,
+      "tv": 145.54,
       "diff_pct": 0.0,
       "cost_basis": 264.4082,
       "status": "OK"
     },
     {
       "ticker": "SIMO",
-      "tiingo": 152.04,
-      "tv": 152.04,
+      "tiingo": 149.3,
+      "tv": 149.3,
       "diff_pct": 0.0,
       "cost_basis": 280.21,
       "status": "OK"
     },
     {
       "ticker": "BE",
-      "tiingo": 173.46,
-      "tv": 173.46,
+      "tiingo": 170.98,
+      "tv": 170.98,
       "diff_pct": 0.0,
       "cost_basis": 277.1877,
       "status": "OK"
     },
     {
       "ticker": "VICR",
-      "tiingo": 144.97,
-      "tv": 144.97,
+      "tiingo": 145.59,
+      "tv": 145.59,
       "diff_pct": 0.0,
       "cost_basis": 289.1567,
       "status": "OK"
     },
     {
       "ticker": "AMD",
-      "tiingo": 503.41,
-      "tv": 503.41,
+      "tiingo": 530.14,
+      "tv": 530.14,
       "diff_pct": 0.0,
       "cost_basis": 612.2188,
       "status": "OK"
     },
     {
       "ticker": "STX",
-      "tiingo": 504.4,
-      "tv": 504.4,
+      "tiingo": 515.9,
+      "tv": 515.9,
       "diff_pct": 0.0,
       "cost_basis": 817.5077,
       "status": "OK"
     },
     {
       "ticker": "UMC",
-      "tiingo": 14.14,
-      "tv": 14.14,
+      "tiingo": 13.96,
+      "tv": 13.96,
       "diff_pct": 0.0,
       "cost_basis": 24.5084,
       "status": "OK"
