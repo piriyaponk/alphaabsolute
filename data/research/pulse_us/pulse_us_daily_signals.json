@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "market_context": {
     "n_universe": 1798,
     "n_rs70": 446,
@@ -7,8 +7,8 @@
     "pct_rs70": 24.8
   },
   "n_quality": 195,
-  "total_hits": 4,
-  "unique_tickers": 2,
+  "total_hits": 2,
+  "unique_tickers": 1,
   "pulse_scores": {
     "AMC": {
       "breadth": 0,
@@ -46,14 +46,11 @@
       "top_signals": []
     },
     "AZTA": {
-      "breadth": 1,
-      "breadth_pct": 5.9,
-      "avg_h3": 75.2,
-      "n_signals_fired": 2,
-      "top_signals": [
-        "F_REC_ddr30_ATH5_bt70",
-        "F_REC_ddr25_ATH5_bt70"
-      ]
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0,
+      "top_signals": []
     },
     "CAKE": {
       "breadth": 0,
@@ -249,10 +246,6 @@
     }
   },
   "ticker_hits": {
-    "AZTA": [
-      "F_REC_ddr30_ATH5_bt70",
-      "F_REC_ddr25_ATH5_bt70"
-    ],
     "CBRL": [
       "F_REC_ddr30_ATH5_bt70",
       "F_REC_ddr25_ATH5_bt70"
