@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-24",
+  "date": "2026-11-25",
   "market_context": {
     "n_universe": 1798,
     "n_rs70": 446,
@@ -7,7 +7,7 @@
     "pct_rs70": 24.8
   },
   "n_quality": 195,
-  "total_hits": 8,
+  "total_hits": 12,
   "unique_tickers": 4,
   "pulse_scores": {
     "AMC": {
@@ -35,11 +35,15 @@
       "top_signals": []
     },
     "ANF": {
-      "breadth": 0,
-      "breadth_pct": 0.0,
-      "avg_h3": 0.0,
-      "n_signals_fired": 0,
-      "top_signals": []
+      "breadth": 2,
+      "breadth_pct": 11.8,
+      "avg_h3": 77.3,
+      "n_signals_fired": 6,
+      "top_signals": [
+        "F1_vt05_ddr12_sr15",
+        "F1_vt05_ddr12",
+        "F1_vt05_ddr12_bp70"
+      ]
     },
     "ASX": {
       "breadth": 0,
@@ -132,14 +136,11 @@
       "top_signals": []
     },
     "HAE": {
-      "breadth": 1,
-      "breadth_pct": 5.9,
-      "avg_h3": 75.2,
-      "n_signals_fired": 2,
-      "top_signals": [
-        "F_REC_ddr30_ATH5_bt70",
-        "F_REC_ddr25_ATH5_bt70"
-      ]
+      "breadth": 0,
+      "breadth_pct": 0.0,
+      "avg_h3": 0.0,
+      "n_signals_fired": 0,
+      "top_signals": []
     },
     "HPE": {
       "breadth": 0,
@@ -255,6 +256,14 @@
     }
   },
   "ticker_hits": {
+    "ANF": [
+      "F1_vt05_ddr12_sr15",
+      "F1_vt05_ddr12",
+      "F1_vt05_ddr12_bp70",
+      "F1_vt05_ddr12_uvr55",
+      "F_REC_ddr30_ATH5_bt70",
+      "F_REC_ddr25_ATH5_bt70"
+    ],
     "AMPL": [
       "F_REC_ddr30_ATH5_bt70",
       "F_REC_ddr25_ATH5_bt70"
@@ -264,10 +273,6 @@
       "F_REC_ddr25_ATH5_bt70"
     ],
     "CBRL": [
-      "F_REC_ddr30_ATH5_bt70",
-      "F_REC_ddr25_ATH5_bt70"
-    ],
-    "HAE": [
       "F_REC_ddr30_ATH5_bt70",
       "F_REC_ddr25_ATH5_bt70"
     ]
