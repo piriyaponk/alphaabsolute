@@ -1,5 +1,5 @@
 {
-  "nav": 987231.0397286501,
+  "nav": 985750.1931690573,
   "set_nav": 972579.3212409972,
   "set_inception_price": 1620.31,
   "set_synthetic_inception": {
@@ -7,13 +7,35 @@
     "PTT.BK": 41.0,
     "KBANK.BK": 248.0
   },
-  "holdings": [],
-  "entry_prices": {},
-  "last_rebal": 2920,
+  "holdings": [
+    "OSP.BK",
+    "BCH.BK",
+    "BEM.BK",
+    "CPALL.BK",
+    "BDMS.BK",
+    "TIDLOR.BK",
+    "MINT.BK",
+    "EA.BK",
+    "CHG.BK",
+    "CBG.BK"
+  ],
+  "entry_prices": {
+    "OSP.BK": 19.1,
+    "BCH.BK": 11.3,
+    "BEM.BK": 6.62,
+    "CPALL.BK": 50.25,
+    "BDMS.BK": 20.6,
+    "TIDLOR.BK": 16.85,
+    "MINT.BK": 21.4,
+    "EA.BK": 2.5,
+    "CHG.BK": 1.72,
+    "CBG.BK": 57.0
+  },
+  "last_rebal": 2931,
   "inception": "2026-09-02",
-  "last_update": "2026-11-27",
-  "last_db_date": "2026-11-26",
-  "trade_count": 20,
+  "last_update": "2026-11-28",
+  "last_db_date": "2026-11-27",
+  "trade_count": 30,
   "daily_log": [
     {
       "date": "2026-09-18",
@@ -427,6 +449,38 @@
       "holdings": [],
       "sells": [],
       "buys": []
+    },
+    {
+      "date": "2026-11-27",
+      "nav": 985750.0,
+      "set_nav": 972579.0,
+      "daily_ret": 0.0,
+      "set_daily": 0.0,
+      "holdings": [
+        "OSP.BK",
+        "BCH.BK",
+        "BEM.BK",
+        "CPALL.BK",
+        "BDMS.BK",
+        "TIDLOR.BK",
+        "MINT.BK",
+        "EA.BK",
+        "CHG.BK",
+        "CBG.BK"
+      ],
+      "sells": [],
+      "buys": [
+        "OSP.BK",
+        "BCH.BK",
+        "BEM.BK",
+        "CPALL.BK",
+        "BDMS.BK",
+        "TIDLOR.BK",
+        "MINT.BK",
+        "EA.BK",
+        "CHG.BK",
+        "CBG.BK"
+      ]
     }
   ]
 }

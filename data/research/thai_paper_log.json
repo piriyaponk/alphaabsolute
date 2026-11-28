@@ -481,5 +481,37 @@
     "holdings": [],
     "sells": [],
     "buys": []
+  },
+  {
+    "date": "2026-11-27",
+    "nav": 985750.0,
+    "set_nav": 972579.0,
+    "daily_ret": 0.0,
+    "set_daily": 0.0,
+    "holdings": [
+      "OSP.BK",
+      "BCH.BK",
+      "BEM.BK",
+      "CPALL.BK",
+      "BDMS.BK",
+      "TIDLOR.BK",
+      "MINT.BK",
+      "EA.BK",
+      "CHG.BK",
+      "CBG.BK"
+    ],
+    "sells": [],
+    "buys": [
+      "OSP.BK",
+      "BCH.BK",
+      "BEM.BK",
+      "CPALL.BK",
+      "BDMS.BK",
+      "TIDLOR.BK",
+      "MINT.BK",
+      "EA.BK",
+      "CHG.BK",
+      "CBG.BK"
+    ]
   }
 ]
