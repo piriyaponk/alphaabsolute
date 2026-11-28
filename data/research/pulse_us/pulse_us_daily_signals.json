@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-27",
+  "date": "2026-11-28",
   "market_context": {
     "n_universe": 1798,
     "n_rs70": 446,
@@ -7,8 +7,8 @@
     "pct_rs70": 24.8
   },
   "n_quality": 195,
-  "total_hits": 12,
-  "unique_tickers": 4,
+  "total_hits": 17,
+  "unique_tickers": 5,
   "pulse_scores": {
     "AMC": {
       "breadth": 0,
@@ -38,7 +38,7 @@
       "breadth": 2,
       "breadth_pct": 11.8,
       "avg_h3": 77.3,
-      "n_signals_fired": 6,
+      "n_signals_fired": 9,
       "top_signals": [
         "F1_vt05_ddr12_sr15",
         "F1_vt05_ddr12",
@@ -227,11 +227,14 @@
       "top_signals": []
     },
     "U": {
-      "breadth": 0,
-      "breadth_pct": 0.0,
-      "avg_h3": 0.0,
-      "n_signals_fired": 0,
-      "top_signals": []
+      "breadth": 1,
+      "breadth_pct": 5.9,
+      "avg_h3": 75.2,
+      "n_signals_fired": 2,
+      "top_signals": [
+        "F_REC_ddr30_ATH5_bt70",
+        "F_REC_ddr25_ATH5_bt70"
+      ]
     },
     "UMC": {
       "breadth": 0,
@@ -262,7 +265,10 @@
       "F1_vt05_ddr12_bp70",
       "F1_vt05_ddr12_uvr55",
       "F_REC_ddr30_ATH5_bt70",
-      "F_REC_ddr25_ATH5_bt70"
+      "F1_vt05_ddr12_ma20",
+      "F_REC_ddr25_ATH5_bt70",
+      "F1_vt05_ddr12_ads",
+      "F1_vt05_ddr10_ma20"
     ],
     "AMPL": [
       "F_REC_ddr30_ATH5_bt70",
@@ -273,6 +279,10 @@
       "F_REC_ddr25_ATH5_bt70"
     ],
     "CBRL": [
+      "F_REC_ddr30_ATH5_bt70",
+      "F_REC_ddr25_ATH5_bt70"
+    ],
+    "U": [
       "F_REC_ddr30_ATH5_bt70",
       "F_REC_ddr25_ATH5_bt70"
     ]
